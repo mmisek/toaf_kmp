@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- video -->
+    <string name="module_description_video">Módulo de video</string>
+
+    <string name="video_error_81">Cambio de IBus debido a siempre alto</string>
+    <string name="video_error_82">El perro guardián ha sido activado</string>
+    <string name="video_error_83">Modos de ahorro de energía activos</string>
+    <string name="video_error_01">Desbordamiento del búfer I-Bus</string>
+    <string name="video_error_02">Error I2C en la parte gráfica</string>
+    <string name="video_error_03">Error I2C desde la parte gráfica</string>
+    <string name="video_error_04">Alta temperatura en el módulo de video</string>
+    <string name="video_error_05">Error de audio</string>
+    <string name="video_error_06">Error RGB</string>
+    <string name="video_error_07">Error de video</string>
+    <string name="video_error_08">Otro error</string>
+    <string name="video_error_09">Error de lectura de EEPROM</string>
+    <string name="video_error_0A">Error de escritura de EEPROM</string>
+    <string name="video_error_0B">Error de suma de comprobación de EEPROM</string>
+    <string name="video_error_0C">Nueva inicialización de EEPROM</string>
+    <string name="video_error_0D">Sin señal de la parte gráfica</string>
+    <string name="video_error_present">Presente</string>
+    <string name="video_error_not_present">No presente</string>
+
+    <string name="video_control_cassette_eject">Cassette: expulsar</string>
+    <string name="video_control_cassette_play">Cassette: reproducir</string>
+    <string name="video_control_cassette_ffw">Cassette: avanzar</string>
+    <string name="video_control_cassette_frw">Cassette: retroceder</string>
+    <string name="video_control_cassette_mss_fw">Cassette: MSS avanzar</string>
+    <string name="video_control_cassette_mss_rw">Cassette: MSS retroceder</string>
+    <string name="video_control_cassette_standby">Cassette: en espera</string>
+    <string name="video_control_cassette_pause_on">Cassette: pausa activada</string>
+    <string name="video_control_cassette_pause_off">Cassette: pausa desactivada</string>
+    <string name="video_control_cassette_normal">Cassette: normal</string>
+    <string name="video_control_cassette_reverse">Cassette: reverso</string>
+    <string name="video_control_cassette_dolby_b">Dolby B</string>
+    <string name="video_control_cassette_dolby_c">Dolby C</string>
+    <string name="video_control_cassette_dolby_off">Dolby desactivado</string>
+    <string name="video_control_mute_off">Silencio desactivado</string>
+    <string name="video_control_mute_on">Silencio activado</string>
+    <string name="video_control_monitor_off">Monitor apagado</string>
+    <string name="video_control_monitor_on">Monitor encendido</string>
+    <string name="video_control_sleep_mode">Modo de suspensión</string>
+    <string name="video_control_normal_mode_on">Modo normal activado</string>
+    <string name="video_control_production_mode_on">Modo de producción activado</string>
+    <string name="video_control_transport_mode_on">Modo de transporte activado</string>
+    <string name="video_control_workshop_mode_on">Modo de taller activado</string>
+
+    <string name="video_live_data_red_out">Señal roja salida</string>
+    <string name="video_live_data_green_out">Señal verde salida</string>
+    <string name="video_live_data_blue_out">Señal azul salida</string>
+    <string name="video_live_data_red_in">Señal roja entrada</string>
+    <string name="video_live_data_green_in">Señal verde entrada</string>
+    <string name="video_live_data_blue_in">Señal azul entrada</string>
+    <string name="video_live_data_x_sync">Sincronización X</string>
+    <string name="video_live_data_cvbs_fond">CVBS</string>
+    <string name="video_live_data_cvbs_cam">CVBS - cámara</string>
+    <string name="video_live_data_cvbs_vcr">CVBS - VCR</string>
+    <string name="video_live_data_cvbs_tuner">CVBS - sintonizador</string>
+    <string name="video_live_data_af_fond">Audio</string>
+    <string name="video_live_data_af_vcr">Audio - VCR</string>
+    <string name="video_live_data_af_radio">Audio - radio</string>
+    <string name="video_live_data_af_nav">Audio - navegación</string>
+
+    <string name="video_live_data_value_signal_too_low">demasiado bajo</string>
+    <string name="video_live_data_value_signal_too_high">demasiado alto</string>
+    <string name="video_live_data_value_short">corto</string>
+    <string name="video_live_data_value_line_is_open">abierto</string>
+</resources>

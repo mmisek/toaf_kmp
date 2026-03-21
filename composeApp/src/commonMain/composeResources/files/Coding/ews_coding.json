@@ -1,0 +1,123 @@
+{
+    "elements": [
+      {
+        "name": "PARK_NEUTRAL_ENGAGE",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x01",
+        "coding_index": [
+          "81"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "DME_INTERFACE",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x02",
+        "coding_index": [
+          "81"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "ews2"
+            },
+            {
+              "data": "0x00",
+              "text": "ews3"
+            }
+        ],
+        "visible": "true"
+      },
+      {
+        "name": "NO_RELEASE_WITHOUT_QUERY",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x04",
+        "coding_index": [
+          "81"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "STARTER_CUT_OFF_SPEED",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0xFF",
+        "coding_index": [
+          "81"
+        ],
+        "coding_values": [
+          {
+            "data": "0x09",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "STARTER_CUT_OFF_TIME",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0xFF",
+        "coding_index": [
+          "81"
+        ],
+        "coding_values": [
+          {
+            "data": "0x03",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "IMMOBILIZER_ACTIVATION",
+        "block": "0x00",
+        "byte": "0x03",
+        "mask": "0xFF",
+        "coding_index": [
+          "81"
+        ],
+        "coding_values": [
+          {
+            "data": "0x03",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "INTERFACE_STEPPING_CRIT",
+        "block": "0x00",
+        "byte": "0x04",
+        "mask": "0xFF",
+        "coding_index": [
+          "81"
+        ],
+        "coding_values": [
+          {
+            "data": "0x0A",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      }
+    ]
+}

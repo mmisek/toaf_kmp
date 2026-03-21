@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_lws">Sensor de ángulo de dirección</string>
+    <!-- Errors -->
+    <string name="lws_error_01">Abrazadera 30 defectuosa</string>
+    <string name="lws_error_02">Corriente del sensor fuera de rango</string>
+    <string name="lws_error_03">Diferencia de 90 grados del limpiaparabrisas demasiado grande (Operación normal)</string>
+    <string name="lws_error_04">Diferencia de 90 grados del limpiaparabrisas demasiado grande (Operación de ajuste)</string>
+    <string name="lws_error_05">EEPROM defectuosa</string>
+    <string name="lws_error_06">Convertidor AD defectuoso</string>
+    <string name="lws_error_07">Error de verificación de ROM</string>
+    <string name="lws_error_08">Error de verificación de RAM</string>
+    <string name="lws_error_09">No es un mensaje ASC2</string>
+    <string name="lws_error_0A">Versión CAN incorrecta</string>
+    <string name="lws_error_0B">ID de LWS incorrecta</string>
+    <string name="lws_error_0C">CAN-Bus apagado</string>
+    <string name="lws_error_0D">Gradiente de Lrw demasiado grande</string>
+    <string name="lws_error_0E">Máximo de Lrw excedido</string>
+    <string name="lws_error_0F">Error de pila / Error de caso</string>
+    <string name="lws_error_10">Perro guardián</string>
+
+    <string name="lws_live_data_wheel_speed_left_front">Velocidad de la rueda - delantera izquierda</string>
+    <string name="lws_live_data_wheel_speed_right_front">Velocidad de la rueda - delantera derecha</string>
+    <string name="lws_live_data_wheel_speed_left_rear">Velocidad de la rueda - trasera izquierda</string>
+    <string name="lws_live_data_wheel_speed_right_rear">Velocidad de la rueda - trasera derecha</string>
+    <string name="lws_live_data_vehicle_speed">Velocidad del vehículo</string>
+    <string name="lws_live_data_steering_angle_speed">Ángulo de dirección - velocidad</string>
+    <string name="lws_live_data_steering_angle">Ángulo de dirección</string>
+    <string name="lws_live_data_program_cycle_time">Tiempo de ciclo del programa</string>
+    <string name="lws_live_data_lateral_acceleration">Aceleración lateral</string>
+    <string name="lws_live_data_synthetic_steering_wheel_angles">Ángulos sintéticos del volante</string>
+    <string name="lws_live_data_yaw_rate">Tasa de guiñada</string>
+</resources>

@@ -1,0 +1,336 @@
+{
+  "livedata": [
+    {
+      "name": "divers_door_switch",
+      "block": "0x50",
+      "byte": "0x00",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "closed"
+        },
+        {
+          "data": "0x01",
+          "text": "open"
+        }
+      ]
+    },
+    {
+      "name": "passenger_door_switch",
+      "block": "0x50",
+      "byte": "0x00",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "closed"
+        },
+        {
+          "data": "0x01",
+          "text": "open"
+        }
+      ]
+    },
+    {
+      "name": "boot_switch",
+      "block": "0x50",
+      "byte": "0x00",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "closed"
+        },
+        {
+          "data": "0x01",
+          "text": "open"
+        }
+      ]
+    },
+    {
+      "name": "bonnet_switch",
+      "block": "0x50",
+      "byte": "0x00",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "closed"
+        },
+        {
+          "data": "0x01",
+          "text": "open"
+        }
+      ]
+    },
+    {
+      "name": "drivers_sill_up",
+      "block": "0x50",
+      "byte": "0x00",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "inactive"
+        },
+        {
+          "data": "0x01",
+          "text": "active"
+        }
+      ]
+    },
+    {
+      "name": "drivers_sill_down",
+      "block": "0x50",
+      "byte": "0x00",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "inactive"
+        },
+        {
+          "data": "0x01",
+          "text": "active"
+        }
+      ]
+    },
+    {
+      "name": "door_key_switch",
+      "block": "0x50",
+      "byte": "0x00",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "heated_rear_window_switch",
+      "block": "0x50",
+      "byte": "0x01",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "off"
+          },
+          {
+            "data": "0x01",
+            "text": "on"
+          }
+        ]
+    },
+    {
+    "name": "front_wiper_switch",
+    "block": "0x50",
+    "byte": "0x01",
+    "mask": "0x20",
+    "factor_a": "1",
+    "factor_b": "0",
+    "unit": " ",
+    "values": [
+      {
+        "data": "0x00",
+        "text": "off"
+      },
+      {
+        "data": "0x01",
+        "text": "on"
+      }
+    ]
+    },
+    {
+      "name": "front_wiper_intermittent",
+      "block": "0x50",
+      "byte": "0x01",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "front_wash_request",
+      "block": "0x50",
+      "byte": "0x02",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "interia_switch",
+      "block": "0x50",
+      "byte": "0x02",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "normal"
+        },
+        {
+          "data": "0x01",
+          "text": "tripped"
+        }
+      ]
+    },
+    {
+      "name": "drivers_window_up",
+      "block": "0x50",
+      "byte": "0x02",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "inactive"
+        },
+        {
+          "data": "0x01",
+          "text": "active"
+        }
+      ]
+    },
+    {
+      "name": "drivers_window_down",
+      "block": "0x50",
+      "byte": "0x02",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "inactive"
+        },
+        {
+          "data": "0x01",
+          "text": "active"
+        }
+      ]
+    },
+    {
+      "name": "crank_relay",
+      "block": "0x50",
+      "byte": "0x03",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "disengaged"
+        },
+        {
+          "data": "0x01",
+          "text": "engaged"
+        }
+      ]
+    },
+    {
+      "name": "immobilisation_code",
+      "block": "0x50",
+      "byte": "0x03",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "disable"
+        },
+        {
+          "data": "0x01",
+          "text": "enable"
+        }
+      ]
+    },
+    {
+      "name": "ignition",
+      "block": "0x50",
+      "byte": "0x03",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "engine_speed",
+      "block": "0x50",
+      "byte": "0x04",
+      "mask": "0xFF",
+      "factor_a": "100",
+      "factor_b": "0",
+      "unit": "rpm"
+    }
+  ]
+}

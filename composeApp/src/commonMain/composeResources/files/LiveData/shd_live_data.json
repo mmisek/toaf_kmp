@@ -1,0 +1,265 @@
+{
+  "livedata": [
+    {
+      "name": "sunroof_rise_switch",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "sunroof_close_switch",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "relay_motor_close",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "sunroof_open_switch",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "relay_motor_close",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "increment_encoder_master",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "increment_encoder_slave",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "watchdog_trigger_signal",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "supply_voltage_incremental_signal",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "relay_control_close",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "relay_control_open",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "thermal_protection",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "reversing_from_close",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "normalized",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "manual_lifting",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "tip_lifting",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "manual_push_close",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "tip_close",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "manual_push_open",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "tip_push_on",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "manual_levering",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "comfort_function",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "diagnostic_mode",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "under_voltage_detection",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "over_voltage_detection",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "sunroof_disabled",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "sunroof_in_security_area",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "anti_trap_enabled",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "sunroof_position",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0xFFFF",
+      "factor_a": "0.25",
+      "factor_b": "0",
+      "unit": " "
+    }
+  ]
+}

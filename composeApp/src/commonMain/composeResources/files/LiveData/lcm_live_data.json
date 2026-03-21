@@ -1,0 +1,643 @@
+{
+  "livedata": [
+    {
+      "name": "battery_voltage",
+      "block": "0x00",
+      "byte": "0x09",
+      "mask": "0xFF",
+      "factor_a": "0.07058824",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "voltage_present",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "emergency_light",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "break_light",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "dimmer_switch",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "position_light",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "dipped_beam",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "front_fog",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "rear_fog",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "break_light_switch",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "ignition_2",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "high_beam",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0xFF",
+      "factor_a": "0.01960784",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "blinker",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0xFF",
+      "factor_a": "0.01960784",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "stop_light_center",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "stop_light_left",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "stop_light_right",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "position_front_right",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "position_rear_right",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "position_front_left",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "position_rear_left",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "blinker_front_right",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "blinker_rear_right",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "blinker_front_left",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "blinker_rear_left",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "dipped_beam_right",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "dipped_beam_left",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "high_beam_right",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "high_beam_left",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "front_fog",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "rear_fog",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "licence_plate",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "load_sensor",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0xFF",
+      "factor_a": "0.01960784",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "trailer_blinker_right",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "trailer_blinker_left",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "trailer_stop_light",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "trailer_position_right",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "trailer_position_left",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "trailer_fog_reverse_light",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_stop_center",
+      "block": "0x00",
+      "byte": "0x0b",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_stop_left",
+      "block": "0x00",
+      "byte": "0x0b",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_stop_right",
+      "block": "0x00",
+      "byte": "0x0b",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_position_front_right",
+      "block": "0x00",
+      "byte": "0x0b",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_position_rear_right",
+      "block": "0x00",
+      "byte": "0x0D",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_position_front_left",
+      "block": "0x00",
+      "byte": "0x0C",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_position_rear_left",
+      "block": "0x00",
+      "byte": "0x0C",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_blinker_front_right",
+      "block": "0x00",
+      "byte": "0x0b",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_blinker_rear_right",
+      "block": "0x00",
+      "byte": "0x0D",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_blinker_front_left",
+      "block": "0x00",
+      "byte": "0x0b",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_blinker_rear_left",
+      "block": "0x00",
+      "byte": "0x0D",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_blinker_right_extra",
+      "block": "0x00",
+      "byte": "0x0D",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_blinker_left_extra",
+      "block": "0x00",
+      "byte": "0x0D",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_dipped_beam_right",
+      "block": "0x00",
+      "byte": "0x0C",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_dipped_beam_left",
+      "block": "0x00",
+      "byte": "0x0C",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_high_beam_right",
+      "block": "0x00",
+      "byte": "0x0C",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_high_beam_left",
+      "block": "0x00",
+      "byte": "0x0C",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_rear_fog",
+      "block": "0x00",
+      "byte": "0x0D",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_licence_plate",
+      "block": "0x00",
+      "byte": "0x0D",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "dimmer_input_voltage",
+      "block": "0x00",
+      "byte": "0x0F",
+      "mask": "0xFF",
+      "factor_a": "0.01960784",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "self_leveling",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "wt_total_time",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "h"
+    },
+    {
+      "name": "wt_dipped_beam_left",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "h"
+    },
+    {
+      "name": "wt_dipped_beam_right",
+      "block": "0x01",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "h"
+    },
+    {
+      "name": "wt_stop_left",
+      "block": "0x01",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "h"
+    },
+    {
+      "name": "wt_stop_right",
+      "block": "0x01",
+      "byte": "0x08",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "h"
+    },
+    {
+      "name": "wt_position_rear_left",
+      "block": "0x01",
+      "byte": "0x0A",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "h"
+    },
+    {
+      "name": "wt_position_rear_right",
+      "block": "0x01",
+      "byte": "0x0C",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "h"
+    },
+    {
+      "name": "wt_blinker_left",
+      "block": "0x01",
+      "byte": "0x0E",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "h"
+    },
+    {
+      "name": "wt_blinker_right",
+      "block": "0x01",
+      "byte": "0x10",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "h"
+    },
+    {
+      "name": "wt_rear_fog",
+      "block": "0x01",
+      "byte": "0x12",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "h"
+    },
+    {
+      "name": "wt_rear_fog_relay",
+      "block": "0x01",
+      "byte": "0x14",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "h"
+    },
+    {
+      "name": "wt_run_count",
+      "block": "0x01",
+      "byte": "0x16",
+      "mask": "0xFFFF",
+      "factor_a": "100",
+      "factor_b": "0",
+      "unit": "h"
+    }
+  ]
+}

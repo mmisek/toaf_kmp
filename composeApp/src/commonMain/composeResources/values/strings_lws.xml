@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_lws">Steering angle sensor</string>
+    <!-- Errors -->
+    <string name="lws_error_01">Clamp 30 defective</string>
+    <string name="lws_error_02">Sensor current out of range</string>
+    <string name="lws_error_03">90 degrees difference of wiper too large (Normal operation)</string>
+    <string name="lws_error_04">90 degrees difference of wiper too large (Adjustment operation)</string>
+    <string name="lws_error_05">EEPROM defective</string>
+    <string name="lws_error_06">AD-converter defective</string>
+    <string name="lws_error_07">ROM-Check Error</string>
+    <string name="lws_error_08">RAM-Check Error</string>
+    <string name="lws_error_09">Not an ASC2-message</string>
+    <string name="lws_error_0A">Wrong CAN-Version</string>
+    <string name="lws_error_0B">Wrong LWS-ID</string>
+    <string name="lws_error_0C">CAN-Bus off</string>
+    <string name="lws_error_0D">Lrw-gradient too large</string>
+    <string name="lws_error_0E">Lrw-maximum exceeded</string>
+    <string name="lws_error_0F">Stack Error / Case Error</string>
+    <string name="lws_error_10">Watchdog</string>
+
+    <string name="lws_live_data_wheel_speed_left_front">Wheel speed - front left</string>
+    <string name="lws_live_data_wheel_speed_right_front">Wheel speed - front right</string>
+    <string name="lws_live_data_wheel_speed_left_rear">Wheel speed - rear left</string>
+    <string name="lws_live_data_wheel_speed_right_rear">Wheel speed - rear right</string>
+    <string name="lws_live_data_vehicle_speed">Vehicle speed</string>
+    <string name="lws_live_data_steering_angle_speed">Steering angle - speed</string>
+    <string name="lws_live_data_steering_angle">Steering angle</string>
+    <string name="lws_live_data_program_cycle_time">Program cycle time</string>
+    <string name="lws_live_data_lateral_acceleration">Lateral acceleration</string>
+    <string name="lws_live_data_synthetic_steering_wheel_angles">Synthetic steering wheel angles</string>
+    <string name="lws_live_data_yaw_rate">Yaw rate</string>
+
+</resources>

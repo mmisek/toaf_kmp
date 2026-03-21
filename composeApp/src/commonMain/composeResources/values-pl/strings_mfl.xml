@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_mfl">Wielofunkcyjna kierownica</string>
+    <string name="mfl_error_01">Sygnał z kierownicy przerwany</string>
+    <string name="mfl_error_02">Przyciski ACC i DEC po prawej włączone jednocześnie</string>
+    <string name="mfl_error_03">Przyciski radia w górę i w dół po lewej włączone jednocześnie</string>
+    <string name="mfl_error_07">Zasilanie układu, zwarcie do masy</string>
+    <string name="mfl_error_0A">Błąd zapisu w EEPROM</string>
+    <string name="mfl_error_active">Błąd aktywny</string>
+    <string name="mfl_error_not_active">Błąd nieaktywny</string>
+    <string name="mfl_live_data_air_circulating_control_present">Recyrkulacja powietrza obecna</string>
+    <string name="mfl_live_data_button_air_recirculation_pressed">Naciśnięty - cyrkulacja powietrza</string>
+    <string name="mfl_live_data_button_cruise_control_off_pressed">Naciśnięty - wyłącz tempomat</string>
+    <string name="mfl_live_data_button_radio_telephone_pressed">Naciśnięty - radio/telefon</string>
+    <string name="mfl_live_data_button_resume_pressed">Naciśnięty - przywróć</string>
+    <string name="mfl_live_data_button_seek_down_pressed">Naciśnięty - SEEK-</string>
+    <string name="mfl_live_data_button_seek_up_pressed">Naciśnięty - SEEK+</string>
+    <string name="mfl_live_data_button_set_minus_pressed">Naciśnięty - SET-</string>
+    <string name="mfl_live_data_button_set_plus_pressed">Naciśnięty - SET+</string>
+    <string name="mfl_live_data_button_telephone_pressed">Naciśnięty - Telefon</string>
+    <string name="mfl_live_data_button_vol_down_pressed">Naciśnięty - VOL-</string>
+    <string name="mfl_live_data_button_vol_up_pressed">Naciśnięty - VOL+</string>
+    <string name="mfl_live_data_cruise_control_present">Tempomat obecny</string>
+    <string name="mfl_live_data_operating_voltage">Napięcie operacyjne</string>
+    <string name="mfl_live_data_operating_voltage_at_the_switch">Napięcie na przyciskach</string>
+    <string name="mfl_live_data_radio_control_present">Naciśnięty - radio</string>
+    <string name="mfl_live_data_telephone_control_present">Naciśnięty - telefon</string>
+
+</resources>

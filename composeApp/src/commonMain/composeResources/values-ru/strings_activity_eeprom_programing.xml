@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_eeprom_programing">Программирование EEPROM</string>
+    <string name="activity_eeprom_read_identification">Идентификация ЭБУ...</string>
+    <string name="activity_eeprom_programming_eeprom_reading">Чтение EEPROM</string>
+    <string name="activity_eeprom_programming_eeprom_writing">Запись EEPROM</string>
+    <string name="activity_eeprom_programming_read_eeprom">Считать EEPROM</string>
+    <string name="activity_eeprom_programming_write_eeprom">Записать EEPROM</string>
+    <string name="activity_eeprom_programming_tittle">Программирование EEPROM модуля</string>
+    <string name="activity_eeprom_programming_security_access">Доступ безопасности…%1$s</string>
+    <string name="activity_eeprom_programming_diagnostic_session">Диагностическая сессия...%1$s</string>
+    <string name="activity_eeprom_programming_eeprom_read">Чтение EEPROM...%1$s</string>
+    <string name="activity_eeprom_programming_eeprom_write">Запись EEPROM...%1$s</string>
+    <string name="activity_eeprom_programming_ecu_reset">Сброс ЭБУ...ждите</string>
+    <string name="activity_eeprom_programming_start">Старт</string>
+    <string name="activity_eeprom_programming_end">Конец</string>
+    <string name="activity_eeprom_programming_ok">OK</string>
+    <string name="activity_eeprom_programming_failed">Сбой</string>
+    <string name="activity_eeprom_programming_close">Закрыть</string>
+    <string name="activity_eeprom_programming_read_time">Время чтения : %1$s</string>
+    <string name="activity_eeprom_programming_write_time">Время записи : %1$s</string>
+    <string name="activity_eeprom_programming_written_to">Файл записан в : %1$s</string>
+    <string name="activity_eeprom_programming_write_data_to_file_error">Ошибка записи в файл.</string>
+    <string name="activity_eeprom_programming_read_size">Считано байт : %1$s</string>
+    <string name="activity_eeprom_programming_read_error">Ошибка чтения EEPROM !</string>
+    <string name="activity_eeprom_programming_write_error">Ошибка записи EEPROM !</string>
+    <string name="activity_eeprom_programming_eeprom_erasing">Стирание EEPROM...%1$s</string>
+    <string name="activity_eeprom_programming_eeprom_writing_end">Запись EEPROM завершена...%1$s</string>
+    <string name="activity_eeprom_programming_backup_eeprom">Резервная копия EEPROM...%1$s</string>
+    <string name="activity_eeprom_programming_file_name">Имя файла : %1$s</string>
+    <string name="activity_eeprom_programming_file_size">Размер файла : %1$s байт</string>
+    <string name="activity_eeprom_programming_wrong_file_size">Неверный размер файла.</string>
+    <string name="activity_eeprom_programming_ecu_init">Инициализация ЭБУ...%1$s</string>
+    <string name="activity_eeprom_programming_write_skip">Пропуск записи данных по адресу %1$s</string>
+    <string name="activity_eeprom_programming_read_data_size_error">Размер считанных данных не совпадает с размером EEPROM!</string>
+
+    <string name="activity_eeprom_programing_warning">
+        !! ВНИМАНИЕ !!\n\n
+        Все эти операции могут обездвижить ваш автомобиль.\n
+        В то время как операция чтения обычно безопасна, запись может привести к тому, что автомобиль перестанет запускаться!
+        Автор приложил все усилия, чтобы операции были безопасными, но не дает гарантий.\n
+        Вы делаете все на свой страх и риск!
+    </string>
+</resources>

@@ -1,0 +1,95 @@
+{
+  "freeze_frames":
+  [
+      {
+        "name": "engine_speed",
+        "unit": "1/min",
+        "factor_a": "24.975025",
+        "factor_b": "0"
+      },
+      {
+        "name": "coolant_temp",
+        "unit": "°C",
+        "factor_a": "0.6826871",
+        "factor_b": "-41.0264009"
+      },
+      {
+        "name": "injected_volume",
+        "unit": "mm^3",
+        "factor_a": "0.5120328",
+        "factor_b": "0"
+      },
+      {
+        "name": "rpc_pressure",
+        "unit": "bar",
+        "factor_a": "6.0240963855",
+        "factor_b": "0"
+      },
+      {
+        "name": "supply_voltage",
+        "unit": "V",
+        "factor_a": "0.1157263393",
+        "factor_b": "0"
+      },
+      {
+        "name": "air_temperature",
+        "unit": "°C",
+        "factor_a": "0.6826871",
+        "factor_b": "-41.0264009"
+      },
+      {
+        "name": "air_boost",
+        "unit": "mbar",
+        "factor_a": "16",
+        "factor_b": "0"
+      },
+      {
+        "name": "throttle_pedal_1",
+        "unit": "%",
+        "factor_a": "0.3938558",
+        "factor_b": "0"
+      },
+      {
+        "name": "throttle_pedal_2",
+        "unit": "%",
+        "factor_a": "0.3938558",
+        "factor_b": "0"
+      },
+      {
+        "name": "car_speed",
+        "unit": "km/h",
+        "factor_a": "1.0235415",
+        "factor_b": "0"
+      },
+      {
+        "name": "pre_supply_pressure",
+        "unit": "bar",
+        "factor_a": "0.016",
+        "factor_b": "0"
+      },
+      {
+        "name": "duty_factor",
+        "unit": "%",
+        "factor_a": "0.3938558",
+        "factor_b": "0"
+      },
+      {
+        "name": "odometer",
+        "unit": "km",
+        "factor_a": "10",
+        "factor_b": "0"
+      },
+      {
+        "name": "restart_code",
+        "unit": " ",
+        "factor_a": "1",
+        "factor_b": "0"
+      },
+      {
+        "name": "atmospheric_pressure",
+        "unit": "mbar",
+        "factor_a": "16",
+        "factor_b": "0"
+      }
+    ]
+}

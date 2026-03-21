@@ -1,0 +1,4053 @@
+{
+    "elements": [
+        {
+          "name": "INTENSIVE_WASH",
+          "block": "0x00",
+          "byte": "0x00",
+          "mask": "0x01",
+          "coding_index": [
+              "04",
+              "10"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "POWER_WASH",
+          "block": "0x00",
+          "byte": "0x00",
+          "mask": "0x02",
+          "coding_index": [
+              "04",
+              "10"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "PRESSURE_CONTROL",
+          "block": "0x00",
+          "byte": "0x00",
+          "mask": "0x04",
+          "coding_index": [
+              "04",
+              "10"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "SERVOTRONIK",
+          "block": "0x00",
+          "byte": "0x00",
+          "mask": "0x08",
+          "coding_index": [
+              "04",
+              "10"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "RAIN_SENSOR",
+          "block": "0x00",
+          "byte": "0x00",
+          "mask": "0x10",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "PASS_KEY_BARREL_DISABLE",
+          "block": "0x00",
+          "byte": "0x00",
+          "mask": "0x10",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "MIRROR_FOLD",
+          "block": "0x00",
+          "byte": "0x00",
+          "mask": "0x20",
+          "coding_index": [
+              "04",
+              "10"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "MIRROR_HEATING",
+          "block": "0x00",
+          "byte": "0x00",
+          "mask": "0x40",
+          "coding_index": [
+              "04",
+              "10"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "MIRROR_MEMORY",
+          "block": "0x00",
+          "byte": "0x00",
+          "mask": "0x80",
+          "coding_index": [
+              "04",
+              "10"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "SELF_TAILGATE",
+          "block": "0x00",
+          "byte": "0x01",
+          "mask": "0x01",
+          "coding_index": [
+              "04",
+              "10"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "HYDRAULIC_LIFT_GATE",
+          "block": "0x00",
+          "byte": "0x01",
+          "mask": "0x02",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "SPEED_LOCKING",
+          "block": "0x00",
+          "byte": "0x01",
+          "mask": "0x02",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "REAR_ELEC_WINDOWS",
+          "block": "0x00",
+          "byte": "0x01",
+          "mask": "0x04",
+          "coding_index": [
+              "04",
+              "10"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "STEERING_MEMORY",
+          "block": "0x00",
+          "byte": "0x01",
+          "mask": "0x08",
+          "coding_index": [
+              "04",
+              "10"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "GLASS_SUNROOF",
+          "block": "0x00",
+          "byte": "0x01",
+          "mask": "0x10",
+          "coding_index": [
+              "04",
+              "10"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "INTERIOR_LIGHT_SOFT",
+          "block": "0x00",
+          "byte": "0x01",
+          "mask": "0x20",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "PASS_DOOR_IR_REMOTE",
+          "block": "0x00",
+          "byte": "0x01",
+          "mask": "0x20",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "FOLD_AWAY_RAIN_SEN",
+          "block": "0x00",
+          "byte": "0x01",
+          "mask": "0x40",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "NO_TAIL_SUPER_RELEASE",
+          "block": "0x00",
+          "byte": "0x01",
+          "mask": "0x40",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "WIPER_SPEED_STEP",
+          "block": "0x00",
+          "byte": "0x01",
+          "mask": "0x80",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "VISUAL_ENTRY",
+          "block": "0x00",
+          "byte": "0x02",
+          "mask": "0x01",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "INT_LAMPS_TAILGATE",
+          "block": "0x00",
+          "byte": "0x02",
+          "mask": "0x02",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "LIM_OR_TOURING",
+          "block": "0x00",
+          "byte": "0x02",
+          "mask": "0x02",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "touring"
+              },
+              {
+                "data": "0x00",
+                "text": "limousine"
+              }
+            ]
+        },
+        {
+          "name": "BC_IMMOBILISE",
+          "block": "0x00",
+          "byte": "0x02",
+          "mask": "0x04",
+          "coding_index": [
+              "04",
+              "10"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "WIPE_TIME_STANDSTILL",
+          "block": "0x00",
+          "byte": "0x02",
+          "mask": "0x08",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "SPEED_FROM_ABS",
+          "block": "0x00",
+          "byte": "0x02",
+          "mask": "0x08",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "SPECIAL_WASH_FUNC",
+          "block": "0x00",
+          "byte": "0x02",
+          "mask": "0x10",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "WINDOW_OPEN_INHIBIT",
+          "block": "0x00",
+          "byte": "0x02",
+          "mask": "0x10",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "HEADLAMP_CLEANING",
+          "block": "0x00",
+          "byte": "0x02",
+          "mask": "0x20",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "LIGHTS_WITH_TAILGATE",
+          "block": "0x00",
+          "byte": "0x02",
+          "mask": "0x20",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "TIMER_REAR_WINDOWS",
+          "block": "0x00",
+          "byte": "0x02",
+          "mask": "0x40",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "PARTIAL_ARM_ENABLE",
+          "block": "0x00",
+          "byte": "0x02",
+          "mask": "0x40",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "CENTRE_BUTTON_CRASH",
+          "block": "0x00",
+          "byte": "0x02",
+          "mask": "0x80",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "BLADE_CHANGE_PARK",
+          "block": "0x00",
+          "byte": "0x02",
+          "mask": "0x80",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "INTERIOR_CONFIG_0",
+          "block": "0x00",
+          "byte": "0x03",
+          "mask": "0x01",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "PM_SUNROOF",
+          "block": "0x00",
+          "byte": "0x03",
+          "mask": "0x01",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "INTERIOR_CONFIG_1",
+          "block": "0x00",
+          "byte": "0x03",
+          "mask": "0x02",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "PM_SEATMEMORY",
+          "block": "0x00",
+          "byte": "0x03",
+          "mask": "0x02",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "INTERIOR_CONFIG_2",
+          "block": "0x00",
+          "byte": "0x03",
+          "mask": "0x04",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "PM_PASS_MEM_SEAT",
+          "block": "0x00",
+          "byte": "0x03",
+          "mask": "0x04",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "INTERIOR_CONFIG_3",
+          "block": "0x00",
+          "byte": "0x03",
+          "mask": "0x08",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "PM_REAR_SWITCHES",
+          "block": "0x00",
+          "byte": "0x03",
+          "mask": "0x08",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "INTERIOR_CONFIG_4",
+          "block": "0x00",
+          "byte": "0x03",
+          "mask": "0x10",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "KEY_MEMORY",
+          "block": "0x00",
+          "byte": "0x03",
+          "mask": "0x10",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "INTERIOR_CONFIG_5",
+          "block": "0x00",
+          "byte": "0x03",
+          "mask": "0x20",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "AUTO_LOCK_DISABLE",
+          "block": "0x00",
+          "byte": "0x03",
+          "mask": "0x20",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "INTERIOR_CONFIG_6",
+          "block": "0x00",
+          "byte": "0x03",
+          "mask": "0x40",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "HYDRAULIC_TRUNK",
+          "block": "0x00",
+          "byte": "0x03",
+          "mask": "0x40",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "INTERIOR_CONFIG_7",
+          "block": "0x00",
+          "byte": "0x03",
+          "mask": "0x80",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "LOCK_NOT_SUPERLOCK",
+          "block": "0x00",
+          "byte": "0x03",
+          "mask": "0x80",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "VISUAL_ENTRY_CONFIG_0",
+          "block": "0x00",
+          "byte": "0x04",
+          "mask": "0x01",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "SPE_KEY_1",
+          "block": "0x00",
+          "byte": "0x04",
+          "mask": "0x01",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "VISUAL_ENTRY_CONFIG_1",
+          "block": "0x00",
+          "byte": "0x04",
+          "mask": "0x02",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "SPE_KEY_2",
+          "block": "0x00",
+          "byte": "0x04",
+          "mask": "0x02",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "VISUAL_ENTRY_CONFIG_2",
+          "block": "0x00",
+          "byte": "0x04",
+          "mask": "0x04",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "SPE_KEY_3",
+          "block": "0x00",
+          "byte": "0x04",
+          "mask": "0x04",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "SPE_KEY_4",
+          "block": "0x00",
+          "byte": "0x04",
+          "mask": "0x08",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "VISUAL_ENTRY_CONFIG_3",
+          "block": "0x00",
+          "byte": "0x04",
+          "mask": "0x08",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "VISUAL_ENTRY_CONFIG_4",
+          "block": "0x00",
+          "byte": "0x04",
+          "mask": "0x10",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "AUTOLOCK_KEY_1",
+          "block": "0x00",
+          "byte": "0x04",
+          "mask": "0x10",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "VISUAL_ENTRY_CONFIG_5",
+          "block": "0x00",
+          "byte": "0x04",
+          "mask": "0x20",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "AUTOLOCK_KEY_2",
+          "block": "0x00",
+          "byte": "0x04",
+          "mask": "0x20",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "VISUAL_ENTRY_CONFIG_6",
+          "block": "0x00",
+          "byte": "0x04",
+          "mask": "0x40",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "AUTOLOCK_KEY_3",
+          "block": "0x00",
+          "byte": "0x04",
+          "mask": "0x40",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "VISUAL_ENTRY_CONFIG_7",
+          "block": "0x00",
+          "byte": "0x04",
+          "mask": "0x80",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "AUTOLOCK_KEY_4",
+          "block": "0x00",
+          "byte": "0x04",
+          "mask": "0x80",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "PM_SUNROOF",
+          "block": "0x00",
+          "byte": "0x05",
+          "mask": "0x01",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "PM_SEATMEMORY",
+          "block": "0x00",
+          "byte": "0x05",
+          "mask": "0x02",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "PM_PASS_MEM_SEAT",
+          "block": "0x00",
+          "byte": "0x05",
+          "mask": "0x04",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "FRONT_SWITCH_BLOCK",
+          "block": "0x00",
+          "byte": "0x05",
+          "mask": "0x08",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "KEY_MEMORY",
+          "block": "0x00",
+          "byte": "0x05",
+          "mask": "0x10",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "KBUS_DELAY_300MS",
+          "block": "0x00",
+          "byte": "0x05",
+          "mask": "0x20",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "PBUS_DELAY_300MS",
+          "block": "0x00",
+          "byte": "0x05",
+          "mask": "0x40",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "ALARM_ACK_MS",
+          "block": "0x00",
+          "byte": "0x05",
+          "mask": "0x0F",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "10ms"
+              },
+              {
+                "data": "0x02",
+                "text": "20ms"
+              },
+              {
+                "data": "0x04",
+                "text": "40ms"
+              },
+              {
+                "data": "0x08",
+                "text": "80ms"
+              }
+            ]
+        },
+        {
+          "name": "ALARM_REPEAT_TRIGGER",
+          "block": "0x00",
+          "byte": "0x05",
+          "mask": "0x10",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "AUTOLOCK_SPEED",
+          "block": "0x00",
+          "byte": "0x05",
+          "mask": "0x70",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "klemme_r"
+              },
+              {
+                "data": "0x01",
+                "text": "4_kmh"
+              },
+              {
+                "data": "0x02",
+                "text": "8_kmh"
+              },
+              {
+                "data": "0x03",
+                "text": "12_kmh"
+              },
+              {
+                "data": "0x04",
+                "text": "16_kmh"
+              },
+              {
+                "data": "0x05",
+                "text": "20_kmh"
+              },
+              {
+                "data": "0x06",
+                "text": "24_kmh"
+              },
+              {
+                "data": "0x07",
+                "text": "28_kmh"
+              }
+            ]
+        },
+        {
+          "name": "SPE_KEY_1",
+          "block": "0x00",
+          "byte": "0x06",
+          "mask": "0x01",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "SPE_KEY_2",
+          "block": "0x00",
+          "byte": "0x06",
+          "mask": "0x02",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "SPE_KEY_3",
+          "block": "0x00",
+          "byte": "0x06",
+          "mask": "0x04",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "SPE_KEY_4",
+          "block": "0x00",
+          "byte": "0x06",
+          "mask": "0x08",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "AUTOLOCK_KEY_1",
+          "block": "0x00",
+          "byte": "0x06",
+          "mask": "0x10",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "AUTOLOCK_KEY_2",
+          "block": "0x00",
+          "byte": "0x06",
+          "mask": "0x20",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "AUTOLOCK_KEY_3",
+          "block": "0x00",
+          "byte": "0x06",
+          "mask": "0x40",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "AUTOLOCK_KEY_4",
+          "block": "0x00",
+          "byte": "0x06",
+          "mask": "0x80",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "WINDOW_TIMER_DISABLE",
+          "block": "0x00",
+          "byte": "0x06",
+          "mask": "0x03",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "ece"
+              },
+              {
+                "data": "0x01",
+                "text": "us"
+              },
+              {
+                "data": "0x02",
+                "text": "reserve1"
+              },
+              {
+                "data": "0x03",
+                "text": "reserve2"
+              }
+            ]
+        },
+        {
+          "name": "LAZY_VENT",
+          "block": "0x00",
+          "byte": "0x06",
+          "mask": "0x04",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "LAZY_LOCK",
+          "block": "0x00",
+          "byte": "0x06",
+          "mask": "0x08",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "WIPER_INTERVAL",
+          "block": "0x00",
+          "byte": "0x06",
+          "mask": "0x10",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "5sec"
+              },
+              {
+                "data": "0x01",
+                "text": "3sec"
+              }
+            ]
+        },
+        {
+          "name": "TIMED_WIPE",
+          "block": "0x00",
+          "byte": "0x06",
+          "mask": "0x20",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "SOFT_ON_OFF",
+          "block": "0x00",
+          "byte": "0x06",
+          "mask": "0x40",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "SINGLE_POINT",
+          "block": "0x00",
+          "byte": "0x06",
+          "mask": "0x80",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "ALARM_ACK_MS",
+          "block": "0x00",
+          "byte": "0x07",
+          "mask": "0x0F",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "10ms"
+              },
+              {
+                "data": "0x02",
+                "text": "20ms"
+              },
+              {
+                "data": "0x04",
+                "text": "40ms"
+              },
+              {
+                "data": "0x08",
+                "text": "80ms"
+              }
+            ]
+        },
+        {
+          "name": "ALARM_REPEAT_TRIGGER",
+          "block": "0x00",
+          "byte": "0x07",
+          "mask": "0x10",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "INT_ON_0KPH",
+          "block": "0x00",
+          "byte": "0x07",
+          "mask": "0x20",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "TYRE_ALARM_TRIG_TAIL",
+          "block": "0x00",
+          "byte": "0x07",
+          "mask": "0x40",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "TYRE_ALARM_TRIG_KBUS",
+          "block": "0x00",
+          "byte": "0x07",
+          "mask": "0x80",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "DRV_WIN_1_TOUCH_CLOSE",
+          "block": "0x00",
+          "byte": "0x07",
+          "mask": "0x01",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "DRV_WIN_1_TOUCH_OPEN",
+          "block": "0x00",
+          "byte": "0x07",
+          "mask": "0x02",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "PASS_WIN_1_TOUCH_CLOSE",
+          "block": "0x00",
+          "byte": "0x07",
+          "mask": "0x04",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "PASS_WIN_1_TOUCH_OPEN",
+          "block": "0x00",
+          "byte": "0x07",
+          "mask": "0x08",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "REAR_WIN_1_TOUCH_CLOSE",
+          "block": "0x00",
+          "byte": "0x07",
+          "mask": "0x10",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "REAR_WIN_1_TOUCH_OPEN",
+          "block": "0x00",
+          "byte": "0x07",
+          "mask": "0x20",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "SUNROOF_1_TOUCH_CLOSE",
+          "block": "0x00",
+          "byte": "0x07",
+          "mask": "0x40",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "SUNROOF_1_TOUCH_OPEN",
+          "block": "0x00",
+          "byte": "0x07",
+          "mask": "0x80",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "ALARM_PRESENT",
+          "block": "0x00",
+          "byte": "0x08",
+          "mask": "0x01",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "TILT_SENSOR",
+          "block": "0x00",
+          "byte": "0x08",
+          "mask": "0x02",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "VOL_SENSOR",
+          "block": "0x00",
+          "byte": "0x08",
+          "mask": "0x04",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "REMOTE_ARMING",
+          "block": "0x00",
+          "byte": "0x08",
+          "mask": "0x08",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "remote_only"
+              },
+              {
+                "data": "0x00",
+                "text": "key_and_remote"
+              }
+            ]
+        },
+        {
+          "name": "ACOUSTIC_ALARM",
+          "block": "0x00",
+          "byte": "0x08",
+          "mask": "0x10",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "intermittent"
+              },
+              {
+                "data": "0x00",
+                "text": "continuous"
+              }
+            ]
+        },
+        {
+          "name": "HAZARD_ALARM",
+          "block": "0x00",
+          "byte": "0x08",
+          "mask": "0x20",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "DIP_BEAM_ALARM",
+          "block": "0x00",
+          "byte": "0x08",
+          "mask": "0x40",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "MAIN_BEAM_ALARM",
+          "block": "0x00",
+          "byte": "0x08",
+          "mask": "0x80",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "BBUS_SOUNDER",
+          "block": "0x00",
+          "byte": "0x09",
+          "mask": "0x01",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "ARM_ACK_HAZARDS",
+          "block": "0x00",
+          "byte": "0x09",
+          "mask": "0x02",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "ARM_ACK_HORN",
+          "block": "0x00",
+          "byte": "0x09",
+          "mask": "0x04",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "DISARM_ACK_HAZARDS",
+          "block": "0x00",
+          "byte": "0x09",
+          "mask": "0x08",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "DISARM_ACK_HORN",
+          "block": "0x00",
+          "byte": "0x09",
+          "mask": "0x10",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "EMERGENCY_DISARM",
+          "block": "0x00",
+          "byte": "0x09",
+          "mask": "0x20",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "AUTO_IMMOBILISE",
+          "block": "0x00",
+          "byte": "0x09",
+          "mask": "0x40",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "PARTIAL_ARM_ENABLE",
+          "block": "0x00",
+          "byte": "0x09",
+          "mask": "0x80",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "ANTITRAP_REVERSE",
+          "block": "0x00",
+          "byte": "0x09",
+          "mask": "0x80",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "short"
+              },
+              {
+                "data": "0x01",
+                "text": "long"
+              }
+            ]
+        },
+        {
+          "name": "DRV_FRONT_WIN_MONITOR",
+          "block": "0x00",
+          "byte": "0x0A",
+          "mask": "0x01",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "DRV_REAR_WIN_MONITOR",
+          "block": "0x00",
+          "byte": "0x0A",
+          "mask": "0x02",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "PASS_FRONT_WIN_MONITOR",
+          "block": "0x00",
+          "byte": "0x0A",
+          "mask": "0x04",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "PASS_REAR_WIN_MONITOR",
+          "block": "0x00",
+          "byte": "0x0A",
+          "mask": "0x08",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "TAIL_WIN_MONITOR",
+          "block": "0x00",
+          "byte": "0x0A",
+          "mask": "0x10",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "REAR_VOL_SENSOR",
+          "block": "0x00",
+          "byte": "0x0A",
+          "mask": "0x20",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "FRONT_DOOR_CONTACTS",
+          "block": "0x00",
+          "byte": "0x0A",
+          "mask": "0x40",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "direct"
+              },
+              {
+                "data": "0x00",
+                "text": "outstation"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "DOOR_CONTACT_LOGIC",
+          "block": "0x00",
+          "byte": "0x0A",
+          "mask": "0x80",
+          "coding_index": [
+              "10",
+              "04"
+            ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "open"
+              },
+              {
+                "data": "0x00",
+                "text": "closed"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "WINDOW_TIMER_DISABLE",
+          "block": "0x00",
+          "byte": "0x0B",
+          "mask": "0x03",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "ece"
+              },
+              {
+                "data": "0x01",
+                "text": "us"
+              },
+              {
+                "data": "0x10",
+                "text": "klroff"
+              },
+              {
+                "data": "0x11",
+                "text": "reserve2"
+              }
+            ]
+        },
+        {
+          "name": "LAZY_VENT",
+          "block": "0x00",
+          "byte": "0x0B",
+          "mask": "0x04",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "LAZY_LOCK",
+          "block": "0x00",
+          "byte": "0x0B",
+          "mask": "0x08",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "ANTITRAP_REVERSE",
+          "block": "0x00",
+          "byte": "0x0B",
+          "mask": "0x10",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "short"
+              },
+              {
+                "data": "0x01",
+                "text": "long"
+              }
+            ]
+        },
+        {
+          "name": "ONE_TOU_CLOSE_EMER_OPEN",
+          "block": "0x00",
+          "byte": "0x0B",
+          "mask": "0x20",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "active"
+              },
+              {
+                "data": "0x00",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "SERVOTRONIC_MAP_SOURCE",
+          "block": "0x00",
+          "byte": "0x0B",
+          "mask": "0x20",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "rom"
+              },
+              {
+                "data": "0x00",
+                "text": "eeprom"
+              }
+            ]
+        },
+        {
+          "name": "SERVOTRONIC_MAP_SOURCE",
+          "block": "0x00",
+          "byte": "0x0B",
+          "mask": "0xF0",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x06",
+                "text": "6_cylinders"
+              },
+              {
+                "data": "0x08",
+                "text": "8_cylinders"
+              }
+            ]
+        },
+        {
+          "name": "DRV_WIN_1_TOUCH_CLOSE",
+          "block": "0x00",
+          "byte": "0x0C",
+          "mask": "0x01",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "DRV_WIN_1_TOUCH_OPEN",
+          "block": "0x00",
+          "byte": "0x0C",
+          "mask": "0x02",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "PASS_WIN_1_TOUCH_CLOSE",
+          "block": "0x00",
+          "byte": "0x0C",
+          "mask": "0x04",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "PASS_WIN_1_TOUCH_OPEN",
+          "block": "0x00",
+          "byte": "0x0C",
+          "mask": "0x08",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "REAR_WIN_1_TOUCH_CLOSE",
+          "block": "0x00",
+          "byte": "0x0C",
+          "mask": "0x10",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "REAR_WIN_1_TOUCH_OPEN",
+          "block": "0x00",
+          "byte": "0x0C",
+          "mask": "0x20",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "SUNROOF_1_TOUCH_CLOSE",
+          "block": "0x00",
+          "byte": "0x0C",
+          "mask": "0x40",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "SUNROOF_1_TOUCH_OPEN",
+          "block": "0x00",
+          "byte": "0x0C",
+          "mask": "0x80",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "active"
+              },
+              {
+                "data": "0x01",
+                "text": "inactive"
+              }
+            ]
+        },
+        {
+          "name": "SERVOTRONIC_ABS",
+          "block": "0x00",
+          "byte": "0x0D",
+          "mask": "0x01",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+           {
+              "data": "0x01",
+              "text": "default"
+            }
+          ],
+          "visible": "false"
+        },
+        {
+          "name": "SERVOTRONIC_MAP_SOURCE",
+          "block": "0x00",
+          "byte": "0x0D",
+          "mask": "0x01",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "rom"
+              },
+              {
+                "data": "0x01",
+                "text": "eeprom"
+              }
+            ]
+        },
+        {
+          "name": "SERVOTRONIC_NUMCYL",
+          "block": "0x00",
+          "byte": "0x0D",
+          "mask": "0xF0",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x07",
+                "text": "6_cylinders"
+              },
+              {
+                "data": "0x08",
+                "text": "8_cylinders"
+              }
+            ]
+        },
+        {
+          "name": "REMOTE_LAZY_VENT",
+          "block": "0x00",
+          "byte": "0x0D",
+          "mask": "0x01",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "REMOTE_LAZY_LOCK",
+          "block": "0x00",
+          "byte": "0x0D",
+          "mask": "0x02",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "AUTO_RELOCK",
+          "block": "0x00",
+          "byte": "0x0D",
+          "mask": "0x04",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "PANIC_MODE",
+          "block": "0x00",
+          "byte": "0x0D",
+          "mask": "0x08",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "INTLIGHTS_REPEAT_LOCK",
+          "block": "0x00",
+          "byte": "0x0D",
+          "mask": "0x10",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "TIMED_IGN_UNLOCK",
+          "block": "0x00",
+          "byte": "0x0D",
+          "mask": "0x20",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "UNLOCK_WITH_KEY",
+          "block": "0x00",
+          "byte": "0x0D",
+          "mask": "0x40",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "K_BUS_REMOTE_DISABLE",
+          "block": "0x00",
+          "byte": "0x0D",
+          "mask": "0x40",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "SERVOTRONIC_CODE",
+          "block": "0x00",
+          "byte": "0x0E",
+          "mask": "0x01",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+           {
+              "data": "0x00",
+              "text": "default"
+            }
+          ],
+          "visible": "false"
+        },
+        {
+          "name": "SERVOTRONIC_CODE",
+          "block": "0x00",
+          "byte": "0x0E",
+          "mask": "0x02",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+           {
+              "data": "0x00",
+              "text": "default"
+            }
+          ],
+          "visible": "false"
+        },
+        {
+          "name": "SERVOTRONIC_CODE",
+          "block": "0x00",
+          "byte": "0x0E",
+          "mask": "0x04",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+           {
+              "data": "0x00",
+              "text": "default"
+            }
+          ],
+          "visible": "false"
+        },
+        {
+          "name": "SERVOTRONIC_CODE",
+          "block": "0x00",
+          "byte": "0x0E",
+          "mask": "0x08",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+           {
+              "data": "0x00",
+              "text": "default"
+            }
+          ],
+          "visible": "false"
+        },
+        {
+          "name": "SERVOTRONIC_CODE",
+          "block": "0x00",
+          "byte": "0x0E",
+          "mask": "0x10",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+           {
+              "data": "0x00",
+              "text": "default"
+            }
+          ],
+          "visible": "false"
+        },
+        {
+          "name": "SERVOTRONIC_CODE",
+          "block": "0x00",
+          "byte": "0x0E",
+          "mask": "0x20",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+           {
+              "data": "0x00",
+              "text": "default"
+            }
+          ],
+          "visible": "false"
+        },
+        {
+          "name": "SERVOTRONIC_CODE",
+          "block": "0x00",
+          "byte": "0x0E",
+          "mask": "0x40",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+           {
+              "data": "0x00",
+              "text": "default"
+            }
+          ],
+          "visible": "false"
+        },
+        {
+          "name": "SERVOTRONIC_CODE",
+          "block": "0x00",
+          "byte": "0x0E",
+          "mask": "0x80",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+           {
+              "data": "0x00",
+              "text": "default"
+            }
+          ],
+          "visible": "false"
+        },
+        {
+          "name": "PANIC_DELAY_MODE",
+          "block": "0x00",
+          "byte": "0x0E",
+          "mask": "0x0F",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "0_2s"
+              },
+              {
+                "data": "0x01",
+                "text": "0_4s"
+              },
+              {
+                "data": "0x03",
+                "text": "0_8s"
+              },
+              {
+                "data": "0x04",
+                "text": "1_6s"
+              }
+            ],
+          "visible" : "false"
+        },
+        {
+          "name": "INHIBIT_DELAY",
+          "block": "0x00",
+          "byte": "0x0E",
+          "mask": "0xF0",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "0_2s"
+              },
+              {
+                "data": "0x01",
+                "text": "0_4s"
+              },
+              {
+                "data": "0x03",
+                "text": "0_8s"
+              },
+              {
+                "data": "0x04",
+                "text": "1_6s"
+              }
+            ],
+          "visible" : "false"
+        },
+        {
+          "name": "CENTRAL_LOCK_TYPE",
+          "block": "0x00",
+          "byte": "0x0F",
+          "mask": "0x01",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+           {
+              "data": "0x01",
+              "text": "l30"
+            }
+          ],
+          "visible": "false"
+        },
+        {
+          "name": "CDL_FRONT_BARREL_PASS",
+          "block": "0x00",
+          "byte": "0x0F",
+          "mask": "0x02",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "CDL_HOTEL",
+          "block": "0x00",
+          "byte": "0x0F",
+          "mask": "0x04",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "AUTO_LOCK_DISABLE",
+          "block": "0x00",
+          "byte": "0x0F",
+          "mask": "0x08",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "TAILGATE_DISARM",
+          "block": "0x00",
+          "byte": "0x0F",
+          "mask": "0x10",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "CDL_SW_CENT_DISABLE",
+          "block": "0x00",
+          "byte": "0x0F",
+          "mask": "0x20",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "SUPER_SW_CENT_DISABLE",
+          "block": "0x00",
+          "byte": "0x0F",
+          "mask": "0x40",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "SELECTIVE_CDL",
+          "block": "0x00",
+          "byte": "0x0F",
+          "mask": "0x40",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "DIS_1_TOUCH_DOOR_OPEN",
+          "block": "0x00",
+          "byte": "0x0F",
+          "mask": "0x10",
+          "coding_index": [
+           "04"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "AUTOLOCK_SPEED",
+          "block": "0x00",
+          "byte": "0x10",
+          "mask": "0x07",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x01",
+                "text": "4_kmh"
+              },
+              {
+                "data": "0x02",
+                "text": "8_kmh"
+              },
+              {
+                "data": "0x42",
+                "text": "16_kmh"
+              }
+            ]
+        },
+        {
+          "name": "AUTO_RELOCK",
+          "block": "0x00",
+          "byte": "0x10",
+          "mask": "0x08",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "TIMED_IGN_UNLOCK",
+          "block": "0x00",
+          "byte": "0x10",
+          "mask": "0x10",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "UNLOCK_WITH_KEY",
+          "block": "0x00",
+          "byte": "0x10",
+          "mask": "0x20",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "TAIL_LOCK_IGN_ON",
+          "block": "0x00",
+          "byte": "0x10",
+          "mask": "0x40",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "TAIL_RELEASE_10_CRASH",
+          "block": "0x00",
+          "byte": "0x10",
+          "mask": "0x80",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "REMOTE_LAZY_OPEN",
+          "block": "0x00",
+          "byte": "0x11",
+          "mask": "0x01",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "REMOTE_LAZY_LOCK",
+          "block": "0x00",
+          "byte": "0x11",
+          "mask": "0x02",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "PANIC_MODE",
+          "block": "0x00",
+          "byte": "0x11",
+          "mask": "0x04",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "INTLIGHTS_REPEAT_LOCK",
+          "block": "0x00",
+          "byte": "0x11",
+          "mask": "0x08",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "K_BUS_REMOTE_DISABLE",
+          "block": "0x00",
+          "byte": "0x11",
+          "mask": "0x10",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "PASS_DOOR_IR_REMOTE",
+          "block": "0x00",
+          "byte": "0x11",
+          "mask": "0x20",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "DIS_1_TOUCH_DOOR_OPEN",
+          "block": "0x00",
+          "byte": "0x11",
+          "mask": "0x40",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "PANIC_DELAY_MODE",
+          "block": "0x00",
+          "byte": "0x12",
+          "mask": "0x0F",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "0_2s"
+              },
+              {
+                "data": "0x01",
+                "text": "0_4s"
+              },
+              {
+                "data": "0x03",
+                "text": "0_8s"
+              },
+              {
+                "data": "0x04",
+                "text": "1_6s"
+              }
+            ],
+          "visible" : "false"
+        },
+        {
+          "name": "INHIBIT_DELAY",
+          "block": "0x00",
+          "byte": "0x12",
+          "mask": "0xF0",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "0_2s"
+              },
+              {
+                "data": "0x01",
+                "text": "0_4s"
+              },
+              {
+                "data": "0x03",
+                "text": "0_8s"
+              },
+              {
+                "data": "0x04",
+                "text": "1_6s"
+              }
+            ],
+          "visible" : "false"
+        },
+        {
+          "name": "DEBOUNCE_0",
+          "block": "0x00",
+          "byte": "0x13",
+          "mask": "0x01",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "DEBOUNCE_1",
+          "block": "0x00",
+          "byte": "0x13",
+          "mask": "0x02",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "DEBOUNCE_2",
+          "block": "0x00",
+          "byte": "0x13",
+          "mask": "0x04",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "DEBOUNCE_3",
+          "block": "0x00",
+          "byte": "0x13",
+          "mask": "0x04",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "DEBOUNCE_4",
+          "block": "0x00",
+          "byte": "0x13",
+          "mask": "0x10",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "DEBOUNCE_5",
+          "block": "0x00",
+          "byte": "0x13",
+          "mask": "0x20",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "DEBOUNCE_6",
+          "block": "0x00",
+          "byte": "0x13",
+          "mask": "0x40",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "DEBOUNCE_7",
+          "block": "0x00",
+          "byte": "0x13",
+          "mask": "0x80",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "VEHICLE_TYPE",
+          "block": "0x00",
+          "byte": "0x14",
+          "mask": "0x07",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "e38"
+              },
+              {
+                "data": "0x01",
+                "text": "e39"
+              },
+              {
+                "data": "0x02",
+                "text": "e39_2"
+              },
+              {
+                "data": "0x03",
+                "text": "e53"
+              },
+              {
+                "data": "0x04",
+                "text": "l30"
+              }
+            ]
+        },
+        {
+          "name": "NOT_USED_L30",
+          "block": "0x00",
+          "byte": "0x15",
+          "mask": "0x01",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "PASSIVE_HORN",
+          "block": "0x00",
+          "byte": "0x15",
+          "mask": "0x02",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "DWA_PIN_17",
+          "block": "0x00",
+          "byte": "0x15",
+          "mask": "0x04",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ]
+        },
+        {
+          "name": "VA_2",
+          "block": "0x00",
+          "byte": "0x15",
+          "mask": "0x08",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "inactive"
+              },
+              {
+                "data": "0x01",
+                "text": "active"
+              }
+            ],
+          "visible": "false"
+        },
+        {
+          "name": "CODING_OK",
+          "block": "0x00",
+          "byte": "0x18",
+          "mask": "0xFF",
+          "coding_index": [
+           "10"
+          ],
+          "coding_values": [
+              {
+                "data": "0x00",
+                "text": "not_coded"
+              },
+              {
+                "data": "0xAA",
+                "text": "coded"
+              }
+            ],
+          "visible": "false"
+          }
+      ,
+      {
+        "name": "CODING_OK",
+        "block": "0x00",
+        "byte": "0x10",
+        "mask": "0xFF",
+        "coding_index": [
+          "04"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "not_coded"
+          },
+          {
+            "data": "0xAA",
+            "text": "coded"
+          }
+        ],
+        "visible": "true"
+      }
+      ]
+}

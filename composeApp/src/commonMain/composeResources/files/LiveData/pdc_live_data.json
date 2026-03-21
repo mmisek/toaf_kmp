@@ -1,0 +1,98 @@
+{
+  "livedata": [
+    {
+      "name": "speed",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "rear_left_corner",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "cm"
+    },
+    {
+      "name": "rear_left",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "cm"
+    },
+    {
+      "name": "rear_right",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "cm"
+    },
+    {
+      "name": "rear_right_corner",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "cm"
+    },
+    {
+      "name": "front_left_corner",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "cm",
+      "visible": "false"
+    },
+    {
+      "name": "front_left",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "cm",
+      "visible": "false"
+    },
+    {
+      "name": "front_right",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "cm",
+      "visible": "false"
+    },
+    {
+      "name": "front_right_corner",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "cm",
+      "visible": "false"
+    },
+    {
+      "name": "reverse_gear",
+      "block": "0x00",
+      "byte": "0x09",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    }
+  ]
+}

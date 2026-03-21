@@ -1,0 +1,286 @@
+{
+  "livedata": [
+      {
+        "name": "anmUBT",
+        "block": "0x0F65",
+        "factor_a": "0.0236197458",
+        "factor_b": "0",
+        "unit": "V",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "dzmNmit",
+        "block": "0x0F10",
+        "factor_a": "1",
+        "factor_b": "0",
+        "unit": "1/min",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "anmPWG",
+        "block": "0x0F60",
+        "factor_a": "0.01",
+        "factor_b": "0",
+        "unit": "%",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "anmVDF",
+        "block": "0x1F06",
+        "factor_a": "0.001",
+        "factor_b": "0",
+        "unit": "bar",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "anmKDF",
+        "block": "0x0FFC",
+        "factor_a": "10.235414",
+        "factor_b": "0",
+        "unit": "bar",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "zumP_RAIL",
+        "block": "0x1F5D",
+        "factor_a": "100",
+        "factor_b": "0",
+        "unit": "hPa",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "zumPQsoll",
+        "block": "0x1F5E",
+        "factor_a": "100",
+        "factor_b": "0",
+        "unit": "hPa",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "admADF",
+        "block": "0x2041",
+        "factor_a": "1",
+        "factor_b": "0",
+        "unit": "hPa",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "admVDF",
+        "block": "0x2006",
+        "factor_a": "1",
+        "factor_b": "0",
+        "unit": "hPa",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "admLDF",
+        "block": "0x2042",
+        "factor_a": "1",
+        "factor_b": "0",
+        "unit": "hPa",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "ldmP_Llin",
+        "block": "0x0F40",
+        "factor_a": "1",
+        "factor_b": "0",
+        "unit": "hPa",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "ldmP_Lsoll",
+        "block": "0x0F42",
+        "factor_a": "1",
+        "factor_b": "0",
+        "unit": "hPa",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "admLMM",
+        "block": "0x2061",
+        "factor_a": "0.01",
+        "factor_b": "0",
+        "unit": "%",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "armM_Lsoll",
+        "block": "0x0F32",
+        "factor_a": "0.1",
+        "factor_b": "0",
+        "unit": "mg/stroke",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "admLTF",
+        "block": "0x2001",
+        "factor_a": "0.1",
+        "factor_b": "-273.14",
+        "unit": "°C",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "admKTF",
+        "block": "0x2002",
+        "factor_a": "0.1",
+        "factor_b": "-273.14",
+        "unit": "°C",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "admWTF",
+        "block": "0x2000",
+        "factor_a": "0.1",
+        "factor_b": "-273.14",
+        "unit": "°C",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "admOTF",
+        "block": "0x2007",
+        "factor_a": "0.1",
+        "factor_b": "-273.14",
+        "unit": "°C",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "dzmzMk1",
+        "block": "0x0F19",
+        "factor_a": "0.01",
+        "factor_b": "0",
+        "unit": "mm^3",
+        "mask": "0xFFFF",
+        "u2": "true"
+      },
+      {
+        "name": "dzmzMk2",
+        "block": "0x0F1A",
+        "factor_a": "0.01",
+        "factor_b": "0",
+        "unit": "mm^3",
+        "mask": "0xFFFF",
+        "u2": "true"
+      },
+      {
+        "name": "dzmzMk3",
+        "block": "0x0F1B",
+        "factor_a": "0.01",
+        "factor_b": "0",
+        "unit": "mm^3",
+        "mask": "0xFFFF",
+        "u2": "true"
+      },
+      {
+        "name": "dzmzMk4",
+        "block": "0x0F1C",
+        "factor_a": "0.01",
+        "factor_b": "0",
+        "unit": "mm^3",
+        "mask": "0xFFFF",
+        "u2": "true"
+      },
+      {
+        "name": "dzmzMk5",
+        "block": "0x0F1D",
+        "factor_a": "0.01",
+        "factor_b": "0",
+        "unit": "mm^3",
+        "mask": "0xFFFF",
+        "u2": "true",
+        "carType": [
+          "L322"
+        ]
+      },
+      {
+        "name": "dzmzMk6",
+        "block": "0x0F1E",
+        "factor_a": "0.01",
+        "factor_b": "0",
+        "unit": "mm^3",
+        "mask": "0xFFFF",
+        "u2": "true",
+        "carType": [
+            "L322"
+        ]
+      },
+      {
+        "name": "dzmzN1",
+        "block": "0x0F13",
+        "factor_a": "1",
+        "factor_b": "0",
+        "unit": "1/min",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "dzmzN2",
+        "block": "0x0F14",
+        "factor_a": "1",
+        "factor_b": "0",
+        "unit": "1/min",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "dzmzN3",
+        "block": "0x0F15",
+        "factor_a": "1",
+        "factor_b": "0",
+        "unit": "1/min",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "dzmzN4",
+        "block": "0x0F16",
+        "factor_a": "1",
+        "factor_b": "0",
+        "unit": "1/min",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "dzmzN5",
+        "block": "0x0F15",
+        "factor_a": "1",
+        "factor_b": "0",
+        "unit": "1/min",
+        "mask": "0xFFFF",
+        "carType": [
+          "L322"
+        ]
+      },
+      {
+        "name": "dzmzN6",
+        "block": "0x0F16",
+        "factor_a": "1",
+        "factor_b": "0",
+        "unit": "1/min",
+        "mask": "0xFFFF",
+        "carType": [
+          "L322"
+        ]
+      },
+      {
+        "name": "armM_List",
+        "block": "0x0F30",
+        "factor_a": "0.1",
+        "factor_b": "0",
+        "unit": "mg/stroke",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "aroSOLL_5",
+        "block": "0x0F31",
+        "factor_a": "0.1",
+        "factor_b": "0",
+        "unit": "mg/stroke",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "armM_Lsoll",
+        "block": "0x0F32",
+        "factor_a": "0.1",
+        "factor_b": "0",
+        "unit": "mg/stroke",
+        "mask": "0xFFFF"
+      }
+    ]
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_rs">Czujnik deszczu</string>
+    <string name="rs_control_init">Inicjuj czujnik deszczu</string>
+    <string name="rs_error_01">Wewnętrzy, sprzętowy błąd</string>
+    <string name="rs_error_02">Adaptacja na szybie niemożliwa</string>
+    <string name="rs_error_03">Napięcie lub temperatura poza zakresem</string>
+    <string name="rs_error_04">Problem z komunikacją z ASIC</string>
+    <string name="rs_error_05">Uszkodzony czujnik (brak wykrywania)</string>
+    <string name="rs_error_06">Brak połączenia z silnikime wycieraczek</string>
+    <string name="rs_live_data_park_position">Wycieraczki \"zaparkowane\"</string>
+    <string name="rs_live_data_reinforcement">Wzmocnienie sygnału</string>
+    <string name="rs_live_data_time_point_1">Punkt czasu 1</string>
+    <string name="rs_live_data_time_point_2">Punkt czasu 2</string>
+</resources>

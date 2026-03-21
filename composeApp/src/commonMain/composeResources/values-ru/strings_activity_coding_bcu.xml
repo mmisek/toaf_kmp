@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_coding_bcu">Расширенное кодирование</string>
+    <string name="activity_coding_bcu_tittle">Расширенное кодирование и программирование</string>
+    <string name="activity_coding_bcu_keys">Программирование ключей</string>
+    <string name="activity_coding_bcu_key_add">Добавить</string>
+    <string name="activity_coding_bcu_key_delete">Удалить</string>
+    <string name="activity_coding_bcu_key_number">Ключ : %1$d</string>
+    <string name="activity_coding_bcu_key_empty">Пусто</string>
+    <string name="activity_coding_bcu_key_read_error">Ошибка!</string>
+    <string name="activity_coding_bcu_key_remove_tittle">Удалить ключ</string>
+    <string name="activity_coding_bcu_key_remove_message">Вы уверены, что хотите удалить этот ключ?</string>
+    <string name="activity_coding_bcu_key_remove_yes">Да</string>
+    <string name="activity_coding_bcu_key_remove_no">Нет</string>
+    <string name="activity_coding_bcu_key_remove_error">Ошибка удаления ключа</string>
+    <string name="activity_coding_bcu_key_remove_key_successful">Удаление ключа успешно</string>
+    <string name="activity_coding_bcu_key_add_tittle">Добавить новый ключ</string>
+    <string name="activity_coding_bcu_key_add_message">Введите код ключа</string>
+    <string name="activity_coding_bcu_key_add_button_add">Добавить</string>
+    <string name="activity_coding_bcu_key_add_hint">напр. AB54CA</string>
+    <string name="activity_coding_bcu_key_add_button_cancel">Отмена</string>
+    <string name="activity_coding_bcu_key_add_error">Ошибка добавления ключа</string>
+    <string name="activity_coding_bcu_key_add_successful">Добавление ключа успешно</string>
+    <string name="activity_coding_bcu_key_code_not_valid">Введенный код ключа недействителен</string>
+    <string name="activity_coding_bcu_key_add_not_supported">Пока не поддерживается.</string>
+    <string name="activity_coding_bcu_key_add_sign">+</string>
+    <string name="activity_coding_bcu_key_del_sign">-</string>
+
+</resources>

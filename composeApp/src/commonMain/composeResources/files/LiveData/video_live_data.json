@@ -1,0 +1,259 @@
+{
+  "livedata": [
+    {
+      "name": "red_out",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0xC0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x01",
+          "text": "line_is_open"
+        },
+        {
+          "data": "0x02",
+          "text": "short"
+        }
+      ]
+    },
+    {
+      "name": "green_out",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x30",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x01",
+          "text": "line_is_open"
+        },
+        {
+          "data": "0x02",
+          "text": "short"
+        }
+      ]
+    },
+    {
+      "name": "blue_out",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x0C",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x01",
+          "text": "line_is_open"
+        },
+        {
+          "data": "0x02",
+          "text": "short"
+        }
+      ]
+    },
+    {
+      "name": "red_in",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x03",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x01",
+          "text": "signal_too_high"
+        },
+        {
+          "data": "0x02",
+          "text": "signal_too_low"
+        }
+      ]
+    },
+    {
+      "name": "green_in",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0xC0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x01",
+          "text": "signal_too_high"
+        },
+        {
+          "data": "0x02",
+          "text": "signal_too_low"
+        }
+      ]
+    },
+    {
+      "name": "blue_in",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x30",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x01",
+          "text": "signal_too_high"
+        },
+        {
+          "data": "0x02",
+          "text": "signal_too_low"
+        }
+      ]
+    },
+    {
+      "name": "x_sync",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x03",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x01",
+          "text": "signal_too_high"
+        },
+        {
+          "data": "0x02",
+          "text": "signal_too_low"
+        }
+      ]
+    },
+    {
+      "name": "cvbs_fond",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0xC0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x01",
+          "text": "line_is_open"
+        },
+        {
+          "data": "0x02",
+          "text": "short"
+        }
+      ]
+    },
+    {
+      "name": "cvbs_cam",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x30",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x01",
+          "text": "signal_too_high"
+        },
+        {
+          "data": "0x02",
+          "text": "signal_too_low"
+        }
+      ]
+    },
+    {
+      "name": "cvbs_vcr",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x0C",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x01",
+          "text": "signal_too_high"
+        },
+        {
+          "data": "0x02",
+          "text": "signal_too_low"
+        }
+      ]
+    },
+    {
+      "name": "cvbs_tuner",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x0C",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x01",
+          "text": "signal_too_high"
+        },
+        {
+          "data": "0x02",
+          "text": "signal_too_low"
+        }
+      ]
+    },
+    {
+      "name": "af_fond",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0xC0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x01",
+          "text": "signal_too_high"
+        },
+        {
+          "data": "0x02",
+          "text": "signal_too_low"
+        }
+      ]
+    },
+    {
+      "name": "af_vcr",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0xC0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x01",
+          "text": "signal_too_high"
+        },
+        {
+          "data": "0x02",
+          "text": "signal_too_low"
+        }
+      ]
+    },
+    {
+      "name": "af_radio",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x0C",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x01",
+          "text": "signal_too_high"
+        },
+        {
+          "data": "0x02",
+          "text": "signal_too_low"
+        }
+      ]
+    },
+    {
+      "name": "af_nav",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x0C",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x01",
+          "text": "signal_too_high"
+        },
+        {
+          "data": "0x02",
+          "text": "signal_too_low"
+        }
+      ]
+    }
+  ]
+}

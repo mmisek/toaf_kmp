@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TOAF Mobile</string>
+    <string name="app_version">0.0.7</string>
+    <string name="title_activity_main_activity">Главная активность</string>
+
+    <string name="ButtonModuleErrorsRead">Считать</string>
+    <string name="ButtonModuleErrorsClear">Сбросить</string>
+    <string name="ButtonModuleReadInfo">Идентификация модуля</string>
+    
+    <string name="message_information_internet_tittle">Веб-сервис TOAF</string>
+    <string name="message_information_internet_info">TOAF начиная с версии 0.0.7 требует доступа к веб-сервисам TOAF.\n
+        Вам необходимо создать аккаунт и оставаться авторизованным во время использования TOAF.\n
+        Это необходимо для сохранения резервных копий кодирования в интернете.\n
+        Вы также можете восстановить кодирование из интернета.
+        Вход и создание аккаунта доступны в меню главного окна TOAF.\n
+        !! ВАЖНО !!\n\n
+        Это тестовая версия сервиса, и она может перестать работать в любой момент, а все данные могут исчезнуть навсегда.
+    </string>
+    <string name="message_permission_bluetooth_tittle">Разрешение Bluetooth</string>
+    <string name="message_permission_bluetooth_info">Разрешение Bluetooth необходимо для использования устройств Bluetooth.\n
+        Предоставьте это разрешение, если вы хотите подключаться к автомобилю через Bluetooth.</string>
+    <string name="message_permission_fine_location_tittle">Разрешение точного местоположения</string>
+    <string name="message_permission_fine_location_info">Разрешение точного местоположения необходимо для обнаружения устройств Bluetooth.\n
+        Предоставьте разрешение, если вы хотите использовать устройство Bluetooth в TOAF Mobile</string>
+    <string name="message_permission_background_location_tittle">Разрешение фонового местоположения</string>
+    <string name="message_permission_background_location_info">В Android 10 и выше разрешение фонового местоположения необходимо для обнаружения устройств Bluetooth.\n
+        Предоставьте разрешение, если вы хотите использовать устройство Bluetooth в TOAF Mobile.
+    </string>
+    <string name="message_need_to_be_login">Для использования этой функции необходимо войти в веб-сервис TOAF</string>
+    <string name="message_permission_denied_tittle">В доступе отказано</string>
+    <string name="message_permission_denied_info">Если вы действительно не хотите использовать устройство Bluetooth - это нормально.</string>
+    <string name="message_bluetooth_not_supported_tittle">Bluetooth</string>
+    <string name="message_bluetooth_not_supported_info">Это устройство не поддерживает Bluetooth!\n
+        По этой причине подключение Bluetooth невозможно.</string>
+    <string name="message_bluetooth_not_enabled_tittle">Bluetooth включен</string>
+    <string name="message_bluetooth_not_enabled_info">Как вы хотите подключиться к устройству Bluetooth, не включив его?\n
+        Включите Bluetooth!</string>
+    <string name="message_bluetooth_connection_failed">Ошибка подключения устройства Bluetooth</string>
+    <string name="message_bluetooth_connection_success">Подключено к устройству Bluetooth</string>
+    
+    <string name="message_errors_cleared">Все ошибки были сброшены.</string>
+    <string name="message_errors_clear_failure">Ошибка сброса ошибок.</string>
+    <string name="message_errors_read_failure">Ошибка чтения ошибок.</string>
+    <string name="message_errors_no_errors">Модуль не имеет ошибок</string>
+    <string name="message_coding_read_ok">Чтение кодировки успешно</string>
+    <string name="message_coding_read_not_ok">Ошибка чтения кодировки</string>
+    <string name="message_coding_save_ok">Сохранение кодировки успешно. Подождите сброса ЭБУ.</string>
+    <string name="message_coding_save_not_ok">Ошибка сохранения кодировки</string>
+    <string name="message_coding_reset_error">Ошибка сброса ЭБУ</string>;
+    <string name="message_device_not_found">Интерфейс не найден.\nПодключите его и попробуйте снова.</string>
+    <string name="message_live_data_save_as_template_no_item_selected">Нет выбранных элементов для сохранения в шаблон.</string>
+    <string name="message_live_data_more_than_ten">Вы не можете выбрать более 10 элементов.</string>
+    <string name="message_unknown_error">Неизвестная ошибка</string>
+    <string name="message_zcs_read_ok">Чтение ZCS завершено</string>
+    <string name="message_zcs_read_error">Ошибка чтения ZCS</string>
+    <string name="message_zcs_write_ok">Запись ZCS завершена</string>
+    <string name="message_zcs_write_error">Ошибка записи ZCS</string>
+    <string name="message_zcs_copy_successful">Копирование данных ZCS успешно</string>
+    <string name="message_zcs_value">Значение : %1$s</string>
+    <string name="progress_dialog_message">Идет обмен данными…</string>
+    <string name="progress_dialog_abort">Прервать</string>
+
+    <string name="module_error_read">Считать ошибки</string>
+    <string name="module_error_clear">Сбросить ошибки</string>
+    <string name="module_error_code">Код : </string>
+    <string name="module_error_description">Описание : </string>
+    <string name="module_error_count">Количество</string>
+    <string name="module_error_information">Статус : </string>
+    <string name="module_error_speed">Скорость автомобиля : </string>
+    <string name="module_error_mileage">Пробег</string>
+    <string name="module_error_voltage">Напряжение</string>
+    <string name="module_error_logistic_counter">Логистический счетчик</string>
+    
+    <string name="activity_main_button_diagnostic">Диагностика</string>
+    <string name="activity_main_toaf_expired_tittle">TOAF устарел</string>
+    <string name="activity_mail_toaf_expire_info">"         !! ВАЖНО !!          Эта мобильная версия TOAF истекла, и не все функции могут работать корректно.          Пожалуйста, обновите программу для продолжения работы.            Программа будет закрыта сейчас.     "</string>
+    <string name="activity_main_function_not_supported_in_this_version">Эта функция не поддерживается в этой мобильной версии TOAF.</string>
+    <string name="activity_main_function_not_supported_yet">Эта функция пока не поддерживается</string>
+
+    <string name="activity_zcs_coding">Кодирование ZCS</string>
+    <string name="activity_zcs_coding_subtitle">Кодирование ZCS</string>
+    <string name="activity_zcs_coding_button_read">Считать</string>
+    <string name="activity_zcs_coding_button_save">Сохранить</string>
+    <string name="activity_zcs_coding_tab_gm">GM</string>
+    <string name="activity_zcs_coding_tab_sa">SA</string>
+    <string name="activity_zcs_coding_tab_vn">VN</string>
+
+    <string name="module_coding">Кодирование</string>
+    <string name="activity_coding_subtitle">Кодирование модуля</string>
+    <string name="activity_coding_button_read">Считать</string>
+    <string name="activity_coding_button_save">Сохранить</string>
+    <string name="activity_coding_read_failure">Сбой чтения кодировки</string>
+    <string name="activity_coding_read_coding_elements_failed">Структура кодирования модуля автомобиля не найдена</string>
+    <string name="activity_coding_menu_save_backup">Сохранить резервную копию</string>
+    <string name="activity_coding_menu_load_backup">Загрузить резервную копию</string>
+    <string name="activity_coding_menu_load_public_backup">Загрузить публичную копию</string>
+    <string name="activity_coding_cant_do_auto_backup">Невозможно выполнить удаленную авто-резервную копию. Сервис кодирования недоступен!</string>
+    <string name="activity_coding_load_public_backup_tittle">Публичная резервная копия</string>
+    <string name="activity_coding_custom_value_validate_error">Ошибка проверки значения. Значение должно быть между %1$s и %2$s.</string>
+    
+    <string name="activity_diagnostic_title">Диагностика</string>
+    <string name="activity_diagnostic_subtitle">Тип автомобиля : %1$s</string>
+    
+    <string name="module_control">Управление</string>
+    <string name="module_advance_control">Расширенное управление</string>
+    <string name="activity_control_subtitle">Управление модулем</string>
+    <string name="activity_control_button_start">Старт</string>
+    <string name="activity_control_control_correct">Управление корректно</string>
+    <string name="activity_control_control_error">Ошибка управления</string>
+    <string name="activity_control_add_to_fast_action_successful">Успешно добавлено в список Быстрых действий</string>
+    <string name="activity_control_add_to_fast_action_error">Ошибка добавления в список Быстрых действий</string>
+    <string name="activity_control_delete_fast_action_successful">Выбранное действие удалено из списка Быстрых действий</string>
+    <string name="activity_control_fast_action_limit_reached">Достигнут лимит Быстрых действий для этой версии программы</string>
+    
+    <string name="activity_live_data_start">Старт</string>
+    <string name="activity_live_data_stop">Стоп</string>
+    <string name="activity_live_data_chart">График реального времени</string>
+    <string name="activity_live_data">Данные в реальном времени (Live Data)</string>
+    <string name="activity_live_data_add_to_fast_live_data_successful">Успешно добавлено в список Fast LiveData</string>
+    <string name="activity_live_data_add_to_fast_live_data_error">Ошибка добавления в список Fast LiveData</string>
+    <string name="activity_live_data_delete_fast_live_data_successful">Выбранный элемент удален из списка Fast LiveData</string>
+    <string name="activity_live_data_fast_live_data_limit_reached">Достигнут лимит Fast Live Data для этой версии программы</string>
+
+    <string name="alert_dialog_add_new_fast_live_data_tittle">Добавить новый элемент Fast Live Data</string>
+    <string name="alert_dialog_add_new_fast_live_data_display_name">Отображаемое имя : </string>
+    <string name="alert_dialog_add_new_fast_live_data_cancel">Отмена</string>
+    <string name="alert_dialog_add_new_fast_live_data_save">Добавить</string>
+    <string name="alert_dialog_add_new_fast_live_data_custom_name_length">Отображаемое имя не может быть пустым</string>
+
+    <string name="alert_dialog_add_new_fast_control_tittle">Добавить новый элемент Fast Control</string>
+    <string name="alert_dialog_add_new_fast_control_display_name">Отображаемое имя : </string>
+    <string name="alert_dialog_add_new_fast_control_cancel">Отмена</string>
+    <string name="alert_dialog_add_new_fast_control_save">Добавить</string>
+    <string name="alert_dialog_add_new_fast_control_custom_name_length">Отображаемое имя не может быть пустым</string>
+    
+    <string name="alert_dialog_zcs_copy_tittle">Выберите источник и назначение для копирования кодов ZCS</string>
+    <string name="alert_dialog_zcs_copy_source">Источник</string>
+    <string name="alert_dialog_zcs_copy_destination">Назначение</string>
+    <string name="alert_dialog_zcs_copy_source_read_failed">Не удалось считать коды ZCS из выбранного источника</string>
+    <string name="alert_dialog_zcs_copy_destination_write_error">Не удалось записать коды ZCS в выбранное назначение</string>
+    <string name="alert_dialog_zcs_copy_button_copy">Копировать</string>
+    <string name="alert_dialog_zcs_copy_button_cancel">Отмена</string>
+    
+    <string name="alert_dialog_live_data_save_as_template">Сохранить выбранное как шаблон</string>
+    <string name="alert_dialog_live_data_save_template_name">Введите имя нового шаблона</string>
+    <string name="alert_dialog_live_data_save_template_name_example">шаблон</string>
+    <string name="alert_dialog_live_data_save_template_cancel">Отмена</string>
+    <string name="alert_dialog_live_data_save_template_save">Сохранить</string>
+    <string name="alert_dialog_live_data_save_template_successful">Шаблон сохранен как %1$s.</string>
+    <string name="alert_dialog_live_data_save_template_error">Ошибка сохранения шаблона.</string>
+    <string name="alert_dialog_live_data_save_template_no_name">Имя шаблона не может быть пустым.</string>
+    
+    <string name="dialog_user_create_tittle">Создать нового пользователя</string>
+    <string name="dialog_user_create_login">Логин</string>
+    <string name="dialog_user_create_email">E-mail</string>
+    <string name="dialog_user_create_password">Пароль</string>
+    <string name="dialog_user_create_confirm_password">Подтвердите пароль</string>
+    <string name="dialog_user_create_create">Создать</string>
+    <string name="dialog_user_create_cancel">Отмена</string>
+    <string name="dialog_user_create_user_created">Пользователь %1$s создан</string>
+    <string name="dialog_user_create_create_error">Ошибка создания пользователя</string>
+    <string name="dialog_user_create_password_mismatch">Пароли не совпадают</string>
+    <string name="dialog_user_create_login_to_short">Логин должен содержать минимум 5 символов</string>
+    <string name="dialog_user_create_email_is_wrong">E-mail, вероятно, неверен. Слишком короткий или без @.</string>
+    <string name="dialog_user_password_to_short">Пароль слишком короткий - минимум 8 символов.</string>
+    
+    <string name="dialog_user_info_title">Инфо о пользователе</string>
+    <string name="dialog_user_info_login">Логин</string>
+    <string name="dialog_user_info_email">E-mail</string>
+    <string name="dialog_user_info_full_version">Полная версия</string>
+    <string name="dialog_user_info_bcu_keys">Ключи BCU</string>
+    <string name="dialog_user_info_eka_codes">Коды EKA</string>
+    <string name="dialog_user_info_close">Закрыть</string>
+    <string name="dialog_user_info_delete_user">Удалить пользователя и данные</string>
+    <string name="dialog_user_info_delete_user_question">Вы уверены, что хотите навсегда удалить пользователя и все его данные?</string>
+    <string name="dialog_user_info_delete_user_successful">Пользователь удален</string>
+    <string name="dialog_user_info_delete_user_error">Ошибка удаления пользователя. Свяжитесь с поддержкой.</string>
+
+    <string name="dialog_user_info_full_version_active">Активна</string>
+    <string name="dialog_user_info_full_version_not_active">Не активна</string>
+    
+    <string name="dialog_select_car_type_tittle">Выберите тип автомобиля</string>
+    <string name="dialog_select_car_type_cancel">Отмена</string>
+    <string name="dialog_select_car_type_ok">OK</string>
+    <string name="car_type_rover_75" translatable="false">Rover 75/MG ZT</string>
+    <string name="car_type_rover_25" translatable="false">Rover 25/45 MG ZR/ZS</string>
+    <string name="car_type_range_rover_l322" translatable="false">Range Rover L322</string>
+    <string-array name="dialog_select_car_typ_car_types">
+        <item>@string/car_type_rover_75</item>
+        <item>@string/car_type_rover_25</item>
+        <item>@string/car_type_range_rover_l322</item>
+    </string-array>
+    
+    <string name="dialog_interface_info_title">Инфо об интерфейсе</string>
+    <string name="dialog_interface_info_path">Путь</string>
+    <string name="dialog_interface_info_manufacturer">Производитель</string>
+    <string name="dialog_interface_info_name">Имя</string>
+    <string name="dialog_interface_info_product">Продукт</string>
+    <string name="dialog_interface_info_version">Версия</string>
+    <string name="dialog_interface_info_serial_number">Серийный номер</string>
+    <string name="dialog_interface_info_close">Закрыть</string>
+    <string name="dialog_interface_info_save">Сохранить</string>
+    <string name="dialog_interface_info_fast_init_sleep">Сон KWP</string>
+    <string name="dialog_user_info_not_available">недоступно</string>
+    
+    <string name="dialog_wifi_interface_name">Имя</string>
+    <string name="dialog_wifi_interface_serial_number">Сер. №</string>
+    <string name="dialog_wifi_interface_hardware">Аппаратура (HW)</string>
+    <string name="dialog_wifi_interface_software">Программное обеспечение (SW)</string>
+
+    <string name="alert_dialog_wifi_configuration_title">Интерфейс TOAF WiFi - конфигурация</string>
+    <string name="alert_dialog_wifi_configuration_button_select">Выбрать</string>
+    <string name="alert_dialog_wifi_configuration_button_config">Конфиг</string>
+    <string name="alert_dialog_wifi_configuration_button_find_devices">Найти устройства</string>
+    <string name="alert_dialog_wifi_configuration_button_add_device">Добавить устройство</string>
+    <string name="alert_dialog_wifi_configuration_button_close">Закрыть</string>
+    <string name="alert_dialog_wifi_configuration_button_debug">!! РЕЖИМ ОТЛАДКИ !!</string>
+    <string name="alert_dialog_wifi_configuration_device_name">Имя :</string>
+    <string name="alert_dialog_wifi_configuration_device_serial_number">Серийный номер :</string>
+    <string name="alert_dialog_wifi_configuration_device_hardware">HW :</string>
+    <string name="alert_dialog_wifi_configuration_device_software">SW :</string>
+    <string name="alert_dialog_wifi_configuration_device_ip">IP :</string>
+    <string name="alert_dialog_wifi_configuration_message_config_saved">Конфиг сохранен</string>
+    <string name="alert_dialog_wifi_configuration_message_debug_mode">РЕЖИМ ОТЛАДКИ</string>
+    <string name="alert_dialog_wifi_configuration_message_devices_not_found">WIFI интерфейсы Toaf не найдены</string>
+    <string name="alert_dialog_wifi_configuration_message_searching">Поиск интерфейсов…</string>
+    <string name="alert_dialog_wifi_configuration_check_update">Проверить обновление</string>
+    <string name="alert_dialog_wifi_configuration_update_available">Для выбранного устройства доступно обновление\nОбновить выбранное устройство?</string>
+    <string name="alert_dialog_wifi_configuration_checking_update">Проверка обновления...</string>
+    <string name="alert_dialog_wifi_configuration_update_successful">Обновление успешно.</string>
+    <string name="alert_dialog_wifi_configuration_update_failed">Обновление не удалось.</string>
+    <string name="alert_dialog_wifi_configuration_update_not_available">Нет обновлений для этого устройства</string>
+    <string name="alert_dialog_wifi_configuration_update_in_progress">Идет обновление...</string>
+    <string name="alert_dialog_wifi_configuration_ip_address_is_not_valid">IP адрес неверен!</string>
+    
+    <string name="alert_dialog_wifi_configuration_ap_password_SSID">Точка доступа - SSID</string>
+    <string name="alert_dialog_wifi_configuration_ap_password_password">Точка доступа - пароль</string>
+    <string name="alert_dialog_wifi_configuration_ap_password_button_save">Сохранить</string>
+    <string name="alert_dialog_wifi_configuration_ap_password_button_read">Считать</string>
+    <string name="alert_dialog_wifi_configuration_ap_password_button_cancel">Отмена</string>
+    <string name="alert_dialog_wifi_configuration_ap_password_message_save_ok">Сохранено</string>
+    <string name="alert_dialog_wifi_configuration_ap_password_message_save_not_ok">Сбой сохранения</string>
+    <string name="alert_dialog_wifi_configuration_ap_password_message_read_ok">Считано</string>
+    <string name="alert_dialog_wifi_configuration_ap_password_message_read_not_ok">Сбой чтения</string>
+    
+    <string name="alert_dialog_wifi_configuration_add_device_title">Добавить устройство</string>
+    <string name="alert_dialog_wifi_configuration_add_device_enter_ip_address">Введите IP адрес</string>
+    <string name="alert_dialog_wifi_configuration_add_device_add">Добавить</string>
+    <string name="alert_dialog_wifi_configuration_add_device_cancel">Отмена</string>
+    
+    <string name="dialog_user_login_tittle">Вход пользователя</string>
+    <string name="dialog_user_login_login">Логин</string>
+    <string name="dialog_user_login_password">Пароль</string>
+    <string name="dialog_user_login_do_login">Войти</string>
+    <string name="dialog_user_login_cancel">Отмена</string>
+    <string name="dialog_user_login_create_new">Создать нового пользователя</string>
+    <string name="dialog_user_login_change_password">Сменить пароль</string>
+    <string name="dialog_user_login_login_correct">Вход успешен</string>
+    <string name="dialog_user_login_error">Ошибка входа. Неверный логин или пароль</string>
+    
+    <string name="dialog_user_password_tittle">Сменить пароль</string>
+    <string name="dialog_user_password_login">Логин</string>
+    <string name="dialog_user_password_password">Пароль</string>
+    <string name="dialog_user_password_new_password">Новый пароль</string>
+    <string name="dialog_user_password_confirm_new_password">Подтвердите новый пароль</string>
+    <string name="dialog_user_password_change">Сменить</string>
+    <string name="dialog_user_password_cancel">Отмена</string>
+    <string name="dialog_user_password_change_ok">Смена пароля успешна</string>
+    <string name="dialog_user_password_change_error">Ошибка смены пароля</string>
+    <string name="dialog_user_password_login_to_short">Логин должен содержать минимум 5 символов</string>
+    <string name="dialog_user_password_password_mismatch">Пароли не совпадают</string>
+    <string name="dialog_user_password_password_to_short">Пароль слишком короткий - минимум 8 символов.</string>
+
+    <string name="dialog_information_tittle">Информация</string>
+    <string name="dialog_information_do_not_show_again">Не показывать снова</string>
+    <string name="dialog_information_close">Закрыть</string>
+    
+    <string name="dialog_question_title">Вопрос</string>
+    <string name="dialog_question_yes">Да</string>
+    <string name="dialog_question_no">Нет</string>
+    
+    <string name="dialog_information_title">Информация</string>
+    <string name="dialog_information_ok">OK</string>
+
+    <string name="dialog_input_title">Введите данные</string>
+    <string name="dialog_input_cancel">Отменить</string>
+    <string name="dialog_make_backup_tittle">Резервная копия кодировки</string>
+    <string name="dialog_make_backup_description">Описание</string>
+    <string name="dialog_make_backup_mark_as_public">Пометить как публичную копию</string>
+    <string name="dialog_make_backup_cancel">Отмена</string>
+    <string name="dialog_make_backup_save_backup">Сохранить</string>
+    <string name="dialog_make_backup_info">Сбор данных: \n\tИнформация о модуле\n\tКодировка модуля\n\tVIN автомобиля\n\tИмя пользователя</string>
+    <string name="dialog_make_backup_description_to_short">Описание не может быть пустым</string>
+    <string name="dialog_make_backup_backup_saved">Резервная копия сохранена</string>
+    <string name="dialog_make_backup_save_error">Ошибка сохранения резервной копии</string>
+    
+    <string name="dialog_backup_read_list_tittle">Список резервных копий для %1$s</string>
+    <string name="dialog_backup_read_list_cancel">Отмена</string>
+    <string name="dialog_backup_read_list_read">Загрузить</string>
+    <string name="dialog_backup_read_list_element_description">Описание : </string>
+    <string name="dialog_backup_read_list_element_created">Дата создания : </string>
+    <string name="dialog_backup_read_list_element_author">Автор : </string>
+    <string name="dialog_backup_read_list_data_corrupted">Данные резервной копии повреждены - попробуйте снова или выберите другую.</string>
+    <string name="dialog_backup_read_list_data_loaded">Резервная копия успешно загружена.</string>
+    
+    <string name="alert_dialog_live_data_load_template_name">Выберите шаблон для загрузки</string>
+    <string name="alert_dialog_live_data_load_template_long_click_to_delete">Долгое нажатие на имя шаблона для удаления.</string>
+    <string name="alert_dialog_live_data_load_template_load">Загрузить</string>
+    <string name="alert_dialog_live_data_load_template_cancel">Отмена</string>
+    <string name="alert_dialog_live_data_load_template_delete">Удалить шаблон</string>
+    <string name="alert_dialog_live_data_load_template_delete_question">Вы уверены, что хотите удалить?</string>
+    <string name="alert_dialog_live_data_load_template_delete_yes">Да</string>
+    <string name="alert_dialog_live_data_load_template_delete_no">Нет</string>
+    
+    <string name="alert_dialog_errors_title">Найденные ошибки</string>
+    <string name="alert_dialog_no_errors_tittle">Ошибок не найдено</string>
+    <string name="alert_dialog_errors_subtitle">Нажмите на ошибку, чтобы развернуть подробности</string>
+    <string name="alert_dialog_errors_button_close">Закрыть</string>
+    <string name="alert_dialog_errors_button_copy_to_clipboard">Копировать в буфер</string>
+    <string name="alert_dialog_errors_button_share">Поделиться ошибками</string>
+    
+    <string name="main_menu_select_car_type">Выбрать авто</string>
+    <string name="main_menu_user_add">Добавить пользователя</string>
+    <string name="main_menu_user_login">Войти пользователем</string>
+    <string name="main_menu_settings">Настройки</string>
+    <string name="main_menu_bluetooth">Bluetooth</string>
+    <string name="main_menu_wifi">WIFI интерфейс</string>
+    <string name="main_menu_exit">Выход</string>
+    <string name="main_menu_get_full_version">Получить полную версию</string>
+    
+    <string name="alert_module_info_read_error">Ошибка чтения идентификации.</string>
+    <string name="alert_module_info_tittle">Информация о модуле</string>
+    <string name="alert_module_info_close">Закрыть</string>
+    <string name="alert_module_info_copy">Копировать в\n буфер</string>
+    <string name="alert_module_info_copied_to_clipboard">Информация о модуле скопирована в буфер обмена</string>
+    <string name="alert_module_info_id1">ID1</string>
+    <string name="alert_module_info_id2">ID2</string>
+    <string name="alert_module_info_hw">Аппаратное (HW)</string>
+    <string name="alert_module_info_ci">Индекс кодирования</string>
+    <string name="alert_module_info_bi">Индекс шины</string>
+    <string name="alert_module_info_di">Индекс диагн.</string>
+    <string name="alert_module_info_sw">Программное (SW)</string>
+    <string name="alert_module_info_date">Дата</string>
+    <string name="alert_module_info_serial_number">Серийный номер</string>
+    <string name="alert_module_info_producer">Производитель</string>
+    <string name="alert_module_info_vin">VIN</string>
+    <string name="alert_module_info_odometer">Пробег</string>
+    <string name="alert_module_info_share">Поделиться инфо</string>
+
+    <string name="module_info_siemens_software_number">Номер ПО Siemens</string>
+    <string name="module_info_programing_date">Дата программирования</string>
+    <string name="module_info_product_number">Номер продукта</string>
+    <string name="module_info_change_type">Тип изменения</string>
+    <string name="module_info_calibration_ident">Идент. калибровки</string>
+    <string name="module_info_application_ident">Идент. приложения</string>
+    <string name="module_info_boot_ident">Идент. загрузчика</string>
+    
+    <string name="module_ident_description">Идентификация</string>
+    <string name="module_errors_description">Ошибки</string>
+    <string name="module_vin_coding">Кодирование VIN</string>
+    <string name="module_live_data">Данные в реальном времени</string>
+
+    <string name="vin_coding_new_vin">Введите новый VIN :</string>
+    <string name="vin_coding_save">Сохранить</string>
+    <string name="vin_coding_hint">SARR…</string>
+    <string name="vin_coding_correct">Кодирование VIN успешно</string>
+    <string name="vin_coding_failed">Сбой кодирования VIN</string>
+    
+    <string name="module_no_data">Нет данных</string>
+    <string name="module_ident_fail">Идентификация модуля не удалась</string>
+    <string name="module_part_name">Номер детали</string>
+    <string name="module_part_producer">Производитель</string>
+    <string name="module_part_date">Дата</string>
+    <string name="module_coding_index">CI</string>
+    <string name="module_bus_index">BI</string>
+    <string name="module_diagnostic_index">DI</string>
+    <string name="module_hardware_version">HW</string>
+    <string name="module_software_version">SW</string>
+    <string name="module_vin_number">Номер VIN</string>
+    <string name="module_odometer">Пробег</string>
+    
+    <string name="AD_save_to_file_tittle">Сохранить данные</string>
+    <string name="AD_save_to_file_message">Вы хотите сохранить данные в файл?</string>
+    <string name="AD_save_to_file_button_yes">Да</string>
+    <string name="AD_save_to_file_button_no">Нет</string>
+    <string name="AD_save_to_file_success">Данные сохранены в файл : %1$s</string>
+    <string name="AD_save_to_file_failed">Сохранение в файл не удалось</string>
+
+    <string name="kwp_connected">KWP подключен к : %1$s</string>
+    <string name="kwp_connected_failed">Не удалось подключиться к DDE</string>
+
+    <string name="button_find_device">Найти устройство</string>
+    <string name="button_live_data_start">Начать лог</string>
+    <string name="button_live_data_stop">Остановить лог</string>
+    <string name="button_charts">График Live Data</string>
+    <string name="button_charts_close">Закрыть</string>
+    <string name="button_charts_start">Старт</string>
+    <string name="button_charts_stop">Стоп</string>
+    <string name="button_charts_clear">Очистить</string>
+    <string name="title_activity_charts">Графики</string>
+    <string name="live_data_type_table">Таблица</string>
+    <string name="live_data_type_chart">График</string>
+
+    <string name="menu_load_data_from_file">Загрузить файл</string>
+    <string name="menu_live_data_chart">Живой график</string>
+    <string name="menu_charts_screenshot">Скриншот</string>
+    <string name="menu_live_data_dde_save_template">Сохранить шаблон</string>
+    <string name="menu_zcs_copy">Копировать ZCS</string>
+
+    <string name="dialog_select_file_to_load">Двойной клик для загрузки файла</string>
+    <string name="dialog_load_file">Загрузить</string>
+    <string name="dialog_cancel">Отмена</string>
+    <string name="title_activity_errors">Ошибки</string>
+
+    <string name="message_saved_to_gallery">Скриншот сохранен в галерею.</string>
+    <string name="message_save_to_gallery_error">Ошибка сохранения скриншота в галерею.</string>
+    <string name="message_no_permission_to_save">Разрешение на сохранение в галерею не предоставлено!</string>
+    <string name="message_permission_to_save_granted">Разрешение на сохранение скриншотов в галерею предоставлено.</string>
+    <string name="title_activity_main">Главная</string>
+
+    <string name="billing_toaf_full_active">Полная версия TOAF Mobile активна!</string>
+    <string name="billing_service_not_available">Сервис временно недоступен.</string>
+    <string name="privacy_policy_link">Политика конфиденциальности</string>
+
+    <string name="dialog_full_version_tittle">Для этой опции нужна полная версия</string>
+    <string name="dialog_full_version_watch_ad">Посмотреть рекламу для продолжения</string>
+    <string name="dialog_full_version_get_full_version">Получить полную версию за %1$s</string>
+    <string name="dialog_full_version_cancel_dialog">Отмена</string>
+    <string name="dialog_full_version_or">или</string>
+    <string name="dialog_full_version_ad_is_not_ready">Реклама не готова.</string>
+    <string name="activity_coding_load_public_backup_info">!! ВАЖНО !! Публичная резервная копия может быть повреждена, может сломать ваш модуль, отключить ключи в модуле BCU и многое другое… Не забывайте делать резервную копию вашей кодировки! Убедитесь, что вы знаете, что делаете!</string>
+    <string name="server_connection_failed">Ошибка подключения к серверу Toaf</string>
+    <string name="activity_main_function_need_usb_device">Для этой функции требуется USB-интерфейс!</string>
+</resources>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- BMBT -->
+    <string name="module_description_bmbt">Monitor de tablero</string>
+
+    <string name="bmbt_error_01">Reiniciar</string>
+    <string name="bmbt_error_02">Temperatura del monitor LC demasiado alta</string>
+    <string name="bmbt_error_03">Estado del telegrama de radio: tiempo de espera</string>
+    <string name="bmbt_error_04">Cortocircuito del cable NF Cinta L-</string>
+    <string name="bmbt_error_05">Cortocircuito del cable NF Cinta L+</string>
+    <string name="bmbt_error_06">Cortocircuito del cable NF Cinta R-</string>
+    <string name="bmbt_error_07">Cortocircuito del cable NF Cinta R+</string>
+    <string name="bmbt_error_08">Enviar K-Bus</string>
+    <string name="bmbt_error_09">Recibir K-Bus</string>
+    <string name="bmbt_error_0A">Calentador del monitor Cortocircuito a batt+</string>
+    <string name="bmbt_error_0B">Conector del monitor UB Circuito abierto</string>
+    <string name="bmbt_error_0C">Conector Monitor Ub calentador Circuito abierto</string>
+    <string name="bmbt_error_0D">Enviar NAV-bus</string>
+    <string name="bmbt_error_0E">Recibir NAV-bus</string>
+    <string name="bmbt_error_0F">Desbordamiento del búfer NAV-bus</string>
+    <string name="bmbt_error_10">Memoria RAM externa</string>
+    <string name="bmbt_error_11">Memoria RAM de la pantalla LC</string>
+    <string name="bmbt_error_12">Comunicación entre CPU</string>
+    <string name="bmbt_error_13">NAV-bus inactivo</string>
+    <string name="bmbt_error_14">Sensor de temperatura del monitor Valor inverosímil</string>
+    <string name="bmbt_error_15">Calentador del monitor o fusible</string>
+    <string name="bmbt_error_16">La suma de comprobación de EEPROM no coincide con el valor programado</string>
+    <string name="bmbt_error_17">El número de versión del programa no coincide con el número programado en EEPROM</string>
+    <string name="bmbt_error_present">Presente</string>
+    <string name="bmbt_error_not_present">No presente</string>
+
+    <string name = "bmbt_control_cassette_eject">Cassette : expulsar</string>
+    <string name = "bmbt_control_cassette_play">Cassette : reproducir</string>
+    <string name = "bmbt_control_cassette_ffw">Cassette : FFW</string>
+    <string name = "bmbt_control_cassette_frw">Cassette : FRW</string>
+    <string name = "bmbt_control_cassette_mss_fw">Cassette : MSS FW</string>
+    <string name = "bmbt_control_cassette_mss_rw">Cassette : MSS RW</string>
+    <string name = "bmbt_control_cassette_standby">Cassette : en espera</string>
+    <string name = "bmbt_control_cassette_pause_on">Cassette : pausa activada</string>
+    <string name = "bmbt_control_cassette_pause_off">Cassette : pausa desactivada</string>
+    <string name = "bmbt_control_cassette_normal">Cassette : normal</string>
+    <string name = "bmbt_control_cassette_reverse">Cassette : reverso</string>
+    <string name = "bmbt_control_cassette_dolby_b">Dolby B</string>
+    <string name = "bmbt_control_cassette_dolby_c">Dolby C</string>
+    <string name = "bmbt_control_cassette_dolby_off">Dolby apagado</string>
+    <string name = "bmbt_control_mute_off">Silencio desactivado</string>
+    <string name = "bmbt_control_mute_on">Silencio activado</string>
+    <string name = "bmbt_control_monitor_off">Monitor apagado</string>
+    <string name = "bmbt_control_monitor_on">Monitor encendido</string>
+    <string name = "bmbt_control_sleep_mode">Modo de suspensión</string>
+    <string name = "bmbt_control_normal_mode_on">Modo normal activado</string>
+    <string name = "bmbt_control_production_mode_on">Modo de producción activado</string>
+    <string name = "bmbt_control_transport_mode_on">Modo de transporte activado</string>
+    <string name = "bmbt_control_workshop_mode_on">Modo de taller activado</string>
+
+    <string name = "bmbt_live_data_key_pressed">Tecla presionada</string>
+    <string name = "bmbt_live_data_monitor_encoder_steps">Pasos del codificador de brillo</string>
+    <string name = "bmbt_live_data_volume_encoder_steps">Pasos del codificador de volumen</string>
+    <string name = "bmbt_live_data_cleme_r">Clem R</string>
+    <string name = "bmbt_live_data_calculated_gain">Ganancia calculada</string>
+    <string name = "bmbt_live_data_calculated_brightness">Brillo calculado</string>
+    <string name = "bmbt_live_data_battery_voltage">Voltaje de la batería</string>
+    <string name = "bmbt_live_data_nft1">NFT 1</string>
+    <string name = "bmbt_live_data_nft2">NFT 2</string>
+    <string name = "bmbt_live_data_nft3">NFT 3</string>
+    <string name = "bmbt_live_data_nft4">NFT 4</string>
+    <string name = "bmbt_live_data_lcd_temperature">Temperatura de la LCD</string>
+
+    <string name = "bmbt_live_data_value_button_no_button">Sin botón</string>
+    <string name = "bmbt_live_data_value_several_buttons">Varios botones</string>
+    <string name = "bmbt_live_data_value_button_1">Botón 1</string>
+    <string name = "bmbt_live_data_value_button_2">Botón 2</string>
+    <string name = "bmbt_live_data_value_button_3">Botón 3</string>
+    <string name = "bmbt_live_data_value_button_4">Botón 4</string>
+    <string name = "bmbt_live_data_value_button_5">Botón 5</string>
+    <string name = "bmbt_live_data_value_button_6">Botón 6</string>
+    <string name = "bmbt_live_data_value_button_menu">MENÚ</string>
+    <string name = "bmbt_live_data_value_button_am">AM</string>
+    <string name = "bmbt_live_data_value_button_fm">FM</string>
+    <string name = "bmbt_live_data_value_button_select">SELECCIONAR</string>
+    <string name = "bmbt_live_data_value_button_tone">TONO</string>
+    <string name = "bmbt_live_data_value_button_rds">RDS</string>
+    <string name = "bmbt_live_data_value_button_tp">TP</string>
+    <string name = "bmbt_live_data_value_button_seek_right">&gt;&gt;</string>
+    <string name = "bmbt_live_data_value_button_seek_left">&lt;&lt;</string>
+    <string name = "bmbt_live_data_value_button_mode">MODO</string>
+    <string name = "bmbt_live_data_value_button_dolby_noise_reduction">Dolby</string>
+    <string name = "bmbt_live_data_value_button_reverse">REVERSO</string>
+    <string name = "bmbt_live_data_value_button_eject">EXPULSAR</string>
+    <string name = "bmbt_live_data_value_button_on_off">ENCENDER/APAGAR</string>
+    <string name = "bmbt_live_data_value_button_switch">CAMBIAR</string>
+    <string name = "bmbt_live_data_value_button_info">INFO</string>
+    <string name = "bmbt_live_data_value_button_clock">RELOJ</string>
+    <string name = "bmbt_live_data_value_button_mute">SILENCIO</string>
+    <string name = "bmbt_live_data_value_button_telephone">TELÉFONO</string>
+</resources>

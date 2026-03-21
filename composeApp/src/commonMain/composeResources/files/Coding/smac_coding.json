@@ -1,0 +1,394 @@
+{
+    "elements": [
+      {
+        "name": "UNIT_TYPE",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x01",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "driver"
+            },
+            {
+              "data": "0x00",
+              "text": "passenger"
+            }
+          ]
+      },
+      {
+        "name": "CUSHION_FRONT_ADJUST",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x02",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "fitted"
+            },
+            {
+              "data": "0x00",
+              "text": "not_fitted"
+            }
+          ]
+      },
+      {
+        "name": "CUSHION_REAR_ADJUST",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x04",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "fitted"
+            },
+            {
+              "data": "0x00",
+              "text": "not_fitted"
+            }
+          ]
+      },
+      {
+        "name": "MIRRORS",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x08",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "fitted"
+            },
+            {
+              "data": "0x00",
+              "text": "not_fitted"
+            }
+          ]
+      },
+      {
+        "name": "COLUMN",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x10",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "fitted"
+            },
+            {
+              "data": "0x00",
+              "text": "not_fitted"
+            }
+          ]
+      },
+      {
+        "name": "MEMORY_RECALL_IGN_CANCEL",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x20",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "immediat_cancel"
+            },
+            {
+              "data": "0x00",
+              "text": "allow_complete"
+            }
+          ]
+      },
+      {
+        "name": "REVERSE_MIRRORS",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x40",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enabled"
+            },
+            {
+              "data": "0x00",
+              "text": "disabled"
+            }
+          ]
+      },
+      {
+        "name": "LAZY_ENTRY_CONTROL",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x80",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "deadmans_handle"
+            },
+            {
+              "data": "0x00",
+              "text": "one_touch"
+            }
+          ]
+      },
+      {
+        "name": "LAZY_ENTRY_CANCEL",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x03",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "all_doors"
+            },
+            {
+              "data": "0x01",
+              "text": "front"
+            },
+            {
+              "data": "0x02",
+              "text": "drivers_door"
+            },
+            {
+              "data": "0x03",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "LAZY_ENTRY_IGN_CANCEL",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x04",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "immediat_cancel"
+            },
+            {
+              "data": "0x00",
+              "text": "allow_complete"
+            }
+          ]
+      },
+      {
+        "name": "RECALL_TELEGRAM_RETRANS",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x08",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "tel_issued"
+            },
+            {
+              "data": "0x00",
+              "text": "tel_not_issued"
+            }
+          ],
+        "visible": "false"
+      },
+      {
+        "name": "TRANSMISSION",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x10",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "automatic"
+            },
+            {
+              "data": "0x00",
+              "text": "manual"
+            }
+          ]
+      },
+      {
+        "name": "MEMORY_STORE_PROCEDURE",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x20",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "option_one"
+            },
+            {
+              "data": "0x00",
+              "text": "option_two"
+            }
+          ]
+      },
+      {
+        "name": "ONE_TOUCH_CONDITIONS_LOSS",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x40",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "immediat_cancel"
+            },
+            {
+              "data": "0x00",
+              "text": "allow_complete"
+            }
+          ]
+      },
+      {
+        "name": "EASY_ENTRY",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x80",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enabled"
+            },
+            {
+              "data": "0x00",
+              "text": "disabled"
+            }
+          ]
+      },
+      {
+        "name": "RECALL_TELEGRAM_ENABLE",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x01",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "tel_issued"
+            },
+            {
+              "data": "0x00",
+              "text": "tel_not_issued"
+            }
+          ],
+        "visible": "false"
+      },
+      {
+        "name": "LOSS_OF_MEMORY_ENABLE",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x02",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "immediat_cancel"
+            },
+            {
+              "data": "0x00",
+              "text": "allow_complete"
+            }
+          ]
+      },
+      {
+        "name": "LAZY_ENTRY_FEATURE",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x04",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enabled"
+            },
+            {
+              "data": "0x00",
+              "text": "disabled"
+            }
+          ]
+      },
+      {
+        "name": "LAZY_ENTRY_LOCKING_CONT",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x08",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "immediat_cancel"
+            },
+            {
+              "data": "0x00",
+              "text": "allow_complete"
+            }
+          ]
+      },
+      {
+        "name": "LAZY_ENTRY_DOORS_CANCEL",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x08",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "immediat_cancel"
+            },
+            {
+              "data": "0x00",
+              "text": "allow_complete"
+            }
+          ]
+        }
+    ]
+}

@@ -1,0 +1,172 @@
+{
+    "elements": [
+      {
+        "name": "cdl_unlock",
+        "block": "0x00",
+        "byte": "0x07",
+        "value": "0x00"
+      },
+      {
+        "name": "cdl_lock",
+        "block": "0x00",
+        "byte": "0x07",
+        "value": "0xFF"
+      },
+      {
+        "name": "interior_sounder_off",
+        "block": "0x00",
+        "byte": "0x15",
+        "value": "0x00"
+      },
+      {
+        "name": "interior_sounder_on",
+        "block": "0x00",
+        "byte": "0x07",
+        "value": "0xFF"
+      },
+      {
+        "name": "horn_off",
+        "block": "0x00",
+        "byte": "0x06",
+        "value": "0x00"
+      },
+      {
+        "name": "horn_on",
+        "block": "0x00",
+        "byte": "0x06",
+        "value": "0xFF"
+      },
+      {
+        "name": "front_wiper_off",
+        "block": "0x00",
+        "byte": "0x04",
+        "value": "0x00"
+      },
+      {
+        "name": "front_wiper_on",
+        "block": "0x00",
+        "byte": "0x04",
+        "value": "0xFF"
+      },
+      {
+        "name": "rear_wiper_off",
+        "block": "0x00",
+        "byte": "0x0D",
+        "value": "0x00"
+      },
+      {
+        "name": "rear_wiper_on",
+        "block": "0x00",
+        "byte": "0x0D",
+        "value": "0xFF"
+      },
+      {
+        "name": "front_wash_off",
+        "block": "0x00",
+        "byte": "0x03",
+        "value": "0x00"
+      },
+      {
+        "name": "front_wash_on",
+        "block": "0x00",
+        "byte": "0x03",
+        "value": "0xFF"
+      },
+      {
+        "name": "rear_wash_off",
+        "block": "0x00",
+        "byte": "0x0C",
+        "value": "0x00"
+      },
+      {
+        "name": "rear_wash_on",
+        "block": "0x00",
+        "byte": "0x0C",
+        "value": "0xFF"
+      },
+      {
+        "name": "heated_rear_window_off",
+        "block": "0x00",
+        "byte": "0x19",
+        "value": "0x00"
+      },
+      {
+        "name": "heated_rear_window_on",
+        "block": "0x00",
+        "byte": "0x19",
+        "value": "0xFF"
+      },
+      {
+        "name": "left_indicator_off",
+        "block": "0x00",
+        "byte": "0x17",
+        "value": "0x00"
+      },
+      {
+        "name": "left_indicator_on",
+        "block": "0x00",
+        "byte": "0x17",
+        "value": "0xFF"
+      },
+      {
+        "name": "right_indicator_off",
+        "block": "0x00",
+        "byte": "0x16",
+        "value": "0x00"
+      },
+      {
+        "name": "right_indicator_on",
+        "block": "0x00",
+        "byte": "0x16",
+        "value": "0xFF"
+      },
+      {
+        "name": "hazard_flash_on",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x00"
+      },
+      {
+        "name": "hazard_flash_off",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0xFF"
+      },
+      {
+        "name": "alarm_led_off",
+        "block": "0x00",
+        "byte": "0x12",
+        "value": "0x00"
+      },
+      {
+        "name": "alarm_led_on",
+        "block": "0x00",
+        "byte": "0x12",
+        "value": "0xFF"
+      },
+      {
+        "name": "interior_illumination_off",
+        "block": "0x00",
+        "byte": "0x11",
+        "value": "0x00"
+      },
+      {
+        "name": "interior_illumination_on",
+        "block": "0x00",
+        "byte": "0x11",
+        "value": "0xFF"
+      },
+      {
+        "name": "rear_fog_light_off",
+        "block": "0x00",
+        "byte": "0x0F",
+        "value": "0x00"
+      },
+      {
+        "name": "rear_fog_light_on",
+        "block": "0x00",
+        "byte": "0x0F",
+        "value": "0xFF"
+      }
+    ]
+}

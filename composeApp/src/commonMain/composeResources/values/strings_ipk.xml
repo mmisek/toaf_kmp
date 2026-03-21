@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_ipk">Instrument cluster</string>
+    <!-- MODULE IPK-->
+    <string name="ipk_error_CD">EC signal 1</string>
+    <string name="ipk_error_C1">Signal TWEG+ (input pulse generator wheel</string>
+    <string name="ipk_error_C3">Signal TD (engine speed)</string>
+    <string name="ipk_error_D3">Coolant temperature</string>
+    <string name="ipk_error_CE">Outside temperature</string>
+    <string name="ipk_error_C7">Lever-type sensor 1</string>
+    <string name="ipk_error_D7">Lever-type sensor 2</string>
+    <string name="ipk_error_8F">Over voltage (U>16V)</string>
+    <string name="ipk_error_8D">ATS signal: telegram error or no telegram</string>
+    <string name="ipk_error_90">Clamp 15</string>
+    <string name="ipk_error_8C">Clamp R</string>
+    <string name="ipk_error_CF">SII reset</string>
+    <string name="ipk_error_44">Oil pressure</string>
+    <string name="ipk_error_8B">Chime_3</string>
+    <string name="ipk_error_3F">Measure works driver</string>
+    <string name="ipk_error_BE">Light module-EEPROM error</string>
+    <string name="ipk_error_BF">IKE-EEPROM error, coding incorrect/incomplete</string>
+    <string name="ipk_error_83">Speed A</string>
+    <string name="ipk_error_88">I bus</string>
+    <string name="ipk_error_87">K bus</string>
+    <string name="ipk_error_F0">CAN bus off</string>
+    <string name="ipk_error_F4">CAN-Bus 244</string>
+    <string name="ipk_error_F5">No CAN bus id - ASC</string>
+    <string name="ipk_error_F6">No CAN bus id - DME1</string>
+    <string name="ipk_error_F7">No CAN bus id - DME2</string>
+    <string name="ipk_error_F8">No CAN bus id - DME4</string>
+    <string name="ipk_error_FB">No CAN bus id - EGS1</string>
+    <string name="ipk_error_FC">No CAN bus id - SMG1</string>
+    <string name="ipk_error_desc_01">Short circuit to battery</string>
+    <string name="ipk_error_desc_02">Short circuit to ground</string>
+    <string name="ipk_error_desc_03">Open circuit</string>
+    <string name="ipk_error_desc_04">Invalid working area</string>
+    <string name="ipk_error_desc_40">Error present</string>
+    <string name="ipk_error_desc_80">Sporadic error</string>
+    <!-- coding -->
+    <string name="ipk_coding_buzzer_high_frequency">Buzzer - high frequency</string>
+    <string name="ipk_coding_buzzer_low_frequency">Buzzer - low frequency</string>
+    <string name="ipk_coding_msg_display_time_1">Messages - display time 1</string>
+    <string name="ipk_coding_msg_display_time_2">Messages - display time 2</string>
+    <string name="ipk_coding_r40_r41_select">Tourer/sedan</string>
+    <string name="ipk_coding_engine_temp_threshold">Engine temperature threshold</string>
+    <string name="ipk_coding_sia_upper_rpm">Service interval indicator - upper rpm</string>
+    <string name="ipk_coding_sia_lower_rpm">Service interval indicator - lower rpm</string>
+    <string name="ipk_coding_sia_interval_distance">Service interval indicator - distance</string>
+    <string name="ipk_coding_last_service_type">Last service type</string>
+    <string name="ipk_coding_tc_on_k_bus">Traction control on K-BUS</string>
+    <string name="ipk_coding_sls_warning">Secondary air system</string>
+    <string name="ipk_coding_asc1">Traction control</string>
+    <string name="ipk_coding_front_fog_message">Message - front fog</string>
+    <string name="ipk_coding_coding_done">Coding complete</string>
+    <string name="ipk_coding_cc_washer_fluid">Washer fluid level monitoring</string>
+    <string name="ipk_coding_cc_doors">Doors opening monitoring</string>
+    <string name="ipk_coding_cc_lights">Lights monitoring</string>
+    <string name="ipk_coding_seat_belt">Seat belts monitoring</string>
+    <string name="ipk_coding_light_warning">Lights warning</string>
+    <string name="ipk_coding_break_pad_wear">Brake pads monitoring</string>
+    <string name="ipk_coding_key_inserted_warning">Key inserted warning</string>
+    <string name="ipk_coding_drive_hand">Left/Right hand drive</string>
+    <string name="ipk_coding_sia_algorithm">Service interval indication - algorithm</string>
+    <string name="ipk_coding_high_line">LCD Display</string>
+    <string name="ipk_coding_speedo_display">Digital speedometer</string>
+    <string name="ipk_coding_temperature_units">Temperature unit</string>
+    <string name="ipk_coding_fuel_consumption_units">Fuel consumption unit</string>
+    <string name="ipk_coding_trip2">Day trip computer</string>
+    <string name="ipk_coding_distance_to_servce">Distance do service - unit</string>
+    <string name="ipk_coding_ex_temp_warning_acoustics">External temperature warning</string>
+    <string name="ipk_coding_vehicle_type">Vehicle type</string>
+    <string name="ipk_coding_message_centre_language">LCD messages language</string>
+    <string name="ipk_coding_pulse_no_km_speedo_comp">Pulses/km for speed meter</string>
+    <string name="ipk_coding_gear_box_type">Gearbox type</string>
+    <string name="ipk_coding_pulse_no_km_speedo">Pulses/km</string>
+    <string name="ipk_coding_pulse_no_km_odo">Pulses/km fo odometer</string>
+    <string name="ipk_coding_pulse_no_km_do_comp">Pulses/km to comp</string>
+    <string name="ipk_coding_engine">Engine type</string>
+    <string name="ipk_coding_sia_liter_limit">Service interval indicator - limit</string>
+    <string name="ipk_coding_sia_indication_parameter">Service interval indicator - parameter</string>
+    <string name="ipk_coding_audible_speed_warning">Speed warning</string>
+    <!-- control -->
+    <string name="ipk_control_self_test">Self test</string>
+    <string name="ipk_control_lights_error">Indicator - lights failure</string>
+    <string name="ipk_control_rear_fog">Indicator - rear fog</string>
+    <string name="ipk_control_self_leveling_system">Indicator - self leveling system</string>
+    <string name="ipk_control_engine_failure">Indicator - engine failure</string>
+    <string name="ipk_control_speed_limit">Indicator - over speed</string>
+    <string name="ipk_control_light_failure_trailer">Indicator - lights failure in trailer</string>
+    <string name="ipk_control_glow_plug">Indicator - glow lug</string>
+    <string name="ipk_control_break_pads">Indicator - brake pads</string>
+    <string name="ipk_control_traction">Indicator - traction control</string>
+    <string name="ipk_control_coolant_level">Indicator - low coolant fluid level</string>
+    <string name="ipk_control_doors_open">Indicator - doors open</string>
+    <string name="ipk_control_wash_fluid_level">Indicator - low wash fluid level</string>
+    <string name="ipk_control_front_fog">Indicator - front fog</string>
+    <string name="ipk_control_hand_break">Indicator - hand brake/brake system</string>
+    <string name="ipk_control_coolant_temp">Indicator - coolant temperature too high</string>
+    <string name="ipk_control_fuel_reserve">Indicator - low fuel level</string>
+    <string name="ipk_control_cruise_control">Indicator - cruise control</string>
+    <string name="ipk_control_high_beam">Indicator - high beam</string>
+    <string name="ipk_control_speed">Indicator - speedometer</string>
+    <string name="ipk_control_rpm">Indicator - tachometer</string>
+    <string name="ipk_control_temperature">Indicator - coolant temperature</string>
+    <string name="ipk_control_fuel">Indicator - fuel level</string>
+    <string name="ipk_control_left">Indicator -  left blinker</string>
+    <string name="ipk_control_right">Indicator - right blinker</string>
+    <string name="ipk_control_back_light">Back light level</string>
+    <string name="ipk_control_gong_test_off">Gong test - off</string>
+    <string name="ipk_control_gong_test_1">Gong test - sound 1</string>
+    <string name="ipk_control_gong_test_2">Gong test - sound 2</string>
+    <string name="ipk_control_gong_test_3">Gong test - sound 3</string>
+    <string name="ipk_control_lcd_test">LCD test</string>
+    <string name="ipk_control_service_reset">Service Reset</string>
+
+    <!-- activity coding ipk -->
+    <string name="activity_coding_ipk">Advance coding</string>
+    <string name="activity_coding_ipk_tittle">Advance coding and programming</string>
+
+    <string-array name="activity_coding_ipk_service_type">
+        <item>Oil service</item>
+        <item>Time service</item>
+        <item>SIA service</item>
+        <item>All services</item>
+    </string-array>
+
+    <string name="ipk_temperature_gauge_incorrect_temperature_value">Incorrect temperature value</string>
+    <string name="ipk_temperature_gauge_tittle">Temperature gauge calibration</string>
+    <string name="ipk_temperature_gauge_click_to_edit">Click temperature value to change it</string>
+    <string name="ipk_temperature_gauge_enter_temperature_value">Enter new temperature value</string>
+    <string name="ipk_temperature_gauge_new_temperature_value">New value</string>
+</resources>

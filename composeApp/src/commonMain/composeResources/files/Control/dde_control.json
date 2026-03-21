@@ -1,0 +1,101 @@
+{
+    "elements": [
+      {
+        "name": "egr_off",
+        "block": "0xC2",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+      {
+        "name": "egr_on",
+        "block": "0xC2",
+        "byte": "0x00",
+        "value": "0x50"
+      },
+      {
+        "name": "fuel_pump_off",
+        "block": "0xC3",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+      {
+        "name": "fuel_pump_on",
+        "block": "0xC3",
+        "byte": "0x00",
+        "value": "0x01"
+      },
+      {
+        "name": "glow_plug_relay_off",
+        "block": "0xC4",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+      {
+        "name": "glow_plug_relay_on",
+        "block": "0xC4",
+        "byte": "0x00",
+        "value": "0x01"
+      },
+      {
+        "name": "ac_relay_off",
+        "block": "0xC5",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+      {
+        "name": "ac_relay_on",
+        "block": "0xC5",
+        "byte": "0x00",
+        "value": "0x01"
+      },
+      {
+        "name": "boost",
+        "block": "0xC6",
+        "byte": "0x00",
+        "value": "0x30",
+        "set_value": {
+          "min": "5",
+          "max": "95",
+          "unit": "%"
+        }
+      },
+      {
+        "name": "fan_off",
+        "block": "0xC7",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+      {
+        "name": "fan_low",
+        "block": "0xC7",
+        "byte": "0x00",
+        "value": "0x16"
+      },
+      {
+        "name": "fan_medium",
+        "block": "0xC7",
+        "byte": "0x00",
+        "value": "0x32"
+      },
+      {
+        "name": "fan_fast",
+        "block": "0xC7",
+        "byte": "0x00",
+        "value": "0x56"
+      },
+      {
+        "name": "oil_pressure_indicator",
+        "block": "0xCF",
+        "byte": "0x00",
+        "value": "0x01",
+        "visible": "false"
+      },
+      {
+        "name": "rail_pressure_shutdown",
+        "block": "0xCF",
+        "byte": "0x00",
+        "value": "0x01",
+        "visible": "false"
+      }
+    ]
+}

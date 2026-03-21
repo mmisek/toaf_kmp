@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_ipk">Приборная панель (IPK)</string>
+    <string name="ipk_error_CD">Сигнал EC 1</string>
+    <string name="ipk_error_C1">Сигнал TWEG+ (входной импульс датчика колеса)</string>
+    <string name="ipk_error_C3">Сигнал TD (обороты двигателя)</string>
+    <string name="ipk_error_D3">Температура охлаждающей жидкости</string>
+    <string name="ipk_error_CE">Температура наружного воздуха</string>
+    <string name="ipk_error_C7">Рычажный датчик 1 (уровня топлива)</string>
+    <string name="ipk_error_D7">Рычажный датчик 2 (уровня топлива)</string>
+    <string name="ipk_error_8F">Перенапряжение (U>16В)</string>
+    <string name="ipk_error_8D">Сигнал ATS: ошибка телеграммы или нет сигнала</string>
+    <string name="ipk_error_90">Клемма 15</string>
+    <string name="ipk_error_8C">Клемма R</string>
+    <string name="ipk_error_CF">Сброс SII (Индикатора сервисного интервала)</string>
+    <string name="ipk_error_44">Давление масла</string>
+    <string name="ipk_error_8B">Гонг 3</string>
+    <string name="ipk_error_3F">Заводской тест драйвера</string>
+    <string name="ipk_error_BE">Ошибка EEPROM модуля света</string>
+    <string name="ipk_error_BF">Ошибка EEPROM IKE, кодировка неверна/неполна</string>
+    <string name="ipk_error_83">Скорость A</string>
+    <string name="ipk_error_88">Шина I-Bus</string>
+    <string name="ipk_error_87">Шина K-Bus</string>
+    <string name="ipk_error_F0">Шина CAN отключена (Bus off)</string>
+    <string name="ipk_error_F4">Шина CAN 244</string>
+    <string name="ipk_error_F5">Нет ID CAN - ASC (Трэкшн-контроль)</string>
+    <string name="ipk_error_F6">Нет ID CAN - DME1 (ЭБУ двигателя)</string>
+    <string name="ipk_error_F7">Нет ID CAN - DME2</string>
+    <string name="ipk_error_F8">Нет ID CAN - DME4</string>
+    <string name="ipk_error_FB">Нет ID CAN - EGS1 (ЭБУ АКПП)</string>
+    <string name="ipk_error_FC">Нет ID CAN - SMG1</string>
+    
+    <string name="ipk_error_desc_01">Короткое замыкание на плюс</string>
+    <string name="ipk_error_desc_02">Короткое замыкание на массу</string>
+    <string name="ipk_error_desc_03">Обрыв цепи</string>
+    <string name="ipk_error_desc_04">Неверная рабочая область</string>
+    <string name="ipk_error_desc_40">Ошибка присутствует</string>
+    <string name="ipk_error_desc_80">Спорадическая ошибка</string>
+    
+    <string name="ipk_coding_buzzer_high_frequency">Зуммер - высокая частота</string>
+    <string name="ipk_coding_buzzer_low_frequency">Зуммер - низкая частота</string>
+    <string name="ipk_coding_msg_display_time_1">Сообщения - время отображения 1</string>
+    <string name="ipk_coding_msg_display_time_2">Сообщения - время отображения 2</string>
+    <string name="ipk_coding_r40_r41_select">Универсал/Седан</string>
+    <string name="ipk_coding_engine_temp_threshold">Порог температуры двигателя</string>
+    <string name="ipk_coding_sia_upper_rpm">Сервисный интервал - верхний предел RPM</string>
+    <string name="ipk_coding_sia_lower_rpm">Сервисный интервал - нижний предел RPM</string>
+    <string name="ipk_coding_sia_interval_distance">Сервисный интервал - дистанция</string>
+    <string name="ipk_coding_last_service_type">Тип последнего сервиса</string>
+    <string name="ipk_coding_tc_on_k_bus">Трэкшн-контроль по шине K-BUS</string>
+    <string name="ipk_coding_sls_warning">Система вторичного воздуха</string>
+    <string name="ipk_coding_asc1">Трэкшн-контроль (ASC)</string>
+    <string name="ipk_coding_front_fog_message">Сообщение - передние ПТФ</string>
+    <string name="ipk_coding_coding_done">Кодирование завершено</string>
+    <string name="ipk_coding_cc_washer_fluid">Мониторинг уровня омывающей жидкости</string>
+    <string name="ipk_coding_cc_doors">Мониторинг открытия дверей</string>
+    <string name="ipk_coding_cc_lights">Мониторинг ламп освещения</string>
+    <string name="ipk_coding_seat_belt">Мониторинг ремней безопасности</string>
+    <string name="ipk_coding_light_warning">Предупреждение о свете</string>
+    <string name="ipk_coding_break_pad_wear">Мониторинг износа тормозных колодок</string>
+    <string name="ipk_coding_key_inserted_warning">Предупреждение о вставленном ключе</string>
+    <string name="ipk_coding_drive_hand">Левый/Правый руль</string>
+    <string name="ipk_coding_sia_algorithm">Алгоритм сервисного интервала</string>
+    <string name="ipk_coding_high_line">LCD Дисплей (High Line)</string>
+    <string name="ipk_coding_speedo_display">Цифровой спидометр</string>
+    <string name="ipk_coding_temperature_units">Единицы температуры</string>
+    <string name="ipk_coding_fuel_consumption_units">Единицы расхода топлива</string>
+    <string name="ipk_coding_trip2">Дневной пробег (Trip 2)</string>
+    <string name="ipk_coding_distance_to_servce">Дистанция до сервиса - единицы</string>
+    <string name="ipk_coding_ex_temp_warning_acoustics">Звук. пред. о внешней температуре</string>
+    <string name="ipk_coding_vehicle_type">Тип автомобиля</string>
+    <string name="ipk_coding_message_centre_language">Язык сообщений LCD</string>
+    <string name="ipk_coding_pulse_no_km_speedo_comp">Импульсы/км для спидометра</string>
+    <string name="ipk_coding_gear_box_type">Тип коробки передач</string>
+    <string name="ipk_coding_pulse_no_km_speedo">Импульсы/км</string>
+    <string name="ipk_coding_pulse_no_km_odo">Импульсы/км для одометра</string>
+    <string name="ipk_coding_pulse_no_km_do_comp">Импульсы/км для БК</string>
+    <string name="ipk_coding_engine">Тип двигателя</string>
+    <string name="ipk_coding_sia_liter_limit">Сервисный интервал - лимит литров</string>
+    <string name="ipk_coding_sia_indication_parameter">Сервисный интервал - параметр индикации</string>
+    <string name="ipk_coding_audible_speed_warning">Звуковое пред. скорости</string>
+    
+    <string name="ipk_control_self_test">Самодиагностика</string>
+    <string name="ipk_control_lights_error">Индикатор - неисправность ламп</string>
+    <string name="ipk_control_rear_fog">Индикатор - задние ПТФ</string>
+    <string name="ipk_control_self_leveling_system">Индикатор - пневмоподвеска</string>
+    <string name="ipk_control_engine_failure">Индикатор - ошибка двигателя (Check Engine)</string>
+    <string name="ipk_control_speed_limit">Индикатор - превышение скорости</string>
+    <string name="ipk_control_light_failure_trailer">Индикатор - неиспр. ламп прицепа</string>
+    <string name="ipk_control_glow_plug">Индикатор - свечи накала</string>
+    <string name="ipk_control_break_pads">Индикатор - тормозные колодки</string>
+    <string name="ipk_control_traction">Индикатор - трэкшн-контроль</string>
+    <string name="ipk_control_coolant_level">Индикатор - низкий уровень антифриза</string>
+    <string name="ipk_control_doors_open">Индикатор - открыты двери</string>
+    <string name="ipk_control_wash_fluid_level">Индикатор - низкий уровень омывайки</string>
+    <string name="ipk_control_front_fog">Индикатор - передние ПТФ</string>
+    <string name="ipk_control_hand_break">Индикатор - ручник/тормозная система</string>
+    <string name="ipk_control_coolant_temp">Индикатор - перегрев двигателя</string>
+    <string name="ipk_control_fuel_reserve">Индикатор - резерв топлива</string>
+    <string name="ipk_control_cruise_control">Индикатор - круиз-контроль</string>
+    <string name="ipk_control_high_beam">Индикатор - дальний свет</string>
+    <string name="ipk_control_speed">Индикатор - спидометр</string>
+    <string name="ipk_control_rpm">Индикатор - тахометр</string>
+    <string name="ipk_control_temperature">Индикатор - температура ОЖ</string>
+    <string name="ipk_control_fuel">Индикатор - уровень топлива</string>
+    <string name="ipk_control_left">Индикатор - левый поворотник</string>
+    <string name="ipk_control_right">Индикатор - правый поворотник</string>
+    <string name="ipk_control_back_light">Уровень подсветки</string>
+    <string name="ipk_control_gong_test_off">Тест гонга - выкл</string>
+    <string name="ipk_control_gong_test_1">Тест гонга - звук 1</string>
+    <string name="ipk_control_gong_test_2">Тест гонга - звук 2</string>
+    <string name="ipk_control_gong_test_3">Тест гонга - звук 3</string>
+    <string name="ipk_control_lcd_test">Тест LCD дисплея</string>
+    <string name="ipk_control_service_reset">Сброс сервиса</string>
+
+    <string name="activity_coding_ipk">Расширенное кодирование</string>
+    <string name="activity_coding_ipk_tittle">Расширенное кодирование и программирование</string>
+
+    <string-array name="activity_coding_ipk_service_type">
+        <item>Масляный сервис (Oil)</item>
+        <item>Временной сервис (Time)</item>
+        <item>Инспекция (SIA)</item>
+        <item>Все сервисы</item>
+    </string-array>
+
+    <string name="ipk_temperature_gauge_incorrect_temperature_value">Неверное значение температуры</string>
+    <string name="ipk_temperature_gauge_tittle">Калибровка датчика температуры</string>
+    <string name="ipk_temperature_gauge_click_to_edit">Нажмите на значение температуры для изменения</string>
+    <string name="ipk_temperature_gauge_enter_temperature_value">Введите новое значение температуры</string>
+    <string name="ipk_temperature_gauge_new_temperature_value">Новое значение</string>
+</resources>

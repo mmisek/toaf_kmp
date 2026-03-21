@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="string_with_string_value" translatable="false">%s</string>
+    <string name="string_with_string_value_and_unit" translatable="false">"%s %s</string>
+    <string name="string_with_int_value" translatable="false">%s: "%d</string>
+    <string name="string_with_int_value_and_unit" translatable="false">%s: "%d %s</string>
+    <string name="string_with_double_value" translatable="false">%s: "%f</string>
+    <string name="string_with_double_value_and_unit" translatable="false">%s: "%.1f %s</string>
+    <string name="string_with_float_value_speed" translatable="false">%s "%.1f km/h</string>
+</resources>

@@ -1,0 +1,176 @@
+{
+  "freeze_frames": [
+      {
+        "name": "fuel_tank_level",
+        "unit": " ",
+        "byte": "0x00",
+        "mask": "0xFF",
+        "factor_a": "1",
+        "factor_b": "0"
+      },
+      {
+        "name": "secondary_throttle",
+        "unit": "%",
+        "byte": "0x01",
+        "mask": "0xFF",
+        "factor_a": "0.392156",
+        "factor_b": "0"
+      },
+      {
+        "name": "stepper_position",
+        "unit": "steps",
+        "byte": "0x02",
+        "mask": "0xFF",
+        "factor_a": "1",
+        "factor_b": "0"
+      },
+      {
+        "name": "throttle",
+        "unit": "V",
+        "byte": "0x03",
+        "mask": "0xFF",
+        "factor_a": "0.004890625",
+        "factor_b": "0"
+      },
+      {
+        "name": "inlet_air_temperature",
+        "unit": "°C",
+        "byte": "0x04",
+        "mask": "0xFF",
+        "factor_a": "0.747",
+        "factor_b": "-48"
+      },
+      {
+        "name": "battery",
+        "unit": "V",
+        "byte": "0x05",
+        "mask": "0xFF",
+        "factor_a": "0.1125",
+        "factor_b": "0"
+      },
+      {
+        "name": "air_con_status",
+        "unit": " ",
+        "byte": "0x06",
+        "mask": "0x01",
+        "factor_a": "1",
+        "factor_b": "0"
+      },
+      {
+        "name": "gear_status",
+        "unit": " ",
+        "byte": "0x07",
+        "mask": "0x01",
+        "factor_a": "1",
+        "factor_b": "0"
+      },
+      {
+        "name": "distance_covered_since_fault",
+        "unit": " ",
+        "byte": "0x08",
+        "mask": "0xFFFFFFFF",
+        "factor_a": "1",
+        "factor_b": "0"
+      },
+      {
+        "name": "fuel_system_status_1",
+        "unit": " ",
+        "byte": "0x0C",
+        "mask": "0xFF",
+        "factor_a": "1",
+        "factor_b": "0"
+      },
+      {
+        "name": "fuel_system_status_1",
+        "unit": " ",
+        "byte": "0x0D",
+        "mask": "0xFF",
+        "factor_a": "1",
+        "factor_b": "0"
+      },
+      {
+        "name": "load",
+        "unit": "%",
+        "byte": "0x0E",
+        "mask": "0xFF",
+        "factor_a": "0.392156",
+        "factor_b": "0"
+      },
+      {
+        "name": "coolant_temp",
+        "unit": "°C",
+        "byte": "0x0F",
+        "mask": "0xFF",
+        "factor_a": "0.747",
+        "factor_b": "-48"
+      },
+      {
+        "name": "short_term_fuel_trim_odd_bank",
+        "unit": "%",
+        "byte": "0x10",
+        "mask": "0xFFFF",
+        "factor_a": "0.001526",
+        "factor_b": "0",
+        "u2": "true"
+      },
+      {
+        "name": "long_term_fuel_trim_odd_bank",
+        "unit": "%",
+        "byte": "0x12",
+        "mask": "0xFFFF",
+        "factor_a": "0.001526",
+        "factor_b": "0",
+        "u2": "true"
+      },
+      {
+        "name": "short_term_fuel_trim_even_bank",
+        "unit": "%",
+        "byte": "0x14",
+        "mask": "0xFFFF",
+        "factor_a": "0.001526",
+        "factor_b": "0",
+        "u2": "true"
+      },
+      {
+        "name": "short_term_fuel_trim_odd_bank",
+        "unit": "%",
+        "byte": "0x16",
+        "mask": "0xFFFF",
+        "factor_a": "0.001526",
+        "factor_b": "0",
+        "u2": "true"
+      },
+      {
+        "name": "fuel_pressure",
+        "unit": "kPa",
+        "byte": "0x18",
+        "mask": "0xFF",
+        "factor_a": "1",
+        "factor_b": "0"
+      },
+      {
+        "name": "manifold_pressure",
+        "unit": "kPa",
+        "byte": "0x19",
+        "mask": "0xFFFF",
+        "factor_a": "0.0183",
+        "factor_b": "0"
+      },
+      {
+        "name": "engine_speed",
+        "unit": "rpm",
+        "byte": "0x1B",
+        "mask": "0xFFFF",
+        "factor_a": "1",
+        "factor_b": "0"
+      },
+      {
+        "name": "vehicle_speed",
+        "unit": "km/h",
+        "byte": "0x1D",
+        "mask": "0xFF",
+        "factor_a": "1",
+        "factor_b": "0"
+      }
+    ]
+}

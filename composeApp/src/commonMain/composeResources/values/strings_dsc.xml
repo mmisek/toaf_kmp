@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_dsc">Brake system</string>
+
+    <string name="dsc_error_02">CAN engine power management</string>
+    <string name="dsc_error_04">Wheel speed sensor rear left plausibility</string>
+    <string name="dsc_error_05">Wheel speed sensor rear right plausibility</string>
+    <string name="dsc_error_06">Wheel speed sensor front right plausibility</string>
+    <string name="dsc_error_07">Wheel speed sensor front left plausibility</string>
+    <string name="dsc_error_0E">Valve-relay Error</string>
+    <string name="dsc_error_0F">Recirculation pump Error</string>
+    <string name="dsc_error_15">Control units Error</string>
+    <string name="dsc_error_17">Coding Error</string>
+    <string name="dsc_error_18">Wrong impulsering</string>
+    <string name="dsc_error_19">brake light switch Open circuit</string>
+    <string name="dsc_error_1E">Wheel speed sensor rear left Open circuit</string>
+    <string name="dsc_error_1F">Wheel speed sensor rear right Open circuit</string>
+    <string name="dsc_error_20">Wheel speed sensor front right Open circuit</string>
+    <string name="dsc_error_21">Wheel speed sensor front left Open circuit</string>
+    <string name="dsc_error_22">ASC cut off valve front axle</string>
+    <string name="dsc_error_29">Steering angle plausibility</string>
+    <string name="dsc_error_2F">Valve outlet rear left</string>
+    <string name="dsc_error_30">Valve outlet rear right</string>
+    <string name="dsc_error_31">Valve outlet front right</string>
+    <string name="dsc_error_32">Valve outlet front left</string>
+    <string name="dsc_error_33">Valve inlet rear left</string>
+    <string name="dsc_error_34">Valve inlet rear right</string>
+    <string name="dsc_error_35">Valve inlet front right</string>
+    <string name="dsc_error_36">Valve inlet front left</string>
+    <string name="dsc_error_37">Precharge valve front axle</string>
+    <string name="dsc_error_38">CAN Error</string>
+    <string name="dsc_error_3A">Gear box control unit CAN error message</string>
+    <string name="dsc_error_3B">DMER1 CAN error message</string>
+    <string name="dsc_error_3F">Speed-comparison</string>
+    <string name="dsc_error_40">Continuous controller activity</string>
+    <string name="dsc_error_42">Power supply error of active wheel speed sensor</string>
+    <string name="dsc_error_44">DSC passiv after ignition on because of interference</string>
+    <string name="dsc_error_45">DMER2 CAN error message</string>
+    <string name="dsc_error_51">Pressure Sensor Open circuit</string>
+    <string name="dsc_error_52">Yaw rate Sensor Open circuit</string>
+    <string name="dsc_error_53">Lateral acceleration Sensor Open circuit</string>
+    <string name="dsc_error_54">Yaw rate Sensor plausibility</string>
+    <string name="dsc_error_56">ASC cut off valve rear axle</string>
+    <string name="dsc_error_57">Precharge valve rear axle</string>
+    <string name="dsc_error_58">Precharge pump</string>
+    <string name="dsc_error_59">Low voltage</string>
+    <string name="dsc_error_5A">Temporary system deactivation</string>
+    <string name="dsc_error_5B">Steering angle error message</string>
+    <string name="dsc_error_5C">Pressure Sensor (plausibility precharge pump)</string>
+    <string name="dsc_error_5E">Yaw rate Sensor</string>
+    <string name="dsc_error_5F">Interference</string>
+    <string name="dsc_error_60">Sctuation</string>
+    <string name="dsc_error_61">Steering angle adjustment necessary</string>
+    <string name="dsc_error_62">Emergency brake pressureless</string>
+    <string name="dsc_error_63">Continuous controller activity</string>
+    <string name="dsc_error_64">Lateral acceleration Sensor</string>
+    <string name="dsc_error_67">Steering angle Sensor initialisation</string>
+    <string name="dsc_error_68">Error steering angle Control unit</string>
+    <string name="dsc_error_69">Brake light switch plausibility</string>
+    <string name="dsc_error_6A">Lateral acceleration Sensor plausibility</string>
+    <string name="dsc_error_6B">Yaw rate Sensor</string>
+    <string name="dsc_error_6C">SN-control</string>
+    <string name="dsc_error_6D">End of line test</string>
+    <string name="dsc_error_6E">High voltage</string>
+    <string name="dsc_error_6F">Confirm ASC</string>
+    <string name="dsc_error_72">Pressure Sensor (Offset)</string>
+    <string name="dsc_error_73">Pressure Sensor interference</string>
+    <string name="dsc_error_74">Brake switch Error</string>
+    <string name="dsc_error_75">Permanent Brake light switch</string>
+    <string name="dsc_error_76">Status DME internal error</string>
+    <string name="dsc_error_77">HDC not available</string>
+    <string name="dsc_error_78">Yaw rate sensor dubious incorrect position</string>
+    <string name="dsc_error_79">Yaw rate sensor incorrect position</string>
+    <string name="dsc_error_80">Temperature of the brakes overheated</string>
+    <string name="dsc_error_7A">ACC CAN error message</string>
+    <string name="dsc_error_7B">ACC request deceleration plausibility</string>
+    <string name="dsc_error_7C">ACC not longer alive</string>
+    <string name="dsc_error_7D">ACC status not affected at DSC passive</string>
+    <string name="dsc_error_7E">ACC Error output signal for brake lights</string>
+    <string name="dsc_error_8A">EHC air suspension system CAN error message</string>
+    <string name="dsc_error_8B">TXU off-road gearbox CAN error message</string>
+    <string name="dsc_error_detail_00">ASC passive</string>
+    <string name="dsc_error_detail_01">ASC not passive</string>
+    <string name="dsc_error_detail_02">ABS-control active</string>
+    <string name="dsc_error_detail_03">ABS-control passive</string>
+    <string name="dsc_error_detail_04">stop light switch on</string>
+    <string name="dsc_error_detail_05">stop light switch off</string>
+    <string name="dsc_error_detail_06">ASC-control active</string>
+    <string name="dsc_error_detail_07">ASC-control passive</string>
+    <string name="dsc_error_detail_08">ACB active</string>
+    <string name="dsc_error_detail_09">ACB passive</string>
+    <string name="dsc_error_detail_0A">HBA active</string>
+    <string name="dsc_error_detail_0B">HBA passive</string>
+    <string name="dsc_error_detail_0C">ECD active</string>
+    <string name="dsc_error_detail_0D">ECD passive</string>
+    <string name="dsc_error_detail_0E">HDC active</string>
+    <string name="dsc_error_detail_0F">HDC passive</string>
+
+    <string name="dsc_live_data_front_left_wheel_speed">Wheel speed - front left</string>
+    <string name="dsc_live_data_front_right_wheel_speed">Wheel speed - front right</string>
+    <string name="dsc_live_data_rear_left_wheel_speed">Wheel speed - rear left</string>
+    <string name="dsc_live_data_rear_right_wheel_speed">Wheel speed - rear right</string>
+    <string name="dsc_live_data_steering_wheel_angle">Steering wheel angle</string>
+    <string name="dsc_live_data_steering_wheel_angle_speed">Steering wheel angle change speed</string>
+    <string name="dsc_live_data_pressure">Pressure</string>
+    <string name="dsc_live_data_lateral_acceleration">Lateral acceleration</string>
+    <string name="dsc_live_data_hand_brake_switch">Hand break switch</string>
+    <string name="dsc_live_data_hill_descent_active">Hill descent</string>
+    <string name="dsc_live_data_brake_switch">Break switch</string>
+    <string name="dsc_live_data_valve_relay">valve relay</string>
+    <string name="dsc_live_data_brake_light_switch">Break light switch</string>
+    <string name="dsc_live_data_passive_button">Passive button</string>
+    <string name="dsc_live_data_engine_speed">Engine speed</string>
+    <string name="dsc_live_data_filling_target">Filling - target</string>
+    <string name="dsc_live_data_filling_driver_wish">Filling - driver wish</string>
+
+    <string name="dsc_coding_coded_flag">Coded flag</string>
+    <string name="dsc_coding_engine_type">Engine type</string>
+    <string name="dsc_coding_dynamic_brakes">Dynamic brakes</string>
+    <string name="dsc_coding_hill_descent">Hill Descent Control</string>
+
+    <string name="activity_control_dsc_tittle">Advance control</string>
+    <string name="activity_control_dsc_brake_bleeding">Brake bleeding</string>
+    <string name="activity_control_dsc_on_time">On time [s]</string>
+    <string name="activity_control_dsc_off_time">Off time [s]</string>
+    <string name="activity_control_dsc_cycles">Cycles</string>
+    <string name="activity_control_dsc_start">Start</string>
+    <string name="activity_control_dsc_wheel_select">Wheel</string>
+
+    <string-array name="activity_control_dsc_wheel_list">
+        <item>Front left</item>
+        <item>Front right</item>
+        <item>Rear right</item>
+        <item>Rear left</item>
+    </string-array>
+</resources>

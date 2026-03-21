@@ -1,0 +1,33 @@
+{
+    "elements": [
+      {
+        "name": "fuel_pump",
+        "block": "0x34",
+        "byte": "0x00",
+        "value": "0x00",
+        "set_value": {
+          "min": "30",
+          "max": "120",
+          "unit": "s"
+        }
+      },
+      {
+        "name": "start",
+        "block": "0x9E",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+      {
+        "name": "stop",
+        "block": "0x0C",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+      {
+        "name": "reset_fault_lock",
+        "block": "0x94",
+        "byte": "0x00",
+        "value": "0x00"
+      }
+    ]
+}

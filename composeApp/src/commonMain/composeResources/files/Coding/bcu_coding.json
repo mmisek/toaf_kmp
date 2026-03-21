@@ -1,0 +1,1680 @@
+{
+    "elements": [
+      {
+        "name": "DO_MISLOCK_ON_ALL_RF",
+        "block": "0x05",
+        "byte": "0x00",
+        "mask": "0x01",
+        "coding_index": [
+            "2",
+            "4"
+          ]
+        ,
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "REMOTE_DIRECT_SUPERLOCK",
+        "block": "0x05",
+        "byte": "0x00",
+        "mask": "0x02",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "REMOTE_SINGLE_POINT_ENTRY",
+        "block": "0x05",
+        "byte": "0x00",
+        "mask": "0x04",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "REMOTE_DOUBLE_SUPER_LOCK",
+        "block": "0x05",
+        "byte": "0x00",
+        "mask": "0x08",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "REMOTE_BOOT_RELEASE",
+        "block": "0x05",
+        "byte": "0x00",
+        "mask": "0x10",
+        "coding_index": [
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "REMOTE_GLASS_RELEASE",
+        "block": "0x05",
+        "byte": "0x00",
+        "mask": "0x20",
+        "coding_index": [
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "NO_SPEED_MODE_STOPPED",
+        "block": "0x05",
+        "byte": "0x01",
+        "mask": "0x01",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "WIPER_SPEED_DEPENDANT",
+        "block": "0x05",
+        "byte": "0x01",
+        "mask": "0x02",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "disabled"
+            },
+            {
+              "data": "0x00",
+              "text": "enabled"
+            }
+          ]
+      },
+      {
+        "name": "WIPER_RAIN_SENSOR",
+        "block": "0x05",
+        "byte": "0x01",
+        "mask": "0x04",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "fitted"
+            },
+            {
+              "data": "0x00",
+              "text": "not_fitted"
+            }
+          ]
+      },
+      {
+        "name": "WIPER_NO_PROG_WASH_FRONT",
+        "block": "0x05",
+        "byte": "0x01",
+        "mask": "0x08",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "ENABLE_WIPER_AUTO_PARKING",
+        "block": "0x05",
+        "byte": "0x01",
+        "mask": "0x10",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enabled"
+            },
+            {
+              "data": "0x00",
+              "text": "disabled"
+            }
+          ]
+      },
+      {
+        "name": "WIPER_DISABLE_REAR_WIPER",
+        "block": "0x05",
+        "byte": "0x01",
+        "mask": "0x20",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "WIPER_STALL_TIME",
+        "block": "0x05",
+        "byte": "0x02",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+          ],
+        "coding_values": [
+            {
+              "data": "0x24",
+              "text": "degrees_minus_20"
+            }
+          ]
+      },
+      {
+        "name": "WIPER_NO_OF_FRONT_WIPES",
+        "block": "0x05",
+        "byte": "0x03",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+            {
+              "data": "0x03",
+              "text": "r40"
+            },
+            {
+              "data": "0x02",
+              "text": "two"
+            },
+            {
+              "data": "0x04",
+              "text": "four"
+            }
+          ]
+      },
+      {
+        "name": "WIPER_NO_OF_REAR_WIPES",
+        "block": "0x05",
+        "byte": "0x04",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+          {
+            "data": "0x03",
+            "text": "R40"
+          }
+          ]
+      },
+      {
+        "name": "wiper_prog_wash_delay_time",
+        "block": "0x05",
+        "byte": "0x05",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+          {
+            "data": "0x0A",
+            "text": "R40"
+          }
+        ]
+      },
+      {
+        "name": "WIPER_PWR_WASH_COUNTER",
+        "block": "0x05",
+        "byte": "0x06",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+           {
+            "data": "0x0A",
+            "text": "R40"
+          }
+        ]
+      },
+      {
+        "name": "WIPER_PWR_WASH_OFF_TIME",
+        "block": "0x05",
+        "byte": "0x07",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+           {
+            "data": "0x0F",
+            "text": "R40"
+          }
+        ]
+      },
+      {
+        "name": "WIPER_PWR_WASH_ON_TIME",
+        "block": "0x05",
+        "byte": "0x08",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+           {
+            "data": "0x0F",
+            "text": "R40"
+          }
+        ]
+      },
+      {
+        "name": "WIPER_REAR_WIPE_TABLE_1",
+        "block": "0x05",
+        "byte": "0x09",
+        "mask": "0xFF",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x01",
+            "text": "R40"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "WIPER_REAR_WIPE_TABLE_2",
+        "block": "0x05",
+        "byte": "0x0A",
+        "mask": "0xFF",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x04",
+            "text": "R40"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "WIPER_REAR_WIPE_TABLE_3",
+        "block": "0x05",
+        "byte": "0x0B",
+        "mask": "0xFF",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x09",
+            "text": "R40"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "WIPER_REAR_WIPE_TABLE_4",
+        "block": "0x05",
+        "byte": "0x0C",
+        "mask": "0xFF",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x05",
+            "text": "R40"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "WIPER_REAR_WIPE_TABLE_5",
+        "block": "0x05",
+        "byte": "0x0D",
+        "mask": "0xFF",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x08",
+            "text": "R40"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "WIPER_REAR_WIPE_TABLE_6",
+        "block": "0x05",
+        "byte": "0x0E",
+        "mask": "0xFF",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x0C",
+            "text": "R40"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "WIPER_REAR_WIPE_TABLE_7",
+        "block": "0x06",
+        "byte": "0x00",
+        "mask": "0xFF",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x06",
+            "text": "R40"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "WIPER_REAR_WIPE_TABLE_8",
+        "block": "0x06",
+        "byte": "0x01",
+        "mask": "0xFF",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x09",
+            "text": "R40"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "WIPER_REAR_WIPE_TABLE_9",
+        "block": "0x06",
+        "byte": "0x02",
+        "mask": "0xFF",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x0D",
+            "text": "R40"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "WIPER_REVERSE_INT_RATIO",
+        "block": "0x06",
+        "byte": "0x04",
+        "mask": "0xFF",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x01",
+            "text": "R40"
+          }
+        ]
+      },
+      {
+        "name": "WIPER_FRONT_DELAY_ADDER",
+        "block": "0x06",
+        "byte": "0x03",
+        "mask": "0xFF",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x00",
+            "text": "R40"
+          }
+        ]
+      },
+      {
+        "name": "WIN_DISABLE_DOOR_OPEN",
+        "block": "0x06",
+        "byte": "0x05",
+        "mask": "0x01",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "WIN_DISABLE_FRONT_DOOR_OPEN",
+        "block": "0x06",
+        "byte": "0x05",
+        "mask": "0x02",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "WINDOW_POWER_WINDOWS",
+        "block": "0x06",
+        "byte": "0x05",
+        "mask": "0x0C",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "none"
+            },
+            {
+              "data": "0x01",
+              "text": "front"
+            },
+            {
+              "data": "0x02",
+              "text": "rear"
+            },
+            {
+              "data": "0x03",
+              "text": "front_and_rear"
+            }
+          ]
+      },
+      {
+        "name": "WINDOW_PINCH_ENABLED",
+        "block": "0x06",
+        "byte": "0x05",
+        "mask": "0x30",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "none"
+            },
+            {
+              "data": "0x01",
+              "text": "front"
+            },
+            {
+              "data": "0x02",
+              "text": "rear"
+            },
+            {
+              "data": "0x03",
+              "text": "front_and_rear"
+            }
+          ]
+      },
+      {
+        "name": "WINDOW_LEFT_HAND_DRIVE",
+        "block": "0x06",
+        "byte": "0x05",
+        "mask": "0x40",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "left"
+            },
+            {
+              "data": "0x00",
+              "text": "right"
+            }
+          ]
+      },
+      {
+        "name": "WIN_ONE_TOUCH_OPEN_DRIVER",
+        "block": "0x06",
+        "byte": "0x06",
+        "mask": "0x01",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "WIN_ONE_TOUCH_CLOSE_DRIVER",
+        "block": "0x06",
+        "byte": "0x06",
+        "mask": "0x02",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "WIN_ONE_TOUCH_OPEN_PASS",
+        "block": "0x06",
+        "byte": "0x06",
+        "mask": "0x04",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "WIN_ONE_TOUCH_CLOSE_PASS",
+        "block": "0x06",
+        "byte": "0x06",
+        "mask": "0x08",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "WIN_ONE_TOUCH_OPEN_REAR",
+        "block": "0x06",
+        "byte": "0x06",
+        "mask": "0x10",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "WIN_ONE_TOUCH_CLOSE_REAR",
+        "block": "0x06",
+        "byte": "0x06",
+        "mask": "0x20",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "WIN_FRONT_LOWERING_TIME",
+        "block": "0x06",
+        "byte": "0x07",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+           {
+            "data": "0x00",
+            "text": "default"
+            }
+          ]
+      },
+      {
+        "name": "WINDOW_FRONT_I_STALL",
+        "block": "0x06",
+        "byte": "0x08",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+           {
+            "data": "0x11",
+            "text": "default"
+          }
+          ]
+      },
+      {
+        "name": "WIN_FRONT_STALL_OFF_DELAY",
+        "block": "0x06",
+        "byte": "0x09",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+           {
+            "data": "0x00",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "WIN_REAR_LOWERING_TIME",
+        "block": "0x06",
+        "byte": "0x0A",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+           {
+            "data": "0x00",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "WINDOW_REAR_I_STALL",
+        "block": "0x06",
+        "byte": "0x0B",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+           {
+            "data": "0x11",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "WIN_REAR_STALL_OFF_DELAY",
+        "block": "0x06",
+        "byte": "0x0C",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+           {
+            "data": "0x00",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "WIN_DELAYED_AUX_TIME",
+        "block": "0x06",
+        "byte": "0x0D",
+        "mask": "0xFF",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x28",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "WINDOW_PINCH_OPEN_CIRCUIT",
+        "block": "0x06",
+        "byte": "0x0E",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+           {
+            "data": "0xB9",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "WINDOW_PINCH_PRESSED",
+        "block": "0x07",
+        "byte": "0x00",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+           {
+            "data": "0xB9",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "WIN_MAX_ALLOW_STALL_FRONT",
+        "block": "0x07",
+        "byte": "0x01",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+           {
+            "data": "0x7C",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "WIN_MIN_ALLOW_STALL_FRONT",
+        "block": "0x07",
+        "byte": "0x02",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+           {
+            "data": "0x32",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "WIN_MAX_ALLOW_STALL_REAR",
+        "block": "0x07",
+        "byte": "0x03",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+           {
+            "data": "0x7C",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "WIN_MIN_ALLOW_STALL_REAR",
+        "block": "0x07",
+        "byte": "0x04",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+           {
+            "data": "0x32",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "LOCK_S_P_E_KEY",
+        "block": "0x07",
+        "byte": "0x05",
+        "mask": "0x01",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "LOCK_AUTOMATIC_LOCK",
+        "block": "0x07",
+        "byte": "0x05",
+        "mask": "0x02",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "LOCK_DIRECT_SUPER_LOCK",
+        "block": "0x07",
+        "byte": "0x05",
+        "mask": "0x04",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "LOCK_LOCK_WHEN_RUNNING",
+        "block": "0x07",
+        "byte": "0x05",
+        "mask": "0x08",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "LOCK_PANIC_LOCKING",
+        "block": "0x07",
+        "byte": "0x05",
+        "mask": "0x10",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "LOCK_LAZY_VENT_MASTER",
+        "block": "0x07",
+        "byte": "0x05",
+        "mask": "0x20",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "LOCK_LAZY_LOCK_WITH_KEY",
+        "block": "0x07",
+        "byte": "0x05",
+        "mask": "0x40",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "LOCK_LAZY_UNLOCK_WITH_KEY",
+        "block": "0x07",
+        "byte": "0x06",
+        "mask": "0x01",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "LOCK_DOUBLE_SUPER_LOCK",
+        "block": "0x07",
+        "byte": "0x06",
+        "mask": "0x02",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "LAMP_NO_LAMP_ON_TERM_R",
+        "block": "0x07",
+        "byte": "0x07",
+        "mask": "0x01",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "not_active"
+            },
+            {
+              "data": "0x00",
+              "text": "active"
+            }
+          ]
+      },
+      {
+        "name": "LAMP_WITH_BOOT_LID_OPEN",
+        "block": "0x07",
+        "byte": "0x07",
+        "mask": "0x02",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "LAMP_NO_MAP_WITH_PERM_OFF",
+        "block": "0x07",
+        "byte": "0x07",
+        "mask": "0x04",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "LAMP_RAMP_UP_INCREMENT",
+        "block": "0x07",
+        "byte": "0x08",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+           {
+            "data": "0x09",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "LAMP_RAMP_DN_INCREMENT",
+        "block": "0x07",
+        "byte": "0x09",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+           {
+            "data": "0x04",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "LAMP_RAMP_DN_INCREMENT",
+        "block": "0x07",
+        "byte": "0x0A",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+           {
+            "data": "0xFA",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "DWA_EQUIPED",
+        "block": "0x07",
+        "byte": "0x0B",
+        "mask": "0x01",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "DWA_MAX_ALARM_EVENTS",
+        "block": "0x07",
+        "byte": "0x0C",
+        "mask": "0x0F",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x03",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "DWA_SOUNDER_OPTION",
+        "block": "0x07",
+        "byte": "0x0C",
+        "mask": "0x30",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "none"
+            },
+            {
+              "data": "0x01",
+              "text": "battery_backed"
+            },
+            {
+              "data": "0x02",
+              "text": "horn"
+            },
+            {
+              "data": "0x03",
+              "text": "batteryadnwash"
+            }
+          ]
+      },
+      {
+        "name": "DWA_SOUNDING_MODE",
+        "block": "0x07",
+        "byte": "0x0C",
+        "mask": "0xC0",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "none"
+            },
+            {
+              "data": "0x01",
+              "text": "pulsed"
+            },
+            {
+              "data": "0x02",
+              "text": "continuous"
+            },
+            {
+              "data": "0x03",
+              "text": "undefined"
+            }
+          ]
+      },
+      {
+        "name": "DWA_SENSOR_SETTLE_TIME",
+        "block": "0x07",
+        "byte": "0x0D",
+        "mask": "0xFF",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x14",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "DWA_TRIGGER_DURATION",
+        "block": "0x07",
+        "byte": "0x0E",
+        "mask": "0xFF",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x1E",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "AC_CONFIG_SYSTEM",
+        "block": "0x08",
+        "byte": "0x00",
+        "mask": "0x03",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "none"
+            },
+            {
+              "data": "0x01",
+              "text": "basic_ac"
+            },
+            {
+              "data": "0x02",
+              "text": "atc"
+            },
+            {
+              "data": "0x03",
+              "text": "undefined"
+            }
+          ]
+      },
+      {
+        "name": "AC_RECIRC_WITH_AIRCON_ON",
+        "block": "0x08",
+        "byte": "0x00",
+        "mask": "0x04",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "AC_DISABLE_RECIRC_PARK",
+        "block": "0x08",
+        "byte": "0x00",
+        "mask": "0x08",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "AC_ENABLE_HRW_AUTO_ON",
+        "block": "0x08",
+        "byte": "0x00",
+        "mask": "0x10",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "AC_LOG_STATUS_OF_AC",
+        "block": "0x08",
+        "byte": "0x00",
+        "mask": "0x20",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "AC_CLUTCH_ON",
+        "block": "0x08",
+        "byte": "0x01",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+           {
+            "data": "0x90",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "AC_CLUTCH_OFF",
+        "block": "0x08",
+        "byte": "0x02",
+        "mask": "0xFF",
+        "coding_index": [
+          "2"
+        ],
+        "coding_values": [
+           {
+            "data": "0xAD",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "AC_DEFAULT_EXT_AMBIENT",
+        "block": "0x08",
+        "byte": "0x03",
+        "mask": "0xFF",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x8A",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "AC_HRW_HIGH_BAT_THRESHOLD",
+        "block": "0x08",
+        "byte": "0x04",
+        "mask": "0xFF",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x79",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "AC_HRW_LOW_BAT_THRESHOLD",
+        "block": "0x08",
+        "byte": "0x05",
+        "mask": "0xFF",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x75",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "VEHICLE_DIAGNOSTICS_LOCK",
+        "block": "0x08",
+        "byte": "0x06",
+        "mask": "0x01",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "VEHICLE_TAILGATE_FITTED",
+        "block": "0x08",
+        "byte": "0x06",
+        "mask": "0x02",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "POWER_MODE_MANUFACTURING",
+        "block": "0x08",
+        "byte": "0x07",
+        "mask": "0x01",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "POWER_MODE_TRANSIT",
+        "block": "0x08",
+        "byte": "0x07",
+        "mask": "0x02",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "POWER_MODE_NORMAL",
+        "block": "0x08",
+        "byte": "0x07",
+        "mask": "0x04",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "CONFIGURATION_STATUS",
+        "block": "0x08",
+        "byte": "0x08",
+        "mask": "0xFF",
+        "coding_index": [
+            "2",
+            "4"
+          ],
+        "coding_values": [
+          {
+            "data": "0xAA",
+            "text": "default"
+          }
+          ],
+        "visible": "false"
+      }
+    ]
+}

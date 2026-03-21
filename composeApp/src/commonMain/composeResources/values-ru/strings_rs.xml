@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_rs">Датчик дождя</string>
+    <string name="rs_error_01">Внутренняя аппаратная ошибка</string>
+    <string name="rs_error_02">Адаптация к стеклу невозможна</string>
+    <string name="rs_error_03">Напряжение или температура вне допуска</string>
+    <string name="rs_error_04">Проблемы связи ASIC - Контроллер</string>
+    <string name="rs_error_05">Датчик очистки неисправен (нет обнаружения)</string>
+    <string name="rs_error_06">Неисправен контакт парковки мотора стеклоочистителя</string>
+    <string name="rs_control_init">Инициализация датчика дождя</string>
+    <string name="rs_live_data_park_position">Дворники в парковочном положении</string>
+    <string name="rs_live_data_reinforcement">Усиление сигнала</string>
+    <string name="rs_live_data_time_point_1">Временная точка 1</string>
+    <string name="rs_live_data_time_point_2">Временная точка 2</string>
+</resources>

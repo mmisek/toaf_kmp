@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- MODULE ATC -->
+    <string name="module_description_atc">Aire acondicionado</string>
+    <string name="atc_error_11">Sensor de temperatura en el automóvil</string>
+    <string name="atc_error_12">Sensor de temperatura ambiental</string>
+    <string name="atc_error_13">Sensor de temperatura del evaporador</string>
+    <string name="atc_error_14">Sensor de temperatura del agua</string>
+    <string name="atc_error_21">Sensor solar izquierdo</string>
+    <string name="atc_error_22">Sensor solar derecho</string>
+    <string name="atc_error_31">Motor de mezcla de aire izquierdo</string>
+    <string name="atc_error_32">Motor de mezcla de aire derecho</string>
+    <string name="atc_error_33">Motor de distribución de aire</string>
+
+    <!-- ATC live data -->
+    <string name="atc_live_data_left_side_temp">Temperatura del lado izquierdo</string>
+    <string name="atc_live_data_right_side_temp">Temperatura del lado derecho</string>
+    <string name="atc_live_data_car_speed">Velocidad del automóvil</string>
+    <string name="atc_live_data_actual_air_distribution" >Distribución de aire actual</string>
+    <string name="atc_live_data_right_air_blend_pot" >Potenciador de mezcla de aire derecho</string>
+    <string name="atc_live_data_left_air_blend_pot" >Potenciador de mezcla de aire izquierdo</string>
+    <string name="atc_live_data_right_solar">Sensor solar derecho</string>
+    <string name="atc_live_data_left_solar">Sensor solar izquierdo</string>
+    <string name="atc_live_data_water_temp">Temp. del agua</string>
+    <string name="atc_live_data_evaporator_temp">Temp. del evaporador</string>
+    <string name="atc_live_data_ambient_temp">Temp. ambiental</string>
+    <string name="atc_live_data_in_car_temp">Temp. en el automóvil</string>
+    <string name="atc_live_data_passenger_target_temp">Temp. objetivo del pasajero</string>
+    <string name="atc_live_data_passenger_required_temp">Temp. requerida del pasajero</string>
+    <string name="atc_live_data_driver_target_temp">Temp. objetivo del conductor</string>
+    <string name="atc_live_data_driver_required_temp">Temp. requerida del conductor</string>
+    <string name="atc_live_data_target_air_dist" >Dist. de aire objetivo</string>
+    <string name="atc_live_data_passenger_target_blend" >Mezcla objetivo del pasajero</string>
+    <string name="atc_live_data_passenger_required_blend" >Mezcla requerida del pasajero</string>
+    <string name="atc_live_data_driver_required_blend" >Mezcla requerida del conductor</string>
+    <string name="atc_live_data_blower_speed">Velocidad del ventilador</string>
+    <string name="atc_live_data_hand_drive">Mano de conducción</string>
+    <string name="atc_live_data_recirculation">Recirculación</string>
+    <string name="atc_live_data_ac_compressor">Compresor de AC</string>
+    <string name="atc_live_data_atc_system">Sistema ATC</string>
+    <string name="atc_live_data_value_invalid">inválido</string>
+    <string name="atc_live_data_value_left_hand">mano izquierda</string>
+    <string name="atc_live_data_value_right_hand">mano derecha</string>
+    <string name="atc_live_data_value_fresh">fresco</string>
+    <string name="atc_live_data_value_recirculation">recirculación</string>
+    <string name="atc_live_data_value_on">encendido</string>
+    <string name="atc_live_data_value_off">apagado</string>
+    <!-- ATC control -->
+    <string name="atc_control_blower_0">Ventilador - 0%</string>
+    <string name="atc_control_blower_15">Ventilador - 15%</string>
+    <string name="atc_control_blower_25">Ventilador - 25%</string>
+    <string name="atc_control_blower_50">Ventilador - 50%</string>
+    <string name="atc_control_blower_75">Ventilador - 75%</string>
+    <string name="atc_control_blower_85">Ventilador - 85%</string>
+    <string name="atc_control_blower_100">Ventilador - 100%</string>
+    <string name="atc_control_ac_compressor_off">Compresor de AC - apagado</string>
+    <string name="atc_control_ac_compressor_on">Compresor de AC - encendido</string>
+    <string name="atc_control_fresh_air">Forzar aire fresco</string>
+    <string name="atc_control_recirculation">Forzar recirculación</string>
+    <string name="atc_control_hrw_off">Ventana trasera calefaccionada - apagada</string>
+    <string name="atc_control_hrw_on">Ventana trasera calefaccionada - encendida</string>
+    <string name="atc_control_right_blend_flap_cold" >Trampilla de mezcla derecha - frío</string>
+    <string name="atc_control_right_blend_flap_hot" >Trampilla de mezcla derecha - caliente</string>
+    <string name="atc_control_left_blend_flap_cold" >Trampilla de mezcla izquierda - frío</string>
+    <string name="atc_control_left_blend_flap_hot" >Trampilla de mezcla izquierda - caliente</string>
+    <string name="atc_control_flap_face">Trampillas - cara</string>
+    <string name="atc_control_flap_defrost">Trampillas - desescarcha</string>
+</resources>

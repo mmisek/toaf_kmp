@@ -1,0 +1,650 @@
+{
+    "elements": [
+      {
+        "name": "driver_airbag_stage_1",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x01",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "inactive"
+            }
+          ]
+      },
+      {
+        "name": "driver_belt_pretensioner",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x02",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "passenger_belt_pretensioner",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x04",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "passenger_airbag_stage_1",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x08",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "side_bag_left_front",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x10",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "side_bag_right_front",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x20",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "side_bag_rear_left",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x40",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "side_bag_rear_right",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x80",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "its_left",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x01",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "its_right",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x02",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "battery_cut_off_1",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x04",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "passenger_airbag_stage_2",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x08",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "driver_airbag_stage_2",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x10",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "head_bag_left_rear",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x20",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "head_bag_right_rear",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x40",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "battery_cut_off_2",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x80",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "belt_pretensioner_rear_left",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x01",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "belt_pretensioner_rear_right",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x02",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "belt_pretensioner_rear_center",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x04",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "drivers_buckle_switch",
+        "block": "0x00",
+        "byte": "0x03",
+        "mask": "0x01",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "passenger_buckle_switch",
+        "block": "0x00",
+        "byte": "0x03",
+        "mask": "0x02",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "buckle_switch_rear_left",
+        "block": "0x00",
+        "byte": "0x03",
+        "mask": "0x04",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "buckle_switch_rear_right",
+        "block": "0x00",
+        "byte": "0x03",
+        "mask": "0x08",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "buckle_switch_rear_center",
+        "block": "0x00",
+        "byte": "0x03",
+        "mask": "0x10",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "two_wire_current_buckle_switch",
+        "block": "0x00",
+        "byte": "0x03",
+        "mask": "0x40",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      },
+      {
+        "name": "four_wire_voltage_buckle_switch",
+        "block": "0x00",
+        "byte": "0x03",
+        "mask": "0x40",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      },
+      {
+        "name": "sbe_generation",
+        "block": "0x00",
+        "byte": "0x04",
+        "mask": "0x03",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "first_generation"
+          },
+          {
+            "data": "0x02",
+            "text": "second_generation"
+          }
+        ]
+      },
+      {
+        "name": "driver_backrest_lock",
+        "block": "0x00",
+        "byte": "0x04",
+        "mask": "0x04",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "passenger_backrest_lock",
+        "block": "0x00",
+        "byte": "0x04",
+        "mask": "0x08",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "mrsa_front",
+        "block": "0x00",
+        "byte": "0x04",
+        "mask": "0x20",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "inactive"
+          }
+        ]
+      },
+      {
+        "name": "firing_algorithm",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x01",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "us"
+          },
+          {
+            "data": "0x00",
+            "text": "ece"
+          }
+        ]
+      },
+      {
+        "name": "drive_hand",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x02",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "lhd"
+          },
+          {
+            "data": "0x01",
+            "text": "rhd"
+          }
+        ]
+      },
+      {
+        "name": "crod",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x04",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      },
+      {
+        "name": "auxiliary_lamp",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x08",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ]
+}

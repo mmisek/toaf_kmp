@@ -1,0 +1,1667 @@
+{
+  "livedata": [
+    {
+      "name": "ecm_coolant_temp",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "0.1",
+      "factor_b": "-273",
+      "unit": "°C"
+    },
+    {
+      "name": "input_coolant_temp",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "0.1",
+      "factor_b": "-273",
+      "unit": "°C"
+    },
+    {
+      "name": "ecm_oil_temp",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "0.1",
+      "factor_b": "-273",
+      "unit": "°C"
+    },
+    {
+      "name": "input_oil_temp",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "0.1",
+      "factor_b": "-273",
+      "unit": "°C"
+    },
+    {
+      "name": "ecm_air_temp",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0xFFFF",
+      "factor_a": "0.1",
+      "factor_b": "-273",
+      "unit": "°C"
+    },
+    {
+      "name": "input_air_temp",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0xFFFF",
+      "factor_a": "0.1",
+      "factor_b": "-273",
+      "unit": "°C"
+    },
+    {
+      "name": "ecm_manifold_pressure",
+      "block": "0x06",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "kPa"
+    },
+    {
+      "name": "input_manifold_pressure",
+      "block": "0x06",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "kPa"
+    },
+    {
+      "name": "throttle_voltage",
+      "block": "0x06",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "engine_rpm",
+      "block": "0x06",
+      "byte": "0x08",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "rpm"
+    },
+    {
+      "name": "vvc_target",
+      "block": "0x25",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "0.1",
+      "factor_b": "0",
+      "unit": "°"
+    },
+    {
+      "name": "vvc_actual",
+      "block": "0x25",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "0.1",
+      "factor_b": "0",
+      "unit": "°"
+    },
+    {
+      "name": "fuel_correction",
+      "block": "0x0A",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "ecm_upstream_oxy_sensor_voltage",
+      "block": "0x0A",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "0.001",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "input_upstream_oxy_sensor_voltage",
+      "block": "0x0A",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "0.001",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "ecm_downstream_oxy_sensor_voltage",
+      "block": "0x0A",
+      "byte": "0x08",
+      "mask": "0xFFFF",
+      "factor_a": "0.001",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "input_downstream_oxy_sensor_voltage",
+      "block": "0x0A",
+      "byte": "0x0A",
+      "mask": "0xFFFF",
+      "factor_a": "0.001",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "coil_1_charge_time",
+      "block": "0x0B",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "μs"
+    },
+    {
+      "name": "coil_2_charge_time",
+      "block": "0x0B",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "μs"
+    },
+    {
+      "name": "injector_1_pulse_width",
+      "block": "0x0C",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "0.001",
+      "factor_b": "0",
+      "unit": "ms"
+    },
+    {
+      "name": "injector_2_pulse_width",
+      "block": "0x0C",
+      "byte": "0x08",
+      "mask": "0xFFFF",
+      "factor_a": "0.001",
+      "factor_b": "0",
+      "unit": "ms"
+    },
+    {
+      "name": "injector_3_pulse_width",
+      "block": "0x0C",
+      "byte": "0x0C",
+      "mask": "0xFFFF",
+      "factor_a": "0.001",
+      "factor_b": "0",
+      "unit": "ms"
+    },
+    {
+      "name": "injector_4_pulse_width",
+      "block": "0x0C",
+      "byte": "0x10",
+      "mask": "0xFFFF",
+      "factor_a": "0.001",
+      "factor_b": "0",
+      "unit": "ms"
+    },
+    {
+      "name": "injector_deadtime_adaptation",
+      "block": "0x0C",
+      "byte": "0x12",
+      "mask": "0xFFFF",
+      "factor_a": "0.001",
+      "factor_b": "0",
+      "unit": "ms"
+    },
+    {
+      "name": "road_speed",
+      "block": "0x0D",
+      "byte": "0x00",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "throttle_status",
+      "block": "0x0F",
+      "byte": "0x00",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "closed"
+          },
+          {
+            "data": "0x01",
+            "text": "open"
+          }
+        ]
+    },
+    {
+      "name": "ignition_switch",
+      "block": "0x0F",
+      "byte": "0x00",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "on"
+          },
+          {
+            "data": "0x01",
+            "text": "off"
+          }
+        ]
+    },
+    {
+      "name": "slow_fan_request",
+      "block": "0x0F",
+      "byte": "0x00",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "no"
+          },
+          {
+            "data": "0x01",
+            "text": "yes"
+          }
+        ]
+    },
+    {
+      "name": "ac_request_status",
+      "block": "0x0F",
+      "byte": "0x00",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "no"
+          },
+          {
+            "data": "0x01",
+            "text": "yes"
+          }
+        ]
+    },
+    {
+      "name": "sec_link",
+      "block": "0x0F",
+      "byte": "0x00",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "low"
+          },
+          {
+            "data": "0x01",
+            "text": "high"
+          }
+        ]
+    },
+    {
+      "name": "gearbox_status",
+      "block": "0x0F",
+      "byte": "0x00",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "neutral"
+          },
+          {
+            "data": "0x01",
+            "text": "drive"
+          }
+        ]
+    },
+    {
+      "name": "ecm_battery_voltage",
+      "block": "0x10",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "0.001",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "input_battery_voltage",
+      "block": "0x10",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "0.001",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "camshaft_sensor_synchro",
+      "block": "0x11",
+      "byte": "0x00",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "correct"
+          },
+          {
+            "data": "0x01",
+            "text": "no_sync"
+          }
+        ]
+    },
+    {
+      "name": "crank_sensor_synchro",
+      "block": "0x11",
+      "byte": "0x00",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "correct"
+          },
+          {
+            "data": "0x01",
+            "text": "no_sync"
+          }
+        ]
+    },
+    {
+      "name": "sync_lost",
+      "block": "0x11",
+      "byte": "0x00",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "no_faults"
+          },
+          {
+            "data": "0x01",
+            "text": "faults_logged"
+          }
+        ]
+    },
+    {
+      "name": "crankshaft_position",
+      "block": "0x11",
+      "byte": "0x03",
+      "mask": "0xFFFF",
+      "factor_a": "0.1",
+      "factor_b": "0",
+      "unit": "°",
+      "u2": "true"
+    },
+    {
+      "name": "idle_air_control_valve",
+      "block": "0x12",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "0.1",
+      "factor_b": "0",
+      "unit": "steps",
+      "u2": "true"
+    },
+    {
+      "name": "fueling_feedback_state",
+      "block": "0x13",
+      "byte": "0x00",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "open_loop"
+          },
+          {
+            "data": "0x01",
+            "text": "closed_loop"
+          }
+        ]
+    },
+    {
+      "name": "idle_speed_control_status",
+      "block": "0x14",
+      "byte": "0x00",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "open_loop"
+          },
+          {
+            "data": "0x01",
+            "text": "closed_loop"
+          }
+        ]
+    },
+    {
+      "name": "crank_ignition_status",
+      "block": "0x14",
+      "byte": "0x00",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "not_cranking"
+          },
+          {
+            "data": "0x01",
+            "text": "cranking"
+          }
+        ]
+    },
+    {
+      "name": "ecm_start_status",
+      "block": "0x14",
+      "byte": "0x00",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "not_running"
+          },
+          {
+            "data": "0x01",
+            "text": "running"
+          }
+        ]
+    },
+    {
+      "name": "ecm_stop_status",
+      "block": "0x14",
+      "byte": "0x00",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "not_stopped"
+          },
+          {
+            "data": "0x01",
+            "text": "stopped"
+          }
+        ]
+    },
+    {
+      "name": "main_relay",
+      "block": "0x15",
+      "byte": "0x01",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "off"
+          },
+          {
+            "data": "0x01",
+            "text": "on"
+          }
+        ]
+    },
+    {
+      "name": "fuel_pump_relay",
+      "block": "0x15",
+      "byte": "0x01",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "off"
+          },
+          {
+            "data": "0x01",
+            "text": "on"
+          }
+        ]
+    },
+    {
+      "name": "ac_status",
+      "block": "0x15",
+      "byte": "0x01",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "off"
+          },
+          {
+            "data": "0x01",
+            "text": "on"
+          }
+        ]
+    },
+    {
+      "name": "fan_slow_status",
+      "block": "0x15",
+      "byte": "0x01",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "off"
+          },
+          {
+            "data": "0x01",
+            "text": "on"
+          }
+        ]
+    },
+    {
+      "name": "fan_fast_status",
+      "block": "0x15",
+      "byte": "0x01",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "off"
+          },
+          {
+            "data": "0x01",
+            "text": "on"
+          }
+        ]
+    },
+    {
+      "name": "oxygen_sensor_heater",
+      "block": "0x15",
+      "byte": "0x01",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "off"
+          },
+          {
+            "data": "0x01",
+            "text": "on"
+          }
+        ]
+    },
+    {
+      "name": "purge_valve_drive",
+      "block": "0x16",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "idle_error_speed",
+      "block": "0x21",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "rpm",
+      "u2": "true"
+    },
+    {
+      "name": "ignition_offset",
+      "block": "0x3A",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "0.1",
+      "factor_b": "0",
+      "unit": "°",
+      "u2": "true"
+    },
+    {
+      "name": "fueling_adjustment",
+      "block": "0x3A",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "0.1",
+      "factor_b": "0",
+      "unit": "rpm",
+      "u2": "true"
+    },
+    {
+      "name": "fueling_adjustment",
+      "block": "0x3A",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "0.1",
+      "factor_b": "0",
+      "unit": "μs",
+      "u2": "true"
+    },
+    {
+      "name": "flywhell_adapted",
+      "block": "0x51",
+      "byte": "0x16",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "not_adapted"
+          },
+          {
+            "data": "0x01",
+            "text": "adapted"
+          }
+        ]
+    },
+    {
+      "name": "missfire_count_1",
+      "block": "0x52",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "missfire_count_2",
+      "block": "0x52",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "synchronisation_status",
+      "block": "0x53",
+      "byte": "0x00",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "not_required"
+          },
+          {
+            "data": "0x01",
+            "text": "resynchronised"
+          }
+        ]
+    },
+    {
+      "name": "new_system_status",
+      "block": "0x53",
+      "byte": "0x00",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "not_new_system"
+          },
+          {
+            "data": "0x01",
+            "text": "new_system"
+          }
+        ]
+    },
+    {
+      "name": "synchronisation_allowed",
+      "block": "0x53",
+      "byte": "0x00",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "condition_ok"
+          },
+          {
+            "data": "0x01",
+            "text": "invalid_condition"
+          }
+        ]
+    },
+    {
+      "name": "learn_status",
+      "block": "0x53",
+      "byte": "0x00",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "resync_ok"
+          },
+          {
+            "data": "0x01",
+            "text": "resync_error"
+          }
+        ]
+    },
+    {
+      "name": "ews_signal",
+      "block": "0x53",
+      "byte": "0x00",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "not_recived"
+          },
+          {
+            "data": "0x01",
+            "text": "recived_ok"
+          }
+        ]
+    },
+    {
+      "name": "immobiliser_state",
+      "block": "0x53",
+      "byte": "0x00",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "mobilised"
+          },
+          {
+            "data": "0x01",
+            "text": "ok"
+          }
+        ]
+    },
+    {
+      "name": "learn_code",
+      "block": "0x53",
+      "byte": "0x01",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "ok"
+          },
+          {
+            "data": "0x01",
+            "text": "invalid"
+          }
+        ]
+    },
+    {
+      "name": "invalid_code_learn_prog",
+      "block": "0x53",
+      "byte": "0x02",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "no_invalid_prog"
+          },
+          {
+            "data": "0x01",
+            "text": "invalid_prog_attempt"
+          }
+        ]
+    },
+    {
+      "name": "invalid_sync",
+      "block": "0x53",
+      "byte": "0x04",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "no_invalid_resync"
+          },
+          {
+            "data": "0x01",
+            "text": "invalid_resync_attempt"
+          }
+        ]
+    },
+    {
+      "name": "seed_status",
+      "block": "0x53",
+      "byte": "0x01",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "ok"
+          },
+          {
+            "data": "0x01",
+            "text": "corrupt"
+          }
+        ]
+    },
+    {
+      "name": "ews_status",
+      "block": "0x53",
+      "byte": "0x01",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "ok"
+          },
+          {
+            "data": "0x01",
+            "text": "error"
+          }
+        ]
+    },
+    {
+      "name": "code_type",
+      "block": "0x53",
+      "byte": "0x01",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "unexpected"
+          },
+          {
+            "data": "0x01",
+            "text": "excepted"
+          }
+        ]
+    },
+    {
+      "name": "ews_rolling_code_count",
+      "block": "0x53",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "u2": "true"
+    },
+    {
+      "name": "ews_good",
+      "block": "0x53",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "u2": "true"
+    },
+    {
+      "name": "ews_bad",
+      "block": "0x53",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "u2": "true"
+    },
+    {
+      "name": "can_tx_faults_count",
+      "block": "0x54",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "can_rx_faults_count",
+      "block": "0x54",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "autobox_can_message",
+      "block": "0x54",
+      "byte": "0x04",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "waiting"
+          },
+          {
+            "data": "0x01",
+            "text": "arrived_ok"
+          }
+        ]
+    },
+    {
+      "name": "can_message_ipk_2",
+      "block": "0x54",
+      "byte": "0x04",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "waiting"
+          },
+          {
+            "data": "0x01",
+            "text": "arrived_ok"
+          }
+        ]
+    },
+    {
+      "name": "can_message_ipk_3",
+      "block": "0x54",
+      "byte": "0x04",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "waiting"
+          },
+          {
+            "data": "0x01",
+            "text": "arrived_ok"
+          }
+        ]
+    },
+    {
+      "name": "can_message_ipk_3",
+      "block": "0x54",
+      "byte": "0x08",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "waiting"
+          },
+          {
+            "data": "0x01",
+            "text": "arrived_ok"
+          }
+        ]
+    },
+    {
+      "name": "autobox_can_message_fault_status",
+      "block": "0x54",
+      "byte": "0x04",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "ok"
+          },
+          {
+            "data": "0x01",
+            "text": "timeout"
+          }
+        ]
+    },
+    {
+      "name": "can_message_ipk_2_fault_status",
+      "block": "0x54",
+      "byte": "0x04",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "ok"
+          },
+          {
+            "data": "0x01",
+            "text": "timeout"
+          }
+        ]
+    },
+    {
+      "name": "can_message_ipk_3_fault_status",
+      "block": "0x54",
+      "byte": "0x04",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "ok"
+          },
+          {
+            "data": "0x01",
+            "text": "timeout"
+          }
+        ]
+    },
+    {
+      "name": "can_message_ipk_4_fault_status",
+      "block": "0x54",
+      "byte": "0x04",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "ok"
+          },
+          {
+            "data": "0x01",
+            "text": "timeout"
+          }
+        ]
+    },
+    {
+      "name": "can_system",
+      "block": "0x54",
+      "byte": "0x05",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "internal_fault"
+          },
+          {
+            "data": "0x01",
+            "text": "initialised"
+          }
+        ]
+    },
+    {
+      "name": "can_node",
+      "block": "0x54",
+      "byte": "0x05",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "node_found"
+          },
+          {
+            "data": "0x01",
+            "text": "no_nodes"
+          }
+        ]
+    },
+    {
+      "name": "can_ram",
+      "block": "0x54",
+      "byte": "0x05",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "internal_fault"
+          },
+          {
+            "data": "0x01",
+            "text": "ok"
+          }
+        ]
+    },
+    {
+      "name": "can_tx_fault",
+      "block": "0x54",
+      "byte": "0x05",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "no_tx_fault"
+          },
+          {
+            "data": "0x01",
+            "text": "tx_fault"
+          }
+        ]
+    },
+    {
+      "name": "can_rx_fault",
+      "block": "0x54",
+      "byte": "0x05",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "no_rx_fault"
+          },
+          {
+            "data": "0x01",
+            "text": "rx_fault"
+          }
+        ]
+    },
+    {
+      "name": "can_bus_state",
+      "block": "0x54",
+      "byte": "0x05",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "no_bus_fault"
+          },
+          {
+            "data": "0x01",
+            "text": "bus_fault"
+          }
+        ]
+    },
+    {
+      "name": "feedback_status",
+      "block": "0x55",
+      "byte": "0x04",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "open_loop"
+          },
+          {
+            "data": "0x01",
+            "text": "closed_loop"
+          }
+        ]
+    },
+    {
+      "name": "feedback_switch_status",
+      "block": "0x55",
+      "byte": "0x04",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "fuel_reach"
+          },
+          {
+            "data": "0x01",
+            "text": "fuel_lean"
+          }
+        ]
+    },
+    {
+      "name": "upstream_oxy_sensor_ready",
+      "block": "0x55",
+      "byte": "0x04",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "not_ready"
+          },
+          {
+            "data": "0x01",
+            "text": "ok"
+          }
+        ]
+    },
+    {
+      "name": "upstream_oxy_sensor_heater_duty_ratio",
+      "block": "0x56",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "downstream_oxy_sensor_heater_duty_ratio",
+      "block": "0x56",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "upstream_oxy_sensor_heater_current",
+      "block": "0x56",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "0.1",
+      "factor_b": "0",
+      "unit": "A",
+      "u2": "true"
+    },
+    {
+      "name": "downstream_oxy_sensor_heater_current",
+      "block": "0x56",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "0.1",
+      "factor_b": "0",
+      "unit": "A",
+      "u2": "true"
+    },
+    {
+      "name": "catalyst_test_value",
+      "block": "0x57",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "0.001",
+      "factor_b": "0",
+      "unit": "V",
+      "u2": "true"
+    },
+    {
+      "name": "catalyst_test_limit",
+      "block": "0x57",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "0.001",
+      "factor_b": "0",
+      "unit": "V",
+      "u2": "true"
+    },
+    {
+      "name": "cat_test",
+      "block": "0x57",
+      "byte": "0x06",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "incomplete"
+          },
+          {
+            "data": "0x01",
+            "text": "complete"
+          }
+        ]
+    },
+    {
+      "name": "engine_roughness",
+      "block": "0x5A",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "engine_roughness_threshold",
+      "block": "0x5A",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "catalyst_percent",
+      "block": "0x5A",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "emission_percent",
+      "block": "0x5A",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "roughness_road",
+      "block": "0x5A",
+      "byte": "0x08",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "roughness_road_1",
+      "block": "0x5A",
+      "byte": "0x0A",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "roughness_road_2",
+      "block": "0x5A",
+      "byte": "0x0E",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "engine_torque",
+      "block": "0x5B",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "0.001",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "gearbox_torque",
+      "block": "0x5B",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "0.001",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "torque_reduction_retarded",
+      "block": "0x5B",
+      "byte": "0x05",
+      "mask": "0xFFFF",
+      "factor_a": "0.1",
+      "factor_b": "0",
+      "unit": "°"
+    },
+    {
+      "name": "gearbox_status_selection",
+      "block": "0x57",
+      "byte": "0x08",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x0001",
+            "text": "gear_1"
+          },
+          {
+            "data": "0x0002",
+            "text": "gear_2"
+          },
+          {
+            "data": "0x0003",
+            "text": "gear_3"
+          },
+          {
+            "data": "0x0004",
+            "text": "gear_4"
+          },
+          {
+            "data": "0x0005",
+            "text": "gear_D"
+          },
+          {
+            "data": "0x0006",
+            "text": "gear_N"
+          },
+          {
+            "data": "0x0007",
+            "text": "gear_R"
+          },
+          {
+            "data": "0x0008",
+            "text": "gear_P"
+          }
+        ]
+    },
+    {
+      "name": "current_gear_position",
+      "block": "0x5B",
+      "byte": "0x0A",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x0001",
+            "text": "gear_1"
+          },
+          {
+            "data": "0x0002",
+            "text": "gear_2"
+          },
+          {
+            "data": "0x0003",
+            "text": "gear_3"
+          },
+          {
+            "data": "0x0004",
+            "text": "gear_4"
+          },
+          {
+            "data": "0x0005",
+            "text": "gear_D"
+          },
+          {
+            "data": "0x0006",
+            "text": "gear_N"
+          },
+          {
+            "data": "0x0007",
+            "text": "gear_R"
+          },
+          {
+            "data": "0x0008",
+            "text": "gear_P"
+          }
+        ]
+    },
+    {
+      "name": "target_engine_idle_speed_control",
+      "block": "0x5D",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "rpm"
+    },
+    {
+      "name": "idle_deadband_position",
+      "block": "0x5D",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "steps"
+    },
+    {
+      "name": "idle_closed_throttle_position",
+      "block": "0x5D",
+      "byte": "0x08",
+      "mask": "0xFFFF",
+      "factor_a": "0.1",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "idle_power_sterring_pressure",
+      "block": "0x5D",
+      "byte": "0x0C",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "kPa"
+    },
+    {
+      "name": "idle_alternator_load",
+      "block": "0x5D",
+      "byte": "0x0E",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "ambient_temperature",
+      "block": "0x5D",
+      "byte": "0x0E",
+      "mask": "0xFFFF",
+      "factor_a": "0.104",
+      "factor_b": "-273",
+      "unit": "°C"
+    },
+    {
+      "name": "ac_temperature",
+      "block": "0x5D",
+      "byte": "0x10",
+      "mask": "0xFFFF",
+      "factor_a": "0.104",
+      "factor_b": "-273",
+      "unit": "°C"
+    },
+    {
+      "name": "ac_torque",
+      "block": "0x5D",
+      "byte": "0x12",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "Nm"
+    },
+    {
+      "name": "ignition_advance_before_dtc",
+      "block": "0x5D",
+      "byte": "0x0",
+      "mask": "0xFFFF",
+      "factor_a": "0.1",
+      "factor_b": "0",
+      "unit": "°C",
+      "u2": "true"
+    }
+  ]
+}

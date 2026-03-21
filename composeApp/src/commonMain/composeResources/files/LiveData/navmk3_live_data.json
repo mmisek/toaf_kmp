@@ -1,0 +1,499 @@
+{
+  "livedata": [
+    {
+      "name": "wheels_sensors_test",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "test_component_ok"
+        },
+        {
+          "data": "0x02",
+          "text": "test_component_not_ok"
+        },
+        {
+          "data": "0x02",
+          "text": "no_test_status"
+        },
+        {
+          "data": "0x03",
+          "text": "component_not_included"
+        },
+        {
+          "data": "0xff",
+          "text": "diagnostic_error"
+        }
+        ]
+    },
+    {
+      "name": "wheel_speed_left",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "imp/s"
+    },
+    {
+      "name": "wheel_speed_right",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "imp/s"
+    },
+    {
+      "name": "gyroscope_test",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "test_component_ok"
+        },
+        {
+          "data": "0x02",
+          "text": "test_component_not_ok"
+        },
+        {
+          "data": "0x02",
+          "text": "no_test_status"
+        },
+        {
+          "data": "0x03",
+          "text": "component_not_included"
+        },
+        {
+          "data": "0xff",
+          "text": "diagnostic_error"
+        }
+      ]
+    },
+    {
+      "name": "gyroscope_value",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "0.001",
+      "factor_b": "0",
+      "unit": "V",
+      "u2": "true"
+    },
+    {
+      "name": "5v_test",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "test_component_ok"
+        },
+        {
+          "data": "0x02",
+          "text": "test_component_not_ok"
+        },
+        {
+          "data": "0x02",
+          "text": "no_test_status"
+        },
+        {
+          "data": "0x03",
+          "text": "component_not_included"
+        },
+        {
+          "data": "0xff",
+          "text": "diagnostic_error"
+        }
+      ]
+    },
+    {
+      "name": "5v_value",
+      "block": "0x00",
+      "byte": "0x09",
+      "mask": "0xFFFF",
+      "factor_a": "0.001",
+      "factor_b": "0",
+      "unit": "V",
+      "u2": "true"
+    },
+    {
+      "name": "12v_test",
+      "block": "0x00",
+      "byte": "0x0B",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "test_component_ok"
+        },
+        {
+          "data": "0x02",
+          "text": "test_component_not_ok"
+        },
+        {
+          "data": "0x02",
+          "text": "no_test_status"
+        },
+        {
+          "data": "0x03",
+          "text": "component_not_included"
+        },
+        {
+          "data": "0xff",
+          "text": "diagnostic_error"
+        }
+      ]
+    },
+    {
+      "name": "12v_value",
+      "block": "0x00",
+      "byte": "0x0C",
+      "mask": "0xFFFF",
+      "factor_a": "0.001",
+      "factor_b": "0",
+      "unit": "V",
+      "u2": "true"
+    },
+    {
+      "name": "power_supply_test",
+      "block": "0x00",
+      "byte": "0x0E",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "test_component_ok"
+        },
+        {
+          "data": "0x02",
+          "text": "test_component_not_ok"
+        },
+        {
+          "data": "0x02",
+          "text": "no_test_status"
+        },
+        {
+          "data": "0x03",
+          "text": "component_not_included"
+        },
+        {
+          "data": "0xff",
+          "text": "diagnostic_error"
+        }
+      ]
+    },
+    {
+      "name": "power_supply_value",
+      "block": "0x00",
+      "byte": "0x0F",
+      "mask": "0xFFFF",
+      "factor_a": "0.001",
+      "factor_b": "0",
+      "unit": "V",
+      "u2": "true"
+    },
+    {
+      "name": "fan_test",
+      "block": "0x00",
+      "byte": "0x11",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "test_component_ok"
+        },
+        {
+          "data": "0x02",
+          "text": "test_component_not_ok"
+        },
+        {
+          "data": "0x02",
+          "text": "no_test_status"
+        },
+        {
+          "data": "0x03",
+          "text": "component_not_included"
+        },
+        {
+          "data": "0xff",
+          "text": "diagnostic_error"
+        }
+      ]
+    },
+    {
+      "name": "fan_state",
+      "block": "0x00",
+      "byte": "0x12",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit":" ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+        ]
+    },
+    {
+      "name": "eject_button_test",
+      "block": "0x00",
+      "byte": "0x13",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "test_component_ok"
+        },
+        {
+          "data": "0x02",
+          "text": "test_component_not_ok"
+        },
+        {
+          "data": "0x02",
+          "text": "no_test_status"
+        },
+        {
+          "data": "0x03",
+          "text": "component_not_included"
+        },
+        {
+          "data": "0xff",
+          "text": "diagnostic_error"
+        }
+      ]
+    },
+    {
+      "name": "eject_button_state",
+      "block": "0x00",
+      "byte": "0x14",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "not_activated"
+        },
+        {
+          "data": "0x01",
+          "text": "activated"
+        }
+      ]
+    },
+    {
+      "name": "temperature_sensor_test",
+      "block": "0x00",
+      "byte": "0x13",
+      "mask": "0xF5",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "test_component_ok"
+        },
+        {
+          "data": "0x02",
+          "text": "test_component_not_ok"
+        },
+        {
+          "data": "0x02",
+          "text": "no_test_status"
+        },
+        {
+          "data": "0x03",
+          "text": "component_not_included"
+        },
+        {
+          "data": "0xff",
+          "text": "diagnostic_error"
+        }
+      ]
+    },
+    {
+      "name": "temperature_sensor_value",
+      "block": "0x00",
+      "byte": "0x16",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "°C",
+      "u2": "true"
+    },
+    {
+      "name": "direction_test",
+      "block": "0x00",
+      "byte": "0x18",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "test_component_ok"
+        },
+        {
+          "data": "0x02",
+          "text": "test_component_not_ok"
+        },
+        {
+          "data": "0x02",
+          "text": "no_test_status"
+        },
+        {
+          "data": "0x03",
+          "text": "component_not_included"
+        },
+        {
+          "data": "0xff",
+          "text": "diagnostic_error"
+        }
+      ]
+    },
+    {
+      "name": "direction_state",
+      "block": "0x00",
+      "byte": "0x19",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "forward"
+        },
+        {
+          "data": "0x01",
+          "text": "backward"
+        }
+      ]
+    },
+    {
+      "name": "gps_test",
+      "block": "0x00",
+      "byte": "0x1A",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "test_component_ok"
+        },
+        {
+          "data": "0x02",
+          "text": "test_component_not_ok"
+        },
+        {
+          "data": "0x02",
+          "text": "no_test_status"
+        },
+        {
+          "data": "0x03",
+          "text": "component_not_included"
+        },
+        {
+          "data": "0xff",
+          "text": "diagnostic_error"
+        }
+      ]
+    },
+    {
+      "name": "gps_state",
+      "block": "0x00",
+      "byte": "0x1B",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no_gps"
+        },
+        {
+          "data": "0x01",
+          "text": "communication_error"
+        },
+        {
+          "data": "0x02",
+          "text": "receiver_error"
+        },
+        {
+          "data": "0x03",
+          "text": "no_almanac"
+        },
+        {
+          "data": "0x04",
+          "text": "satellites_search_in_progress"
+        },
+        {
+          "data": "0x05",
+          "text": "1_satellite_found"
+        },
+        {
+          "data": "0x06",
+          "text": "2_satellite_found"
+        },
+        {
+          "data": "0x07",
+          "text": "3_satellite_found"
+        },
+        {
+          "data": "0x08",
+          "text": "4_satellite_found"
+        },
+        {
+          "data": "0x09",
+          "text": "5_satellite_found"
+        },
+        {
+          "data": "0x0A",
+          "text": "6_satellite_found"
+        },
+        {
+          "data": "0x0B",
+          "text": "2d_position_calculated"
+        },
+        {
+          "data": "0x0C",
+          "text": "3d_position_calculated"
+        }
+      ]
+    }
+  ]
+}

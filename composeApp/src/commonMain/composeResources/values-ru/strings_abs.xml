@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_abs">Тормозная система (ABS)</string>
+    <string name="abs_error_04">Датчик скорости колеса задний левый</string>
+    <string name="abs_error_05">Датчик скорости колеса задний правый</string>
+    <string name="abs_error_06">Датчик скорости колеса передний правый</string>
+    <string name="abs_error_07">Датчик скорости колеса передний левый</string>
+    <string name="abs_error_2F">Выпускной клапан ABS задний левый или задней оси</string>
+    <string name="abs_error_30">Выпускной клапан ABS задний правый</string>
+    <string name="abs_error_31">Выпускной клапан ABS передний правый</string>
+    <string name="abs_error_32">Выпускной клапан ABS передний левый</string>
+    <string name="abs_error_33">Впускной клапан ABS задний левый или задней оси</string>
+    <string name="abs_error_34">Впускной клапан ABS задний правый</string>
+    <string name="abs_error_35">Впускной клапан ABS передний правый</string>
+    <string name="abs_error_36">Впускной клапан ABS передний левый</string>
+    <string name="abs_error_0E">Ошибка реле клапанов</string>
+    <string name="abs_error_0F">Ошибка насоса</string>
+    <string name="abs_error_15">Ошибка блока управления</string>
+    <string name="abs_error_18">Неверный импульсный диск (зубчатое колесо) на одном колесе</string>
+    <string name="abs_error_19">Проводка выключателя стоп-сигнала</string>
+    <string name="abs_error_1E">Датчик скорости колеса задний левый</string>
+    <string name="abs_error_1F">Датчик скорости колеса задний правый</string>
+    <string name="abs_error_20">Датчик скорости колеса передний правый</string>
+    <string name="abs_error_21">Датчик скорости колеса передний левый</string>
+    <string name="abs_error_22">Переключающий клапан ASC</string>
+    <string name="abs_error_37">Отсечной клапан ASC</string>
+    <string name="abs_error_17">Кодирование варианта ASC</string>
+    <string name="abs_error_3F">Сравнение скоростей</string>
+    <string name="abs_error_40">Непрерывное регулирование</string>
+    <string name="abs_error_42">Питание датчика оборотов двигателя, ошибка ЭБУ</string>
+    <string name="abs_error_4B">Ошибка CAN: Обороты двигателя (NMOT)</string>
+    <string name="abs_error_4C">Ошибка сообщения CAN DDE</string>
+    <string name="abs_error_44">Система ASR пассивна</string>
+    <string name="abs_error_38">Общая ошибка CAN</string>
+    <string name="abs_error_43">Восприимчивость к электромагнитному полю</string>
+    <string name="abs_error_6F">Ошибка подтверждения сообщения CAN ASC</string>
+    <string name="abs_error_70">CAN: Приборная панель</string>
+    <string name="abs_error_3B">Ошибка сообщения CAN DMER1</string>
+    <string name="abs_error_3A">Ошибка сообщения CAN EGS1 (АКПП)</string>
+    
+    <string name="abs_error_detail_00">ASC не пассивна</string>
+    <string name="abs_error_detail_01">ASC пассивна</string>
+    <string name="abs_error_detail_02">Управление ABS активно</string>
+    <string name="abs_error_detail_03">Управление ABS пассивно</string>
+    <string name="abs_error_detail_04">Выключатель стоп-сигнала ВКЛ</string>
+    <string name="abs_error_detail_05">Выключатель стоп-сигнала ВЫКЛ</string>
+    <string name="abs_error_detail_06">Управление ASC активно</string>
+    <string name="abs_error_detail_07">Управление ASC пассивно</string>
+    
+    <string name="abs_live_data_front_left_wheel_speed">Скорость колеса - переднее левое</string>
+    <string name="abs_live_data_front_right_wheel_speed">Скорость колеса - переднее правое</string>
+    <string name="abs_live_data_rear_left_wheel_speed">Скорость колеса - заднее левое</string>
+    <string name="abs_live_data_rear_right_wheel_speed">Скорость колеса - заднее правое</string>
+    <string name="abs_live_data_engine_rpm">Обороты двигателя</string>
+    <string name="abs_live_data_break_light_switch">Выключатель стоп-сигнала</string>
+    <string name="abs_live_data_pump_relay">Реле насоса ABS</string>
+    <string name="abs_live_data_valve_relay">Реле клапанов</string>
+    <string name="abs_live_data_asc_active">ASC активна</string>
+
+</resources>

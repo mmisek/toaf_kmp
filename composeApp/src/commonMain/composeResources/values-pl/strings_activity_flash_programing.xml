@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_flash_programing">Programowanie pamięci FLASH</string>
+    <string name="activity_flash_programming_backup_flash">Plik kopii zapasowej…%1$s</string>
+    <string name="activity_flash_programming_close">Zamknij</string>
+    <string name="activity_flash_programming_diagnostic_session">Sesja diagnostyczna…%1$s</string>
+    <string name="activity_flash_programming_ecu_init">Inicjalizacja ECU… %1$s</string>
+    <string name="activity_flash_programming_ecu_reset">Reset ECU… czekaj</string>
+    <string name="activity_flash_programming_end">Koniec</string>
+    <string name="activity_flash_programming_failed">Błąd</string>
+    <string name="activity_flash_programming_file_name">Nazwa pliku:%1$s</string>
+    <string name="activity_flash_programming_file_size">Wielkość pliku: %1$s bajty</string>
+    <string name="activity_flash_programming_flash_erasing">Kasowanie pamięci…%1$s</string>
+    <string name="activity_flash_programming_flash_read">Odczyt pamięci…%1$s</string>
+    <string name="activity_flash_programming_flash_reading">Odczyt pamięci</string>
+    <string name="activity_flash_programming_flash_write">Zapis pamięci…%1$s</string>
+    <string name="activity_flash_programming_flash_writing">Zapis pamięci</string>
+    <string name="activity_flash_programming_flash_writing_end">Koniec zapisu pamięci…%1$s</string>
+    <string name="activity_flash_programming_ok">OK</string>
+    <string name="activity_flash_programming_read_error">Błąd odczytu pamięci</string>
+    <string name="activity_flash_programming_read_flash">Odczyt pamięci</string>
+    <string name="activity_flash_programming_read_size">Odczytane bajty: %1$s</string>
+    <string name="activity_flash_programming_read_time">Czas odczytu: %1$s</string>
+    <string name="activity_flash_programming_security_access">Security access…%1$s</string>
+    <string name="activity_flash_programming_start">Start</string>
+    <string name="activity_flash_programming_tittle">Programowanie pamięci modułu</string>
+    <string name="activity_flash_programming_write_data_to_file_error">Błąd zapisu do pliku</string>
+    <string name="activity_flash_programming_write_error">Błąd zapisu pamięci!</string>
+    <string name="activity_flash_programming_write_flash">Zapis pamięci</string>
+    <string name="activity_flash_programming_write_time">Czas zapisu: %1$s</string>
+    <string name="activity_flash_programming_written_to">Zapisano do : %1$s</string>
+    <string name="activity_flash_programming_wrong_file_size">Błędna wielkość pliku</string>
+    <string name="activity_flash_read_identification">Identyfikacja ECU</string>
+    <string name="activity_flash_programing_warning">
+        !! UWAGA !!\n\n
+        Wszystkie te operacje mogą uszkodzić Twoj moduł.\n
+        Zazwyczaj operacja odczytu jest bezpieczna, zapis może unieruchomić Twoj pojazd !\n
+        Autor programu uczynił starania aby tak się nie stało, i operacje były bezpieczne - ale nie gwarantuje poprawności tych działań\n
+        Robisz wszystko na swoje własne ryzyko!
+    </string>
+</resources>

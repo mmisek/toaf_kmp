@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_coding_bcu">Zaawansowane kodowanie</string>
+    <string name="activity_coding_bcu_key_add">Dodaj</string>
+    <string name="activity_coding_bcu_key_add_button_add">Dodaj</string>
+    <string name="activity_coding_bcu_key_add_button_cancel">Anuluj</string>
+    <string name="activity_coding_bcu_key_add_error">Błąd dodawania pilota</string>
+    <string name="activity_coding_bcu_key_add_hint">np: AB54CA</string>
+    <string name="activity_coding_bcu_key_add_message">Podaj kod pilota</string>
+    <string name="activity_coding_bcu_key_add_not_supported">Nie obsługiwane.</string>
+    <string name="activity_coding_bcu_key_add_successful">Dodanie pilota pomyślne</string>
+    <string name="activity_coding_bcu_key_add_tittle">Dodaj nowy pilot</string>
+    <string name="activity_coding_bcu_key_code_not_valid">Podany kod jest nieprawidłowy</string>
+    <string name="activity_coding_bcu_key_delete">Usuń</string>
+    <string name="activity_coding_bcu_key_empty">Pusty</string>
+    <string name="activity_coding_bcu_key_number">Pilot: %1$d</string>
+    <string name="activity_coding_bcu_key_read_error">Błąd!</string>
+    <string name="activity_coding_bcu_key_remove_error">Błąd usuwania pilota</string>
+    <string name="activity_coding_bcu_key_remove_key_successful">Pilot usunięty prawidłowo</string>
+    <string name="activity_coding_bcu_key_remove_message">Czy na pewno usunąć ten pilot ?</string>
+    <string name="activity_coding_bcu_key_remove_no">Nie</string>
+    <string name="activity_coding_bcu_key_remove_tittle">Usuń pilot</string>
+    <string name="activity_coding_bcu_key_remove_yes">Tak</string>
+    <string name="activity_coding_bcu_keys">Programowanie pilotów</string>
+    <string name="activity_coding_bcu_tittle">Zaawansowane kodowanie i programowanie</string>
+    <string name="activity_coding_bcu_key_add_sign">+</string>
+    <string name="activity_coding_bcu_key_del_sign">-</string>
+</resources>

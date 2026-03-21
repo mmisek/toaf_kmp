@@ -1,0 +1,136 @@
+{
+    "elements": [
+      {
+        "name": "battery_horn",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x01"
+      },
+      {
+        "name": "passenger_window_open",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x02"
+      },
+      {
+        "name": "passenger_window_close",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x04"
+      },
+      {
+        "name": "driver_window_open",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x10"
+      },
+      {
+        "name": "driver_window_close",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x08"
+      },
+      {
+        "name": "left_rear_windows_open",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x08"
+      },
+      {
+        "name": "left_rear_windows_close",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x40"
+      },
+      {
+        "name": "right_rear_window_open",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x10"
+      },
+      {
+        "name": "right_rear_window_close",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x20"
+      },
+      {
+        "name": "lock_driver_door",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x01"
+      },
+      {
+        "name": "lock_all_doors",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x02"
+      },
+      {
+        "name": "unlock_all_doors",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x04"
+      },
+      {
+        "name": "super_lock_doors",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x20"
+      },
+      {
+        "name": "boot_open",
+        "block": "0x00",
+        "byte": "0x03",
+        "value": "0x08"
+      },
+      {
+        "name": "tailgate_open",
+        "block": "0x00",
+        "byte": "0x03",
+        "value": "0x40"
+      },
+      {
+        "name": "wipers_speed_1",
+        "block": "0x00",
+        "byte": "0x04",
+        "value": "0x01"
+      },
+      {
+        "name": "wipers_speed_2",
+        "block": "0x00",
+        "byte": "0x04",
+        "value": "0x03"
+      },
+      {
+        "name": "interior_light",
+        "block": "0x00",
+        "byte": "0x02",
+        "value": "0x02"
+      },
+      {
+        "name": "locker_light",
+        "block": "0x00",
+        "byte": "0x02",
+        "value": "0x08"
+      },
+      {
+        "name": "alarm_led",
+        "block": "0x00",
+        "byte": "0x03",
+        "value": "0x80"
+      },
+      {
+        "name": "headlamp_wash",
+        "block": "0x00",
+        "byte": "0x04",
+        "value": "0x10"
+      },
+      {
+        "name": "heated_rear_window",
+        "block": "0x00",
+        "byte": "0x04",
+        "value": "0x80"
+      }
+    ]
+}

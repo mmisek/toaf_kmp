@@ -1,0 +1,118 @@
+{
+    "elements": [
+      {
+        "name": "blower_0",
+        "block": "0x81",
+        "byte": "0x00",
+        "value": "0x04"
+      },
+      {
+        "name": "blower_15",
+        "block": "0x81",
+        "byte": "0x00",
+        "value": "0x08"
+      },
+      {
+        "name": "blower_25",
+        "block": "0x81",
+        "byte": "0x00",
+        "value": "0x0d"
+      },
+      {
+        "name": "blower_50",
+        "block": "0x81",
+        "byte": "0x00",
+        "value": "0x11"
+      },
+      {
+        "name": "blower_75",
+        "block": "0x81",
+        "byte": "0x00",
+        "value": "0x16"
+      },
+      {
+        "name": "blower_85",
+        "block": "0x81",
+        "byte": "0x00",
+        "value": "0x1A"
+      },
+      {
+        "name": "blower_100",
+        "block": "0x81",
+        "byte": "0x00",
+        "value": "0x01F"
+      },
+      {
+        "name": "ac_compressor_off",
+        "block": "0x82",
+        "byte": "0x00",
+        "value": "0x80"
+      },
+      {
+        "name": "ac_compressor_on",
+        "block": "0x81",
+        "byte": "0x00",
+        "value": "0xC0"
+      },
+      {
+        "name": "fresh_air",
+        "block": "0x83",
+        "byte": "0x00",
+        "value": "0x02"
+      },
+      {
+        "name": "recirculation",
+        "block": "0x83",
+        "byte": "0x00",
+        "value": "0x04"
+      },
+      {
+        "name": "hrw_off",
+        "block": "0x84",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+      {
+        "name": "hrw_on",
+        "block": "0x84",
+        "byte": "0x00",
+        "value": "0x01"
+      },
+      {
+        "name": "right_blend_flap_cold",
+        "block": "0x31",
+        "byte": "0x00",
+        "value": "0x32"
+      },
+      {
+        "name": "right_blend_flap_hot",
+        "block": "0x31",
+        "byte": "0x00",
+        "value": "0xCA"
+      },
+      {
+        "name": "left_blend_flap_cold",
+        "block": "0x32",
+        "byte": "0x00",
+        "value": "0x32"
+      },
+      {
+        "name": "left_blend_flap_hot",
+        "block": "0x32",
+        "byte": "0x00",
+        "value": "0xCA"
+      },
+      {
+        "name": "flap_face",
+        "block": "0x33",
+        "byte": "0x00",
+        "value": "0x32"
+      },
+      {
+        "name": "flap_defrost",
+        "block": "0x33",
+        "byte": "0x00",
+        "value": "0xCA"
+      }
+    ]
+}

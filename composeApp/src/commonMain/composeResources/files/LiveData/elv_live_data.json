@@ -1,0 +1,459 @@
+{
+  "livedata": [
+    {
+      "name": "STAT_EEIN_DREK",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "non_disturbed"
+        },
+        {
+          "data": "0x01",
+          "text": "disturbed"
+        }
+        ]
+    },
+    {
+      "name": "STAT_EEIN_DREK_GEST",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_EEIN_P_N",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_EEIN_KLR",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_EEIN_KL15",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_EEIN_DFA_HL",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_EEIN_DFA_PLAU",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_IEIN_ENDLAGE_VER",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "non_disturbed"
+        },
+        {
+          "data": "0x01",
+          "text": "disturbed"
+        }
+      ]
+    },
+    {
+      "name": "STAT_IEIN_ENDLAGE_ENT",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "non_disturbed"
+        },
+        {
+          "data": "0x01",
+          "text": "disturbed"
+        }
+      ]
+    },
+    {
+      "name": "STAT_IEIN_SPERRP_GES",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "non_disturbed"
+        },
+        {
+          "data": "0x01",
+          "text": "disturbed"
+        }
+      ]
+    },
+    {
+      "name": "STAT_IEIN_SPERRP_PN",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "non_disturbed"
+        },
+        {
+          "data": "0x01",
+          "text": "disturbed"
+        }
+      ]
+    },
+    {
+      "name": "STAT_IEIN_R_PN_EWS",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_IEIN_R_DRSP",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_IEIN_R_SMAG",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_IEIN_R_MSP_ENT",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_IEIN_D_DRSP",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_IEIN_D_SMAG",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_IEIN_D_SPERR",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_AUSG_12V_INT",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_AUSG_PN_EWS",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_AUSG_DRSP",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_AUSG_SMAG_TR",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_AUSG_UNTREL",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_AUSG_SP_ENT",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_AUSG_SP_VER",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_AUSG_SP_BRK",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_AUSG_UDREK",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_KBUS_KLR",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_KBUS_KL15",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_KBUS_EWS_Key",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_KBUS_ESW_free",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_KBUS_Airbag_Crash",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_KBUS_KL_undef",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_KBUS_EWS_undef",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_ER_SICH",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_VR",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_ER_MOV",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_VR_MOV",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_GESCH",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "ALOG_U_KL30",
+      "block": "0x00",
+      "byte": "0x09",
+      "mask": "0xFF",
+      "factor_a": "0.1",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "ALOG_I_DREK",
+      "block": "0x00",
+      "byte": "0x0D",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "mA"
+    },
+    {
+      "name": "ALOG_I_SMAG_HALL",
+      "block": "0x00",
+      "byte": "0x0E",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "mA"
+    },
+    {
+      "name": "ALOG_I_PN_HALL",
+      "block": "0x00",
+      "byte": "0x0F",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "mA"
+    },
+    {
+      "name": "ALOG_I_ELEK_ENT",
+      "block": "0x00",
+      "byte": "0x10",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "mA"
+    },
+    {
+      "name": "ALOG_I_ELEK_VER",
+      "block": "0x00",
+      "byte": "0x20",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "mA"
+    }
+  ]
+}

@@ -1,0 +1,1032 @@
+{
+    "elements": [
+      {
+        "name": "BUZZER_HIGH_FREQUENCY",
+        "block": "0x00",
+        "byte": "0x06",
+        "mask": "0xFF",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x23",
+              "text": "default"
+            },
+            {
+              "data": "0x64",
+              "text": "transit"
+            }
+          ]
+      },
+      {
+        "name": "BUZZER_LOW_FREQUENCY",
+        "block": "0x00",
+        "byte": "0x07",
+        "mask": "0xFF",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+          {
+            "data": "0x46",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "MSG_DISPLAY_TIME_1",
+        "block": "0x00",
+        "byte": "0x0E",
+        "mask": "0xF0",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+          {
+            "data": "0x03",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "MSG_DISPLAY_TIME_2",
+        "block": "0x00",
+        "byte": "0x0E",
+        "mask": "0x0F",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+          {
+            "data": "0x03",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "R40_R41_SELECT",
+        "block": "0x00",
+        "byte": "0x0F",
+        "mask": "0x40",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "r41"
+            },
+            {
+              "data": "0x00",
+              "text": "r40"
+            }
+          ]
+      },
+      {
+        "name": "ENGINE_TEMP_THRESHOLD",
+        "block": "0x00",
+        "byte": "0x10",
+        "mask": "0xFF",
+        "coding_index": 
+        [
+          "4"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "41183"
+            },
+            {
+              "data": "0xFF",
+              "text": "default"
+            }
+          ]
+      },
+      {
+        "name": "SIA_UPPER_RPM",
+        "block": "0x00",
+        "byte": "0x24",
+        "mask": "0x7F",
+        "coding_index": [
+          "4"
+        ],
+        "coding_values": [
+            {
+              "data": "0x50",
+              "text": "41183"
+            },
+            {
+              "data": "0x7F",
+              "text": "default"
+            }
+          ]
+      },
+      {
+        "name": "SIA_LOWER_RPM",
+        "block": "0x00",
+        "byte": "0x25",
+        "mask": "0x7F",
+        "coding_index": [
+          "4"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "41183"
+            },
+            {
+              "data": "0x7F",
+              "text": "default"
+            }
+          ]
+      },
+      {
+        "name": "SIA_INTERVAL_DISTANCE",
+        "block": "0x00",
+        "byte": "0x26",
+        "mask": "0xFFFF",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x5E4C",
+              "text": "petrol"
+            },
+            {
+              "data": "0x1F6F",
+              "text": "petrol_x12"
+            },
+            {
+              "data": "0x5E4C",
+              "text": "diesel"
+            }
+          ]
+      },
+      {
+        "name": "LAST_SERVICE_TYPE",
+        "block": "0x00",
+        "byte": "0x2A",
+        "mask": "0x10",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "inspection"
+            },
+            {
+              "data": "0x01",
+              "text": "oil"
+            }
+          ]
+      },
+      {
+        "name": "TC_ON_K_BUS",
+        "block": "0x00",
+        "byte": "0x5D",
+        "mask": "0x80",
+        "coding_index": [
+          "4"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "SLS_WARNING",
+        "block": "0x00",
+        "byte": "0x5D",
+        "mask": "0x20",
+        "coding_index": [
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "ASC1",
+        "block": "0x00",
+        "byte": "0x5D",
+        "mask": "0x08",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "FRONT_FOG_MESSAGE",
+        "block": "0x00",
+        "byte": "0x5D",
+        "mask": "0x04",
+        "coding_index": [
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "coding_done",
+        "block": "0x00",
+        "byte": "0x5D",
+        "mask": "0x03",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "codierung"
+            },
+            {
+              "data": "0x03",
+              "text": "default"
+            }
+          ]
+      },
+      {
+        "name": "CC_WASHER_FLUID",
+        "block": "0x00",
+        "byte": "0x7A",
+        "mask": "0x40",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "CC_DOORS",
+        "block": "0x00",
+        "byte": "0x7A",
+        "mask": "0x10",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "CC_LIGHTS",
+        "block": "0x00",
+        "byte": "0x7A",
+        "mask": "0x04",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "SEAT_BELT",
+        "block": "0x00",
+        "byte": "0x7E",
+        "mask": "0xC0",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "not_active"
+            },
+            {
+              "data": "0x02",
+              "text": "withacoustics"
+            },
+            {
+              "data": "0x03",
+              "text": "withoutacou"
+            }
+          ]
+      },
+      {
+        "name": "LIGHT_WARNING",
+        "block": "0x00",
+        "byte": "0x7E",
+        "mask": "0x20",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "BREAK_PAD_WEAR",
+        "block": "0x00",
+        "byte": "0x7E",
+        "mask": "0x10",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "KEY_INSERTED_WARNING",
+        "block": "0x00",
+        "byte": "0x7E",
+        "mask": "0x04",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "DRIVE_HAND",
+        "block": "0x00",
+        "byte": "0x7E",
+        "mask": "0x04",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "right"
+            },
+            {
+              "data": "0x00",
+              "text": "left"
+            }
+          ]
+      },
+      {
+        "name": "SIA_ALGORITHM",
+        "block": "0x00",
+        "byte": "0xA8",
+        "mask": "0xC0",
+        "coding_index": [
+          "4"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "version4"
+            },
+            {
+              "data": "0x40",
+              "text": "version25"
+            },
+            {
+              "data": "0x80",
+              "text": "no_sia"
+            }
+          ]
+      },
+      {
+        "name": "HIGH_LINE",
+        "block": "0x00",
+        "byte": "0x5D",
+        "mask": "0x40",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "SPEEDO_DISPLAY",
+        "block": "0x00",
+        "byte": "0xA8",
+        "mask": "0x3F",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x20",
+              "text": "default"
+            },
+            {
+              "data": "0x21",
+              "text": "police"
+            },
+            {
+              "data": "0x23",
+              "text": "everything"
+            }
+          ]
+      },
+      {
+        "name": "TEMPERATURE_UNITS",
+        "block": "0x00",
+        "byte": "0xA9",
+        "mask": "0x02",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "degrees_c"
+            },
+            {
+              "data": "0x01",
+              "text": "degrees_f"
+            }
+          ]
+      },
+      {
+        "name": "FUEL_CONSUMPTION_UNITS",
+        "block": "0x00",
+        "byte": "0xAA",
+        "mask": "0x02",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "l_per_100km"
+            },
+            {
+              "data": "0x01",
+              "text": "mpg_uk"
+            },
+            {
+              "data": "0x02",
+              "text": "mpg_us"
+            },
+            {
+              "data": "0x03",
+              "text": "km_per_l"
+            }
+          ]
+      },
+      {
+        "name": "TRIP2",
+        "block": "0x00",
+        "byte": "0xAB",
+        "mask": "0x10",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "kilometers"
+            },
+            {
+              "data": "0x01",
+              "text": "miles"
+            }
+          ]
+      },
+      {
+        "name": "DISTANCE_TO_SERVCE",
+        "block": "0x00",
+        "byte": "0xAB",
+        "mask": "0x08",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "kilometers"
+            },
+            {
+              "data": "0x01",
+              "text": "miles"
+            }
+          ]
+      },
+      {
+        "name": "EX_TEMP_WARNING_ACOUSTICS",
+        "block": "0x00",
+        "byte": "0xAB",
+        "mask": "0x04",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "VEHICLE_TYPE",
+        "block": "0x00",
+        "byte": "0xAD",
+        "mask": "0xF0",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+          {
+            "data": "0x05",
+            "text": "R40"
+          }
+        ]
+      },
+      {
+        "name": "MESSAGE_CENTRE_LANGUAGE",
+        "block": "0x00",
+        "byte": "0xAD",
+        "mask": "0x0F",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "german"
+            },
+            {
+              "data": "0x01",
+              "text": "english_uk"
+            },
+            {
+              "data": "0x02",
+              "text": "english_us"
+            },
+            {
+              "data": "0x06",
+              "text": "french"
+            },
+            {
+              "data": "0x03",
+              "text": "italian"
+            },
+            {
+              "data": "0x04",
+              "text": "spanish"
+            }
+          ]
+      },
+      {
+        "name": "PULSE_NO_KM_SPEEDO_COMP",
+        "block": "0x00",
+        "byte": "0xAE",
+        "mask": "0xFFFF",
+        "coding_index": [
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0xED28",
+              "text": "minus4824"
+            },
+            {
+              "data": "0xED7B",
+              "text": "minus4741"
+            },
+            {
+              "data": "0xED8A",
+              "text": "minus4726"
+            },
+            {
+              "data": "0xED5B",
+              "text": "minus4773"
+            }
+          ],
+        "visible": "false"
+      },
+      {
+        "name": "GEAR_BOX_TYPE",
+        "block": "0x00",
+        "byte": "0xB4",
+        "mask": "0xC0",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "manual"
+            },
+            {
+              "data": "0x01",
+              "text": "automatic"
+            }
+          ]
+      },
+      {
+        "name": "PULSE_NO_KM_SPEEDO",
+        "block": "0x00",
+        "byte": "0xBA",
+        "mask": "0xFFFF",
+        "coding_index": [
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x12D7",
+              "text": "4823"
+            },
+            {
+              "data": "0x1284",
+              "text": "4740"
+            },
+            {
+              "data": "0x12A4",
+              "text": "4772"
+            },
+            {
+              "data": "0x1275",
+              "text": "4725"
+            }
+          ],
+        "visible": "false"
+      },
+      {
+        "name": "PULSE_NO_KM_ODO",
+        "block": "0x00",
+        "byte": "0xBC",
+        "mask": "0x1FFF",
+        "coding_index": [
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x0B83",
+              "text": "2947"
+            },
+            {
+              "data": "0x0B54",
+              "text": "2902"
+            },
+            {
+              "data": "0x0B6B",
+              "text": "2923"
+            }
+          ],
+        "visible": "false"
+      },
+      {
+        "name": "PULSE_NO_KM_DO_COMP",
+        "block": "0x00",
+        "byte": "0xBE",
+        "mask": "0x1FFF",
+        "coding_index": [
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x147C",
+              "text": "minus2948"
+            },
+            {
+              "data": "0x14AB",
+              "text": "minus2903"
+            },
+            {
+              "data": "0x1494",
+              "text": "minus2924"
+            }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "ENGINE",
+        "block": "0x00",
+        "byte": "0xE8",
+        "mask": "0x80",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "petrol"
+            },
+            {
+              "data": "0x01",
+              "text": "diesel"
+            }
+          ]
+      },
+      {
+        "name": "SIA_LITER_LIMIT",
+        "block": "0x00",
+        "byte": "0xE8",
+        "mask": "0x0FFF",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x05B8",
+              "text": "m47r_2liter_man"
+            },
+            {
+              "data": "0x05B8",
+              "text": "m47r_2l_136_man"
+            },
+            {
+              "data": "0x0750",
+              "text": "1_8l_k_man"
+            },
+            {
+              "data": "0x0751",
+              "text": "1_8l_k_150_man"
+            },
+            {
+              "data": "0x0752",
+              "text": "1_8l_k_160_man"
+            },
+            {
+              "data": "0x08D0",
+              "text": "2_0l_kv6_man"
+            },
+            {
+              "data": "0x08E4",
+              "text": "2_5l_kv6_160_man"
+            },
+            {
+              "data": "0x0918",
+              "text": "2_5l_kv6_man"
+            },
+            {
+              "data": "0x0949",
+              "text": "2_5l_kv6_190_man"
+            },
+            {
+              "data": "0x0648",
+              "text": "m47r_2liter_aut"
+            },
+            {
+              "data": "0x0648",
+              "text": "m47r_2l_136_aut"
+            },
+            {
+              "data": "0x0978",
+              "text": "1_8l_k_aut"
+            },
+            {
+              "data": "0x0979",
+              "text": "1_8l_k_150_aut"
+            },
+            {
+              "data": "0x0A68",
+              "text": "2_0l_kv6_aut"
+            },
+            {
+              "data": "0x0AE0",
+              "text": "2_5l_kv6_aut"
+            },
+            {
+              "data": "0x0AE0",
+              "text": "2_5l_kv6_177_aut"
+            },
+            {
+              "data": "0x0A27",
+              "text": "2_5l_kv6_180_sau"
+            },
+            {
+              "data": "0x0A85",
+              "text": "2_5l_kv6_180_tau"
+            },
+            {
+              "data": "0x0123",
+              "text": "4_6l_v8_260"
+            }
+          ]
+      },
+      {
+        "name": "SIA_INDICATION_PARAMETER",
+        "block": "0x00",
+        "byte": "0xEA",
+        "mask": "0xE0",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "pre_time_ins"
+            },
+            {
+              "data": "0x01",
+              "text": "not_previous"
+            },
+            {
+              "data": "0x02",
+              "text": "no_time_insp"
+            }
+          ]
+      },
+      {
+        "name": "AUDIBLE_SPEED_WARNING",
+        "block": "0x00",
+        "byte": "0xEF",
+        "mask": "0xFF",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "none"
+            },
+            {
+              "data": "0x78",
+              "text": "120kph"
+            },
+            {
+              "data": "0x46",
+              "text": "transit"
+            }
+          ]
+      }
+    ]
+}

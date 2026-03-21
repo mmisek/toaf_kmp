@@ -1,0 +1,108 @@
+{
+  "livedata": [
+    {
+      "name": "steering_angle",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "0.0439453",
+      "factor_b": "0",
+      "unit": "°",
+      "u2": "true"
+    },
+    {
+      "name": "steering_angle_speed",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "0.0439453",
+      "factor_b": "0",
+      "unit": "°/s",
+      "u2": "true"
+    },
+    {
+      "name": "vehicle_speed",
+      "block": "0x01",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "0.00625",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "program_cycle_time",
+      "block": "0x01",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "μs"
+    },
+    {
+      "name": "wheel_speed_left_front",
+      "block": "0x02",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "0.00625",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "wheel_speed_right_front",
+      "block": "0x02",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "0.00625",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "wheel_speed_left_rear",
+      "block": "0x02",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "0.00625",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "wheel_speed_right_rear",
+      "block": "0x02",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "0.00625",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "yaw_rate",
+      "block": "0x02",
+      "byte": "0x08",
+      "mask": "0xFFFF",
+      "factor_a": "0.0002",
+      "factor_b": "0",
+      "unit": "°/s",
+      "u2": "true"
+    },
+    {
+      "name": "lateral_acceleration",
+      "block": "0x02",
+      "byte": "0x0A",
+      "mask": "0xFFFF",
+      "factor_a": "0.002",
+      "factor_b": "0",
+      "unit": "m/s²",
+      "u2": "true"
+    },
+    {
+      "name": "synthetic_steering_wheel_angles",
+      "block": "0x02",
+      "byte": "0x0C",
+      "mask": "0xFFFF",
+      "factor_a": "0.04394531",
+      "factor_b": "0",
+      "unit": "°",
+      "u2": "true"
+    }
+  ]
+}

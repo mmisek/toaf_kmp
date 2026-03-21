@@ -1,0 +1,247 @@
+{
+    "elements": [
+      {
+        "name": "height_access",
+        "block": "0x01",
+        "byte": "0x01",
+        "value": "0x02"
+      },
+      {
+        "name": "height_motorway",
+        "block": "0x01",
+        "byte": "0x01",
+        "value": "0x04"
+      },
+      {
+        "name": "height_standard",
+        "block": "0x01",
+        "byte": "0x01",
+        "value": "0x08"
+      },
+      {
+        "name": "height_offroad",
+        "block": "0x01",
+        "byte": "0x01",
+        "value": "0x10"
+      },
+      {
+        "name": "mode_all_off",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x00"
+      },
+      {
+        "name": "mode_verbose",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x01"
+      },
+      {
+        "name": "mode_activation_lock",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x02"
+      },
+      {
+        "name": "mode_transport",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x04"
+      },
+      {
+        "name": "mode_very_tight_tolerances",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x08"
+      },
+      {
+        "name": "mode_emc_test",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x10"
+      },
+      {
+        "name": "mode_hand_control",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x20"
+      },
+      {
+        "name": "mode_laboratory_auto_test",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x40"
+      },
+      {
+        "name": "mode_no_response_to_user_request",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x80"
+      },
+      {
+        "name": "stop_control",
+        "block": "0x02",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+      {
+        "name": "valve_front_right",
+        "block": "0x02",
+        "byte": "0x00",
+        "value": "0x01"
+      },
+      {
+        "name": "valve_front_left",
+        "block": "0x02",
+        "byte": "0x00",
+        "value": "0x02"
+      },
+      {
+        "name": "valve_rear_right",
+        "block": "0x02",
+        "byte": "0x00",
+        "value": "0x04"
+      },
+      {
+        "name": "valve_rear_left",
+        "block": "0x02",
+        "byte": "0x00",
+        "value": "0x08"
+      },
+      {
+        "name": "valve_storage",
+        "block": "0x02",
+        "byte": "0x00",
+        "value": "0x10"
+      },
+      {
+        "name": "valve_drain",
+        "block": "0x02",
+        "byte": "0x00",
+        "value": "0x20"
+      },
+      {
+        "name": "compressor_switch",
+        "block": "0x02",
+        "byte": "0x00",
+        "value": "0x40"
+      },
+      {
+        "name": "high_pressure_relief_valve",
+        "block": "0x02",
+        "byte": "0x01",
+        "value": "0x01"
+      },
+      {
+        "name": "rear_crosslink_valve",
+        "block": "0x02",
+        "byte": "0x01",
+        "value": "0x04"
+      },
+      {
+        "name": "front_crosslink_valve",
+        "block": "0x02",
+        "byte": "0x01",
+        "value": "0x08"
+      },
+      {
+        "name": "high_side_switch_crosslink_valves_at_front",
+        "block": "0x02",
+        "byte": "0x01",
+        "value": "0x40",
+        "visible": "false"
+      },
+      {
+        "name": "high_side_switch_crosslink_valves_at_rear",
+        "block": "0x02",
+        "byte": "0x01",
+        "value": "0x80",
+        "visible": "false"
+      },
+      {
+        "name": "led_access",
+        "block": "0x02",
+        "byte": "0x02",
+        "value": "0x02"
+      },
+      {
+        "name": "led_motorway",
+        "block": "0x02",
+        "byte": "0x02",
+        "value": "0x08"
+      },
+      {
+        "name": "led_standard",
+        "block": "0x02",
+        "byte": "0x02",
+        "value": "0x20"
+      },
+      {
+        "name": "led_offroad",
+        "block": "0x02",
+        "byte": "0x02",
+        "value": "0x80"
+      },
+      {
+        "name": "led_hold",
+        "block": "0x02",
+        "byte": "0x03",
+        "value": "0x02"
+      },
+      {
+        "name": "high_side_switch_front",
+        "block": "0x02",
+        "byte": "0x04",
+        "value": "0x01"
+      },
+      {
+        "name": "high_side_switch_rear",
+        "block": "0x02",
+        "byte": "0x04",
+        "value": "0x02"
+      },
+      {
+        "name": "high_side_switch_reservoir_and_exhaust",
+        "block": "0x02",
+        "byte": "0x04",
+        "value": "0x04"
+      },
+      {
+        "name": "up_ull",
+        "block": "0x02",
+        "byte": "0x04",
+        "value": "0x08",
+        "visible": "false"
+      },
+      {
+        "name": "power_supply_sensor_front_left_and_rear_right",
+        "block": "0x02",
+        "byte": "0x04",
+        "value": "0x10"
+      },
+      {
+        "name": "power_supply_sensors_front_right_and_rear_left",
+        "block": "0x02",
+        "byte": "0x04",
+        "value": "0x20"
+      },
+      {
+        "name": "power_supply_sensors_pressure_sensor_storage",
+        "block": "0x02",
+        "byte": "0x04",
+        "value": "0x40"
+      },
+      {
+        "name": "power_supply_sensors_pressure_sensors_cross_links",
+        "block": "0x02",
+        "byte": "0x04",
+        "value": "0x80"
+      },
+      {
+        "name": "full_access",
+        "block": "0x02",
+        "byte": "0x05",
+        "value": "0x80"
+      }
+    ]
+}

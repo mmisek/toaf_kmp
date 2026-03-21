@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_atc">Климат-контроль (ATC)</string>
+    <string name="atc_error_11">Датчик температуры в салоне</string>
+    <string name="atc_error_12">Датчик наружной температуры</string>
+    <string name="atc_error_13">Датчик температуры испарителя</string>
+    <string name="atc_error_14">Датчик температуры охлаждающей жидкости</string>
+    <string name="atc_error_21">Левый датчик солнечной активности</string>
+    <string name="atc_error_22">Правый датчик солнечной активности</string>
+    <string name="atc_error_31">Левый сервопривод смешивания воздуха</string>
+    <string name="atc_error_32">Правый сервопривод смешивания воздуха</string>
+    <string name="atc_error_33">Сервопривод распределения воздуха</string>
+
+    <string name="atc_live_data_left_side_temp">Температура левой стороны</string>
+    <string name="atc_live_data_right_side_temp">Температура правой стороны</string>
+    <string name="atc_live_data_car_speed">Скорость автомобиля</string>
+    <string name="atc_live_data_actual_air_distribution">Факт. распределение воздуха</string>
+    <string name="atc_live_data_right_air_blend_pot">Потенциометр смешивания (справа)</string>
+    <string name="atc_live_data_left_air_blend_pot">Потенциометр смешивания (слева)</string>
+    <string name="atc_live_data_right_solar">Датчик солнца (правый)</string>
+    <string name="atc_live_data_left_solar">Датчик солнца (левый)</string>
+    <string name="atc_live_data_water_temp">Температура ОЖ</string>
+    <string name="atc_live_data_evaporator_temp">Температура испарителя</string>
+    <string name="atc_live_data_ambient_temp">Наружная температура</string>
+    <string name="atc_live_data_in_car_temp">Температура в салоне</string>
+    <string name="atc_live_data_passenger_target_temp">Целевая темп. пассажира</string>
+    <string name="atc_live_data_passenger_required_temp">Требуемая темп. пассажира</string>
+    <string name="atc_live_data_driver_target_temp">Целевая темп. водителя</string>
+    <string name="atc_live_data_driver_required_temp">Требуемая темп. водителя</string>
+    <string name="atc_live_data_target_air_dist">Целевое распред. воздуха</string>
+    <string name="atc_live_data_passenger_target_blend">Целевое смешивание (пасс.)</string>
+    <string name="atc_live_data_passenger_required_blend">Требуемое смешивание (пасс.)</string>
+    <string name="atc_live_data_driver_required_blend">Требуемое смешивание (вод.)</string>
+    <string name="atc_live_data_blower_speed">Скорость вентилятора</string>
+    <string name="atc_live_data_hand_drive">Расположение руля</string>
+    <string name="atc_live_data_recirculation">Рециркуляция</string>
+    <string name="atc_live_data_ac_compressor">Компрессор кондиционера</string>
+    <string name="atc_live_data_atc_system">Система ATC</string>
+    <string name="atc_live_data_value_invalid">неверно</string>
+    <string name="atc_live_data_value_left_hand">левый руль</string>
+    <string name="atc_live_data_value_right_hand">правый руль</string>
+    <string name="atc_live_data_value_fresh">свежий воздух</string>
+    <string name="atc_live_data_value_recirculation">рециркуляция</string>
+    <string name="atc_live_data_value_on">вкл</string>
+    <string name="atc_live_data_value_off">выкл</string>
+    
+    <string name="atc_control_blower_0">Вентилятор - 0%</string>
+    <string name="atc_control_blower_15">Вентилятор - 15%</string>
+    <string name="atc_control_blower_25">Вентилятор - 25%</string>
+    <string name="atc_control_blower_50">Вентилятор - 50%</string>
+    <string name="atc_control_blower_75">Вентилятор - 75%</string>
+    <string name="atc_control_blower_85">Вентилятор - 85%</string>
+    <string name="atc_control_blower_100">Вентилятор - 100%</string>
+    <string name="atc_control_ac_compressor_off">Компрессор A/C - выкл</string>
+    <string name="atc_control_ac_compressor_on">Компрессор A/C - вкл</string>
+    <string name="atc_control_fresh_air">Принудительно свежий воздух</string>
+    <string name="atc_control_recirculation">Принудительно рециркуляция</string>
+    <string name="atc_control_hrw_off">Обогрев заднего стекла - выкл</string>
+    <string name="atc_control_hrw_on">Обогрев заднего стекла - вкл</string>
+    <string name="atc_control_right_blend_flap_cold">Правая заслонка смешивания - холод</string>
+    <string name="atc_control_right_blend_flap_hot">Правая заслонка смешивания - тепло</string>
+    <string name="atc_control_left_blend_flap_cold">Левая заслонка смешивания - холод</string>
+    <string name="atc_control_left_blend_flap_hot">Левая заслонка смешивания - тепло</string>
+    <string name="atc_control_flap_face">Заслонки - в лицо</string>
+    <string name="atc_control_flap_defrost">Заслонки - на стекло (обдув)</string>
+
+</resources>

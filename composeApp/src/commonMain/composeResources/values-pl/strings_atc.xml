@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_atc">Klimayzacja</string>
+    <string name="atc_control_ac_compressor_off">Kompresor klimatyzacji - wyłączony</string>
+    <string name="atc_control_ac_compressor_on">Kompresor klimatyzacji - włączony</string>
+    <string name="atc_control_blower_0">Dmuchawa - 0%</string>
+    <string name="atc_control_blower_100">Dmuchawa - 100%</string>
+    <string name="atc_control_blower_15">Dmuchawa - 15%</string>
+    <string name="atc_control_blower_25">Dmuchawa - 25%</string>
+    <string name="atc_control_blower_50">Dmuchawa - 50%</string>
+    <string name="atc_control_blower_75">Dmuchawa - 75%</string>
+    <string name="atc_control_blower_85">Dmuchawa - 85%</string>
+    <string name="atc_control_flap_defrost">Strumień powietrza - odmrażanie</string>
+    <string name="atc_control_flap_face">Strumien powierza - na twarz</string>
+    <string name="atc_control_fresh_air">Wymuś świeże powietrze</string>
+    <string name="atc_control_hrw_off">Ogrzewanie tylnej szyby - wyłączenie</string>
+    <string name="atc_control_hrw_on">OGrzewanie przedniej szyby - włączenie</string>
+    <string name="atc_control_recirculation">Wymuś recyrkulację</string>
+    <string name="atc_error_11">Czujnik temperatury wnętrza</string>
+    <string name="atc_error_12">Czujnik temperatury otoczenia</string>
+    <string name="atc_error_13">Czujnik temperatury parownika</string>
+    <string name="atc_error_14">Czujnik temperatury wody</string>
+    <string name="atc_error_21">Lewy czujnik nasłonecznienia</string>
+    <string name="atc_error_22">Prawy czujnik nasłonecznienia</string>
+    <string name="atc_error_31">Lewy silnik mieszalnika powietrza</string>
+    <string name="atc_error_32">Prawy silnik mieszalnika powietrza</string>
+    <string name="atc_error_33">Silnik dmuchawy</string>
+    <string name="atc_live_data_left_side_temp">Temperatura lewej strony</string>
+    <string name="atc_live_data_right_side_temp">Temperatura prawej strony</string>
+    <string name="atc_live_data_car_speed">Prędkość pojazdu</string>
+    <string name="atc_live_data_actual_air_distribution">Aktualny rozkład powietrza</string>
+    <string name="atc_live_data_right_air_blend_pot">Prawy potencjometr mieszania powietrza</string>
+    <string name="atc_live_data_left_air_blend_pot">Lewy potencjometr mieszania powietrza</string>
+    <string name="atc_live_data_right_solar">Prawy czujnik nasłonecznienia</string>
+    <string name="atc_live_data_left_solar">Lewy czujnik nasłonecznienia</string>
+    <string name="atc_live_data_water_temp">Temperatura wody</string>
+    <string name="atc_live_data_evaporator_temp">Temperatura parownika</string>
+    <string name="atc_live_data_ambient_temp">Temperatura otoczenia</string>
+    <string name="atc_live_data_in_car_temp">Temperatura wewnątrz pojazdu</string>
+    <string name="atc_live_data_passenger_target_temp">Docelowa temperatura dla pasażera</string>
+    <string name="atc_live_data_passenger_required_temp">Wymagana temperatura dla pasażera</string>
+    <string name="atc_live_data_driver_target_temp">Docelowa temperatura dla kierowcy</string>
+    <string name="atc_live_data_driver_required_temp">Wymagana temperatura dla kierowcy</string>
+    <string name="atc_live_data_target_air_dist">Docelowy rozkład powietrza</string>
+    <string name="atc_live_data_passenger_target_blend">Docelowe mieszanie dla pasażera</string>
+    <string name="atc_live_data_passenger_required_blend">Wymagane mieszanie dla pasażera</string>
+    <string name="atc_live_data_driver_required_blend">Wymagane mieszanie dla kierowcy</string>
+    <string name="atc_live_data_blower_speed">Prędkość dmuchawy</string>
+    <string name="atc_live_data_hand_drive">Układ kierowniczy</string>
+    <string name="atc_live_data_recirculation">Recyrkulacja</string>
+    <string name="atc_live_data_ac_compressor">Kompresor klimatyzacji</string>
+    <string name="atc_live_data_atc_system">System ATC</string>
+    <string name="atc_live_data_value_invalid">Nieprawidłowy</string>
+    <string name="atc_live_data_value_left_hand">Lewostronny</string>
+    <string name="atc_live_data_value_right_hand">Prawostronny</string>
+    <string name="atc_live_data_value_fresh">Świeże</string>
+    <string name="atc_live_data_value_recirculation">Recyrkulacja</string>
+    <string name="atc_live_data_value_on">Włączony</string>
+    <string name="atc_live_data_value_off">Wyłączony</string>
+    <string name="atc_control_right_blend_flap_cold">Prawa klapa mieszająca - zimno</string>
+    <string name="atc_control_right_blend_flap_hot">Prawa klapa mieszająca - ciepło</string>
+    <string name="atc_control_left_blend_flap_cold">Lewa klapa mieszająca - zimno</string>
+    <string name="atc_control_left_blend_flap_hot">Lewa klapa mieszająca - ciepło</string>
+
+
+
+
+</resources>

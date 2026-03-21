@@ -1,0 +1,161 @@
+{
+  "livedata": [
+    {
+      "name": "front_left_wheel_speed",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0xFFFF",
+      "factor_a": "0.0625",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "front_right_wheel_speed",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "0.0625",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "rear_left_wheel_speed",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "0.0625",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "rear_right_wheel_speed",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "0.0625",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "steering_wheel_angle",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "0.04375",
+      "factor_b": "0",
+      "unit": "°",
+      "u2": "true"
+    },
+    {
+      "name": "steering_wheel_angle_speed",
+      "block": "0x01",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "0.01358",
+      "factor_b": "0",
+      "unit": "°/s",
+      "u2": "true"
+    },
+    {
+      "name": "pressure",
+      "block": "0x01",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "0.05208",
+      "factor_b": "0",
+      "unit": "bar",
+      "u2": "true"
+    },
+    {
+      "name": "lateral_acceleration",
+      "block": "0x01",
+      "byte": "0x08",
+      "mask": "0xFF",
+      "factor_a": "0.192",
+      "factor_b": "0",
+      "unit": "m/s²",
+      "u2": "true"
+    },
+    {
+      "name": "hand_brake_switch",
+      "block": "0x02",
+      "byte": "0x02",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "hill_descent_active",
+      "block": "0x02",
+      "byte": "0x02",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "brake_switch",
+      "block": "0x02",
+      "byte": "0x02",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "valve_relay",
+      "block": "0x02",
+      "byte": "0x02",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "brake_light_switch",
+      "block": "0x02",
+      "byte": "0x03",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "passive_button",
+      "block": "0x02",
+      "byte": "0x03",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "engine_speed",
+      "block": "0x03",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "0.15625",
+      "factor_b": "0",
+      "unit": "1/min"
+    },
+    {
+      "name": "filling_target",
+      "block": "0x03",
+      "byte": "0x08",
+      "mask": "0xFF",
+      "factor_a": "0.39",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "filling_driver_wish",
+      "block": "0x03",
+      "byte": "0x08",
+      "mask": "0xFF",
+      "factor_a": "0.39",
+      "factor_b": "0",
+      "unit": "%"
+    }
+  ]
+}

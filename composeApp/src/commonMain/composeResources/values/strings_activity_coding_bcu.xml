@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_coding_bcu">Advance coding</string>
+    <string name="activity_coding_bcu_tittle">Advance coding and programming</string>
+    <string name="activity_coding_bcu_keys">Keys programming</string>
+    <string name="activity_coding_bcu_key_add">Add</string>
+    <string name="activity_coding_bcu_key_delete">Delete</string>
+    <string name="activity_coding_bcu_key_number">Key : %1$d</string>
+    <string name="activity_coding_bcu_key_empty">Empty</string>
+    <string name="activity_coding_bcu_key_read_error">Read error!</string>
+    <string name="activity_coding_bcu_key_remove_tittle">Remove key</string>
+    <string name="activity_coding_bcu_key_remove_message">Are you sure to delete this key ?</string>
+    <string name="activity_coding_bcu_key_remove_yes">Yes</string>
+    <string name="activity_coding_bcu_key_remove_no">No</string>
+    <string name="activity_coding_bcu_key_remove_error">Key removing error</string>
+    <string name="activity_coding_bcu_key_remove_key_successful">Key removing successful</string>
+    <string name="activity_coding_bcu_key_add_tittle">Add new key</string>
+    <string name="activity_coding_bcu_key_add_message">Enter key code</string>
+    <string name="activity_coding_bcu_key_add_button_add">Add</string>
+    <string name="activity_coding_bcu_key_add_hint">ex. AB54CA</string>
+    <string name="activity_coding_bcu_key_add_button_cancel">Cancel</string>
+    <string name="activity_coding_bcu_key_add_error">Adding key error</string>
+    <string name="activity_coding_bcu_key_add_successful">Adding key successful</string>
+    <string name="activity_coding_bcu_key_code_not_valid">Entered key code is not valid</string>
+    <string name="activity_coding_bcu_key_add_not_supported">Not supported yet.</string>
+    <string name="activity_coding_bcu_key_add_sign">+</string>
+    <string name="activity_coding_bcu_key_del_sign">-</string>
+
+</resources>

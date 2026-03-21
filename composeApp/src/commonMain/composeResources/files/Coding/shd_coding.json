@@ -1,0 +1,156 @@
+{
+    "elements": [
+      {
+       "name": "ONE_TOUCH_OPEN",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x01",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+             "data": "0x01",
+             "text": "active"
+            },
+            {
+             "data": "0x00",
+             "text": "not_active"
+            }
+          ]
+      },
+      {
+       "name": "ONE_TOUCH_CLOSE",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x02",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+             "data": "0x01",
+             "text": "active"
+            },
+            {
+             "data": "0x00",
+             "text": "not_active"
+            }
+          ]
+      },
+      {
+       "name": "ONE_TOUCH_RUN_TO_TILT",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x04",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+             "data": "0x01",
+             "text": "active"
+            },
+            {
+             "data": "0x00",
+             "text": "not_active"
+            }
+          ]
+      },
+      {
+       "name": "ONE_TOUCH_TILT_TO_OPEN",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x08",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+             "data": "0x01",
+             "text": "active"
+            },
+            {
+             "data": "0x00",
+             "text": "not_active"
+            }
+          ]
+      },
+      {
+       "name": "PINCH_CHARACTERISTICS",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x10",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+             "data": "0x01",
+             "text": "great_britain"
+            },
+            {
+             "data": "0x00",
+             "text": "ece"
+            }
+          ]
+      },
+      {
+       "name": "OPTIMISED_CLOSE_FUNCTION",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x40",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+             "data": "0x01",
+             "text": "active"
+            },
+            {
+             "data": "0x00",
+             "text": "not_active"
+            }
+          ]
+      },
+      {
+       "name": "ANTI_PINCH_FUNCTIONALITY",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x80",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+             "data": "0x01",
+             "text": "active"
+            },
+            {
+             "data": "0x00",
+             "text": "not_active"
+            }
+          ]
+      },
+      {
+       "name": "DATA_SETS",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0xFF",
+        "coding_index": [
+          "1"
+        ],
+        "coding_values": [
+            {
+             "data": "0x80",
+             "text": "eeprom"
+            },
+            {
+             "data": "0x0C",
+             "text": "rom_r40"
+            }
+          ]
+        }
+    ]
+}

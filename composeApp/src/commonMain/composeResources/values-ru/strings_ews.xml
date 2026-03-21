@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_ews">Иммобилайзер (EWS)</string>
+    
+    <string name="ews_error_00">Ключ №0 недействителен: неверная идентификация</string>
+    <string name="ews_error_10">Ключ №1 недействителен: неверная идентификация</string>
+    <string name="ews_error_20">Ключ №2 недействителен: неверная идентификация</string>
+    <string name="ews_error_30">Ключ №3 недействителен: неверная идентификация</string>
+    <string name="ews_error_40">Ключ №4 недействителен: неверная идентификация</string>
+    <string name="ews_error_50">Ключ №5 недействителен: неверная идентификация</string>
+    <string name="ews_error_60">Ключ №6 недействителен: неверная идентификация</string>
+    <string name="ews_error_70">Ключ №7 недействителен: неверная идентификация</string>
+    <string name="ews_error_80">Ключ №8 недействителен: неверная идентификация</string>
+    <string name="ews_error_90">Ключ №9 недействителен: неверная идентификация</string>
+    
+    <string name="ews_error_01">Ключ №0 недействителен: неверный пароль</string>
+    <string name="ews_error_11">Ключ №1 недействителен: неверный пароль</string>
+    <string name="ews_error_21">Ключ №2 недействителен: неверный пароль</string>
+    <string name="ews_error_31">Ключ №3 недействителен: неверный пароль</string>
+    <string name="ews_error_41">Ключ №4 недействителен: неверный пароль</string>
+    <string name="ews_error_51">Ключ №5 недействителен: неверный пароль</string>
+    <string name="ews_error_61">Ключ №6 недействителен: неверный пароль</string>
+    <string name="ews_error_71">Ключ №7 недействителен: неверный пароль</string>
+    <string name="ews_error_81">Ключ №8 недействителен: неверный пароль</string>
+    <string name="ews_error_91">Ключ №9 недействителен: неверный пароль</string>
+    
+    <string name="ews_error_02">Ключ №0 недействителен: неверный переменный код</string>
+    <string name="ews_error_12">Ключ №1 недействителен: неверный переменный код</string>
+    <string name="ews_error_22">Ключ №2 недействителен: неверный переменный код</string>
+    <string name="ews_error_32">Ключ №3 недействителен: неверный переменный код</string>
+    <string name="ews_error_42">Ключ №4 недействителен: неверный переменный код</string>
+    <string name="ews_error_52">Ключ №5 недействителен: неверный переменный код</string>
+    <string name="ews_error_62">Ключ №6 недействителен: неверный переменный код</string>
+    <string name="ews_error_72">Ключ №7 недействителен: неверный переменный код</string>
+    <string name="ews_error_82">Ключ №8 недействителен: неверный переменный код</string>
+    <string name="ews_error_92">Ключ №9 недействителен: неверный переменный код</string>
+    
+    <string name="ews_error_03">Увеличен допуск переменного кода для ключа №0</string>
+    <string name="ews_error_13">Увеличен допуск переменного кода для ключа №1</string>
+    <string name="ews_error_23">Увеличен допуск переменного кода для ключа №2</string>
+    <string name="ews_error_33">Увеличен допуск переменного кода для ключа №3</string>
+    <string name="ews_error_43">Увеличен допуск переменного кода для ключа №4</string>
+    <string name="ews_error_53">Увеличен допуск переменного кода для ключа №5</string>
+    <string name="ews_error_63">Увеличен допуск переменного кода для ключа №6</string>
+    <string name="ews_error_73">Увеличен допуск переменного кода для ключа №7</string>
+    <string name="ews_error_83">Увеличен допуск переменного кода для ключа №8</string>
+    <string name="ews_error_93">Увеличен допуск переменного кода для ключа №9</string>
+    
+    <string name="ews_error_FF">Общий сброс</string>
+    <string name="ews_error_0F">Сброс по включению питания</string>
+    <string name="ews_error_1F">Сброс монитора тактовой частоты</string>
+    <string name="ews_error_2F">Сброс сторожевого таймера (Watchdog)</string>
+    <string name="ews_error_3F">Недопустимый код операции (Trap)</string>
+    <string name="ews_error_7F">Программное прерывание</string>
+    <string name="ews_error_0E">Ошибка XOR переменного кода DME</string>
+    <string name="ews_error_1E">Потерян переменный код DME</string>
+    <string name="ews_error_static">Статическая ошибка</string>
+    <string name="ews_error_sporadic">Спорадическая ошибка</string>
+    
+    <string name="ews_coding_park_neutral_engage">Положение Паркинг/Нейтраль</string>
+    <string name="ews_coding_dme_interface">Тип EWS (интерфейс DME)</string>
+    <string name="ews_coding_no_release_without_query">Нет разрешения на запуск без опроса</string>
+    <string name="ews_coding_starter_cut_off_speed">Обороты отключения стартера</string>
+    <string name="ews_coding_starter_cut_off_time">Время отключения стартера</string>
+    <string name="ews_coding_immobilizer_activation">Активация иммобилайзера</string>
+    <string name="ews_coding_interface_stepping_crit">Критерии пошагового интерфейса</string>
+
+</resources>

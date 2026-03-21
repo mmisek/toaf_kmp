@@ -1,0 +1,287 @@
+{
+    "elements": [
+      {
+        "name": "break_light_center",
+        "block": "0x00",
+        "byte": "0x04",
+        "value": "0x01"
+      },
+      {
+        "name": "break_light_left",
+        "block": "0x00",
+        "byte": "0x04",
+        "value": "0x08"
+      },
+      {
+        "name": "break_light_right",
+        "block": "0x00",
+        "byte": "0x04",
+        "value": "0x10"
+      },
+      {
+        "name": "break_light_switch",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x10"
+      },
+      {
+        "name": "break_light_switch_2",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x40"
+      },
+      {
+        "name": "park_light_front_right",
+        "block": "0x00",
+        "byte": "0x04",
+        "value": "0x02"
+      },
+      {
+        "name": "park_light_front_left",
+        "block": "0x00",
+        "byte": "0x05",
+        "value": "0x08"
+      },
+      {
+        "name": "park_light_rear_right",
+        "block": "0x00",
+        "byte": "0x06",
+        "value": "0x08"
+      },
+      {
+        "name": "park_light_rear_left",
+        "block": "0x00",
+        "byte": "0x05",
+        "value": "0x40"
+      },
+      {
+        "name": "park_light_switch",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x01"
+      },
+      {
+        "name": "blink_light_front_right",
+        "block": "0x00",
+        "byte": "0x04",
+        "value": "0x40"
+      },
+      {
+        "name": "blink_light_front_left",
+        "block": "0x00",
+        "byte": "0x04",
+        "value": "0x20"
+      },
+      {
+        "name": "blink_light_rear_right_cont",
+        "block": "0x00",
+        "byte": "0x06",
+        "value": "0x80"
+      },
+      {
+        "name": "blink_light_rear_left_cont",
+        "block": "0x00",
+        "byte": "0x06",
+        "value": "0x20"
+      },
+      {
+        "name": "blink_light_signal_right",
+        "block": "0x00",
+        "byte": "0x03",
+        "value": "0x80"
+      },
+      {
+        "name": "blink_light_signal_left",
+        "block": "0x00",
+        "byte": "0x03",
+        "value": "0x50"
+      },
+      {
+        "name": "blink_light_signal_off",
+        "block": "0x00",
+        "byte": "0x03",
+        "value": "0xFF"
+      },
+      {
+        "name": "dimmed_headlight_right",
+        "block": "0x00",
+        "byte": "0x05",
+        "value": "0x02"
+      },
+      {
+        "name": "dimmed_headlight_left",
+        "block": "0x00",
+        "byte": "0x05",
+        "value": "0x04"
+      },
+      {
+        "name": "dimmed_headlight_switch",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x02"
+      },
+      {
+        "name": "dimmed_headlight_switch_2",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x080"
+      },
+      {
+        "name": "high_beam_right",
+        "block": "0x00",
+        "byte": "0x05",
+        "value": "0x20"
+      },
+      {
+        "name": "high_beam_left",
+        "block": "0x00",
+        "byte": "0x05",
+        "value": "0x10"
+      },
+      {
+        "name": "high_beam_switch",
+        "block": "0x00",
+        "byte": "0x02",
+        "value": "0x50"
+      },
+      {
+        "name": "high_beam_flasher_switch",
+        "block": "0x00",
+        "byte": "0x02",
+        "value": "0x80"
+      },
+      {
+        "name": "high_beam_off",
+        "block": "0x00",
+        "byte": "0x02",
+        "value": "0xFF"
+      },
+      {
+        "name": "licence_plate_light",
+        "block": "0x00",
+        "byte": "0x06",
+        "value": "0x02"
+      },
+      {
+        "name": "rear_fog_light",
+        "block": "0x00",
+        "byte": "0x06",
+        "value": "0x10"
+      },
+      {
+        "name": "rear_fog_light_trailer",
+        "block": "0x00",
+        "byte": "0x08",
+        "value": "0x10"
+      },
+      {
+        "name": "rear_fog_switch",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x08"
+      },
+      {
+        "name": "front_fog_light_relay",
+        "block": "0x00",
+        "byte": "0x06",
+        "value": "0x01"
+      },
+      {
+        "name": "front_fog_switch",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x04"
+      },
+      {
+        "name": "hazard_warning_light_switch",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x20"
+      },
+      {
+        "name": "self_test",
+        "block": "0x00",
+        "byte": "0x08",
+        "value": "0x40"
+      },
+      {
+        "name": "dimmer",
+        "block": "0x00",
+        "byte": "0x09",
+        "value": "0x00",
+        "set_value": {
+          "min": "0",
+          "max": "255",
+          "unit": "V"
+        }
+      },
+      {
+        "name": "headlight_aim",
+        "block": "0x00",
+        "byte": "0x0A",
+        "value": "0x00",
+        "set_value": {
+          "min": "0",
+          "max": "255",
+          "unit": "V"
+        }
+      },
+      {
+        "name": "high_beam_level",
+        "block": "0x00",
+        "byte": "0x02",
+        "value": "0x00",
+        "set_value": {
+          "min": "0",
+          "max": "255",
+          "unit": "V"
+        }
+      },
+      {
+        "name": "blinker_level",
+        "block": "0x00",
+        "byte": "0x03",
+        "value": "0x00",
+        "set_value": {
+          "min": "0",
+          "max": "255",
+          "unit": "V"
+        }
+      },
+      {
+        "name": "load_sensor",
+        "block": "0x00",
+        "byte": "0x07",
+        "value": "0x00",
+        "set_value": {
+          "min": "0",
+          "max": "255",
+          "unit": "V"
+        }
+      },
+      {
+        "name": "photocell",
+        "block": "0x00",
+        "byte": "0x0B",
+        "value": "0x00",
+        "set_value": {
+          "min": "0",
+          "max": "255",
+          "unit": "V"
+        },
+        "visible": "false"
+      },
+      {
+        "name": "clear_work_hours",
+        "block": "0x01",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+      {
+        "name": "police_lights_switch",
+        "block": "0x02",
+        "byte": "0x00",
+        "value": "0x00"
+      }
+    ]
+}

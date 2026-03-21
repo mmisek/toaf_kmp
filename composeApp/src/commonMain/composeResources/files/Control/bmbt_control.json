@@ -1,0 +1,148 @@
+{
+    "elements": [
+      {
+        "name": "cassette_eject",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x40"
+      },
+      {
+        "name": "cassette_play",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x41"
+      },
+      {
+        "name": "cassette_ffw",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x42"
+      },
+      {
+        "name": "cassette_frw",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x43"
+      },
+      {
+        "name": "cassette_mss_fw",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x44"
+      },
+      {
+        "name": "cassette_mss_rw",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x40"
+      },
+      {
+        "name": "cassette_standby",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x48"
+      },
+      {
+        "name": "cassette_pause_on",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x4A"
+      },
+      {
+        "name": "cassette_pause_off",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x4B"
+      },
+      {
+        "name": "cassette_normal",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x5A"
+      },
+      {
+        "name": "cassette_reverse",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x5B"
+      },
+      {
+        "name": "cassette_dolby_b",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x5D"
+      },
+      {
+        "name": "cassette_dolby_c",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x5E"
+      },
+      {
+        "name": "cassette_dolby_off",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x5F"
+      },
+      {
+        "name": "mute_off",
+        "block": "0x01",
+        "byte": "0x06",
+        "value": "0x00"
+      },
+      {
+        "name": "mute_on",
+        "block": "0x01",
+        "byte": "0x06",
+        "value": "0x01"
+      },
+      {
+        "name": "monitor_off",
+        "block": "0x01",
+        "byte": "0x02",
+        "value": "0x00"
+      },
+      {
+        "name": "monitor_on",
+        "block": "0x01",
+        "byte": "0x02",
+        "value": "0x01"
+      },
+      {
+        "name": "sleep_mode",
+        "block": "0x0E",
+        "byte": "0x00",
+        "value": "0x00",
+        "set_value": {
+          "min": "0",
+          "max": "20",
+          "unit": "s"
+        }
+      },
+      {
+        "name": "normal_mode_on",
+        "block": "0x0F",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+      {
+        "name": "production_mode_on",
+        "block": "0x0F",
+        "byte": "0x00",
+        "value": "0x01"
+      },
+      {
+        "name": "transport_mode_on",
+        "block": "0x0F",
+        "byte": "0x00",
+        "value": "0x02"
+      },
+      {
+        "name": "workshop_mode_on",
+        "block": "0x0F",
+        "byte": "0x00",
+        "value": "0x01"
+      }
+
+    ]
+}

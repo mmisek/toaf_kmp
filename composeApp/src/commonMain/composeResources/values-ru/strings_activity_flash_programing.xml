@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_flash_programing">Программирование Flash</string>
+    <string name="activity_flash_read_identification">Идентификация ЭБУ...</string>
+    <string name="activity_flash_programming_flash_reading">Чтение Flash</string>
+    <string name="activity_flash_programming_flash_writing">Запись Flash</string>
+    <string name="activity_flash_programming_read_flash">Считать Flash</string>
+    <string name="activity_flash_programming_write_flash">Записать Flash</string>
+    <string name="activity_flash_programming_tittle">Программирование Flash модуля</string>
+    <string name="activity_flash_programming_security_access">Доступ безопасности…%1$s</string>
+    <string name="activity_flash_programming_diagnostic_session">Диагностическая сессия...%1$s</string>
+    <string name="activity_flash_programming_flash_read">Чтение Flash...%1$s</string>
+    <string name="activity_flash_programming_flash_write">Запись Flash...%1$s</string>
+    <string name="activity_flash_programming_ecu_reset">Сброс ЭБУ...ждите</string>
+    <string name="activity_flash_programming_start">Старт</string>
+    <string name="activity_flash_programming_end">Конец</string>
+    <string name="activity_flash_programming_ok">OK</string>
+    <string name="activity_flash_programming_failed">Сбой</string>
+    <string name="activity_flash_programming_close">Закрыть</string>
+    <string name="activity_flash_programming_read_time">Время чтения : %1$s</string>
+    <string name="activity_flash_programming_write_time">Время записи : %1$s</string>
+    <string name="activity_flash_programming_written_to">Файл записан в : %1$s</string>
+    <string name="activity_flash_programming_write_data_to_file_error">Ошибка записи в файл.</string>
+    <string name="activity_flash_programming_read_size">Считано байт : %1$s</string>
+    <string name="activity_flash_programming_read_error">Ошибка чтения Flash !</string>
+    <string name="activity_flash_programming_write_error">Ошибка записи Flash !</string>
+    <string name="activity_flash_programming_flash_erasing">Стирание Flash...%1$s</string>
+    <string name="activity_flash_programming_flash_writing_end">Запись Flash завершена...%1$s</string>
+    <string name="activity_flash_programming_backup_flash">Резервная копия Flash...%1$s</string>
+    <string name="activity_flash_programming_file_name">Имя файла : %1$s</string>
+    <string name="activity_flash_programming_file_size">Размер файла : %1$s байт</string>
+    <string name="activity_flash_programming_wrong_file_size">Неверный размер файла.</string>
+    <string name="activity_flash_programming_ecu_init">Инициализация ЭБУ...%1$s</string>
+    <string name="activity_flash_programing_warning">
+        !! ВНИМАНИЕ !!\n\n
+        Все эти операции могут обездвижить ваш автомобиль.\n
+        В то время как операция чтения обычно безопасна, запись может привести к тому, что автомобиль перестанет запускаться!
+        Автор приложил все усилия, чтобы операции были безопасными, но не дает гарантий.\n
+        Вы делаете все на свой страх и риск!
+    </string>
+</resources>

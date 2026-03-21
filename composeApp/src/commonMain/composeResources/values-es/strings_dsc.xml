@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="module_description_dsc">Sistema de frenos</string>
+
+<string name="dsc_error_02">Gestión de potencia del motor CAN</string>
+<string name="dsc_error_04">Sensor de velocidad de la rueda trasera izquierda (plausibilidad)</string>
+<string name="dsc_error_05">Sensor de velocidad de la rueda trasera derecha (plausibilidad)</string>
+<string name="dsc_error_06">Sensor de velocidad de la rueda delantera derecha (plausibilidad)</string>
+<string name="dsc_error_07">Sensor de velocidad de la rueda delantera izquierda (plausibilidad)</string>
+<string name="dsc_error_0E">Error del relé de la válvula</string>
+<string name="dsc_error_0F">Error de la bomba de recirculación</string>
+<string name="dsc_error_15">Error de las unidades de control</string>
+<string name="dsc_error_17">Error de codificación</string>
+<string name="dsc_error_18">Anillo de impulsos incorrecto</string>
+<string name="dsc_error_19">Interruptor de la luz de freno (circuito abierto)</string>
+<string name="dsc_error_1E">Sensor de velocidad de la rueda trasera izquierda (circuito abierto)</string>
+<string name="dsc_error_1F">Sensor de velocidad de la rueda trasera derecha (circuito abierto)</string>
+<string name="dsc_error_20">Sensor de velocidad de la rueda delantera derecha (circuito abierto)</string>
+<string name="dsc_error_21">Sensor de velocidad de la rueda delantera izquierda (circuito abierto)</string>
+<string name="dsc_error_22">Válvula de corte ASC del eje delantero</string>
+<string name="dsc_error_29">Plausibilidad del ángulo de dirección</string>
+<string name="dsc_error_2F">Válvula de salida trasera izquierda</string>
+<string name="dsc_error_30">Válvula de salida trasera derecha</string>
+<string name="dsc_error_31">Válvula de salida delantera derecha</string>
+<string name="dsc_error_32">Válvula de salida delantera izquierda</string>
+<string name="dsc_error_33">Válvula de entrada trasera izquierda</string>
+<string name="dsc_error_34">Válvula de entrada trasera derecha</string>
+<string name="dsc_error_35">Válvula de entrada delantera derecha</string>
+<string name="dsc_error_36">Válvula de entrada delantera izquierda</string>
+<string name="dsc_error_37">Válvula de precarga del eje delantero</string>
+<string name="dsc_error_38">Error CAN</string>
+<string name="dsc_error_3A">Mensaje de error del CAN de la unidad de control de la caja de cambios</string>
+<string name="dsc_error_3B">Mensaje de error CAN de DMER1</string>
+<string name="dsc_error_3F">Comparación de velocidad</string>
+<string name="dsc_error_40">Actividad continua del controlador</string>
+<string name="dsc_error_42">Error de suministro de energía del sensor de velocidad de la rueda activa</string>
+<string name="dsc_error_44">DSC pasivo después de encender la ignición debido a interferencias</string>
+<string name="dsc_error_45">Mensaje de error CAN de DMER2</string>
+<string name="dsc_error_51">Sensor de presión (circuito abierto)</string>
+<string name="dsc_error_52">Sensor de velocidad de guiñada (circuito abierto)</string>
+<string name="dsc_error_53">Sensor de aceleración lateral (circuito abierto)</string>
+<string name="dsc_error_54">Sensor de velocidad de guiñada (plausibilidad)</string>
+<string name="dsc_error_56">Válvula de corte ASC del eje trasero</string>
+<string name="dsc_error_57">Válvula de precarga del eje trasero</string>
+<string name="dsc_error_58">Bomba de precarga</string>
+<string name="dsc_error_59">Bajo voltaje</string>
+<string name="dsc_error_5A">Desactivación temporal del sistema</string>
+<string name="dsc_error_5B">Mensaje de error del ángulo de dirección</string>
+<string name="dsc_error_5C">Sensor de presión (plausibilidad de la bomba de precarga)</string>
+<string name="dsc_error_5E">Sensor de velocidad de guiñada</string>
+<string name="dsc_error_5F">Interferencia</string>
+
+<string name="dsc_error_60">Accionamiento</string>
+<string name="dsc_error_61">Es necesario ajustar el ángulo de dirección</string>
+<string name="dsc_error_62">Freno de emergencia sin presión</string>
+<string name="dsc_error_63">Actividad continua del controlador</string>
+<string name="dsc_error_64">Sensor de aceleración lateral</string>
+<string name="dsc_error_67">Inicialización del sensor de ángulo de dirección</string>
+<string name="dsc_error_68">Error en la unidad de control del ángulo de dirección</string>
+<string name="dsc_error_69">Plausibilidad del interruptor de la luz de freno</string>
+<string name="dsc_error_6A">Plausibilidad del sensor de aceleración lateral</string>
+<string name="dsc_error_6B">Sensor de velocidad de guiñada</string>
+<string name="dsc_error_6C">Control SN</string>
+<string name="dsc_error_6D">Prueba de fin de línea</string>
+<string name="dsc_error_6E">Alto voltaje</string>
+<string name="dsc_error_6F">Confirmar ASC</string>
+<string name="dsc_error_72">Sensor de presión (desplazamiento)</string>
+<string name="dsc_error_73">Interferencia del sensor de presión</string>
+<string name="dsc_error_74">Error del interruptor de freno</string>
+<string name="dsc_error_75">Interruptor de luz de freno permanente</string>
+<string name="dsc_error_76">Error interno del estado DME</string>
+<string name="dsc_error_77">HDC no disponible</string>
+<string name="dsc_error_78">Sensor de velocidad de guiñada dudoso posición incorrecta</string>
+<string name="dsc_error_79">Sensor de velocidad de guiñada posición incorrecta</string>
+<string name="dsc_error_80">Temperatura de los frenos sobrecalentada</string>
+<string name="dsc_error_7A">Mensaje de error CAN de ACC</string>
+<string name="dsc_error_7B">Plausibilidad de la solicitud de desaceleración de ACC</string>
+<string name="dsc_error_7C">ACC ya no está vivo</string>
+<string name="dsc_error_7D">El estado de ACC no se ve afectado en DSC pasivo</string>
+<string name="dsc_error_7E">Error de salida de señal de ACC para las luces de freno</string>
+<string name="dsc_error_8A">Mensaje de error CAN del sistema de suspensión neumática EHC</string>
+<string name="dsc_error_8B">Mensaje de error CAN de la caja de cambios off-road TXU</string>
+<string name="dsc_error_detail_00">ASC pasivo</string>
+<string name="dsc_error_detail_01">ASC no pasivo</string>
+<string name="dsc_error_detail_02">Control de ABS activo</string>
+<string name="dsc_error_detail_03">Control de ABS pasivo</string>
+<string name="dsc_error_detail_04">Interruptor de luz de freno encendido</string>
+<string name="dsc_error_detail_05">Interruptor de luz de freno apagado</string>
+<string name="dsc_error_detail_06">Control de ASC activo</string>
+<string name="dsc_error_detail_07">Control de ASC pasivo</string>
+<string name="dsc_error_detail_08">ACB activo</string>
+<string name="dsc_error_detail_09">ACB pasivo</string>
+<string name="dsc_error_detail_0A">HBA activo</string>
+<string name="dsc_error_detail_0B">HBA pasivo</string>
+<string name="dsc_error_detail_0C">ECD activo</string>
+<string name="dsc_error_detail_0D">ECD pasivo</string>
+<string name="dsc_error_detail_0E">HDC activo</string>
+<string name="dsc_error_detail_0F">HDC pasivo</string>
+
+<string name="dsc_live_data_front_left_wheel_speed">Velocidad de la rueda - delantera izquierda</string>
+<string name="dsc_live_data_front_right_wheel_speed">Velocidad de la rueda - delantera derecha</string>
+<string name="dsc_live_data_rear_left_wheel_speed">Velocidad de la rueda - trasera izquierda</string>
+<string name="dsc_live_data_rear_right_wheel_speed">Velocidad de la rueda - trasera derecha</string>
+<string name="dsc_live_data_steering_wheel_angle">Ángulo del volante</string>
+<string name="dsc_live_data_steering_wheel_angle_speed">Velocidad de cambio del ángulo del volante</string>
+<string name="dsc_live_data_pressure">Presión</string>
+<string name="dsc_live_data_lateral_acceleration">Aceleración lateral</string>
+<string name="dsc_live_data_hand_brake_switch">Interruptor del freno de mano</string>
+<string name="dsc_live_data_hill_descent_active">Descenso de colina</string>
+<string name="dsc_live_data_brake_switch">Interruptor de freno</string>
+<string name="dsc_live_data_valve_relay">Relé de la válvula</string>
+<string name="dsc_live_data_brake_light_switch">Interruptor de la luz de freno</string>
+<string name="dsc_live_data_passive_button">Botón pasivo</string>
+<string name="dsc_live_data_engine_speed">Velocidad del motor</string>
+<string name="dsc_live_data_filling_target">Relleno - objetivo</string>
+<string name="dsc_live_data_filling_driver_wish">Relleno - deseo del conductor</string>
+
+<string name="dsc_coding_coded_flag">Bandera codificada</string>
+<string name="dsc_coding_engine_type">Tipo de motor</string>
+<string name="dsc_coding_dynamic_brakes">Frenos dinámicos</string>
+<string name="dsc_coding_hill_descent">Control de descenso de colinas</string>
+
+<string name="activity_control_dsc_tittle">Control avanzado</string>
+<string name="activity_control_dsc_brake_bleeding">Purgado de frenos</string>
+<string name="activity_control_dsc_on_time">Tiempo encendido [s]</string>
+<string name="activity_control_dsc_off_time">Tiempo apagado [s]</string>
+<string name="activity_control_dsc_cycles">Ciclos</string>
+<string name="activity_control_dsc_start">Inicio</string>
+<string name="activity_control_dsc_wheel_select">Rueda</string>
+
+<string-array name="activity_control_dsc_wheel_list">
+    <item>Delantera izquierda</item>
+    <item>Delantera derecha</item>
+    <item>Trasera derecha</item>
+    <item>Trasera izquierda</item>
+</string-array>
+
+</resources>

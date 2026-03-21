@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- video -->
+    <string name="module_description_radio">Moduł radiowy</string>
+    <string name="radio_module_info_name">Nazwa</string>
+    <string name="radio_error_00">Tryb oszczędzania anergii aktywny</string>
+    <string name="radio_error_01">Interfejs zmieniarki CD</string>
+    <string name="radio_error_02">Błąd zasilania anteny</string>
+    <string name="radio_error_03">Czytnik CD - przegrzanie</string>
+    <string name="radio_error_04">Czytnik CD - błąd sprzętowy</string>
+    <string name="radio_error_05">Czytnik CD - błąd odczytu</string>
+    <string name="radio_error_present">Obecny</string>
+    <string name="radio_error_not_present">Nieobecny</string>
+
+    <string name = "radio_control_default_volume">Gloścność - standard</string>
+    <string name = "radio_control_speaker_left_front">Głośnik - lewy przód</string>
+    <string name = "radio_control_speaker_right_front">Głośnik - prawy przód</string>
+    <string name = "radio_control_speaker_right_rear">Głośnik - prawy tył</string>
+    <string name = "radio_control_speaker_left_rear">Głośnik - lewy tył</string>
+    <string name = "radio_control_volume_up">Głośność - zwiększ</string>
+    <string name = "radio_control_volume_down">Głośność - zmniejsz</string>
+    <string name = "radio_control_seek_up">Wyszukaj - do góry</string>
+    <string name = "radio_control_seek_down">Wyszukaj - w dół</string>
+    <string name = "radio_control_gal_inc">Gal - zwiększ</string>
+    <string name = "radio_control_gal_dec">Gal - zmniejszy</string>
+    <string name = "radio_control_switch_seek">Wyszukaj - przełącz</string>
+    <string name = "radio_control_vf_dec">VF - zwiększ</string>
+    <string name = "radio_control_vf_inc">VF - zmniejsz</string>
+    <string name = "radio_control_frequency">Częstotliwość</string>
+    <string name = "radio_control_audio_key">Audio</string>
+
+    <string name="radio_coding_country">Region</string>
+    <string name="radio_coding_gal">GAL</string>
+    <string name="radio_coding_rds_af_mode">Tryb RDS i AF</string>
+    <string name="radio_coding_key_memory_radio">Pamięć klucza dla radia</string>
+    <string name="radio_coding_pty_table">PTY region</string>
+
+    <string name = "radio_live_data_value_signal_too_low">za niski</string>
+    <string name = "radio_live_data_value_signal_too_high">za wysoki</string>
+    <string name = "radio_live_data_value_short">zwarcie</string>
+    <string name = "radio_live_data_value_line_is_open">przerwa</string>
+
+</resources>

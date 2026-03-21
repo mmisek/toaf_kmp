@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_hevac">Климат-контроль (HEVAC)</string>
+
+    <string name="hevac_error_00">Мотор заслонки вентиляции</string>
+    <string name="hevac_error_01">Мотор заслонки обдува стекла (дефростера)</string>
+    <string name="hevac_error_02">Мотор заслонки пространства для ног</string>
+    <string name="hevac_error_03">Мотор заслонки свежего воздуха/рециркуляции (левый)</string>
+    <string name="hevac_error_04">Мотор заслонки свежего воздуха/рециркуляции (правый)</string>
+    <string name="hevac_error_05">Неверный блок управления климатом HEVAC</string>
+    <string name="hevac_error_06">Датчик давления, питание датчика загрязнения</string>
+    <string name="hevac_error_0B">Датчик температуры испарителя</string>
+    <string name="hevac_error_0D">Датчик температуры теплообменника</string>
+    <string name="hevac_error_12">Датчик внутренней температуры</string>
+    <string name="hevac_error_17">Реле обогрева заднего стекла</string>
+    <string name="hevac_error_18">Реле дополнительного отопителя</string>
+    <string name="hevac_error_19">Дополнительная водяная помпа</string>
+    <string name="hevac_error_1A">Водяной клапан</string>
+    <string name="hevac_error_1B">Управляющее напряжение вентилятора</string>
+    <string name="hevac_error_1C">Датчик вентилятора</string>
+    <string name="hevac_error_1D">Связь с дополнительным отопителем</string>
+    <string name="hevac_error_1E">Датчик загрязнения воздуха (AUC)</string>
+    <string name="hevac_error_1F">Датчик давления хладагента</string>
+    <string name="hevac_error_20">Подогрев датчика загрязнения</string>
+    <string name="hevac_error_21">Датчик солнечной активности</string>
+    <string name="hevac_error_FF">Активен режим энергосбережения</string>
+
+    <string name="hevac_error_detail_01">Замыкание на плюс</string>
+    <string name="hevac_error_detail_02">Замыкание на массу</string>
+    <string name="hevac_error_detail_04">Обрыв цепи</string>
+    <string name="hevac_error_detail_08">Недостоверное значение, вне рабочего диапазона</string>
+    <string name="hevac_error_detail_40">Ошибка присутствует</string>
+    <string name="hevac_error_detail_80">Спорадическая ошибка</string>
+
+    <string name="hevac_live_data_power_supply_pollution_sensor">Питание датчика загрязнения</string>
+    <string name="hevac_live_data_power_supply">Напряжение питания HEVAC</string>
+    <string name="hevac_live_data_pollution_sensor_heating_voltage">Напряжение подогрева датчика загрязнения</string>
+    <string name="hevac_live_data_pwm_fan_control_voltage">Напряжение управления вентилятором (PWM)</string>
+    <string name="hevac_live_data_outdoor_temperature_sensor">Датчик наружной температуры</string>
+    <string name="hevac_live_data_evaporator_temperature_sensor">Датчик температуры испарителя</string>
+    <string name="hevac_live_data_pollution_sensor_signal">Сигнал датчика загрязнения</string>
+    <string name="hevac_live_data_heat_exchanger_sensor">Датчик теплообменника</string>
+    <string name="hevac_live_data_solar_sensor">Датчик солнечной активности</string>
+    <string name="hevac_live_data_pressure_sensor">Датчик давления</string>
+</resources>

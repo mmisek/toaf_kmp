@@ -1,0 +1,118 @@
+{
+    "elements": [
+      {
+        "name": "fuel_pump_relay",
+        "block": "0x12",
+        "byte": "0x00",
+        "value": "0x07"
+      },
+      {
+        "name": "aircon_clutch",
+        "block": "0x13",
+        "byte": "0x00",
+        "value": "0x07"
+      },
+      {
+        "name": "aircon_clutch",
+        "block": "0x13",
+        "byte": "0x00",
+        "value": "0x07"
+      },
+      {
+        "name": "fan_fast",
+        "block": "0x1B",
+        "byte": "0x00",
+        "value": "0x07"
+      },
+      {
+        "name": "fan_medium",
+        "block": "0x1A",
+        "byte": "0x00",
+        "value": "0x07"
+      },
+      {
+        "name": "fan_low",
+        "block": "0x19",
+        "byte": "0x00",
+        "value": "0x07"
+      },
+      {
+        "name": "idle_step_motor",
+        "block": "0x23",
+        "byte": "0x00",
+        "value": "0x07"
+      },
+      {
+        "name": "prime_fuel_line",
+        "block": "0x34",
+        "byte": "0x00",
+        "value": "0x07"
+      },
+      {
+        "name": "mil",
+        "block": "0x35",
+        "byte": "0x00",
+        "value": "0x07"
+      },
+      {
+        "name": "vis_balance",
+        "block": "0x37",
+        "byte": "0x00",
+        "value": "0x07"
+      },
+      {
+        "name": "vis_butterfly",
+        "block": "0x38",
+        "byte": "0x00",
+        "value": "0x07"
+      },
+      {
+        "name": "adaptations_all",
+        "block": "0x50",
+        "byte": "0x00",
+        "value": "0x04"
+      },
+      {
+        "name": "adaptations_mass_airflow",
+        "block": "0x51",
+        "byte": "0x00",
+        "value": "0x04"
+      },
+      {
+        "name": "adaptations_knock_sensor",
+        "block": "0x52",
+        "byte": "0x00",
+        "value": "0x04"
+      },
+      {
+        "name": "adaptations_throttle_position",
+        "block": "0x53",
+        "byte": "0x00",
+        "value": "0x04"
+      },
+      {
+        "name": "adaptations_idle_control_adaptation",
+        "block": "0x54",
+        "byte": "0x00",
+        "value": "0x04"
+      },
+      {
+        "name": "adaptations_oxygen_sensor",
+        "block": "0x55",
+        "byte": "0x00",
+        "value": "0x04"
+      },
+      {
+        "name": "adaptations_step_motor_long_reset",
+        "block": "0x56",
+        "byte": "0x00",
+        "value": "0x04"
+      },
+      {
+        "name": "adaptations_dynamic_trim",
+        "block": "0x59",
+        "byte": "0x00",
+        "value": "0x04"
+      }
+    ]
+}

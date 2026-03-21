@@ -1,0 +1,2795 @@
+{
+    "elements": [
+      {
+        "name": "light_switch_unit",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x01",
+        "coding_index": [
+            "11",
+            "12"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "inactive"
+            },
+            {
+              "data": "0x01",
+              "text": "active"
+            }
+          ]
+      },
+      {
+        "name": "analog_steering_column_stalk_switch",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x02",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      },
+      {
+        "name": "front_and_rear_fog_light_push_button_on_lsw",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x04",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      },
+      {
+        "name": "front_position_lamp",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x08",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "inactive"
+          },
+          {
+            "data": "0x00",
+            "text": "active"
+          }
+        ]
+      },
+      {
+        "name": "rear_fog_lamps_dim_with_taillights",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x10",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      },
+      {
+        "name": "hdc_function_will_operate_break_lights_when_hdc_is_in_use",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x20",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      },
+      {
+        "name": "side_marker_lights",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x40",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "police_lights",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x01",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "police_lights_async",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x02",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "synchronous"
+          },
+          {
+            "data": "0x01",
+            "text": "asynchronous"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "police_lights_rear",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x04",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "police_lights_async_rear",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x08",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "synchronous"
+          },
+          {
+            "data": "0x01",
+            "text": "asynchronous"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "tail_lights_fail_warning",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x01",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "warn"
+          },
+          {
+            "data": "0x01",
+            "text": "no_warn"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "position_lamps_fail_warning",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x02",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "warn"
+          },
+          {
+            "data": "0x01",
+            "text": "no_warn"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "dip_beam_fail_warning",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x04",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "warn"
+          },
+          {
+            "data": "0x01",
+            "text": "no_warn"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "main_beam_fail_warning",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x08",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "warn"
+          },
+          {
+            "data": "0x01",
+            "text": "no_warn"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "front_fog_lights_fail_warning",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x10",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "warn"
+          },
+          {
+            "data": "0x01",
+            "text": "no_warn"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "side_marker_lights_fail_warning",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x20",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "warn"
+          },
+          {
+            "data": "0x01",
+            "text": "no_warn"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "reversing_lights_fail_warning",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x80",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "warn"
+          },
+          {
+            "data": "0x01",
+            "text": "no_warn"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "front_fog_lights_fail_warning",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x04",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "warn"
+          },
+          {
+            "data": "0x01",
+            "text": "no_warn"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "break_lights_fail_warning",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x08",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "warn"
+          },
+          {
+            "data": "0x00",
+            "text": "no_warn"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "number_plate_light_fail_warning",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x10",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "warn"
+          },
+          {
+            "data": "0x01",
+            "text": "no_warn"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "trailer_light_fail_monitoring",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x40",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "warn"
+          },
+          {
+            "data": "0x01",
+            "text": "no_warn"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "break_light_switch_prescence",
+        "block": "0x00",
+        "byte": "0x03",
+        "mask": "0x01",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "active"
+          },
+          {
+            "data": "0x01",
+            "text": "inactive"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "break_light_switch_fail_at_ignition_off",
+        "block": "0x00",
+        "byte": "0x03",
+        "mask": "0x02",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "warn"
+          },
+          {
+            "data": "0x01",
+            "text": "no_warn"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "hazard_flasher",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x01",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "einfachimpuls"
+          },
+          {
+            "data": "0x01",
+            "text": "doppelimpuls"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "cold_monitoring_dip_beam",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x04",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "active"
+          },
+          {
+            "data": "0x01",
+            "text": "inactive"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "external_lwr_fitted",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x04",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "active"
+          },
+          {
+            "data": "0x01",
+            "text": "inactive"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "cold_monitoring_front_fog_lights",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x08",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "active"
+          },
+          {
+            "data": "0x01",
+            "text": "inactive"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "cold_monitoring_main_beam",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x10",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "active"
+          },
+          {
+            "data": "0x01",
+            "text": "inactive"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "cold_monitoring_rear_turn_signals",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x20",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "active"
+          },
+          {
+            "data": "0x01",
+            "text": "inactive"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "cold_monitoring_front_turn_signals",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x40",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "active"
+          },
+          {
+            "data": "0x01",
+            "text": "inactive"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "daytime_running_lamps_main_beam_dim_setting",
+        "block": "0x00",
+        "byte": "0x0E",
+        "mask": "0xFF",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "type_01"
+          },
+          {
+            "data": "0xD0",
+            "text": "type_02"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "front_fog_lights_off_if_main_beam_on",
+        "block": "0x00",
+        "byte": "0x13",
+        "mask": "0x01",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0xD0",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "ece_daytime_running_lights",
+        "block": "0x00",
+        "byte": "0x13",
+        "mask": "0x02",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "dip_beam_with_daytime_running_lights",
+        "block": "0x00",
+        "byte": "0x13",
+        "mask": "0x04",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "dimmed_main_beam_with_daytime_running_lights",
+        "block": "0x00",
+        "byte": "0x13",
+        "mask": "0x08",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "no_park_light_functionality",
+        "block": "0x00",
+        "byte": "0x13",
+        "mask": "0x10",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "front_turn_signals_dim_if_side_markers_on",
+        "block": "0x00",
+        "byte": "0x13",
+        "mask": "0x20",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "safety_vehicle_alarm_switch_fitted",
+        "block": "0x00",
+        "byte": "0x13",
+        "mask": "0x40",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "taxi_alarm_switch_fitted",
+        "block": "0x00",
+        "byte": "0x13",
+        "mask": "0x80",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "right_brake_turn_us_trailer_module_not_activated",
+        "block": "0x00",
+        "byte": "0x14",
+        "mask": "0x01",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "stop_light_and_turn_signal_are_activated_together",
+        "block": "0x00",
+        "byte": "0x14",
+        "mask": "0x02",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "front_position_lamps_have_turn_signal_function",
+        "block": "0x00",
+        "byte": "0x14",
+        "mask": "0x04",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "side_sidelights_have_door_warning_light_function",
+        "block": "0x00",
+        "byte": "0x14",
+        "mask": "0x08",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "hazard_warning_has_priority_over_rear_fog_lamps",
+        "block": "0x00",
+        "byte": "0x14",
+        "mask": "0x40",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "turn_signal_flashing_has_priority_over_rear_fog_lamps",
+        "block": "0x00",
+        "byte": "0x14",
+        "mask": "0x80",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "dimming_of_the_rear_fog_lamps_as_parking_light_substitute",
+        "block": "0x00",
+        "byte": "0x15",
+        "mask": "0x01",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      },
+      {
+        "name": "front_turn_signal_enabled_as_low_beam_light_parking_light_substitute_function",
+        "block": "0x00",
+        "byte": "0x15",
+        "mask": "0x02",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      },
+      {
+        "name": "front_turn_signal_has_parking_light_function",
+        "block": "0x00",
+        "byte": "0x15",
+        "mask": "0x04",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "rear_fog_lamps_has_substitute_function_if_trailer_mounted",
+        "block": "0x00",
+        "byte": "0x15",
+        "mask": "0x08",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "enhanced_pictogram_display",
+        "block": "0x00",
+        "byte": "0x15",
+        "mask": "0x10",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ],
+        "visible" : "false"
+      }
+    ,
+      {
+        "name": "pictogram_information_on_stop_lamps",
+        "block": "0x00",
+        "byte": "0x15",
+        "mask": "0x20",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "operating_hours_counters_are_automatically_erased",
+        "block": "0x00",
+        "byte": "0x15",
+        "mask": "0x80",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "dimming_of_the_front_turn_signal_lights_option_1",
+        "block": "0x00",
+        "byte": "0x16",
+        "mask": "0x01",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "dimming_of_the_front_turn_signal_lights_option_2",
+        "block": "0x00",
+        "byte": "0x16",
+        "mask": "0x02",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "dimming_of_the_rear_fogs_option_1",
+        "block": "0x00",
+        "byte": "0x16",
+        "mask": "0x04",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "auto_lights",
+        "block": "0x00",
+        "byte": "0x16",
+        "mask": "0x40",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "denmark_drl",
+        "block": "0x00",
+        "byte": "0x16",
+        "mask": "0x80",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "time_in_seconds_for_follow_me_home",
+        "block": "0x00",
+        "byte": "0x1A",
+        "mask": "0xFF",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "off"
+          },
+          {
+            "data": "0x28",
+            "text": "40s"
+          }
+        ,
+          {
+            "data": "0x5A",
+            "text": "90s"
+          }
+        ,
+          {
+            "data": "0x96",
+            "text": "150s"
+          }
+        ,
+          {
+            "data": "0xF0",
+            "text": "240s"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "follow_me_home_with_low_beam_headlights",
+        "block": "0x00",
+        "byte": "0x1B",
+        "mask": "0x01",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "follow_me_home_with_rear_position_lamps",
+        "block": "0x00",
+        "byte": "0x1B",
+        "mask": "0x02",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "follow_me_home_with_front_position_lamps",
+        "block": "0x00",
+        "byte": "0x1B",
+        "mask": "0x04",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "follow_me_home_with_kl85g",
+        "block": "0x00",
+        "byte": "0x1B",
+        "mask": "0x08",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "follow_me_home_with_license_plate_light",
+        "block": "0x00",
+        "byte": "0x1B",
+        "mask": "0x10",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "follow_me_home_with_front_fog_lamps",
+        "block": "0x00",
+        "byte": "0x1B",
+        "mask": "0x20",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "follow_me_home_with_high_beam_headlamps",
+        "block": "0x00",
+        "byte": "0x1B",
+        "mask": "0x40",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "follow_me_home_with_rear_fog_lamps",
+        "block": "0x00",
+        "byte": "0x1B",
+        "mask": "0x80",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "follow_me_home_with_reverse_lamps",
+        "block": "0x00",
+        "byte": "0x1C",
+        "mask": "0x01",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "follow_me_home_with_brake_turn_inputs_to_ahm",
+        "block": "0x00",
+        "byte": "0x1C",
+        "mask": "0x02",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "follow_me_home_operating_style",
+        "block": "0x00",
+        "byte": "0x1C",
+        "mask": "0x40",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "bmw"
+          },
+          {
+            "data": "0x01",
+            "text": "l30"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "follow_me_home_cancel_with_lighting_switch",
+        "block": "0x00",
+        "byte": "0x1C",
+        "mask": "0x80",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "to_activate_brake_turn_signal_for_nas_trailers",
+        "block": "0x00",
+        "byte": "0x1D",
+        "mask": "0x01",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "nsl_is_rear_fog_lights",
+        "block": "0x00",
+        "byte": "0x1D",
+        "mask": "0x02",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "rear_fog_lamp_to_brake_lamp_output_mapping",
+        "block": "0x00",
+        "byte": "0x1D",
+        "mask": "0x04",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "camel_trophy_for_us_specifics",
+        "block": "0x00",
+        "byte": "0x1D",
+        "mask": "0x08",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "camel_trophy_for_ece_specifics",
+        "block": "0x00",
+        "byte": "0x1D",
+        "mask": "0x10",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "handbrake_turns_off_daylight_running_lamp",
+        "block": "0x00",
+        "byte": "0x1D",
+        "mask": "0x20",
+        "coding_index": [
+          "11","12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "bi_xenon_lights_presence",
+        "block": "0x00",
+        "byte": "0x1D",
+        "mask": "0x80",
+        "coding_index": [
+          "11","12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "a_possible_dim_setting_for_the_bi_xenon_lamps",
+        "block": "0x00",
+        "byte": "0x1E",
+        "mask": "0xFF",
+        "coding_index": [
+          "11",
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "type_2"
+          },
+          {
+            "data": "0xE0",
+            "text": "type_1"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "engine_over_temperature_warning_limit",
+        "block": "0x0F",
+        "byte": "0x01",
+        "mask": "0xFF",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x7D",
+            "text": "125_deg_c"
+          },
+          {
+            "data": "0x82",
+            "text": "130_deg_c"
+          }
+        ]
+      },
+      {
+        "name": "engine_over_temperature_warning_limit",
+        "block": "0x07",
+        "byte": "0x01",
+        "mask": "0xFF",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x7D",
+            "text": "125_deg_c"
+          },
+          {
+            "data": "0x82",
+            "text": "130_deg_c"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "over_speed_warning",
+        "block": "0x0F",
+        "byte": "0x02",
+        "mask": "0xFF",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0xFF",
+            "text": "inactive"
+          },
+          {
+            "data": "0x46",
+            "text": "120_kmh"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "over_speed_warning",
+        "block": "0x07",
+        "byte": "0x02",
+        "mask": "0xFF",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0xFF",
+            "text": "inactive"
+          },
+          {
+            "data": "0x46",
+            "text": "120_kmh"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "tyre_pressure_monitor",
+        "block": "0x0F",
+        "byte": "0x03",
+        "mask": "0x10",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      },
+      {
+        "name": "tyre_pressure_monitor",
+        "block": "0x07",
+        "byte": "0x03",
+        "mask": "0x10",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "air_suspension",
+        "block": "0x0F",
+        "byte": "0x03",
+        "mask": "0x20",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "air_suspension",
+        "block": "0x07",
+        "byte": "0x03",
+        "mask": "0x20",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "safety_taxi_modes",
+        "block": "0x0F",
+        "byte": "0x03",
+        "mask": "0x40",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "safety_taxi_modes",
+        "block": "0x07",
+        "byte": "0x03",
+        "mask": "0x40",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "engine_type",
+        "block": "0x0F",
+        "byte": "0x03",
+        "mask": "0x80",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "petrol"
+          },
+          {
+            "data": "0x01",
+            "text": "diesel"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "engine_type",
+        "block": "0x07",
+        "byte": "0x03",
+        "mask": "0x80",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "petrol"
+          },
+          {
+            "data": "0x01",
+            "text": "diesel"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "catalyst_overheat_message",
+        "block": "0x0F",
+        "byte": "0x04",
+        "mask": "0x01",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "catalyst_overheat_message",
+        "block": "0x07",
+        "byte": "0x04",
+        "mask": "0x01",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "seat_belt_warning_sound",
+        "block": "0x0F",
+        "byte": "0x04",
+        "mask": "0x02",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "seat_belt_warning_sound",
+        "block": "0x07",
+        "byte": "0x04",
+        "mask": "0x02",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "seat_belt_warning_message",
+        "block": "0x0F",
+        "byte": "0x04",
+        "mask": "0x04",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      },
+      {
+        "name": "seat_belt_warning_message",
+        "block": "0x07",
+        "byte": "0x04",
+        "mask": "0x04",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "key_in_ignition_warning_if_door_is_opened",
+        "block": "0x0F",
+        "byte": "0x04",
+        "mask": "0x08",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "key_in_ignition_warning_if_door_is_opened",
+        "block": "0x07",
+        "byte": "0x04",
+        "mask": "0x08",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "oil_level_sensor",
+        "block": "0x0F",
+        "byte": "0x04",
+        "mask": "0x10",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "oil_level_sensor",
+        "block": "0x07",
+        "byte": "0x04",
+        "mask": "0x10",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "check_control_message_suppression_period_after_fast_key_ignition",
+        "block": "0x0F",
+        "byte": "0x06",
+        "mask": "0x0F",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x02",
+            "text": "2s"
+          },
+          {
+            "data": "0x01",
+            "text": "1s"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "check_control_message_suppression_period_after_fast_key_ignition",
+        "block": "0x07",
+        "byte": "0x06",
+        "mask": "0x0F",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x02",
+            "text": "2s"
+          },
+          {
+            "data": "0x01",
+            "text": "1s"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "fast_ignition_switch_detection_period",
+        "block": "0x0F",
+        "byte": "0x06",
+        "mask": "0xF0",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x03",
+            "text": "3s"
+          },
+          {
+            "data": "0x02",
+            "text": "2s"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "fast_ignition_switch_detection_period",
+        "block": "0x07",
+        "byte": "0x06",
+        "mask": "0xF0",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x03",
+            "text": "3s"
+          },
+          {
+            "data": "0x02",
+            "text": "2s"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "engine_emergency_program_warning_via_can",
+        "block": "0x0F",
+        "byte": "0x07",
+        "mask": "0x01",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "engine_emergency_program_warning_via_can",
+        "block": "0x07",
+        "byte": "0x07",
+        "mask": "0x01",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "fuel_injection_system_warning_via_can",
+        "block": "0x0F",
+        "byte": "0x07",
+        "mask": "0x02",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "fuel_injection_system_warning_via_can",
+        "block": "0x07",
+        "byte": "0x07",
+        "mask": "0x02",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "catalyst_overheat_via_can",
+        "block": "0x0F",
+        "byte": "0x07",
+        "mask": "0x04",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "catalyst_overheat_via_can",
+        "block": "0x07",
+        "byte": "0x07",
+        "mask": "0x04",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "cooling_system_over_temperature_warning_via_can",
+        "block": "0x0F",
+        "byte": "0x07",
+        "mask": "0x08",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "cooling_system_over_temperature_warning_via_can",
+        "block": "0x07",
+        "byte": "0x07",
+        "mask": "0x08",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "engine_oil_level_warning_via_can",
+        "block": "0x0F",
+        "byte": "0x07",
+        "mask": "0x10",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "engine_oil_level_warning_via_can",
+        "block": "0x07",
+        "byte": "0x07",
+        "mask": "0x10",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "can_bus_fault_visibility",
+        "block": "0x0F",
+        "byte": "0x07",
+        "mask": "0x20",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "can_bus_fault_visibility",
+        "block": "0x07",
+        "byte": "0x07",
+        "mask": "0x20",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "ignition_key_in_or_out_via_k_bus",
+        "block": "0x0F",
+        "byte": "0x08",
+        "mask": "0x01",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "ignition_key_in_or_out_via_k_bus",
+        "block": "0x07",
+        "byte": "0x08",
+        "mask": "0x01",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "inverted_brake_fluid_level_sensor",
+        "block": "0x0F",
+        "byte": "0x08",
+        "mask": "0x02",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "inverted_brake_fluid_level_sensor",
+        "block": "0x07",
+        "byte": "0x08",
+        "mask": "0x02",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "belt_buckle_switch_hardwired_or_k_bus",
+        "block": "0x0F",
+        "byte": "0x08",
+        "mask": "0x04",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "hardwired"
+          },
+          {
+            "data": "0x01",
+            "text": "k_bus"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "belt_buckle_switch_hardwired_or_k_bus",
+        "block": "0x07",
+        "byte": "0x08",
+        "mask": "0x04",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "hardwired"
+          },
+          {
+            "data": "0x01",
+            "text": "k_bus"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "washer_water_sensor_type",
+        "block": "0x0F",
+        "byte": "0x08",
+        "mask": "0x18",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "waschwasser_alt"
+          },
+          {
+            "data": "0x01",
+            "text": "waschwasser_4reed"
+          }
+        ,
+          {
+            "data": "0x10",
+            "text": "waschwasser_pwm"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "washer_water_sensor_type",
+        "block": "0x07",
+        "byte": "0x08",
+        "mask": "0x18",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "waschwasser_alt"
+          },
+          {
+            "data": "0x01",
+            "text": "waschwasser_4reed"
+          }
+        ,
+          {
+            "data": "0x10",
+            "text": "waschwasser_pwm"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "the_amount_of_time_the_display_is_blanked_when_a_pre_heat_message_is_expected",
+        "block": "0x0F",
+        "byte": "0x09",
+        "mask": "0x07",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "0_7s"
+          },
+          {
+            "data": "0x01",
+            "text": "0_8s"
+          },
+          {
+            "data": "0x02",
+            "text": "0_9s"
+          },
+          {
+            "data": "0x03",
+            "text": "1_0s"
+          },
+          {
+            "data": "0x04",
+            "text": "1_1s"
+          },
+          {
+            "data": "0x05",
+            "text": "1_2s"
+          },
+          {
+            "data": "0x06",
+            "text": "1_3s"
+          },
+          {
+            "data": "0x07",
+            "text": "1_4s"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "the_amount_of_time_the_display_is_blanked_when_a_pre_heat_message_is_expected",
+        "block": "0x07",
+        "byte": "0x09",
+        "mask": "0x07",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "0_7s"
+          },
+          {
+            "data": "0x01",
+            "text": "0_8s"
+          },
+          {
+            "data": "0x02",
+            "text": "0_9s"
+          },
+          {
+            "data": "0x03",
+            "text": "1_0s"
+          },
+          {
+            "data": "0x04",
+            "text": "1_1s"
+          },
+          {
+            "data": "0x05",
+            "text": "1_2s"
+          },
+          {
+            "data": "0x06",
+            "text": "1_3s"
+          },
+          {
+            "data": "0x07",
+            "text": "1_4s"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "the_gong_for_the_message_ignition_key_came_with_key_position_0",
+        "block": "0x0F",
+        "byte": "0x09",
+        "mask": "0x08",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      },
+      {
+        "name": "the_gong_for_the_message_ignition_key_came_with_key_position_0",
+        "block": "0x07",
+        "byte": "0x09",
+        "mask": "0x08",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "cooling_system_temperature_damping_time",
+        "block": "0x0F",
+        "byte": "0x09",
+        "mask": "0x10",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "25s"
+          },
+          {
+            "data": "0x01",
+            "text": "60s"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "cooling_system_temperature_damping_time",
+        "block": "0x07",
+        "byte": "0x09",
+        "mask": "0x10",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "25s"
+          },
+          {
+            "data": "0x01",
+            "text": "60s"
+          }
+        ]
+      }
+    ,
+      {
+        "name": "maximum_time_for_the_gong_to_operate_if_key_is_left_in_ignition",
+        "block": "0x0F",
+        "byte": "0x09",
+        "mask": "0x20",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "25s"
+          },
+          {
+            "data": "0x01",
+            "text": "60s"
+          }
+        ]
+      },
+      {
+        "name": "maximum_time_for_the_gong_to_operate_if_key_is_left_in_ignition",
+        "block": "0x07",
+        "byte": "0x09",
+        "mask": "0x20",
+        "coding_index": [
+          "12"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "25s"
+          },
+          {
+            "data": "0x01",
+            "text": "60s"
+          }
+        ]
+      },
+      {
+        "name": "market",
+        "block": "0x01",
+        "byte": "0x02",
+        "mask": "0xFF",
+        "coding_index": [
+          "11"
+        ],
+        "coding_values": [
+          {
+            "data": "0x5E",
+            "text": "ece"
+          },
+          {
+            "data": "0x82",
+            "text": "us_canada"
+          }
+        ]
+      }
+    ]
+}

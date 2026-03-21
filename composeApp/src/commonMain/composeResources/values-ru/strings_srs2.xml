@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_srs2">Подушки безопасности (Autoliv)</string>
+
+    <string name="srs2_error_022">ЭБУ подушек безопасности</string>
+    <string name="srs2_error_024">ЭБУ подушек безопасности</string>
+    <string name="srs2_error_030">ЭБУ подушек безопасности</string>
+    <string name="srs2_error_031">ЭБУ подушек безопасности</string>
+    <string name="srs2_error_032">ЭБУ подушек безопасности</string>
+    <string name="srs2_error_033">ЭБУ подушек безопасности</string>
+    <string name="srs2_error_034">ЭБУ подушек безопасности</string>
+    <string name="srs2_error_035">ЭБУ подушек безопасности</string>
+    <string name="srs2_error_036">ЭБУ подушек безопасности</string>
+    <string name="srs2_error_037">ЭБУ подушек безопасности</string>
+    <string name="srs2_error_038">ЭБУ подушек безопасности</string>
+    <string name="srs2_error_039">ЭБУ подушек безопасности</string>
+    <string name="srs2_error_041">ЭБУ подушек безопасности - ошибка конфигурации</string>
+    <string name="srs2_error_063">ЭБУ подушек безопасности - ошибка</string>
+
+    <string name="srs2_error_0A0">Данные об аварии - сохранены данные удара</string>
+    <string name="srs2_error_0B0">Данные об аварии - сохранены данные удара</string>
+    <string name="srs2_error_0C0">Данные об аварии - сохранены данные удара</string>
+    <string name="srs2_error_0C1">Данные об аварии - сохранены данные удара</string>
+    <string name="srs2_error_0D0">Данные об аварии - сохранены данные удара</string>
+    <string name="srs2_error_0E0">Данные об аварии - сохранены данные удара</string>
+
+    <string name="srs2_error_210">Правый датчик бокового удара - нет сигнала</string>
+    <string name="srs2_error_211">Левый датчик бокового удара - нет сигнала</string>
+    <string name="srs2_error_220">ЭБУ подушек безопасности - ошибка</string>
+    <string name="srs2_error_221">ЭБУ подушек безопасности - ошибка</string>
+    <string name="srs2_error_225">ЭБУ подушек безопасности - ошибка</string>
+    <string name="srs2_error_226">ЭБУ подушек безопасности - ошибка</string>
+
+    <string name="srs2_error_301">Цепь пиропатрона подушки пассажира - замыкание на массу</string>
+    <string name="srs2_error_401">Цепь пиропатрона подушки пассажира - замыкание на +12В</string>
+    <string name="srs2_error_403">Цепь пиропатрона подушки водителя - замыкание на +12В</string>
+    <string name="srs2_error_405">Передний преднатяжитель - замыкание на +12В</string>
+    <string name="srs2_error_406">Задний центральный преднатяжитель - замыкание на +12В</string>
+    <string name="srs2_error_407">Цепь пиропатрона левой головной подушки (ITS) - замыкание на +12В</string>
+    <string name="srs2_error_408">Цепь пиропатрона правой головной подушки (ITS) - замыкание на +12В</string>
+    <string name="srs2_error_409">Цепь пиропатрона левой передней подушки - замыкание на +12В</string>
+    <string name="srs2_error_40A">Цепь пиропатрона правой передней подушки - замыкание на +12В</string>
+    <string name="srs2_error_603">Цепь пиропатрона подушки пассажира - замыкание на массу</string>
+    <string name="srs2_error_605">Цепь пиропатрона переднего преднатяжителя - замыкание на массу</string>
+    <string name="srs2_error_606">Задний центральный преднатяжитель - замыкание на массу</string>
+    <string name="srs2_error_607">Цепь пиропатрона левой головной подушки (ITS) - замыкание на массу</string>
+    <string name="srs2_error_608">Цепь пиропатрона правой головной подушки (ITS) - замыкание на массу</string>
+    <string name="srs2_error_609">Цепь пиропатрона левой передней подушки - замыкание на массу</string>
+    <string name="srs2_error_60A">Цепь пиропатрона правой передней подушки - замыкание на массу</string>
+
+    <string name="srs2_error_801">Цепь пиропатрона подушки пассажира - сопротивление слишком велико</string>
+    <string name="srs2_error_802">Цепь пиропатрона заднего левого преднатяжителя - сопротивление слишком велико</string>
+    <string name="srs2_error_803">Цепь пиропатрона подушки водителя - сопротивление слишком велико</string>
+    <string name="srs2_error_804">Цепь пиропатрона заднего правого преднатяжителя - сопротивление слишком велико</string>
+    <string name="srs2_error_805">Цепь пиропатрона переднего преднатяжителя - сопротивление слишком велико</string>
+    <string name="srs2_error_806">Задний центральный преднатяжитель - сопротивление слишком велико</string>
+    <string name="srs2_error_807">Левая головная подушка (ITS) - сопротивление слишком велико</string>
+    <string name="srs2_error_808">Правая головная подушка (ITS) - сопротивление слишком велико</string>
+    <string name="srs2_error_809">Цепь пиропатрона левой передней подушки - сопротивление слишком велико</string>
+    <string name="srs2_error_80A">Цепь пиропатрона правой передней подушки - сопротивление слишком велико</string>
+
+    <string name="srs2_error_863">Управление лампой Airbag - обрыв/замыкание на массу</string>
+
+    <string name="srs2_coding_airbag_driver">Подушка безопасности водителя</string>
+    <string name="srs2_coding_its_left">Головная подушка (ITS) - левая сторона</string>
+    <string name="srs2_coding_its_right">Головная подушка (ITS) - правая сторона</string>
+    <string name="srs2_coding_airbag_passenger">Подушка безопасности пассажира</string>
+    <string name="srs2_coding_seat_left_airbag">Подушка в левом сиденье</string>
+    <string name="srs2_coding_seat_right_airbag">Подушка в правом сиденье</string>
+    <string name="srs2_coding_bp_driver">Преднатяжитель ремня - водитель</string>
+    <string name="srs2_coding_bp_passenger">Преднатяжитель ремня - пассажир</string>
+    <string name="srs2_coding_bp_rear_left">Преднатяжитель ремня - задний левый</string>
+    <string name="srs2_coding_bp_rear_right">Преднатяжитель ремня - задний правый</string>
+    <string name="srs2_coding_bp_rear_middle">Преднатяжитель ремня - задний центр</string>
+    <string name="srs2_coding_ubat_disconnect">Отключение АКБ (пиропатрон)</string>
+    <string name="srs2_coding_belt_buckle_driver">Датчик замка ремня - водитель</string>
+    <string name="srs2_coding_belt_buckle_passenger">Датчик замка ремня - пассажир</string>
+    <string name="srs2_coding_ods">Датчик присутствия пассажира (ODS)</string>
+    <string name="srs2_coding_mrsa_front">MRSA - спереди</string>
+    <string name="srs2_coding_indication_lapm">Индикаторная лампа</string>
+    <string name="srs2_coding_trigger_switch">Триггерный переключатель</string>
+
+</resources>

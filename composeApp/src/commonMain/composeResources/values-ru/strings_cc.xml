@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_cc">Круиз-контроль (V6)</string>
+    <string name="cc_error_01">Выходное напряжение: Низкое, ожидалось высокое</string>
+    <string name="cc_error_02">Выход клапана: Низкий уровень, ожидался высокий</string>
+    <string name="cc_error_04">Выход насоса: Низкий уровень, ожидался высокий</string>
+    <string name="cc_error_08">Блок управления: Внутренняя ошибка</string>
+    <string name="cc_error_10">Выходное напряжение: Высокое, ожидалось низкое</string>
+    <string name="cc_error_20">Выход клапана: Высокий уровень, ожидался низкий</string>
+    <string name="cc_error_40">Выход насоса: Высокий уровень, ожидался низкий</string>
+    <string name="cc_error_80">Вход скорости: ошибка ввода</string>
+    <string name="cc_error_09">Ошибка памяти: ошибка чтения</string>
+    
+    <string name="cc_error_detail_01">Действия с момента последнего сбоя напряжения</string>
+    <string name="cc_error_detail_02">Действия с момента последней ошибки клапана</string>
+    <string name="cc_error_detail_03">Действия с момента последнего сбоя насоса</string>
+    <string name="cc_error_detail_04">Действия с момента последнего ввода скорости</string>
+    <string name="cc_error_detail_05">Начальное значение после СБРОСА</string>
+    <string name="cc_error_detail_07">Целевая скорость > Vmax</string>
+    <string name="cc_error_detail_08">Нет спецификации</string>
+    <string name="cc_error_detail_0A">Низкий уровень на выходе реле</string>
+    <string name="cc_error_detail_0B">Низкий уровень управления клапаном во время работы</string>
+    <string name="cc_error_detail_0C">Низкий уровень управления насосом во время работы</string>
+    <string name="cc_error_detail_0D">Фактическая скорость выше Vmax</string>
+    <string name="cc_error_detail_0E">Фактическая скорость ниже Vmin</string>
+    <string name="cc_error_detail_0F">Превышен предел ускорения</string>
+    <string name="cc_error_detail_10">Низкий уровень управления насосом при включении</string>
+    <string name="cc_error_detail_11">Низкий уровень управления клапаном при включении</string>
+    <string name="cc_error_detail_12">Низкий уровень на выходе реле при подаче питания</string>
+    <string name="cc_error_detail_13">Высокий уровень на выходе реле в простое</string>
+    <string name="cc_error_detail_14">Выключатель тормоза или сцепления разомкнут</string>
+    <string name="cc_error_detail_15">Стоп-сигнал включен</string>
+    <string name="cc_error_detail_16">Ошибка в дублирующей аппаратуре Vmin</string>
+    <string name="cc_error_detail_17">Замыкание реле на массу</string>
+    <string name="cc_error_detail_18">Слишком большая разница между целевой и факт. скоростью</string>
+    <string name="cc_error_detail_19">Различные целевые скорости</string>
+    <string name="cc_error_detail_1A">Высокий уровень на выходе реле при выключении</string>
+    <string name="cc_error_detail_1C">Ошибка в дублирующем управлении клапаном</string>
+    <string name="cc_error_detail_1D">Ошибка в дублирующем управлении насосом</string>
+    <string name="cc_error_detail_1F">Активация выключателя OFF (Выкл)</string>
+    <string name="cc_error_permanent">Постоянная неисправность</string>
+    <string name="cc_error_sporadic">Спорадическая ошибка</string>
+
+    <string name="cc_live_data_test_completed">Тест завершен</string>
+    <string name="cc_live_data_cc_active">Круиз-контроль активен</string>
+    <string name="cc_live_data_actual_speed">Фактическая скорость</string>
+    <string name="cc_live_data_set_speed">Заданная скорость</string>
+    <string name="cc_live_data_speed_greater_than_minimum">Скорость выше минимума</string>
+    <string name="cc_live_data_speed_detection">Период определения скорости > 1.5с</string>
+    <string name="cc_live_data_cruise_off">Активация выключения круиз-контроля</string>
+    <string name="cc_live_data_cruise_on">Активация включения круиз-контроля</string>
+    <string name="cc_live_data_break">Тормоз активирован</string>
+    <string name="cc_live_data_clutch">Сцепление активировано</string>
+
+</resources>

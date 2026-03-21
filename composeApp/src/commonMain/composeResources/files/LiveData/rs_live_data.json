@@ -1,0 +1,40 @@
+{
+  "livedata": [
+    {
+      "name": "park_position",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "reinforcement",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x9F",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "db"
+    },
+    {
+      "name": "time_point_1",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "db"
+    },
+    {
+      "name": "time_point_2",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "db"
+    }
+  ]
+}

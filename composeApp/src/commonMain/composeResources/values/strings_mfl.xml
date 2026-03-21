@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_mfl">Multi function steering wheel</string>
+    <string name="mfl_error_01">Signal wire to MFL interrupted</string>
+    <string name="mfl_error_02">Right buttons ACC and DEC switched on at the same time</string>
+    <string name="mfl_error_03">Left buttons radio up and down switched on at the same time</string>
+    <string name="mfl_error_07">Power supply steering wheel, short to ground</string>
+    <string name="mfl_error_0A">Error writing EEPROM</string>
+    <string name="mfl_error_active">Error active</string>
+    <string name="mfl_error_not_active">Error not active</string>
+    <string name="mfl_live_data_radio_control_present">Radio control present</string>
+    <string name="mfl_live_data_telephone_control_present">Telephone control present</string>
+    <string name="mfl_live_data_air_circulating_control_present">Air circulating control present</string>
+    <string name="mfl_live_data_cruise_control_present">Cruise control present</string>
+    <string name="mfl_live_data_button_resume_pressed">Resume pressed</string>
+    <string name="mfl_live_data_button_set_plus_pressed">SET+ pressed</string>
+    <string name="mfl_live_data_button_set_minus_pressed">SET- pressed</string>
+    <string name="mfl_live_data_button_cruise_control_off_pressed">OFF pressed</string>
+    <string name="mfl_live_data_button_air_recirculation_pressed">Air recirculation pressed</string>
+    <string name="mfl_live_data_button_telephone_pressed">Telephone pressed</string>
+    <string name="mfl_live_data_button_radio_telephone_pressed">Radio/Telephone pressed</string>
+    <string name="mfl_live_data_button_seek_down_pressed">SEEK- pressed</string>
+    <string name="mfl_live_data_button_seek_up_pressed">SEEK+ pressed</string>
+    <string name="mfl_live_data_button_vol_up_pressed">VOL+ pressed</string>
+    <string name="mfl_live_data_button_vol_down_pressed">VOL- pressed</string>
+    <string name="mfl_live_data_operating_voltage">Operating voltage</string>
+    <string name="mfl_live_data_operating_voltage_at_the_switch">Operating voltage at the switch</string>
+</resources>

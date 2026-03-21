@@ -1,0 +1,94 @@
+{
+  "livedata": [
+    {
+      "name": "power_supply_pollution_sensor",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0xFF",
+      "factor_a": "0.0392156862745098",
+      "factor_b": "0.7799807",
+      "unit": "V"
+    },
+    {
+      "name": "power_supply",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0xFF",
+      "factor_a": "0.0967118",
+      "factor_b": "0.7799807",
+      "unit": "V"
+    },
+    {
+      "name": "pollution_sensor_heating_voltage",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0xFF",
+      "factor_a": "0.0392156862745098",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "pwm_fan_control_voltage",
+      "block": "0x01",
+      "byte": "0x03",
+      "mask": "0xFF",
+      "factor_a": "0.0333333333333333",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "outdoor_temperature_sensor",
+      "block": "0x01",
+      "byte": "0x04",
+      "mask": "0xFF",
+      "factor_a": "0.1666666666",
+      "factor_b": "10",
+      "unit": "°C"
+    },
+    {
+      "name": "evaporator_temperature_sensor",
+      "block": "0x01",
+      "byte": "0x05",
+      "mask": "0xFF",
+      "factor_a": "0.2",
+      "factor_b": "-10",
+      "unit": "°C"
+    },
+    {
+      "name": "pollution_sensor_signal",
+      "block": "0x01",
+      "byte": "0x06",
+      "mask": "0xFF",
+      "factor_a": "0.01960784",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "heat_exchanger_sensor",
+      "block": "0x01",
+      "byte": "0x07",
+      "mask": "0xFF",
+      "factor_a": "0.5",
+      "factor_b": "5",
+      "unit": "°C"
+    },
+    {
+      "name": "solar_sensor",
+      "block": "0x01",
+      "byte": "0x0A",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "W/m²"
+    },
+    {
+      "name": "pressure_sensor",
+      "block": "0x0a",
+      "byte": "0x0B",
+      "mask": "0xFF",
+      "factor_a": "0.163666",
+      "factor_b": "-4.273322",
+      "unit": "V"
+    }
+  ]
+}

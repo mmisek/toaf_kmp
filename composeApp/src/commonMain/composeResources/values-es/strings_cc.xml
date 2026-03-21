@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_cc">Control de crucero (V6)</string>
+    <!-- Cruise Control V6 -->
+    <string name="cc_error_01" >Voltage output level : Low, high excepted</string>
+    <string name="cc_error_02" >Valve output level : Low, high excepted</string>
+    <string name="cc_error_04" >Pump output level: Low, high expected</string>
+    <string name="cc_error_08" >Control unit : Internal error</string>
+    <string name="cc_error_10" >Voltage output level : High, low excepted</string>
+    <string name="cc_error_20" >Valve output level : High, low excepted</string>
+    <string name="cc_error_40" >Pump output level: High, low expected</string>
+    <string name="cc_error_80" >Speed input : input error</string>
+    <string name="cc_error_09" >Memory error : read error</string>
+    <string name="cc_error_detail_01" >Actions since last voltage failure</string>
+    <string name="cc_error_detail_02" >Actions since the last valve error</string>
+    <string name="cc_error_detail_03" >Actions since last pump failure</string>
+    <string name="cc_error_detail_04" >Actions since last speed input</string>
+    <string name="cc_error_detail_05" >Initial value after RESET</string>
+    <string name="cc_error_detail_07">Velocidad objetivo > Vmax</string>
+    <string name="cc_error_detail_08">Sin especificación</string>
+    <string name="cc_error_detail_0A" >Relay output low</string>
+    <string name="cc_error_detail_0B" >Valve control low during use</string>
+    <string name="cc_error_detail_0C" >Pump control low during use</string>
+    <string name="cc_error_detail_0D" >Actual speed over Vmax</string>
+    <string name="cc_error_detail_0E" >Actual speed below Vmin </string>
+    <string name="cc_error_detail_0F" >Acceleration limit exceeded</string>
+    <string name="cc_error_detail_10" >Pump control low when switched on</string>
+    <string name="cc_error_detail_11" >Valve control low when switching on</string>
+    <string name="cc_error_detail_12" >Relay output low at power on</string>
+    <string name="cc_error_detail_13" >Relay output high when not in use</string>
+    <string name="cc_error_detail_14" >Brake or clutch switch open</string>
+    <string name="cc_error_detail_15">Luz de freno encendida</string>
+    <string name="cc_error_detail_16" >Error in redundant V min hardware</string>
+    <string name="cc_error_detail_17" >Short to ground relay</string>
+    <string name="cc_error_detail_18" >Difference between target and actual speed is too great</string>
+    <string name="cc_error_detail_19" >Different target speeds</string>
+    <string name="cc_error_detail_1A" >Relay output high when switching off</string>
+    <string name="cc_error_detail_1C" >Error in redundant valve control</string>
+    <string name="cc_error_detail_1D" >Error in redundant pump control</string>
+    <string name="cc_error_detail_1F" >Activation of the OFF switch</string>
+    <string name="cc_error_permanent">Fallo permanente</string>
+    <string name="cc_error_sporadic">Error esporádico</string>
+
+    <!-- Cruise Control - live data -->
+    <string name="cc_live_data_test_completed">Prueba completada</string>
+    <string name="cc_live_data_cc_active">Control de crucero activo</string>
+    <string name="cc_live_data_actual_speed">Velocidad actual</string>
+    <string name="cc_live_data_set_speed">Velocidad establecida</string>
+    <string name="cc_live_data_speed_greater_than_minimum">Velocidad mayor que el mínimo</string>
+    <string name="cc_live_data_speed_detection">Período de detección de velocidad > 1.5s</string>
+    <string name="cc_live_data_cruise_off">Activación del control de crucero apagado</string>
+    <string name="cc_live_data_cruise_on">Activación del control de crucero encendido</string>
+    <string name="cc_live_data_break">Freno activado</string>
+    <string name="cc_live_data_clutch">Embrague activado</string>
+</resources>

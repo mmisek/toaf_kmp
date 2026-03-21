@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_hevac">Sterownik klimatyzacji</string>
+
+    <string name="hevac_error_00">Silnik klap wentylacji</string>
+    <string name="hevac_error_01">Silnik klap odmrażania</string>
+    <string name="hevac_error_02">Silnik klap nadmuchu dolnego</string>
+    <string name="hevac_error_03">Klapy świeżego powietrza/cyrkulacji - strona lewa</string>
+    <string name="hevac_error_04">Klapy świeżego powietrza/cyrkulacji - strona prawa</string>
+    <string name="hevac_error_05">Zła jednostka HEVAC</string>
+    <string name="hevac_error_06">Zasilanie czujnika ciśnienia, zapachu</string>
+    <string name="hevac_error_0B">Czujnik parownika</string>
+    <string name="hevac_error_0D">Czujnik wymiennika ciepła</string>
+    <string name="hevac_error_12">Czujnik temperatury wewnętrzenj</string>
+    <string name="hevac_error_17">Przekażniek ogrzewania tylnej szyby</string>
+    <string name="hevac_error_18">Przekażniek ogrzewania dodatkowego</string>
+    <string name="hevac_error_19">Dodatkowa pompa wody</string>
+    <string name="hevac_error_1A">Zawór wody</string>
+    <string name="hevac_error_1B">Napięcie sterowania dmuchawy</string>
+    <string name="hevac_error_1C">Czujnik dmuchawy</string>
+    <string name="hevac_error_1D">Komunikacja z dodatkowym ogrzewaniem</string>
+    <string name="hevac_error_1E">Czujnik zapachu</string>
+    <string name="hevac_error_1F">Czujnik ciśnienia</string>
+    <string name="hevac_error_20">Czujnik zapachu - podgrzewanie</string>
+    <string name="hevac_error_21">Czujnik nasłonecznienia</string>
+    <string name="hevac_error_FF">Tryb oszczędzania energii aktywny</string>
+
+    <string name="hevac_error_detail_01">Zwarcie do zasilania</string>
+    <string name="hevac_error_detail_02">Zwarcie do masy</string>
+    <string name="hevac_error_detail_04">Przerwa w obwodzie</string>
+    <string name="hevac_error_detail_08">Wartość niewiarygodna, błędny zakres pracy</string>
+    <string name="hevac_error_detail_40">Błąd obecny</string>
+    <string name="hevac_error_detail_80">Błąd sporadyczny</string>
+
+    <string name="hevac_live_data_power_supply_pollution_sensor">Czujnik zapachu - zasilanie</string>
+    <string name="hevac_live_data_power_supply">HEVAC - zasilanie</string>
+    <string name="hevac_live_data_pollution_sensor_heating_voltage">Czujnik zapachu - napięcie grzania</string>
+    <string name="hevac_live_data_pwm_fan_control_voltage">Napięcie sterowania PWM wentylatora</string>
+    <string name="hevac_live_data_outdoor_temperature_sensor">Czujnik temperatury zewnętrznej</string>
+    <string name="hevac_live_data_evaporator_temperature_sensor">Czujni temperatury parownika</string>
+    <string name="hevac_live_data_pollution_sensor_signal">Czujnik zapachu - sygnał</string>
+    <string name="hevac_live_data_heat_exchanger_sensor">Czujnik wymiennika ciepła</string>
+    <string name="hevac_live_data_solar_sensor">Czujnik nasłonecznienia</string>
+    <string name="hevac_live_data_pressure_sensor">Czujnik ciśnienia</string>
+</resources>

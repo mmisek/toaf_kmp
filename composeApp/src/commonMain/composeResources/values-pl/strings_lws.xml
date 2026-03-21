@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_lws">Czujnik kąta skrętu</string>
+    <string name="lws_error_01">Błąd zasilania</string>
+    <string name="lws_error_02">Czujnik poza zakresem</string>
+    <string name="lws_error_03">Różnica kątów zyt duża, 90 stopni, normalna praca</string>
+    <string name="lws_error_04">Różnica kątów zyt duża, 90 stopni, adiustacja</string>
+    <string name="lws_error_05">Błąd EEPROM</string>
+    <string name="lws_error_06">Błąd przetwornika ADC</string>
+    <string name="lws_error_07">Błąd testu pamięci ROM</string>
+    <string name="lws_error_08">Błąd testu pamięcu RAM</string>
+    <string name="lws_error_09">Not an ASC2-message</string>
+    <string name="lws_error_0A">Błędna wersja CAN</string>
+    <string name="lws_error_0B">Błędny LWS-ID</string>
+    <string name="lws_error_0C">Szyna CAN wyłączona</string>
+    <string name="lws_error_0D">Gradient LWR zbyt duży</string>
+    <string name="lws_error_0E">Wartość maksymalna osiągnięta</string>
+    <string name="lws_error_0F">Błąd stosu / Błąd wielkości</string>
+    <string name="lws_error_10">Watchdog</string>
+
+    <string name="lws_live_data_wheel_speed_left_front">Prędkość koła - lewy przód</string>
+    <string name="lws_live_data_wheel_speed_right_front">Prędkośc koła - prawy przód</string>
+    <string name="lws_live_data_wheel_speed_left_rear">Prędkość koła - lewy tył</string>
+    <string name="lws_live_data_wheel_speed_right_rear">Prędkość koła - prawy tył</string>
+    <string name="lws_live_data_vehicle_speed">Prędkość pojazdu</string>
+    <string name="lws_live_data_steering_angle_speed">Prędkość zmiany kąta obrotu</string>
+    <string name="lws_live_data_steering_angle">Kąt obrotu kierownicy</string>
+    <string name="lws_live_data_program_cycle_time">Czas cyklu programu</string>
+    <string name="lws_live_data_lateral_acceleration">Przyspieszenie boczne</string>
+    <string name="lws_live_data_synthetic_steering_wheel_angles">Kąty kierownicy syntetyczne</string>
+    <string name="lws_live_data_yaw_rate">Wskaźnik odchylenia</string>
+</resources>

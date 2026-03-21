@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_dsc">Тормозная система (DSC)</string>
+
+    <string name="dsc_error_02">CAN: управление мощностью двигателя</string>
+    <string name="dsc_error_04">Датчик скорости колеса задний левый: достоверность</string>
+    <string name="dsc_error_05">Датчик скорости колеса задний правый: достоверность</string>
+    <string name="dsc_error_06">Датчик скорости колеса передний правый: достоверность</string>
+    <string name="dsc_error_07">Датчик скорости колеса передний левый: достоверность</string>
+    <string name="dsc_error_0E">Ошибка реле клапанов</string>
+    <string name="dsc_error_0F">Ошибка рециркуляционного насоса</string>
+    <string name="dsc_error_15">Ошибка блока управления</string>
+    <string name="dsc_error_17">Ошибка кодирования</string>
+    <string name="dsc_error_18">Неверное импульсное кольцо</string>
+    <string name="dsc_error_19">Выключатель стоп-сигнала: обрыв цепи</string>
+    <string name="dsc_error_1E">Датчик скорости колеса задний левый: обрыв цепи</string>
+    <string name="dsc_error_1F">Датчик скорости колеса задний правый: обрыв цепи</string>
+    <string name="dsc_error_20">Датчик скорости колеса передний правый: обрыв цепи</string>
+    <string name="dsc_error_21">Датчик скорости колеса передний левый: обрыв цепи</string>
+    <string name="dsc_error_22">Отсечной клапан ASC передней оси</string>
+    <string name="dsc_error_29">Достоверность угла поворота руля</string>
+    <string name="dsc_error_2F">Выпускной клапан задний левый</string>
+    <string name="dsc_error_30">Выпускной клапан задний правый</string>
+    <string name="dsc_error_31">Выпускной клапан передний правый</string>
+    <string name="dsc_error_32">Выпускной клапан передний левый</string>
+    <string name="dsc_error_33">Впускной клапан задний левый</string>
+    <string name="dsc_error_34">Впускной клапан задний правый</string>
+    <string name="dsc_error_35">Впускной клапан передний правый</string>
+    <string name="dsc_error_36">Впускной клапан передний левый</string>
+    <string name="dsc_error_37">Клапан подкачки передней оси</string>
+    <string name="dsc_error_38">Ошибка CAN</string>
+    <string name="dsc_error_3A">Сообщение об ошибке CAN от ЭБУ КПП</string>
+    <string name="dsc_error_3B">Сообщение об ошибке CAN от DMER1</string>
+    <string name="dsc_error_3F">Сравнение скоростей</string>
+    <string name="dsc_error_40">Непрерывная активность контроллера</string>
+    <string name="dsc_error_42">Ошибка питания активного датчика скорости колеса</string>
+    <string name="dsc_error_44">DSC пассивна после включения зажигания из-за помех</string>
+    <string name="dsc_error_45">Сообщение об ошибке CAN от DMER2</string>
+    <string name="dsc_error_51">Датчик давления: обрыв цепи</string>
+    <string name="dsc_error_52">Датчик скорости рыскания: обрыв цепи</string>
+    <string name="dsc_error_53">Датчик поперечного ускорения: обрыв цепи</string>
+    <string name="dsc_error_54">Датчик скорости рыскания: достоверность</string>
+    <string name="dsc_error_56">Отсечной клапан ASC задней оси</string>
+    <string name="dsc_error_57">Клапан подкачки задней оси</string>
+    <string name="dsc_error_58">Насос подкачки</string>
+    <string name="dsc_error_59">Низкое напряжение</string>
+    <string name="dsc_error_5A">Временное отключение системы</string>
+    <string name="dsc_error_5B">Сообщение об ошибке угла поворота руля</string>
+    <string name="dsc_error_5C">Датчик давления (достоверность насоса подкачки)</string>
+    <string name="dsc_error_5E">Датчик скорости рыскания</string>
+    <string name="dsc_error_5F">Помехи</string>
+    <string name="dsc_error_60">Активация (Actuation)</string>
+    <string name="dsc_error_61">Требуется калибровка угла поворота руля</string>
+    <string name="dsc_error_62">Аварийное торможение без давления</string>
+    <string name="dsc_error_63">Непрерывная активность контроллера</string>
+    <string name="dsc_error_64">Датчик поперечного ускорения</string>
+    <string name="dsc_error_67">Инициализация датчика угла поворота руля</string>
+    <string name="dsc_error_68">Ошибка ЭБУ угла поворота руля</string>
+    <string name="dsc_error_69">Выключатель стоп-сигнала: достоверность</string>
+    <string name="dsc_error_6A">Датчик поперечного ускорения: достоверность</string>
+    <string name="dsc_error_6B">Датчик скорости рыскания</string>
+    <string name="dsc_error_6C">Контроль серийного номера (SN)</string>
+    <string name="dsc_error_6D">Тест схода с конвейера (End of line)</string>
+    <string name="dsc_error_6E">Высокое напряжение</string>
+    <string name="dsc_error_6F">Подтвердить ASC</string>
+    <string name="dsc_error_72">Датчик давления (смещение)</string>
+    <string name="dsc_error_73">Датчик давления: помехи</string>
+    <string name="dsc_error_74">Ошибка выключателя тормоза</string>
+    <string name="dsc_error_75">Постоянный сигнал выключателя стоп-сигнала</string>
+    <string name="dsc_error_76">Статус DME: внутренняя ошибка</string>
+    <string name="dsc_error_77">HDC (помощь при спуске) недоступна</string>
+    <string name="dsc_error_78">Датчик рыскания: сомнительное/некорректное положение</string>
+    <string name="dsc_error_79">Датчик рыскания: некорректное положение</string>
+    <string name="dsc_error_80">Перегрев тормозов</string>
+    <string name="dsc_error_7A">Сообщение об ошибке CAN от ACC (адаптивный круиз)</string>
+    <string name="dsc_error_7B">ACC: достоверность запроса замедления</string>
+    <string name="dsc_error_7C">ACC больше не активен</string>
+    <string name="dsc_error_7D">Статус ACC не затронут при пассивной DSC</string>
+    <string name="dsc_error_7E">ACC: Ошибка выходного сигнала на стоп-сигналы</string>
+    <string name="dsc_error_8A">Сообщение об ошибке CAN от пневмоподвески EHC</string>
+    <string name="dsc_error_8B">Сообщение об ошибке CAN от раздаточной коробки TXU</string>
+
+    <string name="dsc_error_detail_00">ASC пассивна</string>
+    <string name="dsc_error_detail_01">ASC не пассивна</string>
+    <string name="dsc_error_detail_02">Управление ABS активно</string>
+    <string name="dsc_error_detail_03">Управление ABS пассивно</string>
+    <string name="dsc_error_detail_04">Выключатель стоп-сигнала вкл</string>
+    <string name="dsc_error_detail_05">Выключатель стоп-сигнала выкл</string>
+    <string name="dsc_error_detail_06">Управление ASC активно</string>
+    <string name="dsc_error_detail_07">Управление ASC пассивно</string>
+    <string name="dsc_error_detail_08">ACB активно</string>
+    <string name="dsc_error_detail_09">ACB пассивно</string>
+    <string name="dsc_error_detail_0A">HBA (помощь при экстренном торможении) активна</string>
+    <string name="dsc_error_detail_0B">HBA пассивна</string>
+    <string name="dsc_error_detail_0C">ECD активно</string>
+    <string name="dsc_error_detail_0D">ECD пассивно</string>
+    <string name="dsc_error_detail_0E">HDC (помощь при спуске) активна</string>
+    <string name="dsc_error_detail_0F">HDC пассивна</string>
+
+    <string name="dsc_live_data_front_left_wheel_speed">Скорость колеса - переднее левое</string>
+    <string name="dsc_live_data_front_right_wheel_speed">Скорость колеса - переднее правое</string>
+    <string name="dsc_live_data_rear_left_wheel_speed">Скорость колеса - заднее левое</string>
+    <string name="dsc_live_data_rear_right_wheel_speed">Скорость колеса - заднее правое</string>
+    <string name="dsc_live_data_steering_wheel_angle">Угол поворота руля</string>
+    <string name="dsc_live_data_steering_wheel_angle_speed">Скорость вращения руля</string>
+    <string name="dsc_live_data_pressure">Давление</string>
+    <string name="dsc_live_data_lateral_acceleration">Поперечное ускорение</string>
+    <string name="dsc_live_data_hand_brake_switch">Выключатель ручного тормоза</string>
+    <string name="dsc_live_data_hill_descent_active">Помощь при спуске (HDC)</string>
+    <string name="dsc_live_data_brake_switch">Выключатель тормоза</string>
+    <string name="dsc_live_data_valve_relay">Реле клапанов</string>
+    <string name="dsc_live_data_brake_light_switch">Выключатель стоп-сигнала</string>
+    <string name="dsc_live_data_passive_button">Кнопка DSC (пассивный режим)</string>
+    <string name="dsc_live_data_engine_speed">Обороты двигателя</string>
+    <string name="dsc_live_data_filling_target">Наполнение - цель</string>
+    <string name="dsc_live_data_filling_driver_wish">Наполнение - запрос водителя</string>
+
+    <string name="dsc_coding_coded_flag">Флаг кодирования</string>
+    <string name="dsc_coding_engine_type">Тип двигателя</string>
+    <string name="dsc_coding_dynamic_brakes">Динамические тормоза (DBC)</string>
+    <string name="dsc_coding_hill_descent">Помощь при спуске (HDC)</string>
+
+    <string name="activity_control_dsc_tittle">Расширенное управление</string>
+    <string name="activity_control_dsc_brake_bleeding">Прокачка тормозов</string>
+    <string name="activity_control_dsc_on_time">Время вкл. [с]</string>
+    <string name="activity_control_dsc_off_time">Время выкл. [с]</string>
+    <string name="activity_control_dsc_cycles">Циклы</string>
+    <string name="activity_control_dsc_start">Старт</string>
+    <string name="activity_control_dsc_wheel_select">Колесо</string>
+
+    <string-array name="activity_control_dsc_wheel_list">
+        <item>Переднее левое</item>
+        <item>Переднее правое</item>
+        <item>Заднее правое</item>
+        <item>Заднее левое</item>
+    </string-array>
+</resources>

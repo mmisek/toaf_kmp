@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_ews">Immobiliser</string>
+    <string name="ews_error_00">key number 0 not valid because of wrong identification</string>
+    <string name="ews_error_10">key number 1 not valid because of wrong identification</string>
+    <string name="ews_error_20">key number 2 not valid because of wrong identification</string>
+    <string name="ews_error_30">key number 3 not valid because of wrong identification</string>
+    <string name="ews_error_40">key number 4 not valid because of wrong identification</string>
+    <string name="ews_error_50">key number 5 not valid because of wrong identification</string>
+    <string name="ews_error_60">key number 6 not valid because of wrong identification</string>
+    <string name="ews_error_70">key number 7 not valid because of wrong identification</string>
+    <string name="ews_error_80">key number 8 not valid because of wrong identification</string>
+    <string name="ews_error_90">key number 9 not valid because of wrong identification</string>
+    <string name="ews_error_01">key number 0 not valid because of wrong password</string>
+    <string name="ews_error_11">key number 1 not valid because of wrong password</string>
+    <string name="ews_error_21">key number 2 not valid because of wrong password</string>
+    <string name="ews_error_31">key number 3 not valid because of wrong password</string>
+    <string name="ews_error_41">key number 4 not valid because of wrong password</string>
+    <string name="ews_error_51">key number 5 not valid because of wrong password</string>
+    <string name="ews_error_61">key number 6 not valid because of wrong password</string>
+    <string name="ews_error_71">key number 7 not valid because of wrong password</string>
+    <string name="ews_error_81">key number 8 not valid because of wrong password</string>
+    <string name="ews_error_91">key number 9 not valid because of wrong password</string>
+    <string name="ews_error_02">key number 0 not valid because of wrong changing code</string>
+    <string name="ews_error_12">key number 1 not valid because of wrong changing code</string>
+    <string name="ews_error_22">key number 2 not valid because of wrong changing code</string>
+    <string name="ews_error_32">key number 3 not valid because of wrong changing code</string>
+    <string name="ews_error_42">key number 4 not valid because of wrong changing code</string>
+    <string name="ews_error_52">key number 5 not valid because of wrong changing code</string>
+    <string name="ews_error_62">key number 6 not valid because of wrong changing code</string>
+    <string name="ews_error_72">key number 7 not valid because of wrong changing code</string>
+    <string name="ews_error_82">key number 8 not valid because of wrong changing code</string>
+    <string name="ews_error_92">key number 9 not valid because of wrong changing code</string>
+    <string name="ews_error_03">toleration of changing code increased with key # 0</string>
+    <string name="ews_error_13">toleration of changing code increased with key # 1</string>
+    <string name="ews_error_23">toleration of changing code increased with key # 2</string>
+    <string name="ews_error_33">toleration of changing code increased with key # 3</string>
+    <string name="ews_error_43">toleration of changing code increased with key # 4</string>
+    <string name="ews_error_53">toleration of changing code increased with key # 5</string>
+    <string name="ews_error_63">toleration of changing code increased with key # 6</string>
+    <string name="ews_error_73">toleration of changing code increased with key # 7</string>
+    <string name="ews_error_83">toleration of changing code increased with key # 8</string>
+    <string name="ews_error_93">toleration of changing code increased with key # 9</string>
+    <string name="ews_error_FF">general reset</string>
+    <string name="ews_error_0F">power on reset</string>
+    <string name="ews_error_1F">clock-monitor-reset</string>
+    <string name="ews_error_2F">watchdog-reset</string>
+    <string name="ews_error_3F">illegal-opcode-trap</string>
+    <string name="ews_error_7F">software-interrupt</string>
+    <string name="ews_error_0E">DME-changing code XOR-error</string>
+    <string name="ews_error_1E">DME-changing code lost</string>
+    <string name="ews_error_static">Static error</string>
+    <string name="ews_error_sporadic">Sporadic error</string>
+    <!-- Coding -->
+    <string name="ews_coding_park_neutral_engage">Park/Neutral gear</string>
+    <string name="ews_coding_dme_interface">EWS type</string>
+    <string name="ews_coding_no_release_without_query">No release without query</string>
+    <string name="ews_coding_starter_cut_off_speed">Starter - cut off speed</string>
+    <string name="ews_coding_starter_cut_off_time">Starter - cut off time</string>
+    <string name="ews_coding_immobilizer_activation">Immobilizer activation</string>
+    <string name="ews_coding_interface_stepping_crit">Interface stepping criteria</string>
+
+</resources>

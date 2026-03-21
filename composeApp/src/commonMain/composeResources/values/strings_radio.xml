@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- video -->
+    <string name="module_description_radio">Radio module</string>
+    <string name="radio_module_info_name">Name</string>
+    <string name="radio_error_00">Energy saving mode active</string>
+    <string name="radio_error_01">Error CD-changer interface</string>
+    <string name="radio_error_02">Error power-supply for antenna</string>
+    <string name="radio_error_03">Internal CD-drive: high temperature</string>
+    <string name="radio_error_04">Internal CD-drive: hardware problem</string>
+    <string name="radio_error_05">Internal CD-drive: read-error</string>
+
+    <string name="radio_error_present">Present</string>
+    <string name="radio_error_not_present">Not present</string>
+
+    <string name = "radio_control_default_volume">Volume - default</string>
+    <string name = "radio_control_speaker_left_front">Speaker - left front</string>
+    <string name = "radio_control_speaker_right_front">Speaker - right front</string>
+    <string name = "radio_control_speaker_right_rear">Speaker - right rear</string>
+    <string name = "radio_control_speaker_left_rear">Speaker - left rear</string>
+    <string name = "radio_control_volume_up">Volume - up</string>
+    <string name = "radio_control_volume_down">Volume - down</string>
+    <string name = "radio_control_seek_up">Seek - up</string>
+    <string name = "radio_control_seek_down">Seek - down</string>
+    <string name = "radio_control_gal_inc">Gal - increase</string>
+    <string name = "radio_control_gal_dec">Gal - decrease</string>
+    <string name = "radio_control_switch_seek">Seek - switch</string>
+    <string name = "radio_control_vf_dec">VF - decrease</string>
+    <string name = "radio_control_vf_inc">VF - increase</string>
+    <string name = "radio_control_frequency">Frequency</string>
+    <string name = "radio_control_audio_key">Audio</string>
+
+    <string name = "radio_live_data_value_signal_too_low">too low</string>
+    <string name = "radio_live_data_value_signal_too_high">too high</string>
+    <string name = "radio_live_data_value_short">short</string>
+    <string name = "radio_live_data_value_line_is_open">open</string>
+
+    <string name="radio_coding_country">Region</string>
+    <string name="radio_coding_gal">GAL</string>
+    <string name="radio_coding_rds_af_mode">RDS and AF mode</string>
+    <string name="radio_coding_key_memory_radio">Key memory radio</string>
+    <string name="radio_coding_pty_table">PTY region</string>
+
+</resources>

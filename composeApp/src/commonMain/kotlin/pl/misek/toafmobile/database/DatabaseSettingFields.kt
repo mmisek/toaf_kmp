@@ -1,0 +1,13 @@
+package pl.misek.toafmobile.database
+
+object DatabaseSettingFields {
+    var INTERNET_ACCOUNT_NECESSARY: String = "INTERNET_ACCOUNT_NECESSARY"
+    var ACCESS_TO_PUBLIC_BACKUP: String = "ACCESS_TO_PUBLIC_BACKUP"
+    var LAST_DEVICE_TYPE: String = "LAST_DEVICE_TYPE"
+    var WIFI_DEVICE_IP: String = "WIFI_DEVICE_IP"
+    var TOAF_FULL_VERSION: String = "TOAF_FULL_VERSION"
+    var TOAF_BCU_KEYS: String = "TOAF_BCU_KEYS"
+    var TOAF_EKA_CODES: String = "TOAF_EKA_CODES"
+    var TOAF_CURRENT_CAR_TYPE: String = "TOAF_CURRENT_CAR_TYPE"
+    var TOAF_KWP_FAST_INIT_SLEEP: String = "TOAF_KWP_FAST_INIT_SLEEP"
+}

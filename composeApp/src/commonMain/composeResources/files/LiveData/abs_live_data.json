@@ -1,0 +1,85 @@
+{
+  "livedata": [
+    {
+      "name": "front_left_wheel_speed",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "0.0625",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "front_right_wheel_speed",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "0.0625",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "rear_left_wheel_speed",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "0.0625",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "rear_right_wheel_speed",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "0.0625",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "engine_rpm",
+      "block": "0x00",
+      "byte": "0x0E",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "break_light_switch",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x0FF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "pump_relay",
+      "block": "0x00",
+      "byte": "0x09",
+      "mask": "0x0FF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "valve_relay",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0x0FF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "asc_active",
+      "block": "0x00",
+      "byte": "0x10",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "elements": [
+    {
+      "name": "zcs_vehicle",
+      "byte": "0x00",
+      "mask": "0x70",
+      "values": [
+        {
+          "data": "0x07",
+          "text": "zcs_r40"
+        }
+        ]
+    },
+    {
+      "name": "zcs_engine_type",
+      "byte": "0x00",
+      "mask": "0x07",
+        "values": [
+          {
+            "data": "0x04",
+            "text": "zcs_v8_ford"
+          },
+          {
+            "data": "0x03",
+            "text": "zcs_diesel_bmw"
+          },
+          {
+            "data": "0x02",
+            "text": "zcs_k_petrol"
+          },
+          {
+            "data": "0x01",
+            "text": "zcs_kv6"
+          }
+        ]
+    },
+    {
+      "name": "zcs_engine_capacity",
+      "byte": "0x01",
+      "mask": "0x70",
+        "values": [
+          {
+            "data": "0x04",
+            "text": "zcs_l46"
+          },
+          {
+            "data": "0x03",
+            "text": "zcs_l25"
+          },
+          {
+            "data": "0x02",
+            "text": "zcs_l20"
+          },
+          {
+            "data": "0x01",
+            "text": "zcs_l18"
+          }
+        ]
+    },
+    {
+      "name": "zcs_vehicle_brand",
+      "byte": "0x01",
+      "mask": "0x0C",
+        "values": [
+          {
+            "data": "0x02",
+            "text": "zcs_rover"
+          },
+          {
+            "data": "0x01",
+            "text": "zcs_mg"
+          },
+          {
+            "data": "0x00",
+            "text": "not_specified"
+          }
+        ]
+    },
+    {
+      "name": "zcs_drive_hand",
+      "byte": "0x01",
+      "mask": "0x03",
+        "values": [
+          {
+            "data": "0x02",
+            "text": "zcs_rhd"
+          },
+          {
+            "data": "0x01",
+            "text": "zcs_lhd"
+          }
+        ]
+    },
+    {
+      "name": "zcs_market",
+      "byte": "0x02",
+      "mask": "0x07",
+        "values": [
+          {
+            "data": "0x07",
+            "text": "zcs_mexico"
+          },
+          {
+            "data": "0x06",
+            "text": "zcs_asia_pacific"
+          },
+          {
+            "data": "0x05",
+            "text": "zcs_australia"
+          },
+          {
+            "data": "0x04",
+            "text": "zcs_gulf"
+          },
+          {
+            "data": "0x03",
+            "text": "zcs_japan"
+          },
+          {
+            "data": "0x02",
+            "text": "zcs_ece"
+          },
+          {
+            "data": "0x01",
+            "text": "zcs_uk"
+          }
+        ]
+    },
+    {
+      "name": "zcs_gearbox",
+      "byte": "0x03",
+      "mask": "0x30",
+        "values": [
+          {
+            "data": "0x02",
+            "text": "zcs_manual"
+          },
+          {
+            "data": "0x01",
+            "text": "zcs_auto"
+          }
+        ]
+    },
+    {
+      "name": "zcs_language",
+      "byte": "0x03",
+      "mask": "0x07",
+        "values": [
+          {
+            "data": "0x06",
+            "text": "zcs_italian"
+          },
+          {
+            "data": "0x05",
+            "text": "zcs_spanish"
+          },
+          {
+            "data": "0x04",
+            "text": "zcs_french"
+          },
+          {
+            "data": "0x03",
+            "text": "zcs_german"
+          },
+          {
+            "data": "0x02",
+            "text": "zcs_english_uk"
+          },
+          {
+            "data": "0x01",
+            "text": "zcs_english_us"
+          }
+        ]
+    }
+  ]
+}

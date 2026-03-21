@@ -1,0 +1,58 @@
+{
+    "elements": [
+      {
+        "name": "all_off",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x0000"
+      },
+      {
+        "name": "2_4_break_duty_solenoid",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x0080"
+      },
+      {
+        "name": "shift_solenoid_a",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x0100"
+      },
+      {
+        "name": "shift_solenoid_b",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x0200"
+      },
+      {
+        "name": "shift_solenoid_c",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x0400"
+      },
+      {
+        "name": "low_clutch_timing_solenoid",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x0800"
+      },
+      {
+        "name": "reduction_timing_solenoid",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x1000"
+      },
+      {
+        "name": "2_4_break_timing_solenoid",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x2000"
+      },
+      {
+        "name": "lock_up_duty_solenoid",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x4000"
+      }
+    ]
+}

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ZCS -->
+    <string name="zcs_vehicle">Vehicle</string>
+    <string name="zcs_engine_type">Engine type</string>
+    <string name="zcs_engine_capacity">Engine capacity</string>
+    <string name="zcs_vehicle_brand">Vehicle brand</string>
+    <string name="zcs_drive_hand">Drive hand</string>
+    <string name="zcs_market">Market</string>
+    <string name="zcs_gearbox">Gearbox type</string>
+    <string name="zcs_language">Language</string>
+    <string name="zcs_tv_module">TV module</string>
+    <string name="zcs_tourer">Tourer</string>
+    <string name="zcs_edc3">EDC3</string>
+    <string name="zcs_transit">Transit Mode</string>
+    <string name="zcs_sls_mech">SLS system</string>
+    <string name="zcs_alarm_type">Alarm type</string>
+    <string name="zcs_ron">Research Octane Number</string>
+    <string name="zcs_rain_sensor">Rain sensor</string>
+    <string name="zcs_fed_emission">FED emission</string>
+    <string name="zcs_pencil_coils">Pencil coils</string>
+    <string name="zcs_pdc_kmb_sounder">PDC sounder in instruments</string>
+    <string name="zcs_pdc">PDC system</string>
+    <string name="zcs_rear_wash_wipe">Rear wash wipe</string>
+    <string name="zcs_daytime_running">Daytime running lights</string>
+    <string name="zcs_headlamp_delay">Headlamp delay</string>
+    <string name="zcs_xenon_lamps">Xenon lamps</string>
+    <string name="zcs_my2004">MY2004</string>
+    <string name="zcs_cruise">Cruise control</string>
+    <string name="zcs_traction_control">Traction Control</string>
+    <string name="zcs_x12_atcc_diag">X12 ATCC diagnostic</string>
+    <string name="zcs_engine_fan_2_speed">Engine fan - 2 speeds</string>
+    <string name="zcs_one_shot_up_driver">One shot up - driver</string>
+    <string name="zcs_one_shot_open">One shot open</string>
+    <string name="zcs_rain_sensor_g2">Rain sensor G2</string>
+    <string name="zcs_pdc_g4_sensors">PDC G4 Sensors</string>
+    <string name="zcs_long_wheel_base">Long wheel base</string>
+    <string name="zcs_distance_km">Distance in km</string>
+    <string name="zcs_alloy_18_inch">Alloys - 18 inch</string>
+    <string name="zcs_atc_version">AC system version</string>
+    <string name="zcs_parking_heater">Parking heater</string>
+    <string name="zcs_no_rear_pretensioners">Rears pretensioners</string>
+    <string name="zcs_airbag_curtain">Airbag curtain</string>
+    <string name="zcs_side_airbags">Side airbags</string>
+    <string name="zcs_mem_driver_seat">Driver seat with memory</string>
+    <string name="zcs_electric_sunroof">Electric sunroof</string>
+    <string name="zcs_remote_release">Remote release</string>
+    <string name="zcs_battery_alarm">Battery alarm</string>
+    <string name="zcs_eobd">EOBD</string>
+    <string name="zcs_lamp_wash">Lamp wash</string>
+    <string name="zcs_lpg">LPG system</string>
+    <string name="zcs_ron92">RON 92</string>
+    <string name="zcs_fuel_type">Fuel type</string>
+    <string name="zcs_ambient50">Ambient 50</string>
+    <string name="zcs_post_cat_oxygen">Post cat O2 sensor</string>
+    <string name="zcs_edc2">EDC2</string>
+    <string name="zcs_acu_c10">ACU C10</string>
+    <string name="zcs_anti_trap">Anti trap</string>
+    <string name="zcs_front_fog">Front fog lamps</string>
+    <string name="zcs_electric_window">Electric windows</string>
+    <string name="zcs_xpower">XPower</string>
+    <string name="zcs_power">Power</string>
+    <string name="zcs_lsm_ci_28">LSM with CI=28</string>
+    <string name="zcs_gm6_ci_04">GM6 with CI=04</string>
+    <string name="zcs_kmb_ci">KMB CI</string>
+    <string name="zcs_pdc_ci_03">PDC with CI=03</string>
+    <string name="zcs_telephone">Telephone</string>
+
+    <string name="zcs_ci_02">CI=02</string>
+    <string name="zcs_ci_03">CI=03</string>
+    <string name="zcs_ci_04">CI=04</string>
+    <string name="zcs_ps135">135 PS</string>
+    <string name="zcs_ps180">180 PS</string>
+    <string name="zcs_ps190">190 PS</string>
+    <string name="zcs_ps177">177 PS</string>
+    <string name="zcs_ps160">160 PS</string>
+    <string name="zcs_ps150">150 PS</string>
+    <string name="zcs_ps120">120 PS</string>
+    <string name="zcs_ps116">116 PS</string>
+    <string name="zcs_ps260">260 PS</string>
+    <string name="zcs_ps385">385 PS</string>
+    <string name="zcs_front">Front only</string>
+    <string name="zcs_front_and_rear">Front and rear</string>
+    <string name="zcs_ethanol_22pc">Ethanol</string>
+    <string name="zcs_diesel_fuel">Diesel</string>
+    <string name="zcs_unleaded_fuel">Unleaded fuel</string>
+    <string name="zcs_leaded_fuel">Leaded fuel</string>
+    <string name="zcs_boot">Boot</string>
+    <string name="zcs_glass">Glass</string>
+    <string name="zcs_atc_aircon">ATC system</string>
+    <string name="zcs_manual_aircon">Manual air condition</string>
+    <string name="zcs_heater">Heater only</string>
+    <string name="zcs_yes">Yes</string>
+    <string name="zcs_no">No</string>
+    <string name="zcs_ron95">RON 95</string>
+    <string name="zcs_ron90">RON 90</string>
+    <string name="zcs_no_alarm_no_us">No alarm, no ultrasonic</string>
+    <string name="zcs_alarm_with_us">Alarm with ultrasonics</string>
+    <string name="zcs_alarm_no_us">Alarm, no ultrasonic</string>
+    <string name="zcs_present">Present</string>
+    <string name="zcs_not_present">Not present</string>
+    <string name="zcs_r40">R40</string>
+    <string name="zcs_v8_ford">V8 - Ford</string>
+    <string name="zcs_diesel_bmw">Diesel - BMW</string>
+    <string name="zcs_k_petrol">K-Series - Rover</string>
+    <string name="zcs_kv6">KV6-Series - Rover</string>
+    <string name="zcs_l46">4600cc</string>
+    <string name="zcs_l25">2500cc</string>
+    <string name="zcs_l20">2000cc</string>
+    <string name="zcs_l18">1800cc</string>
+    <string name="zcs_rover">Rover</string>
+    <string name="zcs_mg">MG</string>
+    <string name="not_specified">Not specified</string>
+    <string name="zcs_mexico">Mexico</string>
+    <string name="zcs_zcs_asia_pacific">Asia - pacific</string>
+    <string name="zcs_australia">Australia</string>
+    <string name="zcs_gulf">GULF</string>
+    <string name="zcs_japan">Japan</string>
+    <string name="zcs_ece">ECE</string>
+    <string name="zcs_uk">UK</string>
+    <string name="zcs_manual">Manual</string>
+    <string name="zcs_auto">Automatic</string>
+    <string name="zcs_italian">Italian</string>
+    <string name="zcs_spanish">Spanish</string>
+    <string name="zcs_french">French</string>
+    <string name="zcs_german">German</string>
+    <string name="zcs_english_uk">English - UK</string>
+    <string name="zcs_english_us">English - US</string>
+    <string name="zcs_rhd">Right hand</string>
+    <string name="zcs_lhd">Left hand</string>
+
+</resources>

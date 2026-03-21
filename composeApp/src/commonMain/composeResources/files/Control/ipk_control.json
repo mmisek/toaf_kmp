@@ -1,0 +1,228 @@
+{
+    "elements": [
+      {
+        "name": "self_test",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x30"
+      },
+      {
+        "name": "lights_error",
+        "block": "0x01",
+        "byte": "0x00",
+        "value": "0x01"
+      },
+      {
+        "name": "rear_fog",
+        "block": "0x01",
+        "byte": "0x00",
+        "value": "0x02"
+      },
+      {
+        "name": "self_leveling_system",
+        "block": "0x01",
+        "byte": "0x00",
+        "value": "0x10"
+      },
+      {
+        "name": "engine_failure",
+        "block": "0x01",
+        "byte": "0x00",
+        "value": "0x20"
+      },
+      {
+        "name": "speed_limit",
+        "block": "0x01",
+        "byte": "0x00",
+        "value": "0x40"
+      },
+      {
+        "name": "light_failure_trailer",
+        "block": "0x01",
+        "byte": "0x01",
+        "value": "0x02"
+      },
+      {
+        "name": "glow_plug",
+        "block": "0x01",
+        "byte": "0x01",
+        "value": "0x04"
+      },
+      {
+        "name": "break_pads",
+        "block": "0x01",
+        "byte": "0x01",
+        "value": "0x08"
+      },
+      {
+        "name": "traction",
+        "block": "0x01",
+        "byte": "0x01",
+        "value": "0x10"
+      },
+      {
+        "name": "coolant_level",
+        "block": "0x01",
+        "byte": "0x01",
+        "value": "0x20"
+      },
+      {
+        "name": "doors_open",
+        "block": "0x01",
+        "byte": "0x01",
+        "value": "0x40"
+      },
+      {
+        "name": "wash_fluid_level",
+        "block": "0x01",
+        "byte": "0x01",
+        "value": "0x80"
+      },
+      {
+        "name": "front_fog",
+        "block": "0x01",
+        "byte": "0x02",
+        "value": "0x02"
+      },
+      {
+        "name": "hand_break",
+        "block": "0x01",
+        "byte": "0x02",
+        "value": "0x04"
+      },
+      {
+        "name": "coolant_temp",
+        "block": "0x01",
+        "byte": "0x02",
+        "value": "0x08"
+      },
+      {
+        "name": "engine_failure",
+        "block": "0x01",
+        "byte": "0x02",
+        "value": "0x10"
+      },
+      {
+        "name": "fuel_reserve",
+        "block": "0x01",
+        "byte": "0x02",
+        "value": "0x20"
+      },
+      {
+        "name": "cruise_control",
+        "block": "0x01",
+        "byte": "0x02",
+        "value": "0x40"
+      },
+      {
+        "name": "high_beam",
+        "block": "0x01",
+        "byte": "0x02",
+        "value": "0x80"
+      },
+      {
+        "name": "left",
+        "block": "0x01",
+        "byte": "0x06",
+        "value": "0x40"
+      },
+      {
+        "name": "right",
+        "block": "0x01",
+        "byte": "0x06",
+        "value": "0x80"
+      },
+      {
+        "name": "speed",
+        "block": "0x03",
+        "byte": "0x00",
+        "value": "0x0A",
+        "set_value": {
+          "min": "0",
+          "max": "16",
+          "unit": "RPM"
+        }
+      },
+      {
+        "name": "rpm",
+        "block": "0x03",
+        "byte": "0x00",
+        "value": "0x0B",
+        "set_value": {
+          "min": "0",
+          "max": "255",
+          "unit": "16"
+        }
+      },
+      {
+        "name": "temperature",
+        "block": "0x03",
+        "byte": "0x00",
+        "value": "0x0D",
+        "set_value": {
+          "min": "0",
+          "max": "255",
+          "unit": "16"
+        }
+      },
+      {
+        "name": "fuel",
+        "block": "0x03",
+        "byte": "0x00",
+        "value": "0x0D",
+        "set_value": {
+          "min": "0",
+          "max": "16",
+          "unit": "RPM"
+        }
+      },
+      {
+        "name": "back_light",
+        "block": "0x03",
+        "byte": "0x00",
+        "value": "0x22",
+        "set_value": {
+          "min": "0",
+          "max": "255",
+          "unit": "RPM"
+        }
+      },
+      {
+        "name": "gong_test_off",
+        "block": "0x04",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+      {
+        "name": "gong_test_1",
+        "block": "0x04",
+        "byte": "0x00",
+        "value": "0x01"
+      },
+      {
+        "name": "gong_test_2",
+        "block": "0x04",
+        "byte": "0x00",
+        "value": "0x02"
+      },
+      {
+        "name": "gong_test_3",
+        "block": "0x04",
+        "byte": "0x00",
+        "value": "0x03"
+      },
+      {
+        "name": "lcd_test",
+        "block": "0x05",
+        "byte": "0x00",
+        "value": "0x00",
+        "visible": "false"
+      },
+      {
+        "name": "service_reset",
+        "block": "0x06",
+        "byte": "0x00",
+        "value": "0x00"
+      }
+    ]
+}

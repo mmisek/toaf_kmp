@@ -1,0 +1,126 @@
+{
+  "livedata": [
+    {
+      "name": "height_sensor_front_left",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "0.125",
+      "factor_b": "0",
+      "unit": "mm",
+      "u2": "true"
+    },
+    {
+      "name": "height_sensor_front_right",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "0.125",
+      "factor_b": "0",
+      "unit": "mm",
+      "u2": "true"
+    },
+    {
+      "name": "height_sensor_rear_left",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "0.125",
+      "factor_b": "0",
+      "unit": "mm",
+      "u2": "true"
+    },
+    {
+      "name": "height_sensor_rear_right",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "0.125",
+      "factor_b": "0",
+      "unit": "mm",
+      "u2": "true"
+    },
+    {
+      "name": "pressure",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0xFFFF",
+      "factor_a": "0.00781",
+      "factor_b": "0",
+      "unit": "bar"
+    },
+    {
+      "name": "pressure_of_transverse_lock_pressure_sensor_va",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0xFFFF",
+      "factor_a": "0.00781",
+      "factor_b": "0",
+      "unit": "bar"
+    },
+    {
+      "name": "pressure_of_transverse_lock_pressure_sensor_ha",
+      "block": "0x00",
+      "byte": "0x0C",
+      "mask": "0xFFFF",
+      "factor_a": "0.00781",
+      "factor_b": "0",
+      "unit": "bar"
+    },
+    {
+      "name": "compressor_temperature",
+      "block": "0x00",
+      "byte": "0x0E",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "°C",
+      "u2": "true"
+    },
+    {
+      "name": "supply_voltage",
+      "block": "0x00",
+      "byte": "0x0F",
+      "mask": "0xFF",
+      "factor_a": "0.12421875",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "switch_access",
+      "block": "0x00",
+      "byte": "0x10",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "0"
+    },
+    {
+      "name": "switch_up",
+      "block": "0x00",
+      "byte": "0x10",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "0"
+    },
+    {
+      "name": "switch_down",
+      "block": "0x00",
+      "byte": "0x10",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "0"
+    },
+    {
+      "name": "switch_hold",
+      "block": "0x00",
+      "byte": "0x10",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "0"
+    }
+  ]
+}

@@ -1,0 +1,995 @@
+{
+  "livedata": [
+    {
+      "name": "terminal_30a",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "EINGANG_LOESCHANLAGE_EIN",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible" : "false"
+    },
+    {
+      "name": "EINGANG_VGLESP_EIN",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible" : "false"
+    },
+    {
+      "name": "EINGANG_CARB_EIN",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible" : "false"
+    },
+    {
+      "name": "terminal_r",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "terminal_30b",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "EINGANG_ZSK_EIN",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible": "false"
+    },
+    {
+      "name": "EINGANG_GKFA_EIN",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible": "false"
+    },
+    {
+      "name": "SCHALTER_LICHTHUPE_EIN",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible": "false"
+    },
+    {
+      "name": "switch_warning_lights",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "EINGANG_KFN_EIN",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible": "false"
+    },
+    {
+      "name": "EINGANG_PANZERTUER_EIN",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible": "false"
+    },
+    {
+      "name": "EINGANG_BRFN_EIN",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible": "false"
+    },
+    {
+      "name": "EINGANG_BLS_EIN",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible": "false"
+    },
+    {
+      "name": "switch_high_beam",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_front_fog",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_rear_fog",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_parking_lights",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_right_turn_lights",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_left_turn_lights",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "EINGANG_LUFTANLAGE_EIN",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible": "false"
+    },
+    {
+      "name": "EINGANG_ALARM_EIN",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible" : "false"
+    },
+    {
+      "name": "EINGANG_WWN_EIN",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible" : "false"
+    },
+    {
+      "name": "switch_low_beam_position_2",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_low_beam_position_1",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "terminal_15",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "EINGANG_MOTOR_NOTPROGRAMM_EIN",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible" : "false"
+    },
+    {
+      "name": "EINGANG_REIFEN_DEFEKT_EIN",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible" : "false"
+    },
+    {
+      "name": "licence_plate_light_left",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "break_light_left",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "break_light_right",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "high_beam_right",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "high_beam_left",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "parking_lights_left_front",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "parking_lights_inside_left_rear",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "fog_right_front",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "reverse_left",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "low_beam_left",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "low_beam_right",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "fog_front_left",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "fog_rear_left",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "lwr",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "licence_plate_right",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "parking_light_left_rear",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "break_light_middle",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "parking_light_right_front",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "turn_right_front",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "turn_left_rear",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "turn_right_rear",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "fog_left_rear",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "parking_lights_inside_left_rear",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "parking_lights_right_rear",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "turn_left_front",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "reverse_light_right",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "NOTFUNKTION_PER_DIAGNOSE_AKTIV",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible" : "false"
+    },
+    {
+      "name": "dimming_interior_light",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "dimming_search_switch",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "dimming_light_switch",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "fog_trailer",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "reverse_trailer",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "emergency_light",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "battery_voltage",
+      "block": "0x00",
+      "byte": "0x09",
+      "mask": "0xFF",
+      "factor_a": "0.07058824",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "trailer_turn_left",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "trailer_break_lights",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "trailer_dipped_beam_left",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "trailer_reverse_fog_light",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "ahm_undervoltage",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "ahm_parity",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_licence_plate_left",
+      "block": "0x00",
+      "byte": "0x0B",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_break_left",
+      "block": "0x00",
+      "byte": "0x0B",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_break_right",
+      "block": "0x00",
+      "byte": "0x0B",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_high_beam_right",
+      "block": "0x00",
+      "byte": "0x0B",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_high_beam_left",
+      "block": "0x00",
+      "byte": "0x0B",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_parking_light_left_front",
+      "block": "0x00",
+      "byte": "0x0C",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_inner_parking_light_left_rear",
+      "block": "0x00",
+      "byte": "0x0C",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_fog_front_left",
+      "block": "0x00",
+      "byte": "0x0C",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_reverse_left",
+      "block": "0x00",
+      "byte": "0x0C",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_low_beam_left",
+      "block": "0x00",
+      "byte": "0x0C",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_low_beam_right",
+      "block": "0x00",
+      "byte": "0x0C",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_fog_front_right",
+      "block": "0x00",
+      "byte": "0x0C",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_fog_rear_right",
+      "block": "0x00",
+      "byte": "0x0C",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_licence_plate_right",
+      "block": "0x00",
+      "byte": "0x0D",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_parking_light_left_rear",
+      "block": "0x00",
+      "byte": "0x0D",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_break_light_middle",
+      "block": "0x00",
+      "byte": "0x0D",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_parking_light_right_front",
+      "block": "0x00",
+      "byte": "0x0D",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_turn_right_front",
+      "block": "0x00",
+      "byte": "0x0D",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_turn_left_rear",
+      "block": "0x00",
+      "byte": "0x0D",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_turn_right_rear",
+      "block": "0x00",
+      "byte": "0x0E",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_fog_rear_left",
+      "block": "0x00",
+      "byte": "0x0E",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_inner_parking_right_rear",
+      "block": "0x00",
+      "byte": "0x0E",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_parking_light_right_rear",
+      "block": "0x00",
+      "byte": "0x0E",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_turn_left_front",
+      "block": "0x00",
+      "byte": "0x0E",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "defect_reverse_right",
+      "block": "0x00",
+      "byte": "0x0E",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "dimmer_input_voltage",
+      "block": "0x00",
+      "byte": "0x0F",
+      "mask": "0xFF",
+      "factor_a": "0.01960784",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "lwr_input_voltage",
+      "block": "0x00",
+      "byte": "0x10",
+      "mask": "0xFF",
+      "factor_a": "0.01960784",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "crash_warning_lights",
+      "block": "0x00",
+      "byte": "0x11",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "alarm_warning_lights",
+      "block": "0x00",
+      "byte": "0x11",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "alarm_low_beam_lights",
+      "block": "0x00",
+      "byte": "0x11",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "alarm_high_beam_lights",
+      "block": "0x00",
+      "byte": "0x11",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "crash_sensor",
+      "block": "0x00",
+      "byte": "0x11",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "alarm_triggered",
+      "block": "0x00",
+      "byte": "0x11",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "oil_level_sensor",
+      "block": "0x00",
+      "byte": "0x12",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "oil_level_sensor_failure",
+      "block": "0x00",
+      "byte": "0x12",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "oil_level_sensor_minimum_value",
+      "block": "0x00",
+      "byte": "0x12",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "thermal_oil_level_sensor",
+      "block": "0x00",
+      "byte": "0x12",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "thermal_oil_level_sensor_heat_time",
+      "block": "0x00",
+      "byte": "0x14",
+      "mask": "0xFF",
+      "factor_a": "0.001275",
+      "factor_b": "0",
+      "unit": "s",
+      "visible": "false"
+    },
+    {
+      "name": "thermal_oil_level_sensor_cool_time",
+      "block": "0x00",
+      "byte": "0x16",
+      "mask": "0xFF",
+      "factor_a": "0.001275",
+      "factor_b": "0",
+      "unit": "s",
+      "visible": "false"
+    },
+    {
+      "name": "low_beam_voltage_defect",
+      "block": "0x00",
+      "byte": "0x1F",
+      "mask": "0xFF",
+      "factor_a": "0.01960784",
+      "factor_b": "0",
+      "unit": "s",
+      "visible": "false"
+    }
+  ]
+}

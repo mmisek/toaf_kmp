@@ -1,0 +1,828 @@
+{
+    "elements": [
+      {
+        "name": "ALARM_DISABLE",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x80",
+        "coding_index": ["01","02"],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "SOUNDER_TYPE",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x40",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "bbus"
+          },
+          {
+            "data": "0x00",
+            "text": "horn"
+          }
+        ]
+      },
+      {
+        "name": "SL_ON_PLIP_PRESS",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x20",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "single"
+          },
+          {
+            "data": "0x00",
+            "text": "double"
+          }
+        ]
+      },
+      {
+        "name": "SL_ACTIVE",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x10",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "KEY_MOBILISE",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x08",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "PASSIVE_IMMOB",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x04",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "HAZARD_ON_ALARM",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x02",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "HORN_TONE",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x01",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "pulsed"
+          },
+          {
+            "data": "0x00",
+            "text": "continuous"
+          }
+        ]
+      },
+      {
+        "name": "MISLOCK_SOUNDER",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x80",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "INERTIA_SWT_ACT",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x40",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "open_cct"
+          },
+          {
+            "data": "0x00",
+            "text": "high"
+          }
+        ]
+      },
+      {
+        "name": "BONNET_SWT_ACT",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x20",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "open_cct"
+          },
+          {
+            "data": "0x00",
+            "text": "high"
+          }
+        ]
+      },
+      {
+        "name": "TRANS_DRV_ACT",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x10",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "INT_LIGHT_DISARM",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x08",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "HAZARD_ARM_DISARM",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x04",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "DISABLE_VOL_ON_PLIP_ARM",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x02",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "DISABLE_CDL_ON_ARM",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x01",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "DRV_WIN_ONESHOT_MODE",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x80",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "inch_before_auto"
+          },
+          {
+            "data": "0x00",
+            "text": "auto_before_inch"
+          }
+        ]
+      },
+      {
+        "name": "PROGRAM_WASH_WIPE",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x40",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "AUTO_SPEED_LOCKING",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x20",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "AUTO_RELOCKING",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x10",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "DRV_WIN_DELAY",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x08",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "NO_DOOR_PASSIVE",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x04",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "PASSIVE_REPEAT",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x02",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "MARKET_SET_INDICATOR",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x01",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "HEATED_REAR_WIN",
+        "block": "0x00",
+        "byte": "0x03",
+        "mask": "0x80",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "SEAT_BELT_WARNING",
+        "block": "0x00",
+        "byte": "0x03",
+        "mask": "0x40",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "FRONT_ELEC_WINDOWS",
+        "block": "0x00",
+        "byte": "0x03",
+        "mask": "0x20",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "ELEC_BOOT_RELEASE",
+        "block": "0x00",
+        "byte": "0x03",
+        "mask": "0x10",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "FRONT_FOGS",
+        "block": "0x00",
+        "byte": "0x03",
+        "mask": "0x08",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "REAR_WASH",
+        "block": "0x00",
+        "byte": "0x03",
+        "mask": "0x04",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "POWER_WASH",
+        "block": "0x00",
+        "byte": "0x03",
+        "mask": "0x02",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "PDC",
+        "block": "0x00",
+        "byte": "0x03",
+        "mask": "0x01",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "DRIBBLE_WIPE",
+        "block": "0x00",
+        "byte": "0x04",
+        "mask": "0x80",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "MICROWAVE_SENSOR",
+        "block": "0x00",
+        "byte": "0x04",
+        "mask": "0x40",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "CDL_FITTED",
+        "block": "0x00",
+        "byte": "0x04",
+        "mask": "0x20",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "VOLUMETRIC_FITTED",
+        "block": "0x00",
+        "byte": "0x04",
+        "mask": "0x10",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "REVERSE_WIN_IP",
+        "block": "0x00",
+        "byte": "0x04",
+        "mask": "0x08",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "SEPARATE_ALARM_SOUNDER",
+        "block": "0x00",
+        "byte": "0x04",
+        "mask": "0x04",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "VOL_TRIG_PULSED",
+        "block": "0x00",
+        "byte": "0x04",
+        "mask": "0x02",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "VARIABLE_INT_WIPE",
+        "block": "0x00",
+        "byte": "0x04",
+        "mask": "0x01",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "HAZ_ON_INERTIA",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x01",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "NVSA4",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x02",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "MOMENTARY_SWITCHES",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x04",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "LOW_COOL_WARN",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x08",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "active"
+          },
+          {
+            "data": "0x00",
+            "text": "not_active"
+          }
+        ]
+      },
+      {
+        "name": "COOL_WARN_FMT",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x10",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "static"
+          },
+          {
+            "data": "0x00",
+            "text": "dynamic"
+          }
+        ]
+      },
+      {
+        "name": "CRANK_DISABLE_DELAY",
+        "block": "0x01",
+        "byte": "0x05",
+        "mask": "0xFF",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x02",
+            "text": "default"
+          },
+          {
+            "data": "0xFF",
+            "text": "disable"
+          }
+        ]
+      },
+      {
+        "name": "AUTO_LOCK_SCALE_FACTOR",
+        "block": "0x01",
+        "byte": "0x0E",
+        "mask": "0xFF",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x02",
+            "text": "lowerpulses"
+          },
+          {
+            "data": "0x10",
+            "text": "higherpulse"
+          }
+        ]
+      },
+      {
+        "name": "NO_OF_WIPES_AFT_WASH",
+        "block": "0x01",
+        "byte": "0x0F",
+        "mask": "0xFF",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "one"
+          },
+          {
+            "data": "0x02",
+            "text": "two"
+          },
+          {
+            "data": "0x03",
+            "text": "three"
+          },
+          {
+            "data": "0x04",
+            "text": "four"
+          }
+        ]
+      }
+    ]
+}

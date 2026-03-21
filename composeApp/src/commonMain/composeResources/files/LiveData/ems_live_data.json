@@ -1,0 +1,741 @@
+{
+  "livedata": [
+    {
+      "name": "battery_voltage",
+      "block": "0x15",
+      "byte": "0x00",
+      "mask": "0xFF",
+      "factor_a": "0.1125",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "vehicle_speed",
+      "block": "0x15",
+      "byte": "0x01",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "engine_speed",
+      "block": "0x15",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "rpm"
+    },
+    {
+      "name": "manifold_pressure",
+      "block": "0x15",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "0.001829",
+      "factor_b": "0",
+      "unit": "kPa"
+    },
+    {
+      "name": "mass_airflow",
+      "block": "0x15",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "0.02118",
+      "factor_b": "0",
+      "unit": "mg/stk"
+    },
+    {
+      "name": "purge_valve",
+      "block": "0x15",
+      "byte": "0x0A",
+      "mask": "0xFF",
+      "factor_a": "0.39",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "coolant_temperature",
+      "block": "0x0B",
+      "byte": "0x02",
+      "mask": "0xFF",
+      "factor_a": "0.746",
+      "factor_b": "-48",
+      "unit": "°C"
+    },
+    {
+      "name": "inlet_air_temperature",
+      "block": "0x0B",
+      "byte": "0x05",
+      "mask": "0xFF",
+      "factor_a": "0.746",
+      "factor_b": "-48",
+      "unit": "°C"
+    },
+    {
+      "name": "ambient_temperature",
+      "block": "0x0B",
+      "byte": "0x05",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "°C",
+      "u2": "true"
+    },
+    {
+      "name": "engine_torque",
+      "block": "0x02",
+      "byte": "0x01",
+      "mask": "0xFF",
+      "factor_a": "0.39",
+      "factor_b": "0",
+      "unit": "Nm"
+    },
+    {
+      "name": "throttle_angle",
+      "block": "0x0C",
+      "byte": "0x02",
+      "mask": "0xFF",
+      "factor_a": "0.466",
+      "factor_b": "0",
+      "unit": "°"
+    },
+    {
+      "name": "injection_time_odd_bank",
+      "block": "0x16",
+      "byte": "0x02",
+      "mask": "0xFFFFFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "us"
+    },
+    {
+      "name": "injection_time_even_bank",
+      "block": "0x16",
+      "byte": "0x06",
+      "mask": "0xFFFFFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "us"
+    },
+    {
+      "name": "flywheel_segment_adaptation",
+      "block": "0x18",
+      "byte": "0x13",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "off"
+          },
+          {
+            "data": "0x01",
+            "text": "on"
+          }
+        ]
+    },
+    {
+      "name": "misfire_cylinder_6",
+      "block": "0x18",
+      "byte": "0x16",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "misfire_cylinder_5",
+      "block": "0x18",
+      "byte": "0x18",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "misfire_cylinder_4",
+      "block": "0x18",
+      "byte": "0x1A",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "misfire_cylinder_3",
+      "block": "0x18",
+      "byte": "0x1C",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "misfire_cylinder_2",
+      "block": "0x18",
+      "byte": "0x1E",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "misfire_cylinder_1",
+      "block": "0x18",
+      "byte": "0x20",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "actual_idle_speed_control_valve_position",
+      "block": "0x10",
+      "byte": "0x01",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "steps"
+    },
+    {
+      "name": "target_idle_speed_control_valve_position",
+      "block": "0x10",
+      "byte": "0x02",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "steps"
+    },
+    {
+      "name": "minimum_throttle_angle_adaptation",
+      "block": "0x10",
+      "byte": "0x0A",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "°"
+    },
+    {
+      "name": "idle_speed_control_valve_set_point",
+      "block": "0x10",
+      "byte": "0x0C",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "rpm"
+    },
+    {
+      "name": "upstream_oxygen_sensor_signal_odd_bank",
+      "block": "0x0F",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "0.00486",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "upstream_oxygen_sensor_signal_even_bank",
+      "block": "0x0F",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "0.00486",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "downstream_oxygen_sensor_signal",
+      "block": "0x0F",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "0.00486",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "upstream_oxygen_sensor_heater_odd_bank_pwm",
+      "block": "0x0F",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "0.0015258",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "upstream_oxygen_sensor_heater_even_bank_pwm",
+      "block": "0x0F",
+      "byte": "0x08",
+      "mask": "0xFFFF",
+      "factor_a": "0.0015258",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "downstream_oxygen_sensor_heater_pwm",
+      "block": "0x0F",
+      "byte": "0x0A",
+      "mask": "0xFFFF",
+      "factor_a": "0.0015258",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "short_term_trim_odd_bank",
+      "block": "0x13",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "0.001524",
+      "factor_b": "0",
+      "unit": "%",
+      "u2": "true"
+    },
+    {
+      "name": "short_term_trim_even_bank",
+      "block": "0x13",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "0.001524",
+      "factor_b": "0",
+      "unit": "%",
+      "u2": "true"
+    },
+    {
+      "name": "short_term_trim_average_odd_bank",
+      "block": "0x13",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "0.001524",
+      "factor_b": "0",
+      "unit": "%",
+      "u2": "true"
+    },
+    {
+      "name": "short_term_trim_average_even_bank",
+      "block": "0x13",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "0.001524",
+      "factor_b": "0",
+      "unit": "%",
+      "u2": "true"
+    },
+    {
+      "name": "short_term_average_both_banks",
+      "block": "0x13",
+      "byte": "0x08",
+      "mask": "0xFFFF",
+      "factor_a": "0.001524",
+      "factor_b": "0",
+      "unit": "%",
+      "u2": "true"
+    },
+    {
+      "name": "long_term_multi_trim_odd_bank",
+      "block": "0x14",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "0.001524",
+      "factor_b": "0",
+      "unit": "%",
+      "u2": "true"
+    },
+    {
+      "name": "long_term_multi_trim_even_bank",
+      "block": "0x14",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "0.001524",
+      "factor_b": "0",
+      "unit": "%",
+      "u2": "true"
+    },
+    {
+      "name": "long_term_additive_trim_odd_bank",
+      "block": "0x14",
+      "byte": "0x09",
+      "mask": "0xFFFF",
+      "factor_a": "0.001524",
+      "factor_b": "0",
+      "unit": "%",
+      "u2": "true"
+    },
+    {
+      "name": "long_term_additive_trim_even_bank",
+      "block": "0x14",
+      "byte": "0x0B",
+      "mask": "0xFFFF",
+      "factor_a": "0.001524",
+      "factor_b": "0",
+      "unit": "%",
+      "u2": "true"
+    },
+    {
+      "name": "ac_relay",
+      "block": "0x0A",
+      "byte": "0x00",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "off"
+          },
+          {
+            "data": "0x01",
+            "text": "on"
+          }
+        ]
+    },
+    {
+      "name": "slow_speed_fan",
+      "block": "0x0A",
+      "byte": "0x00",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "off"
+          },
+          {
+            "data": "0x01",
+            "text": "on"
+          }
+        ]
+    },
+    {
+      "name": "medium_speed_fan",
+      "block": "0x0A",
+      "byte": "0x00",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "off"
+          },
+          {
+            "data": "0x01",
+            "text": "on"
+          }
+        ]
+    },
+    {
+      "name": "fast_speed_fan",
+      "block": "0x0A",
+      "byte": "0x00",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "off"
+          },
+          {
+            "data": "0x01",
+            "text": "on"
+          }
+        ]
+    },
+    {
+      "name": "vis_balance_drive",
+      "block": "0x0A",
+      "byte": "0x00",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "off"
+          },
+          {
+            "data": "0x01",
+            "text": "on"
+          }
+        ]
+    },
+    {
+      "name": "vis_butterfly_drive",
+      "block": "0x0A",
+      "byte": "0x00",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "off"
+          },
+          {
+            "data": "0x01",
+            "text": "on"
+          }
+        ]
+    },
+    {
+      "name": "vis_balance_feedback",
+      "block": "0x0A",
+      "byte": "0x01",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "off"
+          },
+          {
+            "data": "0x01",
+            "text": "on"
+          }
+        ]
+    },
+    {
+      "name": "vis_butterfly_feedback",
+      "block": "0x0A",
+      "byte": "0x01",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "off"
+          },
+          {
+            "data": "0x01",
+            "text": "on"
+          }
+        ]
+    },
+    {
+      "name": "ac_switch",
+      "block": "0x0A",
+      "byte": "0x01",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "off"
+          },
+          {
+            "data": "0x01",
+            "text": "on"
+          }
+        ]
+    },
+    {
+      "name": "ac_clutch_drive",
+      "block": "0x0A",
+      "byte": "0x01",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "off"
+          },
+          {
+            "data": "0x01",
+            "text": "on"
+          }
+        ]
+    },
+    {
+      "name": "odd_bank_rich_mixture",
+      "block": "0x0A",
+      "byte": "0x02",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "no"
+          },
+          {
+            "data": "0x01",
+            "text": "yes"
+          }
+        ]
+    },
+    {
+      "name": "even_bank_rich_mixture",
+      "block": "0x0A",
+      "byte": "0x02",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "no"
+          },
+          {
+            "data": "0x01",
+            "text": "yes"
+          }
+        ]
+    },
+    {
+      "name": "odd_bank_closed_loop_enable",
+      "block": "0x0A",
+      "byte": "0x02",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "no"
+          },
+          {
+            "data": "0x01",
+            "text": "yes"
+          }
+        ]
+    },
+    {
+      "name": "even_bank_closed_loop_enable",
+      "block": "0x0A",
+      "byte": "0x02",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "no"
+          },
+          {
+            "data": "0x01",
+            "text": "yes"
+          }
+        ]
+    },
+    {
+      "name": "ignition_angle_cylinder_1",
+      "block": "0x12",
+      "byte": "0x00",
+      "mask": "0xFF",
+      "factor_a": "0.14",
+      "factor_b": "0",
+      "unit": "°"
+    },
+    {
+      "name": "ignition_angle_cylinder_2",
+      "block": "0x12",
+      "byte": "0x01",
+      "mask": "0xFF",
+      "factor_a": "0.14",
+      "factor_b": "0",
+      "unit": "°"
+    },
+    {
+      "name": "ignition_angle_cylinder_3",
+      "block": "0x12",
+      "byte": "0x02",
+      "mask": "0xFF",
+      "factor_a": "0.14",
+      "factor_b": "0",
+      "unit": "°"
+    },
+    {
+      "name": "ignition_angle_cylinder_4",
+      "block": "0x12",
+      "byte": "0x03",
+      "mask": "0xFF",
+      "factor_a": "0.14",
+      "factor_b": "0",
+      "unit": "°"
+    },
+    {
+      "name": "ignition_angle_cylinder_5",
+      "block": "0x12",
+      "byte": "0x04",
+      "mask": "0xFF",
+      "factor_a": "0.14",
+      "factor_b": "0",
+      "unit": "°"
+    },
+    {
+      "name": "ignition_angle_cylinder_6",
+      "block": "0x12",
+      "byte": "0x05",
+      "mask": "0xFF",
+      "factor_a": "0.14",
+      "factor_b": "0",
+      "unit": "°"
+    },
+    {
+      "name": "vehicle_mobilised",
+      "block": "0x17",
+      "byte": "0x00",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "us",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "mobilised"
+          },
+          {
+            "data": "0x01",
+            "text": "immobilised"
+          }
+        ]
+    },
+    {
+      "name": "count_of_vehicle_immobilisation",
+      "block": "0x17",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "ews_ems_communication_fails_count",
+      "block": "0x17",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "count_of_key_on_events",
+      "block": "0x17",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    }
+  ]
+}

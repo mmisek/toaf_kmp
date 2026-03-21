@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_advance_coding">Codificación avanzada</string>
+    <string name="activity_advance_coding_id_current">ID actual</string>
+    <string name="activity_advance_coding_offset_programming">Programación de desplazamiento</string>
+    <string name="activity_advance_coding_offset_current">Desplazamiento actual</string>
+    <string name="activity_advance_coding_read_button">Leer</string>
+    <string name="activity_advance_coding_save_button">Guardar</string>
+    <string name="activity_advance_coding_id_read_error">Error de lectura de ID.</string>
+    <string name="activity_advance_coding_id_write_error">Error de escritura de ID.</string>
+    <string name="activity_advance_coding_id_write_successful">Escritura de ID exitosa</string>
+    <string name="activity_advance_coding_adjustment_read_error">Error de lectura de ajuste.</string>
+    <string name="activity_advance_coding_adjustment_write_error">Error de escritura de ajuste.</string>
+    <string name="activity_advance_coding_adjustment_write_successful">Escritura de ajuste exitosa</string>
+
+    <string name="activity_advance_coding_vin_read_error">Error de lectura de VIN.</string>
+    <string name="activity_advance_coding_vin_write_error">Error de escritura de VIN.</string>
+    <string name="activity_advance_coding_vin_write_successful">Escritura de VIN exitosa</string>
+    <string name="activity_advance_coding_vin_programming">Programación de VIN</string>
+    <string name="activity_advance_coding_vin_current">VIN actual</string>
+    <string name="activity_advance_coding_id_programming">Programación de ID</string>
+    <string name="activity_advance_coding_vin_matches_error">¡El VIN ingresado no es correcto!</string>
+
+    <string name="activity_advance_coding_id_matches_error">¡El ID ingresado no es correcto!</string>
+    <string name="activity_advance_coding_adjustment_matches_error">¡El ajuste ingresado no es correcto!</string>
+    <string name="activity_advance_coding_default_coding">Codificación predeterminada</string>
+    <string name="activity_advance_coding_write_default_coding_error">Error de escritura de codificación predeterminada.</string>
+    <string name="activity_advance_coding_write_default_coding_successful">¡Escritura de codificación predeterminada correcta!</string>
+
+    <string name="activity_advance_coding_odometer_programming">Programación del odómetro</string>
+    <string name="activity_advance_coding_odometer_current">Odómetro actual</string>
+    <string name="activity_advance_coding_odometer_read_error">Error de lectura del odómetro.</string>
+    <string name="activity_advance_coding_odometer_write_error">Error de escritura del odómetro.</string>
+    <string name="activity_advance_coding_odometer_write_successful">Escritura del odómetro exitosa</string>
+    <string name="activity_advance_coding_odometer_matches_error">¡El odómetro ingresado no es correcto!</string>
+
+    <string name="activity_advance_coding_eka_programming">Programación del código EKA</string>
+    <string name="activity_advance_coding_eka_current">Código EKA actual</string>
+    <string name="activity_advance_coding_eka_read_error">Error de lectura del código EKA.</string>
+    <string name="activity_advance_coding_eka_write_error">Error de escritura del código EKA.</string>
+    <string name="activity_advance_coding_eka_write_successful">Escritura del código EKA exitosa</string>
+    <string name="activity_advance_coding_eka_matches_error">¡El código EKA ingresado no es correcto!</string>
+
+    <string name="activity_advance_coding_lsm_read_error">Error de lectura de codificación</string>
+    <string name="activity_advance_coding_lsm_write_error">Error de guardado de codificación</string>
+    <string name="activity_advance_coding_lsm_auto_light">Luces automáticas</string>
+    <string name="activity_advance_coding_lsm_auto_light_current_mode">Modo actual</string>
+    <string-array name="activity_advance_coding_lsm_auto_light_modes">
+        <item>Deshabilitado</item>
+        <item>DRL - 30% de luces altas</item>
+        <item>Luces automáticas al encender el motor</item>
+        <item>Luces automáticas al encender el contacto</item>
+    </string-array>
+</resources>

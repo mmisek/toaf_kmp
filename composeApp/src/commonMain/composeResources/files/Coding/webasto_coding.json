@@ -1,0 +1,23 @@
+{
+    "elements": [
+      {
+        "name": "webasto_mode",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "normal"
+            },
+            {
+              "data": "0x00",
+              "text": "k_bus"
+            }
+          ]
+      }
+    ]
+}

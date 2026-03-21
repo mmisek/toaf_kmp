@@ -1,0 +1,119 @@
+{
+    "elements": [
+      {
+        "name": "country",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x07",
+        "coding_index": [
+          "1","2","3"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "ece"
+            },
+            {
+              "data": "0x01",
+              "text": "us_canada"
+            },
+          {
+            "data": "0x10",
+            "text": "japan"
+          },
+          {
+            "data": "0x03",
+            "text": "oceania"
+          },
+          {
+            "data": "0x04",
+            "text": "canada"
+          }
+          ]
+      },
+      {
+        "name": "gal",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x0F",
+        "coding_index": [
+          "1","2","3"
+        ],
+        "coding_values": [
+            {
+              "data": "0x010",
+              "text": "m62_petrol"
+            },
+          {
+            "data": "0x011",
+            "text": "m57_diesel"
+          }
+          ]
+      },
+      {
+        "name": "rds_af_mode",
+        "block": "0x00",
+        "byte": "0x04",
+        "mask": "0x07",
+        "coding_index": [
+          "1","2","3"
+        ],
+        "coding_values": [
+          {
+             "data": "0x000",
+            "text": "rds_on_af_off"
+          },
+          {
+            "data": "0x001",
+            "text": "rds_on_af_man"
+          },
+          {
+            "data": "0x010",
+            "text": "rds_on_af_auto"
+          },
+          {
+            "data": "0x011",
+            "text": "rds_off"
+          }
+        ]
+      },
+      {
+        "name": "pty_table",
+        "block": "0x00",
+        "byte": "0x04",
+        "mask": "0x08",
+        "coding_index": [
+          "1","2","3"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "ece"
+          },
+          {
+            "data": "0x01",
+            "text": "us"
+          }
+        ]
+      },
+      {
+        "name": "key_memory_radio",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x01",
+        "coding_index": [
+          "1","2","3"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "disable"
+            },
+            {
+              "data": "0x01",
+              "text": "enable"
+            }
+          ]
+      }
+    ]
+}

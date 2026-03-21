@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_abs">Brake system</string>
+    <!--ABS -->
+    <string name="abs_error_04">Wheel sensor rear left</string>
+    <string name="abs_error_05">Wheel sensor rear right</string>
+    <string name="abs_error_06">Wheel sensor front right</string>
+    <string name="abs_error_07">Wheel sensor front left</string>
+    <string name="abs_error_2F">ABS valve outlet rear left or rear axle</string>
+    <string name="abs_error_30">ABS valve outlet rear right</string>
+    <string name="abs_error_31">ABS valve outlet front right</string>
+    <string name="abs_error_32">ABS valve outlet front left</string>
+    <string name="abs_error_33">ABS valve inlet rear left or rear axle</string>
+    <string name="abs_error_34">ABS valve inlet rear right</string>
+    <string name="abs_error_35">ABS valve inlet front right</string>
+    <string name="abs_error_36">ABS valve inlet front left</string>
+    <string name="abs_error_0E">Valve-relay Error</string>
+    <string name="abs_error_0F">Pump Error</string>
+    <string name="abs_error_15">Control unit Error</string>
+    <string name="abs_error_18">Wrong gear at one wheel</string>
+    <string name="abs_error_19">Stop light switch cord</string>
+    <string name="abs_error_1E">Wheel sensor rear left</string>
+    <string name="abs_error_1F">Wheel sensor rear right</string>
+    <string name="abs_error_20">Wheel sensor front right</string>
+    <string name="abs_error_21">Wheel sensor front left</string>
+    <string name="abs_error_22">ASC change over valve</string>
+    <string name="abs_error_37">ASC cut-off valve</string>
+    <string name="abs_error_17">ASC variant coding</string>
+    <string name="abs_error_3F">V-comparison</string>
+    <string name="abs_error_40">Continuous control</string>
+    <string name="abs_error_42">Power supply engine speed sensor, control unit error</string>
+    <string name="abs_error_4B">CAN NMOT Error</string>
+    <string name="abs_error_4C">CAN DDE message error</string>
+    <string name="abs_error_44">ASR passive</string>
+    <string name="abs_error_38">General CAN error</string>
+    <string name="abs_error_43">Electromagnetic field susceptibility</string>
+    <string name="abs_error_6F">CAN message error acknowledge ASC</string>
+    <string name="abs_error_70">CAN instrument cluster</string>
+    <string name="abs_error_3B">CAN message error DMER1</string>
+    <string name="abs_error_3A">CAN message error EGS1</string>
+    <string name="abs_error_detail_00">ASC not passive</string>
+    <string name="abs_error_detail_01">ASC passive</string>
+    <string name="abs_error_detail_02">ABS control active</string>
+    <string name="abs_error_detail_03">ABS control passive</string>
+    <string name="abs_error_detail_04">Stop light switch on</string>
+    <string name="abs_error_detail_05">Stop light switch off</string>
+    <string name="abs_error_detail_06">ASC control active</string>
+    <string name="abs_error_detail_07">ASC control passive</string>
+    <!-- Live_data -->
+    <string name="abs_live_data_front_left_wheel_speed">Front left wheel speed</string>
+    <string name="abs_live_data_front_right_wheel_speed">Front right wheel speed</string>
+    <string name="abs_live_data_rear_left_wheel_speed">Rear left wheel speed</string>
+    <string name="abs_live_data_rear_right_wheel_speed">Rear right wheel speed</string>
+    <string name="abs_live_data_engine_rpm">Engine RPM</string>
+    <string name="abs_live_data_break_light_switch">Brake light switch</string>
+    <string name="abs_live_data_pump_relay">ABS Pump relay</string>
+    <string name="abs_live_data_valve_relay">Valve relay</string>
+    <string name="abs_live_data_asc_active">ASC active</string>
+
+</resources>

@@ -1,0 +1,877 @@
+{
+    "elements": [
+      {
+        "name": "COLD_MON_BREAKS",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x01",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "COLD_MON_POSITION_LAMPS",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x04",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "COLD_MON_TAIL_LAMPS",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x08",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "COLD_MON_PLATE_LAMPS",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x10",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "COLD_MON_REAR_FOGS",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x20",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "COLD_MON_DIPPED",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x04",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "COLD_MON_HIGHBEAM",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x10",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "COLD_MON_REAR_INDICATORS",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x20",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "COLD_MON_FRONT_INDICATORS",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x40",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "PERIOD_OF_COLD_MON",
+        "block": "0x00",
+        "byte": "0x06",
+        "mask": "0xFF",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "COLD_MON_TIME_INTERVAL",
+        "block": "0x00",
+        "byte": "0x07",
+        "mask": "0x38",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "TAIL_ERROR_REPORTED",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x01",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "POSITION_ERROR_REPORTED",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x02",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+          
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "LOW_BEAM_ERROR_REPORTED",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x04",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "HIGH_BEAM_ERROR_REPORTED",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x08",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "DIMMER_ERROR",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x40",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "LEFT_REAR_FOG_ERROR",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x01",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "RIGHT_REAR_FOG_ERROR",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x02",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "BREAK_LIGHT_ERROR",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x04",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "third_break_lamp_error",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x08",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "LICENSE_PLATE_ERROR",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x10",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "TRAILER_LIGHT_ERRORS",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x40",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "DIPPED_BEAM_TIME_OUT",
+        "block": "0x00",
+        "byte": "0x0B",
+        "mask": "0x01",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "REAR_POSITION_TIME_OUT",
+        "block": "0x00",
+        "byte": "0x0B",
+        "mask": "0x02",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "FRONT_POSITION_TIME_OUT",
+        "block": "0x00",
+        "byte": "0x0B",
+        "mask": "0x04",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "ILLUMINATION_TIME_OUT",
+        "block": "0x00",
+        "byte": "0x0B",
+        "mask": "0x08",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "LICENSE_PLATE_TIME_OUT",
+        "block": "0x00",
+        "byte": "0x0B",
+        "mask": "0x10",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "FRONT_FOGS_TIME_OUT",
+        "block": "0x00",
+        "byte": "0x0B",
+        "mask": "0x20",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "MAIN_BEAM_TIME_OUT",
+        "block": "0x00",
+        "byte": "0x0B",
+        "mask": "0x40",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "BREAK_LAMPS_TIME_OUT",
+        "block": "0x00",
+        "byte": "0x0B",
+        "mask": "0x80",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "HEADLIGHT_TIME_OUT",
+        "block": "0x00",
+        "byte": "0x0F",
+        "mask": "0xFF",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "not_active"
+            },
+            {
+              "data": "0x15",
+              "text": "15s"
+            },
+            {
+              "data": "0x30",
+              "text": "30s"
+            },
+            {
+              "data": "0x45",
+              "text": "45s"
+            },
+            {
+              "data": "0x60",
+              "text": "60s"
+            },
+            {
+              "data": "0x75",
+              "text": "75s"
+            },
+            {
+              "data": "0x90",
+              "text": "90s"
+            }
+          ]
+      },
+      {
+        "name": "HEAD_LAMP_LEVELING",
+        "block": "0x0F",
+        "byte": "0x00",
+        "mask": "0x01",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "not_active"
+            },
+            {
+              "data": "0x01",
+              "text": "active"
+            }
+          ]
+      },
+      {
+        "name": "HALV_FULL_STEP_MODE",
+        "block": "0x0F",
+        "byte": "0x00",
+        "mask": "0x02",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "halvstemode"
+            },
+            {
+              "data": "0x00",
+              "text": "fullstemode"
+            }
+          ]
+      },
+      {
+        "name": "TEST_MODE",
+        "block": "0x0F",
+        "byte": "0x00",
+        "mask": "0x04",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "not_active"
+            },
+            {
+              "data": "0x01",
+              "text": "active"
+            }
+          ],
+        "visible": "false"
+      },
+      {
+        "name": "EXP_DIMMING_CONTROL",
+        "block": "0x0D",
+        "byte": "0x00",
+        "mask": "0x80",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "not_active"
+            },
+            {
+              "data": "0x01",
+              "text": "active"
+            }
+          ],
+        "visible": "false"
+      },
+      {
+        "name": "DAY_TIME_RUNNING_TIME",
+        "block": "0x00",
+        "byte": "0x13",
+        "mask": "0xFF",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "default"
+            },
+            {
+              "data": "0x42",
+              "text": "canada"
+            }
+          ],
+        "visible": "false"
+      },
+      {
+        "name": "DAY_TIME_RUNNING_PERIOD",
+        "block": "0x00",
+        "byte": "0x14",
+        "mask": "0xFF",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+          {
+            "data": "0xAA",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "MIN_BLANKING_TIME",
+        "block": "0x00",
+        "byte": "0x15",
+        "mask": "0xFF",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "MAX_VOLTAGE",
+        "block": "0x00",
+        "byte": "0x15",
+        "mask": "0xFF",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "default"
+            },
+            {
+              "data": "0x13",
+              "text": "us"
+            }
+          ],
+        "visible": "false"
+      },
+      {
+        "name": "POLICE_HEADLAMPS",
+        "block": "0x00",
+        "byte": "0x03",
+        "mask": "0x01",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "not_active"
+            },
+            {
+              "data": "0x01",
+              "text": "active"
+            }
+          ]
+      },
+      {
+        "name": "QUERY_BREAK_SWITCH",
+        "block": "0x00",
+        "byte": "0x03",
+        "mask": "0x02",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "not_active"
+            },
+            {
+              "data": "0x00",
+              "text": "active"
+            }
+          ],
+        "visible": "false"
+      },
+      {
+        "name": "LOW_VOLTAGE_CUT_OFF",
+        "block": "0x00",
+        "byte": "0x04",
+        "mask": "0xFF",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "default"
+            },
+            {
+              "data": "0x20",
+              "text": "transit"
+            }
+          ],
+        "visible": "false"
+      },
+      {
+        "name": "DOUBLE_FLASH_HAZARD",
+        "block": "0x00",
+        "byte": "0x05",
+        "mask": "0x01",
+        "coding_index": [
+            "27",
+            "28"
+          ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      }
+    ]
+}

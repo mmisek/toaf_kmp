@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_flash_programing">Flash programming</string>
+    <string name="activity_flash_read_identification">ECU identification...</string>
+    <string name="activity_flash_programming_flash_reading">Flash reading</string>
+    <string name="activity_flash_programming_flash_writing">Flash writing</string>
+    <string name="activity_flash_programming_read_flash">Read flash</string>
+    <string name="activity_flash_programming_write_flash">Write flash</string>
+    <string name="activity_flash_programming_tittle">Module flash programming</string>
+    <string name="activity_flash_programming_security_access">Security access…%1$s</string>
+    <string name="activity_flash_programming_diagnostic_session">Diagnostic session...%1$s</string>
+    <string name="activity_flash_programming_flash_read">Flash reading</string>
+    <string name="activity_flash_programming_flash_write">Flash writing...%1$s</string>
+    <string name="activity_flash_programming_ecu_reset">ECU reset...wait</string>
+    <string name="activity_flash_programming_start">Start</string>
+    <string name="activity_flash_programming_end">End</string>
+    <string name="activity_flash_programming_ok">OK</string>
+    <string name="activity_flash_programming_failed">Failed</string>
+    <string name="activity_flash_programming_close">Close</string>
+    <string name="activity_flash_programming_read_time">Read time : %1$s</string>
+    <string name="activity_flash_programming_write_time">Write time : %1$s</string>
+    <string name="activity_flash_programming_written_to">File written to : %1$s</string>
+    <string name="activity_flash_programming_write_data_to_file_error">Write to file error.</string>
+    <string name="activity_flash_programming_read_size">Read bytes : %1$s</string>
+    <string name="activity_flash_programming_read_error">Flash read error !</string>
+    <string name="activity_flash_programming_write_error">Flash write error !</string>
+    <string name="activity_flash_programming_flash_erasing">Flash erasing...%1$s</string>
+    <string name="activity_flash_programming_flash_writing_end">Flash writing end...%1$s</string>
+    <string name="activity_flash_programming_backup_flash">Backup flash...%1$s</string>
+    <string name="activity_flash_programming_file_name">File name : %1$s</string>
+    <string name="activity_flash_programming_file_size">File size : %1$s bytes</string>
+    <string name="activity_flash_programming_wrong_file_size">Wrong file size.</string>
+    <string name="activity_flash_programming_ecu_init">ECU init...%1$s</string>
+    <string name="activity_flash_programing_warning">
+        !! WARNING !!\n\n
+        All these operations can immobilize your vehicle.\n
+        While the read operation is usually safe, writing can render the vehicle unable to start!
+        The author has made every effort to ensure that the operations are safe - but he does not guarantee it\n
+        You do everything at your own risk!
+    </string>
+</resources>

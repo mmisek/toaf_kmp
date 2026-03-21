@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_rs">Sensor de lluvia</string>
+    <!-- MODULE RS -->
+    <string name="rs_error_01">Error de hardware interno</string>
+    <string name="rs_error_02">Adaptación en la ventana no posible</string>
+    <string name="rs_error_03">Voltaje o temperatura fuera del rango de tolerancia</string>
+    <string name="rs_error_04">Problemas de comunicación ASIC - Controlador</string>
+    <string name="rs_error_05">Sensor de limpieza defectuoso (sin detección)</string>
+    <string name="rs_error_06">Contacto de reinicio del motor del limpiaparabrisas defectuoso</string>
+    <!-- RS control -->
+    <string name="rs_control_init">Iniciar sensor de lluvia</string>
+    <!-- RS Live data -->
+    <string name="rs_live_data_park_position">Limpiaparabrisas en posición de aparcamiento</string>
+    <string name="rs_live_data_reinforcement">Reforzamiento de señal</string>
+    <string name="rs_live_data_time_point_1">Punto de tiempo 1</string>
+    <string name="rs_live_data_time_point_2">Punto de tiempo 2</string>
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_hevac">Air climate control</string>
+
+    <string name="hevac_error_00">Ventilation flap motor</string>
+    <string name="hevac_error_01">Defroster flap motor</string>
+    <string name="hevac_error_02">Footwell flap motor</string>
+    <string name="hevac_error_03">Fresh air/Air circulation flap motor left</string>
+    <string name="hevac_error_04">Fresh air/Air circulation flap motor right</string>
+    <string name="hevac_error_05">Wrong air conditioning unit HEVAC</string>
+    <string name="hevac_error_06">Pressure sensor, Pollution Sensor Supply</string>
+    <string name="hevac_error_0B">Evaporator sensor</string>
+    <string name="hevac_error_0D">Heat exchanger sensor</string>
+    <string name="hevac_error_12">Inner temperature sensor</string>
+    <string name="hevac_error_17">Relay Rear window defogger</string>
+    <string name="hevac_error_18">Additional heater Relay</string>
+    <string name="hevac_error_19">Auxiliary water pump</string>
+    <string name="hevac_error_1A">Water valve</string>
+    <string name="hevac_error_1B">Blower control voltage</string>
+    <string name="hevac_error_1C">Sensor blower</string>
+    <string name="hevac_error_1D">Communication with the Additional heater</string>
+    <string name="hevac_error_1E">Pollution sensor</string>
+    <string name="hevac_error_1F">Pressure sensor</string>
+    <string name="hevac_error_20">Pollution sensor heating</string>
+    <string name="hevac_error_21">Solar sensor</string>
+    <string name="hevac_error_FF">Energy saving mode active</string>
+
+    <string name="hevac_error_detail_01">Short circuit to batt+</string>
+    <string name="hevac_error_detail_02">Short circuit to ground</string>
+    <string name="hevac_error_detail_04">Open circuit</string>
+    <string name="hevac_error_detail_08">Implausible value, Invalid working area</string>
+    <string name="hevac_error_detail_40">Error present</string>
+    <string name="hevac_error_detail_80">Sporadic error</string>
+
+    <string name="hevac_live_data_power_supply_pollution_sensor">Pollution sensor supply</string>
+    <string name="hevac_live_data_power_supply">HEVAC - power supply</string>
+    <string name="hevac_live_data_pollution_sensor_heating_voltage">Pollution sensor - heating voltage</string>
+    <string name="hevac_live_data_pwm_fan_control_voltage">PWM fan control voltage</string>
+    <string name="hevac_live_data_outdoor_temperature_sensor">Outdoor temperature sensor</string>
+    <string name="hevac_live_data_evaporator_temperature_sensor">Evaporator temperature sensor</string>
+    <string name="hevac_live_data_pollution_sensor_signal">Pollution sensor signal</string>
+    <string name="hevac_live_data_heat_exchanger_sensor">Heat exchanger sensor</string>
+    <string name="hevac_live_data_solar_sensor">Solar sensor</string>
+    <string name="hevac_live_data_pressure_sensor">Pressure sensor</string>
+</resources>

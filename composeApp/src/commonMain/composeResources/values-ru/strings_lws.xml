@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_lws">Датчик угла поворота рулевого колеса</string>
+    <string name="lws_error_01">Клемма 30 неисправна</string>
+    <string name="lws_error_02">Ток датчика вне диапазона</string>
+    <string name="lws_error_03">Разница 90° ползунка слишком велика (Норм. режим)</string>
+    <string name="lws_error_04">Разница 90° ползунка слишком велика (Режим регулировки)</string>
+    <string name="lws_error_05">Неисправность EEPROM</string>
+    <string name="lws_error_06">Неисправность АЦП (AD-конвертера)</string>
+    <string name="lws_error_07">Ошибка проверки ПЗУ (ROM)</string>
+    <string name="lws_error_08">Ошибка проверки ОЗУ (RAM)</string>
+    <string name="lws_error_09">Не является сообщением ASC2</string>
+    <string name="lws_error_0A">Неверная версия CAN</string>
+    <string name="lws_error_0B">Неверный ID LWS</string>
+    <string name="lws_error_0C">Шина CAN отключена (Bus off)</string>
+    <string name="lws_error_0D">Градиент угла поворота слишком велик</string>
+    <string name="lws_error_0E">Превышен максимум угла поворота</string>
+    <string name="lws_error_0F">Ошибка стека / Ошибка Case</string>
+    <string name="lws_error_10">Сторожевой таймер (Watchdog)</string>
+
+    <string name="lws_live_data_wheel_speed_left_front">Скорость колеса - переднее левое</string>
+    <string name="lws_live_data_wheel_speed_right_front">Скорость колеса - переднее правое</string>
+    <string name="lws_live_data_wheel_speed_left_rear">Скорость колеса - заднее левое</string>
+    <string name="lws_live_data_wheel_speed_right_rear">Скорость колеса - заднее правое</string>
+    <string name="lws_live_data_vehicle_speed">Скорость автомобиля</string>
+    <string name="lws_live_data_steering_angle_speed">Скорость вращения руля</string>
+    <string name="lws_live_data_steering_angle">Угол поворота руля</string>
+    <string name="lws_live_data_program_cycle_time">Время программного цикла</string>
+    <string name="lws_live_data_lateral_acceleration">Поперечное ускорение</string>
+    <string name="lws_live_data_synthetic_steering_wheel_angles">Синтетические углы рулевого колеса</string>
+    <string name="lws_live_data_yaw_rate">Скорость рыскания</string>
+
+</resources>

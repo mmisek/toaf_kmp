@@ -1,0 +1,103 @@
+{
+  "livedata": [
+    {
+      "name": "clutch",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "break",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "cruise_on",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "cruise_off",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "speed_detection",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "speed_greater_than_minimum",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "actual_speed",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "test_completed",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "cc_active",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "actual_speed",
+      "block": "0x02",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "set_speed",
+      "block": "0x02",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "km/h"
+    }
+  ]
+}

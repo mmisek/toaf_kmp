@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- BMBT -->
+    <string name="module_description_bmbt">Board monitor</string>
+
+    <string name="bmbt_error_01">Reset</string>
+    <string name="bmbt_error_02">LC-Monitor temperature to high</string>
+    <string name="bmbt_error_03">Radio Telegramm state timeout</string>
+    <string name="bmbt_error_04">Short circuit NF wire Tape L-</string>
+    <string name="bmbt_error_05">Short circuit NF wire Tape L+</string>
+    <string name="bmbt_error_06">Short circuit NF wire Tape R-</string>
+    <string name="bmbt_error_07">Short circuit NF wire Tape R+</string>
+    <string name="bmbt_error_08">K-Bus send</string>
+    <string name="bmbt_error_09">K-Bus receive</string>
+    <string name="bmbt_error_0A">Monitor heater Short circuit to batt+</string>
+    <string name="bmbt_error_0B">Connector monitor UB Open circuit</string>
+    <string name="bmbt_error_0C">Connector Monitor Ub heater Open circuit</string>
+    <string name="bmbt_error_0D">NAV-bus send</string>
+    <string name="bmbt_error_0E">NAV-bus receive</string>
+    <string name="bmbt_error_0F">NAV-bus buffer overflow</string>
+    <string name="bmbt_error_10">Memory extern RAM</string>
+    <string name="bmbt_error_11">Memory LC-display RAM</string>
+    <string name="bmbt_error_12">Inter-CPU-communication</string>
+    <string name="bmbt_error_13">NAV-bus inactiv</string>
+    <string name="bmbt_error_14">Temperature sensor monitor Implausible value</string>
+    <string name="bmbt_error_15">Monitor heater or fuse</string>
+    <string name="bmbt_error_16">EEPROM Checksum does not match with programmed value</string>
+    <string name="bmbt_error_17">Program version number does not match with number in EEPROM programmed number</string>
+    <string name="bmbt_error_present">Present</string>
+    <string name="bmbt_error_not_present">Not present</string>
+
+    <string name = "bmbt_control_cassette_eject">Cassette : eject</string>
+    <string name = "bmbt_control_cassette_play">Cassette : play</string>
+    <string name = "bmbt_control_cassette_ffw">Cassette : FFW</string>
+    <string name = "bmbt_control_cassette_frw">Cassette : FRW</string>
+    <string name = "bmbt_control_cassette_mss_fw">Cassette : MSS FW</string>
+    <string name = "bmbt_control_cassette_mss_rw">Cassette : MSS FW</string>
+    <string name = "bmbt_control_cassette_standby">Cassette : standby</string>
+    <string name = "bmbt_control_cassette_pause_on">Cassette : pause on</string>
+    <string name = "bmbt_control_cassette_pause_off">Cassette : pause off</string>
+    <string name = "bmbt_control_cassette_normal">Cassette : normal</string>
+    <string name = "bmbt_control_cassette_reverse">Cassette : reverse</string>
+    <string name = "bmbt_control_cassette_dolby_b">Dolby B</string>
+    <string name = "bmbt_control_cassette_dolby_c">Dolby C</string>
+    <string name = "bmbt_control_cassette_dolby_off">Dolby Off</string>
+    <string name = "bmbt_control_mute_off">Mute off</string>
+    <string name = "bmbt_control_mute_on">Mute on</string>
+    <string name = "bmbt_control_monitor_off">Monitor off</string>
+    <string name = "bmbt_control_monitor_on">Monitor on</string>
+    <string name = "bmbt_control_sleep_mode">Sleep mode</string>
+    <string name = "bmbt_control_normal_mode_on">Normal mode on</string>
+    <string name = "bmbt_control_production_mode_on">Production mode on</string>
+    <string name = "bmbt_control_transport_mode_on">Transport mode on</string>
+    <string name = "bmbt_control_workshop_mode_on">Workshop mode on</string>
+
+    <string name = "bmbt_live_data_key_pressed">Key pressed</string>
+    <string name = "bmbt_live_data_monitor_encoder_steps">Brightness encoder steps</string>
+    <string name = "bmbt_live_data_volume_encoder_steps">Volume encoder steps</string>
+    <string name = "bmbt_live_data_cleme_r">Clem R</string>
+    <string name = "bmbt_live_data_calculated_gain">Calculated gain</string>
+    <string name = "bmbt_live_data_calculated_brightness">Calculated brightness</string>
+    <string name = "bmbt_live_data_battery_voltage">Battery voltage</string>
+    <string name = "bmbt_live_data_nft1">NFT 1</string>
+    <string name = "bmbt_live_data_nft2">NFT 2</string>
+    <string name = "bmbt_live_data_nft3">NFT 3</string>
+    <string name = "bmbt_live_data_nft4">NFT 4</string>
+    <string name = "bmbt_live_data_lcd_temperature">LCD Temperature</string>
+
+    <string name = "bmbt_live_data_value_button_no_button">No button</string>
+    <string name = "bmbt_live_data_value_several_buttons">Several buttons</string>
+    <string name = "bmbt_live_data_value_button_1">Button 1</string>
+    <string name = "bmbt_live_data_value_button_2">Button 2</string>
+    <string name = "bmbt_live_data_value_button_3">Button 3</string>
+    <string name = "bmbt_live_data_value_button_4">Button 4</string>
+    <string name = "bmbt_live_data_value_button_5">Button 5</string>
+    <string name = "bmbt_live_data_value_button_6">Button 6</string>
+    <string name = "bmbt_live_data_value_button_menu">MENU</string>
+    <string name = "bmbt_live_data_value_button_am">AM</string>
+    <string name = "bmbt_live_data_value_button_fm">FM</string>
+    <string name = "bmbt_live_data_value_button_select">SELECT</string>
+    <string name = "bmbt_live_data_value_button_tone">TONE</string>
+    <string name = "bmbt_live_data_value_button_rds">RDS</string>
+    <string name = "bmbt_live_data_value_button_tp">TP</string>
+    <string name = "bmbt_live_data_value_button_seek_right">&gt;&gt;</string>
+    <string name = "bmbt_live_data_value_button_seek_left">&lt;&lt;</string>
+    <string name = "bmbt_live_data_value_button_mode">MODE</string>
+    <string name = "bmbt_live_data_value_button_dolby_noise_reduction">Dolby</string>
+    <string name = "bmbt_live_data_value_button_reverse">REVERSE</string>
+    <string name = "bmbt_live_data_value_button_eject">EJECT</string>
+    <string name = "bmbt_live_data_value_button_on_off">ON/OFF</string>
+    <string name = "bmbt_live_data_value_button_switch">SWITCH</string>
+    <string name = "bmbt_live_data_value_button_info">INFO</string>
+    <string name = "bmbt_live_data_value_button_clock">CLOCK</string>
+    <string name = "bmbt_live_data_value_button_mute">MUTE</string>
+    <string name = "bmbt_live_data_value_button_telephone">TELEPHONE</string>
+</resources>

@@ -1,0 +1,40 @@
+{
+    "elements":
+    [
+      {
+      "name": "ENGINE_TRANSMISSION_TYPE",
+      "block": "0x05",
+      "byte": "0x00",
+      "mask": "0xFF",
+      "coding_index": [
+          "1"
+        ],
+      "coding_values": [
+          {
+            "data": "0x0A",
+            "text": "2_0l_manual"
+          },
+          {
+            "data": "0x1A",
+            "text": "2_0l_auto"
+          },
+          {
+            "data": "0x05",
+            "text": "2_5l_manual"
+          },
+          {
+            "data": "0x15",
+            "text": "2_5l_auto"
+          },
+          {
+            "data": "0x05",
+            "text": "diesel_man"
+          },
+          {
+            "data": "0x05",
+            "text": "diesel_auto"
+          }
+        ]
+    }
+    ]
+}

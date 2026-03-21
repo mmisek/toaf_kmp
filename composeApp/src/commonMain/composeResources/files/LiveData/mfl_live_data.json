@@ -1,0 +1,157 @@
+{
+  "livedata": [
+    {
+      "name": "radio_control_present",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "telephone_control_present",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "air_circulating_control_present",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "cruise_control_present",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "button_resume_pressed",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0x09",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "button_set_plus_pressed",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0x12",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "button_set_minus_pressed",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "button_cruise_control_off_pressed",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0x24",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "button_air_recirculation_pressed",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "button_telephone_pressed",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0x07",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "button_radio_telephone_pressed",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0x0B",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "button_seek_down_pressed",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0x13",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "button_seek_up_pressed",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0x83",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "button_vol_down_pressed",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0x13",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "button_vol_up_pressed",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0x43",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "operating_voltage",
+      "block": "0x01",
+      "byte": "0x03",
+      "mask": "0xFF",
+      "factor_a": "0.085",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "operating_voltage_at_the_switch",
+      "block": "0x01",
+      "byte": "0x04",
+      "mask": "0xFF",
+      "factor_a": "0.085",
+      "factor_b": "0",
+      "unit": "V"
+    }
+  ]
+}

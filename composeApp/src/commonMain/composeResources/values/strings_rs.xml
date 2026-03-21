@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_rs">Rain sensor</string>
+    <!-- MODULE RS -->
+    <string name="rs_error_01">Internal hardware error</string>
+    <string name="rs_error_02">Adaption at window not possible</string>
+    <string name="rs_error_03">Voltage or temperature out of range Tolerance</string>
+    <string name="rs_error_04">Problems with communication ASIC - Controller</string>
+    <string name="rs_error_05">Wiping sensor defective (no detection)</string>
+    <string name="rs_error_06">Wiper motor Reset contact faulty</string>
+    <!-- RS control -->
+    <string name="rs_control_init">Init rain sensor</string>
+    <!-- RS Live data -->
+    <string name="rs_live_data_park_position">Wipers in park position</string>
+    <string name="rs_live_data_reinforcement">Signal reinforcement</string>
+    <string name="rs_live_data_time_point_1">Time point 1</string>
+    <string name="rs_live_data_time_point_2">Time point 2</string>
+</resources>

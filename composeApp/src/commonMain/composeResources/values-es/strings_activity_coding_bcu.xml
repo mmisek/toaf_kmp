@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_coding_bcu">Codificación avanzada</string>
+    <string name="activity_coding_bcu_tittle">Codificación y programación avanzada</string>
+    <string name="activity_coding_bcu_keys">Programación de llaves</string>
+    <string name="activity_coding_bcu_key_add">Agregar</string>
+    <string name="activity_coding_bcu_key_delete">Eliminar</string>
+    <string name="activity_coding_bcu_key_number">Llave : %1$d</string>
+    <string name="activity_coding_bcu_key_empty">Vacío</string>
+    <string name="activity_coding_bcu_key_read_error">¡Error!</string>
+    <string name="activity_coding_bcu_key_remove_tittle">Eliminar llave</string>
+    <string name="activity_coding_bcu_key_remove_message">¿Está seguro de eliminar esta llave?</string>
+    <string name="activity_coding_bcu_key_remove_yes">Sí</string>
+    <string name="activity_coding_bcu_key_remove_no">No</string>
+    <string name="activity_coding_bcu_key_remove_error">Error al eliminar la llave</string>
+    <string name="activity_coding_bcu_key_remove_key_successful">Llave eliminada con éxito</string>
+    <string name="activity_coding_bcu_key_add_tittle">Agregar nueva llave</string>
+    <string name="activity_coding_bcu_key_add_message">Ingrese el código de la llave</string>
+    <string name="activity_coding_bcu_key_add_button_add">Agregar</string>
+    <string name="activity_coding_bcu_key_add_hint">ej. AB54CA</string>
+    <string name="activity_coding_bcu_key_add_button_cancel">Cancelar</string>
+    <string name="activity_coding_bcu_key_add_error">Error al agregar la llave</string>
+    <string name="activity_coding_bcu_key_add_successful">Llave agregada con éxito</string>
+    <string name="activity_coding_bcu_key_code_not_valid">El código de la llave ingresado no es válido</string>
+    <string name="activity_coding_bcu_key_add_not_supported">No soportado aún.</string>
+    <string name="activity_coding_bcu_key_add_sign">+</string>
+    <string name="activity_coding_bcu_key_del_sign">-</string>
+</resources>

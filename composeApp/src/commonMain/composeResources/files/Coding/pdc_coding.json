@@ -1,0 +1,1321 @@
+{
+    "elements": [
+      {
+        "name": "NO_OF_SENSORS",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x01",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "eight"
+            },
+            {
+              "data": "0x00",
+              "text": "four"
+            }
+          ]
+      },
+      {
+        "name": "REAR_SOUNDER",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x02",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "bc_gong"
+            },
+            {
+              "data": "0x00",
+              "text": "loudspeaker"
+            }
+          ]
+      },
+      {
+        "name": "FRONT_SOUNDER",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x04",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "bc_gong"
+            },
+            {
+              "data": "0x00",
+              "text": "loudspeaker"
+            }
+          ]
+      },
+      {
+        "name": "SOUNDERS",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x08",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "rear"
+            },
+            {
+              "data": "0x00",
+              "text": "front_and_rear"
+            }
+          ]
+      },
+      {
+        "name": "PARKING_AID_SWITCH",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x10",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "fitted"
+            },
+            {
+              "data": "0x00",
+              "text": "none"
+            }
+          ]
+      },
+      {
+        "name": "REVERSING_SIGNAL",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x20",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "REVERSE_ACTIVATION_DELAY",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x40",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "TRAILER_HOOK",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x80",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "not_present"
+            },
+            {
+              "data": "0x01",
+              "text": "present"
+            }
+          ]
+      },
+      {
+        "name": "ACTIVE_ON_IGNITION",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x01",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "not_active"
+            },
+            {
+              "data": "0x01",
+              "text": "active"
+            }
+          ]
+      },
+      {
+        "name": "DEACTIVATION",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x02",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "reverse"
+            },
+            {
+              "data": "0x00",
+              "text": "speed"
+            }
+          ]
+      },
+      {
+        "name": "SWITCH_ON_SIG_ON_1ST_ACT",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x04",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "SWITCH_ON_SIG_ON_All_ACT",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x08",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "SWITCH_OFF_SIG_ON_DEACTIV",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x10",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "SIGNAL_BY_SWITCH",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x20",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "FAILURE_EMERGENCY_SIGNAL",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x40",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "ice_suppression",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x80",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "active"
+            },
+            {
+              "data": "0x00",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "rear_spacing_center_to_corner",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x27",
+              "text": "r40"
+            },
+            {
+              "data": "0x29",
+              "text": "r41"
+            },
+            {
+              "data": "0x29",
+              "text": "rdx20"
+            },
+            {
+              "data": "0x2D",
+              "text": "rdx30"
+            }
+          ]
+      },
+      {
+        "name": "rear_spacing_center_sensors",
+        "block": "0x00",
+        "byte": "0x03",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x32",
+              "text": "r40"
+            },
+            {
+              "data": "0x32",
+              "text": "r41"
+            },
+            {
+              "data": "0x2D",
+              "text": "rdx20"
+            },
+            {
+              "data": "0x2D",
+              "text": "rdx30"
+            }
+          ]
+      },
+      {
+        "name": "front_spacing_center_to_corner",
+        "block": "0x00",
+        "byte": "0x04",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+          {
+            "data": "0x03",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "front_spacing_center_sensors",
+        "block": "0x00",
+        "byte": "0x04",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+          {
+            "data": "0x03",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "MAX_DETECTION_REAR_CORNER",
+        "block": "0x00",
+        "byte": "0x06",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x3C",
+              "text": "r40"
+            },
+            {
+              "data": "0x3C",
+              "text": "r41"
+            },
+            {
+              "data": "0x3C",
+              "text": "rdx20"
+            },
+            {
+              "data": "0x3C",
+              "text": "rdx30"
+            }
+          ]
+      },
+      {
+        "name": "MAX_DETECTION_REAR_CENTER",
+        "block": "0x00",
+        "byte": "0x07",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x3C",
+              "text": "r40"
+            },
+            {
+              "data": "0x3C",
+              "text": "r41"
+            },
+            {
+              "data": "0x3C",
+              "text": "rdx20"
+            },
+            {
+              "data": "0x3C",
+              "text": "rdx30"
+            }
+          ]
+      },
+      {
+        "name": "MAX_DETECTION_FRONT_CORNER",
+        "block": "0x00",
+        "byte": "0x08",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "MAX_DETECTION_FRONT_CENTER",
+        "block": "0x00",
+        "byte": "0x09",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "REAR_OFFSET_CORNERS",
+        "block": "0x00",
+        "byte": "0x0A",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "REAR_OFFSET_CENTER",
+        "block": "0x00",
+        "byte": "0x0B",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "FRONT_OFFSET_CORNERS",
+        "block": "0x00",
+        "byte": "0x0C",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "FRONT_OFFSET_CENTER",
+        "block": "0x00",
+        "byte": "0x0D",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "PERMANENT_REAR_TONE",
+        "block": "0x00",
+        "byte": "0x0E",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+            {
+              "data": "0x23",
+              "text": "r40"
+            },
+            {
+              "data": "0x23",
+              "text": "r41"
+            },
+            {
+              "data": "0x1E",
+              "text": "rdx20"
+            },
+            {
+              "data": "0x1E",
+              "text": "rdx30"
+            }
+          ]
+      },
+      {
+        "name": "PERMANENT_FRONT_TONE",
+        "block": "0x00",
+        "byte": "0x0F",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "LOUDSPEAKER_VOL_REAR",
+        "block": "0x00",
+        "byte": "0x10",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+          {
+            "data": "0x07",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "LOUDSPEAKER_VOL_FRONT",
+        "block": "0x00",
+        "byte": "0x11",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+          {
+            "data": "0x07",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "SWITCH_ON_BY_SPEED",
+        "block": "0x00",
+        "byte": "0x12",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "SWITCH_OFF_BY_SPEED",
+        "block": "0x00",
+        "byte": "0x13",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+          {
+            "data": "0x10",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "SWITCH_OFF_DISTANCE",
+        "block": "0x00",
+        "byte": "0x14",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "SPEED_SIGNAL",
+        "block": "0x00",
+        "byte": "0x15",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+          {
+            "data": "0x88",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "trailer_hook_distance",
+        "block": "0x00",
+        "byte": "0x16",
+        "mask": "0xFF",
+        "coding_index": [
+          "01"
+        ],
+        "coding_values": [
+          {
+            "data": "0x88",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "NO_OF_SENSORS",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x01",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "four"
+            },
+            {
+              "data": "0x01",
+              "text": "eight"
+            }
+          ]
+      },
+      {
+        "name": "ONLY_IGNITION_OPERATED",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x02",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "not_active"
+            },
+            {
+              "data": "0x01",
+              "text": "active"
+            }
+          ]
+      },
+      {
+        "name": "ONE_TONE_GENERATOR",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x08",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "not_active"
+            },
+            {
+              "data": "0x01",
+              "text": "active"
+            }
+          ]
+      },
+      {
+        "name": "PDC_COUNTER",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x10",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "not_active"
+            },
+            {
+              "data": "0x01",
+              "text": "active"
+            }
+          ]
+      },
+      {
+        "name": "REVERSE_CHIME",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x20",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "not_active"
+            },
+            {
+              "data": "0x01",
+              "text": "active"
+            }
+          ]
+      },
+      {
+        "name": "SWITCH_ON_DELAY_RETURNING_CHIME",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x40",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "not_active"
+            },
+            {
+              "data": "0x01",
+              "text": "active"
+            }
+          ]
+      },
+      {
+        "name": "trailer_hook",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x80",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "not_active"
+            },
+            {
+              "data": "0x01",
+              "text": "active"
+            }
+          ]
+      },
+      {
+        "name": "pdc_on_when_ignition",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x01",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "not_active"
+            },
+            {
+              "data": "0x01",
+              "text": "active"
+            }
+          ]
+      },
+      {
+        "name": "PDC_ACTIVE_DEACTIVE",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x02",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "speed"
+            },
+            {
+              "data": "0x01",
+              "text": "reverse"
+            }
+          ]
+      },
+      {
+        "name": "SWITCH_ON_MESSAGE_ONE_TIME",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x04",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "not_active"
+            },
+            {
+              "data": "0x01",
+              "text": "active"
+            }
+          ]
+      },
+      {
+        "name": "switch_on_message_always",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x08",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "not_active"
+            },
+            {
+              "data": "0x01",
+              "text": "active"
+            }
+          ]
+      },
+      {
+        "name": "SHUTDOWN_MESSAGE",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x10",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "not_active"
+            },
+            {
+              "data": "0x01",
+              "text": "active"
+            }
+          ]
+      },
+      {
+        "name": "MESSAGE_BUTTON",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x20",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "not_active"
+            },
+            {
+              "data": "0x01",
+              "text": "active"
+            }
+          ]
+      },
+      {
+        "name": "EMERGENCY_FUNCTION",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x40",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "not_active"
+            },
+            {
+              "data": "0x01",
+              "text": "active"
+            }
+          ]
+      },
+      {
+        "name": "HIDE_ICE",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x80",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "not_active"
+            },
+            {
+              "data": "0x01",
+              "text": "active"
+            }
+          ]
+      },
+      {
+        "name": "DISTANCE_INSTALLATION_CONVERTER",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0xFFFFFF",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x27320000",
+              "text": "r40"
+            },
+            {
+              "data": "0x29320000",
+              "text": "r41"
+            },
+            {
+              "data": "0x292D0000",
+              "text": "rdx20"
+            },
+            {
+              "data": "0x292D0000",
+              "text": "rdx30"
+            },
+            {
+              "data": "0x2B2D0000",
+              "text": "strwse"
+            },
+            {
+              "data": "0x25320000",
+              "text": "rdx14"
+            },
+            {
+              "data": "0x28320000",
+              "text": "rdx15"
+            },
+            {
+              "data": "0x1F420000",
+              "text": "rdx21"
+            },
+            {
+              "data": "0x1F430000",
+              "text": "rdx31"
+            }
+          ]
+      },
+      {
+        "name": "measuring_range_converter",
+        "block": "0x00",
+        "byte": "0x06",
+        "mask": "0xFFFFFF",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x27320000",
+              "text": "r40"
+            },
+            {
+              "data": "0x29320000",
+              "text": "r41"
+            },
+            {
+              "data": "0x292D0000",
+              "text": "rdx20"
+            },
+            {
+              "data": "0x292D0000",
+              "text": "rdx30"
+            },
+            {
+              "data": "0x2B2D0000",
+              "text": "strwse"
+            },
+            {
+              "data": "0x25320000",
+              "text": "rdx14"
+            },
+            {
+              "data": "0x28320000",
+              "text": "rdx15"
+            },
+            {
+              "data": "0x1F420000",
+              "text": "rdx21"
+            },
+            {
+              "data": "0x1F430000",
+              "text": "rdx31"
+            }
+          ]
+      },
+      {
+        "name": "OFFSET_MEASURING_RANGE",
+        "block": "0x00",
+        "byte": "0x0A",
+        "mask": "0xFFFFFF",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00000000",
+              "text": "default"
+            },
+            {
+              "data": "0x000A0000",
+              "text": "21_4dr"
+            },
+            {
+              "data": "0x00050000",
+              "text": "21_5dr"
+            }
+          ]
+      },
+      {
+        "name": "continuous_tone_measuring_range",
+        "block": "0x00",
+        "byte": "0x0E",
+        "mask": "0xFFFF",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x2300",
+              "text": "r40"
+            },
+            {
+              "data": "0x2300",
+              "text": "r41"
+            },
+            {
+              "data": "0x1E00",
+              "text": "rdx20"
+            },
+            {
+              "data": "0x1E00",
+              "text": "rdx30"
+            }
+          ]
+      },
+      {
+        "name": "MEASURING_RANGE_REAR_JACK",
+        "block": "0x00",
+        "byte": "0x10",
+        "mask": "0x0F",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "measuring_range_center",
+        "block": "0x00",
+        "byte": "0x10",
+        "mask": "0xF0",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "REAR_VOLUME",
+        "block": "0x00",
+        "byte": "0x11",
+        "mask": "0x07",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x07",
+              "text": "r40"
+            },
+            {
+              "data": "0x07",
+              "text": "r41"
+            },
+            {
+              "data": "0x07",
+              "text": "rdx20"
+            },
+            {
+              "data": "0x06",
+              "text": "rdx30"
+            }
+          ]
+      },
+      {
+        "name": "REAR_SOUND_GENERATOR",
+        "block": "0x00",
+        "byte": "0x11",
+        "mask": "0x08",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "lautsprecher"
+            },
+            {
+              "data": "0x01",
+              "text": "gong"
+            }
+          ]
+      },
+      {
+        "name": "front_volume",
+        "block": "0x00",
+        "byte": "0x11",
+        "mask": "0x70",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+          {
+            "data": "0x02",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "FRONT_SOUND_GENERATOR",
+        "block": "0x00",
+        "byte": "0x11",
+        "mask": "0x80",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "lautsprecher"
+            },
+            {
+              "data": "0x01",
+              "text": "gong"
+            }
+          ]
+      },
+      {
+        "name": "SWITCH_ON_SPEED",
+        "block": "0x00",
+        "byte": "0x12",
+        "mask": "0xFF",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "SHUTDOWN_SPEED",
+        "block": "0x00",
+        "byte": "0x13",
+        "mask": "0xFF",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+          {
+            "data": "0x1E",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "SWITCH_OFF",
+        "block": "0x00",
+        "byte": "0x14",
+        "mask": "0xFF",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+          {
+            "data": "0x1E",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "ROAD_IDENTIFICATION",
+        "block": "0x00",
+        "byte": "0x15",
+        "mask": "0xFF",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+          {
+            "data": "0x88",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "TRAILER_DISTANCE",
+        "block": "0x00",
+        "byte": "0x16",
+        "mask": "0xFF",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      }
+    ]
+}

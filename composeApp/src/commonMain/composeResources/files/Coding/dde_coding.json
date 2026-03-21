@@ -1,0 +1,49 @@
+{
+    "elements": [
+      {
+        "name": "START_VALUE",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0xFFFF",
+        "coding_index": [
+          "0"
+        ],
+        "custom_values": {
+          "min": "0",
+          "max": "65535"
+        }
+      },
+      {
+        "name": "IDLE_SPEED",
+        "block": "0x01",
+        "byte": "0x00",
+        "mask": "0xFFFF",
+        "coding_index": [
+          "0"
+        ],
+        "custom_values": {
+          "min": "0",
+          "max": "65535"
+        }
+      },
+      {
+        "name": "CRUISE_CONTROL",
+        "block": "0x02",
+        "byte": "0x00",
+        "mask": "0xFF",
+        "coding_index": [
+          "0"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "disable"
+            },
+            {
+              "data": "0xFF",
+              "text": "enable"
+            }
+          ]
+        }
+    ]
+}

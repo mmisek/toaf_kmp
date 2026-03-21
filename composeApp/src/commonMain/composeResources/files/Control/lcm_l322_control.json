@@ -1,0 +1,222 @@
+{
+    "elements": [
+      {
+        "name": "left_front_fog",
+        "block": "0x00",
+        "byte": "0x05",
+        "value": "0x04"
+      },
+      {
+        "name": "right_front_fog",
+        "block": "0x00",
+        "byte": "0x05",
+        "value": "0x40"
+      },
+      {
+        "name": "left_high_beam",
+        "block": "0x00",
+        "byte": "0x04",
+        "value": "0x40"
+      },
+      {
+        "name": "right_high_beam",
+        "block": "0x00",
+        "byte": "0x04",
+        "value": "0x20"
+      },
+      {
+        "name": "low_beam_left",
+        "block": "0x00",
+        "byte": "0x05",
+        "value": "0x10"
+      },
+      {
+        "name": "low_beam_right",
+        "block": "0x00",
+        "byte": "0x05",
+        "value": "0x20"
+      },
+      {
+        "name": "left_front_park_light",
+        "block": "0x00",
+        "byte": "0x05",
+        "value": "0x01"
+      },
+      {
+        "name": "right_front_park_light",
+        "block": "0x00",
+        "byte": "0x06",
+        "value": "0x20"
+      },
+      {
+        "name": "left_rear_park_light",
+        "block": "0x00",
+        "byte": "0x05",
+        "value": "0x02"
+      },
+      {
+        "name": "right_rear_park_light",
+        "block": "0x00",
+        "byte": "0x07",
+        "value": "0x08"
+      },
+      {
+        "name": "left_rear_fog_light",
+        "block": "0x00",
+        "byte": "0x07",
+        "value": "0x04"
+      },
+      {
+        "name": "right_rear_fog_light",
+        "block": "0x00",
+        "byte": "0x05",
+        "value": "0x80"
+      },
+      {
+        "name": "left_break_light",
+        "block": "0x00",
+        "byte": "0x04",
+        "value": "0x08"
+      },
+      {
+        "name": "center_break_light",
+        "block": "0x00",
+        "byte": "0x06",
+        "value": "0x10"
+      },
+      {
+        "name": "right_break_light",
+        "block": "0x00",
+        "byte": "0x04",
+        "value": "0x10"
+      },
+      {
+        "name": "left_reverse_light",
+        "block": "0x00",
+        "byte": "0x05",
+        "value": "0x08"
+      },
+      {
+        "name": "right_reverse_light",
+        "block": "0x00",
+        "byte": "0x07",
+        "value": "0x80"
+      },
+      {
+        "name": "licence_plate_left",
+        "block": "0x00",
+        "byte": "0x04",
+        "value": "0x04"
+      },
+      {
+        "name": "licence_plate_right",
+        "block": "0x00",
+        "byte": "0x06",
+        "value": "0x04"
+      },
+
+      {
+        "name": "front_left_turn_light",
+        "block": "0x00",
+        "byte": "0x07",
+        "value": "0x40"
+      },
+      {
+        "name": "front_right_turn_light",
+        "block": "0x00",
+        "byte": "0x06",
+        "value": "0x40"
+      },
+      {
+        "name": "rear_left_turn_light",
+        "block": "0x00",
+        "byte": "0x06",
+        "value": "0x80"
+      },
+      {
+        "name": "rear_right_turn_light",
+        "block": "0x00",
+        "byte": "0x07",
+        "value": "0x02"
+      },
+      {
+        "name": "warning_lights",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x10"
+      },
+      {
+        "name": "switch_bls",
+        "block": "0x00",
+        "byte": "0x02",
+        "value": "0x01"
+      },
+      {
+        "name": "switch_high_beam",
+        "block": "0x00",
+        "byte": "0x02",
+        "value": "0x02"
+      },
+      {
+        "name": "switch_front_fog",
+        "block": "0x00",
+        "byte": "0x02",
+        "value": "0x04"
+      },
+      {
+        "name": "switch_rear_fog",
+        "block": "0x00",
+        "byte": "0x02",
+        "value": "0x10"
+      },
+      {
+        "name": "switch_park_lights",
+        "block": "0x00",
+        "byte": "0x02",
+        "value": "0x20"
+      },
+      {
+        "name": "switch_turn_signal_right",
+        "block": "0x00",
+        "byte": "0x02",
+        "value": "0x40"
+      },
+      {
+        "name": "switch_turn_signal_left",
+        "block": "0x00",
+        "byte": "0x02",
+        "value": "0x80"
+      },
+      {
+        "name": "switch_lh",
+        "block": "0x00",
+        "byte": "0x01",
+        "value": "0x04"
+      },
+      {
+        "name": "instruments_light",
+        "block": "0x00",
+        "byte": "0x02",
+        "value": "0x20"
+      },
+
+      {
+        "name": "low_beam_switch_1",
+        "block": "0x00",
+        "byte": "0x03",
+        "value": "0x08"
+      },
+      {
+        "name": "low_beam_switch_2",
+        "block": "0x00",
+        "byte": "0x03",
+        "value": "0x10"
+      },
+      {
+        "name": "interior_light_signal",
+        "block": "0x00",
+        "byte": "0x08",
+        "value": "0x02"
+      }
+    ]
+}

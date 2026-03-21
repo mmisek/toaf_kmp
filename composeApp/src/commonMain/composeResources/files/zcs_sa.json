@@ -1,0 +1,763 @@
+{
+  "elements": [
+    {
+      "name": "zcs_tv_module",
+      "byte": "0x00",
+      "mask": "0x80",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_tourer",
+      "byte": "0x00",
+      "mask": "0x40",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_edc3",
+      "byte": "0x00",
+      "mask": "0x20",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_transit",
+      "byte": "0x00",
+      "mask": "0x10",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_sls_mech",
+      "byte": "0x00",
+      "mask": "0x08",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_alarm_type",
+      "byte": "0x00",
+      "mask": "0x07",
+      "values": [
+          {
+            "data": "0x04",
+            "text": "zcs_no_alarm_no_us"
+          },
+          {
+            "data": "0x02",
+            "text": "zcs_alarm_with_us"
+          },
+          {
+            "data": "0x01",
+            "text": "zcs_alarm_no_us"
+          }
+        ]
+    },
+    {
+      "name": "zcs_ron",
+      "byte": "0x01",
+      "mask": "0x0C",
+      "values": [
+          {
+            "data": "0x02",
+            "text": "zcs_ron95"
+          },
+          {
+            "data": "0x01",
+            "text": "zcs_ron90"
+          }
+        ]
+    },
+    {
+      "name": "zcs_rain_sensor",
+      "byte": "0x01",
+      "mask": "0x20",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_fed_emission",
+      "byte": "0x01",
+      "mask": "0x10",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_pencil_coils",
+      "byte": "0x01",
+      "mask": "0x08",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_pdc_kmb_sounder",
+      "byte": "0x01",
+      "mask": "0x04",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_pdc",
+      "byte": "0x01",
+      "mask": "0x02",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_rear_wash_wipe",
+      "byte": "0x01",
+      "mask": "0x01",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_daytime_running",
+      "byte": "0x02",
+      "mask": "0x80",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_headlamp_delay",
+      "byte": "0x02",
+      "mask": "0x40",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_xenon_lamps",
+      "byte": "0x02",
+      "mask": "0x20",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_my2004",
+      "byte": "0x02",
+      "mask": "0x10",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_yes"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_no"
+          }
+        ]
+    },
+    {
+      "name": "zcs_cruise",
+      "byte": "0x02",
+      "mask": "0x08",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_traction_control",
+      "byte": "0x02",
+      "mask": "0x04",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_x12_atcc_diag",
+      "byte": "0x02",
+      "mask": "0x02",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_engine_fan_2_speed",
+      "byte": "0x02",
+      "mask": "0x01",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_one_shot_up_driver",
+      "byte": "0x03",
+      "mask": "0x80",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_one_shot_open",
+      "byte": "0x03",
+      "mask": "0x40",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_rain_sensor_g2",
+      "byte": "0x03",
+      "mask": "0x20",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_pdc_g4_sensors",
+      "byte": "0x03",
+      "mask": "0x10",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_long_wheel_base",
+      "byte": "0x03",
+      "mask": "0x08",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_distance_km",
+      "byte": "0x03",
+      "mask": "0x04",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_alloy_18_inch",
+      "byte": "0x03",
+      "mask": "0x01",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_atc_version",
+      "byte": "0x04",
+      "mask": "0xE0",
+      "values": [
+          {
+            "data": "0x04",
+            "text": "zcs_atc_aircon"
+          },
+          {
+            "data": "0x02",
+            "text": "zcs_manual_aircon"
+          },
+          {
+            "data": "0x01",
+            "text": "zcs_heater"
+          }
+        ]
+    },
+    {
+      "name": "zcs_parking_heater",
+      "byte": "0x04",
+      "mask": "0x10",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_no_rear_pretensioners",
+      "byte": "0x04",
+      "mask": "0x04",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_airbag_curtain",
+      "byte": "0x04",
+      "mask": "0x02",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_side_airbags",
+      "byte": "0x04",
+      "mask": "0x01",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_mem_driver_seat",
+      "byte": "0x05",
+      "mask": "0x40",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_electric_sunroof",
+      "byte": "0x05",
+      "mask": "0x08",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_remote_release",
+      "byte": "0x05",
+      "mask": "0x06",
+      "values": [
+          {
+            "data": "0x02",
+            "text": "zcs_boot"
+          },
+          {
+            "data": "0x01",
+            "text": "zcs_glass"
+          },
+          {
+            "data": "0x00",
+            "text": "not_specified"
+          }
+        ]
+    },
+    {
+      "name": "zcs_battery_alarm",
+      "byte": "0x05",
+      "mask": "0x01",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_eobd",
+      "byte": "0x06",
+      "mask": "0x80",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_lamp_wash",
+      "byte": "0x06",
+      "mask": "0x40",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_lpg",
+      "byte": "0x06",
+      "mask": "0x20",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_ron92",
+      "byte": "0x06",
+      "mask": "0x10",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_fuel_type",
+      "byte": "0x06",
+      "mask": "0x0F",
+      "values": [
+          {
+            "data": "0x08",
+            "text": "zcs_ethanol_22pc"
+          },
+          {
+            "data": "0x04",
+            "text": "zcs_diesel_fuel"
+          },
+          {
+            "data": "0x02",
+            "text": "zcs_unleaded_fuel"
+          },
+          {
+            "data": "0x01",
+            "text": "zcs_leaded_fuel"
+          },
+          {
+            "data": "0x00",
+            "text": "not_specified"
+          }
+        ]
+    },
+    {
+      "name": "zcs_ambient50",
+      "byte": "0x07",
+      "mask": "0x80",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_post_cat_oxygen",
+      "byte": "0x07",
+      "mask": "0x40",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_edc2",
+      "byte": "0x07",
+      "mask": "0x20",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_acu_c10",
+      "byte": "0x07",
+      "mask": "0x10",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_anti_trap",
+      "byte": "0x07",
+      "mask": "0x08",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_front_fog",
+      "byte": "0x07",
+      "mask": "0x04",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_present"
+          },
+          {
+            "data": "0x00",
+            "text": "zcs_not_present"
+          }
+        ]
+    },
+    {
+      "name": "zcs_electric_window",
+      "byte": "0x07",
+      "mask": "0x03",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "zcs_front"
+          },
+          {
+            "data": "0x02",
+            "text": "zcs_front_and_rear"
+          }
+        ]
+      }
+  ]
+}

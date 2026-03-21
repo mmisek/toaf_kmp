@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- video -->
+    <string name="module_description_video">Moduł video</string>
+
+    <string name="video_error_81">Sygnal na szynie IBus zawsze wysoki</string>
+    <string name="video_error_82">Watchdog został aktywowany</string>
+    <string name="video_error_83">Tryb oszczędzania energii aktywny</string>
+    <string name="video_error_01">I-Bus - przepełnienie bufora</string>
+    <string name="video_error_02">I2C - Błąd do jednostki graficznej</string>
+    <string name="video_error_03">I2C - błąd z jednostki graficznej</string>
+    <string name="video_error_04">Przegrzanie w module video</string>
+    <string name="video_error_05">Błąd audio</string>
+    <string name="video_error_06">Błąd RGB</string>
+    <string name="video_error_07">Błąd video</string>
+    <string name="video_error_08">Inny błąd</string>
+    <string name="video_error_09">EEPROM - błąd odczytu</string>
+    <string name="video_error_0A">EEPROM - błąd zapisu</string>
+    <string name="video_error_0B">EEPROM - błąd sumy kontrolnej</string>
+    <string name="video_error_0C">EEPROM - ponowna inicjalizajca</string>
+    <string name="video_error_0D">Brak sygnału z modułu graficznego</string>
+
+    <string name="video_error_present">Obecny</string>
+    <string name="video_error_not_present">Nieobecny</string>
+
+    <string name = "video_control_cassette_eject">Kaseta : wysuń</string>
+    <string name = "video_control_cassette_play">Kaseta : graj</string>
+    <string name = "video_control_cassette_ffw">Kaseta : FFW</string>
+    <string name = "video_control_cassette_frw">Kaseta : FRW</string>
+    <string name = "video_control_cassette_mss_fw">Kaseta : MSS FW</string>
+    <string name = "video_control_cassette_mss_rw">Kaseta : MSS FW</string>
+    <string name = "video_control_cassette_standby">Kaseta : standby</string>
+    <string name = "video_control_cassette_pause_on">Kaseta : pauza wł</string>
+    <string name = "video_control_cassette_pause_off">Kaseta : pauza wył</string>
+    <string name = "video_control_cassette_normal">Kaseta : do przodu</string>
+    <string name = "video_control_cassette_reverse">Kaseta : do tyłu</string>
+    <string name = "video_control_cassette_dolby_b">Dolby B</string>
+    <string name = "video_control_cassette_dolby_c">Dolby C</string>
+    <string name = "video_control_cassette_dolby_off">Dolby Off</string>
+    <string name = "video_control_mute_off">Wycieszenie wył</string>
+    <string name = "video_control_mute_on">Wyciszenie wł</string>
+    <string name = "video_control_monitor_off">Monitor wył</string>
+    <string name = "video_control_monitor_on">Monitor wł</string>
+    <string name = "video_control_sleep_mode">Tryb uśpienia</string>
+    <string name = "video_control_normal_mode_on">Tryb normalny</string>
+    <string name = "video_control_production_mode_on">Tryb produkcyjny</string>
+    <string name = "video_control_transport_mode_on">Tryb transportowy</string>
+    <string name = "video_control_workshop_mode_on">Trym warsztatowy</string>
+
+    <string name = "video_live_data_red_out">Sygnał R - wyjście</string>
+    <string name = "video_live_data_green_out">Sygnał G - wyjście</string>
+    <string name = "video_live_data_blue_out">Sygnał B - wyjście</string>
+    <string name = "video_live_data_red_in">Sygnał R - wejscie</string>
+    <string name = "video_live_data_green_in">Sygnał G - wejście</string>
+    <string name = "video_live_data_blue_in">Sygnał B - wejście</string>
+    <string name = "video_live_data_x_sync">Synchronizacja</string>
+    <string name = "video_live_data_cvbs_fond">CVBS</string>
+    <string name = "video_live_data_cvbs_cam">CVBS - kamera</string>
+    <string name = "video_live_data_cvbs_vcr">CVBS - VCR</string>
+    <string name = "video_live_data_cvbs_tuner">CVBS - tuner</string>
+    <string name = "video_live_data_af_fond">Dzwięk</string>
+    <string name = "video_live_data_af_vcr">Dzwięk - VCR</string>
+    <string name = "video_live_data_af_radio">Dzwięk - radio</string>
+    <string name = "video_live_data_af_nav">Dzwięk - navi</string>
+
+    <string name = "video_live_data_value_signal_too_low">za niski</string>
+    <string name = "video_live_data_value_signal_too_high">za wysoki</string>
+    <string name = "video_live_data_value_short">zwarcie</string>
+    <string name = "video_live_data_value_line_is_open">przerwa</string>
+
+</resources>

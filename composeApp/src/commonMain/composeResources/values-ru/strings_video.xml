@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_video">Видеомодуль</string>
+
+    <string name="video_error_81">Отключение I-Bus: постоянный высокий уровень</string>
+    <string name="video_error_82">Сработал сторожевой таймер (Watchdog)</string>
+    <string name="video_error_83">Активен режим энергосбережения</string>
+    <string name="video_error_01">Переполнение буфера I-Bus</string>
+    <string name="video_error_02">I2C - Ошибка к графической части</string>
+    <string name="video_error_03">I2C - Ошибка от графической части</string>
+    <string name="video_error_04">Перегрев видеомодуля</string>
+    <string name="video_error_05">Ошибка аудио</string>
+    <string name="video_error_06">Ошибка RGB</string>
+    <string name="video_error_07">Ошибка видео</string>
+    <string name="video_error_08">Другая ошибка</string>
+    <string name="video_error_09">Ошибка чтения EEPROM</string>
+    <string name="video_error_0A">Ошибка записи EEPROM</string>
+    <string name="video_error_0B">Ошибка контрольной суммы EEPROM</string>
+    <string name="video_error_0C">Новая инициализация EEPROM</string>
+    <string name="video_error_0D">Нет сигнала от графической части</string>
+    <string name="video_error_present">Присутствует</string>
+    <string name="video_error_not_present">Не присутствует</string>
+
+    <string name = "video_control_cassette_eject">Кассета: извлечь</string>
+    <string name = "video_control_cassette_play">Кассета: воспроизведение</string>
+    <string name = "video_control_cassette_ffw">Кассета: перемотка вперед</string>
+    <string name = "video_control_cassette_frw">Кассета: перемотка назад</string>
+    <string name = "video_control_cassette_mss_fw">Кассета: поиск вперед (MSS)</string>
+    <string name = "video_control_cassette_mss_rw">Кассета: поиск назад (MSS)</string>
+    <string name = "video_control_cassette_standby">Кассета: режим ожидания</string>
+    <string name = "video_control_cassette_pause_on">Кассета: пауза вкл</string>
+    <string name = "video_control_cassette_pause_off">Кассета: пауза выкл</string>
+    <string name = "video_control_cassette_normal">Кассета: нормальный режим</string>
+    <string name = "video_control_cassette_reverse">Кассета: реверс</string>
+    <string name = "video_control_cassette_dolby_b">Dolby B</string>
+    <string name = "video_control_cassette_dolby_c">Dolby C</string>
+    <string name = "video_control_cassette_dolby_off">Dolby Выкл</string>
+    <string name = "video_control_mute_off">Mute выкл (Звук вкл)</string>
+    <string name = "video_control_mute_on">Mute вкл (Звук выкл)</string>
+    <string name = "video_control_monitor_off">Монитор выкл</string>
+    <string name = "video_control_monitor_on">Монитор вкл</string>
+    <string name = "video_control_sleep_mode">Спящий режим</string>
+    <string name = "video_control_normal_mode_on">Нормальный режим вкл</string>
+    <string name = "video_control_production_mode_on">Производственный режим вкл</string>
+    <string name = "video_control_transport_mode_on">Транспортный режим вкл</string>
+    <string name = "video_control_workshop_mode_on">Сервисный режим вкл</string>
+
+    <string name = "video_live_data_red_out">Выходной сигнал: Красный</string>
+    <string name = "video_live_data_green_out">Выходной сигнал: Зеленый</string>
+    <string name = "video_live_data_blue_out">Выходной сигнал: Синий</string>
+    <string name = "video_live_data_red_in">Входной сигнал: Красный</string>
+    <string name = "video_live_data_green_in">Входной сигнал: Зеленый</string>
+    <string name = "video_live_data_blue_in">Входной сигнал: Синий</string>
+    <string name = "video_live_data_x_sync">Синхронизация X</string>
+    <string name = "video_live_data_cvbs_fond">CVBS</string>
+    <string name = "video_live_data_cvbs_cam">CVBS - камера</string>
+    <string name = "video_live_data_cvbs_vcr">CVBS - видеомагнитофон</string>
+    <string name = "video_live_data_cvbs_tuner">CVBS - тюнер</string>
+    <string name = "video_live_data_af_fond">Аудио</string>
+    <string name = "video_live_data_af_vcr">Аудио - видеомагнитофон</string>
+    <string name = "video_live_data_af_radio">Аудио - радио</string>
+    <string name = "video_live_data_af_nav">Аудио - навигация</string>
+
+    <string name = "video_live_data_value_signal_too_low">слишком низкий</string>
+    <string name = "video_live_data_value_signal_too_high">слишком высокий</string>
+    <string name = "video_live_data_value_short">замыкание</string>
+    <string name = "video_live_data_value_line_is_open">обрыв</string>
+
+</resources>

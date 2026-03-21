@@ -1,0 +1,105 @@
+{
+    "elements": [
+      {
+        "name": "default_volume",
+        "block": "0x0C",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+      {
+        "name": "speaker_left_front",
+        "block": "0x0C",
+        "byte": "0x01",
+        "value": "0x00"
+      },
+      {
+        "name": "speaker_right_front",
+        "block": "0x0C",
+        "byte": "0x02",
+        "value": "0x00"
+      },
+      {
+        "name": "speaker_right_rear",
+        "block": "0x0C",
+        "byte": "0x03",
+        "value": "0x00"
+      },
+      {
+        "name": "speaker_left_rear",
+        "block": "0x0C",
+        "byte": "0x04",
+        "value": "0x00"
+      },
+      {
+        "name": "volume_up",
+        "block": "0x0C",
+        "byte": "0x05",
+        "value": "0x00"
+      },
+      {
+        "name": "volume_down",
+        "block": "0x0C",
+        "byte": "0x06",
+        "value": "0x00"
+      },
+      {
+        "name": "seek_up",
+        "block": "0x0C",
+        "byte": "0x07",
+        "value": "0x00"
+      },
+      {
+        "name": "seek_down",
+        "block": "0x0C",
+        "byte": "0x08",
+        "value": "0x00"
+      },
+      {
+        "name": "audio_key",
+        "block": "0x0C",
+        "byte": "0x09",
+        "value": "0x00"
+      },
+      {
+        "name": "gal_dec",
+        "block": "0x0C",
+        "byte": "0x20",
+        "value": "0x00"
+      },
+      {
+        "name": "gal_inc",
+        "block": "0x0C",
+        "byte": "0x40",
+        "value": "0x00"
+      },
+      {
+        "name": "switch_seek",
+        "block": "0x0C",
+        "byte": "0x60",
+        "value": "0x00"
+      },
+      {
+        "name": "vf_dec",
+        "block": "0x0C",
+        "byte": "0x80",
+        "value": "0x00"
+      },
+      {
+        "name": "vf_inc",
+        "block": "0x0C",
+        "byte": "0xA0",
+        "value": "0x00"
+      },
+      {
+        "name": "frequency",
+        "block": "0x0C",
+        "byte": "0x0A",
+        "value": "0x00",
+        "set_value": {
+          "min": "875",
+          "max": "1080",
+          "unit": "kHz"
+        }
+      }
+    ]
+}

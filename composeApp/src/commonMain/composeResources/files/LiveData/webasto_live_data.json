@@ -1,0 +1,168 @@
+{
+  "livedata": [
+    {
+      "name": "coolant_temperature",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "°C"
+    },
+    {
+      "name": "glow_pen",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible" : "false"
+    },
+    {
+      "name": "battery_voltage",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0xFF",
+      "factor_a": "0.06826",
+      "factor_b": "0.005",
+      "unit": "V"
+    },
+    {
+      "name": "combustion_air_blower_performance",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0xFF",
+      "factor_a": "0.392156862745098",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "duty_cycle_glow_element",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "fuel_pump",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0xFF",
+      "factor_a": "1900",
+      "factor_b": "0",
+      "unit": "%",
+      "invert_a" : "true"
+    },
+    {
+      "name": "combustion_air_fan",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "glow_plug",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "water_pump",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "metering_pump",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "answer_at_pin_4",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "input_pin_3",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "additional_heater",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "flame_present",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "overheat",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "work_time_hours",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "h"
+    },
+    {
+      "name": "work_time_minutes",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "h"
+    },
+    {
+      "name": "start_counter",
+      "block": "0x02",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    }
+  ]
+}

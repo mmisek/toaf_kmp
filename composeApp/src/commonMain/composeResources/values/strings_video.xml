@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- video -->
+    <string name="module_description_video">Video module</string>
+
+    <string name="video_error_81">IBus switch of because allways high</string>
+    <string name="video_error_82">Watchdog has been activated</string>
+    <string name="video_error_83">Power saving modes active</string>
+    <string name="video_error_01">I-Bus buffer overflow</string>
+    <string name="video_error_02">I2C - Error to the graphics part</string>
+    <string name="video_error_03">I2C - Error from the graphics part</string>
+    <string name="video_error_04">Over temperature in the video module</string>
+    <string name="video_error_05">Audio error</string>
+    <string name="video_error_06">RGB Error</string>
+    <string name="video_error_07">Video error</string>
+    <string name="video_error_08">Other error</string>
+    <string name="video_error_09">EEPROM read error</string>
+    <string name="video_error_0A">EEPROM write error</string>
+    <string name="video_error_0B">EEPROM checksum error</string>
+    <string name="video_error_0C">EEPROM new initialization</string>
+    <string name="video_error_0D">No signal from graphics part</string>
+    <string name="video_error_present">Present</string>
+    <string name="video_error_not_present">Not present</string>
+
+    <string name = "video_control_cassette_eject">Cassette : eject</string>
+    <string name = "video_control_cassette_play">Cassette : play</string>
+    <string name = "video_control_cassette_ffw">Cassette : FFW</string>
+    <string name = "video_control_cassette_frw">Cassette : FRW</string>
+    <string name = "video_control_cassette_mss_fw">Cassette : MSS FW</string>
+    <string name = "video_control_cassette_mss_rw">Cassette : MSS FW</string>
+    <string name = "video_control_cassette_standby">Cassette : standby</string>
+    <string name = "video_control_cassette_pause_on">Cassette : pause on</string>
+    <string name = "video_control_cassette_pause_off">Cassette : pause off</string>
+    <string name = "video_control_cassette_normal">Cassette : normal</string>
+    <string name = "video_control_cassette_reverse">Cassette : reverse</string>
+    <string name = "video_control_cassette_dolby_b">Dolby B</string>
+    <string name = "video_control_cassette_dolby_c">Dolby C</string>
+    <string name = "video_control_cassette_dolby_off">Dolby Off</string>
+    <string name = "video_control_mute_off">Mute off</string>
+    <string name = "video_control_mute_on">Mute on</string>
+    <string name = "video_control_monitor_off">Monitor off</string>
+    <string name = "video_control_monitor_on">Monitor on</string>
+    <string name = "video_control_sleep_mode">Sleep mode</string>
+    <string name = "video_control_normal_mode_on">Normal mode on</string>
+    <string name = "video_control_production_mode_on">Production mode on</string>
+    <string name = "video_control_transport_mode_on">Transport mode on</string>
+    <string name = "video_control_workshop_mode_on">Workshop mode on</string>
+
+    <string name = "video_live_data_red_out">Red signal out</string>
+    <string name = "video_live_data_green_out">Green signal out</string>
+    <string name = "video_live_data_blue_out">Blue signal out</string>
+    <string name = "video_live_data_red_in">Red signal in</string>
+    <string name = "video_live_data_green_in">Green signal in</string>
+    <string name = "video_live_data_blue_in">Blue signal in</string>
+    <string name = "video_live_data_x_sync">X sync</string>
+    <string name = "video_live_data_cvbs_fond">CVBS</string>
+    <string name = "video_live_data_cvbs_cam">CVBS - camera</string>
+    <string name = "video_live_data_cvbs_vcr">CVBS - VCR</string>
+    <string name = "video_live_data_cvbs_tuner">CVBS - tuner</string>
+    <string name = "video_live_data_af_fond">Audio</string>
+    <string name = "video_live_data_af_vcr">Audio - VCR</string>
+    <string name = "video_live_data_af_radio">Audio - radio</string>
+    <string name = "video_live_data_af_nav">Audio - navi</string>
+
+    <string name = "video_live_data_value_signal_too_low">too low</string>
+    <string name = "video_live_data_value_signal_too_high">too high</string>
+    <string name = "video_live_data_value_short">short</string>
+    <string name = "video_live_data_value_line_is_open">open</string>
+
+</resources>

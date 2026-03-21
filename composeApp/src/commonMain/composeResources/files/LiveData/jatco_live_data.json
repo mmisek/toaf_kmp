@@ -1,0 +1,339 @@
+{
+  "livedata": [
+    {
+      "name": "gearbox_oil_temp",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0xFF",
+      "factor_a": "0.75",
+      "factor_b": "-48",
+      "unit": "°C"
+    },
+    {
+      "name": "coolant_temp",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0xFF",
+      "factor_a": "0.75",
+      "factor_b": "-48",
+      "unit": "°C"
+    },
+    {
+      "name": "engine_speed",
+      "block": "0x02",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "rpm"
+    },
+    {
+      "name": "input_speed",
+      "block": "0x02",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "rpm"
+    },
+    {
+      "name": "inter_speed",
+      "block": "0x02",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "rpm"
+    },
+    {
+      "name": "output_speed",
+      "block": "0x02",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "rpm"
+    },
+    {
+      "name": "indexed_torque",
+      "block": "0x03",
+      "byte": "0x00",
+      "mask": "0xFF",
+      "factor_a": "0.3875",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "torque_override",
+      "block": "0x03",
+      "byte": "0x01",
+      "mask": "0xFF",
+      "factor_a": "0.3875",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "line_pressure",
+      "block": "0x04",
+      "byte": "0x00",
+      "mask": "0xFF",
+      "factor_a": "0.3875",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "lockup_pressure",
+      "block": "0x04",
+      "byte": "0x01",
+      "mask": "0xFF",
+      "factor_a": "0.3875",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "break_pressure",
+      "block": "0x04",
+      "byte": "0x02",
+      "mask": "0xFF",
+      "factor_a": "0.3875",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "throttle",
+      "block": "0x05",
+      "byte": "0x00",
+      "mask": "0xFF",
+      "factor_a": "0.3875",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "sport_mode",
+      "block": "0x06",
+      "byte": "0x00",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "snow_mode",
+      "block": "0x06",
+      "byte": "0x00",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "normal_mode",
+      "block": "0x06",
+      "byte": "0x00",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "break_switch",
+      "block": "0x06",
+      "byte": "0x00",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "ignition_signal",
+      "block": "0x06",
+      "byte": "0x01",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "obd_fault",
+      "block": "0x06",
+      "byte": "0x01",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "shift_solenoid_a",
+      "block": "0x07",
+      "byte": "0x01",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "shift_solenoid_b",
+      "block": "0x07",
+      "byte": "0x01",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "shift_solenoid_c",
+      "block": "0x07",
+      "byte": "0x01",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "low_clutch_solenoid",
+      "block": "0x07",
+      "byte": "0x01",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "reduction_solenoid",
+      "block": "0x06",
+      "byte": "0x01",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "break_solenoid",
+      "block": "0x06",
+      "byte": "0x01",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "atf_over_temperature",
+      "block": "0x06",
+      "byte": "0x01",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible": "false"
+    },
+    {
+      "name": "current_gear",
+      "block": "0x08",
+      "byte": "0x00",
+      "mask": "0xFF",
+      "factor_a": "0.00392156",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "p_n_gear"
+          },
+          {
+            "data": "0x01",
+            "text": "1_gear"
+          },
+          {
+            "data": "0x02",
+            "text": "2_gear"
+          },
+          {
+            "data": "0x03",
+            "text": "3_gear"
+          },
+          {
+            "data": "0x04",
+            "text": "4_gear"
+          },
+          {
+            "data": "0x05",
+            "text": "5_gear"
+          },
+          {
+            "data": "0x06",
+            "text": "r_gear"
+          },
+          {
+            "data": "0x07",
+            "text": "r_gear"
+          }
+        ]
+    },
+    {
+      "name": "selected_gear",
+      "block": "0x08",
+      "byte": "0x01",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x02",
+            "text": "2_gear"
+          },
+          {
+            "data": "0x03",
+            "text": "3_gear"
+          },
+          {
+            "data": "0x04",
+            "text": "4_gear"
+          },
+          {
+            "data": "0x05",
+            "text": "d_gear"
+          },
+          {
+            "data": "0x06",
+            "text": "n_gear"
+          },
+          {
+            "data": "0x07",
+            "text": "r_gear"
+          },
+          {
+            "data": "0x08",
+            "text": "p_gear"
+          }
+        ]
+    },
+    {
+      "name": "driving_mode",
+      "block": "0x08",
+      "byte": "0x02",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x01",
+            "text": "driving_mode_manual"
+          },
+          {
+            "data": "0x02",
+            "text": "driving_mode_sport"
+          },
+          {
+            "data": "0x03",
+            "text": "driving_mode_snow"
+          },
+          {
+            "data": "0x04",
+            "text": "driving_mode_normal"
+          }
+        ]
+    }
+  ]
+}

@@ -1,0 +1,283 @@
+{
+  "livedata": [
+    {
+      "name": "left_side_temp",
+      "block": "0x00",
+      "byte": "0x1E",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "15",
+      "unit": "°C"
+    },
+    {
+      "name": "right_side_temp",
+      "block": "0x00",
+      "byte": "0x1F",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "15",
+      "unit": "°C"
+    },
+    {
+      "name": "car_speed",
+      "block": "0x00",
+      "byte": "0x1C",
+      "mask": "0xFF",
+      "factor_a": "2",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "actual_air_distribution",
+      "block": "0x00",
+      "byte": "0x18",
+      "mask": "0xFF",
+      "factor_a": "0.6569",
+      "factor_b": "-32.84",
+      "unit": "%"
+    },
+    {
+      "name": "right_air_blend_pot",
+      "block": "0x00",
+      "byte": "0x17",
+      "mask": "0xFF",
+      "factor_a": "0.6569",
+      "factor_b": "-32.84",
+      "unit": "%"
+    },
+    {
+      "name": "left_air_blend_pot",
+      "block": "0x00",
+      "byte": "0x16",
+      "mask": "0xFF",
+      "factor_a": "0.6569",
+      "factor_b": "-32.84",
+      "unit": "%"
+    },
+    {
+      "name": "right_solar",
+      "block": "0x00",
+      "byte": "0x15",
+      "mask": "0xFF",
+      "factor_a": "0.01744",
+      "factor_b": "0",
+      "unit": "kW/m2"
+    },
+    {
+      "name": "left_solar",
+      "block": "0x00",
+      "byte": "0x14",
+      "mask": "0xFF",
+      "factor_a": "0.01744",
+      "factor_b": "0",
+      "unit": "kW/m2"
+    },
+    {
+      "name": "water_temp",
+      "block": "0x00",
+      "byte": "0x13",
+      "mask": "0xFF",
+      "factor_a": "0.403",
+      "factor_b": "-19.79",
+      "unit": "°C"
+    },
+    {
+      "name": "evaporator_temp",
+      "block": "0x00",
+      "byte": "0x12",
+      "mask": "0xFF",
+      "factor_a": "0.3641",
+      "factor_b": "-30.84",
+      "unit": "°C"
+    },
+    {
+      "name": "ambient_temp",
+      "block": "0x00",
+      "byte": "0x11",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "°C",
+      "u2": "true"
+    },
+    {
+      "name": "in_car_temp",
+      "block": "0x00",
+      "byte": "0x10",
+      "mask": "0xFF",
+      "factor_a": "0.3749",
+      "factor_b": "-20.89",
+      "unit": "°C"
+    },
+    {
+      "name": "passenger_target_temp",
+      "block": "0x00",
+      "byte": "0x0E",
+      "mask": "0xFFFF",
+      "factor_a": "0.0125",
+      "factor_b": "-409.6",
+      "unit": "°C"
+    },
+    {
+      "name": "passenger_required_temp",
+      "block": "0x00",
+      "byte": "0x0C",
+      "mask": "0xFFFF",
+      "factor_a": "0.0125",
+      "factor_b": "-409.6",
+      "unit": "°C"
+    },
+    {
+      "name": "driver_target_temp",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0xFFFF",
+      "factor_a": "0.0125",
+      "factor_b": "-409.6",
+      "unit": "°C"
+    },
+    {
+      "name": "driver_required_temp",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0xFFFF",
+      "factor_a": "0.0125",
+      "factor_b": "-409.6",
+      "unit": "°C"
+    },
+    {
+      "name": "target_air_dist",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0xFF",
+      "factor_a": "0.6569",
+      "factor_b": "-32.84",
+      "unit": "%"
+    },
+    {
+      "name": "passenger_target_blend",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0xFF",
+      "factor_a": "0.6569",
+      "factor_b": "-32.84",
+      "unit": "%"
+    },
+    {
+      "name": "passenger_required_blend",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0xFF",
+      "factor_a": "0.6569",
+      "factor_b": "-32.84",
+      "unit": "%"
+    },
+    {
+      "name": "passenger_target_blend",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0xFF",
+      "factor_a": "0.6569",
+      "factor_b": "-32.84",
+      "unit": "%"
+    },
+    {
+      "name": "driver_required_blend",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0xFF",
+      "factor_a": "0.6569",
+      "factor_b": "-32.84",
+      "unit": "%"
+    },
+    {
+      "name": "blower_speed",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0xFF",
+      "factor_a": "3",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "hand_drive",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "right_hand"
+          },
+          {
+            "data": "0x01",
+            "text": "left_hand"
+          }
+        ]
+    },
+    {
+      "name": "recirculation",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x03",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "invalid"
+          },
+          {
+            "data": "0x01",
+            "text": "fresh"
+          },
+          {
+            "data": "0x03",
+            "text": "recirculation"
+          }
+        ]
+    },
+    {
+      "name": "ac_compressor",
+      "block": "0x00",
+      "byte": "0x1D",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "off"
+          },
+          {
+            "data": "0x01",
+            "text": "on"
+          }
+        ]
+    },
+    {
+      "name": "atc_system",
+      "block": "0x00",
+      "byte": "0x1D",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+          {
+            "data": "0x00",
+            "text": "off"
+          },
+          {
+            "data": "0x01",
+            "text": "on"
+          }
+        ]
+    }
+  ]
+}

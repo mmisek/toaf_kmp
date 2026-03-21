@@ -1,0 +1,696 @@
+{
+  "livedata": [
+    {
+      "name": "key_lock_open",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "key_lock_close",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "driver_door_open",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "passenger_door_open",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "rear_right_door_open",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "rear_left_door_open",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "driver_window_open",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "driver_window_close",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "passenger_window_open",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "passenger_window_close",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "air_pollution_sensor",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "rear_window_washer",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "fuse_test_rear_windows",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "fuse_test_front_windows",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "fuse_test_central_lock",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "fuse_test_interior_light",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_rear_right_window_open",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_rear_right_window_close",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_rear_left_window_open",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_rear_left_window_close",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "relay_rear_right_window_close",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "relay_rear_right_window_open",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "relay_rear_left_window_close",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "relay_rear_left_window_open",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "front_wiper_stop_position",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "rear_wiper_stop_position",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_rear_wiper",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_ac",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_air_recirculation",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "wiper_switch_position_1",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "wiper_switch_position_2",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_rear_window_heating",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_door_lock_close",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_door_lock_open",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_boot_close",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_boot_open",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_interior_light",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "not_used",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible": "false"
+    },
+    {
+      "name": "switch_boot_close",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "not_used",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible": "false"
+    },
+    {
+      "name": "not_used",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible": "false"
+    },
+    {
+      "name": "not_used",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible": "false"
+    },
+    {
+      "name": "front_window_washer",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "key_fob_receiver",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "tilt_sensor",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "ignition_position_1",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "fuel_pump_cut_off",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "cooling_fan_sensor",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "logic_1",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "relay_door_locking",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "relay_passenger_window_close",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "relay_driver_window_close",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "relay_passenger_window_open",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "relay_driver_window_open",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "relay_car_close",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "relay_cl",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible": "false"
+    },
+    {
+      "name": "relay_door_lock_close",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "not_used",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible": "false"
+    },
+    {
+      "name": "not_used",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible": "false"
+    },
+    {
+      "name": "not_used",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "visible": "false"
+    },
+    {
+      "name": "switch_driver_window_open",
+      "block": "0x00",
+      "byte": "0x09",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_drive_window_close",
+      "block": "0x00",
+      "byte": "0x09",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_drive_window_auto_open_close",
+      "block": "0x00",
+      "byte": "0x09",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_passenger_window_open",
+      "block": "0x00",
+      "byte": "0x09",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_passenger_window_close",
+      "block": "0x00",
+      "byte": "0x09",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_passenger_window_auto_open_close",
+      "block": "0x00",
+      "byte": "0x09",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_rear_right_window_open",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_rear_right_window_close",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_rear_right_window_auto_open_close",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_rear_left_window_open",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_rear_left_window_close",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_rear_left_window_auto_open_close",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_rear_window_open_close_lock",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "remote_boot_open_signal",
+      "block": "0x00",
+      "byte": "0x0F",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "close_car_by_key",
+      "block": "0x00",
+      "byte": "0x0f",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "ignition_state_2",
+      "block": "0x00",
+      "byte": "0x0F",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    }
+  ]
+}

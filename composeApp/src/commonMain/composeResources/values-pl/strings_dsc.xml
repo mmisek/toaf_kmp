@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_dsc">System ABS/DSC</string>
+
+    <string name="dsc_error_02">Błąd CAN - sterownika silnika</string>
+    <string name="dsc_error_04">Wiarygodność czujnika prędkości - lewy tył</string>
+    <string name="dsc_error_05">Wiarygodność czujnika prędkości - prawy tył</string>
+    <string name="dsc_error_06">Wiarygodność czujnika prędkości - prawy przód</string>
+    <string name="dsc_error_07">Wiarygodność czujnika prędkości - lewy przód</string>
+    <string name="dsc_error_0E">Błąd przekażnika zaworu</string>
+    <string name="dsc_error_0F">Błąd pompy recyrkulacji</string>
+    <string name="dsc_error_15">Błąd ECU ASC</string>
+    <string name="dsc_error_17">Błąd kodowania</string>
+    <string name="dsc_error_18">Błędne impulsy</string>
+    <string name="dsc_error_19">Czujnik światła stop - przerwa w obwodzie</string>
+    <string name="dsc_error_1E">Czujnik prędkości - lewy tył - przerwa w obwodzie</string>
+    <string name="dsc_error_1F">Czujnik prędkości - prawy tył - przerwa w obwodzie</string>
+    <string name="dsc_error_20">Czujnik prędkości - prawy przód - przerwa w obwodzie</string>
+    <string name="dsc_error_21">Czujnik prędkości - lewy przód - przerwa w obwodzie</string>
+    <string name="dsc_error_22">Obwód odcinający ASC - przednia oś</string>
+    <string name="dsc_error_29">Wiarygodność czujnika kąta skrętu kierownicy</string>
+    <string name="dsc_error_2F">Zawór wylotowy - lewy tył</string>
+    <string name="dsc_error_30">Zawór wylotowy - prawy tył</string>
+    <string name="dsc_error_31">Zawór wylotowy - prawy przód</string>
+    <string name="dsc_error_32">Zawór wylotowy - lewy przód</string>
+    <string name="dsc_error_33">Zawór wlotowy - lewy tył</string>
+    <string name="dsc_error_34">Zawór wlotowy - prawy tył</string>
+    <string name="dsc_error_35">Zawór wlotowy - prawy przód</string>
+    <string name="dsc_error_36">Zawór wlotowy - lewy przód</string>
+    <string name="dsc_error_37">Zawór wstępnego ładowania - przednia ość</string>
+    <string name="dsc_error_38">Błąd szyny CAN</string>
+    <string name="dsc_error_3A">Komunikat o błędzie CAN jednostki sterującej skrzyni biegów</string>
+    <string name="dsc_error_3B">Komunikat o błędzie CAN DMER1</string>
+    <string name="dsc_error_3F">Błąd porównania prędkości</string>
+    <string name="dsc_error_40">Ciągła aktywnośc kontrolera</string>
+    <string name="dsc_error_42">Błąd zasilania czujnika prędkości koła</string>
+    <string name="dsc_error_44">DSC pasywny po włączeniu zapłonu z powodu zakłóceń</string>
+    <string name="dsc_error_45">Komunikat o błędzie CAN DMER2</string>
+    <string name="dsc_error_51">Czujnik ciśnienia - przerwa w obwodzie</string>
+    <string name="dsc_error_52">Czujnik odchyłu prędości - przerwa w obwodzie</string>
+    <string name="dsc_error_53">Czujnik przyspieszenia bocznego - przerwa w obwodzie</string>
+    <string name="dsc_error_54">Wiarygodność czujnika odchyłu prędkości</string>
+    <string name="dsc_error_56">Zawór odcinający ASC  - tylna oś</string>
+    <string name="dsc_error_57">Zawór wstępnego ładowania - tylna oś</string>
+    <string name="dsc_error_58">Pompa wstępnego ładowania</string>
+    <string name="dsc_error_59">Zbyt niskie napięcie zasilania</string>
+    <string name="dsc_error_5A">System tymczasowo nieaktywny</string>
+    <string name="dsc_error_5B">Komunikat o błądzie kątu obrotu kierownicy</string>
+    <string name="dsc_error_5C">Czujnik ciśnienia (pompa doładowania)</string>
+    <string name="dsc_error_5E">Czujnik prędkości odchylenia</string>
+    <string name="dsc_error_5F">Zakłócenia</string>
+    <string name="dsc_error_60">Uruchamianie</string>
+    <string name="dsc_error_61">Wymagana adiustacja czujnika kąta skrętu kierownicy</string>
+    <string name="dsc_error_62">Hamulec bezpieczeństwa</string>
+    <string name="dsc_error_63">Ciągła praca kontrolera</string>
+    <string name="dsc_error_64">Czujnik przyspieszenia bocznego</string>
+    <string name="dsc_error_67">Inicjalizacja czujnika kąta skrętu kierownicy</string>
+    <string name="dsc_error_68">Błąd czujnika kątu skrętu kierownicy</string>
+    <string name="dsc_error_69">Wiarygodność przełącznika świateł hamulca</string>
+    <string name="dsc_error_6A">Wiarygodnośc czujnika przyspieszenia bocznego</string>
+    <string name="dsc_error_6B">Czujnik prędkości odchylenia</string>
+    <string name="dsc_error_6C">SN - kontrola</string>
+    <string name="dsc_error_6D">Koniec testu lini</string>
+    <string name="dsc_error_6E">Zbyt wysokie napięcie zasilania</string>
+    <string name="dsc_error_6F">Potwierdzenie ASC</string>
+    <string name="dsc_error_72">Czujnik ciśnienia (Offset)</string>
+    <string name="dsc_error_73">Czujnik ciśnienia - zakłócenia</string>
+    <string name="dsc_error_74">Błąd czujnika hamulca</string>
+    <string name="dsc_error_75">Przełącznik świateł hamowania - błąd ciągły</string>
+    <string name="dsc_error_76">Błąd wewnętrzny DME</string>
+    <string name="dsc_error_77">HDC nie aktywne</string>
+    <string name="dsc_error_78">Czujnik odcylenia prędkości - wątpliwie zła pozycja</string>
+    <string name="dsc_error_79">Czujnik odcylenia prędkości - zła pozycja</string>
+    <string name="dsc_error_80">Przekroczenie temperatury hamulców</string>
+    <string name="dsc_error_7A">Błędny komunikat CAN ACC</string>
+    <string name="dsc_error_7B">Wiarygodność żądania hamowania ACC</string>
+    <string name="dsc_error_7C">ACC - brak odpowiedzi</string>
+    <string name="dsc_error_7D">Status ACC nie ma wpływu na DSC</string>
+    <string name="dsc_error_7E">Błąd sygnału wyjściowego ACC dla świateł</string>
+    <string name="dsc_error_8A">Komunikat o błędzie CAN sterownika zawieszenia pneumatycznego EHC</string>
+    <string name="dsc_error_8B">Komunikat o błędzie CAN sterownika reduktora TXU</string>
+
+    <string name="dsc_error_detail_00">ASC bierny</string>
+    <string name="dsc_error_detail_01">ASC aktywny</string>
+    <string name="dsc_error_detail_02">Kontrola ABS aktywna</string>
+    <string name="dsc_error_detail_03">Kontrol ABS bierna</string>
+    <string name="dsc_error_detail_04">Przełącznik świateł stop - włączony</string>
+    <string name="dsc_error_detail_05">Przełącznik świateł stop - wyłączony</string>
+    <string name="dsc_error_detail_06">Kontrola ASC - aktywna</string>
+    <string name="dsc_error_detail_07">Kontrola ASC - pasywna</string>
+    <string name="dsc_error_detail_08">ACB aktywne</string>
+    <string name="dsc_error_detail_09">ACB bierne</string>
+    <string name="dsc_error_detail_0A">HBA aktywne</string>
+    <string name="dsc_error_detail_0B">HBA bierne</string>
+    <string name="dsc_error_detail_0C">ECD aktywne</string>
+    <string name="dsc_error_detail_0D">ECD bierne</string>
+    <string name="dsc_error_detail_0E">HDC aktywne</string>
+    <string name="dsc_error_detail_0F">HDC bierne</string>
+
+    <string name="dsc_live_data_front_left_wheel_speed">Prędkość koła - lewy przód</string>
+    <string name="dsc_live_data_front_right_wheel_speed">Prędkość koła - prawy przód</string>
+    <string name="dsc_live_data_rear_left_wheel_speed">Prędkość koła - lewy tył</string>
+    <string name="dsc_live_data_rear_right_wheel_speed">Prędkość koła - prawy tył</string>
+    <string name="dsc_live_data_steering_wheel_angle">Czujnik kąta skrętu kierownicy</string>
+    <string name="dsc_live_data_steering_wheel_angle_speed">Zmiana kąta skrętu kierownicy</string>
+    <string name="dsc_live_data_pressure">Ciśnienie</string>
+    <string name="dsc_live_data_lateral_acceleration">Przyspieszenie boczne</string>
+    <string name="dsc_live_data_hand_brake_switch">Pzełącznik hamulca ręcznego</string>
+    <string name="dsc_live_data_hill_descent_active">Hill descent</string>
+    <string name="dsc_live_data_brake_switch">Przełącznik hamulca</string>
+    <string name="dsc_live_data_valve_relay">Przekaźnik zaworu</string>
+    <string name="dsc_live_data_brake_light_switch">Przełącznik hamulca</string>
+    <string name="dsc_live_data_passive_button">Przycisk aktywności</string>
+    <string name="dsc_live_data_engine_speed">Prędkość silnika</string>
+    <string name="dsc_live_data_filling_target">Wypełnienie - cel</string>
+    <string name="dsc_live_data_filling_driver_wish">Wypełnienie - żądanie kierowcy</string>
+
+    <string name="dsc_coding_coded_flag">Flaga kodowa</string>
+    <string name="dsc_coding_engine_type">Typ silnika</string>
+    <string name="dsc_coding_dynamic_brakes">Dynamic brakes</string>
+    <string name="dsc_coding_hill_descent">Hill Descent Control</string>
+
+    <string name="activity_control_dsc_tittle">Zaawansowana kontrola</string>
+    <string name="activity_control_dsc_brake_bleeding">Odpowietrzanie</string>
+    <string name="activity_control_dsc_on_time">Czas pracy [s]</string>
+    <string name="activity_control_dsc_off_time">Czas przerwy [s]</string>
+    <string name="activity_control_dsc_cycles">Ilość cykli</string>
+    <string name="activity_control_dsc_start">Uruchom</string>
+    <string name="activity_control_dsc_wheel_select">Koło</string>
+    <string-array name="activity_control_dsc_wheel_list">
+        <item>Lewy przód</item>
+        <item>Prawy przód</item>
+        <item>Prawy tył</item>
+        <item>Lewy tył</item>
+    </string-array>
+</resources>

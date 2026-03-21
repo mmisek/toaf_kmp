@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_smac">Электрические сиденья</string>
+
+    <string name="smac_error_01">Залипание кнопки запоминания (Memory)</string>
+    <string name="smac_error_02">Залипание кнопки Память 1</string>
+    <string name="smac_error_03">Залипание кнопки Память 2</string>
+    <string name="smac_error_04">Залипание кнопки Память 3</string>
+    <string name="smac_error_05">Залипание кнопки Память 4</string>
+    <string name="smac_error_06">Залипание кнопки Память 5</string>
+    <string name="smac_error_07">Залипание переключателя сдвига сиденья вперед</string>
+    <string name="smac_error_08">Залипание переключателя сдвига сиденья назад</string>
+    <string name="smac_error_09">Залипание переключателя поднятия спинки</string>
+    <string name="smac_error_0A">Залипание переключателя опускания спинки</string>
+    <string name="smac_error_0B">Залипание переключателя поднятия сиденья</string>
+    <string name="smac_error_0C">Залипание переключателя опускания сиденья</string>
+    <string name="smac_error_0D">Залипание переключателя наклона сиденья вверх</string>
+    <string name="smac_error_0E">Залипание переключателя наклона сиденья вниз</string>
+    <string name="smac_error_0F">Залипание переключателя сдвига колонки внутрь</string>
+    <string name="smac_error_10">Залипание переключателя сдвига колонки наружу</string>
+    <string name="smac_error_11">Залипание переключателя наклона колонки вверх</string>
+    <string name="smac_error_12">Залипание переключателя наклона колонки вниз</string>
+
+    <string name="smac_error_13">Переключатель зеркала (Верт.) замкнут на массу</string>
+    <string name="smac_error_14">Переключатель зеркала (Верт.) замкнут на 12В</string>
+    <string name="smac_error_15">Переключатель зеркала (Гориз.) замкнут на массу</string>
+    <string name="smac_error_16">Переключатель зеркала (Гориз.) замкнут на 12В</string>
+    <string name="smac_error_17">Переключатель прав. зеркала (Гориз.) замкнут на массу</string>
+    <string name="smac_error_18">Переключатель прав. зеркала (Гориз.) замкнут на 12В</string>
+    <string name="smac_error_19">Общий переключатель лев. зеркала замкнут на массу</string>
+    <string name="smac_error_1A">Общий переключатель лев. зеркала замкнут на 12В</string>
+    <string name="smac_error_1B">Общий переключатель прав. зеркала замкнут на массу</string>
+    <string name="smac_error_1C">Общий переключатель прав. зеркала замкнут на 12В</string>
+
+    <string name="smac_error_1D">Потеря питания сиденья 1</string>
+    <string name="smac_error_1E">Потеря питания сиденья 2</string>
+    <string name="smac_error_1F">Потеря питания колонки</string>
+    <string name="smac_error_20">Потеря питания логики</string>
+    <string name="smac_error_21">Потеря обратной связи сдвига сиденья</string>
+    <string name="smac_error_22">Потеря обратной связи наклона спинки</string>
+    <string name="smac_error_23">Потеря обратной связи высоты сиденья</string>
+    <string name="smac_error_24">Потеря обратной связи наклона подушки</string>
+    <string name="smac_error_25">Потеря обратной связи сдвига колонки</string>
+    <string name="smac_error_26">Потеря обратной связи наклона колонки</string>
+    <string name="smac_error_27">Датчик лев. зеркала (Верт.) вне диапазона</string>
+    <string name="smac_error_28">Датчик лев. зеркала (Гориз.) вне диапазона</string>
+    <string name="smac_error_29">Датчик прав. зеркала (Верт.) вне диапазона</string>
+    <string name="smac_error_2A">Датчик прав. зеркала (Гориз.) вне диапазона</string>
+
+    <string name="smac_error_2B">Ошибка пройденного пути сдвига сиденья</string>
+    <string name="smac_error_2C">Ошибка пройденного пути наклона спинки</string>
+    <string name="smac_error_2D">Ошибка пройденного пути высоты сиденья</string>
+    <string name="smac_error_2E">Ошибка пройденного пути наклона подушки</string>
+    <string name="smac_error_2F">Ошибка пройденного пути сдвига колонки</string>
+    <string name="smac_error_30">Ошибка пройденного пути наклона колонки</string>
+
+    <string name="smac_error_40">Питание датчика Холла сиденья не работает</string>
+    <string name="smac_error_41">Питание датчика Холла сиденья: залипание вкл</string>
+    <string name="smac_error_42">Питание насоса поясничной опоры не работает</string>
+    <string name="smac_error_43">Питание насоса поясничной опоры: залипание вкл</string>
+    <string name="smac_error_44">Реле поднятия спинки не работает</string>
+    <string name="smac_error_45">Реле поднятия спинки: залипание вкл</string>
+    <string name="smac_error_46">Общее реле спинки/наклона не работает</string>
+    <string name="smac_error_47">Общее реле спинки/наклона: залипание вкл</string>
+    <string name="smac_error_48">Реле наклона подушки вниз не работает</string>
+    <string name="smac_error_49">Реле наклона подушки вниз: залипание вкл</string>
+    <string name="smac_error_4A">Реле поднятия высоты не работает</string>
+    <string name="smac_error_4B">Реле поднятия высоты: залипание вкл</string>
+    <string name="smac_error_4C">Реле высоты/сдвига не работает</string>
+    <string name="smac_error_4D">Реле высоты/сдвига: залипание вкл</string>
+    <string name="smac_error_4E">Реле сдвига назад не работает</string>
+    <string name="smac_error_4F">Реле сдвига назад: залипание вкл</string>
+    <string name="smac_error_50">Реле наклона колонки вверх не работает</string>
+    <string name="smac_error_51">Реле наклона колонки вверх: залипание вкл</string>
+    <string name="smac_error_52">Реле наклона колонки вниз не работает</string>
+    <string name="smac_error_53">Реле наклона колонки вниз: залипание вкл</string>
+    <string name="smac_error_54">Реле сдвига колонки внутрь не работает</string>
+    <string name="smac_error_55">Реле сдвига колонки внутрь: залипание вкл</string>
+    <string name="smac_error_56">Реле сдвига колонки наружу не работает</string>
+    <string name="smac_error_57">Реле сдвига колонки наружу: залипание вкл</string>
+
+    <string name="smac_error_58">Выход лев. зеркала (влево/вправо) не работает</string>
+    <string name="smac_error_59">Выход лев. зеркала (влево/вправо): залипание вкл</string>
+    <string name="smac_error_5A">Общий выход лев. зеркала не работает</string>
+    <string name="smac_error_5B">Общий выход лев. зеркала: залипание вкл</string>
+    <string name="smac_error_5C">Выход лев. зеркала (вверх/вниз) не работает</string>
+    <string name="smac_error_5D">Выход лев. зеркала (вверх/вниз): залипание вкл</string>
+    <string name="smac_error_5E">Выход прав. зеркала (влево/вправо) не работает</string>
+    <string name="smac_error_5F">Выход прав. зеркала (влево/вправо): залипание вкл</string>
+    <string name="smac_error_60">Общий выход прав. зеркала не работает</string>
+    <string name="smac_error_61">Общий выход прав. зеркала: залипание вкл</string>
+    <string name="smac_error_62">Выход прав. зеркала (вверх/вниз) не работает</string>
+    <string name="smac_error_63">Выход прав. зеркала (вверх/вниз): залипание вкл</string>
+    <string name="smac_error_65">Ошибка контрольной суммы EEPROM</string>
+    <string name="smac_error_static">Статическая ошибка</string>
+    <string name="smac_error_sporadic">Спорадическая ошибка</string>
+
+    <string name="smac_control_seat_backward">Сиденье - назад</string>
+    <string name="smac_control_seat_forward">Сиденье - вперед</string>
+    <string name="smac_control_seat_height_up">Сиденье - высота вверх</string>
+    <string name="smac_control_seat_height_down">Сиденье - высота вниз</string>
+    <string name="smac_control_seat_till_up">Сиденье - наклон вверх</string>
+    <string name="smac_control_seat_till_down">Сиденье - наклон вниз</string>
+    <string name="smac_control_seat_backrest_up">Сиденье - спинка вверх</string>
+    <string name="smac_control_seat_backrest_down">Сиденье - спинка вниз</string>
+
+    <string name="smac_coding_unit_type">Тип блока</string>
+    <string name="smac_coding_cushion_front_adjust">Регулировка передней части подушки</string>
+    <string name="smac_coding_cushion_rear_adjust">Регулировка задней части подушки</string>
+    <string name="smac_coding_mirrors">Зеркала</string>
+    <string name="smac_coding_column">Электрическая рулевая колонка</string>
+    <string name="smac_coding_memory_recall_ign_cancel">Отмена вызова памяти при зажигании</string>
+    <string name="smac_coding_reverse_mirrors">Зеркала заднего хода</string>
+    <string name="smac_coding_lazy_entry_control">Управление комфортной посадкой</string>
+    <string name="smac_coding_lazy_entry_cancel">Отмена комф. посадки по</string>
+    <string name="smac_coding_lazy_entry_ign_cancel">Отмена комф. посадки зажиганием</string>
+    <string name="smac_coding_recall_telegram_retrans">Ретрансляция телеграммы вызова памяти</string>
+    <string name="smac_coding_transmission">Тип трансмиссии</string>
+    <string name="smac_coding_memory_store_procedure">Процедура сохранения памяти</string>
+    <string name="smac_coding_one_touch_conditions_loss">Потеря условий "в одно касание"</string>
+    <string name="smac_coding_easy_entry">Легкий доступ (Easy Entry)</string>
+    <string name="smac_coding_recall_telegram_enable">Включить телеграмму вызова</string>
+    <string name="smac_coding_loss_of_memory_enable">Включить "потерю памяти"</string>
+    <string name="smac_coding_lazy_entry_feature">Функция комфортной посадки</string>
+    <string name="smac_coding_lazy_entry_locking_cont">Продолжение комф. посадки при запирании</string>
+    <string name="smac_coding_lazy_entry_doors_cancel">Отмена комф. посадки дверьми</string>
+</resources>

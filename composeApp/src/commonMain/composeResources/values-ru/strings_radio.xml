@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_radio">Радиомодуль</string>
+    <string name="radio_module_info_name">Название</string>
+    
+    <string name="radio_error_00">Активен режим энергосбережения</string>
+    <string name="radio_error_01">Ошибка интерфейса CD-чейнджера</string>
+    <string name="radio_error_02">Ошибка питания антенны</string>
+    <string name="radio_error_03">Внутренний CD-привод: высокая температура</string>
+    <string name="radio_error_04">Внутренний CD-привод: аппаратная ошибка</string>
+    <string name="radio_error_05">Внутренний CD-привод: ошибка чтения</string>
+
+    <string name="radio_error_present">Присутствует</string>
+    <string name="radio_error_not_present">Отсутствует</string>
+
+    <string name="radio_control_default_volume">Громкость - по умолчанию</string>
+    <string name="radio_control_speaker_left_front">Динамик - передний левый</string>
+    <string name="radio_control_speaker_right_front">Динамик - передний правый</string>
+    <string name="radio_control_speaker_right_rear">Динамик - задний правый</string>
+    <string name="radio_control_speaker_left_rear">Динамик - задний левый</string>
+    <string name="radio_control_volume_up">Громкость - выше</string>
+    <string name="radio_control_volume_down">Громкость - ниже</string>
+    <string name="radio_control_seek_up">Поиск - вперед</string>
+    <string name="radio_control_seek_down">Поиск - назад</string>
+    <string name="radio_control_gal_inc">GAL (громкость от скорости) - увеличить</string>
+    <string name="radio_control_gal_dec">GAL (громкость от скорости) - уменьшить</string>
+    <string name="radio_control_switch_seek">Поиск - переключить</string>
+    <string name="radio_control_vf_dec">VF - уменьшить</string>
+    <string name="radio_control_vf_inc">VF - увеличить</string>
+    <string name="radio_control_frequency">Частота</string>
+    <string name="radio_control_audio_key">Аудио</string>
+
+    <string name="radio_live_data_value_signal_too_low">слишком низкий</string>
+    <string name="radio_live_data_value_signal_too_high">слишком высокий</string>
+    <string name="radio_live_data_value_short">замыкание</string>
+    <string name="radio_live_data_value_line_is_open">обрыв</string>
+
+    <string name="radio_coding_country">Регион</string>
+    <string name="radio_coding_gal">GAL (Зависимость громкости от скорости)</string>
+    <string name="radio_coding_rds_af_mode">Режим RDS и AF</string>
+    <string name="radio_coding_key_memory_radio">Память ключа (Радио)</string>
+    <string name="radio_coding_pty_table">Регион PTY</string>
+
+</resources>

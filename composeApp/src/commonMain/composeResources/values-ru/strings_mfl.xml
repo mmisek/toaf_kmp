@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_mfl">Многофункциональное рулевое колесо (MFL)</string>
+    
+    <string name="mfl_error_01">Сигнальный провод к MFL: обрыв</string>
+    <string name="mfl_error_02">Правые кнопки Ускор. (ACC) и Замедл. (DEC) нажаты одновременно</string>
+    <string name="mfl_error_03">Левые кнопки радио Вверх и Вниз нажаты одновременно</string>
+    <string name="mfl_error_07">Питание рулевого колеса: замыкание на массу</string>
+    <string name="mfl_error_0A">Ошибка записи EEPROM</string>
+    <string name="mfl_error_active">Ошибка активна</string>
+    <string name="mfl_error_not_active">Ошибка не активна</string>
+    
+    <string name="mfl_live_data_radio_control_present">Управление радио: установлено</string>
+    <string name="mfl_live_data_telephone_control_present">Управление телефоном: установлено</string>
+    <string name="mfl_live_data_air_circulating_control_present">Управление рециркуляцией: установлено</string>
+    <string name="mfl_live_data_cruise_control_present">Круиз-контроль: установлен</string>
+    
+    <string name="mfl_live_data_button_resume_pressed">Кнопка Resume (Восст.) нажата</string>
+    <string name="mfl_live_data_button_set_plus_pressed">Кнопка SET+ нажата</string>
+    <string name="mfl_live_data_button_set_minus_pressed">Кнопка SET- нажата</string>
+    <string name="mfl_live_data_button_cruise_control_off_pressed">Кнопка OFF (Выкл) нажата</string>
+    <string name="mfl_live_data_button_air_recirculation_pressed">Кнопка рециркуляции нажата</string>
+    <string name="mfl_live_data_button_telephone_pressed">Кнопка телефона нажата</string>
+    <string name="mfl_live_data_button_radio_telephone_pressed">Кнопка Радио/Телефон нажата</string>
+    <string name="mfl_live_data_button_seek_down_pressed">Кнопка Поиск- (SEEK-) нажата</string>
+    <string name="mfl_live_data_button_seek_up_pressed">Кнопка Поиск+ (SEEK+) нажата</string>
+    <string name="mfl_live_data_button_vol_up_pressed">Кнопка Громк.+ (VOL+) нажата</string>
+    <string name="mfl_live_data_button_vol_down_pressed">Кнопка Громк.- (VOL-) нажата</string>
+    
+    <string name="mfl_live_data_operating_voltage">Рабочее напряжение</string>
+    <string name="mfl_live_data_operating_voltage_at_the_switch">Рабочее напряжение на переключателе</string>
+</resources>

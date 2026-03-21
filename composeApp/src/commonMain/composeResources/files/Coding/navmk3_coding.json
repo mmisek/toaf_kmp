@@ -1,0 +1,186 @@
+{
+    "elements": [
+      {
+        "name": "region",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0xFF",
+        "coding_index": [
+          "4"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "ece"
+            },
+            {
+              "data": "0x01",
+              "text": "us_canada"
+            },
+          {
+            "data": "0x02",
+            "text": "australia"
+          }
+          ]
+      },
+      {
+        "name": "series",
+        "block": "0x00",
+        "byte": "0x0B",
+        "mask": "0x0F",
+        "coding_index": [
+          "4"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "e38"
+            },
+          {
+            "data": "0x01",
+            "text": "e39"
+          },
+          {
+            "data": "0x02",
+            "text": "e46"
+          },
+          {
+            "data": "0x03",
+            "text": "e52"
+          },
+          {
+            "data": "0x04",
+            "text": "e53"
+          },
+          {
+            "data": "0x05",
+            "text": "e85"
+          },
+          {
+            "data": "0x06",
+            "text": "e90"
+          },
+          {
+            "data": "0x07",
+            "text": "r40"
+          },
+          {
+            "data": "0x08",
+            "text": "r50"
+          },
+          {
+            "data": "0x09",
+            "text": "l30"
+          }
+          ]
+      },
+      {
+        "name": "model",
+        "block": "0x00",
+        "byte": "0x0B",
+        "mask": "0xF0",
+        "coding_index": [
+          "4"
+        ],
+        "coding_values": [
+          {
+             "data": "0x00",
+            "text": "none"
+          },
+          {
+            "data": "0x01",
+            "text": "limousine"
+          },
+          {
+            "data": "0x02",
+            "text": "touring"
+          },
+          {
+            "data": "0x03",
+            "text": "coupe"
+          },
+          {
+            "data": "0x04",
+            "text": "compact"
+          },
+          {
+            "data": "0x05",
+            "text": "cabrio"
+          },
+          {
+            "data": "0x06",
+            "text": "roadster"
+          }
+        ]
+      },
+      {
+        "name": "telematic",
+        "block": "0x00",
+        "byte": "0x0C",
+        "mask": "0x01",
+        "coding_index": [
+          "4"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "disable"
+          },
+          {
+            "data": "0x01",
+            "text": "enable"
+          }
+        ]
+      },
+      {
+        "name": "automatic_emergency_call",
+        "block": "0x00",
+        "byte": "0x0C",
+        "mask": "0x02",
+        "coding_index": [
+          "4"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "disable"
+          },
+          {
+            "data": "0x01",
+            "text": "enable"
+          }
+        ]
+      },
+      {
+        "name": "widescreen_mode",
+        "block": "0x00",
+        "byte": "0x0D",
+        "mask": "0xFF",
+        "coding_index": [
+          "4"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "type_0"
+          },
+          {
+            "data": "0x01",
+            "text": "type_1"
+          },
+          {
+            "data": "0x02",
+            "text": "type_2"
+          },
+          {
+            "data": "0x04",
+            "text": "type_3"
+          },
+          {
+            "data": "0x08",
+            "text": "type_4"
+          }
+        ]
+      }
+    ]
+}

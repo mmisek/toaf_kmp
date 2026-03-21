@@ -1,0 +1,52 @@
+{
+    "elements": [
+      {
+        "name": "seat_backward",
+        "block": "0x00",
+        "byte": "0x03",
+        "value": "0x02"
+      },
+      {
+        "name": "seat_forward",
+        "block": "0x00",
+        "byte": "0x03",
+        "value": "0x0C"
+      },
+      {
+        "name": "seat_height_up",
+        "block": "0x00",
+        "byte": "0x03",
+        "value": "0x08"
+      },
+      {
+        "name": "seat_height_down",
+        "block": "0x00",
+        "byte": "0x03",
+        "value": "0x06"
+      },
+      {
+        "name": "seat_till_up",
+        "block": "0x00",
+        "byte": "0x03",
+        "value": "0x60"
+      },
+      {
+        "name": "seat_till_down",
+        "block": "0x00",
+        "byte": "0x03",
+        "value": "0x10"
+      },
+      {
+        "name": "seat_backrest_up",
+        "block": "0x00",
+        "byte": "0x03",
+        "value": "0x40"
+      },
+      {
+        "name": "seat_backrest_down",
+        "block": "0x00",
+        "byte": "0x03",
+        "value": "0x30"
+      }
+    ]
+}

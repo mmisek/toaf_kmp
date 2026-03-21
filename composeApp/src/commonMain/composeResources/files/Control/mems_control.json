@@ -1,0 +1,95 @@
+{
+    "elements": [
+      {
+        "name": "clear",
+        "block": "0x30",
+        "byte": "0xA0",
+        "value": "0x00"
+      },
+      {
+        "name": "main_relay",
+        "block": "0x30",
+        "byte": "0xA0",
+        "value": "0xFF"
+      },
+      {
+        "name": "fuel_pump_relay",
+        "block": "0x30",
+        "byte": "0xA1",
+        "value": "0xFF"
+      },
+      {
+        "name": "aircon_clutch_relay",
+        "block": "0x30",
+        "byte": "0xA3",
+        "value": "0xFF"
+      },
+      {
+        "name": "fan_slow",
+        "block": "0x30",
+        "byte": "0xA4",
+        "value": "0xFF"
+      },
+      {
+        "name": "fan_fast",
+        "block": "0x30",
+        "byte": "0xA5",
+        "value": "0xFF"
+      },
+      {
+        "name": "upstream_o2_heat",
+        "block": "0x30",
+        "byte": "0xA6",
+        "value": "0xFF"
+      },
+      {
+        "name": "downstream_o2_heat",
+        "block": "0x30",
+        "byte": "0xC3",
+        "value": "0xFF"
+      },
+      {
+        "name": "fly_wheel",
+        "block": "0x31",
+        "byte": "0x85",
+        "value": "0x00"
+      },
+      {
+        "name": "new_engine",
+        "block": "0x31",
+        "byte": "0xC9",
+        "value": "0x00"
+      },
+      {
+        "name": "reset_idle_adaptation",
+        "block": "0x31",
+        "byte": "0x82",
+        "value": "0x00"
+      },
+      {
+        "name": "reset_fueling_adaptation",
+        "block": "0x31",
+        "byte": "0xCA",
+        "value": "0x6D"
+      },
+      {
+        "name": "adjust_throttle_stop_setting",
+        "block": "0x30",
+        "byte": "0x5B",
+        "value": "0xFF",
+        "visible": "true"
+      },
+      {
+        "name": "ignition_offset",
+        "block": "0x31",
+        "byte": "0xC5",
+        "value": "0x0000",
+        "set_value": {
+          "min": "-10",
+          "max": "10",
+          "unit": "°"
+        },
+        "visible": "true"
+      }
+    ]
+}

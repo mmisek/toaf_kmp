@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_hevac">Control de clima de aire</string>
+
+    <string name="hevac_error_00">Motor de la trampilla de ventilación</string>
+    <string name="hevac_error_01">Motor de la trampilla del desempañador</string>
+    <string name="hevac_error_02">Motor de la trampilla del espacio para pies</string>
+    <string name="hevac_error_03">Motor de la trampilla de aire fresco/circulación de aire izquierda</string>
+    <string name="hevac_error_04">Motor de la trampilla de aire fresco/circulación de aire derecha</string>
+    <string name="hevac_error_05">Unidad de aire acondicionado HEVAC incorrecta</string>
+    <string name="hevac_error_06">Sensor de presión, suministro del sensor de contaminación</string>
+    <string name="hevac_error_0B">Sensor de evaporador</string>
+    <string name="hevac_error_0D">Sensor del intercambiador de calor</string>
+    <string name="hevac_error_12">Sensor de temperatura interior</string>
+    <string name="hevac_error_17">Relé del desempañador de la ventana trasera</string>
+    <string name="hevac_error_18">Relé del calefactor adicional</string>
+    <string name="hevac_error_19">Bomba de agua auxiliar</string>
+    <string name="hevac_error_1A">Válvula de agua</string>
+    <string name="hevac_error_1B">Voltaje de control del ventilador</string>
+    <string name="hevac_error_1C">Sensor del ventilador</string>
+    <string name="hevac_error_1D">Comunicación con el calefactor adicional</string>
+    <string name="hevac_error_1E">Sensor de contaminación</string>
+    <string name="hevac_error_1F">Sensor de presión</string>
+    <string name="hevac_error_20">Calentamiento del sensor de contaminación</string>
+    <string name="hevac_error_21">Sensor solar</string>
+    <string name="hevac_error_FF">Modo de ahorro de energía activo</string>
+
+    <string name="hevac_error_detail_01">Cortocircuito a batt+</string>
+    <string name="hevac_error_detail_02">Cortocircuito a tierra</string>
+    <string name="hevac_error_detail_04">Circuito abierto</string>
+    <string name="hevac_error_detail_08">Valor inverosímil, área de trabajo no válida</string>
+    <string name="hevac_error_detail_40">Error presente</string>
+    <string name="hevac_error_detail_80">Error esporádico</string>
+
+    <string name="hevac_live_data_power_supply_pollution_sensor">Suministro del sensor de contaminación</string>
+    <string name="hevac_live_data_power_supply">HEVAC - suministro de energía</string>
+    <string name="hevac_live_data_pollution_sensor_heating_voltage">Sensor de contaminación - voltaje de calentamiento</string>
+    <string name="hevac_live_data_pwm_fan_control_voltage">Voltaje de control del ventilador PWM</string>
+    <string name="hevac_live_data_outdoor_temperature_sensor">Sensor de temperatura exterior</string>
+    <string name="hevac_live_data_evaporator_temperature_sensor">Sensor de temperatura del evaporador</string>
+    <string name="hevac_live_data_pollution_sensor_signal">Señal del sensor de contaminación</string>
+    <string name="hevac_live_data_heat_exchanger_sensor">Sensor del intercambiador de calor</string>
+    <string name="hevac_live_data_solar_sensor">Sensor solar</string>
+    <string name="hevac_live_data_pressure_sensor">Sensor de presión</string>
+</resources>

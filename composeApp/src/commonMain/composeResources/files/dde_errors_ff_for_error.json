@@ -1,0 +1,1101 @@
+{
+  "errors": [
+   {
+        "code": "0100",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "rpc_pressure"
+          ],
+        "ff_details": [
+          {
+            "data": "0x04",
+            "text": "sensor_supply_voltage_fault"
+          },
+          {
+            "data": "0x10",
+            "text": "signal_out_of_range_too_low"
+          },
+          {
+            "data": "0x20",
+            "text": "signal_out_of_range_too_high"
+          },
+          {
+            "data": "0x80",
+            "text": "airflow_reading_too_low"
+          }
+        ]
+      },
+      {
+        "code": "0105",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "rpc_pressure"
+          ]
+      },
+      {
+        "code": "0110",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "rpc_pressure"
+          ],
+      "ff_details": [
+            {
+              "data": "0x01",
+              "text": "signal_out_of_range_too_low"
+            },
+            {
+              "data": "0x02",
+              "text": "signal_out_of_range_too_high"
+            }
+          ]
+      },
+      {
+        "code": "0115",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "rpc_pressure"
+        ],
+        "ff_details": [
+            {
+              "data": "0x01",
+              "text": "signal_out_of_range_too_low"
+            },
+            {
+              "data": "0x02",
+              "text": "signal_out_of_range_too_high"
+            }
+          ]
+      },
+      {
+        "code": "0120",
+        "ff_items": [
+            "engine_speed",
+            "supply_voltage",
+            "throttle_pedal_2",
+            "car_speed"
+          ]
+      },
+      {
+        "code": "0190",
+        "ff_items": [
+            "engine_speed",
+            "pre_supply_pressure",
+            "injected_volume",
+            "rpc_pressure"
+          ],
+        "ff_details": [
+            {
+              "data": "0x04",
+              "text": "sensor_supply_voltage_fault"
+            },
+            {
+              "data": "0x10",
+              "text": "signal_out_of_range_too_low"
+            },
+            {
+              "data": "0x20",
+              "text": "signal_out_of_range_too_high"
+            }
+          ]
+      },
+      {
+        "code": "0200",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "rpc_pressure"
+        ],
+        "ff_details": [
+            {
+              "data": "0x01",
+              "text": "over_current_low_side"
+            },
+            {
+              "data": "0x04",
+              "text": "over_current_high_side"
+            },
+            {
+              "data": "0x08",
+              "text": "over_load_drop"
+            },
+            {
+              "data": "0x40",
+              "text": "over_sl_fault"
+            }
+          ]
+      },
+      {
+        "code": "0201",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "rpc_pressure"
+        ],
+        "ff_details": [
+            {
+              "data": "0x01",
+              "text": "over_current_low_side"
+            },
+            {
+              "data": "0x04",
+              "text": "over_current_high_side"
+            },
+            {
+              "data": "0x08",
+              "text": "over_load_drop"
+            },
+            {
+              "data": "0x40",
+              "text": "over_sl_fault"
+            }
+          ]
+      },
+      {
+        "code": "0202",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "rpc_pressure"
+          ]
+      },
+      {
+        "code": "0204",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "rpc_pressure"
+          ],
+          "ff_details": [
+            {
+              "data": "0x01",
+              "text": "over_current_low_side"
+            },
+            {
+              "data": "0x04",
+              "text": "over_current_high_side"
+            },
+            {
+              "data": "0x08",
+              "text": "over_load_drop"
+            },
+            {
+              "data": "0x40",
+              "text": "over_sl_fault"
+            }
+          ]
+      },
+      {
+        "code": "0220",
+        "ff_items": [
+            "engine_speed",
+            "supply_voltage",
+            "throttle_pedal_1",
+            "car_speed"
+        ],
+        "ff_details": [
+            {
+              "data": "0x02",
+              "text": "signal_out_of_range_too_high"
+            },
+            {
+              "data": "0x04",
+              "text": "sensor_supply_voltage_fault"
+            },
+            {
+              "data": "0x80",
+              "text": "implausibility_between_potentiometers_1_and_2"
+            }
+          ]
+      },
+      {
+        "code": "0235",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "atmospheric_pressure"
+        ],
+        "ff_details": [
+            {
+              "data": "0x01",
+              "text": "signal_out_of_range_too_low"
+            },
+            {
+              "data": "0x02",
+              "text": "signal_out_of_range_too_high"
+            },
+            {
+              "data": "0x04",
+              "text": "sensor_supply_voltage_fault"
+            }
+          ]
+      },
+      {
+        "code": "0335",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "supply_voltage"
+        ],
+        "ff_details": [
+            {
+              "data": "0x02",
+              "text": "over_speed_signal"
+            },
+            {
+              "data": "0x20",
+              "text": "dynamic_plausibility"
+            }
+          ]
+      },
+      {
+        "code": "0400",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "rpc_pressure"
+        ],
+        "ff_details": [
+            {
+              "data": "0x04",
+              "text": "short_circuit_to_v_batt"
+            },
+            {
+              "data": "0x08",
+              "text": "short_circuit_to_ground_or_open_load"
+            },
+            {
+              "data": "0x10",
+              "text": "stuck_closed"
+            }
+          ]
+      },
+      {
+        "code": "0404",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "rpc_pressure"
+          ]
+      },
+      {
+        "code": "0480",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "supply_voltage",
+            "duty_factor"
+          ]
+      },
+      {
+        "code": "0500",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "air_temperature",
+            "throttle_pedal_1"
+          ]
+      },
+      {
+        "code": "0560",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "supply_voltage",
+            "rpc_pressure"
+        ],
+        "ff_details": [
+            {
+              "data": "0x01",
+              "text": "lower_stabilisation_limit"
+            },
+            {
+              "data": "0x02",
+              "text": "upper_stabilisation_limit"
+            }
+          ]
+      },
+      {
+        "code": "0600",
+        "ff_items": [
+            "engine_speed",
+            "supply_voltage",
+            "injected_volume",
+            "car_speed"
+        ],
+        "ff_details": [
+          {
+            "data": "0x02",
+            "text": "module_defective"
+          }
+          ]
+      },
+      {
+        "code": "0605",
+        "ff_items": [
+            "engine_speed",
+            "restart_code",
+            "injected_volume",
+            "supply_voltage"
+        ],
+        "ff_details": [
+            {
+              "data": "0x01",
+              "text": "gate_array_communication_error"
+            },
+            {
+              "data": "0x10",
+              "text": "redundant_overrun_monitoring"
+            },
+            {
+              "data": "0x20",
+              "text": "after_run_engine_speed_too_high"
+            },
+            {
+              "data": "0x40",
+              "text": "gate_array_fault_counter_implausible"
+            }
+          ]
+      },
+      {
+        "code": "0900",
+        "ff_items": [
+            "engine_speed",
+            "pre_supply_pressure",
+            "injected_volume",
+            "rpc_pressure"
+          ]
+      },
+      {
+        "code": "1190",
+        "ff_items": [
+            "engine_speed",
+            "pre_supply_pressure",
+            "injected_volume",
+            "rpc_pressure"
+        ],
+        "ff_details": [
+            {
+              "data": "0x01",
+              "text": "above_maximum_pressure"
+            },
+            {
+              "data": "0x02",
+              "text": "below_minimum_pressure"
+            },
+            {
+              "data": "0x08",
+              "text": "pressure_regulator_valve_jams"
+            },
+            {
+              "data": "0x10",
+              "text": "pressure_leakage_detected"
+            },
+            {
+              "data": "0x20",
+              "text": "control_deviation_too_large"
+            }
+          ]
+      },
+      {
+        "code": "1195",
+        "ff_items": [
+            "engine_speed",
+            "pre_supply_pressure",
+            "supply_voltage",
+            "rpc_pressure"
+        ],
+        "ff_details": [
+            {
+              "data": "0x04",
+              "text": "short_circuit_to_ground_or_open_load"
+            },
+            {
+              "data": "0x08",
+              "text": "short_circuit_to_v_batt"
+            },
+            {
+              "data": "0x80",
+              "text": "output_driver"
+            }
+          ]
+      },
+      {
+        "code": "1250",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "rpc_pressure"
+        ],
+        "ff_details": [
+            {
+              "data": "0x04",
+              "text": "short_circuit_to_v_batt"
+            },
+            {
+              "data": "0x08",
+              "text": "short_circuit_to_ground_or_open_load"
+            }
+          ]
+      },
+      {
+        "code": "1255",
+        "ff_items": [
+            "engine_speed",
+            "air_temperature",
+            "injected_volume",
+            "rpc_pressure"
+        ],
+        "ff_details": [
+            {
+              "data": "0x01",
+              "text": "signal_out_of_range_too_low"
+            },
+            {
+              "data": "0x02",
+              "text": "signal_out_of_range_too_high"
+            },
+            {
+              "data": "0x04",
+              "text": "sensor_supply_voltage_fault"
+            }
+          ]
+      },
+      {
+        "code": "1260",
+        "ff_items": [
+            "engine_speed",
+            "air_temperature",
+            "injected_volume",
+            "pre_supply_pressure"
+        ],
+        "ff_details": [
+            {
+              "data": "0x01",
+              "text": "pressure_too_low"
+            },
+            {
+              "data": "0x04",
+              "text": "pressure_too_low_for_starting"
+            },
+            {
+              "data": "0x04",
+              "text": "sensor_supply_voltage_fault"
+            }
+          ]
+      },
+      {
+        "code": "1470",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "air_boost"
+          ]
+      },
+      {
+        "code": "1640",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "supply_voltage"
+        ],
+        "ff_details": [
+            {
+              "data": "0x02",
+              "text": "eeprom_compensation_value_checksum_error"
+            },
+            {
+              "data": "0x10",
+              "text": "eeprom_communication_error"
+            },
+            {
+              "data": "0x20",
+              "text": "eeprom_dynamic_compensation_quantity_checksum_error"
+            },
+            {
+              "data": "0x40",
+              "text": "eeprom_quantity_drift_compensation_checksum_error"
+            }
+          ]
+      },
+      {
+        "code": "1E00",
+        "ff_items": [
+            "engine_speed",
+            "supply_voltage",
+            "injected_volume",
+            "car_speed"
+        ],
+        "ff_details": [
+            {
+              "data": "0x01",
+              "text": "message_failure_auto_gearbox"
+            },
+            {
+              "data": "0x02",
+              "text": "message_failure_traction_control"
+            },
+            {
+              "data": "0x04",
+              "text": "message_failure_instrument_pack_3"
+            },
+            {
+              "data": "0x08",
+              "text": "message_failure_instrument_pack_3"
+            },
+            {
+              "data": "0x40",
+              "text": "module_offline"
+            }
+          ]
+      },
+      {
+        "code": "1E05",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "rpc_pressure"
+        ],
+        "ff_details": [
+          {
+            "data": "0x20",
+            "text": "cruise_fault"
+          }
+        ]
+      },
+      {
+        "code": "1E25",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "supply_voltage"
+        ],
+        "ff_details":
+        [
+            {
+              "data": "0x02",
+              "text": "signal_frequency_too_high"
+            },
+            {
+              "data": "0x02",
+              "text": "sensor_failure"
+            },
+            {
+              "data": "0x20",
+              "text": "dynamic_plausibility"
+            },
+            {
+              "data": "0x40",
+              "text": "statically_defective"
+            }
+          ]
+      },
+      {
+        "code": "1E35",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "rpc_pressure"
+        ],
+        "ff_details": [
+            {
+              "data": "0x40",
+              "text": "switch_off_via_zero_quantity"
+            },
+            {
+              "data": "0x80",
+              "text": "switching_off_via_injector"
+            }
+          ]
+      },
+      {
+        "code": "1E40",
+        "ff_items": [
+            "engine_speed",
+            "throttle_pedal_2",
+            "supply_voltage",
+            "throttle_pedal_1"
+        ],
+        "ff_details": [
+            {
+              "data": "0x01",
+              "text": "signal_out_of_range_too_low"
+            },
+            {
+              "data": "0x02",
+              "text": "signal_out_of_range_too_high"
+            },
+            {
+              "data": "0x08",
+              "text": "idle_test_pulse_fault"
+            }
+          ]
+      },
+      {
+        "code": "1E45",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "supply_voltage"
+        ],
+        "ff_details": [
+            {
+              "data": "0x10",
+              "text": "booster_voltage_too_high"
+            },
+            {
+              "data": "0x20",
+              "text": "booster_voltage_too_low"
+            }
+          ]
+      },
+      {
+        "code": "1E50",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "supply_voltage"
+        ],
+        "ff_details": [
+            {
+              "data": "0x10",
+              "text": "booster_voltage_too_high"
+            },
+            {
+              "data": "0x20",
+              "text": "booster_voltage_too_low"
+            }
+          ]
+      },
+      {
+        "code": "1E55",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "supply_voltage",
+            "throttle_pedal_2"
+        ],
+        "ff_details": [
+            {
+              "data": "0x01",
+              "text": "signal_out_of_range_too_low"
+            },
+            {
+              "data": "0x02",
+              "text": "signal_out_of_range_too_high"
+            }
+          ]
+      },
+      {
+        "code": "1E60",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "supply_voltage",
+            "throttle_pedal_2"
+        ],
+        "ff_details": [
+            {
+              "data": "0x01",
+              "text": "signal_out_of_range_too_low"
+            },
+            {
+              "data": "0x02",
+              "text": "signal_out_of_range_too_high"
+            }
+          ]
+      },
+      {
+        "code": "2800",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "supply_voltage"
+        ],
+        "ff_details": [
+            {
+              "data": "0x01",
+              "text": "signal_out_of_range_too_low"
+            },
+            {
+              "data": "0x02",
+              "text": "signal_out_of_range_too_high"
+            }
+          ]
+        },
+      {
+        "code": "3000",
+        "ff_items": [
+            "engine_speed",
+            "supply_voltage",
+            "throttle_pedal_1",
+            "car_speed"
+        ],
+        "ff_details": [
+          {
+            "data": "0x80",
+            "text": "implausibility_between_brake_switch_signals"
+          }
+        ]
+      },
+      {
+        "code": "3005",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "air_temperature",
+            "supply_voltage"
+        ],
+        "ff_details": [
+          {
+            "data": "0x80",
+            "text": "implausible_ignition_switch_state"
+          }
+        ]
+      },
+      {
+        "code": "3010",
+        "ff_items": [
+            "engine_speed",
+            "car_speed",
+            "injected_volume",
+            "throttle_pedal_1"
+        ],
+        "ff_details": [
+          {
+            "data": "0x80",
+            "text": "expected_signal_change_not_seen"
+          }
+        ]
+      },
+      {
+        "code": "3505",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "rpc_pressure"
+        ],
+        "ff_details": [
+            {
+              "data": "0x04",
+              "text": "short_circuit_to_v_batt"
+            },
+            {
+              "data": "0x08",
+              "text": "short_circuit_to_ground_or_open_load"
+            },
+            {
+              "data": "0x80",
+              "text": "incorrect_relay_state"
+            }
+          ]
+      },
+      {
+        "code": "3510",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "supply_voltage",
+            "rpc_pressure"
+        ],
+        "ff_details": [
+            {
+              "data": "0x01",
+              "text": "switch_off_too_soon"
+            },
+            {
+              "data": "0x02",
+              "text": "switch_off_too_late"
+            }
+          ]
+      },
+      {
+        "code": "3515",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "rpc_pressure"
+        ],
+        "ff_details": [
+          {
+              "data": "0x04",
+              "text": "short_circuit_to_v_batt"
+            },
+            {
+              "data": "0x08",
+              "text": "short_circuit_to_ground_or_open_load"
+            }
+          ]
+      },
+      {
+        "code": "0404",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "rpc_pressure"
+        ],
+        "ff_details": [
+          {
+              "data": "0x01",
+              "text": " "
+            },
+            {
+              "data": "0x02",
+              "text": " "
+            },
+            {
+              "data": "0x05",
+              "text": " "
+            },
+            {
+              "data": "0x12",
+              "text": " "
+            }
+          ]
+      },
+      {
+        "code": "1612",
+        "ff_items": [
+            "engine_speed",
+            "pre_supply_pressure",
+            "injected_volume",
+            "rpc_pressure"
+        ],
+        "ff_details": [
+          {
+              "data": "0x01",
+              "text": " "
+            },
+            {
+              "data": "0x02",
+              "text": " "
+            },
+            {
+              "data": "0x05",
+              "text": " "
+            },
+            {
+              "data": "0x12",
+              "text": " "
+            }
+          ]
+      },
+      {
+        "code": "1613",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "supply_voltage"
+        ],
+        "ff_details": [
+          {
+              "data": "0x01",
+              "text": " "
+            },
+            {
+              "data": "0x02",
+              "text": " "
+            },
+            {
+              "data": "0x05",
+              "text": " "
+            },
+            {
+              "data": "0x12",
+              "text": " "
+            }
+          ]
+      },
+      {
+        "code": "19E6",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "rpc_pressure"
+        ],
+        "ff_details": [
+          {
+              "data": "0x01",
+              "text": " "
+            },
+            {
+              "data": "0x02",
+              "text": " "
+            },
+            {
+              "data": "0x05",
+              "text": " "
+            },
+            {
+              "data": "0x12",
+              "text": " "
+            }
+          ]
+      },
+      {
+        "code": "1A04",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "supply_voltage"
+        ],
+        "ff_details": [
+          {
+              "data": "0x01",
+              "text": " "
+            },
+            {
+              "data": "0x02",
+              "text": " "
+            },
+            {
+              "data": "0x05",
+              "text": " "
+            },
+            {
+              "data": "0x12",
+              "text": " "
+            }
+          ]
+      },
+      {
+        "code": "1A0E",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "supply_voltage"
+        ],
+        "ff_details": [
+          {
+              "data": "0x01",
+              "text": " "
+            },
+            {
+              "data": "0x02",
+              "text": " "
+            },
+            {
+              "data": "0x05",
+              "text": " "
+            },
+            {
+              "data": "0x12",
+              "text": " "
+            }
+          ]
+      },
+      {
+        "code": "1A18",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "rpc_pressure"
+        ],
+        "ff_details": [
+          {
+              "data": "0x01",
+              "text": " "
+            },
+            {
+              "data": "0x02",
+              "text": " "
+            },
+            {
+              "data": "0x05",
+              "text": " "
+            },
+            {
+              "data": "0x12",
+              "text": " "
+            }
+          ]
+      },
+      {
+        "code": "1A22",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "rpc_pressure"
+        ],
+        "ff_details": [
+          {
+              "data": "0x01",
+              "text": " "
+            },
+            {
+              "data": "0x02",
+              "text": " "
+            },
+            {
+              "data": "0x05",
+              "text": " "
+            },
+            {
+              "data": "0x12",
+              "text": " "
+            }
+
+          ]
+      },
+      {
+        "code": "1DF5",
+        "ff_items": [
+            "engine_speed",
+            "coolant_temp",
+            "injected_volume",
+            "rpc_pressure"
+        ],
+        "ff_details": [
+          {
+              "data": "0x01",
+              "text": " "
+            },
+            {
+              "data": "0x02",
+              "text": " "
+            },
+            {
+              "data": "0x05",
+              "text": " "
+            },
+            {
+              "data": "0x12",
+              "text": " "
+            }
+          ]
+      }
+    ]
+}

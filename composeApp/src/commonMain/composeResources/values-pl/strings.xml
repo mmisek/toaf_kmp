@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="AD_save_to_file_button_yes">Tak</string>
+    <string name="AD_save_to_file_button_no">Nie</string>
+    <string name="AD_save_to_file_failed">Błąd zapisu do pliku</string>
+    <string name="AD_save_to_file_message">Czy chcesz zapisać dane do pliku ?</string>
+    <string name="AD_save_to_file_success">Dane zapisane w pliku: %1$s</string>
+    <string name="AD_save_to_file_tittle">Zapis danych</string>
+    <string name="ButtonModuleErrorsClear">Kasuj</string>
+    <string name="ButtonModuleErrorsRead">Odczyt</string>
+    <string name="ButtonModuleReadInfo">Identyfikacja</string>
+
+
+    <string name="activity_coding_button_read">Odczytaj</string>
+    <string name="activity_coding_button_save">Zapisz</string>
+    <string name="activity_coding_cant_do_auto_backup">Nie można wykonać automatycznej kopii zapasowej. Opcje kodowanie nie są dostępne.</string>
+    <string name="activity_coding_custom_value_validate_error">Błąd walidacji wartośći. Wartość musu byc z zakresuod %1$s do %2$s</string>
+    <string name="activity_coding_load_public_backup_tittle">Kopia publiczna</string>
+
+    <string name="activity_coding_menu_load_backup">Odczytaj kopię zapasową</string>
+    <string name="activity_coding_menu_load_public_backup">Odczytaj publiczną kopię zapasową.</string>
+    <string name="activity_coding_menu_save_backup">Zapisz kopie zapasową</string>
+    <string name="activity_coding_read_failure">Błąd odczytu kodowania</string>
+    <string name="activity_coding_read_coding_elements_failed">Struktura kodowania nie znaleziona</string>
+    <string name="activity_coding_subtitle">Kodowanie modułu</string>
+    <string name="activity_control_add_to_fast_action_error">Błąd dodania do szybkich akcji</string>
+    <string name="activity_control_add_to_fast_action_successful">Dodanie do Szybkich akcji poprawne</string>
+    <string name="activity_control_button_start">Start</string>
+    <string name="activity_control_control_correct">Sterowanie poprawne</string>
+    <string name="activity_control_control_error">Błąd sterowania</string>
+    <string name="activity_control_delete_fast_action_successful">Wybrana akcja usunięta z szybkich akcji</string>
+    <string name="activity_control_fast_action_limit_reached">Ilość szybkich akcji została osiągnięta dla tej wersji programu.</string>
+    <string name="activity_control_subtitle">Sterowanie modułem</string>
+    <string name="activity_diagnostic_subtitle">Typ pojazdu: %1$s</string>
+    <string name="activity_diagnostic_title">Diagnostyka</string>
+
+    <string name="activity_live_data">Live data</string>
+    <string name="activity_live_data_add_to_fast_live_data_error">"Błąd dodania do Szybkiej Live Daty "</string>
+    <string name="activity_live_data_add_to_fast_live_data_successful">Dodanie do Szybkiej LiveDaty poprawne</string>
+    <string name="activity_live_data_chart">Wykres</string>
+    <string name="activity_live_data_delete_fast_live_data_successful">Wybrany element usuniędy z listy Szybkiej LiveDaty</string>
+    <string name="activity_live_data_fast_live_data_limit_reached">Osiągnięto liczbę możliwych elementów szybkiej Live Daty dla tej wersji programu</string>
+    <string name="activity_live_data_start">Start</string>
+    <string name="activity_live_data_stop">Stop</string>
+    <string name="activity_main_button_diagnostic">Diagnostyka</string>
+    <string name="activity_mail_toaf_expire_info">!! WAŻNE !! Ta wersja mobilna TOAF jest przestarzała i nie wszystkie funkcje mogą działać poprawnie. Proszę zaktualizować program, aby kontynuować pracę. Program zostanie teraz zamknięty.</string>
+    <string name="activity_main_function_not_supported_in_this_version">Ta funkcja jest niedostępna w tej wersji programu</string>
+    <string name="activity_main_function_not_supported_yet">Ta funkcja nie jest jeszcze dostępna</string>
+    <string name="activity_main_function_need_usb_device">Ta funkcja wymaga interfejsu USB!</string>
+    <string name="activity_main_toaf_expired_tittle">TOAF Mobile jest przestarzały</string>
+    <string name="activity_zcs_coding">Kodowanie ZCS</string>
+    <string name="activity_zcs_coding_button_read">Odczytaj</string>
+    <string name="activity_zcs_coding_button_save">Zapisz</string>
+    <string name="activity_zcs_coding_subtitle">Kodowanie ZCS</string>
+    <string name="activity_zcs_coding_tab_gm">GM</string>
+    <string name="activity_zcs_coding_tab_sa">SA</string>
+    <string name="activity_zcs_coding_tab_vn">VN</string>
+    <string name="alert_dialog_add_new_fast_control_cancel">Anuluj</string>
+    <string name="alert_dialog_add_new_fast_control_custom_name_length">Nazwa nie może być pusta</string>
+    <string name="alert_dialog_add_new_fast_control_display_name">Wyświetlana nazwa:</string>
+    <string name="alert_dialog_add_new_fast_control_save">Dodaj</string>
+    <string name="alert_dialog_add_new_fast_control_tittle">Dodan nowy element Szybkiej kontroli</string>
+    <string name="alert_dialog_add_new_fast_live_data_cancel">Anuluj</string>
+    <string name="alert_dialog_add_new_fast_live_data_custom_name_length">Wyświetlana nazwa nie może być pusta</string>
+    <string name="alert_dialog_add_new_fast_live_data_display_name">Wyświetlana nazwa:</string>
+    <string name="alert_dialog_add_new_fast_live_data_save">Dodaj</string>
+    <string name="alert_dialog_add_new_fast_live_data_tittle">Dodaj nowy element Szybkiej Live Daty</string>
+    <string name="alert_dialog_errors_button_close">Zamknij</string>
+    <string name="alert_dialog_errors_button_copy_to_clipboard">Kopiuj do schowka</string>
+    <string name="alert_dialog_errors_button_share">Udostępnij</string>
+    <string name="alert_dialog_errors_subtitle">Naciśnij na błędzie aby pokazać szczegóły</string>
+    <string name="alert_dialog_errors_title">Znalezione błędy</string>
+    <string name="alert_dialog_live_data_load_template_cancel">Anuluj</string>
+    <string name="alert_dialog_live_data_load_template_delete">Usuń szablon</string>
+    <string name="alert_dialog_live_data_load_template_delete_no">Nie</string>
+    <string name="alert_dialog_live_data_load_template_delete_question">Czy na pewno usunąć ?</string>
+    <string name="alert_dialog_live_data_load_template_delete_yes">Tak</string>
+    <string name="alert_dialog_live_data_load_template_load">Odczytaj</string>
+    <string name="alert_dialog_live_data_load_template_long_click_to_delete">Przytrzymaj na nazwie aby usunąć</string>
+    <string name="alert_dialog_live_data_load_template_name">Wybierz szablon do wczytania</string>
+    <string name="alert_dialog_live_data_save_as_template">Zapisz wybrane jako szablon</string>
+    <string name="alert_dialog_live_data_save_template_cancel">Anuluj</string>
+    <string name="alert_dialog_live_data_save_template_error">Błąd zapisu szablonu</string>
+    <string name="alert_dialog_live_data_save_template_name">Podaj nazwę szablonu</string>
+    <string name="alert_dialog_live_data_save_template_name_example">szablon</string>
+    <string name="alert_dialog_live_data_save_template_no_name">Nazwa szablonu nie może być pusta</string>
+    <string name="alert_dialog_live_data_save_template_save">Zapisz</string>
+    <string name="alert_dialog_live_data_save_template_successful">Szablon zapisany jako %1$s</string>
+    <string name="alert_dialog_no_errors_tittle">Nie znaleziono błędów</string>
+    <string name="alert_dialog_wifi_configuration_ap_password_SSID">Access point - SSID</string>
+    <string name="alert_dialog_wifi_configuration_ap_password_button_cancel">Anuluj</string>
+    <string name="alert_dialog_wifi_configuration_ap_password_button_read">Odczyt</string>
+    <string name="alert_dialog_wifi_configuration_ap_password_button_save">Zapis</string>
+    <string name="alert_dialog_wifi_configuration_ap_password_message_read_not_ok">Błąd odczytu</string>
+    <string name="alert_dialog_wifi_configuration_ap_password_message_read_ok">Odczyt</string>
+    <string name="alert_dialog_wifi_configuration_ap_password_message_save_not_ok">Błąd zapisu</string>
+    <string name="alert_dialog_wifi_configuration_ap_password_message_save_ok">Zapisano</string>
+    <string name="alert_dialog_wifi_configuration_ap_password_password">Access point - hasło</string>
+    <string name="alert_dialog_wifi_configuration_button_close">Zamknij</string>
+    <string name="alert_dialog_wifi_configuration_button_config">Konfiguracja</string>
+    <string name="alert_dialog_wifi_configuration_button_debug">!! DEBUG MODE !!</string>
+    <string name="alert_dialog_wifi_configuration_button_find_devices">Wyszukaj urządzenia</string>
+    <string name="alert_dialog_wifi_configuration_button_add_device">Dodaj urządzenie</string>
+    <string name="alert_dialog_wifi_configuration_button_select">Wybierz</string>
+    <string name="alert_dialog_wifi_configuration_device_hardware">HW:</string>
+    <string name="alert_dialog_wifi_configuration_device_ip">IP:</string>
+    <string name="alert_dialog_wifi_configuration_device_name">Nazwa:</string>
+    <string name="alert_dialog_wifi_configuration_device_serial_number">Numer seryjny:</string>
+    <string name="alert_dialog_wifi_configuration_device_software">SW:</string>
+    <string name="alert_dialog_wifi_configuration_message_config_saved">Konfiguracja zapisana</string>
+    <string name="alert_dialog_wifi_configuration_message_debug_mode">DEBUG MODE</string>
+    <string name="alert_dialog_wifi_configuration_message_devices_not_found">Nie znaleziono interfejsu Toaf WIFI</string>
+    <string name="alert_dialog_wifi_configuration_message_searching">Wyszukiwanie interfejsu…</string>
+    <string name="alert_dialog_wifi_configuration_title">TOAF WIFI - konfiguracja</string>
+    <string name="alert_dialog_wifi_configuration_check_update">Sprawdź aktualizację</string>
+    <string name="alert_dialog_wifi_configuration_update_available">Dla wybranego urządzenia dostępna jest aktualizacja.\nCzy zaktualizować urządzenie ?</string>
+    <string name="alert_dialog_wifi_configuration_checking_update">Sprawdzanie aktualizacji.</string>
+    <string name="alert_dialog_wifi_configuration_update_successful">Aktualizacja pomyslna.</string>
+    <string name="alert_dialog_wifi_configuration_update_failed">Błąd aktualizacji.</string>
+    <string name="alert_dialog_wifi_configuration_update_not_available">Brak dostępnych aktualizacji dla tego urządzenia</string>
+    <string name="alert_dialog_wifi_configuration_update_in_progress">Trwa aktualizacja.</string>
+    <!-- alert dialog wifi -cinfiguration - add device -->
+    <string name="alert_dialog_wifi_configuration_add_device_title">Dodaj urządzenie</string>
+    <string name="alert_dialog_wifi_configuration_add_device_enter_ip_address">Podaj adres IP</string>
+    <string name="alert_dialog_wifi_configuration_add_device_add">Dodaj</string>
+    <string name="alert_dialog_wifi_configuration_add_device_cancel">Anuluj</string>
+
+
+    <string name="alert_dialog_zcs_copy_button_cancel">Anuluj</string>
+    <string name="alert_dialog_zcs_copy_button_copy">Kopiuj</string>
+    <string name="alert_dialog_zcs_copy_destination">Cel</string>
+    <string name="alert_dialog_zcs_copy_destination_write_error">Błąd zapisu ZCS do wybranego celu</string>
+    <string name="alert_dialog_zcs_copy_source">Źródło</string>
+    <string name="alert_dialog_zcs_copy_source_read_failed">Błąd odczytu ZCS z wybranego źródła</string>
+    <string name="alert_dialog_zcs_copy_tittle">Wybierz źródło oraz cel kopiowania ZCS</string>
+    <!-- QuestionDialog -->
+    <string name="dialog_question_title">Pytanie</string>
+    <string name="dialog_question_yes">Tak</string>
+    <string name="dialog_question_no">Nie</string>
+    <!-- InformationDialog -->
+    <string name="dialog_information_title">Informacja</string>
+    <string name="dialog_information_ok">OK</string>
+
+
+    <string name="alert_module_info_bi">Bus index</string>
+    <string name="alert_module_info_ci">Coding index</string>
+    <string name="alert_module_info_close">Zamknij</string>
+    <string name="alert_module_info_copied_to_clipboard">Informacje o module skopiowane do schowka</string>
+    <string name="alert_module_info_copy">Kopiuj do schowka</string>
+    <string name="alert_module_info_date">Data</string>
+    <string name="alert_module_info_di">Indeks diag.</string>
+    <string name="alert_module_info_hw">Sprzęt</string>
+    <string name="alert_module_info_id1">ID1</string>
+    <string name="alert_module_info_id2">ID2</string>
+    <string name="alert_module_info_odometer">Przebieg</string>
+    <string name="alert_module_info_producer">Producent</string>
+    <string name="alert_module_info_read_error">Błąd odczytu identyfikacji modułu</string>
+    <string name="alert_module_info_serial_number">Numer seryjny</string>
+    <string name="alert_module_info_share">Udostępnij</string>f
+    <string name="alert_module_info_sw">Oprogramowanie</string>
+    <string name="alert_module_info_tittle">Informacje o module</string>
+    <string name="alert_module_info_vin">VIN</string>
+    <string name="app_name">TOAF Mobile</string>
+    <string name="app_version">0.0.7</string>
+
+    <string name="billing_toaf_full_active">Pełna wersja TOAF Mobile jest aktywna!</string>
+    <string name="billing_service_not_available">Usługa niedostępna.</string>
+    <string name="button_charts">Wykres</string>
+    <string name="button_charts_clear">Wyczyść</string>
+    <string name="button_charts_close">Zamknij</string>
+    <string name="button_charts_start">Start</string>
+    <string name="button_charts_stop">Stop</string>
+    <string name="button_find_device">Znajdź urządzenie</string>
+    <string name="button_live_data_start">Start</string>
+    <string name="button_live_data_stop">Stop</string>
+
+
+
+    <string name="dialog_backup_read_list_cancel">Anuluj</string>
+    <string name="dialog_backup_read_list_data_corrupted">Kopia zapasowa uszkodzona - spróbuj ponownie lub wybierz inną.</string>
+    <string name="dialog_backup_read_list_data_loaded">Kopia zapasowa załadowana poprawnie</string>
+    <string name="dialog_backup_read_list_element_author">Autor:</string>
+    <string name="dialog_backup_read_list_element_created">Data utworzenia:</string>
+    <string name="dialog_backup_read_list_element_description">Opis:</string>
+    <string name="dialog_backup_read_list_read">Załaduj</string>
+    <string name="dialog_backup_read_list_tittle">Kopie zapasowe dla : %1$s</string>
+    <string name="dialog_cancel">Anuluj</string>
+    <string name="dialog_information_close">Zamknij</string>
+    <string name="dialog_information_do_not_show_again">Nie pokazuj ponownie</string>
+    <string name="dialog_information_tittle">Informacje</string>
+    <string name="dialog_load_file">Załaduj</string>
+    <string name="dialog_make_backup_backup_saved">Kopia zapasowa zapisana</string>
+    <string name="dialog_make_backup_cancel">Anuluj</string>
+    <string name="dialog_make_backup_description">Opis</string>
+    <string name="dialog_make_backup_description_to_short">Opis nie może być pusty</string>
+    <string name="dialog_make_backup_mark_as_public">Oznacz jako kopia publiczna</string>
+    <string name="dialog_make_backup_save_backup">Zapisz</string>
+    <string name="dialog_make_backup_save_error">Błąd zapisu kopii zapasowej</string>
+    <string name="dialog_input_title">Wpisz dane</string>
+    <string name="dialog_input_cancel">Anuluj</string>
+    <string name="dialog_make_backup_tittle">Kopia zapasowa kodowania</string>
+    <string name="dialog_select_car_type_cancel">Anuluj</string>
+    <string name="dialog_select_car_type_ok">OK</string>
+    <string name="dialog_select_car_type_tittle">Wybierz rodzaj pojazdu</string>
+    <string name="dialog_select_file_to_load">Naciśnij dwa razy aby załądować plik</string>
+    <string name="dialog_user_create_cancel">Anuluj</string>
+    <string name="dialog_user_create_confirm_password">Powtórz hasło</string>
+    <string name="dialog_user_create_create">Utwórz</string>
+    <string name="dialog_user_create_create_error">Błąd towrzenia użytkownika</string>
+    <string name="dialog_user_create_email">E-mail</string>
+    <string name="dialog_user_create_email_is_wrong">Adres e-mail nieprawidłowy.</string>
+    <string name="dialog_user_create_login">Login</string>
+    <string name="dialog_user_create_login_to_short">Login musi posiadać co najmniej 5 znaków</string>
+    <string name="dialog_user_create_password">Hasło</string>
+    <string name="dialog_user_create_password_mismatch">Hasła różnią się</string>
+    <string name="dialog_user_create_tittle">Utwórz nowego użytkownika</string>
+    <string name="dialog_user_create_user_created">Użytkownik %1$s utworzony</string>
+    <string name="dialog_user_login_cancel">Anuluj</string>
+    <string name="dialog_user_login_change_password">Zmień hasło</string>
+    <string name="dialog_user_login_create_new">Utwórz nowego użytkownika</string>
+    <string name="dialog_user_login_do_login">Login</string>
+    <string name="dialog_user_login_error">Błąd logowania. Złe hasło lub login</string>
+    <string name="dialog_user_login_login">Login</string>
+    <string name="dialog_user_login_login_correct">Zalogowano poprawnie.</string>
+    <string name="dialog_user_login_password">Hasło</string>
+    <string name="dialog_user_login_tittle">Login użytkownika</string>
+    <string name="dialog_user_password_cancel">Anuluj</string>
+    <string name="dialog_user_password_change">Zmień</string>
+    <string name="dialog_user_password_change_error">Błąd zmiany hasła użytkownika</string>
+    <string name="dialog_user_password_change_ok">Zmiana hasła użytkownika poprawna</string>
+    <string name="dialog_user_password_confirm_new_password">Potwierdz nowe hasło</string>
+    <string name="dialog_user_password_login">Login</string>
+    <string name="dialog_user_password_login_to_short">Login użytkownika musi posiadać co najmniej 5 znaków</string>
+    <string name="dialog_user_password_new_password">Nowe hasło</string>
+    <string name="dialog_user_password_password">Hasło</string>
+    <string name="dialog_user_password_password_mismatch">Hasła nie zgadzają się</string>
+    <string name="dialog_user_password_password_to_short">Hasło za krótkie - musi posiadać co najmniej 8 znaków</string>
+    <string name="dialog_user_password_tittle">Zamień hasło</string>
+    <string name="dialog_user_password_to_short">Hasło za krótkie - musi posiadać co najmniej 8 znaków</string>
+    <string name="dialog_user_info_delete_user">Usuń konto oraz dane</string>
+    <string name="dialog_user_info_delete_user_question">Czy na pewno trwale usunąć użytkownika oraz jego wszystkie dane ?</string>
+    <string name="dialog_user_info_delete_user_successful">Użytkownik został usunięty</string>
+    <string name="dialog_user_info_delete_user_error">Błąd usuwania użytkownika. Skontaktuj się z pomocą techniczną.</string>
+
+    <string name="kwp_connected">KWP połączony z : %1$s</string>
+    <string name="kwp_connected_failed">Błąd połączenia z DDE</string>
+    <string name="main_menu_bluetooth">Bluetooth</string>
+    <string name="main_menu_exit">Wyjście</string>
+    <string name="main_menu_get_full_version">Kup pełną wersję</string>
+    <string name="main_menu_select_car_type">Wybierz pojazd</string>
+    <string name="main_menu_settings">Ustawienia</string>
+    <string name="main_menu_user_add">Dodaj użytkownika</string>
+    <string name="main_menu_user_login">Zaloguj</string>
+    <string name="main_menu_wifi">Interfejs WIFI</string>
+
+    <string name="menu_charts_screenshot">Zrzut ekranu</string>
+    <string name="menu_live_data_chart">Wykres</string>
+    <string name="menu_live_data_dde_save_template">Zapisz szablon</string>
+    <string name="live_data_type_chart">Wykres</string>
+    <string name="menu_load_data_from_file">Wczytaj plik</string>
+    <string name="menu_zcs_copy">Kopiuj ZCS</string>
+    <string name="message_bluetooth_connection_failed">Błąd połączenia z urządzenie Bluetooth</string>
+    <string name="message_bluetooth_connection_success">Połączono z urządzeniem Bluetooth</string>
+    <string name="message_bluetooth_not_enabled_info">Jak chcesz korzystać z urządzenia Bluetooth jeżeli jest on wyłączony? Włącz Bluetooth.</string>
+    <string name="message_bluetooth_not_enabled_tittle">Bluetooth włączony</string>
+    <string name="message_bluetooth_not_supported_info">To urządzenie nie obsługuje Bluetooth. Z tego powodu połaczenie Bluetooh będzie niemozliwe.</string>
+    <string name="message_bluetooth_not_supported_tittle">Bluetooth</string>
+    <string name="message_coding_read_not_ok">Odczyt kodowania niepoprawny</string>
+    <string name="message_coding_read_ok">Odczyt kodowania - poprawny</string>
+    <string name="message_coding_reset_error">Błąd resetu sterownika</string>
+    <string name="message_coding_save_not_ok">Błąd zapisu kodowania</string>
+    <string name="message_coding_save_ok">Zapis kodowania poprawny. Poczekaj na reset sterownika.</string>
+    <string name="message_device_not_found">Nie znaleziono interfejsu. Połącz interfejs i spróbuj ponownie</string>
+    <string name="message_errors_clear_failure">Kasowanie błądów niepoprawne.</string>
+    <string name="message_errors_cleared">Wszystkie błędy zostały usunięte</string>
+    <string name="message_errors_no_errors">Brak błędów</string>
+    <string name="message_errors_read_failure">Odczyt błedów niepoprawny</string>
+    <string name="message_information_internet_tittle">TOAF Web service</string>
+    <string name="message_live_data_more_than_ten">Nie możesz wybrać wiecej niz 10 elementów.</string>
+    <string name="message_live_data_save_as_template_no_item_selected">Nie wybrano elementów do zapisania jako szablon</string>
+    <string name="message_need_to_be_login">Ta funkcja wymaga zalogowania to Toaf Web Service</string>
+    <string name="message_no_permission_to_save">Uprawnienia do zapisu w galerii nie są przyznane.</string>
+    <string name="message_permission_background_location_info">W Android 10  wyższej uprawneinia do lokalizacji w tle są niezbędne do odszukania urządzeń Bluetooth</string>
+    <string name="message_permission_background_location_tittle">Uprawnienia lokalizacji w tle</string>
+    <string name="message_permission_bluetooth_info">Uprawnienia Bluetooth są obowiązkowe</string>
+    <string name="message_permission_bluetooth_tittle">Uprawnienia Bluetooth</string>
+    <string name="message_permission_denied_info">Jeżeli naprawdę nie chcesz używać urządzeń Bluetooth - OK</string>
+    <string name="message_permission_denied_tittle">Odmowa uprawnień</string>
+    <string name="message_permission_fine_location_info">Uprawnienia lokalizacji są niezbędne do odszukiwania urządzeń Bluetooth</string>
+    <string name="message_permission_fine_location_tittle">Uprawnienia lokalizacji</string>
+    <string name="message_permission_to_save_granted">Uprawnienia do zapisu w galerii przyznane.</string>
+    <string name="message_save_to_gallery_error">Błąd zapisu zrzutu ekranu w galerii.</string>
+    <string name="message_saved_to_gallery">Zrzut ekranu zapisany w galerii.</string>
+    <string name="message_unknown_error">Nieznany błąd.</string>
+    <string name="message_zcs_copy_successful">Kopiowanie ZCS poprawne.</string>
+    <string name="message_zcs_read_error">Odczyt ZCS - błąd</string>
+    <string name="message_zcs_read_ok">Odczyt ZCS - poprawny</string>
+    <string name="message_zcs_value">Wartość: %1$s</string>
+    <string name="message_zcs_write_error">Zapis ZCS - błąd</string>
+    <string name="message_zcs_write_ok">Zapis ZCS - porpawny</string>
+
+    <string name="module_bus_index">BI</string>
+    <string name="module_coding">Kodowanie</string>
+    <string name="module_coding_index">CI</string>
+    <string name="module_control">Kontola</string>
+    <string name="module_advance_control">Zaawansowana kontrola</string>
+    <string name="module_diagnostic_index">DI</string>
+    <string name="module_error_clear">Wyczyść błędy</string>
+    <string name="module_error_code">Kod błędu:</string>
+    <string name="module_error_count">Ilość wystąpień</string>
+    <string name="module_error_description">Opis:</string>
+    <string name="module_error_information">Status:</string>
+    <string name="module_error_read">Odczytaj błędy</string>
+    <string name="module_error_speed">Prędkość pojazdu:</string>
+    <string name="module_errors_description">Błędy</string>
+    <string name="module_error_logistic_counter">Licznik log.</string>
+    <string name="module_hardware_version">HW</string>
+    <string name="module_ident_description">Identyfikacja</string>
+    <string name="module_ident_fail">Błąd identyfikacji modułu</string>
+    <string name="module_info_application_ident">Ident. aplikacji</string>
+    <string name="module_info_boot_ident">Ident. Boot</string>
+    <string name="module_info_calibration_ident">Data kalibracji</string>
+    <string name="module_info_programing_date">Data programowania</string>
+    <string name="module_info_siemens_software_number">Nr oprogramowania wg Siemens</string>
+    <string name="module_info_product_number">Nr. produktu</string>
+    <string name="module_info_change_type">Wydanie</string>
+    <string name="module_live_data">Live Data</string>
+    <string name="module_no_data">Brak informacji</string>
+    <string name="module_odometer">Przebieg</string>
+    <string name="module_part_date">Data</string>
+    <string name="module_part_name">Numer części</string>
+    <string name="module_part_producer">Producent</string>
+    <string name="module_software_version">SW</string>
+    <string name="module_vin_coding">Kodowanie VIN</string>
+    <string name="module_vin_number">Numer VIN</string>
+    <string name="not_specified">Nie zdefiniowany</string>
+
+    <string name="progress_dialog_message">Trwa komunikacja…</string>
+    <string name="progress_dialog_abort">Przerwij</string>
+
+    <string name="title_activity_charts">ChartsActivity</string>
+    <string name="title_activity_errors">ErrorsActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main_activity">MainActivity</string>
+    <string name="vin_coding_correct">Numer VIN zapisany poprawnie</string>
+    <string name="vin_coding_failed">Błąd zapisu numeru VIN</string>
+    <string name="vin_coding_hint">SARR…</string>
+    <string name="vin_coding_new_vin">Podaj nowy numer VIN:</string>
+    <string name="vin_coding_save">Zapisz</string>
+
+
+    <string name ="coding_lhd">LHD</string>
+    <string name ="coding_rhd">RHD</string>
+    <string name ="coding_first_generation">Generacja 1</string>
+    <string name ="coding_second_generation">Generacja 2</string>
+
+    <string name="module_error_mileage">Przebieg</string>
+    <string name="module_error_voltage">Napięcie</string>
+
+    <string name="dialog_user_info_title">Informacje o użytkowniku</string>
+    <string name="dialog_user_info_login">Login</string>
+    <string name="dialog_user_info_email">E-mail</string>
+    <string name="dialog_user_info_full_version">Pełna wersja</string>
+    <string name="dialog_user_info_bcu_keys">Klucze BCU</string>
+    <string name="dialog_user_info_eka_codes">Kody EKA</string>
+    <string name="dialog_user_info_close">Zamknij</string>
+    <string name="dialog_user_info_full_version_active">Aktywna</string>
+    <string name="dialog_user_info_full_version_not_active">Nieaktywna</string>
+
+    <!-- alert Dialog - interface info -->
+    <string name="dialog_interface_info_title">Informacje o interfejsie</string>
+    <string name="dialog_interface_info_path">Ścieżka</string>
+    <string name="dialog_interface_info_manufacturer">Producent</string>
+    <string name="dialog_interface_info_name">Nazwa</string>
+    <string name="dialog_interface_info_product">Produkt</string>
+    <string name="dialog_interface_info_serial_number">Nr. seryjny</string>
+    <string name="dialog_interface_info_version">Wersja</string>
+    <string name="dialog_interface_info_close">Zamknij</string>
+    <string name="dialog_user_info_not_available">niedostępne</string>
+    <string name="dialog_interface_info_save">Zapisz</string>
+    <string name="dialog_interface_info_fast_init_sleep">KWP Sleep</string>
+    <!--alert Dialog Wifi Interface info -->
+    <string name="dialog_wifi_interface_name">Nazwa</string>
+    <string name="dialog_wifi_interface_serial_number">Nr seryjny</string>
+    <string name="dialog_wifi_interface_hardware">Sprzęt</string>
+    <string name="dialog_wifi_interface_software">Oprogramowanie</string>
+
+    <string name="privacy_policy_link">Polityka prywatności</string>
+
+    <string name="dialog_full_version_tittle">Ta opcja wymaga pełnej wersji programu</string>
+    <string name="dialog_full_version_watch_ad">Obejrzyj reklamę aby kontynuować</string>
+    <string name="dialog_full_version_get_full_version">Kup pełną wersję za %1$s</string>
+    <string name="dialog_full_version_cancel_dialog">Anuluj</string>
+    <string name="dialog_full_version_or">lub</string>
+    <string name="dialog_full_version_ad_is_not_ready">Reklama nie jest gotowa.</string>
+    <string name="activity_coding_load_public_backup_info">!! WAŻNE !! Publiczna kopia zapasowa może być uszkodzona, może spowodować awarię modułu, wyłączyć klucze w module BCU i wiele więcej… Pamiętaj, aby wykonać kopię zapasową swojego kodowania! Upewnij się, że wiesz, co robisz!</string>
+<string name="message_information_internet_info" >Od wersji 0.0.7 TOAF wymaga dostępu do usług internetowych TOAF.\n
+        Musisz utworzyć konto i być zalogowanym przez cały czas korzystania z TOAF.\n
+        Jest to konieczne, aby zapisać kopię zapasową kodowania w internecie.\n
+        Możesz również przywrócić swoje kodowanie z internetu.
+        Logowanie i tworzenie konta jest dostępne w menu głównym okna TOAF.\n
+        !! WAŻNE !!\n\n
+        Jest to wersja testowa tej usługi, która w każdej chwili może przestać działać, a wszystkie dane mogą zniknąć na zawsze.
+    </string>
+<string name="dialog_make_backup_info" >Zbieranie danych: \n\tInformacje o module\n\tKodowanie modułu\n\tVIN pojazdu\n\tNazwa użytkownika</string>
+    <string name="alert_dialog_wifi_configuration_ip_address_is_not_valid">Adres IP jest niewłaściwy</string>
+    <string name="live_data_type_table">Tabela</string>
+    <string name="server_connection_failed">Błąd połączenia z serwerem Toaf</string>
+
+</resources>
