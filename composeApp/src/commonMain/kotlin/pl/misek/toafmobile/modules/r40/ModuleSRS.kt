@@ -98,7 +98,7 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
     }
 
     fun Int.toBcd(): Byte {
-        require(this in 0..99) { "Liczba musi być w zakresie 0-99" }
+        require(this in 0..99) { "Must be in 0..99" }
         return (((this / 10) shl 4) or (this % 10)).toByte()
     }
     private suspend fun getSerialNumber(): String? {

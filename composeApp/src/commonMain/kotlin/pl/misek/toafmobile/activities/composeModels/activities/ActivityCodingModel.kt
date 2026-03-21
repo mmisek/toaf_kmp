@@ -304,17 +304,18 @@ fun ActivityModuleCodingModel(moduleKoinName : KoinNames, onBackClick : () ->Uni
                                 data?.let {
                                     currentCoding = it.toList()
                                     actionType = ActionTypeEnum.SaveCodingBackup
-                                    action = {
-                                        doBackup(
-                                            toafApi = toafApi,
-                                            currentModule = currentModule,
-                                            ewsModule = ewsModule,
-                                            ipkModule = ipkModule,
-                                            currentCoding = currentCoding,
-                                            description = "Autobackup",
-                                            isPublic = false
-                                        )
-                                    }
+                                    action =
+                                        {
+                                            doBackup(
+                                                toafApi = toafApi,
+                                                currentModule = currentModule,
+                                                ewsModule = ewsModule,
+                                                ipkModule = ipkModule,
+                                                currentCoding = it.toList(),
+                                                description = "Autobackup",
+                                                isPublic = false
+                                            )
+                                        }
                                     showProgressDialog = true
                                 }
                             }
