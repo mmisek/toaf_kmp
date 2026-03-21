@@ -16,12 +16,12 @@ class DesktopSerialDevice : ISerialDevice
     private var _serialPortName = ""
 
     override suspend fun write(data: ByteArray?, forceAnswer: Boolean, useDelay: Boolean): ByteArray? {
-        return write(data, 250, true, useDelay)
+        return write(data, 50, true, useDelay)
     }
 
     override suspend fun write(
         data: ByteArray?,
-        timeout: Int,
+        timeout: Long?,
         forceAnswer: Boolean,
         useDelay: Boolean
     ): ByteArray? = withContext(Dispatchers.IO) {
@@ -43,7 +43,7 @@ class DesktopSerialDevice : ISerialDevice
                println("$tag : ${ex.toString()}")
                 return@withContext null
             }
-            delay(50)
+            delay(timeout ?: 50)
             if (forceAnswer) {
                 val outputStream = ByteArrayOutputStream()
                 var result: ByteArray?

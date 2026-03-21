@@ -127,6 +127,8 @@ object ResourceMapperEms {
             "ems_error_detail_04" -> Res.string.ems_error_detail_04
             "ems_error_detail_08" -> Res.string.ems_error_detail_08
             "ems_error_detail_10" -> Res.string.ems_error_detail_10
+            "ems_error_detail_20" -> Res.string.ems_error_detail_20
+            "ems_error_detail_40" -> Res.string.ems_error_detail_40
             "ems_error_detail_80" -> Res.string.ems_error_detail_80
             "ems_error_ff_air_con_status" -> Res.string.ems_error_ff_air_con_status
             "ems_error_ff_battery" -> Res.string.ems_error_ff_battery

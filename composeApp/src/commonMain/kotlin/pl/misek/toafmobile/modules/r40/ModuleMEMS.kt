@@ -567,12 +567,11 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
         _programmingState.tryEmit(FlashProgrammingState.Message("VIN : $vin"))
 
         val securityAccessResult = securityAccess(0xA0)
-          _programmingState.tryEmit(
-                FlashProgrammingState.MessageWithParameter(
-                    Res.string.activity_flash_programming_security_access,
-                    if (securityAccessResult) Res.string.activity_flash_programming_ok else Res.string.activity_flash_programming_failed
-                )
-            )
+        _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
+                   Res.string.activity_flash_programming_security_access,
+                   if (securityAccessResult) Res.string.activity_flash_programming_ok else Res.string.activity_flash_programming_failed
+             )
+        )
         if (!securityAccessResult)
             return
         var x = 0f

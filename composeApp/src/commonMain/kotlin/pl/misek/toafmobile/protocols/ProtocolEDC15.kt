@@ -30,7 +30,7 @@ class ProtocolEDC15(private var device: IInterfaceDevice?) : IProtocol {
         return result
     }
 
-    override suspend fun write(address: Byte, command: Byte, data: ByteArray, timeout: Int): OBDMessage {
+    override suspend fun write(address: Byte, command: Byte, data: ByteArray, timeout: Long?): OBDMessage {
         var message = OBDMessage()
         for (i in 0..4) {
             CoroutineScope(Dispatchers.IO).launch {
@@ -58,7 +58,7 @@ class ProtocolEDC15(private var device: IInterfaceDevice?) : IProtocol {
         address: Byte,
         command: Byte,
         data: ByteArray,
-        timeout: Int,
+        timeout: Long?,
         forceAnswer: Boolean
     ): OBDMessage {
         return OBDMessage()
@@ -67,7 +67,7 @@ class ProtocolEDC15(private var device: IInterfaceDevice?) : IProtocol {
     override fun setSpeed(baud: Int) {
     }
 
-    private suspend fun writeEDC15(address: Byte, command: Byte, data: ByteArray, timeout: Int): OBDMessage {
+    private suspend fun writeEDC15(address: Byte, command: Byte, data: ByteArray, timeout: Long?): OBDMessage {
         val message = OBDMessage()
         if (!connect()) return message
         var checksum: Byte

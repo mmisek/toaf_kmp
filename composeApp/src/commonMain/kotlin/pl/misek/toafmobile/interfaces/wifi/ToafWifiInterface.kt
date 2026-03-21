@@ -39,7 +39,7 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
 
     override suspend fun write(
         data: ByteArray?,
-        timeout: Int,
+        timeout: Long?,
         forceAnswer: Boolean,
         useDelay: Boolean
     ): ByteArray? = withContext(Dispatchers.IO) {
@@ -71,7 +71,7 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
         }
 
 
-    suspend fun write(message: String, data: JsonObject? = null, timeout: Int = 500): JsonObject? {
+    suspend fun write(message: String, data: JsonObject? = null, timeout: Long? = 500): JsonObject? {
         return sendMessage(message, data, timeout)
     }
 
@@ -232,7 +232,7 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
         return false
     }
 
-    private suspend fun sendMessage(message: String, data: JsonObject?, timeout: Int) : JsonObject? = withContext(Dispatchers.IO){
+    private suspend fun sendMessage(message: String, data: JsonObject?, timeout: Long?) : JsonObject? = withContext(Dispatchers.IO){
 
         try {
             val jsonData = buildJsonObject {

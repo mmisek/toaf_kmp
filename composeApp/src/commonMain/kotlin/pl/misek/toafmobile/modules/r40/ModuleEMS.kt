@@ -1,10 +1,9 @@
 package pl.misek.toafmobile.modules.r40
 
+import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.serialization.json.buildJsonObject
-import kotlinx.serialization.json.put
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.coding.ZcsCoding
 import pl.misek.toafmobile.control.ControlElement
@@ -28,7 +27,6 @@ import pl.misek.toafmobile.protocols.ProtocolKWP
 import pl.misek.toafmobile.tools.JsonSupport
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
-import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
@@ -37,7 +35,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
     IModuleLiveData {
     private var tag = "ModuleEMS"
     private val moduleAddress = ModuleAddress.MODULE_EMS.address
-    private val _programmingState =  MutableSharedFlow<FlashProgrammingState>()
+    private val _programmingState =  MutableSharedFlow<FlashProgrammingState>(replay = 10, extraBufferCapacity = 64, onBufferOverflow = BufferOverflow.DROP_OLDEST)
     override val programmingState = _programmingState.asSharedFlow()
     private val liveDataBlocksToRead: MutableList<Byte> =
         ArrayList()
@@ -264,8 +262,8 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
         val message = kwp.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x80.toByte()), 300)
         return if (message.isValid) {
             String(message.answer.copyOfRange(7,18)) +
-            String.format(
-                "%02i%02i%02i",
+            String.format(Locale.getDefault(),
+                "%02d%02d%02d",
                 message.answer[18].toInt() and 0xFF,
                 message.answer[19].toInt() and 0xFF,
                 message.answer[20].toInt() and 0xFF
@@ -331,49 +329,27 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
         return result
     }
 
-    private fun securityAccessCalc(inSeed: Int, level: Int): Int {
-        var seed = inSeed
-        var n = 0
-        when (level) {
-            0x03 -> {
-                n = (seed and 0xFF00) shr 8
-                n = n xor 0x34
-                n = n and 0x0F
-                n += 1
-            }
-
-            0x05 -> {
-                n = seed and 0xFF
-                n = n xor 0x34
-                n = n and 0x13
-                n += 2
-            }
-
-            0x07 -> {
-                n = (seed and 0xFF00) shr 8
-                n = n xor 0x34
-                n = n and 0x0F
-                n += 5
-            }
-
-            0x09 -> {
-                n = seed and 0xFF
-                n = n xor 0x34
-                n = n and 0x0B
-                n += 3
-            }
+    private fun securityAccessCalc(seed: Int, level: Int): Int {
+        println("$tag : Security Access Seed - ${String.format("%04X", seed)}")
+        var key = seed
+        val n = when (level) {
+            0x01 -> 3
+            0x03 -> ((((key shr 8) and 0xFF) xor 0x34) and 0x0F ) + 1
+            0x05 -> (((key and 0xFF) xor 0x34) and 0x13) + 2
+            0x07 -> ((((key and 0xFF00) shr 8 ) xor 0x34) and 0x0F) + 5
+            0x09 -> (((key and 0xFF) xor 0x34) and 0x0B) +3
+            else -> 0
         }
-
-        for (i in 0..n) {
+        for (i in 0 until n) {
             var x = 0
-            if ((seed and 0x4000) == 0x4000) x = x xor 1
-            if ((seed and 0x0040) == 0x0040) x = x xor 1
-            if ((seed and 0x0020) == 0x0020) x = x xor 1
-            if ((seed and 0x0002) == 0x0002) x = x xor 1
-            if ((seed and 0x0001) == 0x0001) x = x xor 1
-            seed = ((seed shl 1) and 0xFFFE) xor x
+            if ((key and 0x4000) == 0x4000) x = x xor 1
+            if ((key and 0x0040) == 0x0040) x = x xor 1
+            if ((key and 0x0020) == 0x0020) x = x xor 1
+            if ((key and 0x0002) == 0x0002) x = x xor 1
+            if ((key and 0x0001) == 0x0001) x = x xor 1
+            key = ((key shl 1) and 0xFFFE) xor x
         }
-        return seed
+        return key
     }
 
     private suspend fun bootMode(): Boolean {
@@ -388,7 +364,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                 if (message.isValid) {
                     try {
                         result = ZcsCoding(message.answer.copyOfRange(6, 26))
-                    } catch (ex: Exception) {
+                    } catch (_: Exception) {
                         return ZcsCoding()
                     }
                 }
@@ -432,7 +408,6 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
             _programmingState.tryEmit(FlashProgrammingState.Message("ID1 : " + moduleInfo?.id1))
             _programmingState.tryEmit(FlashProgrammingState.Message("ID2 : " + moduleInfo?.id2))
             _programmingState.tryEmit(FlashProgrammingState.Message("VIN : $vin"))
-            _programmingState.tryEmit(FlashProgrammingState.Message("Serial : " + moduleInfo?.serial))
             endDiagnosticSession()
             try {
                 delay(1000)
@@ -531,99 +506,54 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
         _programmingState.tryEmit(FlashProgrammingState.Message("ID1 : " + moduleInfo?.id1))
         _programmingState.tryEmit(FlashProgrammingState.Message("ID2 : " + moduleInfo?.id2))
         _programmingState.tryEmit(FlashProgrammingState.Message("VIN : $vin"))
-        _programmingState.tryEmit(FlashProgrammingState.Message("Serial : " + moduleInfo?.serial))
 
-        if (startDiagnosticSession(0x86)) {
-            _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-                    Res.string.activity_flash_programming_diagnostic_session,
-                    Res.string.activity_flash_programming_ok))
-            if (securityAccess(0x09)) {
-                _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-                        Res.string.activity_flash_programming_security_access,
-                        Res.string.activity_flash_programming_ok))
-                var x = 0
-                _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-                        Res.string.activity_flash_programming_flash_read,
-                        String.format("%2d %%", 0)))
+        val startDiagnosticSessionResult = startDiagnosticSession(0x86)
+        _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
+            Res.string.activity_flash_programming_diagnostic_session,
+            if (startDiagnosticSessionResult) Res.string.activity_flash_programming_ok else Res.string.activity_flash_programming_failed))
+        if (!startDiagnosticSessionResult)
+            return
+        val securityAccessResult =securityAccess(0x09)
+        _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
+            Res.string.activity_flash_programming_security_access,
+            if (securityAccessResult) Res.string.activity_flash_programming_ok else Res.string.activity_flash_programming_failed))
+        if (!securityAccessResult)
+            return
+        var x = 0f
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_flash_reading))
 
-                var readResult = true
-                var i = startAddress
-                while (i < endAddress) {
-                    var progress = x++ * 100 / steps
-                    if (progress > 100) progress = 100
-                    _programmingState.tryEmit(FlashProgrammingState.Progress(progress))
-                    val data = readFlashData(i)
-
-                    if (data.size == blockSize) {
-                        result += data
-                    } else {
-                        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_read_error))
-                        readResult = false
-                        break
-                    }
-                    i += blockSize.toLong()
-                }
-
-                val endTime = Calendar.getInstance().time
-                val totalMillis = endTime.time - startTime.time
-                val seconds = (totalMillis / 1000).toInt() % 60
-                val minutes = ((totalMillis / 1000).toInt() / 60) % 60
-                val hours = (totalMillis / 1000).toInt() / 3600
-
-                _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-                        Res.string.activity_flash_programming_read_time,
-                        String.format("%02d:%02d:%02d", hours, minutes, seconds)))
-                if (readResult) {
-                    try {
-                        result = result.copyOfRange(0, (endAddress - startAddress).toInt())
-                    } catch (ex: Exception) {
-                        println("$tag : ${ex.toString()}")
-                    }
-                    try {
-                        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.getDefault())
-                        _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-                                Res.string.activity_flash_programming_read_size,
-                                result.size.toString()
-                            ))
-                        String.format("%s_%s.bin", vin, simpleDateFormat.format(endTime))
-                            .let {
-                                _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(Res.string.activity_flash_programming_written_to,it))
-                            }
-
-                    } catch (ex: Exception) {
-                        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_write_data_to_file_error))
-                    }
-                    try {
-                        val jsonObject = buildJsonObject {
-                            put("vin",  vin)
-                            put("module", "EMS2K")
-                            put("id1", moduleInfo?.id1)
-                            put("id2", moduleInfo?.id2)
-                        }
-                        _programmingState.tryEmit(FlashProgrammingState.FlashData(result.toList(),null,null))
-                        _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-                                Res.string.activity_flash_programming_backup_flash,
-                                Res.string.activity_flash_programming_ok))
-                    } catch (ex: Exception) {
-                        println("$tag : ${ex.toString()}")
-                        _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-                                Res.string.activity_flash_programming_backup_flash,
-                                Res.string.activity_flash_programming_failed))
-                    }
-                }
+        var i = startAddress
+        while (i < endAddress) {
+            _programmingState.tryEmit(FlashProgrammingState.Progress(((x++ * 100) / steps).toInt()))
+            val data = readFlashData(i)
+            if (data.size == blockSize) {
+                result += data
             } else {
-                _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-                        Res.string.activity_flash_programming_security_access,
-                        Res.string.activity_flash_programming_failed))
+                _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_read_error))
+                return
             }
-        } else {
-            _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-                    Res.string.activity_flash_programming_diagnostic_session,
-                    Res.string.activity_flash_programming_failed))
+            i += blockSize.toLong()
         }
+
+        val endTime = Calendar.getInstance().time
+        val totalMillis = endTime.time - startTime.time
+        val seconds = (totalMillis / 1000).toInt() % 60
+        val minutes = ((totalMillis / 1000).toInt() / 60) % 60
+        val hours = (totalMillis / 1000).toInt() / 3600
+
+        _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
+                Res.string.activity_flash_programming_read_time,
+                String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds)))
 
         _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_end))
         _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_close))
+
+        try {
+            result = result.copyOfRange(0, (endAddress - startAddress).toInt())
+            _programmingState.tryEmit(FlashProgrammingState.FlashData(result.toList(),moduleInfo,vin))
+        } catch (ex: Exception) {
+            println("$tag : ${ex.toString()}")
+        }
     }
 
     private suspend fun readFlashData(address: Long): ByteArray {
@@ -639,7 +569,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
             ),
             250
         )
-        println("$tag: ${(System.currentTimeMillis() - start).toString()}")
+        println("$tag: ${(System.currentTimeMillis() - start)}")
         if (message.isValid) {
             return message.answer.copyOfRange(5, message.length - 1)
         }

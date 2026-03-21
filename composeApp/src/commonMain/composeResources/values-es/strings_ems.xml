@@ -104,6 +104,8 @@
 <string name="ems_error_detail_04">Circuito abierto</string>
 <string name="ems_error_detail_08">La señal no está en el rango válido</string>
 <string name="ems_error_detail_10">Prueba completa</string>
+<string name="ems_error_detail_20">Error esporádico</string>
+<string name="ems_error_detail_40">Error presente</string>
 <string name="ems_error_detail_80">Lámpara MIL encendida</string>
 <string name="ems_error_ff_fuel_tank_level">Nivel de combustible</string>
 <string name="ems_error_ff_secondary_throttle">Acelerador secundario</string>

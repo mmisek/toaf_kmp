@@ -7,9 +7,9 @@
     <string name="activity_flash_programming_read_flash">Считать Flash</string>
     <string name="activity_flash_programming_write_flash">Записать Flash</string>
     <string name="activity_flash_programming_tittle">Программирование Flash модуля</string>
-    <string name="activity_flash_programming_security_access">Доступ безопасности…%1$s</string>
-    <string name="activity_flash_programming_diagnostic_session">Диагностическая сессия...%1$s</string>
-    <string name="activity_flash_programming_flash_read">Чтение Flash...%1$s</string>
+    <string name="activity_flash_programming_security_access">Доступ безопасност</string>
+    <string name="activity_flash_programming_diagnostic_session">Диагностическая сессия</string>
+    <string name="activity_flash_programming_flash_read">Чтение Flash...</string>
     <string name="activity_flash_programming_flash_write">Запись Flash...%1$s</string>
     <string name="activity_flash_programming_ecu_reset">Сброс ЭБУ...ждите</string>
     <string name="activity_flash_programming_start">Старт</string>
@@ -17,11 +17,11 @@
     <string name="activity_flash_programming_ok">OK</string>
     <string name="activity_flash_programming_failed">Сбой</string>
     <string name="activity_flash_programming_close">Закрыть</string>
-    <string name="activity_flash_programming_read_time">Время чтения : %1$s</string>
-    <string name="activity_flash_programming_write_time">Время записи : %1$s</string>
+    <string name="activity_flash_programming_read_time">Время чтения</string>
+    <string name="activity_flash_programming_write_time">Время записи</string>
     <string name="activity_flash_programming_written_to">Файл записан в : %1$s</string>
     <string name="activity_flash_programming_write_data_to_file_error">Ошибка записи в файл.</string>
-    <string name="activity_flash_programming_read_size">Считано байт : %1$s</string>
+    <string name="activity_flash_programming_read_size">Считано байт</string>
     <string name="activity_flash_programming_read_error">Ошибка чтения Flash !</string>
     <string name="activity_flash_programming_write_error">Ошибка записи Flash !</string>
     <string name="activity_flash_programming_flash_erasing">Стирание Flash...%1$s</string>

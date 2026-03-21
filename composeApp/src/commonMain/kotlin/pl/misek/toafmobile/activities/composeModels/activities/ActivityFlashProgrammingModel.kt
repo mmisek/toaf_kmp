@@ -20,10 +20,10 @@ import pl.misek.toafmobile.modules.interfaces.IModule
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.*
-import jdk.internal.net.http.common.Log
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
@@ -95,6 +95,23 @@ fun ActivityFlashProgrammingModel(moduleKoinName: KoinNames, onBackClick : () ->
                 if (state.message is String)
                     statusText += state.message + "\n"
             }
+            is FlashProgrammingState.MessageWithParameter -> {
+                val param = when (val v = state.parameter)
+                {
+                    is String -> v
+                    is Int -> v.toString()
+                    is Float -> "%.2f".format(v)
+                    is StringResource -> getString(state.parameter)
+                    else -> {
+                        println("$tag : no format for data type ${v::class.simpleName}")
+                        ""
+                    }
+                }
+                statusText += if (param.isEmpty())
+                    "${getString(state.message)}\n"
+                else
+                    "${getString(state.message)}: ${param}\n"
+            }
             is FlashProgrammingState.Progress -> {
                 if (lastProgress != state.progress) {
                     lastProgress = state.progress
@@ -121,7 +138,7 @@ fun ActivityFlashProgrammingModel(moduleKoinName: KoinNames, onBackClick : () ->
                 fileName = String.format(
                     "%s_%s_%s.bin",
                     currentModule.getModuleName(),
-                    state.moduleInfo?.id1 ?: "",
+                    state.vin ?: state.moduleInfo?.id1 ?: "",
                     simpleDateFormat.format(Calendar.getInstance().time))
 
                 saveFileLauncher(fileName)

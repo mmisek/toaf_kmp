@@ -29,7 +29,7 @@ class ProtocolKWPStar(private var device: IInterfaceDevice?, private val useDela
         return result
     }
 
-    override suspend fun write(address: Byte, command: Byte, data: ByteArray, timeout: Int): OBDMessage {
+    override suspend fun write(address: Byte, command: Byte, data: ByteArray, timeout: Long?): OBDMessage {
             var message = OBDMessage()
             CoroutineScope(Dispatchers.IO).launch {
                 message = async {write(address, command, data, 200)}.await()
@@ -63,7 +63,7 @@ class ProtocolKWPStar(private var device: IInterfaceDevice?, private val useDela
         address: Byte,
         command: Byte,
         data: ByteArray,
-        timeout: Int,
+        timeout: Long?,
         forceAnswer: Boolean
     ): OBDMessage {
         return OBDMessage()
@@ -72,7 +72,7 @@ class ProtocolKWPStar(private var device: IInterfaceDevice?, private val useDela
     override fun setSpeed(baud: Int) {
     }
 
-    private suspend fun writeKWPStar(address: Byte, command: Byte, data: ByteArray, timeout: Int): OBDMessage {
+    private suspend fun writeKWPStar(address: Byte, command: Byte, data: ByteArray, timeout: Long?): OBDMessage {
         val message = OBDMessage()
         if (!connect()) return message
         var checksum: Byte

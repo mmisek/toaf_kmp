@@ -238,7 +238,7 @@ object JsonSupport {
         val container = Json.decodeFromString<FreezeFrameElementContainerJson>(jsonString)
         val resultFreezeFrameElements = container.list.map { json ->
             FreezeFrameElement().apply {
-                val resKey = "dde_error_ff_${json.name.lowercase()}"
+                val resKey = "ems_error_ff_${json.name.lowercase()}"
                 name = json.name
                 description = ResourceMapper.stringResource(resKey)
                 mask = decodeHexToLong(json.mask)

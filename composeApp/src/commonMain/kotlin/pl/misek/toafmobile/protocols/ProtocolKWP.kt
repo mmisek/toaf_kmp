@@ -24,7 +24,7 @@ open class ProtocolKWP(private var device: IInterfaceDevice?, var useDelay: Bool
         return writeWithNoAnswer(address, command, data, 200)
     }
 
-    private suspend fun writeWithNoAnswer(address: Byte, command: Byte, data: ByteArray, timeout: Int): OBDMessage {
+    private suspend fun writeWithNoAnswer(address: Byte, command: Byte, data: ByteArray, timeout: Long?): OBDMessage {
         return write(address, command, data, timeout, false)
     }
 
@@ -32,7 +32,7 @@ open class ProtocolKWP(private var device: IInterfaceDevice?, var useDelay: Bool
         return write(address, command, data, 200, true)
     }
 
-    override suspend fun write(address: Byte, command: Byte, data: ByteArray, timeout: Int): OBDMessage {
+    override suspend fun write(address: Byte, command: Byte, data: ByteArray, timeout: Long?): OBDMessage {
         return write(address, command, data, timeout, true)
     }
 
@@ -40,7 +40,7 @@ open class ProtocolKWP(private var device: IInterfaceDevice?, var useDelay: Bool
         address: Byte,
         command: Byte,
         data: ByteArray,
-        timeout: Int,
+        timeout: Long?,
         forceAnswer: Boolean
     ): OBDMessage {
         val message = writeKWP(address, command, data, timeout, forceAnswer)
@@ -58,7 +58,7 @@ open class ProtocolKWP(private var device: IInterfaceDevice?, var useDelay: Bool
         address: Byte,
         command: Byte,
         data: ByteArray,
-        timeout: Int,
+        timeout: Long?,
         forceAnswer: Boolean
     ): OBDMessage {
         //if (device is IKWPInterfaceDevice)

@@ -20,7 +20,7 @@ class ProtocolKWPStarEMS2K(private var device: IInterfaceDevice?, private val us
         return write(address, command, data, 200)
     }
 
-    override suspend fun write(address: Byte, command: Byte, data: ByteArray, timeout: Int): OBDMessage {
+    override suspend fun write(address: Byte, command: Byte, data: ByteArray, timeout: Long?): OBDMessage {
         val message = writeKwpStar(address, command, data, timeout)
         val messageData = if (message.wholeMessage != null && message.wholeMessage!!.isNotEmpty()) message.wholeMessage else message.message
         val stringBuilder = StringBuilder()
@@ -33,7 +33,7 @@ class ProtocolKWPStarEMS2K(private var device: IInterfaceDevice?, private val us
         address: Byte,
         command: Byte,
         data: ByteArray,
-        timeout: Int,
+        timeout: Long?,
         forceAnswer: Boolean
     ): OBDMessage {
         return OBDMessage()
@@ -42,7 +42,7 @@ class ProtocolKWPStarEMS2K(private var device: IInterfaceDevice?, private val us
     override fun setSpeed(baud: Int) {
     }
 
-    private suspend fun writeKwpStar(address: Byte, command: Byte, data: ByteArray, timeout: Int): OBDMessage {
+    private suspend fun writeKwpStar(address: Byte, command: Byte, data: ByteArray, timeout: Long?): OBDMessage {
         val message = OBDMessage()
         if (!connect()) return message
         var checksum: Byte

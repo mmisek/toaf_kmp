@@ -42,6 +42,7 @@ object ResourceMapperMems {
             "mems_error_0138" -> Res.string.mems_error_0138
             "mems_error_0140" -> Res.string.mems_error_0140
             "mems_error_0141" -> Res.string.mems_error_0141
+            "mems_error_0170" -> Res.string.mems_error_0170
             "mems_error_0197" -> Res.string.mems_error_0197
             "mems_error_0198" -> Res.string.mems_error_0198
             "mems_error_0261" -> Res.string.mems_error_0261
@@ -69,7 +70,9 @@ object ResourceMapperMems {
             "mems_error_0481" -> Res.string.mems_error_0481
             "mems_error_0501" -> Res.string.mems_error_0501
             "mems_error_0505" -> Res.string.mems_error_0505
+            "mems_error_0532" -> Res.string.mems_error_0532
             "mems_error_0553" -> Res.string.mems_error_0553
+            "mems_error_0560" -> Res.string.mems_error_0560
             "mems_error_0562" -> Res.string.mems_error_0562
             "mems_error_0563" -> Res.string.mems_error_0563
             "mems_error_1185" -> Res.string.mems_error_1185

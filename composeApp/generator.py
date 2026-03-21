@@ -2,8 +2,8 @@ import os
 import xml.etree.ElementTree as ET
 import re
 
-SEARCH_PATH = "D:\\Projekty\\KPM\\ToafMobile\\composeApp\\src\\commonMain\\composeResources\\values"
-OUTPUT_FILE = "D:\\Projekty\\KPM\\ToafMobile\\composeApp\\src\\commonMain\\kotlin\\pl\\misek\\toafmobile\\generated\\ResourceMapper"
+SEARCH_PATH = "src\\commonMain\\composeResources\\values"
+OUTPUT_FILE = "src\\commonMain\\kotlin\\pl\\misek\\toafmobile\\generated\\ResourceMapper"
 # Twój pakiet
 PACKAGE_NAME = "pl.misek.toafmobile.generated"
 

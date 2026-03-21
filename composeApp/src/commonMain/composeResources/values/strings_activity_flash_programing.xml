@@ -7,8 +7,8 @@
     <string name="activity_flash_programming_read_flash">Read flash</string>
     <string name="activity_flash_programming_write_flash">Write flash</string>
     <string name="activity_flash_programming_tittle">Module flash programming</string>
-    <string name="activity_flash_programming_security_access">Security access…%1$s</string>
-    <string name="activity_flash_programming_diagnostic_session">Diagnostic session...%1$s</string>
+    <string name="activity_flash_programming_security_access">Security access</string>
+    <string name="activity_flash_programming_diagnostic_session">Diagnostic session</string>
     <string name="activity_flash_programming_flash_read">Flash reading</string>
     <string name="activity_flash_programming_flash_write">Flash writing...%1$s</string>
     <string name="activity_flash_programming_ecu_reset">ECU reset...wait</string>
@@ -17,11 +17,11 @@
     <string name="activity_flash_programming_ok">OK</string>
     <string name="activity_flash_programming_failed">Failed</string>
     <string name="activity_flash_programming_close">Close</string>
-    <string name="activity_flash_programming_read_time">Read time : %1$s</string>
-    <string name="activity_flash_programming_write_time">Write time : %1$s</string>
+    <string name="activity_flash_programming_read_time">Read time</string>
+    <string name="activity_flash_programming_write_time">Write time</string>
     <string name="activity_flash_programming_written_to">File written to : %1$s</string>
     <string name="activity_flash_programming_write_data_to_file_error">Write to file error.</string>
-    <string name="activity_flash_programming_read_size">Read bytes : %1$s</string>
+    <string name="activity_flash_programming_read_size">Read bytes</string>
     <string name="activity_flash_programming_read_error">Flash read error !</string>
     <string name="activity_flash_programming_write_error">Flash write error !</string>
     <string name="activity_flash_programming_flash_erasing">Flash erasing...%1$s</string>

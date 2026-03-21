@@ -104,6 +104,8 @@
     <string name="ems_error_detail_04">Open circuit</string>
     <string name="ems_error_detail_08">Signal not in valid range</string>
     <string name="ems_error_detail_10">Test complete</string>
+    <string name="ems_error_detail_20">Sporadic error</string>
+    <string name="ems_error_detail_40">Error present</string>
     <string name="ems_error_detail_80">MIL lamp on</string>
     <string name="ems_error_ff_fuel_tank_level">Fuel level</string>
     <string name="ems_error_ff_secondary_throttle">Secondary throttle</string>

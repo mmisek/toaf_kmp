@@ -14,7 +14,7 @@ data class FreezeFrameElementJson (
     var name: String = "",
     var unit: String = "",
     var mask: String = "",
-    var byteInBlock: String = "",
+    @SerialName("byte") var byteInBlock: String = "",
     @SerialName("factor_a") var factorA: String = "",
     @SerialName("factor_b") var factorB: String= "",
     var u2: String? = ""

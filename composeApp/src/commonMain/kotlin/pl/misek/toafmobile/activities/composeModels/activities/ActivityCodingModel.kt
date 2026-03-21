@@ -132,15 +132,6 @@ fun ActivityModuleCodingModel(moduleKoinName : KoinNames, onBackClick : () ->Uni
                     moduleCodingIndex = moduleIdentification?.ci?.toInt() ?: 0
                 )
                 (currentModule as IModuleCoding).readCoding()
-                doBackup(
-                    toafApi = toafApi,
-                    currentModule = currentModule,
-                    ewsModule = ewsModule,
-                    ipkModule = ipkModule,
-                    currentCoding = currentCoding,
-                    description = "Autobackup",
-                    isPublic = false
-                )
             }
         }
         actionType = ActionTypeEnum.ReadCoding
@@ -293,23 +284,6 @@ fun ActivityModuleCodingModel(moduleKoinName : KoinNames, onBackClick : () ->Uni
                                     onSuccess = backupLoadSuccessTest,
                                     onFail = backupLoadFailText
                                 )
-                                if (isSuccess) {
-                                    showReadBackupDialog = false
-                                    actionType = ActionTypeEnum.SaveCodingBackup
-                                    action = {
-                                        doBackup(
-                                            toafApi = toafApi,
-                                            currentModule = currentModule,
-                                            ewsModule = ewsModule,
-                                            ipkModule = ipkModule,
-                                            currentCoding = currentCoding,
-                                            description = "Autobackup",
-                                            isPublic = false
-                                        )
-                                    }
-                                    showProgressDialog = true
-                                }
-
                             }
                             ActionTypeEnum.SaveCodingBackup ->
                             {
@@ -329,6 +303,19 @@ fun ActivityModuleCodingModel(moduleKoinName : KoinNames, onBackClick : () ->Uni
                                 val data = (result as? List<*>)?.filterIsInstance<ByteArray>()
                                 data?.let {
                                     currentCoding = it.toList()
+                                    actionType = ActionTypeEnum.SaveCodingBackup
+                                    action = {
+                                        doBackup(
+                                            toafApi = toafApi,
+                                            currentModule = currentModule,
+                                            ewsModule = ewsModule,
+                                            ipkModule = ipkModule,
+                                            currentCoding = currentCoding,
+                                            description = "Autobackup",
+                                            isPublic = false
+                                        )
+                                    }
+                                    showProgressDialog = true
                                 }
                             }
                             ActionTypeEnum.WriteCoding ->

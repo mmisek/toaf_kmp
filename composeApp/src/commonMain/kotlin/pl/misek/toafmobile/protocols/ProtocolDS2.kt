@@ -23,14 +23,14 @@ class ProtocolDS2(private var device: IInterfaceDevice?) : IProtocol {
         return write(destinationDevice, newData)
     }
 
-    suspend fun write(destinationDevice: Byte, data: ByteArray, readTimeout: Int): OBDMessage {
+    suspend fun write(destinationDevice: Byte, data: ByteArray, readTimeout: Long?): OBDMessage {
         return writeToDs2(destinationDevice, data, readTimeout).takeIf { it.isValid } ?: OBDMessage()
     }
 
     private suspend fun writeToDs2(
         destinationDevice: Byte,
         data: ByteArray,
-        readTimeout: Int
+        readTimeout: Long?
     ): OBDMessage {
         if (device is IKWPInterfaceDevice) {
             (device as IKWPInterfaceDevice).setDS2Device()
@@ -85,7 +85,7 @@ class ProtocolDS2(private var device: IInterfaceDevice?) : IProtocol {
         return write(address, byteArrayOf(command) + data)
     }
 
-    override suspend fun write(address: Byte, command: Byte, data: ByteArray, timeout: Int): OBDMessage {
+    override suspend fun write(address: Byte, command: Byte, data: ByteArray, timeout: Long?): OBDMessage {
         return OBDMessage()
     }
 
@@ -93,7 +93,7 @@ class ProtocolDS2(private var device: IInterfaceDevice?) : IProtocol {
         address: Byte,
         command: Byte,
         data: ByteArray,
-        timeout: Int,
+        timeout: Long?,
         forceAnswer: Boolean
     ): OBDMessage {
         return OBDMessage()

@@ -33,6 +33,9 @@ composeAll/build/
 # Kotlin
 .kotlin/
 
+# Gradle
+.gradle/
+
 # Unit test reports
 TEST*.xml
 

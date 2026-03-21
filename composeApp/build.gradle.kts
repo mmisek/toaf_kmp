@@ -58,6 +58,7 @@ kotlin {
             implementation(libs.compose.icons.extended)
             implementation(libs.vico.compose.m3)
             implementation(libs.sentry.kmp)
+            implementation(libs.kotlinx.datetime)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))

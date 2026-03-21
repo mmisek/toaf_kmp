@@ -106,6 +106,8 @@
     <string name="ems_error_detail_04">Обрыв цепи</string>
     <string name="ems_error_detail_08">Сигнал вне допустимого диапазона</string>
     <string name="ems_error_detail_10">Тест завершен</string>
+    <string name="ems_error_detail_20">Спорадическая ошибка</string>
+    <string name="ems_error_detail_40">Ошибка присутствует</string>
     <string name="ems_error_detail_80">Лампа MIL включена</string>
     
     <string name="ems_error_ff_fuel_tank_level">Уровень топлива</string>

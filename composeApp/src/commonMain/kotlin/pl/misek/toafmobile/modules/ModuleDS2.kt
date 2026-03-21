@@ -89,7 +89,7 @@ open class ModuleDS2(
 
     }
 
-    fun interfaceWriteWithAddress(address: Byte, data: ByteArray, timeout: Int): OBDMessage {
+    fun interfaceWriteWithAddress(address: Byte, data: ByteArray, timeout: Long?): OBDMessage {
         var result = OBDMessage()
         CoroutineScope(Dispatchers.IO).launch {
             result = async {ds2?.write(address, data, timeout)}.await()!!
@@ -101,7 +101,7 @@ open class ModuleDS2(
          return ds2?.write(moduleAddress.address, data)!!
     }
 
-    suspend fun interfaceWrite(data: ByteArray, timeout: Int): OBDMessage {
+    suspend fun interfaceWrite(data: ByteArray, timeout: Long?): OBDMessage {
         return ds2?.write(moduleAddress.address, data, timeout)!!
     }
     suspend fun interfaceWrite(data: Array<ByteArray>): OBDMessage {
@@ -112,7 +112,7 @@ open class ModuleDS2(
         return ds2?.write(moduleAddress.address, command, data)!!
     }
 
-    suspend fun interfaceWrite(command: Byte, data: ByteArray, timeout: Int): OBDMessage {
+    suspend fun interfaceWrite(command: Byte, data: ByteArray, timeout: Long?): OBDMessage {
         return ds2?.write(moduleAddress.address, command, data, timeout)!!
     }
 }

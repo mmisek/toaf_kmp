@@ -125,6 +125,8 @@
 <string name="ems_error_detail_04">Otwarty obwód</string>
 <string name="ems_error_detail_08">Sygnał poza prawidłowym zakresem</string>
 <string name="ems_error_detail_10">Test zakończony</string>
+<string name="ems_error_detail_20">Błąd sporadyczny</string>
+<string name="ems_error_detail_40">Błąd obecny</string>
 <string name="ems_error_detail_80">Lampka MIL włączona</string>
 
     <!-- EMS control -->
