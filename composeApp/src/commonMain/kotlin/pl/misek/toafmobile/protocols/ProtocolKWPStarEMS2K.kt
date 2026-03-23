@@ -11,6 +11,9 @@ class ProtocolKWPStarEMS2K(private var device: IInterfaceDevice?, private val us
     override fun setDevice(newDevice: IInterfaceDevice?) {
         device = newDevice
     }
+
+    override fun getDevice(): IInterfaceDevice? = device
+
     private fun connect(): Boolean {
         return if (device is ISerialDevice) (device as IKWPInterfaceDevice).initKWPStarDevice()
         else false

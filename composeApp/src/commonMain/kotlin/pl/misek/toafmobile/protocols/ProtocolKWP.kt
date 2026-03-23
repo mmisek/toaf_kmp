@@ -9,6 +9,9 @@ open class ProtocolKWP(private var device: IInterfaceDevice?, var useDelay: Bool
     override fun setDevice(newDevice: IInterfaceDevice?) {
         device = newDevice
     }
+
+    override fun getDevice(): IInterfaceDevice? =device
+
     fun disconnect() {
         device?.disconnect()
     }

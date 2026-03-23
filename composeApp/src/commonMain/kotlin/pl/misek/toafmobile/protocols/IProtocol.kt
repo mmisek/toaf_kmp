@@ -8,6 +8,7 @@ interface IProtocol {
     suspend fun write(address: Byte, command: Byte, data: ByteArray, timeout: Long?, forceAnswer: Boolean): OBDMessage
     fun setSpeed(baud: Int)
     fun setDevice(newDevice : IInterfaceDevice?)
+    fun getDevice() : IInterfaceDevice?
 
     companion object {
         const val useDelay: Boolean = false

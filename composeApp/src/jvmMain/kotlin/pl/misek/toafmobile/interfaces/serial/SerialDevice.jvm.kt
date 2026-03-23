@@ -150,12 +150,15 @@ class DesktopSerialDevice : ISerialDevice
         var result = false
         try {
             _serialPort?.setBreak()
-            Thread.sleep(initTime.toLong())
-            _serialPort!!.clearBreak()
-            Thread.sleep(initTime.toLong())
+            preciseDelay(initTime.toLong())
+
+            _serialPort?.clearBreak()
+            preciseDelay(initTime.toLong())
+
+            _serialPort?.flushIOBuffers()
             result = true
         } catch (ex: Exception) {
-           println("$tag : ${ex.toString()}")
+            println("$tag : ${ex.message}")
         }
 
         return result
@@ -167,5 +170,13 @@ class DesktopSerialDevice : ISerialDevice
 
     fun setFastInitSleep(newFastInitSleep: Int) {
         fastInitSleep = newFastInitSleep
+    }
+    private fun preciseDelay(millis: Long) {
+        val delayNanos = millis * 1_000_000L
+        val startTime = System.nanoTime()
+
+        while (System.nanoTime() - startTime < delayNanos) {
+            // waiting
+        }
     }
 }

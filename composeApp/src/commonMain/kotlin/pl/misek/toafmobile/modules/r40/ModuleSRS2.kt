@@ -1,6 +1,13 @@
 package pl.misek.toafmobile.modules.r40
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
+import pl.misek.toafmobile.interfaces.IKWPInterfaceDevice
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.ModuleInfo
@@ -15,13 +22,19 @@ import pl.misek.toafmobile.protocols.ProtocolKWPStar
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 
-class ModuleSRS2( protocolKWPStar: ProtocolKWPStar?) : IModule, IModuleCoding, IModuleVIN,
+class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IModuleCoding, IModuleVIN,
     IModuleAdvanceCoding {
+    private val tag = "ModuleSRS2"
     private var kwp: ProtocolKWPStar? = null
     private val moduleAddress = ModuleAddress.MODULE_SRS.address
+    private var lastMessageTime = 0L
+    private var testerPresentJob : Job? = null
+    private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+    private var testerPresentJobSuspend = false
 
     init {
         if (protocolKWPStar != null) kwp = protocolKWPStar
+        lastMessageTime = 0L
     }
     override fun getKoinName() = KoinNames.ModuleR40Srs2
 
@@ -32,7 +45,49 @@ class ModuleSRS2( protocolKWPStar: ProtocolKWPStar?) : IModule, IModuleCoding, I
     }
 
     private suspend fun testerPresent(): Boolean {
-        return kwp!!.write(moduleAddress, 0x81.toByte(), byteArrayOf(), 250).isValid
+        println("TESTER PRESENT : $lastMessageTime, $testerPresentJobSuspend")
+        println("TESTER PRESENT :  ${System.currentTimeMillis() - lastMessageTime}")
+        var testerPresentResult = true
+        if (lastMessageTime == 0L) {
+            println("$tag : fastInit()")
+            (protocolKWPStar?.getDevice() as? IKWPInterfaceDevice)?.kwpFastInit()
+            println("$tag : first testerPresent()")
+            testerPresentResult =
+                kwp!!.write(moduleAddress, 0x81.toByte(), byteArrayOf(), 200).isValid
+        }
+
+        if (lastMessageTime == 0L && testerPresentResult) {
+            lastMessageTime = System.currentTimeMillis()
+            testerPresentJob?.cancel()
+            testerPresentJob = scope.launch {
+                while (System.currentTimeMillis() - lastMessageTime < 30_000) {
+                    println("While : ")
+                    println("$tag : ${System.currentTimeMillis() - lastMessageTime}")
+                    delay(3000)
+                    println("testerPresentJobSuspend : $testerPresentJobSuspend")
+                    if (!testerPresentJobSuspend) {
+                        println("$tag : repeat testerPresent()")
+                        kwp!!.write(moduleAddress, 0x81.toByte(), byteArrayOf(), 300)
+                        /*
+                        if (!kwp!!.write(moduleAddress, 0x81.toByte(), byteArrayOf(), 300).isValid)
+                        {
+                            println("$tag : No result from testerPresent, set lastMessageTime = 0L")
+                            lastMessageTime = 0L
+                            testerPresent()
+                        }*/
+                    }
+                }
+                println("End While")
+                println("$tag : ${System.currentTimeMillis() - lastMessageTime}")
+                println("$tag : set lastMessageTime = 0L")
+                lastMessageTime = 0L
+            }
+        }
+        else
+        {
+            //lastMessageTime = 0L
+        }
+        return testerPresentResult
     }
 
     override fun getModuleName() = "SRS"
@@ -44,27 +99,41 @@ class ModuleSRS2( protocolKWPStar: ProtocolKWPStar?) : IModule, IModuleCoding, I
     override fun getModuleDescription() = Res.string.module_description_srs2
 
     override suspend fun getIdentification(): ModuleInfo? {
-        val info = ModuleInfo()
-        if (testerPresent()) {
+        println("$tag : getIdentification()")
+        var info : ModuleInfo? = null
+        if (testerPresent())
+        {
+            testerPresentJobSuspend = true
             val message =
                 kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x80.toByte()), 200)
             if (message.isValid) {
+                info = ModuleInfo()
                 info.id1 = "YWC001160"
                 info.hw = String(message.answer.copyOfRange( 5, 10))
                 info.ci = "02"
                 info.di = (message.answer[18].toInt() and 0xFF).toByte().toHexString()
                 info.producer = "Autoliv"
             }
-            info.serial = getSerialNumber()
-            return info
+            val seriaNumber = getSerialNumber()
+            if (seriaNumber.isNotEmpty())
+            {
+                if (info == null)
+                    info = ModuleInfo()
+                info.serial = getSerialNumber()
+            }
+            testerPresentJobSuspend = false
+            lastMessageTime = System.currentTimeMillis()
         }
-        return null
+        return info
     }
 
     private suspend fun getSerialNumber(): String {
+        println("$tag : getSerialNumber()")
+        var result = ""
+        testerPresentJobSuspend = true
         val message = kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x81.toByte()), 200)
         if (message.isValid) {
-            return String.format(
+            result = String.format(
                 "%02x%02X%02X%02X",
                 message.answer[5].toInt() and 0xFF,
                 message.answer[6].toInt() and 0xFF,
@@ -72,107 +141,135 @@ class ModuleSRS2( protocolKWPStar: ProtocolKWPStar?) : IModule, IModuleCoding, I
                 message.answer[8].toInt() and 0xFF
             )
         }
-        return ""
+        lastMessageTime = System.currentTimeMillis()
+        testerPresentJobSuspend = false
+        return result
     }
 
     override suspend fun getVIN(): String? {
-        delay(5000)
-        if (testerPresent()) {
-            val message =
-                kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x8F.toByte()), 200)
-            if (message.isValid) {
-                return String(message.answer.copyOfRange(5, 22))
-            }
+        println("$tag : getVIN()")
+        var result : String? = null
+        testerPresentJobSuspend = true
+        if (!testerPresent()) return null
+        val message =
+            kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x8F.toByte()), 200)
+        if (message.isValid) {
+            result =  String(message.answer.copyOfRange(5, 22))
+            lastMessageTime = System.currentTimeMillis()
         }
-        return null
+
+        testerPresentJobSuspend = false
+        return result
     }
 
     override suspend fun getOdometer(): String? {
+        println("$tag : getOdometer()")
         return null
     }
 
     override suspend fun getAllErrors(): List<ModuleError>? {
+        println("$tag : getAllErrors()")
         var result: MutableList<ModuleError>? = null
-        if (testerPresent()) {
-            val message =
-                kwp!!.write(moduleAddress, 0x17.toByte(), byteArrayOf(0xFF.toByte(), 0x00), 200)
-            if (message.isValid) {
-                var n = message.answer[4].toInt()
-                if (n > 12) n = 12
-                for (i in 0 until n) {
-                    val errorCode =
-                        ((message.answer[5 + 2 * i].toInt() and 0x0F) shl 8) + (message.answer[6 + 2 * i].toInt() and 0xFF)
-                    val error = ModuleError(
-                        ModuleAddress.MODULE_SRS2,
-                        String.format("%03X", errorCode),
-                        ArrayList()
-                    )
-                    if (error.description != null) {
-                        if (result == null) result = ArrayList()
-                        result.add(error)
-                    }
+        testerPresentJobSuspend = true
+        if (!testerPresent()) return null
+        val message =
+            kwp!!.write(moduleAddress, 0x17.toByte(), byteArrayOf(0xFF.toByte(), 0x00), 200)
+        if (message.isValid) {
+            result = ArrayList()
+            var n = message.answer[4].toInt()
+            if (n > 12) n = 12
+            for (i in 0 until n) {
+                val errorCode =
+                    ((message.answer[5 + 2 * i].toInt() and 0x0F) shl 8) + (message.answer[6 + 2 * i].toInt() and 0xFF)
+                val error = ModuleError(
+                    ModuleAddress.MODULE_SRS2,
+                    String.format("%03X", errorCode),
+                    ArrayList()
+                )
+                if (error.description != null) {
+                    result.add(error)
                 }
             }
         }
+        testerPresentJobSuspend = false
+        lastMessageTime = System.currentTimeMillis()
         return result
     }
 
     override suspend fun clearAllErrors(): Boolean {
-        if (testerPresent()) {
-            return kwp!!.write(
-                moduleAddress,
-                0x14.toByte(),
-                byteArrayOf(0xFF.toByte(), 0x00),
-                200
-            ).isValid
-        }
-        return false
+        println("$tag : clearAllErrors()")
+        testerPresentJobSuspend = true
+        if (!testerPresent()) return false
+        val result = kwp!!.write(
+            moduleAddress,
+            0x14.toByte(),
+            byteArrayOf(0xFF.toByte(), 0x00),
+            200
+        ).isValid
+        testerPresentJobSuspend = false
+        lastMessageTime = System.currentTimeMillis()
+        return result
     }
 
     override suspend fun reset(): Boolean {
+        lastMessageTime = System.currentTimeMillis()
+        println("$tag : reset()")
         return kwp!!.write(moduleAddress, 0x11.toByte(), byteArrayOf(0x01)).isValid
     }
 
     override suspend fun readCoding(): List<ByteArray>? {
-        delay(3000)
-        val result: MutableList<ByteArray> = ArrayList()
-        if (testerPresent()) {
-            delay(200)
-            if (securityAccess()) {
-                delay(200)
-                val message =
-                    kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(0xD0.toByte()), 200)
-                if (message.isValid) {
-                    result.add(message.answer.copyOfRange(5, 10))
-                    return result
-                }
-            }
+        println("$tag : readCoding()")
+        var result: MutableList<ByteArray>? = null
+        testerPresentJobSuspend = true
+        if (!testerPresent()) return null
+        delay(200)
+        if (securityAccess()) {
+            testerPresentJobSuspend = false
+            return null
         }
-        return null
+        delay(200)
+        val message =
+            kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(0xD0.toByte()), 200)
+        testerPresentJobSuspend = false
+        if (message.isValid) {
+            result = ArrayList()
+            result.add(message.answer.copyOfRange(5, 10))
+            lastMessageTime = System.currentTimeMillis()
+        }
+        lastMessageTime = System.currentTimeMillis()
+        return result
     }
 
     override suspend fun writeCoding(dataToSave: List<ByteArray>): Boolean {
-        if (testerPresent()) {
-            if (securityAccess()) {
-                val data = byteArrayOf(0xD0.toByte()) + dataToSave[0]
-                return kwp!!.write(moduleAddress, 0x3B.toByte(), data, 200).isValid
-            }
+        lastMessageTime = System.currentTimeMillis()
+        println("$tag : writeCoding()")
+        testerPresentJobSuspend = true
+        if (!testerPresent()) return false
+        if (!securityAccess()){
+            testerPresentJobSuspend = false
+            return false
         }
-        return false
+        val data = byteArrayOf(0xD0.toByte()) + dataToSave[0]
+        val result =  kwp!!.write(moduleAddress, 0x3B.toByte(), data, 200).isValid
+        testerPresentJobSuspend = false
+        return result
     }
 
     private suspend fun securityAccess(): Boolean {
-        run {
-            val message = kwp!!.write(moduleAddress, 0x27.toByte(), byteArrayOf(), 200)
-            if (message.isValid) {
-                val code =
-                    ((message.answer[4].toInt() and 0xFF) shl 8) + (message.answer[5].toInt() and 0xFF)
-                val seed = securityAccessCalculator(code)
-                val data = byteArrayOf(((seed and 0xFF00) shr 8).toByte(), (seed and 0xFF).toByte())
-                return kwp!!.write(moduleAddress, 0x27.toByte(), data, 200).isValid
-            }
+        println("$tag : securityAccess()")
+        var result = false
+        val message = kwp!!.write(moduleAddress, 0x27.toByte(), byteArrayOf(), 200)
+        if (message.isValid) {
+            val code =
+                ((message.answer[4].toInt() and 0xFF) shl 8) + (message.answer[5].toInt() and 0xFF)
+            if (code == 0x0000) return true
+            val seed = securityAccessCalculator(code)
+            val data = byteArrayOf(((seed and 0xFF00) shr 8).toByte(), (seed and 0xFF).toByte())
+            result = kwp!!.write(moduleAddress, 0x27.toByte(), data, 200).isValid
         }
-        return false
+        lastMessageTime = System.currentTimeMillis()
+
+        return result
     }
 
     private fun securityAccessCalculator(inKey: Int): Int {
@@ -197,18 +294,21 @@ class ModuleSRS2( protocolKWPStar: ProtocolKWPStar?) : IModule, IModuleCoding, I
     override fun getVinLength(): Int = 17
 
     override suspend fun writeVIN(newVin: String): Boolean {
-        delay(3000)
-        if (testerPresent()) {
-            delay(200)
-            if (securityAccess()) {
-                delay(200)
-                return kwp!!.write(
-                    moduleAddress,
-                    0x3B.toByte(),
-                    byteArrayOf(0x8F.toByte()) + newVin.toByteArray()
-                ).isValid
-            }
+        println("$tag : writeVin()")
+        testerPresentJobSuspend = true
+        if (!testerPresent()) return false
+        if (!securityAccess()) {
+            testerPresentJobSuspend = false
+            return false
         }
-        return false
+        delay(200)
+        val result = kwp!!.write(
+            moduleAddress,
+            0x3B.toByte(),
+            byteArrayOf(0x8F.toByte()) + newVin.toByteArray()
+        ).isValid
+        testerPresentJobSuspend = false
+        lastMessageTime = System.currentTimeMillis()
+        return result
     }
 }

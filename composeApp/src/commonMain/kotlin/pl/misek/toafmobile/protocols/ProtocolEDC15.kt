@@ -15,6 +15,8 @@ class ProtocolEDC15(private var device: IInterfaceDevice?) : IProtocol {
         device = newDevice
     }
 
+    override fun getDevice(): IInterfaceDevice? = device
+
     private fun connect(): Boolean {
         if (device is IKWPInterfaceDevice) {
             if (device?.isConnected == false) device?.connect("")

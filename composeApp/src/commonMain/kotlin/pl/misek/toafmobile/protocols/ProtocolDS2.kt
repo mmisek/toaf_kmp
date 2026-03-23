@@ -105,4 +105,6 @@ class ProtocolDS2(private var device: IInterfaceDevice?) : IProtocol {
     override fun setDevice(newDevice: IInterfaceDevice?) {
         device = newDevice
     }
+
+    override fun getDevice(): IInterfaceDevice? = device
 }

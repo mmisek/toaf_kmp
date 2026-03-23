@@ -22,7 +22,7 @@ class AndroidSerialDevice (private val usbManager: UsbManager, private val _usbD
 
     override suspend fun write(
         data: ByteArray?,
-        timeout: Int,
+        timeout: Long?,
         forceAnswer: Boolean,
         useDelay: Boolean
     ): ByteArray? {
@@ -39,7 +39,7 @@ class AndroidSerialDevice (private val usbManager: UsbManager, private val _usbD
                         }
                     }
                 } else
-                    _serialPort?.write(data, timeout)
+                    _serialPort?.write(data, timeout?.toInt() ?: 0)
             } catch (ex: Exception) {
                println("$tag : ${ex.toString()}")
                 return null
@@ -155,12 +155,14 @@ class AndroidSerialDevice (private val usbManager: UsbManager, private val _usbD
         var result = false
         try {
             _serialPort?.setBreak(true)
-            Thread.sleep(initTime.toLong())
+            preciseDelay(initTime.toLong())
+
             _serialPort?.setBreak(false)
-            Thread.sleep(initTime.toLong())
+            preciseDelay(initTime.toLong())
+
             result = true
         } catch (ex: Exception) {
-           println("$tag : ${ex.toString()}")
+            println("$tag : ${ex.message}")
         }
 
         return result
@@ -185,5 +187,13 @@ class AndroidSerialDevice (private val usbManager: UsbManager, private val _usbD
 
     fun setFastInitSleep(newFastInitSleep: Int) {
         fastInitSleep = newFastInitSleep
+    }
+    private fun preciseDelay(millis: Long) {
+        val delayNanos = millis * 1_000_000L
+        val startTime = System.nanoTime()
+
+        while (System.nanoTime() - startTime < delayNanos) {
+            // waiting
+        }
     }
 }

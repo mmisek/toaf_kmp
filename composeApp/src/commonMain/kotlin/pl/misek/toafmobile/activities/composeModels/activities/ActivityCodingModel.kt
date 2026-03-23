@@ -48,6 +48,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import io.sentry.BuildConfig
+import kotlinx.coroutines.launch
 import kotlinx.serialization.json.JsonNull
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.jsonObject
@@ -302,16 +303,16 @@ fun ActivityModuleCodingModel(moduleKoinName : KoinNames, onBackClick : () ->Uni
                             {
                                 val data = (result as? List<*>)?.filterIsInstance<ByteArray>()
                                 data?.let {
+                                    val codingToBackup = it.toList()
                                     currentCoding = it.toList()
                                     actionType = ActionTypeEnum.SaveCodingBackup
-                                    action =
-                                        {
+                                    scope.launch {
                                             doBackup(
                                                 toafApi = toafApi,
                                                 currentModule = currentModule,
                                                 ewsModule = ewsModule,
                                                 ipkModule = ipkModule,
-                                                currentCoding = it.toList(),
+                                                currentCoding = codingToBackup,
                                                 description = "Autobackup",
                                                 isPublic = false
                                             )

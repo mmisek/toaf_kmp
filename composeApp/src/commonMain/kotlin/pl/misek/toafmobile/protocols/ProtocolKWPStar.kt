@@ -1,10 +1,6 @@
 package pl.misek.toafmobile.protocols
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import pl.misek.toafmobile.interfaces.IInterfaceDevice
 import pl.misek.toafmobile.interfaces.IKWPInterfaceDevice
 import pl.misek.toafmobile.interfaces.wifi.ToafWifiInterface
@@ -16,48 +12,21 @@ class ProtocolKWPStar(private var device: IInterfaceDevice?, private val useDela
     override fun setDevice(newDevice: IInterfaceDevice?) {
         device = newDevice
     }
+
+    override fun getDevice(): IInterfaceDevice?  = device
+
     private fun connect(): Boolean {
         return if (device is IKWPInterfaceDevice) (device as IKWPInterfaceDevice).initKWPStarDevice()
         else device is ToafWifiInterface
     }
 
     override suspend fun write(address: Byte, command: Byte, data: ByteArray): OBDMessage {
-        var result = OBDMessage()
-        CoroutineScope(Dispatchers.IO).launch {
-            result = async {write(address, command, data, 200)}.await()
-        }
-        return result
+        return write(address, command, data, 200)
     }
 
     override suspend fun write(address: Byte, command: Byte, data: ByteArray, timeout: Long?): OBDMessage {
-            var message = OBDMessage()
-            CoroutineScope(Dispatchers.IO).launch {
-                message = async {write(address, command, data, 200)}.await()
-            }
-            for (i in 0..2) {
-                CoroutineScope(Dispatchers.IO).launch {
-                    message = async {writeKWPStar(address, command, data, timeout)}.await()
-                }
-                if (message.isValid) return message
-                else {
-                    try {
-                        delay(50)
-                    } catch (ex: Exception) {
-                        println("$tag : ${ex.toString()}")
-                    }
-                }
-            }
-            message.isValid = false
-            val messageData =
-                if (message.wholeMessage != null && message.wholeMessage!!.isNotEmpty()) message.wholeMessage else message.message
-            if (messageData!!.isNotEmpty()) {
-                val stringBuilder = StringBuilder()
-                for (b in messageData) stringBuilder.append(String.format("[%02X] ", b))
-                println("$tag : $stringBuilder")
-            }
-        return message
+        return writeKWPStar(address, command, data, timeout)
     }
-
 
     override suspend fun write(
         address: Byte,
@@ -85,6 +54,7 @@ class ProtocolKWPStar(private var device: IInterfaceDevice?, private val useDela
         checksum = 0x00
         for (i in 0 until dataToSend.size - 1) checksum = (checksum + dataToSend[i]).toByte()
         dataToSend[dataToSend.size - 1] = (checksum.toInt() and 0xFF).toByte()
+        delay(200)
         if (device is IKWPInterfaceDevice) (device as IKWPInterfaceDevice).kwpFastInit()
         val result = device?.write(dataToSend, timeout, true, useDelay)
         if (result != null) {
