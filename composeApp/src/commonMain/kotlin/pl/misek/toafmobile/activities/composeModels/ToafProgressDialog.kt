@@ -23,8 +23,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import io.sentry.kotlin.multiplatform.Sentry
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.activities.definitions.ToafColors
@@ -49,6 +49,7 @@ fun <T> ToafProgressDialog(
 
         } catch (ex : Exception)
         {
+            Sentry.captureException(ex)
             println("$tag : ${ex.toString()}")
             onError(ex)
         }

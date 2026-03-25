@@ -432,4 +432,5 @@
     <string name="activity_coding_load_public_backup_info">!! ВАЖНО !! Публичная резервная копия может быть повреждена, может сломать ваш модуль, отключить ключи в модуле BCU и многое другое… Не забывайте делать резервную копию вашей кодировки! Убедитесь, что вы знаете, что делаете!</string>
     <string name="server_connection_failed">Ошибка подключения к серверу Toaf</string>
     <string name="activity_main_function_need_usb_device">Для этой функции требуется USB-интерфейс!</string>
+    <string name="useMobileVersionToBuyTokens">Функция временно недоступна в Toaf Desktop.\nПожалуйста, используйте Toaf Mobile для покупки токенов.</string>
 </resources>

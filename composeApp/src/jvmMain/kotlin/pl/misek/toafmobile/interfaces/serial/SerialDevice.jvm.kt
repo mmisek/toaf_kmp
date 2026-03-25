@@ -90,6 +90,7 @@ class DesktopSerialDevice : ISerialDevice
 
     override fun connect(deviceName: String) {
         _serialPortName = "COM1"
+
         if (_serialPort == null)
         {
             _serialPort = SerialPort.getCommPort(_serialPortName)

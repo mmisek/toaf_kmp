@@ -467,4 +467,5 @@
 
     <string name="server_connection_failed">Toaf Serve connection failed</string>
     <string name="activity_main_function_need_usb_device">This function needs a USB interface!</string>
+    <string name="useMobileVersionToBuyTokens">Function temporary not available on Toaf Desktop.\nPlease use Toaf Mobile to buy tokens.</string>
 </resources>

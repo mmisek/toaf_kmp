@@ -31,6 +31,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
+import pl.misek.toafmobile.PlatformType
 import pl.misek.toafmobile.activities.ToafConstants
 import pl.misek.toafmobile.activities.composeModels.ActionTypeEnum
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
@@ -44,6 +45,7 @@ import pl.misek.toafmobile.billing.IToafBilling
 import pl.misek.toafmobile.tools.getPlatformActivity
 import pl.misek.toafmobile.database.Database
 import pl.misek.toafmobile.database.DatabaseSettingFields
+import pl.misek.toafmobile.getPlatformType
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.modules.ModulesManager
 import pl.misek.toafmobile.modules.containers.BCUKey
@@ -80,6 +82,7 @@ fun AdvanceCodingBcuKeys(
     val onKeyAddSuccessText = stringResource(Res.string.activity_coding_bcu_key_add_successful)
     val onKeyAddFailText = stringResource(Res.string.activity_coding_bcu_key_add_error)
     val serverConnectionFailedText = stringResource(Res.string.server_connection_failed)
+    val useMobileVersionToBuyTokens = stringResource(Res.string.useMobileVersionToBuyTokens)
     var keyIdToProcess by remember { mutableIntStateOf(-1) }
     var keyCodeToProcess by remember { mutableStateOf<String?>(null) }
     var actionType by remember {mutableStateOf (ActionTypeEnum.ReadKeys)}
@@ -112,9 +115,8 @@ fun AdvanceCodingBcuKeys(
                 title = Res.string.activity_coding_bcu_key_add_message,
                 name = Res.string.activity_coding_bcu_key_add_hint,
                 value = "",
-                onCancelClick = {showInputDialog = false},
+                onCancelClick = { showInputDialog = false },
                 onOkClick = {keyCode ->
-                    actionType = ActionTypeEnum.AddKey
                     val regex = Regex("^[0-9a-fA-F]{6}$")
                     if (!regex.matches(keyCode))
                     {
@@ -122,24 +124,31 @@ fun AdvanceCodingBcuKeys(
                     }
                     else
                     {
+                        showInputDialog = false
                         keyCodeToProcess = keyCode
                         action = {
-                            if (userInfo.bcuKeys > 0)
+                            val localUserInfo = toafApi.getUserInfo()
+                            if (localUserInfo == null)
+                                onShowResult(false,null, serverConnectionFailedText)
+                            else if (localUserInfo.isLogged != ServerConnectionState.CONNECTED)
+                                onShowResult(false,null, serverConnectionFailedText)
+                            else if (localUserInfo.bcuKeys == 0) {
+                                if (getPlatformType() == PlatformType.Android) {
+                                    toafBilling.buyElement(
+                                        activity,
+                                        ToafConstants.SKU_TOAF_BCU_KEY
+                                    )
+                                } else {
+                                    onShowResult(false, null, useMobileVersionToBuyTokens)
+                                }
+                            }
+                            else {
                                 (currentModule as IModuleBcuKeys).addKeyAt(keyIdToProcess, keyCode)
-                            else
-                                toafBilling.buyElement(activity, ToafConstants.SKU_TOAF_BCU_KEY)
-                        }
-                        if (userInfo.isLogged == ServerConnectionState.DISCONNECTED)
-                            onShowResult(false,null, serverConnectionFailedText)
-                        else {
-                            if (userInfo.isFullVersion()) {
-                                showProgressDialog = true
-                            } else {
-                                showFullVersionDialog = true
                             }
                         }
+                        actionType = ActionTypeEnum.AddKey
+                        showProgressDialog = true
                     }
-                    showInputDialog = false
                 }
             )
         }
@@ -186,16 +195,16 @@ fun AdvanceCodingBcuKeys(
                                     scope.launch {
                                         withContext(Dispatchers.IO)
                                         {
-                                            val n = database.getIntSettingValueByName(DatabaseSettingFields.TOAF_BCU_KEYS)
-                                            database.updateIntSettingByName(DatabaseSettingFields.TOAF_BCU_KEYS, if (n-1 < 0) 0 else (n-1))
                                             toafApi.userConsumeBcuKey(moduleVin, keyCodeToProcess)
                                             userInfo.bcuKeys -= 1
                                             toafApi.updateUserInfo(userInfo = userInfo)
+                                            database.updateIntSettingByName(DatabaseSettingFields.TOAF_BCU_KEYS, userInfo.bcuKeys)
+                                            currentBcuKey[keyIdToProcess] = BCUKey(keyIdToProcess,keyCodeToProcess ?: "")
+                                            keyIdToProcess = -1
+                                            keyCodeToProcess = ""
                                         }
                                     }
-                                    currentBcuKey[keyIdToProcess] = BCUKey(keyIdToProcess,keyCodeToProcess ?: "")
-                                    keyIdToProcess = -1
-                                    keyCodeToProcess = ""
+
                                 }
                                 onShowResult(
                                     actionResult,

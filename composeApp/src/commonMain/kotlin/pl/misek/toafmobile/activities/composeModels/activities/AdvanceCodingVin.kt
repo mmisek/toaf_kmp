@@ -23,14 +23,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
+import pl.misek.toafmobile.PlatformType
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.ToafEditText
 import pl.misek.toafmobile.activities.composeModels.ToafProgressDialog
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogNotFullVersion
 import pl.misek.toafmobile.activities.definitions.ToafStyles
+import pl.misek.toafmobile.getPlatformType
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.modules.ModulesManager
 import pl.misek.toafmobile.modules.interfaces.IModule
@@ -53,7 +54,7 @@ fun AdvanceCodingVin(koinModuleName : KoinNames, userInfo: UserInfo, onShowResul
     val writeVinFailText = stringResource(Res.string.activity_advance_coding_vin_write_error)
     val readVinFailText = stringResource(Res.string.activity_advance_coding_vin_read_error)
     val vinIsNotCorrectedText = stringResource(Res.string.activity_advance_coding_vin_matches_error)
-
+    val dialogFullVersionTittle =stringResource(Res.string.dialog_full_version_tittle)
     Surface(
         color = Color.Transparent,
         shape = RoundedCornerShape(10.dp),
@@ -151,7 +152,13 @@ fun AdvanceCodingVin(koinModuleName : KoinNames, userInfo: UserInfo, onShowResul
                         if (userInfo.isFullVersion())
                             showProgressDialog = true
                         else
-                            dialogShowNotFullVersion = true
+                            if (getPlatformType() == PlatformType.Android) {
+                                dialogShowNotFullVersion = true
+                            }
+                            else
+                            {
+                                onShowResult(false,null,dialogFullVersionTittle)
+                            }
                     } else {
                         onShowResult(false, null, vinIsNotCorrectedText)
                     }

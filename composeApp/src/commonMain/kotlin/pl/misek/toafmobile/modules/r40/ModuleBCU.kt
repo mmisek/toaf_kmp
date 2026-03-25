@@ -1,6 +1,5 @@
 package pl.misek.toafmobile.modules.r40
 
-import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceHelper
@@ -26,7 +25,6 @@ import toafmobile.composeapp.generated.resources.bcu_alarm_trigger
 import toafmobile.composeapp.generated.resources.module_bcu
 import toafmobile.composeapp.generated.resources.module_description_bcu
 import java.util.Arrays
-import java.util.Locale
 import kotlin.experimental.inv
 
 class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddress.MODULE_BCU, listOf(CarType.R40)), IModuleControl, IModuleCoding, IModuleAdvanceCoding, IModuleLiveData, IModuleVIN,IModuleBcuKeys
@@ -50,41 +48,28 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
     }
 
     override suspend fun control(controlElement: ControlElement): Boolean {
-        if (securityAccess()) {
-            val data = byteArrayOf(0x0C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00)
-            data[controlElement.byteInBlock + 2] = controlElement.value.toByte()
-            return interfaceWrite(data).isValid
-        }
-        return false
+        if (!securityAccess()) return false
+        val data = byteArrayOf(0x0C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00)
+        data[controlElement.byteInBlock + 2] = controlElement.value.toByte()
+        return interfaceWrite(data).isValid
     }
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>) = securityAccess()
 
     override suspend fun getIdentification(): ModuleInfo? {
-        if (securityAccess()) {
-            val mi = ModulesFunction.getModuleInfo(interfaceWrite(byteArrayOf(0x00)))
-            if (mi != null && mi.ci.isEmpty()) {
-                reset()
-                delay(1000)
-                securityAccess()
-                return ModulesFunction.getModuleInfo(interfaceWrite(byteArrayOf(0x00)))
-            }
-            return mi
-        } else return null
+        if (!securityAccess()) return null
+        return ModulesFunction.getModuleInfo(interfaceWrite(byteArrayOf(0x00)))
     }
 
     override suspend fun readCoding(): List<ByteArray>? {
         val result: MutableList<ByteArray> = ArrayList()
-        if (securityAccess()) {
-            for (i in 0..0x8) {
-                val message = interfaceWrite(byteArrayOf(0x08, i.toByte()), 100)
-                if (message.isValid)
-                    result.add(message.answer.copyOfRange(3, message.answer.size - 1))
-                else
-                    return null
-            }
-        } else {
-            return null
+        if (!securityAccess()) return null
+        for (i in 0..0x8) {
+            val message = interfaceWrite(byteArrayOf(0x08, i.toByte()), 150)
+            if (message.isValid)
+                result.add(message.answer.copyOfRange(3, message.answer.size - 1))
+            else
+                return null
         }
         return result
     }
@@ -92,91 +77,86 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
     override suspend fun writeCoding(dataToSave: List<ByteArray>): Boolean {
         if (dataToSave.size != 0x09) return false
         val dataToSaveWithCrc = calculateCodingChecksum(dataToSave)
-        if (securityAccess()) {
-            for (i in dataToSaveWithCrc.indices) {
-                val message = interfaceWrite(
-                    arrayOf(
-                        byteArrayOf(
-                            0x09,
-                            i.toByte()
-                        ), dataToSaveWithCrc[i]
-                    )
-                )
-                if (!message.isValid) return false
-            }
-            reset()
+        if (!securityAccess()) return false
+        for (i in dataToSaveWithCrc.indices) {
+            val data = byteArrayOf(0x09,i.toByte()) + dataToSaveWithCrc[i]
+            val message = interfaceWrite(data, 150)
+            if (!message.isValid) return false
         }
+        reset()
         return true
     }
 
     override suspend fun getAllErrors(): List<ModuleError>? {
         var result: MutableList<ModuleError>? = null
+        if (!securityAccess()) return null
+
         for (j in 0..4) {
-            if (securityAccess()) {
-                val message = interfaceWrite(byteArrayOf(0x04, j.toByte()))
-                if (message.isValid) {
-                    if (result == null) result = ArrayList()
-                    for (i in 0..6) {
-                        if ((message.answer[3 + 2 * i].toInt() and 0xFF) != 0xFF) {
-                            val errorCode = String.format("%02X", message.answer[3 + 2 * i])
-                            val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
-                            errorDescription.add(ResourceHelper.getErrorDescriptionCount(message.answer[4 + 2 * i].toInt() and 0x1F))
-                            errorDescription.add(ResourceHelper.getErrorDescriptionIsStatic((message.answer[4 + 2 * i].toInt() and 0x20) == 0x20))
-                            result.add(
-                                ModuleError(
-                                    ModuleAddress.MODULE_BCU,
-                                    errorCode,
-                                    errorDescription
-                                )
+            val message = interfaceWrite(byteArrayOf(0x04, j.toByte()),200L)
+            if (message.isValid) {
+                if (result == null)
+                    result = ArrayList()
+                val n = if (j ==0x04) 5 else 8
+                for (i in 0 until n) {
+                    val code = message.answer[3 + 3 * i].toInt() and 0xFF
+                    if (code != 0xFF) {
+                        val errorCode = String.format("%02x",code)
+                        val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
+                        errorDescription.add(ResourceHelper.getErrorDescriptionCount(message.answer[4 + 2 * i].toInt() and 0x1F))
+                        errorDescription.add(ResourceHelper.getErrorDescriptionIsStatic((message.answer[4 + 2 * i].toInt() and 0x20) == 0x20))
+                        result.add(
+                            ModuleError(
+                                ModuleAddress.MODULE_BCU,
+                                errorCode,
+                                errorDescription
                             )
-                        }
+                        )
                     }
                 }
             }
         }
         //alarm mislock errors
-        if (securityAccess()) {
-            val message = interfaceWrite(byteArrayOf(0x04, 0x05))
-            if (message.isValid) {
-                if (result == null) result = ArrayList()
-                for (i in 0..6) {
-                    if ((message.answer[3 + 2 * i].toInt() and 0xFF) != 0xFF) {
-                        val errorCode = String.format("%02X", message.answer[3 + 2 * i])
-                        val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
-                        errorDescription.add(Pair(Res.string.bcu_alarm_mislock, null))
-                        errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[4 + 2 * i].toInt() and 0x1F)))
-                        errorDescription.add(ResourceHelper.getErrorDescriptionIsStatic((message.answer[4 + 2 * i].toInt() and 0x20) == 0x20))
-                        result.add(
-                            ModuleError(
-                                ModuleAddress.MODULE_BCU_ALARM,
-                                errorCode,
-                                errorDescription
-                            )
+        if (!securityAccess()) return null
+
+        var message = interfaceWrite(byteArrayOf(0x04, 0x05))
+        if (message.isValid) {
+            if (result == null) result = ArrayList()
+            for (i in 0 until 6) {
+                if ((message.answer[3 + 2 * i].toInt() and 0xFF) != 0xFF) {
+                    val errorCode = String.format("%02X", message.answer[3 + 2 * i])
+                    val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
+                    errorDescription.add(Pair(Res.string.bcu_alarm_mislock, null))
+                    errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[4 + 2 * i].toInt() and 0x1F)))
+                    errorDescription.add(ResourceHelper.getErrorDescriptionIsStatic((message.answer[4 + 2 * i].toInt() and 0x20) == 0x20))
+                    result.add(
+                        ModuleError(
+                            ModuleAddress.MODULE_BCU_ALARM,
+                            errorCode,
+                            errorDescription
                         )
-                    }
+                    )
                 }
             }
         }
-        if (securityAccess()) {
-            //alarm trigger errors
-            val message = interfaceWrite(byteArrayOf(0x04, 0x06))
-            if (message.isValid) {
-                if (result == null) result = ArrayList()
-                for (i in 0..6) {
-                    if ((message.answer[3 + 2 * i].toInt() and 0xFF) != 0xFF) {
-                        val errorCode = String.format("%02X", message.answer[3 + 2 * i])
-                        val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
-                        errorDescription.add(Pair(Res.string.bcu_alarm_trigger, null))
-                        errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[4 + 2 * i].toInt() and 0x1F)))
-                        errorDescription.add(ResourceHelper.getErrorDescriptionIsStatic((message.answer[4 + 2 * i].toInt() and 0x20) == 0x20))
-                        result.add(
-                            ModuleError(
-                                ModuleAddress.MODULE_BCU_ALARM,
-                                errorCode,
-                                errorDescription
-                            )
+        if (!securityAccess()) return null
+        message = interfaceWrite(byteArrayOf(0x04, 0x06))
+        if (message.isValid) {
+            if (result == null)
+                result = ArrayList()
+            for (i in 0..6) {
+                if ((message.answer[3 + 2 * i].toInt() and 0xFF) != 0xFF) {
+                    val errorCode = String.format("%02X", message.answer[3 + 2 * i])
+                    val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
+                    errorDescription.add(Pair(Res.string.bcu_alarm_trigger, null))
+                    errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[4 + 2 * i].toInt() and 0x1F)))
+                    errorDescription.add(ResourceHelper.getErrorDescriptionIsStatic((message.answer[4 + 2 * i].toInt() and 0x20) == 0x20))
+                    result.add(
+                        ModuleError(
+                            ModuleAddress.MODULE_BCU_ALARM,
+                            errorCode,
+                            errorDescription
                         )
-                    }
+                    )
                 }
             }
         }
@@ -184,25 +164,23 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
     }
 
     override suspend fun clearAllErrors(): Boolean {
-        var result = true
-        if (securityAccess()) {
-            for (i in 0..3) {
-                result = result and interfaceWrite(byteArrayOf(0x05, i.toByte())).isValid
-            }
-            return result
-        } else return false
+        if (!securityAccess()) return false
+        for (i in 0..3) {
+            if (!interfaceWrite(byteArrayOf(0x05, i.toByte())).isValid)
+                return false
+        }
+        return true
     }
 
     override suspend fun getVIN(): String? {
-        if (securityAccess()) {
-            val message = interfaceWrite(byteArrayOf(0x02), 500)
-            if (message.isValid) {
-                return String.format(
-                    "%s%02X%02X%02X",
-                    String(message.answer.copyOfRange(3, 14)),
-                    message.answer[14], message.answer[15], message.answer[16]
-                )
-            }
+        if (!securityAccess()) return null
+        val message = interfaceWrite(byteArrayOf(0x02), 500)
+        if (message.isValid) {
+            return String.format(
+                "%s%02X%02X%02X",
+                String(message.answer.copyOfRange(3, 14)),
+                message.answer[14], message.answer[15], message.answer[16]
+            )
         }
         return null
     }
@@ -210,39 +188,34 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
     override fun getVinLength(): Int = 17
 
     override suspend fun writeVIN(newVin: String): Boolean {
-        if (newVin.length == 17) {
-            val data =
-                newVin.substring(0, 11).toByteArray() +
-                byteArrayOf(
-                    newVin.substring(11, 13).toInt(16).toByte(),
-                    newVin.substring(13, 15).toInt(16).toByte(),
-                    newVin.substring(15).toInt(16).toByte())
-            if (securityAccess()) {
-                val message = interfaceWrite(byteArrayOf(0x03) + data)
-                return message.isValid
-            } else return false
-        } else return false
+        if (newVin.length != 17) return false
+        if (!securityAccess()) return false
+        val data =
+            newVin.substring(0, 11).toByteArray() +
+            byteArrayOf(
+                newVin.substring(11, 13).toInt(16).toByte(),
+                newVin.substring(13, 15).toInt(16).toByte(),
+                newVin.substring(15).toInt(16).toByte())
+        return interfaceWrite(byteArrayOf(0x03) + data).isValid
     }
 
     private suspend fun securityAccess(): Boolean {
         val message = interfaceWrite(byteArrayOf(0x0E), 500)
-        if (message.isValid) {
-            val key =
-                ((message.answer[3].toInt() and 0xFF) shl 8) or (message.answer[4].toInt() and 0xFF)
-            val seed = calculateSeed(key)
-            val data =
-                byteArrayOf(0x64, ((seed and 0xFF00) shr 8).toByte(), (seed and 0xFF).toByte())
-            val message1 = interfaceWrite(data, 500)
-            return message1.isValid
-        } else return false
+        if (!message.isValid) return false
+        val seed =
+            ((message.answer[3].toInt() and 0xFF) shl 8) or (message.answer[4].toInt() and 0xFF)
+        val key = calculateSeed(seed)
+        val data =
+            byteArrayOf(0x64, ((key and 0xFF00) shr 8).toByte(), (key and 0xFF).toByte())
+        return interfaceWrite(data, 500).isValid
     }
 
     override suspend fun removeKeyAt(position: Int): Boolean {
-        val coding = readCoding()?.toMutableList()
-        if (coding != null) {
+        val coding = readCoding()
+        coding?.let {
             val data = coding[position]
             Arrays.fill(data, 0x00.toByte())
-            coding[position] = data
+            it.toMutableList()[position] = data
             return writeCoding(coding)
         }
         return false

@@ -462,4 +462,5 @@
     <string name="live_data_type_table">Tabla</string>
     <string name="server_connection_failed">Error de conexión con el servidor Toaf</string>
     <string name="activity_main_function_need_usb_device">¡Esta función requiere una interfaz USB!</string>
+    <string name="useMobileVersionToBuyTokens">Función temporalmente no disponible en Toaf Desktop.\nPor favor, usa Toaf Mobile para comprar tokens.</string>
 </resources>

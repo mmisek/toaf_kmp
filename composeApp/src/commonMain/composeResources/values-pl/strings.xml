@@ -406,5 +406,5 @@
     <string name="alert_dialog_wifi_configuration_ip_address_is_not_valid">Adres IP jest niewłaściwy</string>
     <string name="live_data_type_table">Tabela</string>
     <string name="server_connection_failed">Błąd połączenia z serwerem Toaf</string>
-
+    <string name="useMobileVersionToBuyTokens">Funkcja tymczasowo niedostępna w Toaf Desktop.\nUżyj Toaf Mobile, aby kupić tokeny.</string>
 </resources>

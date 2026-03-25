@@ -15,7 +15,7 @@ class ProtocolDS2(private var device: IInterfaceDevice?) : IProtocol {
     }
 
     suspend fun write(destinationDevice: Byte, data: ByteArray): OBDMessage {
-        return write(destinationDevice, data, 250)
+        return write(destinationDevice, data, 50)
     }
 
     suspend fun write(destinationDevice: Byte, data: Array<ByteArray>): OBDMessage {
