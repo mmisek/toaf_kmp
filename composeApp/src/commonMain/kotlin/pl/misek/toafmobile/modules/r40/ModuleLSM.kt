@@ -1,6 +1,5 @@
 package pl.misek.toafmobile.modules.r40
 
-import androidx.annotation.StringRes
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceHelper
@@ -279,7 +278,7 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
                             message.answer[7].toInt() and 0xFF,
                             message.answer[8].toInt() and 0xFF)
                 return vin
-            } catch (ex: Exception) {
+            } catch (_ : Exception) {
                 return null
             }
         }
@@ -347,14 +346,7 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
     override suspend fun writeCoding(dataToSave: List<ByteArray>): Boolean {
         if (dataToSave.size != 0x10) return false
         for (i in dataToSave.indices) {
-            val message = interfaceWrite(
-                arrayOf(
-                    byteArrayOf(
-                        0x09,
-                        i.toByte()
-                    ), dataToSave[i]
-                )
-            )
+            val message = interfaceWrite( byteArrayOf(0x09,i.toByte()) + dataToSave[i],200)
             if (!message.isValid) return false
         }
         return true

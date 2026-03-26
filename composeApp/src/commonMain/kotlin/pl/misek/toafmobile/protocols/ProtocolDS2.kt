@@ -72,7 +72,7 @@ class ProtocolDS2(private var device: IInterfaceDevice?) : IProtocol {
                 .fold(0x00.toByte()) { acc, byte -> (acc.toInt() xor byte.toInt()).toByte() }
             message.isValid =
                 (message.answer[message.answer.size - 1] == checkSum) && (message.answerCode == 0xA0.toByte())
-        } catch (ex: Exception) {
+        } catch (_: Exception) {
             message.answer = ByteArray(0)
             message.length = 0
             message.answerCode = 0x00.toByte()
@@ -86,7 +86,7 @@ class ProtocolDS2(private var device: IInterfaceDevice?) : IProtocol {
     }
 
     override suspend fun write(address: Byte, command: Byte, data: ByteArray, timeout: Long?): OBDMessage {
-        return OBDMessage()
+        return write(address,command,data,timeout, false)
     }
 
     override suspend fun write(

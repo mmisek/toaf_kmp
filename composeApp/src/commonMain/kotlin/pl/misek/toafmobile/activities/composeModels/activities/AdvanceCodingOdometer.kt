@@ -23,7 +23,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
@@ -191,7 +190,8 @@ private suspend fun updateOdometer(module : IModule?,  odometer : Long) : Boolea
     return withContext(Dispatchers.IO)
     {
         (module as IModuleOdometer).writeOdometer(odometer)
-        (module.getOdometer() ?: -1) == odometer.toString()
+        val newOdometer = module.getOdometer() ?: "0"
+        newOdometer.toLong()/100 == odometer/100
     }
 }
 
