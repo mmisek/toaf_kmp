@@ -16,6 +16,7 @@ fun getDatabaseBuilder(): RoomDatabase.Builder<ToafDatabase> {
     return Room.databaseBuilder<ToafDatabase>(
         name = dbFile.absolutePath
     )
+        .setJournalMode(RoomDatabase.JournalMode.WRITE_AHEAD_LOGGING)
         .setDriver(BundledSQLiteDriver()) // Silnik SQLite dla KMP
         .setQueryCoroutineContext(Dispatchers.IO)
 }

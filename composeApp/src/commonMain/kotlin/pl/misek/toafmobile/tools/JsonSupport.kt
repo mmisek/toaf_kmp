@@ -15,6 +15,7 @@ import pl.misek.toafmobile.generated.ResourceMapper
 import pl.misek.toafmobile.livedata.LivaDataElementContainerJson
 import pl.misek.toafmobile.livedata.LiveDataElement
 import pl.misek.toafmobile.livedata.LiveDataElementJson
+import pl.misek.toafmobile.livedata.LiveDataFormat
 import pl.misek.toafmobile.modules.DDEFreezeFrame
 import pl.misek.toafmobile.modules.DDEFreezeFrameContainerJson
 import pl.misek.toafmobile.modules.FreezeFrameElement
@@ -98,6 +99,7 @@ object JsonSupport {
                 u2 = json.u2
                 invertA = json.invertA
                 carType = json.carType
+                format = json.format
             }
         }
         return try {
@@ -108,10 +110,10 @@ object JsonSupport {
                     descriptionResKey = ResourceMapper.stringResource(resRey)
                     block = decodeHexToInt(elementJson.block)
                     byteInBlock = decodeHexToInt(elementJson.byte)
-                    mask = decodeHexToLong(elementJson.mask)
+                    mask = if (elementJson.mask.isNullOrEmpty()) 0L else decodeHexToLong(elementJson.mask)
                     factorA = elementJson.factorA?.toFloat() ?: 1f
                     factorB = elementJson.factorB?.toFloat() ?: 0f
-                    unit = elementJson.unit
+                    unit = elementJson.unit ?: ""
                     elementJson.values?.let { v->
                         values = ArrayList()
                         v.forEach { e ->
@@ -128,6 +130,10 @@ object JsonSupport {
                             supportedCarType?.add(CarType.valueOf(e))
                         }
                     }
+                    liveDataFormat = if (elementJson.format.isNullOrEmpty())
+                        LiveDataFormat.Standard
+                    else
+                        LiveDataFormat.valueOf(elementJson.format!!)
                 }
             }
         } catch (ex : Exception)
@@ -312,7 +318,10 @@ object JsonSupport {
             } else {
                 value.toInt()
             }
-        } catch (e: Exception) { 0 }
+        } catch (e: Exception) {
+            println("decodeHexToInt: ${e.toString()}")
+            0
+        }
     }
     private fun decodeHexToLong(value: String?): Long {
         if (value == null) return 0
@@ -322,6 +331,9 @@ object JsonSupport {
             } else {
                 value.toLong()
             }
-        } catch (e: Exception) { 0 }
+        } catch (e: Exception) {
+            println("decodeHexToLong: ${e.toString()}")
+            0
+        }
     }
 }

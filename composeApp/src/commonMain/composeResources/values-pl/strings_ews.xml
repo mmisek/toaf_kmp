@@ -58,5 +58,36 @@
     <string name="ews_error_FF">Reset</string>
     <string name="ews_error_sporadic">Błąd sporadyczny</string>
     <string name="ews_error_static">Błąd statyczny</string>
+<string name="ews_live_data_STAT_ANLASSER_FREIGESCHALTET">Rozrusznik odblokowany</string>
+<string name="ews_live_data_STAT_ANLASSER_AUS_DREHZAH">Rozrusznik zablokowany przez obroty (RPM)</string>
+<string name="ews_live_data_STAT_ANLASSER_AUS_P_N">Rozrusznik zablokowany przez pozycję P/N</string>
+<string name="ews_live_data_STAT_ANLASSER_AUS_ZV">Rozrusznik zablokowany przez centralny zamek/alarm</string>
+<string name="ews_live_data_STAT_ANLASSER_AUS_BC">Rozrusznik zablokowany przez komputer pokładowy</string>
+<string name="ews_live_data_STAT_STAT_WEITERE_SELBSTINIT_KEYS">Można zainicjalizować nowe kluczyki</string>
+<string name="ews_live_data_STAT_DME_LEITUNG_FREI">Rozruch jest możliwy</string>
+<string name="ews_live_data_STAT_EWS_JUNGFRAEULICH">EWS jest fabrycznie nowy (czysty)</string>
+<string name="ews_live_data_STAT_P_N_EINGANG">Sygnał P/N jest dostępny</string>
+<string name="ews_live_data_STAT_KL_R_EINGANG">Sygnał z zacisku R (stacyjka)</string>
+<string name="ews_live_data_STAT_KL_R_EINGANG_KBUS">Sygnał z zacisku R (K-BUS)</string>
+<string name="ews_live_data_STAT_ZV_GESICHERT">Centralny zamek jest zablokowany</string>
+<string name="ews_live_data_STAT_BC_CODE">Kod PIN komputera pokładowego jest aktywny</string>
+<string name="ews_live_data_STAT_KBUS_FREI_OHNE_KEY">Odblokowanie bez kluczyka przez K-BUS jest możliwe</string>
+<string name="ews_live_data_STAT_FREI_KBUS_UND_KEY">Odblokowanie przez kluczyk i kod PIN</string>
+<string name="ews_live_data_STAT_MOTORDREHZAHL_KBUS">Obroty silnika z K-BUS</string>
+<string name="ews_live_data_STAT_SCHLUESSEL_SENDET">Włożony kluczyk jest prawidłowy</string>
+<string name="ews_live_data_STAT_SCHLUESSEL_GESPERRT">Kluczyk jest zablokowany w EWS</string>
+<string name="ews_live_data_STAT_SCHLUESSEL_NIO_ID">Nieprawidłowe ID kluczyka</string>
+<string name="ews_live_data_STAT_SCHLUESSEL_NIO_PW">Nieprawidłowe hasło kluczyka</string>
+<string name="ews_live_data_STAT_SCHLUESSEL_NIO_WC">Nieprawidłowy kod zmienny (Rolling Code)</string>
+<string name="ews_live_data_STAT_KBUS_NOTWENDIG">Kluczyk wymaga kodu PIN</string>
+<string name="ews_live_data_STAT_VORGABE_DME">Wymuszenie sygnału do sterownika silnika (ECU)</string>
+<string name="ews_live_data_STAT_STAT_VORGABE_ANLASSERRELAIS">Wymuszenie przekaźnika rozrusznika</string>
+<string name="ews_live_data_STAT_STAT_VORGABE_DME_AUSFUEHREN">Sterownik silnika (ECU) odblokowany</string>
+<string name="ews_live_data_STAT_VORGABE_ANLASSERRELAIS_AUSFUEHREN">Przekaźnik rozrusznika odblokowany</string>
+<string name="ews_live_data_STAT_AKTUELLE_SCHLUESSEL_ID">ID kluczyka</string>
+<string name="ews_live_data_STAT_AKTUELLER_WC">Kod zmienny (Rolling Code)</string>
+<string name="ews_live_data_STAT_WEITERE_SELBSTINIT_KEYS">Niektóre kluczyki oczekują na inicjalizację</string>
+<string name="ews_live_data_value_true">tak</string>
+<string name="ews_live_data_value_false">nie</string>
 
 </resources>

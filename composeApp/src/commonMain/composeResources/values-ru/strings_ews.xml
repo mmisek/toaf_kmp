@@ -64,5 +64,36 @@
     <string name="ews_coding_starter_cut_off_time">Время отключения стартера</string>
     <string name="ews_coding_immobilizer_activation">Активация иммобилайзера</string>
     <string name="ews_coding_interface_stepping_crit">Критерии пошагового интерфейса</string>
+<string name="ews_live_data_STAT_ANLASSER_FREIGESCHALTET">Стартер разблокирован</string>
+<string name="ews_live_data_STAT_ANLASSER_AUS_DREHZAH">Стартер заблокирован по оборотам (RPM)</string>
+<string name="ews_live_data_STAT_ANLASSER_AUS_P_N">Стартер заблокирован положением АКПП (P/N)</string>
+<string name="ews_live_data_STAT_ANLASSER_AUS_ZV">Стартер заблокирован центральным замком/сигнализацией</string>
+<string name="ews_live_data_STAT_ANLASSER_AUS_BC">Стартер заблокирован бортовым компьютером</string>
+<string name="ews_live_data_STAT_STAT_WEITERE_SELBSTINIT_KEYS">Можно инициализировать новые ключи</string>
+<string name="ews_live_data_STAT_DME_LEITUNG_FREI">Запуск возможен</string>
+<string name="ews_live_data_STAT_EWS_JUNGFRAEULICH">EWS абсолютно новый (чистый)</string>
+<string name="ews_live_data_STAT_P_N_EINGANG">Сигнал P/N доступен</string>
+<string name="ews_live_data_STAT_KL_R_EINGANG">Сигнал с клеммы R</string>
+<string name="ews_live_data_STAT_KL_R_EINGANG_KBUS">Сигнал с клеммы R (K-BUS)</string>
+<string name="ews_live_data_STAT_ZV_GESICHERT">Центральный замок заблокирован</string>
+<string name="ews_live_data_STAT_BC_CODE">PIN-код бортового компьютера активен</string>
+<string name="ews_live_data_STAT_KBUS_FREI_OHNE_KEY">Возможна разблокировка без ключа по K-BUS</string>
+<string name="ews_live_data_STAT_FREI_KBUS_UND_KEY">Разблокировка ключом и PIN-кодом</string>
+<string name="ews_live_data_STAT_MOTORDREHZAHL_KBUS">Обороты двигателя по K-BUS</string>
+<string name="ews_live_data_STAT_SCHLUESSEL_SENDET">Вставленный ключ правильный</string>
+<string name="ews_live_data_STAT_SCHLUESSEL_GESPERRT">Ключ заблокирован в EWS</string>
+<string name="ews_live_data_STAT_SCHLUESSEL_NIO_ID">Неверный ID ключа</string>
+<string name="ews_live_data_STAT_SCHLUESSEL_NIO_PW">Неверный пароль ключа</string>
+<string name="ews_live_data_STAT_SCHLUESSEL_NIO_WC">Неверный плавающий код (Rolling Code)</string>
+<string name="ews_live_data_STAT_KBUS_NOTWENDIG">Ключу нужен PIN-код</string>
+<string name="ews_live_data_STAT_VORGABE_DME">Принудительная подача сигнала на ЭБУ (ECU)</string>
+<string name="ews_live_data_STAT_STAT_VORGABE_ANLASSERRELAIS">Принудительное включение реле стартера</string>
+<string name="ews_live_data_STAT_STAT_VORGABE_DME_AUSFUEHREN">ЭБУ (ECU) разблокирован</string>
+<string name="ews_live_data_STAT_VORGABE_ANLASSERRELAIS_AUSFUEHREN">Реле стартера разблокировано</string>
+<string name="ews_live_data_STAT_AKTUELLE_SCHLUESSEL_ID">ID ключа</string>
+<string name="ews_live_data_STAT_AKTUELLER_WC">Плавающий код (Rolling Code)</string>
+<string name="ews_live_data_STAT_WEITERE_SELBSTINIT_KEYS">Некоторые ключи ожидают инициализации</string>
+<string name="ews_live_data_value_true">истина</string>
+<string name="ews_live_data_value_false">ложь</string>
 
 </resources>

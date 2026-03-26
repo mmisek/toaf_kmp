@@ -4,12 +4,14 @@ import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.coding.ZcsCoding
 import pl.misek.toafmobile.generated.ResourceHelper
 import pl.misek.toafmobile.koin.KoinNames
+import pl.misek.toafmobile.livedata.LiveDataElement
 import pl.misek.toafmobile.modules.ModuleDS2
 import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.ModulesFunction
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.ModuleAddress
 import pl.misek.toafmobile.modules.interfaces.IModuleCoding
+import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.modules.interfaces.IModuleZCS
 import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
@@ -22,7 +24,7 @@ class ModuleEWS(protocolDS2: ProtocolDS2?) :
         ModuleAddress.MODULE_EWS,
         listOf(CarType.R40, CarType.L322)
     ),
-    IModuleZCS, IModuleCoding {
+    IModuleZCS, IModuleCoding, IModuleLiveData {
     override fun getKoinName() = KoinNames.ModuleR40Ews
 
     override fun getImageResource() = Res.drawable.module_ews
@@ -117,5 +119,21 @@ class ModuleEWS(protocolDS2: ProtocolDS2?) :
                 ((message.answer[8].toInt() and 0xFF) shl 16) or ((message.answer[7].toInt() and 0xFF) shl 8) or (message.answer[6].toInt() and 0xFF)
             return String.format("%d", odometer)
         } else return null
+    }
+
+    override suspend fun readLiveData(): Map<Int, Any>? {
+        val message = interfaceWrite(byteArrayOf(0x6B))
+        if (message.isValid) {
+            val result: MutableMap<Int, Any> = HashMap()
+            result[0x00] = message.answer.copyOfRange(3, message.answer.size)
+            result[0x01] = message.answer.copyOfRange(3 + 0x04,0x0D).joinToString("") {"%02X".format(it)  }
+            result[0x02] = message.answer.copyOfRange(3 + 0x0E, 0x19).joinToString("") {"%02X".format(it)  }
+            return result
+        }
+        return null
+    }
+
+    override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean {
+        return interfaceWrite(byteArrayOf(0x00)).isValid
     }
 }

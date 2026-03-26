@@ -1,0 +1,500 @@
+{
+  "livedata": [
+    {
+      "name": "STAT_ANLASSER_FREIGESCHALTET",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_ANLASSER_AUS_DREHZAH",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_ANLASSER_AUS_P_N",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_ANLASSER_AUS_ZV",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_ANLASSER_AUS_BC",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_WEITERE_SELBSTINIT_KEYS",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_DME_LEITUNG_FREI",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_EWS_JUNGFRAEULICH",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_P_N_EINGANG",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_KL_R_EINGANG",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_KL_R_EINGANG_KBUS",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_ZV_GESICHERT",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_BC_CODE",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_KBUS_FREI_OHNE_KEY",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_FREI_KBUS_UND_KEY",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_MOTORDREHZAHL_KBUS",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0xFF",
+      "factor_a": "3.3333",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "STAT_SCHLUESSEL_SENDET",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_SCHLUESSEL_GESPERRT",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_SCHLUESSEL_NIO_ID",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_SCHLUESSEL_NIO_PW",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_SCHLUESSEL_NIO_WC",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_KBUS_NOTWENDIG",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_VORGABE_DME",
+      "block": "0x00",
+      "byte": "0x1A",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_VORGABE_ANLASSERRELAIS",
+      "block": "0x00",
+      "byte": "0x1A",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_VORGABE_DME_AUSFUEHREN",
+      "block": "0x00",
+      "byte": "0x1A",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+        ]
+    },
+    {
+      "name": "STAT_VORGABE_ANLASSERRELAIS_AUSFUEHREN",
+      "block": "0x00",
+      "byte": "0x1A",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+	]
+    },
+    {
+      "name": "STAT_AKTUELLE_SCHLUESSEL_ID",
+      "block": "0x01",
+      "byte": "0x04",
+      "format" : "String"
+    },
+    {
+      "name": "STAT_AKTUELLER_WC",
+      "block": "0x02",
+      "byte": "0x0E",
+      "format" : "String"
+    }
+  ]
+}

@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.livedata.LiveDataElement
+import pl.misek.toafmobile.livedata.LiveDataFormat
 import pl.misek.toafmobile.livedata.LiveDataResultElement
 import pl.misek.toafmobile.modules.interfaces.IModule
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
@@ -102,45 +103,52 @@ class LiveDateViewModel(
         }
     }
 
-    private fun calculateLiveData(liveData : Map<Int, ByteArray>?) : List<LiveDataResultElement>
+    private fun calculateLiveData(liveData : Map<Int, Any>?) : List<LiveDataResultElement>
     {
         val result = mutableListOf<LiveDataResultElement>()
 
         for (liveDataElement in liveDataElements)
         {
+            var staticValue : StringResource? = null
             var valueWithoutUnit = ""
             var formatedValue = ""
             var rawValue  = 0f
             var mask = liveDataElement.mask
             val block = liveData?.get(liveDataElement.block) ?: break
             val byteInBlock = liveDataElement.byteInBlock
-            val tempByteValue = block.copyOfRange(
-                byteInBlock,
-                byteInBlock + calculateLengthFromMask(mask)
-            )
+            if (liveDataElement.liveDataFormat == LiveDataFormat.Standard)
+            {
+                val tempByteValue = (block as ByteArray).copyOfRange(
+                    byteInBlock,
+                    byteInBlock + calculateLengthFromMask(mask)
+                )
 
-            var tempValue = if (liveDataElement.u2) {
-                val paddledBytes = ByteArray(8)
-                tempByteValue.copyInto(paddledBytes, destinationOffset =  8 - tempByteValue.size)
-                ByteBuffer.wrap(paddledBytes).getLong()
-            }
-            else
-                convertToLong(tempByteValue)
-            tempValue = tempValue and mask
+                var tempValue = if (liveDataElement.u2) {
+                    val paddledBytes = ByteArray(8)
+                    tempByteValue.copyInto(paddledBytes, destinationOffset =  8 - tempByteValue.size)
+                    ByteBuffer.wrap(paddledBytes).getLong()
+                }
+                else
+                    convertToLong(tempByteValue)
+                tempValue = tempValue and mask
 
-            while ((mask and 0x01L) != 0x01L) {
-                mask = mask shr 0x01
-                tempValue = tempValue shr 0x01
+                while ((mask and 0x01L) != 0x01L) {
+                    mask = mask shr 0x01
+                    tempValue = tempValue shr 0x01
+                }
+                if (liveDataElement.values == null) {
+                    rawValue = liveDataElement.factorA * (if (liveDataElement.invertA) 1 / tempValue.toFloat() else tempValue.toFloat()) + liveDataElement.factorB
+                    valueWithoutUnit  = String.format(if (liveDataElement.unit != " ") "%.2f" else "%.0f", rawValue)
+                    formatedValue = if (liveDataElement.unit != " ") valueWithoutUnit + " ${liveDataElement.unit}" else valueWithoutUnit
+                } else {
+                    liveDataElement.values
+                        ?.find { it.first.toLong() == tempValue }
+                        .let { staticValue = it?.second }
+                }
             }
-            var staticValue : StringResource? = null
-            if (liveDataElement.values == null) {
-                rawValue = liveDataElement.factorA * (if (liveDataElement.invertA) 1 / tempValue.toFloat() else tempValue.toFloat()) + liveDataElement.factorB
-                valueWithoutUnit  = String.format(if (liveDataElement.unit != " ") "%.2f" else "%.0f", rawValue)
-                formatedValue = if (liveDataElement.unit != " ") valueWithoutUnit + " ${liveDataElement.unit}" else valueWithoutUnit
-            } else {
-                liveDataElement.values
-                    ?.find { it.first.toLong() == tempValue }
-                    .let { staticValue = it?.second }
+            else if (liveDataElement.liveDataFormat == LiveDataFormat.String)
+            {
+                formatedValue = liveData[liveDataElement.block].toString()
             }
             val liveDataResult = LiveDataResultElement(
                 name = liveDataElement.name,
@@ -171,15 +179,6 @@ class LiveDateViewModel(
     fun setLiveDataElements(elements : List<LiveDataElement>)
     {
         liveDataElements = elements
-    }
-
-    @Composable
-    fun setLiveDataActive(state: Boolean)
-    {
-        if (state)
-            startLiveData()
-        else
-            stopLiveData()
     }
 
     private fun calculateLengthFromMask(value :Long) : Int{

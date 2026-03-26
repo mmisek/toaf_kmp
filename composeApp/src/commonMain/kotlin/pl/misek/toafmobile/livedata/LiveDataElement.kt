@@ -21,14 +21,15 @@ data class LiveDataElementJson (
     var block: String? = "",
     var byte: String? = "",
     var mask: String? = "",
-    @SerialName("factor_a") var factorA: String? = "",
-    @SerialName("factor_b") var factorB: String? = "",
-    var unit: String = "",
+    @SerialName("factor_a") var factorA: String? = null,
+    @SerialName("factor_b") var factorB: String? = null,
+    var unit: String? = "",
     var values: MutableList<LiveDataElementValuesJson>? = null,
     var visible: String? = "",
     var u2: String? = "",
     var invertA: String? = "",
     var carType: MutableList<String>? = null,
+    var format: String? = ""
 )
 
 data class LiveDataElement(
@@ -47,5 +48,10 @@ data class LiveDataElement(
     var u2: Boolean = false,
     var invertA: Boolean = false,
     var supportedCarType: MutableList<CarType>? = null,
-    var formatedValue : String = ""
+    var formatedValue : String = "",
+    var liveDataFormat: LiveDataFormat = LiveDataFormat.Standard
 )
+enum class LiveDataFormat {
+    Standard,
+    String
+}
