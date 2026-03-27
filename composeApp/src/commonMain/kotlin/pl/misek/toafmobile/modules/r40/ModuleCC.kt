@@ -42,21 +42,17 @@ class ModuleCC(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
 
     override suspend fun getIdentification(): ModuleInfo? {
         var info: ModuleInfo? = null
-        run {
-            if (securityAccess03()) {
-                val message = kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x80.toByte()))
-                if (message.isValid) {
-                    val answer = message.answer
-                    info = ModuleInfo()
-                    info.id1 = String(answer.copyOfRange(6, 16))
-                    info.hw = (answer[16].toInt() and 0xFF).toByte().toHexString()
-                    info.ci = (answer[17].toInt() and 0xFF).toByte().toHexString()
-                    info.di = (answer[18].toInt() and 0xFF).toByte().toHexString()
-                    info.sw = (answer[26].toInt() and 0xFF).toByte().toHexString()
-                    info.producer = ModulesFunction.getProducer(answer[25].toInt())
-                    info.date = ResourceHelper.byteArrayToDate(answer.copyOfRange(21,24))
-                }
-            }
+        val message = kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x80.toByte()), 200)
+        if (message.isValid) {
+            val answer = message.answer
+            info = ModuleInfo()
+            info.id1 = String(answer.copyOfRange(6, 16))
+            info.hw = (answer[16].toInt() and 0xFF).toByte().toHexString()
+            info.ci = (answer[17].toInt() and 0xFF).toByte().toHexString()
+            info.di = (answer[18].toInt() and 0xFF).toByte().toHexString()
+            info.sw = (answer[26].toInt() and 0xFF).toByte().toHexString()
+            info.producer = ModulesFunction.getProducer(answer[25].toInt())
+            info.date = ResourceHelper.byteArrayToDate(answer.copyOfRange(21,25))
         }
         return info
     }
@@ -74,6 +70,7 @@ class ModuleCC(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
         if (securityAccess03()) {
             val message = kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x04), 500)
             if (message.isValid) {
+                result = ArrayList()
                 for (i in 0..1) {
                     val n = 0x01
                     for (j in 0..7) {
@@ -86,7 +83,6 @@ class ModuleCC(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
                             }
                             ResourceMapper.stringResource(String.format("cc_error_detail_%02X",0x05 + (message.answer[13].toInt() and 0xFF)))
                                 ?.let {errorDescription.add(Pair(it,null))}
-                            if (result == null) result = ArrayList()
                             result.add(
                                 ModuleError(
                                     ModuleAddress.MODULE_CC,
@@ -120,19 +116,20 @@ class ModuleCC(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
 
     override suspend fun readLiveData(): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = HashMap()
-        if (securityAccess03()) {
-            for (i in 0x05..0x7) {
-                val message =kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(i.toByte()))
-                if (message.isValid) {
-                    result[i] =
-                        message.answer.copyOfRange( 6, message.length - 1)
-                } else return null
-            }
-        } else return null
+        for (i in 0x05..0x7) {
+            val message =kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(i.toByte()))
+            if (message.isValid) {
+                result[i-0x05] =
+                    message.answer.copyOfRange( 6, message.length - 1)
+            } else return null
+        }
         return result
     }
 
-    override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>) = true
+    override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>) : Boolean
+    {
+        return securityAccess03()
+    }
 
     private suspend fun securityAccess03(): Boolean {
         val level :Byte = 0x03
