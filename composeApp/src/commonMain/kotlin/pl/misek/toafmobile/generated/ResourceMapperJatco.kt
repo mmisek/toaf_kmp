@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.generated
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import toafmobile.composeapp.generated.resources.*
 
@@ -104,7 +105,7 @@ object ResourceMapperJatco {
             "jatco_live_data_value_p_n_gear" -> Res.string.jatco_live_data_value_p_n_gear
             "jatco_live_data_value_r_gear" -> Res.string.jatco_live_data_value_r_gear
         else -> {
-          println("NO RESOURCE for : $resourceName")
+          Logger.e {"NO RESOURCE for : $resourceName" }
             null
         }
      }

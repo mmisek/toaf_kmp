@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.generated
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import toafmobile.composeapp.generated.resources.*
 
@@ -316,7 +317,7 @@ object ResourceMapperBcuL322 {
             "bcu_l322_error_fe" -> Res.string.bcu_l322_error_FE
             "bcu_l322_error_ff" -> Res.string.bcu_l322_error_FF
         else -> {
-          println("NO RESOURCE for : $resourceName")
+          Logger.e {"NO RESOURCE for : $resourceName" }
             null
         }
      }

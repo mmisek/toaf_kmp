@@ -47,6 +47,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
+import co.touchlab.kermit.Logger
 import io.sentry.BuildConfig
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.JsonNull
@@ -443,7 +444,7 @@ private suspend fun doBackup(toafApi : ToafApi, currentModule : IModule?, ewsMod
         }
         result = toafApi.addCoding(data)
     } catch (ex: Exception) {
-        println("$tag : ${ex.toString()}")
+        Logger.e {"$tag : ${ex.toString()}"}
     }
     return result
 }

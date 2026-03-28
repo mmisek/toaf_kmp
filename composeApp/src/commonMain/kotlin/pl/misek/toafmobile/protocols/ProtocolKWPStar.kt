@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.protocols
 
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.delay
 import pl.misek.toafmobile.interfaces.IInterfaceDevice
 import pl.misek.toafmobile.interfaces.IKWPInterfaceDevice
@@ -65,7 +66,7 @@ class ProtocolKWPStar(private var device: IInterfaceDevice?, private val useDela
                     val stringBuilder = StringBuilder()
                     for (b in message.wholeMessage!!)
                         stringBuilder.append(String.format("[%02X] ",b))
-                    println("$tag : $stringBuilder")
+                    Logger.i{"$tag : $stringBuilder"}
                 }
                 val shift = 0
                 //if (command == (byte)0x81)
@@ -83,7 +84,7 @@ class ProtocolKWPStar(private var device: IInterfaceDevice?, private val useDela
                         (message.answer[message.answer.size - 1] == (checksum.toInt() and 0xFF).toByte()) && (message.answerCode == (command + 0x40).toByte())
                 }
             } catch (ex: Exception) {
-                println("$tag : ${ex.toString()}")
+                Logger.e{"$tag : ${ex.toString()}"}
             }
         }
         return message

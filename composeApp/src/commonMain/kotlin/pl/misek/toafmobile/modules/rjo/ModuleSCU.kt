@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.rjo
 
+import co.touchlab.kermit.Logger
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.livedata.LiveDataElement
@@ -91,7 +92,7 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
                 }
             }
         } catch (ex: Exception) {
-            println("$tag : ${ex.toString()}")
+            Logger.e{"$tag : ${ex.toString()}"}
         }
 
         return info

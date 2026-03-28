@@ -3,6 +3,7 @@ package pl.misek.toafmobile.viewModels
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
@@ -72,7 +73,7 @@ class LiveDateViewModel(
                 file.bufferedWriter().use {writer ->
                     writer.write(header)
                     val startResult = liveDataModule.startLiveDataRead(liveDataElements = liveDataElements)
-                    println("$tag: LiveData start result - $startResult")
+                    Logger.i {"$tag: LiveData start result - $startResult"}
                     while (isActive.value) {
                         val oldChartResult = _liveDataChartResults.value
                         val newChartResult : MutableList<MutableList<Float>> = if (oldChartResult.isNotEmpty())

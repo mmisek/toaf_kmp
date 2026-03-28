@@ -108,15 +108,13 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
     }
 
     override suspend fun getOdometer(): String? {
-        val message = kwp!!.write(moduleAddress, 0xA2.toByte(), byteArrayOf())
-        if (message.isValid)
-            println("tag: ${String(message.answer.copyOfRange(6,message.answer.size -1))}")
+        //val message = kwp!!.write(moduleAddress, 0xA2.toByte(), byteArrayOf())
+        //if (message.isValid)
 
         /*
         for (x in 0x00.. 0xFF) {
             val message = kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(x.toByte()))
             if (message.isValid)
-                println("tag: ${String(message.answer.copyOfRange(6,message.answer.size -1))}")
         }*/
         return null
     }
@@ -171,7 +169,6 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
         val result: MutableMap<Int, ByteArray> = HashMap()
         for (b in liveDataBlocksToRead) {
             val message = kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(b), 100)
-            println("$tag: liveData read result - ${message.isValid}")
             if (message.isValid)
                 result[b.toInt()] =message.answer.copyOfRange(6, message.length - 1)
             else return null

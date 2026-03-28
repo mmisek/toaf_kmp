@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.generated
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import toafmobile.composeapp.generated.resources.*
 
@@ -55,7 +56,7 @@ object ResourceMapperCc {
             "cc_live_data_speed_greater_than_minimum" -> Res.string.cc_live_data_speed_greater_than_minimum
             "cc_live_data_test_completed" -> Res.string.cc_live_data_test_completed
         else -> {
-          println("NO RESOURCE for : $resourceName")
+          Logger.e {"NO RESOURCE for : $resourceName" }
             null
         }
      }

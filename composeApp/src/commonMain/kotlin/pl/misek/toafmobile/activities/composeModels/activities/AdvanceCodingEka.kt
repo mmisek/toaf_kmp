@@ -1,5 +1,7 @@
 package pl.misek.toafmobile.activities.composeModels.activities
 
+import pl.misek.toafmobile.PlatformType
+import pl.misek.toafmobile.getPlatformType
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -34,25 +36,19 @@ import pl.misek.toafmobile.activities.composeModels.dialogs.DialogNotFullVersion
 import pl.misek.toafmobile.activities.definitions.ToafStyles
 import pl.misek.toafmobile.billing.IToafBilling
 import pl.misek.toafmobile.tools.getPlatformActivity
-import pl.misek.toafmobile.database.Database
-import pl.misek.toafmobile.database.DatabaseSettingFields
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.modules.ModulesManager
 import pl.misek.toafmobile.modules.interfaces.IModuleEKA
-import pl.misek.toafmobile.network.ServerConnectionState
 import pl.misek.toafmobile.network.ToafApi
-import pl.misek.toafmobile.network.UserInfo
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 
 @Composable
 fun AdvanceCodingEka(
         koinModuleName : KoinNames,
-        userInfo : UserInfo,
         onShowResult : (result : Boolean, onSuccess : String?, onFail : String? ) -> Unit)
 {
     val scope = rememberCoroutineScope()
-    val database : Database = koinInject()
     val toafApi : ToafApi = koinInject()
     val toafBilling : IToafBilling = koinInject()
     val modulesManager : ModulesManager = koinInject()
@@ -67,6 +63,7 @@ fun AdvanceCodingEka(
     val ekaCodeWriteSuccessText = stringResource(Res.string.activity_advance_coding_eka_write_successful)
     val ekaCodeWriteFailText = stringResource(Res.string.activity_advance_coding_eka_write_error)
     val serverConnectionFailedText = stringResource(Res.string.server_connection_failed)
+    val useMobileVersionToBuyTokens = stringResource(Res.string.useMobileVersionToBuyTokens)
     val activity = getPlatformActivity()
     Surface(
         color = Color.Transparent,
@@ -94,18 +91,12 @@ fun AdvanceCodingEka(
                         {
                             ActionTypeEnum.ReadEkaCode -> {
                                 scope.launch {
-                                    val howMuchEkaCodes = database.getIntSettingValueByName(
-                                        DatabaseSettingFields.TOAF_EKA_CODES)
-                                    database.updateIntSettingByName(DatabaseSettingFields.TOAF_EKA_CODES,
-                                        if (howMuchEkaCodes == 0 ) 0 else  howMuchEkaCodes -1)
-                                    userInfo.ekaKeys -=1
-                                    toafApi.updateUserInfo(userInfo = userInfo)
+                                    val localUserInfo = toafApi.getUserInfo()
+                                    if (localUserInfo != null) {
+                                        localUserInfo.ekaKeys -= 1
+                                        toafApi.updateUserInfo(userInfo = localUserInfo)
+                                    }
                                 }
-                                onShowResult(
-                                    false,
-                                    null,
-                                    ekaCodeWriteFailText
-                                )
                             }
                             ActionTypeEnum.WriteEkaCode -> {
                                 onShowResult(
@@ -160,28 +151,23 @@ fun AdvanceCodingEka(
                 onClick = {
                     actionType = ActionTypeEnum.ReadEkaCode
                     action = {
-                        ekaCode = (currentModule as IModuleEKA).readEKACode()
-                    }
-                    if (userInfo.isFullVersion())
-                    {
-                        scope.launch {
-                            if (userInfo.ekaKeys == 0)
-                            {
+                        val localUserInfo = toafApi.getUserInfo()
+                        if (localUserInfo == null) {
+                            onShowResult(false,null, serverConnectionFailedText)
+                        }
+                        else if (localUserInfo.ekaKeys == 0) {
+                            if (getPlatformType() == PlatformType.Android) {
                                 toafBilling.buyElement(activity, ToafConstants.SKU_TOAF_EKA_CODE)
+                            } else {
+                                onShowResult(false, null, useMobileVersionToBuyTokens)
                             }
-                            else
-                            {
-                                if (userInfo.isLogged == ServerConnectionState.CONNECTED)
-                                    showProgressDialog = true
-                                else
-                                    onShowResult(false, null, serverConnectionFailedText)
-                            }
+
+                        }
+                        else {
+                            ekaCode = (currentModule as IModuleEKA).readEKACode()
                         }
                     }
-                    else
-                    {
-                        showFullVersionDialog = true
-                    }
+                    showProgressDialog = true
                 })
             ToafButtons.RedButton(
                 enabled = false,
@@ -215,5 +201,5 @@ private fun validateEkaCode(code : String?) : Boolean
 fun AdvanceCodingEkaPreview()
 {
     AdvanceCodingEka(
-        KoinNames.ModuleRJOScu, userInfo = UserInfo()){_,_,_ ->}
+        KoinNames.ModuleRJOScu){_,_,_ ->}
 }

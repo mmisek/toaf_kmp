@@ -20,6 +20,7 @@ import pl.misek.toafmobile.modules.interfaces.IModule
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.*
+import co.touchlab.kermit.Logger
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import org.jetbrains.compose.resources.StringResource
@@ -103,7 +104,7 @@ fun ActivityFlashProgrammingModel(moduleKoinName: KoinNames, onBackClick : () ->
                     is Float -> "%.2f".format(v)
                     is StringResource -> getString(state.parameter)
                     else -> {
-                        println("$tag : no format for data type ${v::class.simpleName}")
+                        Logger.e {"$tag : no format for data type ${v::class.simpleName}"}
                         ""
                     }
                 }
@@ -131,7 +132,6 @@ fun ActivityFlashProgrammingModel(moduleKoinName: KoinNames, onBackClick : () ->
                 withContext(Dispatchers.IO) {
                     val backupSuccess =
                         toafApi.uploadFlash(jsonObject, state.flashData.toByteArray())
-                    println("$tag: Flash file backup result : $backupSuccess")
                     statusText += String.format(backupFlashText, if (backupSuccess) successText else failText)
                 }
                 flashReadData = state.flashData.toByteArray()

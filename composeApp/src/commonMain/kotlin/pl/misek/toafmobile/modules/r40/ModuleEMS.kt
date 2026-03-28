@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.r40
 
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -169,7 +170,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                                 }
                             }
                         } else
-                            println("$tag : No freeze frame for code ${String.format("%04X", errorCode)}")
+                            Logger.e{"$tag : No freeze frame for code ${String.format("%04X", errorCode)}"}
                     }
                     if (result == null) result = ArrayList()
                     result.add(
@@ -250,7 +251,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
 
                 info.producer = ModulesFunction.getProducer(answer[171].toInt())
             } catch (ex: Exception) {
-                println("$tag : ${ex.toString()}")
+                Logger.e{"$tag : ${ex.toString()}"}
             }
         }
 
@@ -330,7 +331,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
     }
 
     private fun securityAccessCalc(seed: Int, level: Int): Int {
-        println("$tag : Security Access Seed - ${String.format("%04X", seed)}")
+        Logger.i{"$tag : Security Access Seed - ${String.format("%04X", seed)}"}
         var key = seed
         val n = when (level) {
             0x01 -> 3
@@ -472,7 +473,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                                     String.format("%02i:%02i:%02i", hours, minutes, seconds)))
                             _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_ecu_reset))
                         } catch (ex: Exception) {
-                            println("$tag : ${ex.toString()}")
+                            Logger.e{"$tag : ${ex.toString()}"}
                         }
                     } else {
                         _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
@@ -552,7 +553,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
             result = result.copyOfRange(0, (endAddress - startAddress).toInt())
             _programmingState.tryEmit(FlashProgrammingState.FlashData(result.toList(),moduleInfo,vin))
         } catch (ex: Exception) {
-            println("$tag : ${ex.toString()}")
+            Logger.e{"$tag : ${ex.toString()}"}
         }
     }
 
@@ -569,7 +570,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
             ),
             250
         )
-        println("$tag: ${(System.currentTimeMillis() - start)}")
+        Logger.i{"$tag: ${(System.currentTimeMillis() - start)}"}
         if (message.isValid) {
             return message.answer.copyOfRange(5, message.length - 1)
         }

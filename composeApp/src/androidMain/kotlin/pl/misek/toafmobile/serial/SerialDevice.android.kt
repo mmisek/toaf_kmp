@@ -2,6 +2,7 @@ package pl.misek.toafmobile.serial
 
 import android.hardware.usb.UsbDeviceConnection
 import android.hardware.usb.UsbManager
+import co.touchlab.kermit.Logger
 import com.hoho.android.usbserial.driver.UsbSerialDriver
 import com.hoho.android.usbserial.driver.UsbSerialPort
 import kotlinx.coroutines.delay
@@ -35,13 +36,13 @@ class AndroidSerialDevice (private val usbManager: UsbManager, private val _usbD
                         try {
                             delay(4)
                         } catch (ex: Exception) {
-                             println("$tag : ${ex.toString()}")
+                            Logger.e{"$tag : ${ex.toString()}"}
                         }
                     }
                 } else
                     _serialPort?.write(data, timeout?.toInt() ?: 0)
             } catch (ex: Exception) {
-               println("$tag : ${ex.toString()}")
+                Logger.e{"$tag : ${ex.toString()}"}
                 return null
             }
             delay(25)
@@ -60,9 +61,9 @@ class AndroidSerialDevice (private val usbManager: UsbManager, private val _usbD
                         } while (n > 0)
                         result = outputStream.toByteArray()
                     }
-                    println("$tag : Reading Time : $time")
+                    Logger.i{"$tag : Reading Time : $time"}
                 } catch (ex: Exception) {
-                   println("$tag : ${ex.toString()}")
+                    Logger.e{"$tag : ${ex.toString()}"}
                     result = null
                 }
                 return result
@@ -70,7 +71,7 @@ class AndroidSerialDevice (private val usbManager: UsbManager, private val _usbD
                 try {
                     _serialPort?.purgeHwBuffers(true, true)
                 } catch (ex: Exception) {
-                   println("$tag : ${ex.toString()}")
+                    Logger.e{"$tag : ${ex.toString()}"}
                 }
             }
 
@@ -84,7 +85,7 @@ class AndroidSerialDevice (private val usbManager: UsbManager, private val _usbD
             try {
                 _serialPort?.close()
             } catch (ex: Exception) {
-               println("$tag : ${ex.toString()}")
+                Logger.e{"$tag : ${ex.toString()}"}
             }
         }
     }
@@ -105,7 +106,7 @@ class AndroidSerialDevice (private val usbManager: UsbManager, private val _usbD
                         UsbSerialPort.PARITY_EVEN
                     )
                 } catch (ex: Exception) {
-                   println("$tag : ${ex.toString()}")
+                    Logger.e{"$tag : ${ex.toString()}"}
                 }
             }
         }
@@ -124,7 +125,7 @@ class AndroidSerialDevice (private val usbManager: UsbManager, private val _usbD
                 UsbSerialPort.PARITY_EVEN
             )
         } catch (ex: Exception) {
-           println("$tag : ${ex.toString()}")
+            Logger.e{"$tag : ${ex.toString()}"}
         }
     }
 
@@ -140,7 +141,7 @@ class AndroidSerialDevice (private val usbManager: UsbManager, private val _usbD
                 )
                 result = true
             } catch (ex: Exception) {
-               println("$tag : ${ex.toString()}")
+                Logger.e{"$tag : ${ex.toString()}"}
             }
         }
 
@@ -162,7 +163,7 @@ class AndroidSerialDevice (private val usbManager: UsbManager, private val _usbD
 
             result = true
         } catch (ex: Exception) {
-            println("$tag : ${ex.message}")
+            Logger.e{"$tag : ${ex.message}"}
         }
 
         return result
@@ -179,7 +180,7 @@ class AndroidSerialDevice (private val usbManager: UsbManager, private val _usbD
                         UsbSerialPort.PARITY_EVEN
                     )
                 } catch (ex: Exception) {
-                   println("$tag : ${ex.toString()}")
+                    Logger.e{"$tag : ${ex.toString()}"}
                 }
             }
         }

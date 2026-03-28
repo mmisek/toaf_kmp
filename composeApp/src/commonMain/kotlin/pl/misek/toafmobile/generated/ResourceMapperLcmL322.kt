@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.generated
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import toafmobile.composeapp.generated.resources.*
 
@@ -353,7 +354,7 @@ object ResourceMapperLcmL322 {
             "lcm_l322_live_data_turn_right_front" -> Res.string.lcm_l322_live_data_turn_right_front
             "lcm_l322_live_data_turn_right_rear" -> Res.string.lcm_l322_live_data_turn_right_rear
         else -> {
-          println("NO RESOURCE for : $resourceName")
+          Logger.e {"NO RESOURCE for : $resourceName" }
             null
         }
      }

@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.generated
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import toafmobile.composeapp.generated.resources.*
 
@@ -51,7 +52,7 @@ object ResourceMapperShd {
             "shd_live_data_under_voltage_detection" -> Res.string.shd_live_data_under_voltage_detection
             "shd_live_data_watchdog_trigger_signal" -> Res.string.shd_live_data_watchdog_trigger_signal
         else -> {
-          println("NO RESOURCE for : $resourceName")
+          Logger.e {"NO RESOURCE for : $resourceName" }
             null
         }
      }

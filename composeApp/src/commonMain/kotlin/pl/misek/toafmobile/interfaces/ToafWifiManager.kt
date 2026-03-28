@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -55,7 +56,7 @@ class ToafWifiManager {
                         devicesList.clear()
                         val ipList = wifiManager.scanNetwork()
                         for (ip in ipList) {
-                            println("Scan $ip to ToafWifiInterface")
+                            Logger.i{"Scan $ip to ToafWifiInterface"}
                             val twi = ToafWifiInterface(ipAddress = ip)
                             val info = twi.getDeviceInfo()
                             info?.let {

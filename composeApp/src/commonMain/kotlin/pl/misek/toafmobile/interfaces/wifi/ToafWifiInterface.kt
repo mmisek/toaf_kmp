@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.interfaces.wifi
 
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -51,7 +52,7 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
                     put("write_data", JsonArray(hexString.map { h-> JsonPrimitive(h) }))
                 }
             }
-            println("$tag : $jsonObject")
+            Logger.i{"$tag : $jsonObject"}
             val jsonObjectOutput = write("WRITE", jsonObject, timeout)
             try {
                 if (isValid(jsonObjectOutput))
@@ -65,7 +66,7 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
                     }
                 }
             } catch (ex: Exception) {
-                println("$tag: ${ex.toString()}")
+                Logger.e{"$tag: ${ex.toString()}"}
             }
             return@withContext null
         }
@@ -84,7 +85,7 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
             try {
                 return result["data"]?.jsonObject
             } catch (ex: Exception) {
-                println("$tag: ${ex.toString()}")
+                Logger.e{"$tag: ${ex.toString()}"}
             }
         }
         return null
@@ -105,7 +106,7 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
                 }
             }
         } catch (ex: Exception) {
-            println("$tag: ${ex.toString()}")
+            Logger.e{"$tag: ${ex.toString()}"}
         }
 
         return null
@@ -128,7 +129,7 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
                 }
             }
         } catch (ex: Exception) {
-            println("$tag: ${ex.toString()}")
+            Logger.e{"$tag: ${ex.toString()}"}
         }
         return result
     }
@@ -141,7 +142,7 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
             }
             isValid(write("CONFIG_SAVE", jsonObject))
         } catch (ex: Exception) {
-            println("$tag : ${ex.toString()}")
+            Logger.e{"$tag : ${ex.toString()}"}
             false
         }
     }
@@ -167,7 +168,7 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
                     }
                 }
             } catch (ex: Exception) {
-                println("$tag: ${ex.toString()}")
+                Logger.e{"$tag: ${ex.toString()}"}
                 return false
             }
         }
@@ -186,7 +187,7 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
             val size = resultData?.get("fileSize")?.jsonPrimitive?.content?.toInt()
             return isValid(resultData)  && size == sentBytes
         } catch (ex: Exception) {
-            println("$tag: ${ex.toString()}")
+            Logger.e{"$tag: ${ex.toString()}"}
             return false
         }
     }
@@ -226,7 +227,7 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
                 }
             }
         } catch (e: Exception) {
-            println("Error parsing JSON: ${e.message}")
+            Logger.e{"$tag: Error parsing JSON: ${e.message}"}
         }
 
         return false
@@ -241,7 +242,7 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
                 put("fast_init", isKwpStarFrame(data))
                 put("timeout", timeout)
             }
-            println("$tag : $jsonData")
+            Logger.i{"$tag : $jsonData"}
             connect("")
             if (socket == null || !socket!!.isConnected) {
                 return@withContext null
@@ -250,7 +251,7 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
                 outputStream?.write(jsonData.toString().toByteArray())
                 outputStream?.flush()
             } catch (ex : Exception) {
-                println("$tag : ${ex.toString()}")
+                Logger.e{"$tag : ${ex.toString()}"}
                 disconnect()
                 connect("")
                 outputStream?.write(jsonData.toString().toByteArray())
@@ -263,7 +264,7 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
             else
                 return@withContext null
         } catch (ex: Exception) {
-            println("$tag: ${ex.toString()}")
+            Logger.e{"$tag: ${ex.toString()}"}
             return@withContext null
         }
         finally {
@@ -287,7 +288,7 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
             inputStream = newSocket.getInputStream()
 
         } catch (ex: Exception) {
-            println("$tag: ${ex.toString()}")
+            Logger.e{"$tag: ${ex.toString()}"}
             disconnect()
             throw ex
         }
@@ -320,16 +321,16 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
                 delay(20)
             }
             val rawResponse = collector.toString("UTF-8").trim()
-            println("$tag : $rawResponse")
+            Logger.i{"$tag : $rawResponse"}
             if (rawResponse.isEmpty()) return@withContext null
             return@withContext try {
                 Json.parseToJsonElement(rawResponse).jsonObject
             }catch (ex: Exception) {
-                println("$tag: ${ex.toString()}")
+                Logger.e{"$tag: ${ex.toString()}"}
                 null
             }
         } catch (ex: Exception) {
-            println("$tag: ${ex.toString()}")
+            Logger.e{"$tag: ${ex.toString()}"}
             return@withContext null
         }
     }

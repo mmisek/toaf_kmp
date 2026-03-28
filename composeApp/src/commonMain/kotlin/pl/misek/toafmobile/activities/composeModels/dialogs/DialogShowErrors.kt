@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.definitions.ToafColors
@@ -105,7 +106,7 @@ fun ErrorItem(moduleError: ModuleError, showDetails : Boolean, id :Int, onItemCl
             is Int -> v.toString()
             is Float -> "%.2f".format(v)
             else -> {
-                println("$tag : no format for data type ${v::class.simpleName}")
+                Logger.e {"$tag : no format for data type ${v::class.simpleName}"}
                 ""
             }
         }

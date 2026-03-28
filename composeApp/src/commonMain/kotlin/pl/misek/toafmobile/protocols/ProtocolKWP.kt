@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.protocols
 
+import co.touchlab.kermit.Logger
 import pl.misek.toafmobile.interfaces.IInterfaceDevice
 import pl.misek.toafmobile.interfaces.IKWPInterfaceDevice
 
@@ -52,7 +53,7 @@ open class ProtocolKWP(private var device: IInterfaceDevice?, var useDelay: Bool
             for (b in message.wholeMessage!!) stringBuilder.append(String.format("[%02X] ", b))
         else
             for (b in message.message) stringBuilder.append(String.format("[%02X] ", b))
-        println("$tag: $stringBuilder")
+        Logger.i{"$tag: $stringBuilder"}
 
         return message
     }
@@ -102,7 +103,7 @@ open class ProtocolKWP(private var device: IInterfaceDevice?, var useDelay: Bool
                         (message.answer[message.answer.size - 1] == checkSum) && (message.answerCode == (command + 0x40).toByte())
                 }
             } catch (ex: Exception) {
-                println("$tag: ${ex.toString()}")
+                Logger.e{"$tag: ${ex.toString()}"}
                 message.isValid = false
             }
             return message

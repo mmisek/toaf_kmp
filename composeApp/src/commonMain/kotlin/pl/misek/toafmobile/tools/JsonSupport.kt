@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.tools
 
+import co.touchlab.kermit.Logger
 import kotlinx.serialization.json.Json
 import pl.misek.toafmobile.coding.CodingElement
 import pl.misek.toafmobile.coding.CodingElementContainerJson
@@ -138,7 +139,7 @@ object JsonSupport {
             }
         } catch (ex : Exception)
         {
-            println("$tag : getLiveDataElements(), ${ex.toString()}")
+            Logger.e{"$tag : getLiveDataElements(), ${ex.toString()}"}
             return null
         }
     }
@@ -181,7 +182,7 @@ object JsonSupport {
         }
         catch (ex : Exception)
         {
-            println("$tag : getControlElements, ${ex.toString()}")
+            Logger.e{"$tag : getControlElements, ${ex.toString()}"}
             return null
         }
     }
@@ -228,7 +229,7 @@ object JsonSupport {
         }
         catch (ex : Exception)
         {
-            println("$tag : getFreezeFrameList, ${ex.toString()}")
+            Logger.e{"$tag : getFreezeFrameList, ${ex.toString()}"}
             return null
         }
     }
@@ -271,7 +272,7 @@ object JsonSupport {
         }
         catch (ex : Exception)
         {
-            println("$tag : getFreezeFrameList, ${ex.toString()}")
+            Logger.e{"$tag : getFreezeFrameList, ${ex.toString()}"}
             return null
         }
     }
@@ -305,7 +306,7 @@ object JsonSupport {
                 }
             }.filter { x -> x.visible }
         } catch (ex: Exception) {
-            println("$tag : getFreezeFrameList, ${ex.toString()}")
+            Logger.e{"$tag : getFreezeFrameList, ${ex.toString()}"}
             return emptyList()
         }
     }
@@ -319,7 +320,7 @@ object JsonSupport {
                 value.toInt()
             }
         } catch (e: Exception) {
-            println("decodeHexToInt: ${e.toString()}")
+            Logger.e{"decodeHexToInt: ${e.toString()}"}
             0
         }
     }
@@ -332,7 +333,7 @@ object JsonSupport {
                 value.toLong()
             }
         } catch (e: Exception) {
-            println("decodeHexToLong: ${e.toString()}")
+            Logger.e{"decodeHexToLong: ${e.toString()}"}
             0
         }
     }

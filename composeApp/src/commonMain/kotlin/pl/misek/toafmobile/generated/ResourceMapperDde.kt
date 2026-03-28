@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.generated
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import toafmobile.composeapp.generated.resources.*
 
@@ -362,7 +363,7 @@ object ResourceMapperDde {
             "dde_live_data_zump_rail" -> Res.string.dde_live_data_zump_rail
             "dde_live_data_zumpqsoll" -> Res.string.dde_live_data_zumpqsoll
         else -> {
-          println("NO RESOURCE for : $resourceName")
+          Logger.e {"NO RESOURCE for : $resourceName" }
             null
         }
      }

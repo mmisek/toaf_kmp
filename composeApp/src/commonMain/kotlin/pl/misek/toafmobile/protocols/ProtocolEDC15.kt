@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.protocols
 
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -46,7 +47,7 @@ class ProtocolEDC15(private var device: IInterfaceDevice?) : IProtocol {
                         b
                     )
                 )
-                println("$tag $stringBuilder")
+                Logger.i{"$tag $stringBuilder"}
             }
             if (!message.isValid) {
                 Thread.sleep(300)
@@ -126,7 +127,7 @@ class ProtocolEDC15(private var device: IInterfaceDevice?) : IProtocol {
                         (message.answer[message.answer.size - 1] == (checksum.toInt() and 0xFF).toByte()) && (message.answerCode == (command + 0x40).toByte())
                 }
             } catch (ex: Exception) {
-                println("$tag: ${ex.toString()}")
+                Logger.e{"$tag: ${ex.toString()}"}
             }
         }
         return message

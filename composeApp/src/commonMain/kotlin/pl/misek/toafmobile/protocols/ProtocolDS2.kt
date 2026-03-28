@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.protocols
 
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import pl.misek.toafmobile.interfaces.IInterfaceDevice
@@ -47,7 +48,7 @@ class ProtocolDS2(private var device: IInterfaceDevice?) : IProtocol {
 
         message.message = dataToSend
         if (device == null) {
-            println("$tag No device : " + message.message.joinToString(" ") { "[%02X]".format(it) })
+            Logger.i{"$tag No device : " + message.message.joinToString(" ") { "[%02X]".format(it) }}
             return message
         }
 
@@ -57,7 +58,7 @@ class ProtocolDS2(private var device: IInterfaceDevice?) : IProtocol {
                 message.message.joinToString(" ") { "[%02X]".format(it) } +
                         " : " +
                         message.wholeMessage!!.joinToString(" ") { "[%02X]".format(it) }
-            println("$tag:  $messageToLog")
+            Logger.i{"$tag:  $messageToLog"}
         }
 
         try {

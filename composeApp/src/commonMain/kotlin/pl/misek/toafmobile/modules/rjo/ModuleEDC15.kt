@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.rjo
 
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -94,7 +95,7 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
                 }
             }
         } catch (ex: Exception) {
-            println("$tag : ${ex.toString()}")
+            Logger.e{"$tag : ${ex.toString()}"}
         }
         return info
     }
@@ -406,7 +407,7 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
                 try {
                     result = result.copyOfRange(0, (endAddress - startAddress).toInt())
                 } catch (ex: Exception) {
-                    println("$tag : ${ex.toString()}")
+                    Logger.e{"$tag : ${ex.toString()}"}
                 }
                 try {
                     val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.getDefault())
@@ -434,7 +435,7 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
                             Res.string.activity_flash_programming_backup_flash,
                             Res.string.activity_flash_programming_ok))
                 } catch (ex: Exception) {
-                    println("$tag : ${ex.toString()}")
+                    Logger.e{"$tag : ${ex.toString()}"}
                     _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                             Res.string.activity_flash_programming_backup_flash,
                             Res.string.activity_flash_programming_failed))

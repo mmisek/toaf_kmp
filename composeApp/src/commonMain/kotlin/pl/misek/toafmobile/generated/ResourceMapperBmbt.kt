@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.generated
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import toafmobile.composeapp.generated.resources.*
 
@@ -94,7 +95,7 @@ object ResourceMapperBmbt {
             "bmbt_live_data_value_several_buttons" -> Res.string.bmbt_live_data_value_several_buttons
             "bmbt_live_data_volume_encoder_steps" -> Res.string.bmbt_live_data_volume_encoder_steps
         else -> {
-          println("NO RESOURCE for : $resourceName")
+          Logger.e {"NO RESOURCE for : $resourceName" }
             null
         }
      }

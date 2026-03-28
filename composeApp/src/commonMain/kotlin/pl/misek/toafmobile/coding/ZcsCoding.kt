@@ -1,5 +1,7 @@
 package pl.misek.toafmobile.coding
 
+import co.touchlab.kermit.Logger
+
 class ZcsCoding {
     private var tag = "ZcsCoding"
     var gm: ByteArray = ByteArray(0)
@@ -20,7 +22,7 @@ class ZcsCoding {
             vn = data.copyOfRange(14, 19)
             vnChecksum = data[19]
         } catch (ex: Exception) {
-            println("$tag, ${ex.toString()}")
+            Logger.e {"$tag, ${ex.toString()}"}
         }
     }
 

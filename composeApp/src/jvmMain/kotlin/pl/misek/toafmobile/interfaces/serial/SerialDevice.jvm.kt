@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.interfaces.serial
 
+import co.touchlab.kermit.Logger
 import com.fazecast.jSerialComm.SerialPort
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -34,13 +35,13 @@ class DesktopSerialDevice : ISerialDevice
                         try {
                             delay(4)
                         } catch (ex: Exception) {
-                             println("$tag : ${ex.toString()}")
+                            Logger.e{"$tag : ${ex.toString()}"}
                         }
                     }
                 } else
                     _serialPort?.writeBytes(data, data?.size ?: 0)
             } catch (ex: Exception) {
-               println("$tag : ${ex.toString()}")
+                Logger.e{"$tag : ${ex.toString()}"}
                 return@withContext null
             }
             delay(timeout ?: 50)
@@ -59,9 +60,9 @@ class DesktopSerialDevice : ISerialDevice
                         } while (n > 0)
                         result = outputStream.toByteArray()
                     }
-                    println("$tag : Reading Time : $time")
+                    Logger.i{"$tag : Reading Time : $time"}
                 } catch (ex: Exception) {
-                   println("$tag : ${ex.toString()}")
+                    Logger.e{"$tag : ${ex.toString()}"}
                     result = null
                 }
                 return@withContext result
@@ -69,7 +70,7 @@ class DesktopSerialDevice : ISerialDevice
                 try {
                     _serialPort?.flushIOBuffers()
                 } catch (ex: Exception) {
-                   println("$tag : ${ex.toString()}")
+                    Logger.e{"$tag : ${ex.toString()}"}
                 }
             }
 
@@ -83,7 +84,7 @@ class DesktopSerialDevice : ISerialDevice
             try {
                 _serialPort?.closePort()
             } catch (ex: Exception) {
-               println("$tag : ${ex.toString()}")
+                Logger.e{"$tag : ${ex.toString()}"}
             }
         }
     }
@@ -101,7 +102,7 @@ class DesktopSerialDevice : ISerialDevice
                 it.numStopBits = SerialPort.ONE_STOP_BIT
                 it.setComPortTimeouts(SerialPort.TIMEOUT_READ_BLOCKING, 25,0)
                 if (!it.openPort())
-                    println("$tag : failed to open $deviceName")
+                    Logger.e{"$tag : failed to open $deviceName"}
             }
         }
     }
@@ -119,7 +120,7 @@ class DesktopSerialDevice : ISerialDevice
                 it.numDataBits = 8
             }
         } catch (ex: Exception) {
-           println("$tag : ${ex.toString()}")
+            Logger.e{"$tag : ${ex.toString()}"}
         }
     }
 
@@ -136,7 +137,7 @@ class DesktopSerialDevice : ISerialDevice
                 }
                 result = true
             } catch (ex: Exception) {
-               println("$tag : ${ex.toString()}")
+                Logger.e{"$tag : ${ex.toString()}"}
             }
         }
 
@@ -159,7 +160,7 @@ class DesktopSerialDevice : ISerialDevice
             _serialPort?.flushIOBuffers()
             result = true
         } catch (ex: Exception) {
-            println("$tag : ${ex.message}")
+            Logger.e{"$tag : ${ex.message}"}
         }
 
         return result

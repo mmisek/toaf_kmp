@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.generated
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import toafmobile.composeapp.generated.resources.*
 
@@ -39,7 +40,7 @@ object ResourceMapperActivityFlashPrograming {
             "activity_flash_programming_wrong_file_size" -> Res.string.activity_flash_programming_wrong_file_size
             "activity_flash_read_identification" -> Res.string.activity_flash_read_identification
         else -> {
-          println("NO RESOURCE for : $resourceName")
+          Logger.e {"NO RESOURCE for : $resourceName" }
             null
         }
      }

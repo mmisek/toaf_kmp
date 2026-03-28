@@ -130,8 +130,6 @@ fun AdvanceCodingBcuKeys(
                             val localUserInfo = toafApi.getUserInfo()
                             if (localUserInfo == null)
                                 onShowResult(false,null, serverConnectionFailedText)
-                            else if (localUserInfo.isLogged != ServerConnectionState.CONNECTED)
-                                onShowResult(false,null, serverConnectionFailedText)
                             else if (localUserInfo.bcuKeys == 0) {
                                 if (getPlatformType() == PlatformType.Android) {
                                     toafBilling.buyElement(

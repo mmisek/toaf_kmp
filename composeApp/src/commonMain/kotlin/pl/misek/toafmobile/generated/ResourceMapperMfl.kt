@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.generated
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import toafmobile.composeapp.generated.resources.*
 
@@ -31,7 +32,7 @@ object ResourceMapperMfl {
             "mfl_live_data_radio_control_present" -> Res.string.mfl_live_data_radio_control_present
             "mfl_live_data_telephone_control_present" -> Res.string.mfl_live_data_telephone_control_present
         else -> {
-          println("NO RESOURCE for : $resourceName")
+          Logger.e {"NO RESOURCE for : $resourceName" }
             null
         }
      }

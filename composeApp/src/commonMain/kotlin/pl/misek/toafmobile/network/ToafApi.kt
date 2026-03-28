@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.network
 
+import co.touchlab.kermit.Logger
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.timeout
@@ -32,7 +33,7 @@ class ToafApi(private val client: HttpClient) {
             else
                 ServerConnectionState.DISCONNECTED
         } catch (ex: Exception) {
-            println("$tag: ${ex.message ?: ex.stackTraceToString()}")
+            Logger.e{"$tag: ${ex.toString()}"}
             ServerConnectionState.DISCONNECTED
         }
     }
@@ -48,7 +49,7 @@ class ToafApi(private val client: HttpClient) {
                 body.message.firstOrNull()
             } else null
         } catch (ex: Exception) {
-            println("$tag: $ex")
+            Logger.e{"$tag: $ex"}
             null
         }
     }
@@ -65,7 +66,7 @@ class ToafApi(private val client: HttpClient) {
                 message.message
             } else null
         } catch (ex: Exception) {
-            println("$tag: $ex")
+            Logger.e{"$tag: $ex"}
             null
         }
     }
@@ -78,7 +79,7 @@ class ToafApi(private val client: HttpClient) {
             }
             response.status == HttpStatusCode.OK
         } catch (ex: Exception) {
-            println("$tag: $ex")
+            Logger.e{"$tag: $ex"}
             false
         }
     }
@@ -88,7 +89,7 @@ class ToafApi(private val client: HttpClient) {
             val response = client.post("$url/user/delete/")
             response.status == HttpStatusCode.OK
         } catch (ex: Exception) {
-            println("$tag: $ex")
+            Logger.e{"$tag: $ex"}
             false
         }
     }
@@ -101,7 +102,7 @@ class ToafApi(private val client: HttpClient) {
             }
             response.status == HttpStatusCode.OK
         } catch (ex: Exception) {
-            println("$tag: $ex")
+            Logger.e{"$tag: $ex"}
             false
         }
     }
@@ -114,7 +115,7 @@ class ToafApi(private val client: HttpClient) {
             }
             response.status == HttpStatusCode.OK
         } catch (ex: Exception) {
-            println("$tag: $ex")
+            Logger.e{"$tag: $ex"}
             false
         }
     }
@@ -130,7 +131,7 @@ class ToafApi(private val client: HttpClient) {
                 userInfo
             } else null
         } catch (ex: Exception) {
-            println("$tag: $ex")
+            Logger.e{"$tag: $ex"}
             null
         }
     }
@@ -143,7 +144,7 @@ class ToafApi(private val client: HttpClient) {
             }
             response.status == HttpStatusCode.OK
         } catch (ex: Exception) {
-            println("$tag: $ex")
+            Logger.e{"$tag: $ex"}
             false
         }
     }
@@ -156,7 +157,7 @@ class ToafApi(private val client: HttpClient) {
             }
             response.status == HttpStatusCode.OK
         } catch (ex: Exception) {
-            println("$tag: $ex")
+            Logger.e{"$tag: $ex"}
             false
         }
     }
@@ -174,7 +175,7 @@ class ToafApi(private val client: HttpClient) {
             }
             response.status == HttpStatusCode.OK
         } catch (ex: Exception) {
-            println("$tag: $ex")
+            Logger.e{"$tag: $ex"}
             false
         }
     }
@@ -200,7 +201,7 @@ class ToafApi(private val client: HttpClient) {
             }
             response.status == HttpStatusCode.OK
         } catch (ex: Exception) {
-            println("$tag: $ex")
+            Logger.e{"$tag: $ex"}
             false
         }
     }
@@ -215,7 +216,7 @@ class ToafApi(private val client: HttpClient) {
                 response.body<ToafWifiUpdates>()
             else null
         } catch (ex: Exception) {
-            println("$tag: $ex")
+            Logger.e{"$tag: $ex"}
             null
         }
     }
@@ -230,7 +231,7 @@ class ToafApi(private val client: HttpClient) {
                 response.body<List<ToafWifiUpdateFiles?>>()
             else null
         } catch (ex: Exception) {
-            println("$tag: $ex")
+            Logger.e{"$tag: $ex"}
             null
         }
     }
@@ -243,7 +244,7 @@ class ToafApi(private val client: HttpClient) {
             }
             response.status == HttpStatusCode.OK
         } catch (ex: Exception) {
-            println("$tag: $ex")
+            Logger.e{"$tag: $ex"}
             false
         }
     }
@@ -256,7 +257,7 @@ class ToafApi(private val client: HttpClient) {
             }
             response.status == HttpStatusCode.OK
         } catch (ex: Exception) {
-            println("$tag: $ex")
+            Logger.e{"$tag: $ex"}
             false
         }
     }

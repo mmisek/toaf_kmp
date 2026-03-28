@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.generated
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import toafmobile.composeapp.generated.resources.*
 
@@ -67,7 +68,7 @@ object ResourceMapperVideo {
             "video_live_data_value_signal_too_low" -> Res.string.video_live_data_value_signal_too_low
             "video_live_data_x_sync" -> Res.string.video_live_data_x_sync
         else -> {
-          println("NO RESOURCE for : $resourceName")
+          Logger.e {"NO RESOURCE for : $resourceName" }
             null
         }
      }

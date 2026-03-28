@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.generated
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import toafmobile.composeapp.generated.resources.*
 
@@ -122,7 +123,7 @@ object ResourceMapperSmac {
             "smac_error_sporadic" -> Res.string.smac_error_sporadic
             "smac_error_static" -> Res.string.smac_error_static
         else -> {
-          println("NO RESOURCE for : $resourceName")
+          Logger.e {"NO RESOURCE for : $resourceName" }
             null
         }
      }

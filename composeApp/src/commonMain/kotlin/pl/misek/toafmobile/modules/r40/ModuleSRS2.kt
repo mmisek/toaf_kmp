@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.r40
 
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -45,13 +46,9 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
     }
 
     private suspend fun testerPresent(): Boolean {
-        println("TESTER PRESENT : $lastMessageTime, $testerPresentJobSuspend")
-        println("TESTER PRESENT :  ${System.currentTimeMillis() - lastMessageTime}")
         var testerPresentResult = true
         if (lastMessageTime == 0L) {
-            println("$tag : fastInit()")
             (protocolKWPStar?.getDevice() as? IKWPInterfaceDevice)?.kwpFastInit()
-            println("$tag : first testerPresent()")
             testerPresentResult =
                 kwp!!.write(moduleAddress, 0x81.toByte(), byteArrayOf(), 200).isValid
         }
@@ -61,25 +58,11 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
             testerPresentJob?.cancel()
             testerPresentJob = scope.launch {
                 while (System.currentTimeMillis() - lastMessageTime < 30_000) {
-                    println("While : ")
-                    println("$tag : ${System.currentTimeMillis() - lastMessageTime}")
                     delay(3000)
-                    println("testerPresentJobSuspend : $testerPresentJobSuspend")
                     if (!testerPresentJobSuspend) {
-                        println("$tag : repeat testerPresent()")
                         kwp!!.write(moduleAddress, 0x81.toByte(), byteArrayOf(), 300)
-                        /*
-                        if (!kwp!!.write(moduleAddress, 0x81.toByte(), byteArrayOf(), 300).isValid)
-                        {
-                            println("$tag : No result from testerPresent, set lastMessageTime = 0L")
-                            lastMessageTime = 0L
-                            testerPresent()
-                        }*/
                     }
                 }
-                println("End While")
-                println("$tag : ${System.currentTimeMillis() - lastMessageTime}")
-                println("$tag : set lastMessageTime = 0L")
                 lastMessageTime = 0L
             }
         }
@@ -99,7 +82,6 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
     override fun getModuleDescription() = Res.string.module_description_srs2
 
     override suspend fun getIdentification(): ModuleInfo? {
-        println("$tag : getIdentification()")
         var info : ModuleInfo? = null
         if (testerPresent())
         {
@@ -128,7 +110,6 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
     }
 
     private suspend fun getSerialNumber(): String {
-        println("$tag : getSerialNumber()")
         var result = ""
         testerPresentJobSuspend = true
         val message = kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x81.toByte()), 200)
@@ -147,7 +128,6 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
     }
 
     override suspend fun getVIN(): String? {
-        println("$tag : getVIN()")
         var result : String? = null
         testerPresentJobSuspend = true
         if (!testerPresent()) return null
@@ -163,12 +143,10 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
     }
 
     override suspend fun getOdometer(): String? {
-        println("$tag : getOdometer()")
         return null
     }
 
     override suspend fun getAllErrors(): List<ModuleError>? {
-        println("$tag : getAllErrors()")
         var result: MutableList<ModuleError>? = null
         testerPresentJobSuspend = true
         if (!testerPresent()) return null
@@ -197,7 +175,6 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
     }
 
     override suspend fun clearAllErrors(): Boolean {
-        println("$tag : clearAllErrors()")
         testerPresentJobSuspend = true
         if (!testerPresent()) return false
         val result = kwp!!.write(
@@ -213,12 +190,10 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
 
     override suspend fun reset(): Boolean {
         lastMessageTime = System.currentTimeMillis()
-        println("$tag : reset()")
         return kwp!!.write(moduleAddress, 0x11.toByte(), byteArrayOf(0x01)).isValid
     }
 
     override suspend fun readCoding(): List<ByteArray>? {
-        println("$tag : readCoding()")
         var result: MutableList<ByteArray>? = null
         testerPresentJobSuspend = true
         if (!testerPresent()) return null
@@ -242,7 +217,6 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
 
     override suspend fun writeCoding(dataToSave: List<ByteArray>): Boolean {
         lastMessageTime = System.currentTimeMillis()
-        println("$tag : writeCoding()")
         testerPresentJobSuspend = true
         if (!testerPresent()) return false
         if (!securityAccess()){
@@ -256,7 +230,6 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
     }
 
     private suspend fun securityAccess(): Boolean {
-        println("$tag : securityAccess()")
         var result = false
         val message = kwp!!.write(moduleAddress, 0x27.toByte(), byteArrayOf(), 200)
         if (message.isValid) {
@@ -294,7 +267,6 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
     override fun getVinLength(): Int = 17
 
     override suspend fun writeVIN(newVin: String): Boolean {
-        println("$tag : writeVin()")
         testerPresentJobSuspend = true
         if (!testerPresent()) return false
         if (!securityAccess()) {

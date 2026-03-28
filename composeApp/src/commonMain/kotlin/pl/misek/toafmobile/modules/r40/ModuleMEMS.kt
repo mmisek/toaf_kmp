@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.r40
 
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -208,7 +209,7 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
 
                 info.serial = String(message.answer.copyOfRange( 36, 46))
             } catch (ex: Exception) {
-                println("#$tag : ${ex.toString()}")
+                Logger.e{"$tag : ${ex.toString()}"}
             }
         }
         message = kwp.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x32.toByte()), 1000)
@@ -349,7 +350,7 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
                 try {
                     result = ZcsCoding(message.answer.copyOfRange(6, 26))
                 } catch (ex: Exception) {
-                    println("$tag : ${ex.toString()}")
+                    Logger.e{"$tag : ${ex.toString()}"}
                 }
             }
         }
@@ -531,7 +532,7 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
                             }
                         }
                     catch (ex: Exception) {
-                        println("$tag : ${ex.toString()}")
+                        Logger.e{"$tag : ${ex.toString()}"}
                     }
                 } else _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                         Res.string.activity_flash_programming_diagnostic_session,
@@ -609,7 +610,7 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
             result = result.copyOfRange(0, (endAddress - startAddress).toInt())
             _programmingState.tryEmit(FlashProgrammingState.FlashData(result.toList(),moduleInfo,vin))
         } catch (ex: Exception) {
-            println("$tag : ${ex.toString()}")
+            Logger.e{"$tag : ${ex.toString()}"}
         }
     }
 

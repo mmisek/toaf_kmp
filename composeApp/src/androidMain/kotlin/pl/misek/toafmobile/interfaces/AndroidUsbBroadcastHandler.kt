@@ -9,6 +9,7 @@ import android.hardware.usb.UsbManager
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.registerReceiver
 import androidx.core.content.IntentCompat
+import co.touchlab.kermit.Logger
 import com.hoho.android.usbserial.driver.UsbSerialProber
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -24,7 +25,7 @@ class AndroidUsbBroadcastHandler(private var context : Context) : IUsbBroadcastH
         val usbManager = context.getSystemService(Context.USB_SERVICE) as UsbManager
         val usbReceiver = object : BroadcastReceiver(){
             override fun onReceive(context: Context?, intent: Intent?) {
-                println("$tag : onReceive : ${intent?.action}")
+                Logger.i {"$tag : onReceive : ${intent?.action}"}
                 when(intent?.action)
                 {
                     UsbManager.ACTION_USB_ACCESSORY_ATTACHED -> {

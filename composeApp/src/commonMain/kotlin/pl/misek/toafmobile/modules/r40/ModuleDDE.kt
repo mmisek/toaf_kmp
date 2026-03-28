@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.r40
 
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -512,7 +513,7 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                     try {
                         freezeFrame = freezeFramesList?.let { JsonSupport.getFreezeFrameForErrorCode(it,String.format("%04X", errorCode)) }
                     } catch (_: Exception) {
-                        println("DDE freeFrame error code " + String.format("%04X", errorCode))
+                        Logger.e {"DDE freeFrame error code " + String.format("%04X", errorCode)}
                     }
                     if (freezeFrame != null) {
                         var n = mess.answer[9].toInt() and 0xFF
@@ -550,7 +551,7 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                             errorDescription.add(Pair(Res.string.dde_error_ff_odometer, String.format(Locale.getDefault(),"%d km",x)))
                         }
                     } else
-                        println("$tag : No freeze frame for code ${String.format("%04X", errorCode)}")
+                        Logger.e {"$tag : No freeze frame for code ${String.format("%04X", errorCode)}"}
                     if (result == null) result = ArrayList()
                     result.add(
                         ModuleError(
@@ -581,7 +582,7 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                 info.date = String(answer.copyOfRange(20, 22)) + "/" + String(answer.copyOfRange(22,24))
                 info.serial = String(answer.copyOfRange(38, 46))
             } catch (ex: Exception) {
-                println("$tag : ${ex.toString()}")
+                Logger.e {"$tag : ${ex.toString()}"}
             }
         }
         message = kwp.write(
@@ -601,7 +602,7 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                     message.answer[30].toInt() and 0xFF
                 )
             } catch (ex: Exception) {
-                println("$tag : ${ex.toString()}")
+                Logger.e {"$tag : ${ex.toString()}"}
             }
         }
         return info
@@ -873,7 +874,7 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                                         Res.string.activity_flash_programming_failed))
                             }
                     } catch (ex: Exception) {
-                        println("$tag :  ${ex.toString()}")
+                        Logger.e {"$tag :  ${ex.toString()}"}
                     }
                 } else _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                         Res.string.activity_flash_programming_diagnostic_session,
@@ -924,7 +925,7 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                 }
                 catch (ex: Exception)
                 {
-                    println("$tag : Set speed to 38400 not supported, $ex")
+                    Logger.e {"$tag : Set speed to 38400 not supported, $ex"}
                     _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_failed))
                     return
                 }
@@ -975,7 +976,7 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
             _programmingState.tryEmit(FlashProgrammingState.FlashData(
                 result.toList(), moduleInfo, vin))
         } catch (ex: Exception) {
-            println("$tag : ${ex.toString()}")
+            Logger.e {"$tag : ${ex.toString()}"}
         }
     }
 

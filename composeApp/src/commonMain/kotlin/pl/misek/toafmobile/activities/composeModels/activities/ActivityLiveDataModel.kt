@@ -204,9 +204,6 @@ fun ActivityLiveDataModel(moduleKoinName : KoinNames, onBackClick :() -> Unit)
                                         element.description = elementDescription
                                         selectedLiveDataElements.add(element)
                                     }
-                                    selectedLiveDataElements.forEach {
-                                        println("${it.name} - ${it.description}}")
-                                    }
                                 })
                         }
                     }

@@ -25,7 +25,7 @@
       "mask": "0xFF",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": "db"
+      "unit": " "
     },
     {
       "name": "time_point_2",
@@ -34,7 +34,7 @@
       "mask": "0xFF",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": "db"
+      "unit": " "
     }
   ]
 }

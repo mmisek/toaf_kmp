@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.generated
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import toafmobile.composeapp.generated.resources.*
 
@@ -255,7 +256,7 @@ object ResourceMapperBcu {
             "bcu_live_data_wiper_switch_position_1" -> Res.string.bcu_live_data_wiper_switch_position_1
             "bcu_live_data_wiper_switch_position_2" -> Res.string.bcu_live_data_wiper_switch_position_2
         else -> {
-          println("NO RESOURCE for : $resourceName")
+          Logger.e {"NO RESOURCE for : $resourceName" }
             null
         }
      }

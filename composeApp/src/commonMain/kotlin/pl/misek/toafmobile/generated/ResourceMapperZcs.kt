@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.generated
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import toafmobile.composeapp.generated.resources.*
 
@@ -132,7 +133,7 @@ object ResourceMapperZcs {
             "zcs_yes" -> Res.string.zcs_yes
             "zcs_zcs_asia_pacific" -> Res.string.zcs_zcs_asia_pacific
         else -> {
-          println("NO RESOURCE for : $resourceName")
+          Logger.e {"NO RESOURCE for : $resourceName" }
             null
         }
      }

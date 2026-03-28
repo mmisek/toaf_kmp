@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules
 
+import co.touchlab.kermit.Logger
 import pl.misek.toafmobile.protocols.OBDMessage
 import java.util.Locale
 
@@ -146,7 +147,7 @@ object ModulesFunction {
                     ((answer[1].toInt() and 0x0F) shl 16) or ((answer[2].toInt() and 0xFF) shl 8) or (answer[3].toInt() and 0xFF)
                 )
             } catch (ex: Exception) {
-                println("$tag, ${ex.toString()}")
+                Logger.e{"$tag, ${ex.toString()}"}
                 return "--"
             }
         } else {
@@ -178,7 +179,7 @@ object ModulesFunction {
                 )
                 moduleInfo.producer = getProducer(answer[10].toInt() and 0xFF).toString()
             } catch (ex: Exception) {
-                println("$tag, ${ex.toString()}")
+                Logger.e{"$tag, ${ex.toString()}"}
             }
         }
         return moduleInfo

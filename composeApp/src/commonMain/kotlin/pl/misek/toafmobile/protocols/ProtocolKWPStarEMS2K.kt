@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.protocols
 
+import co.touchlab.kermit.Logger
 import pl.misek.toafmobile.interfaces.IInterfaceDevice
 import pl.misek.toafmobile.interfaces.IKWPInterfaceDevice
 import pl.misek.toafmobile.interfaces.ISerialDevice
@@ -28,7 +29,7 @@ class ProtocolKWPStarEMS2K(private var device: IInterfaceDevice?, private val us
         val messageData = if (message.wholeMessage != null && message.wholeMessage!!.isNotEmpty()) message.wholeMessage else message.message
         val stringBuilder = StringBuilder()
         for (b in messageData!!) stringBuilder.append(String.format("[%02X] ", b))
-        println("$tag : ${stringBuilder.toString()}")
+        Logger.i{"$tag : ${stringBuilder.toString()}"}
         return message
     }
 
@@ -87,7 +88,7 @@ class ProtocolKWPStarEMS2K(private var device: IInterfaceDevice?, private val us
                         (message.answer[message.answer.size - 1] == (checksum.toInt() and 0xFF).toByte()) && (message.answerCode == (command + 0x40).toByte())
                 }
             } catch (ex: Exception) {
-                println("$tag : ${ex.toString()}")
+                Logger.e{"$tag : ${ex.toString()}"}
             }
         }
         return message

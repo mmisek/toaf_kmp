@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.protocols
 
+import co.touchlab.kermit.Logger
 import pl.misek.toafmobile.interfaces.IInterfaceDevice
 
 class ProtocolFactory
@@ -15,7 +16,7 @@ class ProtocolFactory
 
     fun updateProtocolFactory(newDevice : IInterfaceDevice?)
     {
-        println("$tag: New device : ${newDevice.toString()}")
+        Logger.i {"$tag: New device : ${newDevice.toString()}"}
         currentDevice = newDevice
         protocolDs2.setDevice(newDevice)
         protocolKwp.setDevice(newDevice)

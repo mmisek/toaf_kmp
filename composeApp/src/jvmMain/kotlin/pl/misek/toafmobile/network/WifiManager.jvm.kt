@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.network
 
+import co.touchlab.kermit.Logger
 import io.sentry.Sentry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.joinAll
@@ -44,7 +45,7 @@ class DesktopWifiManager : IWifiManager{
         val jobs = (1..254).map { i ->
             launch {
                 val host = subnet + i
-                println("scan : $host")
+                Logger.i{"scan : $host"}
                 if (host != myIp) {
                     try {
                         val inetAddress = InetAddress.getByName(host)

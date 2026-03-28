@@ -53,11 +53,15 @@ class ModuleATC( protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddre
         if (message.isValid) {
             moduleInfo = ModuleInfo()
             moduleInfo.sw = String.format("%02X", message.answer[4])
-            moduleInfo.producer = ModulesFunction.getProducer(message.answer[3].toInt())
+            val producer = message.answer[3].toInt()
+            moduleInfo.producer = ModulesFunction.getProducer(producer.toBcd().toInt())
         }
         return moduleInfo
     }
-
+    fun Int.toBcd(): Byte {
+        require(this in 0..99) { "Must be in 0..99" }
+        return (((this / 10) shl 4) or (this % 10)).toByte()
+    }
     override suspend fun getAllErrors(): List<ModuleError>? {
         var result: MutableList<ModuleError>? = null
         val message = interfaceWrite(byteArrayOf(0x04, 0x00))

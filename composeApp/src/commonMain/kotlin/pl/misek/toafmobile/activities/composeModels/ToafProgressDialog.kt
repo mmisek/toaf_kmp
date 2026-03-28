@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import co.touchlab.kermit.Logger
 import io.sentry.kotlin.multiplatform.Sentry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -50,7 +51,7 @@ fun <T> ToafProgressDialog(
         } catch (ex : Exception)
         {
             Sentry.captureException(ex)
-            println("$tag : ${ex.toString()}")
+            Logger.e {"$tag : ${ex.toString()}"}
             onError(ex)
         }
         finally {

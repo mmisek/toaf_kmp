@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.generated
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import toafmobile.composeapp.generated.resources.*
 
@@ -47,7 +48,7 @@ object ResourceMapperActivityAdvanceCoding {
             "activity_advance_coding_write_default_coding_error" -> Res.string.activity_advance_coding_write_default_coding_error
             "activity_advance_coding_write_default_coding_successful" -> Res.string.activity_advance_coding_write_default_coding_successful
         else -> {
-          println("NO RESOURCE for : $resourceName")
+          Logger.e {"NO RESOURCE for : $resourceName" }
             null
         }
      }

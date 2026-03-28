@@ -2,6 +2,7 @@ package pl.misek.toafmobile.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -37,7 +38,7 @@ class UserInfoViewModel(private val toafApi : ToafApi, private val database: Dat
                 catch (ex: Exception)
                 {
                     _userInfo.value = UserInfo()
-                    println("$tag ${ex.toString()}")
+                    Logger.e{"$tag ${ex.toString()}"}
                 }
                 delay(120 * 1_000L)
             }

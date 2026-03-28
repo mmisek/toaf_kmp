@@ -8,7 +8,7 @@
     <string name="rs_error_04">Problem z komunikacją z ASIC</string>
     <string name="rs_error_05">Uszkodzony czujnik (brak wykrywania)</string>
     <string name="rs_error_06">Brak połączenia z silnikime wycieraczek</string>
-    <string name="rs_live_data_park_position">Wycieraczki \"zaparkowane\"</string>
+    <string name="rs_live_data_park_position">Wycieraczki "zaparkowane"</string>
     <string name="rs_live_data_reinforcement">Wzmocnienie sygnału</string>
     <string name="rs_live_data_time_point_1">Punkt czasu 1</string>
     <string name="rs_live_data_time_point_2">Punkt czasu 2</string>

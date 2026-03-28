@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.generated
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import toafmobile.composeapp.generated.resources.*
 
@@ -41,7 +42,7 @@ object ResourceMapperRadio {
             "radio_live_data_value_signal_too_low" -> Res.string.radio_live_data_value_signal_too_low
             "radio_module_info_name" -> Res.string.radio_module_info_name
         else -> {
-          println("NO RESOURCE for : $resourceName")
+          Logger.e {"NO RESOURCE for : $resourceName" }
             null
         }
      }

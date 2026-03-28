@@ -36,7 +36,7 @@ kotlin {
             implementation(libs.google.ads)
         }
         commonMain.dependencies {
-            implementation("org.jetbrains.compose.ui:ui-tooling:1.10.2")
+            implementation("org.jetbrains.compose.ui:ui-tooling:1.10.3")
             implementation("org.jetbrains.compose.runtime:runtime:1.10.2")
             implementation("org.jetbrains.compose.foundation:foundation:1.10.2")
             implementation("org.jetbrains.compose.material3:material3:1.9.0")
@@ -59,6 +59,7 @@ kotlin {
             implementation(libs.vico.compose.m3)
             implementation(libs.sentry.kmp)
             implementation(libs.kotlinx.datetime)
+            implementation(libs.co.touchlab.ketmin)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))

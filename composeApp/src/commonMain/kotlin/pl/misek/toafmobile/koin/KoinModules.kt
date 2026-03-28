@@ -135,14 +135,14 @@ val commonModules = module {
             install(Logging) {
                 logger = object : Logger{
                     override fun log(message: String) {
-                        println("ToafApi : $message")
+                        co.touchlab.kermit.Logger.i { "ToafApi : $message"}
                     }
                 }
                 level = LogLevel.ALL
             }
             defaultRequest {
                 val currentSettings = database.settingState.value
-                println("CurrentSettings : ${currentSettings.toString()}")
+                co.touchlab.kermit.Logger.i {"CurrentSettings : ${currentSettings.toString()}"}
                 currentSettings?.let{
                     basicAuth(it.userLogin ?: "",it.userPassword ?: "")
                 }

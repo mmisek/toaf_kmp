@@ -2,6 +2,7 @@ package pl.misek.toafmobile.interfaces
 
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -52,7 +53,7 @@ class ToafWifiEventManager(private val wifiManager: ToafWifiManager) : DefaultLi
     {
         val twi = ToafWifiInterface(deviceInfo.ipAddress ?: "")
         CoroutineScope(Dispatchers.IO).launch{
-            println("$tag : Checking connection with ip ${deviceInfo.ipAddress}")
+            Logger.i{"$tag : Checking connection with ip ${deviceInfo.ipAddress}"}
             val di = twi.getDeviceInfo()
             if (di != null) {
                 _wifiEvent.value = WifiEvent.Connected(di)

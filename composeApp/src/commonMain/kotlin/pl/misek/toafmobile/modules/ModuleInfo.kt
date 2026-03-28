@@ -1,6 +1,7 @@
 package pl.misek.toafmobile.modules
 
 import androidx.compose.runtime.Composable
+import co.touchlab.kermit.Logger
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
@@ -53,7 +54,7 @@ class ModuleInfo
                 is Int -> v.toString()
                 is Float -> "%.2f".format(v)
                 else -> {
-                    println("$tag : no format for data type ${v::class.simpleName}")
+                    Logger.e{"$tag : no format for data type ${v::class.simpleName}"}
                     ""
                 }
             }

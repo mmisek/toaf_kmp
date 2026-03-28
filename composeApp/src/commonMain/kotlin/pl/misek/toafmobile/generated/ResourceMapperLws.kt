@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.generated
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import toafmobile.composeapp.generated.resources.*
 
@@ -34,7 +35,7 @@ object ResourceMapperLws {
             "lws_live_data_wheel_speed_right_rear" -> Res.string.lws_live_data_wheel_speed_right_rear
             "lws_live_data_yaw_rate" -> Res.string.lws_live_data_yaw_rate
         else -> {
-          println("NO RESOURCE for : $resourceName")
+          Logger.e {"NO RESOURCE for : $resourceName" }
             null
         }
      }

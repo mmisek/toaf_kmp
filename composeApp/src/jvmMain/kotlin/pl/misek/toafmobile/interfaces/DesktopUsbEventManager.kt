@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.interfaces
 
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -38,7 +39,7 @@ class DesktopUsbEventManager(private val usbBroadcastHandler: IUsbBroadcastHandl
 
     private fun onUsbAttached(device : UsbDeviceInfo)
     {
-        println("$tag, $device was attached")
+        Logger.i{"$tag, $device was attached"}
         CoroutineScope(Dispatchers.IO).launch()
         {
             val serialDevice = DesktopSerialDevice()
@@ -53,7 +54,7 @@ class DesktopUsbEventManager(private val usbBroadcastHandler: IUsbBroadcastHandl
     private fun onUsbDeattached(device : UsbDeviceInfo)
     {
         protocolFactory.updateProtocolFactory(null)
-        println("$tag $device was deattached")
+        Logger.i {"$tag $device was deattached"}
     }
 
     override fun handeConnectedDevice(device: UsbDeviceInfo, driver: Any?)

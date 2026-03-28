@@ -134,7 +134,6 @@ fun ActivityModuleAdvanceCodingModel(moduleKoinName : KoinNames, onBackClick : (
                 {
                     AdvanceCodingEka(
                         koinModuleName = moduleKoinName,
-                        userInfo = userInfo,
                         onShowResult = { result, onSuccess, onFail ->
                             showResult(
                                 scope = scope,
