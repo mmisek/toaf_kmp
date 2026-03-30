@@ -87,4 +87,6 @@ class AndroidUsbBroadcastHandler(private var context : Context) : IUsbBroadcastH
             version = this.version
         )
     }
+
+    override fun getAvailableDevices() = mutableListOf<String>()
 }

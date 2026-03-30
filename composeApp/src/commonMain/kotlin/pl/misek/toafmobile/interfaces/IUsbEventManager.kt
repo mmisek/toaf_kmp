@@ -1,9 +1,10 @@
 package pl.misek.toafmobile.interfaces
 
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.SharedFlow
 
 interface IUsbEventManager {
 
-    val usbState : StateFlow<UsbEvent>
+    val usbState : SharedFlow<UsbEvent>
     fun handeConnectedDevice(device: UsbDeviceInfo, driver: Any?)
+    fun getAvailableDevices() : MutableList<String>
 }

@@ -76,7 +76,7 @@ fun ToafEditText(
 
 @Preview(showBackground = true, name = "ImageButtonPreview")
 @Composable
-fun ToafEditTextPReview()
+fun ToafEditTextPreview()
 {
     ToafEditText(
         modifier = Modifier.fillMaxWidth(),

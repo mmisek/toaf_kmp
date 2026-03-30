@@ -433,4 +433,8 @@
     <string name="server_connection_failed">Ошибка подключения к серверу Toaf</string>
     <string name="activity_main_function_need_usb_device">Для этой функции требуется USB-интерфейс!</string>
     <string name="useMobileVersionToBuyTokens">Функция временно недоступна в Toaf Desktop.\nПожалуйста, используйте Toaf Mobile для покупки токенов.</string>
+
+    <string name="dialog_serial_port_available_ports">Доступные устройства</string>
+    <string name="dialog_serial_port_select_port">Выберите устройство</string>
+    <string name="dialog_serial_port_device">USB-устройство</string>
 </resources>

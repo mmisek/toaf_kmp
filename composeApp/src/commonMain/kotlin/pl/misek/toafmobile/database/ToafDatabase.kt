@@ -14,7 +14,7 @@ import pl.misek.toafmobile.database.entities.*
         FastLiveDataEntity::class,
         LiveDataTemplateEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 @ConstructedBy(ToafDatabaseConstructor::class) // Magia KMP!

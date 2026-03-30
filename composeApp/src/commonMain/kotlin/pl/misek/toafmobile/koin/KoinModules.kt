@@ -31,6 +31,7 @@ import pl.misek.toafmobile.modules.l322.ModuleHEVAC
 import pl.misek.toafmobile.modules.l322.ModuleLSM
 import pl.misek.toafmobile.modules.l322.ModuleLWS
 import pl.misek.toafmobile.modules.l322.ModuleMFL
+import pl.misek.toafmobile.modules.l322.ModuleTXU
 import pl.misek.toafmobile.modules.r40.ModuleABS
 import pl.misek.toafmobile.modules.r40.ModuleATC
 import pl.misek.toafmobile.modules.r40.ModuleBCU
@@ -81,6 +82,7 @@ val commonModules = module {
     single(named(KoinNames.ModuleL322Srs.name)) { pl.misek.toafmobile.modules.l322.ModuleSRS(protocolDS2 = get())}
     single(named(KoinNames.ModuleL322Bcu.name)) { pl.misek.toafmobile.modules.l322.ModuleBCU(protocolDS2 = get())}
     single(named(KoinNames.ModuleL322Radio.name)) { pl.misek.toafmobile.modules.l322.ModuleRadio(protocolDS2 = get())}
+    single(named(KoinNames.ModuleL322Txu.name)) { ModuleTXU(protocolKWP = get()) }
 
     //R40
     single(named(KoinNames.ModuleR40Ipk.name)) { ModuleIPK(protocolDS2 = get())}

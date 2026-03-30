@@ -43,6 +43,7 @@ import pl.misek.toafmobile.modules.rjo.ModuleSCU
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import pl.misek.toafmobile.koin.KoinNames
+import pl.misek.toafmobile.modules.l322.ModuleTXU
 
 class ModulesManager() : KoinComponent
 {
@@ -73,6 +74,7 @@ class ModulesManager() : KoinComponent
             get<ModuleSHD>(named(KoinNames.ModuleR40Shd.name)),
             get<ModuleMFL>(named(KoinNames.ModuleL322Mfl.name)),
             get<ModuleLWS>(named(KoinNames.ModuleL322Lws.name)),
+            get<ModuleTXU>(named(KoinNames.ModuleL322Txu.name)),
             get<pl.misek.toafmobile.modules.l322.ModuleBCU>(named(KoinNames.ModuleL322Bcu.name)),
             get<pl.misek.toafmobile.modules.l322.ModuleLSM>(named(KoinNames.ModuleL322Lsm.name)),
             get<pl.misek.toafmobile.modules.l322.ModuleSRS>(named(KoinNames.ModuleL322Srs.name)),

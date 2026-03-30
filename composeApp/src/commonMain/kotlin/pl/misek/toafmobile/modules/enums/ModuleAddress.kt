@@ -39,5 +39,6 @@ enum class ModuleAddress(val address: Byte, val moduleName: String, val showName
     MODULE_SCU((0xC5).toByte(), "scu", "SCU"),
     MODULE_GT((0x3B).toByte(), "gt", "GT"),
     MODULE_NAVMK3((0x7F).toByte(), "navmk3", "NAVMK3"),
-    MODULE_BROADCAST((0xFF).toByte(),"broadcast","BROADCAST")
+    MODULE_BROADCAST((0xFF).toByte(),"broadcast","BROADCAST"),
+    MODULE_TXU((0x34).toByte(),"txu","TXU")
 }

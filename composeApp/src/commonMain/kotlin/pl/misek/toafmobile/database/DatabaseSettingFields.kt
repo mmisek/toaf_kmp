@@ -10,4 +10,5 @@ object DatabaseSettingFields {
     var TOAF_EKA_CODES: String = "TOAF_EKA_CODES"
     var TOAF_CURRENT_CAR_TYPE: String = "TOAF_CURRENT_CAR_TYPE"
     var TOAF_KWP_FAST_INIT_SLEEP: String = "TOAF_KWP_FAST_INIT_SLEEP"
+    var SERIAL_PORT_NAME : String = "SERIAL_PORT_NAME"
 }

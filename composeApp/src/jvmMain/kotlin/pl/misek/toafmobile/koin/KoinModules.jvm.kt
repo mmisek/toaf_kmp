@@ -13,6 +13,7 @@ import pl.misek.toafmobile.database.Database
 import pl.misek.toafmobile.database.ToafDatabase
 import pl.misek.toafmobile.database.ToafDatabase_Impl
 import pl.misek.toafmobile.database.dao.ToafDao
+import pl.misek.toafmobile.database.migration.Migration1to2
 import pl.misek.toafmobile.interfaces.DesktopUsbBroadcastHandler
 import pl.misek.toafmobile.interfaces.DesktopUsbEventManager
 import pl.misek.toafmobile.interfaces.ISerialDevice
@@ -33,6 +34,7 @@ actual fun platformModules(): Module  = module {
             name = dbFile.absolutePath
         )
         .setDriver(BundledSQLiteDriver())
+        .addMigrations(Migration1to2)
         .build()
     }
     single<ToafDao> { get<ToafDatabase>().toafDao()}

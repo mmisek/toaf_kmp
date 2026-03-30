@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.interfaces
 
+import co.touchlab.kermit.Logger
 import com.fazecast.jSerialComm.SerialPort
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -49,5 +50,13 @@ class DesktopUsbBroadcastHandler() : IUsbBroadcastHandler {
             vendorID = this.vendorID.toString(),
             manufacturer = this.manufacturer,
         )
+    }
+
+    override fun getAvailableDevices(): MutableList<String> {
+        val result = mutableListOf<String>()
+        SerialPort.getCommPorts().forEach{
+            Logger.i {"Serial Port : $it"}
+            result.add(it.systemPortName) }
+        return result
     }
 }

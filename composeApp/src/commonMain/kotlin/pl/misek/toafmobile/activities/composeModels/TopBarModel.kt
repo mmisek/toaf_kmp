@@ -104,7 +104,7 @@ fun TopBarModelMainActivity(
     val protocolFactory : ProtocolFactory = koinInject()
 
     val usbEventViewModel : IUsbEventManager = koinInject()
-    val usbEvent by usbEventViewModel.usbState.collectAsState()
+    val usbEvent by usbEventViewModel.usbState.collectAsState(UsbEvent.Idle)
     var interfaceConnectionState by remember { mutableStateOf(ConnectionState.USB_DISCONNECTED) }
     val wifiEventManager : ToafWifiEventManager = koinInject()
     val wifiEvent by wifiEventManager.wifiEvent.collectAsState()
@@ -132,6 +132,7 @@ fun TopBarModelMainActivity(
         when (usbEvent) {
             is UsbEvent.Attached -> {
                 try {
+                    database
                     serialDevice.connect("COM1")
                     if (serialDevice.isConnected) {
                         wifiDeviceInfo = null

@@ -27,7 +27,7 @@ class ModuleNavMk3( protocolDS2: ProtocolDS2?) :
     override fun getModuleDescription() = Res.string.module_description_navi
 
     override suspend fun getIdentification(): ModuleInfo? {
-        val message = interfaceWrite(byteArrayOf(0x00), 500)
+        val message = interfaceWrite(byteArrayOf(0x00), 200)
         if (message.isValid) {
             val moduleInfo = ModuleInfo()
             val answer = message.answer
@@ -39,6 +39,7 @@ class ModuleNavMk3( protocolDS2: ProtocolDS2?) :
             moduleInfo.date = String(answer.copyOfRange( 18, 20)) + "/" + String(answer.copyOfRange(20,22))
             //moduleInfo.Serial = new String(message.answer.copyOfRange(22,32));
             moduleInfo.sw = String(answer.copyOfRange( 32, 34))
+            moduleInfo.producer = ModulesFunction.getProducer(0x56)
             return moduleInfo
         }
         return null
@@ -46,14 +47,21 @@ class ModuleNavMk3( protocolDS2: ProtocolDS2?) :
 
     override suspend fun readLiveData(): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = HashMap()
-        val message = interfaceWrite(byteArrayOf(0x0B))
-        if (message.isValid) {
-            result[0x00] = message.answer.copyOfRange(3, message.answer.size)
-        }
-        return result.ifEmpty { null }
+        do {
+            val message = interfaceWrite(byteArrayOf(0x0B),200)
+            if (message.isValid) {
+                result[0x00] = message.answer.copyOfRange(3, message.answer.size)
+                return result
+            }
+        } while (message.answerCode != 0xA1.toByte())
+
+        return null
     }
 
-    override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>) = true
+    override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>) : Boolean
+    {
+        return interfaceWrite(byteArrayOf(0x00)).isValid
+    }
 
     override suspend fun getAllErrors(): List<ModuleError>? {
         var result: MutableList<ModuleError>? = null
@@ -94,8 +102,7 @@ class ModuleNavMk3( protocolDS2: ProtocolDS2?) :
         val result: MutableList<ByteArray> = ArrayList()
         val message = interfaceWriteWithAddress(
             ModuleAddress.MODULE_GT.address,
-            byteArrayOf(0x08, 0x00, 0x00, 0x00),
-            500
+            byteArrayOf(0x08, 0x00, 0x00, 0x00), 200
         )
         if (message.isValid) result.add(
                 message.answer.copyOfRange(3,message.answer.size - 1))

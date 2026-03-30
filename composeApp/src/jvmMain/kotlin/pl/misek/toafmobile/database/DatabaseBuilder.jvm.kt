@@ -4,6 +4,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import kotlinx.coroutines.Dispatchers
+import pl.misek.toafmobile.database.migration.Migration1to2
 import java.io.File
 
 fun getDatabaseBuilder(): RoomDatabase.Builder<ToafDatabase> {

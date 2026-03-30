@@ -29,6 +29,7 @@ class Database(private val dao : ToafDao) {
                 DatabaseSettingFields.LAST_DEVICE_TYPE -> settings.lastDeviceType
                 DatabaseSettingFields.WIFI_DEVICE_IP -> settings.wifiDeviceIp
                 DatabaseSettingFields.TOAF_FULL_VERSION -> settings.toafFullVersion
+                DatabaseSettingFields.SERIAL_PORT_NAME ->settings.serialPortName
                 else -> null
             }
         }
@@ -59,6 +60,7 @@ class Database(private val dao : ToafDao) {
                 DatabaseSettingFields.LAST_DEVICE_TYPE -> settings.lastDeviceType = value
                 DatabaseSettingFields.WIFI_DEVICE_IP -> settings.wifiDeviceIp = value
                 DatabaseSettingFields.TOAF_FULL_VERSION -> settings.toafFullVersion = value
+                DatabaseSettingFields.SERIAL_PORT_NAME -> settings.serialPortName = value
                 else -> changed = false
             }
 

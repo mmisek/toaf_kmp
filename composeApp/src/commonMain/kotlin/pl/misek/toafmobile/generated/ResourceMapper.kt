@@ -48,6 +48,7 @@ object ResourceMapper {
            "srs" -> ResourceMapperSrs.stringResource(resourceName)
            "srs2" -> ResourceMapperSrs2.stringResource(resourceName)
            "srsl322" -> ResourceMapperSrsL322.stringResource(resourceName)
+           "txu" -> ResourceMapperTxu.stringResource(resourceName)
            "video" -> ResourceMapperVideo.stringResource(resourceName)
            "webasto" -> ResourceMapperWebasto.stringResource(resourceName)
            "zcs" -> ResourceMapperZcs.stringResource(resourceName)

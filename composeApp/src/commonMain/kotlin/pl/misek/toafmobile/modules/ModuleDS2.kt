@@ -80,21 +80,12 @@ open class ModuleDS2(
         return supportedCarTypes
     }
 
-    fun interfaceWriteWithAddress(address: Byte, data: ByteArray): OBDMessage {
-        var result = OBDMessage()
-        CoroutineScope(Dispatchers.IO).launch {
-            result = async {ds2?.write(address, data)}.await()!!
-        }
-        return result
-
+    suspend fun interfaceWriteWithAddress(address: Byte, data: ByteArray): OBDMessage {
+        return ds2?.write(address, data)!!
     }
 
-    fun interfaceWriteWithAddress(address: Byte, data: ByteArray, timeout: Long?): OBDMessage {
-        var result = OBDMessage()
-        CoroutineScope(Dispatchers.IO).launch {
-            result = async {ds2?.write(address, data, timeout)}.await()!!
-        }
-        return result
+    suspend fun interfaceWriteWithAddress(address: Byte, data: ByteArray, timeout: Long?): OBDMessage {
+        return ds2?.write(address, data, timeout)!!
     }
 
     suspend fun interfaceWrite(data: ByteArray): OBDMessage {

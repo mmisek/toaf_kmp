@@ -16,8 +16,8 @@ import pl.misek.toafmobile.billing.AndroidToafBilling
 import pl.misek.toafmobile.billing.IToafBilling
 import pl.misek.toafmobile.database.Database
 import pl.misek.toafmobile.database.ToafDatabase
-import pl.misek.toafmobile.database.ToafDatabase_Impl
 import pl.misek.toafmobile.database.dao.ToafDao
+import pl.misek.toafmobile.database.migration.Migration1to2
 import pl.misek.toafmobile.interfaces.AndroidUsbBroadcastHandler
 import pl.misek.toafmobile.interfaces.AndroidUsbEventManager
 import pl.misek.toafmobile.interfaces.ISerialDevice
@@ -39,6 +39,7 @@ actual fun platformModules(): Module = module {
             name = dbFile.absolutePath
         )
             .setDriver(BundledSQLiteDriver())
+            .addMigrations(Migration1to2)
             .build()
     }
 

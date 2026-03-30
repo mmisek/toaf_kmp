@@ -16,6 +16,7 @@ data class SettingsEntity(
     @ColumnInfo(name = "information_ACCESS_TO_PUBLIC_BACKUP") var accessToPublicBackup: String? = "N",
     @ColumnInfo(name = "information_LAST_DEVICE_TYPE") var lastDeviceType: String? = "",
     @ColumnInfo(name = "information_WIFI_DEVICE_IP") var wifiDeviceIp: String? = "",
+    @ColumnInfo(name = "information_SERIAL_PORT_NAME") var serialPortName: String? = "",
     @ColumnInfo(name = "information_TOAF_FULL_VERSION") var toafFullVersion: String? = "N",
 
     @ColumnInfo(name = "information_TOAF_BCU_KEYS") var toafBcuKeys: Int = 0,

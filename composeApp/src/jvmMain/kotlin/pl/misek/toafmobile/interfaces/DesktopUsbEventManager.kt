@@ -3,8 +3,8 @@ package pl.misek.toafmobile.interfaces
 import co.touchlab.kermit.Logger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import pl.misek.toafmobile.database.Database
 import pl.misek.toafmobile.database.DatabaseSettingFields
@@ -14,8 +14,8 @@ import pl.misek.toafmobile.protocols.ProtocolFactory
 private const val tag = "DesktopUsbEventManager"
 class DesktopUsbEventManager(private val usbBroadcastHandler: IUsbBroadcastHandler, val database : Database, private val protocolFactory: ProtocolFactory) : IUsbEventManager
 {
-    private val _usbState = MutableStateFlow<UsbEvent>(UsbEvent.Idle)
-    override val usbState = _usbState.asStateFlow()
+    private val _usbState = MutableSharedFlow<UsbEvent>(replay = 1, extraBufferCapacity = 10)
+    override val usbState = _usbState.asSharedFlow()
 
     init{
         startObserveUsbEvent()
@@ -24,7 +24,7 @@ class DesktopUsbEventManager(private val usbBroadcastHandler: IUsbBroadcastHandl
     private fun startObserveUsbEvent(){
         CoroutineScope(Dispatchers.Main).launch {
             usbBroadcastHandler.observeUsbEvent().collect { event ->
-                _usbState.value = event
+                _usbState.tryEmit(event)
                 when(event) {
                     UsbEvent.Idle ->  {}
                     is UsbEvent.Attached -> { onUsbAttached(event.device)}
@@ -46,7 +46,7 @@ class DesktopUsbEventManager(private val usbBroadcastHandler: IUsbBroadcastHandl
             protocolFactory.updateProtocolFactory(serialDevice)
             val result = database.updateStringSettingByName(DatabaseSettingFields.LAST_DEVICE_TYPE, "USB")
             if (!result) {
-                _usbState.value = UsbEvent.Error("Database update Error")
+                _usbState.tryEmit(UsbEvent.Error("Database update Error"))
             }
         }
     }
@@ -59,7 +59,9 @@ class DesktopUsbEventManager(private val usbBroadcastHandler: IUsbBroadcastHandl
 
     override fun handeConnectedDevice(device: UsbDeviceInfo, driver: Any?)
     {
-        _usbState.value = UsbEvent.Attached(device = device, null)
+        _usbState.tryEmit(UsbEvent.Attached(device = device, null))
         onUsbAttached(device)
     }
+
+    override fun getAvailableDevices(): MutableList<String> = usbBroadcastHandler.getAvailableDevices()
 }

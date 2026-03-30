@@ -21,6 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
+import pl.misek.toafmobile.PlatformType
+import pl.misek.toafmobile.getPlatformType
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 
@@ -29,7 +31,8 @@ object MenuMain {
     fun Menu(
         onShowSelectCarType : () -> Unit,
         onShowUserLogin : () -> Unit,
-        onShowWifiInterfaceConfig : () -> Unit
+        onShowWifiInterfaceConfig : () -> Unit,
+        onShowUsbInterfaceConfig: () -> Unit
     )
     {
         var expanded by remember {mutableStateOf(false)}
@@ -72,6 +75,16 @@ object MenuMain {
                         onShowWifiInterfaceConfig()
                     }
                 )
+                if (getPlatformType() == PlatformType.Desktop) {
+                    DropdownMenuItem(
+                        text = { Text(stringResource(Res.string.dialog_serial_port_device)) },
+                        leadingIcon = { Icon(Icons.Default.Usb, contentDescription = null) },
+                        onClick = {
+                            expanded = false
+                            onShowUsbInterfaceConfig()
+                        }
+                    )
+                }
                 DropdownMenuItem(
                     text = {Text(stringResource(Res.string.activity_coding_menu_load_public_backup))},
                     leadingIcon =  {Icon(Icons.Default.FileOpen, contentDescription = null)},

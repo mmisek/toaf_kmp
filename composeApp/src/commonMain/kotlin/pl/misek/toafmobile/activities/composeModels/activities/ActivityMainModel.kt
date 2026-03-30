@@ -43,6 +43,7 @@ import pl.misek.toafmobile.activities.composeModels.dialogs.DialogCreateUser
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogLoginUser
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogQuestion
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogSelectCarType
+import pl.misek.toafmobile.activities.composeModels.dialogs.DialogSerialPort
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogShowInterfaceInfo
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogShowUserInfo
 import pl.misek.toafmobile.activities.composeModels.menus.MenuMain
@@ -81,7 +82,8 @@ private enum class DialogType
     None,
     WifiConfig,
     WifiConfigDevice,
-    WifiAddDevice
+    WifiAddDevice,
+    UsbConfig
 }
 @Composable
 fun ActivityMainModel(
@@ -118,6 +120,7 @@ fun ActivityMainModel(
 
     var usbDeviceInfo by remember { mutableStateOf<UsbDeviceInfo?>(null) }
     var wifiDeviceInfo by remember { mutableStateOf<ToafWifiDeviceInfo?>(null) }
+    val usbEventManager : IUsbEventManager = koinInject()
 
     val loginCorrect = stringResource(Res.string.dialog_user_login_login_correct)
     val loginIncorrect = stringResource(Res.string.dialog_user_login_error)
@@ -168,7 +171,8 @@ fun ActivityMainModel(
                     MenuMain.Menu(
                         onShowSelectCarType = {showSelectCarTypeDialog = !showSelectCarTypeDialog},
                         onShowUserLogin = {showUserLoginDialog = !showUserLoginDialog},
-                        onShowWifiInterfaceConfig =  {dialogType = DialogType.WifiConfig}
+                        onShowWifiInterfaceConfig =  {dialogType = DialogType.WifiConfig},
+                        onShowUsbInterfaceConfig = {dialogType = DialogType.UsbConfig}
                     )
                 },
                 onClickShowInterfaceInfo = { ussDeviceInfo, wifiDeviceInfo ->
@@ -446,6 +450,20 @@ fun ActivityMainModel(
             }
             when (dialogType)
             {
+                DialogType.UsbConfig ->
+                    DialogSerialPort(
+                        onCancelClick = { dialogType = DialogType.None},
+                        onOkClick = { item ->
+                            scope.launch {
+                                database.updateStringSettingByName(
+                                    DatabaseSettingFields.SERIAL_PORT_NAME,
+                                    item
+                                )
+                                usbEventManager.handeConnectedDevice()
+                                dialogType = DialogType.None
+                            }
+                        }
+                    )
                 DialogType.WifiConfig ->
                     toafWifiManager.Configuration (
                         onCancelClick = {dialogType = DialogType.None},

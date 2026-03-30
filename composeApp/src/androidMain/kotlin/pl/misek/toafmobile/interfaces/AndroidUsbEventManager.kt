@@ -1,14 +1,13 @@
 package pl.misek.toafmobile.interfaces
 
-import android.hardware.usb.UsbDevice
 import android.hardware.usb.UsbManager
 import android.util.Log
 import androidx.lifecycle.DefaultLifecycleObserver
 import com.hoho.android.usbserial.driver.UsbSerialDriver
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import pl.misek.toafmobile.database.Database
 import pl.misek.toafmobile.database.DatabaseSettingFields
@@ -19,8 +18,8 @@ private const val tag = "UsbEventManager"
 class AndroidUsbEventManager(private val usbBroadcastHandler: IUsbBroadcastHandler, private val usbManager: UsbManager,  val database : Database, private val protocolFactory: ProtocolFactory) :
     DefaultLifecycleObserver, IUsbEventManager
     {
-    private val _usbState = MutableStateFlow<UsbEvent>(UsbEvent.Idle)
-    override val usbState = _usbState.asStateFlow()
+    private val _usbState = MutableSharedFlow<UsbEvent>(replay = 1, extraBufferCapacity =  10)
+    override val usbState = _usbState.asSharedFlow()
 
     init{
         startObserveUsbEvent()
@@ -29,7 +28,7 @@ class AndroidUsbEventManager(private val usbBroadcastHandler: IUsbBroadcastHandl
     private fun startObserveUsbEvent(){
         CoroutineScope(Dispatchers.Main).launch {
         usbBroadcastHandler.observeUsbEvent().collect { event ->
-                _usbState.value = event
+                _usbState.tryEmit(event)
                 when(event) {
                     UsbEvent.Idle ->  {}
                     is UsbEvent.Attached -> { onUsbAttached(event.device, event.driver as? UsbSerialDriver)}
@@ -52,7 +51,7 @@ class AndroidUsbEventManager(private val usbBroadcastHandler: IUsbBroadcastHandl
             protocolFactory.updateProtocolFactory(serialDevice)
             val result = database.updateStringSettingByName(DatabaseSettingFields.LAST_DEVICE_TYPE, "USB")
             if (!result) {
-                _usbState.value = UsbEvent.Error("Database update Error")
+                _usbState.tryEmit(UsbEvent.Error("Database update Error"))
             }
         }
     }
@@ -66,7 +65,9 @@ class AndroidUsbEventManager(private val usbBroadcastHandler: IUsbBroadcastHandl
     override fun handeConnectedDevice(device: UsbDeviceInfo, driver: Any?)
     {
         if (driver !is UsbSerialDriver) return
-        _usbState.value = UsbEvent.Attached(device = device, driver = driver)
+        _usbState.tryEmit(UsbEvent.Attached(device = device, driver = driver))
         onUsbAttached(device, driver = driver)
     }
+
+    override fun getAvailableDevices(): MutableList<String> =usbBroadcastHandler.getAvailableDevices()
 }
