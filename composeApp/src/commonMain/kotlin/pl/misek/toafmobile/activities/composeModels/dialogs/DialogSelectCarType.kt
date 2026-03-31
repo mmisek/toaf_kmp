@@ -38,7 +38,12 @@ object DialogSelectCarType {
     @Composable
     fun Show(currentIndex : Int, onClose : () -> Unit, onSelect: (index : Int) -> Unit)
     {
-        val options = stringArrayResource(Res.array.dialog_select_car_typ_car_types)
+
+        val options = mapOf(
+            0 to Res.string.car_type_rover_75,
+            1 to Res.string.car_type_rover_25,
+            2 to Res.string.car_type_range_rover_l322
+        )
         var selectedItemIndex by remember { mutableIntStateOf(-1) }
         selectedItemIndex = currentIndex
         AlertDialog(
@@ -65,7 +70,7 @@ object DialogSelectCarType {
                         .selectableGroup()
                         .padding(5.dp)
                 ) {
-                    options.forEachIndexed { index, label ->
+                    options.forEach { (index, label) ->
 
                         Row(
                             modifier = Modifier
@@ -93,7 +98,7 @@ object DialogSelectCarType {
                             Spacer(modifier = Modifier.width(8.dp))
 
                             Text(
-                                text = label,
+                                text = stringResource(label),
                                 color = Color.White,
                                 style = MaterialTheme.typography.bodyLarge
                             )

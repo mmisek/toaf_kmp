@@ -215,9 +215,9 @@
     <string name="car_type_rover_25" translatable="false">Rover 25/45 MG ZR/ZS</string>
     <string name="car_type_range_rover_l322" translatable="false">Range Rover L322</string>
     <string-array name="dialog_select_car_typ_car_types">
-        <item>@string/car_type_rover_75</item>
-        <item>@string/car_type_rover_25</item>
-        <item>@string/car_type_range_rover_l322</item>
+        <item>Rover 75/MG ZT</item>
+        <item>Rover 25/45 MG ZR/ZS</item>
+        <item>Range Rover L322</item>
     </string-array>
     <!-- alert Dialog - interface info -->
     <string name="dialog_interface_info_title">Interface info</string>

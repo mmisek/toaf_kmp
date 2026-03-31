@@ -89,4 +89,5 @@ class AndroidUsbBroadcastHandler(private var context : Context) : IUsbBroadcastH
     }
 
     override fun getAvailableDevices() = mutableListOf<String>()
+    override fun getDeviceInfo(deviceName: String): UsbDeviceInfo?  = null
 }

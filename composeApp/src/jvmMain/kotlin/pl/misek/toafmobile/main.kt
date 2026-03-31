@@ -6,6 +6,7 @@ import co.touchlab.kermit.CommonWriter
 import co.touchlab.kermit.Logger
 import co.touchlab.kermit.Severity
 import io.sentry.Sentry
+import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.koinInject
 import org.koin.core.context.GlobalContext
 import org.koin.core.context.startKoin
@@ -17,6 +18,8 @@ import pl.misek.toafmobile.database.ToafDatabase_Impl
 import pl.misek.toafmobile.koin.commonModules
 import pl.misek.toafmobile.koin.platformModules
 import pl.misek.toafmobile.logger.SentryLogWriter
+import toafmobile.composeapp.generated.resources.Res
+import toafmobile.composeapp.generated.resources.toaf_icon_windows
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.system.exitProcess
@@ -57,6 +60,7 @@ fun main() {
                 exitProcess(0)
             },
             title = "Toaf Desktop",
+            icon = painterResource(Res.drawable.toaf_icon_windows)
         ) {
             AppNavigation()
         }

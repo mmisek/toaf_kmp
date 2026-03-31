@@ -129,6 +129,12 @@ fun TopBarModelMainActivity(
             if (!serialPortName.isNullOrEmpty())
             {
                 serialDevice.connect(serialPortName)
+                if (serialDevice.isConnected) {
+                    wifiDeviceInfo = null
+                    usbDeviceInfo = usbEventViewModel.getDeviceInfo(serialPortName)
+                    protocolFactory.updateProtocolFactory(serialDevice)
+                    interfaceConnectionState = ConnectionState.USB_CONNECTED
+                }
             }
         }
     }

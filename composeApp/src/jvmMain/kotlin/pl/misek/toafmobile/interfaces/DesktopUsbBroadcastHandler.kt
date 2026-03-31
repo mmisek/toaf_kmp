@@ -17,7 +17,7 @@ class DesktopUsbBroadcastHandler() : IUsbBroadcastHandler {
                 trySend(UsbEvent.Attached(it?.getUsbDeviceInfo() ?: UsbDeviceInfo(), null))
             }
         }
-        sendCurrentDevice()
+        //sendCurrentDevice()
         val job = kotlinx.coroutines.MainScope().launch {
             var lastDevices = SerialPort.getCommPorts().map { it.systemPortName }.toSet()
             while (isActive) {
@@ -44,8 +44,10 @@ class DesktopUsbBroadcastHandler() : IUsbBroadcastHandler {
     }
     private fun SerialPort.getUsbDeviceInfo() : UsbDeviceInfo{
         return UsbDeviceInfo(
+            portName = this.systemPortPath,
+            name = this.systemPortName,
+            description =  this.descriptivePortName,
             serialNumber = this.serialNumber,
-            name = this.portDescription,
             productId = this.productID.toString(),
             vendorID = this.vendorID.toString(),
             manufacturer = this.manufacturer,
@@ -59,4 +61,6 @@ class DesktopUsbBroadcastHandler() : IUsbBroadcastHandler {
             result.add(it.systemPortName) }
         return result
     }
+
+    override fun getDeviceInfo(deviceName: String) = SerialPort.getCommPorts().firstOrNull { x->x.systemPortName == deviceName }?.getUsbDeviceInfo()
 }

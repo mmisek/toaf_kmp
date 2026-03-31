@@ -175,11 +175,17 @@ fun ActivityMainModel(
                         onShowUsbInterfaceConfig = {dialogType = DialogType.UsbConfig}
                     )
                 },
-                onClickShowInterfaceInfo = { ussDeviceInfo, wifiDeviceInfo ->
-                    if (ussDeviceInfo != null)
-                        ShowInterfaceTypeInformation.Usb
+                onClickShowInterfaceInfo = { usb, wifi ->
+                    if (usb != null) {
+                        usbDeviceInfo = usb
+                        showInterfaceInformation = ShowInterfaceTypeInformation.Usb
+                    }
                     else if (wifiDeviceInfo != null)
-                        ShowInterfaceTypeInformation.Wifi
+                    {
+                        wifiDeviceInfo = wifi
+                        showInterfaceInformation = ShowInterfaceTypeInformation.Wifi
+                    }
+
                 },
                 onShowUserInfo = { showUserInfoDialog = !showUserInfoDialog }
             )
@@ -232,19 +238,27 @@ fun ActivityMainModel(
                     }
                 }
             }
-            when(showInterfaceInformation){
-                ShowInterfaceTypeInformation.Usb -> {
-                    DialogShowInterfaceInfo.ShowUsb(
-                        usbDevice = usbDeviceInfo,
-                        database = database,
-                        onClose = { showInterfaceInformation = ShowInterfaceTypeInformation.None})
+            if (showInterfaceInformation != ShowInterfaceTypeInformation.None) {
+                when (showInterfaceInformation) {
+                    ShowInterfaceTypeInformation.Usb -> {
+                        DialogShowInterfaceInfo.ShowUsb(
+                            usbDevice = usbDeviceInfo,
+                            database = database,
+                            onClose = {
+                                showInterfaceInformation = ShowInterfaceTypeInformation.None
+                            })
+                    }
+
+                    ShowInterfaceTypeInformation.Wifi -> {
+                        DialogShowInterfaceInfo.ShowWifi(
+                            wifiDevice = wifiDeviceInfo,
+                            onClose = {
+                                showInterfaceInformation = ShowInterfaceTypeInformation.None
+                            })
+                    }
+
+                    else -> {}
                 }
-                ShowInterfaceTypeInformation.Wifi -> {
-                    DialogShowInterfaceInfo.ShowWifi(
-                        wifiDevice = wifiDeviceInfo,
-                        onClose = { showInterfaceInformation = ShowInterfaceTypeInformation.None})
-                }
-                else -> {}
             }
             if (showUserInfoDialog)
             {
@@ -459,7 +473,7 @@ fun ActivityMainModel(
                                     DatabaseSettingFields.SERIAL_PORT_NAME,
                                     item
                                 )
-                                usbEventManager.handeConnectedDevice()
+                                serialDevice.connect(item)
                                 dialogType = DialogType.None
                             }
                         }

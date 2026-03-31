@@ -69,5 +69,9 @@ class AndroidUsbEventManager(private val usbBroadcastHandler: IUsbBroadcastHandl
         onUsbAttached(device, driver = driver)
     }
 
-    override fun getAvailableDevices(): MutableList<String> =usbBroadcastHandler.getAvailableDevices()
+    override fun getAvailableDevices(): MutableList<String> = usbBroadcastHandler.getAvailableDevices()
+
+    override fun getDeviceInfo(deviceName: String): UsbDeviceInfo {
+        TODO("Not yet implemented")
+    }
 }

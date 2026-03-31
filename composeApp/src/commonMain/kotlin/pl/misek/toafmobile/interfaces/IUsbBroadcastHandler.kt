@@ -5,5 +5,6 @@ import kotlinx.coroutines.flow.Flow
 interface IUsbBroadcastHandler{
     fun observeUsbEvent() : Flow<UsbEvent>
     fun getAvailableDevices() : MutableList<String>
+    fun getDeviceInfo(deviceName : String) : UsbDeviceInfo?
 }
 

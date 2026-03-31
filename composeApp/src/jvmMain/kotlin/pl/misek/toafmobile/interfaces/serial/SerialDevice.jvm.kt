@@ -5,6 +5,7 @@ import com.fazecast.jSerialComm.SerialPort
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.descriptors.serialDescriptor
 import pl.misek.toafmobile.interfaces.ISerialDevice
 import java.io.ByteArrayOutputStream
 import kotlin.time.measureTime
@@ -91,7 +92,11 @@ class DesktopSerialDevice : ISerialDevice
 
     override fun connect(deviceName: String) {
         _serialPortName = deviceName
-
+        if (_serialPort != null && _serialPort!!.isOpen())
+        {
+            _serialPort!!.closePort()
+            _serialPort = null
+        }
         if (_serialPort == null)
         {
             _serialPort = SerialPort.getCommPort(_serialPortName)

@@ -117,8 +117,23 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Exe, TargetFormat.Deb)
-            packageName = "pl.misek.toafmobile"
+            packageName = "Toaf Desktop"
+            version = versionName
             packageVersion = versionName
+            linux {
+                iconFile.set(project.file("src/commonMain/composeResources/drawable/toaf_icon_linux.png"))
+            }
+            windows {
+                iconFile.set(project.file("src/commonMain/composeResources/drawable/toaf_icon_windows.ico"))
+                menuGroup = "Toaf"
+                upgradeUuid = "68d0ed02-7125-4d98-856c-5ef07c0ad3ef"
+            }
+        }
+        buildTypes.release.proguard{
+            configurationFiles.from(project.file("proguard-desktop.pro"))
+            // Opcjonalnie: Jeśli aplikacja nadal crashuje, wyłącz zaciemnianie (obfuscację),
+            // zachowując tylko "minifikację" (usuwanie nieużywanego kodu)
+            // obfuscate.set(false)
         }
     }
 }

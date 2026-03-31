@@ -40,7 +40,7 @@ actual fun platformModules(): Module  = module {
     single<ToafDao> { get<ToafDatabase>().toafDao()}
     single{ Database(get()) }
     single<IWifiManager> { DesktopWifiManager() }
-    factory<ISerialDevice> { DesktopSerialDevice() }
+    single<ISerialDevice> { DesktopSerialDevice() }
     factory<IToafBilling>  { DesktopToafBilling() }
     factory<IToafRewardAds> { DesktopToafRewardAds() }
     factory<IFileSupport> { DesktopFileSupport() }

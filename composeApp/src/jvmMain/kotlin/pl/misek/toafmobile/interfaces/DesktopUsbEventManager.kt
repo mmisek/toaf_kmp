@@ -64,4 +64,5 @@ class DesktopUsbEventManager(private val usbBroadcastHandler: IUsbBroadcastHandl
     }
 
     override fun getAvailableDevices(): MutableList<String> = usbBroadcastHandler.getAvailableDevices()
+    override fun getDeviceInfo(deviceName: String) = usbBroadcastHandler.getDeviceInfo(deviceName)
 }
