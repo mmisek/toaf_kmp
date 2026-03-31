@@ -2,6 +2,7 @@ package pl.misek.toafmobile.interfaces
 
 import co.touchlab.kermit.Logger
 import com.fazecast.jSerialComm.SerialPort
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -18,7 +19,7 @@ class DesktopUsbBroadcastHandler() : IUsbBroadcastHandler {
             }
         }
         //sendCurrentDevice()
-        val job = kotlinx.coroutines.MainScope().launch {
+        val job = launch(Dispatchers.IO) {
             var lastDevices = SerialPort.getCommPorts().map { it.systemPortName }.toSet()
             while (isActive) {
                 kotlinx.coroutines.delay(2000)
@@ -31,7 +32,7 @@ class DesktopUsbBroadcastHandler() : IUsbBroadcastHandler {
 
                 val disconnected = lastDevices.filter { it !in currentNames }
                 disconnected.forEach { name ->
-                    trySend(UsbEvent.Detached(UsbDeviceInfo()))
+                    trySend(UsbEvent.Detached(getDeviceInfo(name) ?: UsbDeviceInfo()))
                 }
 
                 lastDevices = currentNames

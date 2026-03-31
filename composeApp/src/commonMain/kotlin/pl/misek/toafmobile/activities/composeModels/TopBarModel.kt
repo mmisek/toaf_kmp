@@ -167,6 +167,7 @@ fun TopBarModelMainActivity(
             }
 
             is UsbEvent.Detached -> {
+                serialDevice.disconnect()
                 usbDeviceInfo = null
                 interfaceConnectionState = ConnectionState.USB_DISCONNECTED
             }

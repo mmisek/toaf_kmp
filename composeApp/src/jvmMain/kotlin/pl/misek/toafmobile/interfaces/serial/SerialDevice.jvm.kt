@@ -2,6 +2,8 @@ package pl.misek.toafmobile.interfaces.serial
 
 import co.touchlab.kermit.Logger
 import com.fazecast.jSerialComm.SerialPort
+import com.fazecast.jSerialComm.SerialPortDataListener
+import com.fazecast.jSerialComm.SerialPortEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -81,11 +83,14 @@ class DesktopSerialDevice : ISerialDevice
     }
 
     override fun disconnect() {
-        if (_serialPort != null && _serialPort!!.isOpen) {
+        if (_serialPort != null) {
             try {
                 _serialPort?.closePort()
             } catch (ex: Exception) {
                 Logger.e{"$tag : ${ex.toString()}"}
+            }
+            finally {
+                _serialPort = null
             }
         }
     }
@@ -100,14 +105,33 @@ class DesktopSerialDevice : ISerialDevice
         if (_serialPort == null)
         {
             _serialPort = SerialPort.getCommPort(_serialPortName)
-            _serialPort?.let {
-                it.baudRate = 9600
-                it.numDataBits = 8
-                it.parity = SerialPort.EVEN_PARITY
-                it.numStopBits = SerialPort.ONE_STOP_BIT
-                it.setComPortTimeouts(SerialPort.TIMEOUT_READ_BLOCKING, 25,0)
-                if (!it.openPort())
-                    Logger.e{"$tag : failed to open $deviceName"}
+            if (_serialPort != null) {
+                _serialPort?.baudRate = 9600
+                _serialPort?.numDataBits = 8
+                _serialPort?.parity = SerialPort.EVEN_PARITY
+                _serialPort?.numStopBits = SerialPort.ONE_STOP_BIT
+                _serialPort?.setComPortTimeouts(SerialPort.TIMEOUT_READ_BLOCKING, 25,0)
+                if (_serialPort?.openPort() == false) {
+                    Logger.e { "$tag : failed to open $deviceName" }
+                    _serialPort = null
+                    return
+                }
+                _serialPort?.addDataListener(object : SerialPortDataListener {
+                    override fun getListeningEvents(): Int {
+                        return SerialPort.LISTENING_EVENT_PORT_DISCONNECTED
+                    }
+
+                    override fun serialEvent(event: SerialPortEvent?) {
+                        when (event?.eventType) {
+                            SerialPort.LISTENING_EVENT_PORT_DISCONNECTED -> {
+                                Logger.i { "Disconnected : ${_serialPort?.systemPortName}" }
+                                disconnect()
+                                _serialPort?.removeDataListener()
+                            }
+                        }
+                    }
+                }
+                )
             }
         }
     }
