@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
+import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
@@ -34,10 +35,13 @@ fun DialogToafWifiInterfaceAddDevice(ipAddress : String, onCancelClick : () -> U
     var ip by remember {mutableStateOf("")}
     ip = ipAddress
     AlertDialog(
+        shape = toafShape,
         modifier = Modifier.border(
             width = 1.dp,
-            color = ToafColors.toafTextColorWhite,
+            shape = toafShape,
+            color = ToafColors.toafTextColorWhite
         ),
+
         containerColor = ToafColors.toafBackground,
         onDismissRequest = {onCancelClick()},
         title = {

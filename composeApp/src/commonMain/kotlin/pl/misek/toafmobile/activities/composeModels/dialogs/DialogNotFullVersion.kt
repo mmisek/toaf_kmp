@@ -24,6 +24,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import pl.misek.toafmobile.activities.ToafConstants
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
+import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import pl.misek.toafmobile.ads.IToafRewardAds
 import pl.misek.toafmobile.billing.IToafBilling
@@ -51,10 +52,13 @@ fun DialogNotFullVersion(onWatchAdResult: (Boolean) -> Unit, onCloseClick : () -
         fullVersionPrice = toafBilling.getElementPrice(ToafConstants.SKU_TOAF_FULL_VERSION)
     }
     AlertDialog(
+        shape = toafShape,
         modifier = Modifier.border(
             width = 1.dp,
-            color = ToafColors.toafTextColorWhite,
+            shape = toafShape,
+            color = ToafColors.toafTextColorWhite
         ),
+
         containerColor = ToafColors.toafBackground,
         onDismissRequest = { onCloseClick() },
         title = {

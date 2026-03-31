@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
+import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
@@ -25,10 +26,13 @@ object DialogQuestion {
     fun Show(question : StringResource, onNoClick : () -> Unit, onYesClick : () -> Unit)
     {
         AlertDialog(
+            shape = toafShape,
             modifier = Modifier.border(
                 width = 1.dp,
-                color = ToafColors.toafTextColorWhite,
+                shape = toafShape,
+                color = ToafColors.toafTextColorWhite
             ),
+
             containerColor = ToafColors.toafBackground,
             onDismissRequest = {onNoClick()},
             title = {

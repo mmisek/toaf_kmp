@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.activities.composeModels.dialogs
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
+import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
 import pl.misek.toafmobile.activities.composeModels.ToafComposeElements
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import toafmobile.composeapp.generated.resources.Res
@@ -40,6 +42,13 @@ fun CodingBackupDialog(
     var description by remember { mutableStateOf("") }
     var isPublic by remember { mutableStateOf(false) }
     AlertDialog(
+        shape = toafShape,
+        modifier = Modifier.border(
+            width = 1.dp,
+            shape = toafShape,
+            color = ToafColors.toafTextColorWhite
+        ),
+
         containerColor = ToafColors.toafBackground,
         onDismissRequest = {onCancelClick()},
         title = {

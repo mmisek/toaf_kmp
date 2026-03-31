@@ -36,6 +36,7 @@ import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
+import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import pl.misek.toafmobile.database.Database
 import pl.misek.toafmobile.database.DatabaseSettingFields
@@ -52,10 +53,13 @@ object DialogShowInterfaceInfo {
         var fastInitSleepValue by remember {mutableIntStateOf(25)}
         fastInitSleepValue = runBlocking { database?.getIntSettingValueByName(DatabaseSettingFields.TOAF_KWP_FAST_INIT_SLEEP) ?: 25}
         AlertDialog(
+            shape = toafShape,
             modifier = Modifier.border(
                 width = 1.dp,
-                color = ToafColors.toafTextColorWhite,
+                shape = toafShape,
+                color = ToafColors.toafTextColorWhite
             ),
+
             containerColor = ToafColors.toafBackground,
             onDismissRequest = {onClose()},
             title = {

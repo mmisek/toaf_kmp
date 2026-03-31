@@ -43,6 +43,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
+import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import pl.misek.toafmobile.database.Database
 import toafmobile.composeapp.generated.resources.Res
@@ -77,10 +78,13 @@ object DialogLoginUser {
         )
         {
             AlertDialog(
+                shape = toafShape,
                 modifier = Modifier.border(
                     width = 1.dp,
-                    color = ToafColors.toafTextColorWhite,
+                    shape = toafShape,
+                    color = ToafColors.toafTextColorWhite
                 ),
+
                 containerColor = ToafColors.toafBackground,
                 onDismissRequest = { onClose() },
                 properties = DialogProperties(
@@ -125,7 +129,8 @@ object DialogLoginUser {
                                 focusedBorderColor = Color.White,
                                 unfocusedLabelColor = Color.White,
                                 disabledBorderColor = Color.White
-                            )
+                            ),
+                            singleLine = true
                         )
                         OutlinedTextField(
                             modifier = Modifier
@@ -151,7 +156,8 @@ object DialogLoginUser {
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                             leadingIcon = {
                                 Icon(Icons.Default.Lock, contentDescription = null, tint = Color.White)
-                            }
+                            },
+                            singleLine = true
                         )
                     }
                 },

@@ -35,6 +35,8 @@ import toafmobile.composeapp.generated.resources.usb_connected
 
 object ToafButtons {
 
+    val toafShape = RoundedCornerShape(16.dp)
+
     @Composable
     fun GreenButton(buttonText: String, onClick: () -> Unit, modifier: Modifier, enabled: Boolean = true) {
         ToafButton(buttonText, ToafColors.greenButton, onClick, modifier, enabled)

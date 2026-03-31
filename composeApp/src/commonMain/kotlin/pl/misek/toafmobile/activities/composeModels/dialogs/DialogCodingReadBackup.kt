@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
 import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
+import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
 import pl.misek.toafmobile.activities.composeModels.ToafComposeElements
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import pl.misek.toafmobile.backup.BackupElement
@@ -36,6 +37,13 @@ fun CodingReadBackupDialog(
 ) {
     var selectedBackupId by remember { mutableIntStateOf(10) }
     AlertDialog(
+        shape = toafShape,
+        modifier = Modifier.border(
+            width = 1.dp,
+            shape = toafShape,
+            color = ToafColors.toafTextColorWhite
+        ),
+
         containerColor = ToafColors.toafBackground,
         onDismissRequest = {onCancelClick()},
         title = {

@@ -26,6 +26,7 @@ import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
+import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
 import pl.misek.toafmobile.activities.composeModels.ToafComposeElements
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import pl.misek.toafmobile.interfaces.ConnectionState
@@ -74,6 +75,13 @@ fun DialogToafWifiConfiguration(
 
     }
     AlertDialog(
+        shape = toafShape,
+        modifier = Modifier.border(
+            width = 1.dp,
+            shape = toafShape,
+            color = ToafColors.toafTextColorWhite
+        ),
+
         containerColor = ToafColors.toafBackground,
         onDismissRequest = {onCancelClick()},
         title = {

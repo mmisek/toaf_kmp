@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
+import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.enums.ModuleAddress
@@ -35,9 +36,11 @@ object DialogShowErrors {
     {
         var expandId by remember { mutableIntStateOf(-1) }
         AlertDialog(
+            shape = toafShape,
             modifier = Modifier.border(
                 width = 1.dp,
-                color = ToafColors.toafTextColorWhite,
+                shape = toafShape,
+                color = ToafColors.toafTextColorWhite
             ),
             containerColor = ToafColors.toafBackground,
             onDismissRequest = {onClose()},

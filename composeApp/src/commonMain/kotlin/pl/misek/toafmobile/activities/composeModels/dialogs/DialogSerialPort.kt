@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -35,6 +36,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
+import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
 import pl.misek.toafmobile.database.Database
 import pl.misek.toafmobile.database.DatabaseSettingFields
 import pl.misek.toafmobile.interfaces.IUsbEventManager
@@ -73,10 +75,13 @@ fun DialogSerialPort (onCancelClick : () -> Unit, onOkClick : (String) -> Unit)
     }
 
     AlertDialog(
+        shape = toafShape,
         modifier = Modifier.border(
             width = 1.dp,
-            color = ToafColors.toafTextColorWhite,
+            shape = toafShape,
+            color = ToafColors.toafTextColorWhite
         ),
+
         containerColor = ToafColors.toafBackground,
         onDismissRequest = { onCancelClick() },
         title = {

@@ -11,6 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
+import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import pl.misek.toafmobile.modules.ModuleInfo
 import toafmobile.composeapp.generated.resources.Res
@@ -26,10 +27,13 @@ object DialogShowIdentification {
         if (!odometer.isNullOrEmpty())
             infoText += "\n" + stringResource(Res.string.alert_module_info_odometer) + ": " + odometer
         AlertDialog(
+            shape = toafShape,
             modifier = Modifier.border(
                 width = 1.dp,
-                color = ToafColors.toafTextColorWhite,
+                shape = toafShape,
+                color = ToafColors.toafTextColorWhite
             ),
+
             containerColor = ToafColors.toafBackground,
             onDismissRequest = {onConfirm()},
             title = {

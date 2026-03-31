@@ -21,6 +21,7 @@ import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
+import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
 import pl.misek.toafmobile.activities.composeModels.ToafEditText
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
@@ -31,10 +32,13 @@ fun DialogInput (title : StringResource, name : StringResource, value : String, 
     var newValue by remember { mutableStateOf(value) }
 
     AlertDialog(
+        shape = toafShape,
         modifier = Modifier.border(
             width = 1.dp,
-            color = ToafColors.toafTextColorWhite,
+            shape = toafShape,
+            color = ToafColors.toafTextColorWhite
         ),
+
         containerColor = ToafColors.toafBackground,
         onDismissRequest = { onCancelClick() },
         title = {

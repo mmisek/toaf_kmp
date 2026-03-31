@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
 import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
+import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
@@ -67,9 +68,11 @@ object DialogCreateUser {
         )
         {
             AlertDialog(
+                shape = toafShape,
                 modifier = Modifier.border(
                     width = 1.dp,
-                    color = ToafColors.toafTextColorWhite,
+                    shape = toafShape,
+                    color = ToafColors.toafTextColorWhite
                 ),
                 containerColor = ToafColors.toafBackground,
                 onDismissRequest = { onClose() },
@@ -114,7 +117,8 @@ object DialogCreateUser {
                                 focusedBorderColor = Color.White,
                                 unfocusedLabelColor = Color.White,
                                 disabledBorderColor = Color.White
-                            )
+                            ),
+                            singleLine = true
                         )
                         OutlinedTextField(
                             modifier = Modifier
@@ -134,12 +138,12 @@ object DialogCreateUser {
                                 focusedBorderColor = Color.White,
                                 unfocusedLabelColor = Color.White,
                                 disabledBorderColor = Color.White
-                            )
+                            ),
+                            singleLine = true
                         )
                         OutlinedTextField(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                //.weight(1f)
                                 .padding(all = 5.dp),
                             value = userPassword1,
                             onValueChange = { userPassword1 = it },
@@ -160,7 +164,8 @@ object DialogCreateUser {
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                             leadingIcon = {
                                 Icon(Icons.Default.Lock, contentDescription = null, tint = Color.White)
-                            }
+                            },
+                            singleLine = true
                         )
                             OutlinedTextField(
                                 modifier = Modifier
@@ -186,7 +191,8 @@ object DialogCreateUser {
                                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                                 leadingIcon = {
                                     Icon(Icons.Default.Lock, contentDescription = null, tint = Color.White)
-                                }
+                                },
+                                singleLine = true
                             )
                     }
                 },

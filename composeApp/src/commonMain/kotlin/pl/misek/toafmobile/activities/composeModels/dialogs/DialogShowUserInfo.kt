@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
+import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import pl.misek.toafmobile.network.UserInfo
 import toafmobile.composeapp.generated.resources.Res
@@ -25,10 +26,13 @@ object DialogShowUserInfo {
     fun Show(userInfo : UserInfo?, onClose : () -> Unit, onDeleteUser : () -> Unit)
     {
         AlertDialog(
+            shape = toafShape,
             modifier = Modifier.border(
                 width = 1.dp,
-                color = ToafColors.toafTextColorWhite,
+                shape = toafShape,
+                color = ToafColors.toafTextColorWhite
             ),
+
             containerColor = ToafColors.toafBackground,
             onDismissRequest = {onClose()},
             title = {
