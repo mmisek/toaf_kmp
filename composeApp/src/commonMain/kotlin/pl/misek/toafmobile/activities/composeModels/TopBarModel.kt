@@ -123,6 +123,14 @@ fun TopBarModelMainActivity(
             val ip = database.getStringSettingValueByName(DatabaseSettingFields.WIFI_DEVICE_IP)
             wifiEventManager.startMonitoring(ip ?: "")
         }
+        else
+        {
+            val serialPortName = database.getStringSettingValueByName(DatabaseSettingFields.SERIAL_PORT_NAME)
+            if (!serialPortName.isNullOrEmpty())
+            {
+                serialDevice.connect(serialPortName)
+            }
+        }
     }
     LaunchedEffect(userInfo)
     {
@@ -132,13 +140,17 @@ fun TopBarModelMainActivity(
         when (usbEvent) {
             is UsbEvent.Attached -> {
                 try {
-                    database
-                    serialDevice.connect("COM1")
-                    if (serialDevice.isConnected) {
-                        wifiDeviceInfo = null
-                        usbDeviceInfo = (usbEvent as UsbEvent.Attached).device
-                        protocolFactory.updateProtocolFactory(serialDevice)
-                        interfaceConnectionState = ConnectionState.USB_CONNECTED
+                    val lastDeviceType = database.getStringSettingValueByName(DatabaseSettingFields.LAST_DEVICE_TYPE)
+                    val serialPortName = database.getStringSettingValueByName(DatabaseSettingFields.SERIAL_PORT_NAME)
+                    if (lastDeviceType == "USB" && !serialPortName.isNullOrEmpty())
+                    {
+                        serialDevice.connect(serialPortName)
+                        if (serialDevice.isConnected) {
+                            wifiDeviceInfo = null
+                            usbDeviceInfo = (usbEvent as UsbEvent.Attached).device
+                            protocolFactory.updateProtocolFactory(serialDevice)
+                            interfaceConnectionState = ConnectionState.USB_CONNECTED
+                        }
                     }
                 } catch (ex: Exception) {
                     Sentry.captureException(ex)
