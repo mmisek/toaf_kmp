@@ -113,7 +113,7 @@ class DesktopSerialDevice : ISerialDevice
                 _serialPort?.numStopBits = SerialPort.ONE_STOP_BIT
                 _serialPort?.setComPortTimeouts(SerialPort.TIMEOUT_READ_BLOCKING, 25,0)
                 if (_serialPort?.openPort() == false) {
-                    Logger.e { "$tag : failed to open $deviceName" }
+                    Logger.e { "$tag : failed to open $deviceName, lastErrorCode : ${_serialPort?.lastErrorCode} "}
                     _serialPort = null
                     return
                 }
