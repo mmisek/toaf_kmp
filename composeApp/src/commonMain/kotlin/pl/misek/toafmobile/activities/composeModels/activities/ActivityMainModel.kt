@@ -473,6 +473,7 @@ fun ActivityMainModel(
                                     DatabaseSettingFields.SERIAL_PORT_NAME,
                                     item
                                 )
+                                database.updateStringSettingByName(DatabaseSettingFields.LAST_DEVICE_TYPE, "USB")
                                 serialDevice.connect(item)
                                 dialogType = DialogType.None
                             }

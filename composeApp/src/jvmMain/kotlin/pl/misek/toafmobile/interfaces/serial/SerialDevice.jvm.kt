@@ -117,6 +117,9 @@ class DesktopSerialDevice : ISerialDevice
                     _serialPort = null
                     return
                 }
+                else {
+                    Logger.i {"$tag: Connected with ${_serialPort?.systemPortName}"}
+                }
                 _serialPort?.addDataListener(object : SerialPortDataListener {
                     override fun getListeningEvents(): Int {
                         return SerialPort.LISTENING_EVENT_PORT_DISCONNECTED
