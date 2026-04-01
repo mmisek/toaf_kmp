@@ -116,7 +116,7 @@ compose.desktop {
         mainClass = "pl.misek.toafmobile.MainKt"
 
         nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Exe, TargetFormat.Deb)
+            targetFormats(TargetFormat.Rpm, TargetFormat.Msi, TargetFormat.Exe, TargetFormat.Deb, TargetFormat.Pkg)
             packageName = "Toaf Desktop"
             version = versionName
             packageVersion = versionName

@@ -20,13 +20,13 @@ class DesktopUsbBroadcastHandler() : IUsbBroadcastHandler {
         }
         //sendCurrentDevice()
         val job = launch(Dispatchers.IO) {
-            var lastDevices = SerialPort.getCommPorts().map { it.systemPortName }.toSet()
+            var lastDevices = SerialPort.getCommPorts().map { it.systemPortPath }.toSet()
             while (isActive) {
                 kotlinx.coroutines.delay(2000)
                 val currentPorts = SerialPort.getCommPorts()
-                val currentNames = currentPorts.map { it.systemPortName }.toSet()
+                val currentNames = currentPorts.map { it.systemPortPath }.toSet()
 
-                currentPorts.filter { it.systemPortName !in lastDevices }.forEach {
+                currentPorts.filter { it.systemPortPath !in lastDevices }.forEach {
                     trySend(UsbEvent.Attached(it.getUsbDeviceInfo(), null))
                 }
 
@@ -59,9 +59,9 @@ class DesktopUsbBroadcastHandler() : IUsbBroadcastHandler {
         val result = mutableListOf<String>()
         SerialPort.getCommPorts().forEach{
             Logger.i {"Serial Port : $it"}
-            result.add(it.systemPortName) }
+            result.add(it.systemPortPath) }
         return result
     }
 
-    override fun getDeviceInfo(deviceName: String) = SerialPort.getCommPorts().firstOrNull { x->x.systemPortName == deviceName }?.getUsbDeviceInfo()
+    override fun getDeviceInfo(deviceName: String) = SerialPort.getCommPorts().firstOrNull { x->x.systemPortPath == deviceName }?.getUsbDeviceInfo()
 }
