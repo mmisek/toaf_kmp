@@ -56,8 +56,12 @@ actual fun platformModules(): Module  = module {
                         "user_password," +
                         "information_LAST_DEVICE_TYPE," +
                         "information_SERIAL_PORT_NAME," +
-                        "information_WIFI_DEVICE_IP) " +
-                        "VALUES ('','','USB','','')")
+                        "information_WIFI_DEVICE_IP," +
+                        "information_TOAF_BCU_KEYS," +
+                        "information_TOAF_CURRENT_CAR_TYPE," +
+                        "information_TOAF_EKA_CODES," +
+                        "information_TOAF_KWP_FAST_INIT_SLEEP) " +
+                        "VALUES ('','','USB','','',0,0,0,25)")
             }
         }).build()
     }

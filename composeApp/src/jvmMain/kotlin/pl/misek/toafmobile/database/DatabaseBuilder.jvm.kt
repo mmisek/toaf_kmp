@@ -30,7 +30,8 @@ fun getDatabaseBuilder(): RoomDatabase.Builder<ToafDatabase> {
                         "user_password," +
                         "information_LAST_DEVICE_TYPE," +
                         "information_SERIAL_PORT_NAME," +
-                        "information_WIFI_DEVICE_IP) " +
+                        "information_WIFI_DEVICE_IP," +
+                        ") " +
                         "VALUES ('','','USB','','')")
             }
     })
