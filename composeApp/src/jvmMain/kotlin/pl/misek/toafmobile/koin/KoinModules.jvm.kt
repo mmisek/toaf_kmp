@@ -1,7 +1,12 @@
 package pl.misek.toafmobile.koin
 
 import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.sqlite.SQLiteConnection
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
+import androidx.sqlite.execSQL
+import co.touchlab.kermit.Logger
+import kotlinx.coroutines.Dispatchers
 import org.koin.core.module.Module
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -29,13 +34,32 @@ import java.io.File
 actual fun platformModules(): Module  = module {
     single(named(KoinNames.LiveDataLogFolder.name)) { File(System.getProperty("user.home"), ".toaf") }
     single<ToafDatabase>{
-        val dbFile = File(System.getProperty("java.io.tmpdir"),"toaf.db")
+        val appFolder = File(System.getProperty("user.home"), ".toaf")
+        if (!appFolder.exists()) {
+            appFolder.mkdirs()
+            Logger.i { "Created directory : ${appFolder.absolutePath}"}
+        }
+        val dbFile = File(appFolder, "toaf.db")
+        Logger.i { "Database file : ${dbFile.absolutePath}"}
         Room.databaseBuilder<ToafDatabase>(
             name = dbFile.absolutePath
         )
-        .setDriver(BundledSQLiteDriver())
-        .addMigrations(Migration1to2)
-        .build()
+            .setDriver(BundledSQLiteDriver())
+            .addMigrations(Migration1to2)
+            .setJournalMode(RoomDatabase.JournalMode.WRITE_AHEAD_LOGGING)
+            .setDriver(BundledSQLiteDriver())
+            .setQueryCoroutineContext(Dispatchers.IO)
+            .addCallback(object : RoomDatabase.Callback() {
+            override fun onCreate(connection: SQLiteConnection) {
+                super.onCreate(connection)
+                connection.execSQL("INSERT INTO settings (user_login," +
+                        "user_password," +
+                        "information_LAST_DEVICE_TYPE," +
+                        "information_SERIAL_PORT_NAME," +
+                        "information_WIFI_DEVICE_IP) " +
+                        "VALUES ('','','USB','','')")
+            }
+        }).build()
     }
     single<ToafDao> { get<ToafDatabase>().toafDao()}
     single{ Database(get()) }
