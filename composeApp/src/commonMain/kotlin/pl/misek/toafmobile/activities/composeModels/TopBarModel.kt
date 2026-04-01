@@ -32,9 +32,11 @@ import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 import pl.misek.toafmobile.BuildKonfig
+import pl.misek.toafmobile.PlatformType
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import pl.misek.toafmobile.database.Database
 import pl.misek.toafmobile.database.DatabaseSettingFields
+import pl.misek.toafmobile.getPlatformType
 import pl.misek.toafmobile.interfaces.ConnectionState
 import pl.misek.toafmobile.interfaces.ISerialDevice
 import pl.misek.toafmobile.interfaces.IUsbEventManager
@@ -202,7 +204,7 @@ fun TopBarModelMainActivity(
                 Column(modifier = Modifier.fillMaxWidth())
                 {
                     Text(
-                        text = stringResource(Res.string.app_name),
+                        text = stringResource(if (getPlatformType() == PlatformType.Android) Res.string.app_name_mobile else Res.string.app_name_desktop),
                         color = ToafColors.toafTextColorWhite,
                         style = MaterialTheme.typography.titleLarge
                     )

@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">TOAF Mobile</string>
+    <string name="app_name_mobile" translatable="false">TOAF Mobile</string>
+    <string name="app_name_desktop" translatable="false">TOAF Desktop</string>
     <string name="app_version">0.0.7</string>
     <string name="title_activity_main_activity">MainActivity</string>
 
