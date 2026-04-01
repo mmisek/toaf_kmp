@@ -96,6 +96,7 @@ class DesktopSerialDevice : ISerialDevice
     }
 
     override fun connect(deviceName: String) {
+        Logger.i { "Connecting with : $_serialPortName" }
         _serialPortName = deviceName
         if (_serialPort != null && _serialPort!!.isOpen())
         {
