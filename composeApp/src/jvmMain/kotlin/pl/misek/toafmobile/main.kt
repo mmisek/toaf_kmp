@@ -70,7 +70,7 @@ fun main() {
 fun setupCrashHandlers(database: ToafDatabase) {
     // 1. Hak na wypadek ubicia procesu przez system
     Runtime.getRuntime().addShutdownHook(Thread {
-        Logger.e{"Awaryjne zamykanie (Shutdown Hook). Czyszczenie zasobów..."}
+        Logger.i {"Awaryjne zamykanie (Shutdown Hook). Czyszczenie zasobów..."}
         safeCloseDatabase(database, "Crash Handler")
     })
 
