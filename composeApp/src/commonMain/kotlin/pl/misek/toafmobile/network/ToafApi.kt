@@ -9,6 +9,7 @@ import io.ktor.client.request.forms.formData
 import io.ktor.client.request.forms.submitFormWithBinaryData
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
+import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
 import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
@@ -43,7 +44,7 @@ class ToafApi(private val client: HttpClient) {
             else
                 ServerConnectionState.DISCONNECTED
         } catch (ex: Exception) {
-            Logger.e{"$tag: ${ex.toString()}"}
+            Logger.i {"$tag: ${ex.toString()}"}
             ServerConnectionState.DISCONNECTED
         }
     }
@@ -57,9 +58,12 @@ class ToafApi(private val client: HttpClient) {
             if (result.status == HttpStatusCode.OK) {
                 val body = result.body<CodingResponse>()
                 body.message.firstOrNull()
-            } else null
+            } else {
+                Logger.e {"$tag: ${result.bodyAsText()}"}
+                null
+            }
         } catch (ex: Exception) {
-            Logger.e{"$tag: $ex"}
+            Logger.i {"$tag: $ex"}
             null
         }
     }
@@ -74,9 +78,12 @@ class ToafApi(private val client: HttpClient) {
             if (response.status == HttpStatusCode.OK) {
                 val message = response.body<BackupElementResponse>()
                 message.message
-            } else null
+            } else {
+                Logger.e {"$tag: ${response.bodyAsText()}"}
+                null
+            }
         } catch (ex: Exception) {
-            Logger.e{"$tag: $ex"}
+            Logger.i{"$tag: $ex"}
             null
         }
     }
@@ -87,9 +94,15 @@ class ToafApi(private val client: HttpClient) {
                 contentType(ContentType.Application.Json)
                 setBody(codingData.toString())
             }
-            response.status == HttpStatusCode.OK
+            return if (response.status == HttpStatusCode.OK)
+                true
+            else {
+                Logger.e {"$tag: ${response.bodyAsText()}"}
+                false
+            }
+
         } catch (ex: Exception) {
-            Logger.e{"$tag: $ex"}
+            Logger.i {"$tag: $ex"}
             false
         }
     }
@@ -97,9 +110,14 @@ class ToafApi(private val client: HttpClient) {
     suspend fun deleteUser(): Boolean {
         return try {
             val response = client.post("$url/user/delete/")
-            response.status == HttpStatusCode.OK
+            return if (response.status == HttpStatusCode.OK)
+                true
+            else {
+                Logger.e {"$tag: ${response.bodyAsText()}"}
+                false
+            }
         } catch (ex: Exception) {
-            Logger.e{"$tag: $ex"}
+            Logger.i {"$tag: $ex"}
             false
         }
     }
@@ -110,9 +128,14 @@ class ToafApi(private val client: HttpClient) {
                 contentType(ContentType.Application.Json)
                 setBody(data.toString())
             }
-            response.status == HttpStatusCode.OK
+            return if (response.status == HttpStatusCode.OK)
+                true
+            else {
+                Logger.e {"$tag: ${response.bodyAsText()}"}
+                false
+            }
         } catch (ex: Exception) {
-            Logger.e{"$tag: $ex"}
+            Logger.i {"$tag: $ex"}
             false
         }
     }
@@ -123,9 +146,14 @@ class ToafApi(private val client: HttpClient) {
                 contentType(ContentType.Application.Json)
                 setBody(data.toString())
             }
-            response.status == HttpStatusCode.OK
+            return if (response.status == HttpStatusCode.OK)
+                true
+            else {
+                Logger.e {"$tag: ${response.bodyAsText()}"}
+                false
+            }
         } catch (ex: Exception) {
-            Logger.e{"$tag: $ex"}
+            Logger.i {"$tag: $ex"}
             false
         }
     }
@@ -139,9 +167,14 @@ class ToafApi(private val client: HttpClient) {
                 if (userInfo != null)
                     userInfo.isLogged = ServerConnectionState.CONNECTED
                 userInfo
-            } else null
+            }
+            else {
+                Logger.e {"$tag: ${response.bodyAsText()}"}
+                null
+            }
+
         } catch (ex: Exception) {
-            Logger.e{"$tag: $ex"}
+            Logger.i {"$tag: $ex"}
             null
         }
     }
@@ -152,9 +185,14 @@ class ToafApi(private val client: HttpClient) {
                 contentType(ContentType.Application.Json)
                 setBody(userInfo)
             }
-            response.status == HttpStatusCode.OK
+            return if (response.status == HttpStatusCode.OK)
+                true
+            else {
+                Logger.e {"$tag: ${response.bodyAsText()}"}
+                false
+            }
         } catch (ex: Exception) {
-            Logger.e{"$tag: $ex"}
+            Logger.i {"$tag: $ex"}
             false
         }
     }
@@ -165,9 +203,14 @@ class ToafApi(private val client: HttpClient) {
                 contentType(ContentType.Application.Json)
                 setBody(data.toString())
             }
-            response.status == HttpStatusCode.OK
+            return if (response.status == HttpStatusCode.OK)
+                true
+            else {
+                Logger.e {"$tag: ${response.bodyAsText()}"}
+                false
+            }
         } catch (ex: Exception) {
-            Logger.e{"$tag: $ex"}
+            Logger.i {"$tag: $ex"}
             false
         }
     }
@@ -183,9 +226,14 @@ class ToafApi(private val client: HttpClient) {
                 contentType(ContentType.Application.Json)
                 setBody(data.toString())
             }
-            response.status == HttpStatusCode.OK
+            return if (response.status == HttpStatusCode.OK)
+                true
+            else {
+                Logger.e {"$tag: ${response.bodyAsText()}"}
+                false
+            }
         } catch (ex: Exception) {
-            Logger.e{"$tag: $ex"}
+            Logger.i {"$tag: $ex"}
             false
         }
     }
@@ -209,9 +257,14 @@ class ToafApi(private val client: HttpClient) {
                     requestTimeoutMillis = 5000
                 }
             }
-            response.status == HttpStatusCode.OK
+            return if (response.status == HttpStatusCode.OK)
+                true
+            else {
+                Logger.e {"$tag: ${response.bodyAsText()}"}
+                false
+            }
         } catch (ex: Exception) {
-            Logger.e{"$tag: $ex"}
+            Logger.i {"$tag: $ex"}
             false
         }
     }
@@ -294,9 +347,13 @@ class ToafApi(private val client: HttpClient) {
             if (response.status == HttpStatusCode.OK) {
                 val productResponse = response.body<StripeProductInfoResponse>()
                 return productResponse.data
-            } else null
+            }
+            else {
+                Logger.e {"$tag: ${response.bodyAsText()}"}
+                null
+            }
         } catch (ex: Exception) {
-            Logger.e { "$tag: $ex" }
+            Logger.i { "$tag: $ex" }
             null
         }
     }
@@ -316,9 +373,12 @@ class ToafApi(private val client: HttpClient) {
                 val session = response.body<StripeSessionResponse>()
                 session.data
             }
-            else null
+            else {
+                Logger.e {"$tag: ${response.bodyAsText()}"}
+                null
+            }
         } catch (ex: Exception) {
-            Logger.e { "$tag: $ex" }
+            Logger.i { "$tag: $ex" }
             null
         }
     }
@@ -333,13 +393,17 @@ class ToafApi(private val client: HttpClient) {
             }
             if (response.status == HttpStatusCode.OK)
             {
-                val checkPurchaseResponse =response.body<CheckPurchaseResponse>()
-                return (checkPurchaseResponse.data != null && checkPurchaseResponse.data == purchaseId)
+                val body = response.body<CheckPurchaseResponse>()
+                return (body.data != null && body.data == purchaseId)
             }
-            false
+            else
+            {
+                Logger.e {"$tag : ${response.bodyAsText()}"}
+                false
+            }
         } catch (ex: Exception)
         {
-            Logger.e { "$tag: $ex" }
+            Logger.i { "$tag: $ex" }
             false
         }
     }
