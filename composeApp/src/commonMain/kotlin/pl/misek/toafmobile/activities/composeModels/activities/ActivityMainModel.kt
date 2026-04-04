@@ -269,7 +269,7 @@ fun ActivityMainModel(
             }
             if (showUserDeleteQuestionDialog)
             {
-                DialogQuestion.Show(
+                DialogQuestion(
                     question = Res.string.dialog_user_info_delete_user_question,
                     onNoClick = {showUserDeleteQuestionDialog = false},
                     onYesClick = {

@@ -26,7 +26,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.stringResource
@@ -37,11 +39,14 @@ import pl.misek.toafmobile.activities.composeModels.ActionTypeEnum
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.ToafEditText
 import pl.misek.toafmobile.activities.composeModels.ToafProgressDialog
+import pl.misek.toafmobile.activities.composeModels.ToafWaitingDialog
+import pl.misek.toafmobile.activities.composeModels.dialogs.DialogInformation
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogInput
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogNotFullVersion
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogQuestion
 import pl.misek.toafmobile.activities.definitions.ToafStyles
 import pl.misek.toafmobile.billing.IToafBilling
+import pl.misek.toafmobile.billing.StripeSession
 import pl.misek.toafmobile.tools.getPlatformActivity
 import pl.misek.toafmobile.database.Database
 import pl.misek.toafmobile.database.DatabaseSettingFields
@@ -50,13 +55,18 @@ import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.modules.ModulesManager
 import pl.misek.toafmobile.modules.containers.BCUKey
 import pl.misek.toafmobile.modules.interfaces.IModuleBcuKeys
+import pl.misek.toafmobile.network.NetworkTools
 import pl.misek.toafmobile.network.ServerConnectionState
 import pl.misek.toafmobile.network.ToafApi
 import pl.misek.toafmobile.network.UserInfo
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
+import java.awt.Desktop
+import java.net.URI
+import java.util.Locale
 import kotlin.collections.forEach
 
+private const val tag = "AdvanceCodingBcuKeys"
 @Composable
 fun AdvanceCodingBcuKeys(
     koinModuleName : KoinNames,
@@ -71,9 +81,11 @@ fun AdvanceCodingBcuKeys(
     var moduleVin by remember {mutableStateOf<String?>(null)}
     val scope = rememberCoroutineScope()
     var showProgressDialog by remember { mutableStateOf(false) }
+    var showWaitingDialog by remember { mutableStateOf(false) }
     var showFullVersionDialog by remember { mutableStateOf(false) }
     var showDeleteKeyDialog by remember { mutableStateOf(false) }
     var showInputDialog by remember { mutableStateOf(false) }
+    var showInformationDialog by remember { mutableStateOf(false) }
     var action by remember { mutableStateOf<suspend () -> Any?>({ null }) }
     val onReadKeysFailText = stringResource(Res.string.activity_coding_bcu_key_read_error)
     val onKeyDeleteErrorText = stringResource(Res.string.activity_coding_bcu_key_remove_error)
@@ -81,7 +93,10 @@ fun AdvanceCodingBcuKeys(
     val onKeyIsNotValidText = stringResource(Res.string.activity_coding_bcu_key_code_not_valid)
     val onKeyAddSuccessText = stringResource(Res.string.activity_coding_bcu_key_add_successful)
     val onKeyAddFailText = stringResource(Res.string.activity_coding_bcu_key_add_error)
+    val purchaseCheckSuccess = stringResource(Res.string.information_purchase_ok)
+    val purchaseCheckFailed = stringResource(Res.string.information_purchase_failed)
     val serverConnectionFailedText = stringResource(Res.string.server_connection_failed)
+    var stripeSession by remember { mutableStateOf<StripeSession?>(null) }
     val useMobileVersionToBuyTokens = stringResource(Res.string.useMobileVersionToBuyTokens)
     var keyIdToProcess by remember { mutableIntStateOf(-1) }
     var keyCodeToProcess by remember { mutableStateOf<String?>(null) }
@@ -109,6 +124,32 @@ fun AdvanceCodingBcuKeys(
             .fillMaxWidth()
     )
     {
+        if (showInformationDialog)
+        {
+            DialogInformation(
+                information =  Res.string.information_no_bcu_keys,
+                onCancelClick = { showInformationDialog = false},
+                onOkClick = {
+                    actionType = ActionTypeEnum.BuyElement
+                    action = {
+                        if (getPlatformType() == PlatformType.Android) {
+                            toafBilling.buyElement(
+                                activity,
+                                ToafConstants.SKU_TOAF_BCU_KEY
+                            )
+                            true
+                        } else {
+                            toafBilling.getElementPrice(ToafConstants.SKU_TOAF_BCU_KEY)
+                            stripeSession = toafBilling.getStripeSession(ToafConstants.SKU_TOAF_BCU_KEY)
+                            stripeSession?.let { NetworkTools.openUrlInBrowser(it.url) }
+                            true
+                        }
+                    }
+                    showInformationDialog = false
+                    showProgressDialog = true
+                }
+            )
+        }
         if (showInputDialog)
         {
             DialogInput(
@@ -131,14 +172,7 @@ fun AdvanceCodingBcuKeys(
                             if (localUserInfo == null)
                                 onShowResult(false,null, serverConnectionFailedText)
                             else if (localUserInfo.bcuKeys == 0) {
-                                if (getPlatformType() == PlatformType.Android) {
-                                    toafBilling.buyElement(
-                                        activity,
-                                        ToafConstants.SKU_TOAF_BCU_KEY
-                                    )
-                                } else {
-                                    onShowResult(false, null, useMobileVersionToBuyTokens)
-                                }
+                                showInformationDialog = true
                             }
                             else {
                                 (currentModule as IModuleBcuKeys).addKeyAt(keyIdToProcess, keyCode)
@@ -152,7 +186,7 @@ fun AdvanceCodingBcuKeys(
         }
         if (showDeleteKeyDialog)
         {
-            DialogQuestion.Show(
+            DialogQuestion(
                 question = Res.string.activity_coding_bcu_key_remove_message,
                 onNoClick = {showDeleteKeyDialog = false},
                 onYesClick = {
@@ -164,6 +198,28 @@ fun AdvanceCodingBcuKeys(
                 }
             )
         }
+        if (showWaitingDialog)
+        {
+            ToafWaitingDialog(
+                action = {action()},
+                onSuccess = { actionResult ->
+                    if (actionResult is Boolean) {
+                        when (actionType) {
+                            ActionTypeEnum.CheckingPurchase ->
+                                onShowResult(
+                                    actionResult,
+                                    purchaseCheckSuccess,
+                                    purchaseCheckFailed
+                                )
+
+                            else -> {}
+                        }
+                    }
+                },
+                onError = {},
+                onDismissRequest = {showWaitingDialog = false}
+            )
+        }
         if (showProgressDialog)
         {
             ToafProgressDialog(
@@ -172,6 +228,27 @@ fun AdvanceCodingBcuKeys(
                     if (actionResult is Boolean)
                     {
                         when(actionType) {
+                            ActionTypeEnum.BuyElement ->
+                                if (actionResult)
+                                {
+                                    actionType = ActionTypeEnum.CheckingPurchase
+                                    action = {
+                                        val timeout = 5*60
+                                        var repeatNumber = 0
+                                        var purchaseResult = false
+                                        do
+                                        {
+                                            Logger.i {"Checking purchase, $repeatNumber"}
+                                            purchaseResult = toafApi.checkPurchase(stripeSession?.sessionId!! )
+                                            if (purchaseResult)
+                                                break
+                                            repeatNumber++
+                                            delay(1000)
+                                        } while (repeatNumber < timeout)
+                                        purchaseResult
+                                    }
+                                    showWaitingDialog = true
+                                }
                             ActionTypeEnum.ReadKeys ->
                                 if (!actionResult)
                                     onShowResult(false, null, onReadKeysFailText)
@@ -215,7 +292,8 @@ fun AdvanceCodingBcuKeys(
                         }
                     }
                 },
-                onDismissRequest = {showProgressDialog = false})
+                onDismissRequest = {showProgressDialog = false }
+                )
         }
         if (showFullVersionDialog)
         {

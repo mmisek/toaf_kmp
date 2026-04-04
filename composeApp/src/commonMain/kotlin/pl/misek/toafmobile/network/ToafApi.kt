@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.network
 
+import androidx.compose.ui.text.toLowerCase
 import co.touchlab.kermit.Logger
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -13,6 +14,7 @@ import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType
+import io.sentry.kotlin.multiplatform.Sentry
 
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
@@ -20,10 +22,18 @@ import kotlinx.serialization.json.put
 
 import pl.misek.toafmobile.backup.BackupElement
 import pl.misek.toafmobile.backup.BackupElementResponse
+import pl.misek.toafmobile.billing.CheckPurchaseResponse
+import pl.misek.toafmobile.billing.StripeProductInfo
+import pl.misek.toafmobile.billing.StripeProductInfoResponse
+import pl.misek.toafmobile.billing.StripeSession
+import pl.misek.toafmobile.billing.StripeSessionResponse
+import java.util.Currency
+import java.util.Locale
 
 class ToafApi(private val client: HttpClient) {
     private val tag = "ToafApi"
-    private val url = "https://toaf.roverki.eu:5999"
+    //private val url = "https://toaf.roverki.eu:5999"
+    private val url = "http://192.168.1.3:5999"
 
     suspend fun loginUser(): ServerConnectionState {
         return try {
@@ -258,6 +268,78 @@ class ToafApi(private val client: HttpClient) {
             response.status == HttpStatusCode.OK
         } catch (ex: Exception) {
             Logger.e{"$tag: $ex"}
+            false
+        }
+    }
+
+    suspend fun getStripeProductInfo(productName : String): StripeProductInfo? {
+        return try {
+            val supportedCurrency = listOf("PLN","EUR","USD")
+            var currencyCode = try {
+                Currency.getInstance(Locale.getDefault()).currencyCode
+            } catch ( _: Exception)
+            {
+                "EUR"
+            }
+            if (!supportedCurrency.contains(currencyCode))
+                currencyCode = "EUR"
+            val data = buildJsonObject {
+                put("productName", productName.lowercase())
+                put("currency", currencyCode)
+            }
+            val response = client.post("$url/payments/products") {
+                contentType(ContentType.Application.Json)
+                setBody(data.toString())
+            }
+            if (response.status == HttpStatusCode.OK) {
+                val productResponse = response.body<StripeProductInfoResponse>()
+                return productResponse.data
+            } else null
+        } catch (ex: Exception) {
+            Logger.e { "$tag: $ex" }
+            null
+        }
+    }
+
+    suspend fun createStripeCheckout(priceId :String, productName: String) : StripeSession?
+    {
+        return try {
+            val data = buildJsonObject {
+                put("priceId", priceId)
+                put("productName", productName.lowercase())
+            }
+            val response = client.post("$url/payments/create-checkout"){
+                contentType(ContentType.Application.Json)
+                setBody(data.toString())
+            }
+            if (response.status == HttpStatusCode.OK) {
+                val session = response.body<StripeSessionResponse>()
+                session.data
+            }
+            else null
+        } catch (ex: Exception) {
+            Logger.e { "$tag: $ex" }
+            null
+        }
+    }
+    suspend fun checkPurchase(purchaseId : String) : Boolean{
+        return try {
+            val data = buildJsonObject {
+                put("purchaseId", purchaseId)
+            }
+            val response = client.post("$url/user/purchases/check"){
+                contentType(ContentType.Application.Json)
+                setBody(data.toString())
+            }
+            if (response.status == HttpStatusCode.OK)
+            {
+                val checkPurchaseResponse =response.body<CheckPurchaseResponse>()
+                return (checkPurchaseResponse.data != null && checkPurchaseResponse.data == purchaseId)
+            }
+            false
+        } catch (ex: Exception)
+        {
+            Logger.e { "$tag: $ex" }
             false
         }
     }

@@ -217,7 +217,7 @@ fun ActivityLiveDataModel(moduleKoinName : KoinNames, onBackClick :() -> Unit)
                 }
                 if (saveToFileDialogQuestion)
                 {
-                    DialogQuestion.Show(
+                    DialogQuestion(
                         question =  Res.string.AD_save_to_file_message,
                         onNoClick = {
                             pendingFileToSave = null

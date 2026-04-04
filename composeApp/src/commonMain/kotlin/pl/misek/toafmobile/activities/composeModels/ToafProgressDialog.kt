@@ -27,18 +27,37 @@ import co.touchlab.kermit.Logger
 import io.sentry.kotlin.multiplatform.Sentry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import toafmobile.composeapp.generated.resources.Res
+import toafmobile.composeapp.generated.resources.dialog_waiting_checking_purchas
 import toafmobile.composeapp.generated.resources.progress_dialog_message
 
 private const val tag = "ToafProgressDialog"
+@Composable
+fun <T> ToafWaitingDialog(
+    action : suspend () -> T,
+    onSuccess : (T) -> Unit = {},
+    onError : (Throwable) -> Unit = {},
+    onDismissRequest: () -> Unit,
+){
+    ToafProgressDialog(
+        action,
+        onSuccess,
+        onError,
+        onDismissRequest,
+        Res.string.dialog_waiting_checking_purchas
+    )
+}
+
 @Composable
 fun <T> ToafProgressDialog(
     action : suspend () -> T,
     onSuccess : (T) -> Unit = {},
     onError : (Throwable) -> Unit = {},
-    onDismissRequest: () -> Unit
+    onDismissRequest: () -> Unit,
+    progressResource : StringResource? = Res.string.progress_dialog_message
 ) {
     val dialogShape = RoundedCornerShape(8.dp)
     LaunchedEffect(Unit) {
@@ -88,7 +107,7 @@ fun <T> ToafProgressDialog(
                 Spacer(modifier = Modifier.width(16.dp))
 
                 Text(
-                    text = stringResource(Res.string.progress_dialog_message),
+                    text = stringResource(progressResource ?: Res.string.progress_dialog_message),
                     style = MaterialTheme.typography.bodyLarge,
                     color = Color.White
                 )

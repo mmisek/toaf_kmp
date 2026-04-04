@@ -39,7 +39,7 @@ class AndroidToafBilling (context: Context, private val database : Database, pri
     private var productDetailsList: List<ProductDetails>? = null
     private val billingScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
-    override fun getElementPrice(elementName: String): String? {
+    override suspend fun getElementPrice(elementName: String): String? {
         return productsPrices[elementName]
     }
 
@@ -50,6 +50,8 @@ class AndroidToafBilling (context: Context, private val database : Database, pri
             launchBillingFlow(act, it)
         }
     }
+
+    override suspend fun getStripeUrl(elementName: String) = ""
 
     private fun connectToPlayStore() {
         if (billingClient?.isReady != true) {

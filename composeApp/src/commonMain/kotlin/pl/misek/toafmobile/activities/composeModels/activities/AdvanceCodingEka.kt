@@ -35,10 +35,12 @@ import pl.misek.toafmobile.activities.composeModels.ToafProgressDialog
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogNotFullVersion
 import pl.misek.toafmobile.activities.definitions.ToafStyles
 import pl.misek.toafmobile.billing.IToafBilling
+import pl.misek.toafmobile.billing.StripeSession
 import pl.misek.toafmobile.tools.getPlatformActivity
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.modules.ModulesManager
 import pl.misek.toafmobile.modules.interfaces.IModuleEKA
+import pl.misek.toafmobile.network.NetworkTools
 import pl.misek.toafmobile.network.ToafApi
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
@@ -59,6 +61,7 @@ fun AdvanceCodingEka(
     var showFullVersionDialog by remember { mutableStateOf(false) }
     var ekaCodeValidationResult by remember {mutableStateOf(true)}
     var ekaCode by remember{ mutableStateOf<String?>("") }
+    var stripeSession by remember { mutableStateOf<StripeSession?>(null) }
     val ekaCodeValidationFailText = stringResource(Res.string.activity_advance_coding_eka_matches_error)
     val ekaCodeWriteSuccessText = stringResource(Res.string.activity_advance_coding_eka_write_successful)
     val ekaCodeWriteFailText = stringResource(Res.string.activity_advance_coding_eka_write_error)
@@ -159,9 +162,13 @@ fun AdvanceCodingEka(
                             if (getPlatformType() == PlatformType.Android) {
                                 toafBilling.buyElement(activity, ToafConstants.SKU_TOAF_EKA_CODE)
                             } else {
-                                onShowResult(false, null, useMobileVersionToBuyTokens)
+                                toafBilling.getElementPrice(ToafConstants.SKU_TOAF_EKA_CODE)
+                                stripeSession = toafBilling.getStripeSession(ToafConstants.SKU_TOAF_EKA_CODE)
+                                if (stripeSession != null)
+                                {
+                                    NetworkTools.openUrlInBrowser(stripeSession?.url ?: "")
+                                }
                             }
-
                         }
                         else {
                             ekaCode = (currentModule as IModuleEKA).readEKACode()

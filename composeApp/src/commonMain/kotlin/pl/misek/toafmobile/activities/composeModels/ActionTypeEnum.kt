@@ -18,5 +18,6 @@ enum class ActionTypeEnum {
     FastActionLimit,
     ReadCodingBackup,
     SaveCodingBackup,
-
+    BuyElement,
+    CheckingPurchase
 }

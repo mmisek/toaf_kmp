@@ -313,9 +313,17 @@
     <!-- InformationDialog -->
     <string name="dialog_information_title">Information</string>
     <string name="dialog_information_ok">OK</string>
+    <string name="dialog_information_cancel">Cancel</string>
+    <string name="information_no_bcu_keys">You don't have tokens to add a new key.\nThe program will redirect you to purchase.</string>
+    <string name="information_purchase_ok">Purchase completed. Thank You!</string>
+    <string name="information_purchase_failed">Purchase verification failed.</string>
+    <!-- InputDialog -->
+    <string name="dialog_waiting_title">Waiting...</string>
+    <string name="dialog_waiting_checking_purchas">Checking for purchase success</string>
     <!-- InputDialog -->
     <string name="dialog_input_title">Enter data</string>
     <string name="dialog_input_cancel">Cancel</string>
+
 
     <!-- dialog make backup -->
     <string name="dialog_make_backup_tittle">Coding backup</string>
