@@ -3,7 +3,7 @@
     <!-- video -->
     <string name="module_description_video">Moduł video</string>
 
-    <string name="video_error_81">Sygnal na szynie IBus zawsze wysoki</string>
+    <string name="video_error_81">Sygnał na szynie I-BUS zawsze wysoki</string>
     <string name="video_error_82">Watchdog został aktywowany</string>
     <string name="video_error_83">Tryb oszczędzania energii aktywny</string>
     <string name="video_error_01">I-Bus - przepełnienie bufora</string>
@@ -17,7 +17,7 @@
     <string name="video_error_09">EEPROM - błąd odczytu</string>
     <string name="video_error_0A">EEPROM - błąd zapisu</string>
     <string name="video_error_0B">EEPROM - błąd sumy kontrolnej</string>
-    <string name="video_error_0C">EEPROM - ponowna inicjalizajca</string>
+    <string name="video_error_0C">EEPROM - ponowna inicjalizacja</string>
     <string name="video_error_0D">Brak sygnału z modułu graficznego</string>
 
     <string name="video_error_present">Obecny</string>
@@ -37,7 +37,7 @@
     <string name = "video_control_cassette_dolby_b">Dolby B</string>
     <string name = "video_control_cassette_dolby_c">Dolby C</string>
     <string name = "video_control_cassette_dolby_off">Dolby Off</string>
-    <string name = "video_control_mute_off">Wycieszenie wył</string>
+    <string name = "video_control_mute_off">Wyciszenie wył</string>
     <string name = "video_control_mute_on">Wyciszenie wł</string>
     <string name = "video_control_monitor_off">Monitor wył</string>
     <string name = "video_control_monitor_on">Monitor wł</string>
@@ -50,7 +50,7 @@
     <string name = "video_live_data_red_out">Sygnał R - wyjście</string>
     <string name = "video_live_data_green_out">Sygnał G - wyjście</string>
     <string name = "video_live_data_blue_out">Sygnał B - wyjście</string>
-    <string name = "video_live_data_red_in">Sygnał R - wejscie</string>
+    <string name = "video_live_data_red_in">Sygnał R - wejście</string>
     <string name = "video_live_data_green_in">Sygnał G - wejście</string>
     <string name = "video_live_data_blue_in">Sygnał B - wejście</string>
     <string name = "video_live_data_x_sync">Synchronizacja</string>
@@ -58,10 +58,10 @@
     <string name = "video_live_data_cvbs_cam">CVBS - kamera</string>
     <string name = "video_live_data_cvbs_vcr">CVBS - VCR</string>
     <string name = "video_live_data_cvbs_tuner">CVBS - tuner</string>
-    <string name = "video_live_data_af_fond">Dzwięk</string>
-    <string name = "video_live_data_af_vcr">Dzwięk - VCR</string>
-    <string name = "video_live_data_af_radio">Dzwięk - radio</string>
-    <string name = "video_live_data_af_nav">Dzwięk - navi</string>
+    <string name = "video_live_data_af_fond">Dźwięk</string>
+    <string name = "video_live_data_af_vcr">Dźwięk - VCR</string>
+    <string name = "video_live_data_af_radio">Dźwięk - radio</string>
+    <string name = "video_live_data_af_nav">Dźwięk - nawigacja</string>
 
     <string name = "video_live_data_value_signal_too_low">za niski</string>
     <string name = "video_live_data_value_signal_too_high">za wysoki</string>

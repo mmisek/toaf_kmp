@@ -7,7 +7,7 @@
 <string name="elv_error_03">EEPROM ESCL</string>
 <string name="elv_error_04">Błąd podczas sprawdzania RAM</string>
 <string name="elv_error_05">Błąd podczas sprawdzania ROM</string>
-<string name="elv_error_07">ESCL nigdy nie zakodowany wcześniej lub dane kodowane utracone</string>
+<string name="elv_error_07">ESCL nigdy niezakodowany wcześniej lub dane kodowane utracone</string>
 <string name="elv_error_10">Uszkodzenie sterownika elektromagnesu zabezpieczenia z powodu zwarcia do batt+</string>
 <string name="elv_error_11">Uszkodzenie sterownika elektromagnesu zabezpieczenia z powodu zwarcia do masy</string>
 <string name="elv_error_12">Obydwa wykrycia końcowej pozycji aktywne jednocześnie</string>
@@ -31,9 +31,9 @@
 <string name="elv_error_42">Uszkodzenie sterownika \'blokady kluczyka\' z powodu zwarcia do masy</string>
 <string name="elv_error_43">Linia \'P/N-immo (EWS)\' \'niska\' z powodu zwarcia do masy</string>
 <string name="elv_error_44">Linia \'P/N-immo (EWS)\' \'wysoka\' z powodu zwarcia do batt+</string>
-<string name="elv_error_45">Uszkodzenie wykrywania obrotu kluczyka lub term.R/term.15 zwarte do batt+</string>
+<string name="elv_error_45">Uszkodzenie wykrywania obrotu kluczyka lub term.R/term.15 zwarty do batt+</string>
 <string name="elv_error_46">Czujnik Halla \'wykrywanie obrotu kluczyka\' otwarty lub zwarty</string>
-<string name="elv_error_47">Term.R zwarty do masy/otwarty lub term.15 zwarte do batt+</string>
+<string name="elv_error_47">Term.R zwarty do masy/otwarty lub term.15 zwarty do batt+</string>
 <string name="elv_error_48">Nieprawdopodobny sygnał prędkości</string>
 <string name="elv_live_data_stat_eein_drek">\'Wykrywanie obrotu kluczyka\' aktywowane przez jednostkę blokującą kluczyk</string>
 <string name="elv_live_data_stat_eein_drek_gest">Sygnał \'wykrywanie obrotu kluczyka\' zakłócony</string>

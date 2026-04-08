@@ -1,6 +1,5 @@
 package pl.misek.toafmobile.network
 
-import androidx.compose.ui.text.toLowerCase
 import co.touchlab.kermit.Logger
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -15,7 +14,6 @@ import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType
-import io.sentry.kotlin.multiplatform.Sentry
 
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
@@ -406,5 +404,17 @@ class ToafApi(private val client: HttpClient) {
             Logger.i { "$tag: $ex" }
             false
         }
+    }
+
+    suspend fun consumeEkaCode() : Boolean{
+        return try {
+            val response = client.post("$url/user/eka_codes/consume")
+            response.status == HttpStatusCode.OK
+        } catch (ex : Exception)
+        {
+            Logger.i { "$tag: $ex"}
+            false
+        }
+
     }
 }

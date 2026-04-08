@@ -3,7 +3,7 @@
     <!-- video -->
     <string name="module_description_navi">Nawigacja</string>
     <string name="navmk3_error_01">Komputer nawigacji</string>
-    <string name="navmk3_error_02">Czujnik prędkośći koła</string>
+    <string name="navmk3_error_02">Czujnik prędkości koła</string>
     <string name="navmk3_error_03">Urządzenia wejściowe</string>
     <string name="navmk3_error_04">Odbiornik GPS nie reaguje przy inicjalizacji Nawigacji</string>
     <string name="navmk3_error_05">Temperatura zbyt wysoka</string>
@@ -17,15 +17,15 @@
     <string name="navmk3_error_51">Odczyt CD</string>
     <string name="navmk3_error_52">Suma kontrola instrukcji w pamięci EEPROM</string>
     <string name="navmk3_error_53">Suma kontrola języków w pamięci EEPROM</string>
-    <string name="navmk3_error_54">Suma kotnrola plików administracyjnych w pamięci EEPROM</string>
+    <string name="navmk3_error_54">Suma kontrola plików administracyjnych w pamięci EEPROM</string>
     <string name="navmk3_error_55">Szyna komunikacyjna z wyświetlaczem</string>
-    <string name="navmk3_error_62">Wartość z żyroskopu po za zakresem</string>
-    <string name="navmk3_error_63">Czyjnik temperatury</string>
+    <string name="navmk3_error_62">Wartość z żyroskopu poza zakresem</string>
+    <string name="navmk3_error_63">Czujnik temperatury</string>
     <string name="navmk3_error_64">Inicjalizacja odbiornika GPS</string>
     <string name="navmk3_error_65">Wentylator</string>
-    <string name="navmk3_error_68">Napięcie zasilania 5V odtwarzacza CD</string>
-    <string name="navmk3_error_69">Mapięcie zasilania 5V</string>
-    <string name="navmk3_error_6A">Napięci zasilania 12V odtwarzacza CD</string>
+    <string name="navmk3_error_68">Napięcie zasilania 5 V odtwarzacza CD</string>
+    <string name="navmk3_error_69">Napięcie zasilania 5V</string>
+    <string name="navmk3_error_6A">Napięci zasilania 12 V odtwarzacza CD</string>
     <string name="navmk3_error_6B">Czujniki napięcia zasilania</string>
     <string name="navmk3_error_6C">Temperatura wewnętrzna zbyt wysoka</string>
     <string name="navmk3_error_70">Temperatura wewnętrzna odtwarzacza CD zbyt wysoka</string>
@@ -33,17 +33,17 @@
     <string name="navmk3_error_72">Pamięć</string>
     <string name="navmk3_error_73">Pamięć Bootcode</string>
     <string name="navmk3_error_74">Pamięć DRAM</string>
-    <string name="navmk3_error_7C">Odtwrzacz CD</string>
-    <string name="navmk3_error_7D">Odtwrzacz CD</string>
-    <string name="navmk3_error_7E">Odtwrzacz CD</string>
-    <string name="navmk3_error_98">Nieoczekiwany błąd oprogramowania, reset komputeranawigacji</string>
+    <string name="navmk3_error_7C">Odtwarzacz CD</string>
+    <string name="navmk3_error_7D">Odtwarzacz CD</string>
+    <string name="navmk3_error_7E">Odtwarzacz CD</string>
+    <string name="navmk3_error_98">Nieoczekiwany błąd oprogramowania, reset komputera nawigacji</string>
     <string name="navmk3_error_99">Nieoczekiwany błąd oprogramowania, reset komputera nawigacji</string>
     <string name="navmk3_error_B5">Błąd szyny danych, reset komputera nawigacji</string>
     <string name="navmk3_error_B6">Błąd adresu, reset komputera nawigacji</string>
     <string name="navmk3_error_present">Obecny</string>
     <string name="navmk3_error_not_present">Nieobecny</string>
 
-    <string name = "navmk3_control_default_volume">Gloścność - standard</string>
+    <string name = "navmk3_control_default_volume">Głoścność - standard</string>
     <string name = "navmk3_control_speaker_left_front">Głośnik - lewy przód</string>
     <string name = "navmk3_control_speaker_right_front">Głośnik - prawy przód</string>
     <string name = "navmk3_control_speaker_right_rear">Głośnik - prawy tył</string>
@@ -70,7 +70,7 @@
     <string name = "navmk3_live_data_value_not_activated">nie aktywowany</string>
     <string name = "navmk3_live_data_value_activated">aktywowany</string>
     <string name = "navmk3_live_data_value_off">wyłączony</string>
-    <string name = "navmk3_live_data_value_on">właczony</string>
+    <string name = "navmk3_live_data_value_on">włączony</string>
     <string name = "navmk3_live_data_value_test_component_ok">test poprawny</string>
     <string name = "navmk3_live_data_value_test_component_not_ok">test niepoprawny</string>
     <string name = "navmk3_live_data_value_no_test_status">brak testu</string>
@@ -82,13 +82,13 @@
     <string name = "navmk3_live_data_value_receiver_error">błąd odbiornika</string>
     <string name = "navmk3_live_data_value_no_almanac">brak almanach</string>
     <string name = "navmk3_live_data_value_no_gps">brak sygnału GPS</string>
-    <string name = "navmk3_live_data_value_satellites_search_in_progress">wyszukiwanie satelit</string>
+    <string name = "navmk3_live_data_value_satellites_search_in_progress">wyszukiwanie satelitów</string>
     <string name = "navmk3_live_data_value_1_satellite_found">znaleziona 1 satelita</string>
     <string name = "navmk3_live_data_value_2_satellite_found">znalezione 2 satelity</string>
     <string name = "navmk3_live_data_value_3_satellite_found">znalezione 3 satelity</string>
     <string name = "navmk3_live_data_value_4_satellite_found">znalezione 4 satelity</string>
-    <string name = "navmk3_live_data_value_5_satellite_found">znalezione 5 satelit</string>
-    <string name = "navmk3_live_data_value_6_satellite_found">znalezione 6 satelit</string>
+    <string name = "navmk3_live_data_value_5_satellite_found">znalezione 5 satelitów</string>
+    <string name = "navmk3_live_data_value_6_satellite_found">znalezione 6 satelitów</string>
     <string name = "navmk3_live_data_value_2d_position_calculated">pozycja 2D wyliczona</string>
     <string name = "navmk3_live_data_value_3d_position_calculated">pozycja 3D wyliczona</string>
 
@@ -102,12 +102,12 @@
     <string name = "navmk3_live_data_12v_test">Test napięcia zasilania 12V</string>
     <string name = "navmk3_live_data_12v_value">Wartość napięcia 12V</string>
     <string name = "navmk3_live_data_power_supply_test">Test napięcia akumulatora</string>
-    <string name = "navmk3_live_data_power_supply_value">Wartośc napięcia akumulatora</string>
+    <string name = "navmk3_live_data_power_supply_value">Wartość napięcia akumulatora</string>
     <string name = "navmk3_live_data_fan_test">Test wentylatora</string>
     <string name = "navmk3_live_data_fan_state">Stan wentylatora</string>
     <string name = "navmk3_live_data_eject_button_test">Test przycisku EJECT</string>
     <string name = "navmk3_live_data_eject_button_state">Stan przycisku EJECT</string>
-    <string name = "navmk3_live_data_temperature_sensor_test">Test czunika temparatury</string>
+    <string name = "navmk3_live_data_temperature_sensor_test">Test czujnika temperatury</string>
     <string name = "navmk3_live_data_temperature_sensor_value">Temperatura</string>
     <string name = "navmk3_live_data_direction_test">Test kierunku jazdy</string>
     <string name = "navmk3_live_data_direction_state">Kierunek jazdy</string>

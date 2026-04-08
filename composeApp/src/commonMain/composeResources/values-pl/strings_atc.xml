@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="module_description_atc">Klimayzacja</string>
+    <string name="module_description_atc">Klimatyzacja</string>
     <string name="atc_control_ac_compressor_off">Kompresor klimatyzacji - wyłączony</string>
     <string name="atc_control_ac_compressor_on">Kompresor klimatyzacji - włączony</string>
     <string name="atc_control_blower_0">Dmuchawa - 0%</string>
@@ -11,10 +11,10 @@
     <string name="atc_control_blower_75">Dmuchawa - 75%</string>
     <string name="atc_control_blower_85">Dmuchawa - 85%</string>
     <string name="atc_control_flap_defrost">Strumień powietrza - odmrażanie</string>
-    <string name="atc_control_flap_face">Strumien powierza - na twarz</string>
+    <string name="atc_control_flap_face">Strumień powierza — na twarz</string>
     <string name="atc_control_fresh_air">Wymuś świeże powietrze</string>
     <string name="atc_control_hrw_off">Ogrzewanie tylnej szyby - wyłączenie</string>
-    <string name="atc_control_hrw_on">OGrzewanie przedniej szyby - włączenie</string>
+    <string name="atc_control_hrw_on">Ogrzewanie przedniej szyby - włączenie</string>
     <string name="atc_control_recirculation">Wymuś recyrkulację</string>
     <string name="atc_error_11">Czujnik temperatury wnętrza</string>
     <string name="atc_error_12">Czujnik temperatury otoczenia</string>

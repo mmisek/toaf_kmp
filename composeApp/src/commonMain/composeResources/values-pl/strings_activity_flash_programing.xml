@@ -33,9 +33,9 @@
     <string name="activity_flash_read_identification">Identyfikacja ECU</string>
     <string name="activity_flash_programing_warning">
         !! UWAGA !!\n\n
-        Wszystkie te operacje mogą uszkodzić Twoj moduł.\n
-        Zazwyczaj operacja odczytu jest bezpieczna, zapis może unieruchomić Twoj pojazd !\n
-        Autor programu uczynił starania aby tak się nie stało, i operacje były bezpieczne - ale nie gwarantuje poprawności tych działań\n
+        Wszystkie te operacje mogą uszkodzić Twój moduł.\n
+        Zazwyczaj operacja odczytu jest bezpieczna, zapis może unieruchomić Twój pojazd !\n
+        Autor programu uczynił starania, aby tak się nie stało, i operacje były bezpieczne — ale nie gwarantuje poprawności tych działań\n
         Robisz wszystko na swoje własne ryzyko!
     </string>
 </resources>

@@ -5,24 +5,24 @@
 
     <string name="bmbt_error_01">Reset</string>
     <string name="bmbt_error_02">Temperatura monitora LC zbyt wysoka</string>
-    <string name="bmbt_error_03">Komunikacja z moduem radiowym - timeout</string>
-    <string name="bmbt_error_04">Zwarcie przewodu NF Tape L-</string>
+    <string name="bmbt_error_03">Komunikacja z modułem radiowym — timeout</string>
+    <string name="bmbt_error_04">Zwarcie przewodu NF Tape L—</string>
     <string name="bmbt_error_05">Zwarcie przewodu NF Tape L+</string>
-    <string name="bmbt_error_06">Zwarcie przewodu NF Tape R-</string>
+    <string name="bmbt_error_06">Zwarcie przewodu NF Tape R—</string>
     <string name="bmbt_error_07">Zwarcie przewodu NF Tape R+</string>
-    <string name="bmbt_error_08">K-Bus - wysyłanie</string>
-    <string name="bmbt_error_09">K-Bus - odbieranie</string>
-    <string name="bmbt_error_0A">Podgrzewanie monitora - zwarcie do +12V</string>
-    <string name="bmbt_error_0B">Połączenie monitora UP - przerwa</string>
-    <string name="bmbt_error_0C">Połączenie podgrzewania monitora UP - przerwa</string>
-    <string name="bmbt_error_0D">NAV-bus - wysyłanie</string>
-    <string name="bmbt_error_0E">NAV-bus - odbieranie</string>
-    <string name="bmbt_error_0F">NAV-bus - przepełnienie bufora</string>
-    <string name="bmbt_error_10">Pamięć RAM - zewnętrzna</string>
-    <string name="bmbt_error_11">Pamięć RAM - monitor LC</string>
+    <string name="bmbt_error_08">K—Bus — wysyłanie</string>
+    <string name="bmbt_error_09">K—Bus — odbieranie</string>
+    <string name="bmbt_error_0A">Podgrzewanie monitora — zwarcie do +12V</string>
+    <string name="bmbt_error_0B">Połączenie monitora UP — przerwa</string>
+    <string name="bmbt_error_0C">Połączenie podgrzewania monitora UP — przerwa</string>
+    <string name="bmbt_error_0D">NAV—bus — wysyłanie</string>
+    <string name="bmbt_error_0E">NAV—bus — odbieranie</string>
+    <string name="bmbt_error_0F">NAV—bus — przepełnienie bufora</string>
+    <string name="bmbt_error_10">Pamięć RAM — zewnętrzna</string>
+    <string name="bmbt_error_11">Pamięć RAM — monitor LC</string>
     <string name="bmbt_error_12">Komunikacja wewnętrzna CPU</string>
-    <string name="bmbt_error_13">NAV-bus - nieaktywne</string>
-    <string name="bmbt_error_14">Czujnik temperatury monitora - wartość nieprawidłowa</string>
+    <string name="bmbt_error_13">NAV—bus — nieaktywne</string>
+    <string name="bmbt_error_14">Czujnik temperatury monitora — wartość nieprawidłowa</string>
     <string name="bmbt_error_15">Podgrzewanie monitora lub bezpiecznik</string>
     <string name="bmbt_error_16">Suma kontrola EEPROM niezgodna z zaprogramowaną wartością</string>
     <string name="bmbt_error_17">Numer wersji programu niezgodny z zapisanym w EEPROM</string>
@@ -43,7 +43,7 @@
     <string name = "bmbt_control_cassette_dolby_b">Dolby B</string>
     <string name = "bmbt_control_cassette_dolby_c">Dolby C</string>
     <string name = "bmbt_control_cassette_dolby_off">Dolby Off</string>
-    <string name = "bmbt_control_mute_off">Wycieszenie wył</string>
+    <string name = "bmbt_control_mute_off">Wyciszenie wył</string>
     <string name = "bmbt_control_mute_on">Wyciszenie wł</string>
     <string name = "bmbt_control_monitor_off">Monitor wył</string>
     <string name = "bmbt_control_monitor_on">Monitor wł</string>
@@ -55,7 +55,7 @@
 
     <string name = "bmbt_live_data_key_pressed">Przycisk</string>
     <string name = "bmbt_live_data_monitor_encoder_steps">Kroki enkodera jasności</string>
-    <string name = "bmbt_live_data_volume_encoder_steps">Kroki enkodera dzwięku</string>
+    <string name = "bmbt_live_data_volume_encoder_steps">Kroki enkodera dźwięku</string>
     <string name = "bmbt_live_data_cleme_r">Zacisk R</string>
     <string name = "bmbt_live_data_calculated_gain">Wyliczone wzmocnienie</string>
     <string name = "bmbt_live_data_calculated_brightness">Wyliczona jasność ekranu</string>

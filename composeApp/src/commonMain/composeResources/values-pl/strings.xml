@@ -14,7 +14,7 @@
     <string name="activity_coding_button_read">Odczytaj</string>
     <string name="activity_coding_button_save">Zapisz</string>
     <string name="activity_coding_cant_do_auto_backup">Nie można wykonać automatycznej kopii zapasowej. Opcje kodowanie nie są dostępne.</string>
-    <string name="activity_coding_custom_value_validate_error">Błąd walidacji wartośći. Wartość musu byc z zakresuod %1$s do %2$s</string>
+    <string name="activity_coding_custom_value_validate_error">Błąd walidacji wartości. Wartość musu byc z zakresu od %1$s do %2$s</string>
     <string name="activity_coding_load_public_backup_tittle">Kopia publiczna</string>
 
     <string name="activity_coding_menu_load_backup">Odczytaj kopię zapasową</string>
@@ -36,9 +36,9 @@
 
     <string name="activity_live_data">Live data</string>
     <string name="activity_live_data_add_to_fast_live_data_error">"Błąd dodania do Szybkiej Live Daty "</string>
-    <string name="activity_live_data_add_to_fast_live_data_successful">Dodanie do Szybkiej LiveDaty poprawne</string>
+    <string name="activity_live_data_add_to_fast_live_data_successful">Dodanie do Szybkiej Live Daty poprawne</string>
     <string name="activity_live_data_chart">Wykres</string>
-    <string name="activity_live_data_delete_fast_live_data_successful">Wybrany element usuniędy z listy Szybkiej LiveDaty</string>
+    <string name="activity_live_data_delete_fast_live_data_successful">Wybrany element usunięty z listy Szybkiej LiveDaty</string>
     <string name="activity_live_data_fast_live_data_limit_reached">Osiągnięto liczbę możliwych elementów szybkiej Live Daty dla tej wersji programu</string>
     <string name="activity_live_data_start">Start</string>
     <string name="activity_live_data_stop">Stop</string>
@@ -59,16 +59,16 @@
     <string name="alert_dialog_add_new_fast_control_custom_name_length">Nazwa nie może być pusta</string>
     <string name="alert_dialog_add_new_fast_control_display_name">Wyświetlana nazwa:</string>
     <string name="alert_dialog_add_new_fast_control_save">Dodaj</string>
-    <string name="alert_dialog_add_new_fast_control_tittle">Dodan nowy element Szybkiej kontroli</string>
+    <string name="alert_dialog_add_new_fast_control_tittle">Dodaj nowy element Szybkiej kontroli</string>
     <string name="alert_dialog_add_new_fast_live_data_cancel">Anuluj</string>
     <string name="alert_dialog_add_new_fast_live_data_custom_name_length">Wyświetlana nazwa nie może być pusta</string>
     <string name="alert_dialog_add_new_fast_live_data_display_name">Wyświetlana nazwa:</string>
     <string name="alert_dialog_add_new_fast_live_data_save">Dodaj</string>
-    <string name="alert_dialog_add_new_fast_live_data_tittle">Dodaj nowy element Szybkiej Live Daty</string>
+    <string name="alert_dialog_add_new_fast_live_data_tittle">Dodaj nowy, element szybkiej Live Daty</string>
     <string name="alert_dialog_errors_button_close">Zamknij</string>
     <string name="alert_dialog_errors_button_copy_to_clipboard">Kopiuj do schowka</string>
     <string name="alert_dialog_errors_button_share">Udostępnij</string>
-    <string name="alert_dialog_errors_subtitle">Naciśnij na błędzie aby pokazać szczegóły</string>
+    <string name="alert_dialog_errors_subtitle">Naciśnij na błędzie, aby pokazać szczegóły</string>
     <string name="alert_dialog_errors_title">Znalezione błędy</string>
     <string name="alert_dialog_live_data_load_template_cancel">Anuluj</string>
     <string name="alert_dialog_live_data_load_template_delete">Usuń szablon</string>
@@ -76,7 +76,7 @@
     <string name="alert_dialog_live_data_load_template_delete_question">Czy na pewno usunąć ?</string>
     <string name="alert_dialog_live_data_load_template_delete_yes">Tak</string>
     <string name="alert_dialog_live_data_load_template_load">Odczytaj</string>
-    <string name="alert_dialog_live_data_load_template_long_click_to_delete">Przytrzymaj na nazwie aby usunąć</string>
+    <string name="alert_dialog_live_data_load_template_long_click_to_delete">Przytrzymaj na nazwie, aby usunąć</string>
     <string name="alert_dialog_live_data_load_template_name">Wybierz szablon do wczytania</string>
     <string name="alert_dialog_live_data_save_as_template">Zapisz wybrane jako szablon</string>
     <string name="alert_dialog_live_data_save_template_cancel">Anuluj</string>
@@ -87,7 +87,7 @@
     <string name="alert_dialog_live_data_save_template_save">Zapisz</string>
     <string name="alert_dialog_live_data_save_template_successful">Szablon zapisany jako %1$s</string>
     <string name="alert_dialog_no_errors_tittle">Nie znaleziono błędów</string>
-    <string name="alert_dialog_wifi_configuration_ap_password_SSID">Access point - SSID</string>
+    <string name="alert_dialog_wifi_configuration_ap_password_SSID">Access point — SSID</string>
     <string name="alert_dialog_wifi_configuration_ap_password_button_cancel">Anuluj</string>
     <string name="alert_dialog_wifi_configuration_ap_password_button_read">Odczyt</string>
     <string name="alert_dialog_wifi_configuration_ap_password_button_save">Zapis</string>
@@ -95,7 +95,7 @@
     <string name="alert_dialog_wifi_configuration_ap_password_message_read_ok">Odczyt</string>
     <string name="alert_dialog_wifi_configuration_ap_password_message_save_not_ok">Błąd zapisu</string>
     <string name="alert_dialog_wifi_configuration_ap_password_message_save_ok">Zapisano</string>
-    <string name="alert_dialog_wifi_configuration_ap_password_password">Access point - hasło</string>
+    <string name="alert_dialog_wifi_configuration_ap_password_password">Access point — hasło</string>
     <string name="alert_dialog_wifi_configuration_button_close">Zamknij</string>
     <string name="alert_dialog_wifi_configuration_button_config">Konfiguracja</string>
     <string name="alert_dialog_wifi_configuration_button_debug">!! DEBUG MODE !!</string>
@@ -111,15 +111,15 @@
     <string name="alert_dialog_wifi_configuration_message_debug_mode">DEBUG MODE</string>
     <string name="alert_dialog_wifi_configuration_message_devices_not_found">Nie znaleziono interfejsu Toaf WIFI</string>
     <string name="alert_dialog_wifi_configuration_message_searching">Wyszukiwanie interfejsu…</string>
-    <string name="alert_dialog_wifi_configuration_title">TOAF WIFI - konfiguracja</string>
+    <string name="alert_dialog_wifi_configuration_title">TOAF WIFI — konfiguracja</string>
     <string name="alert_dialog_wifi_configuration_check_update">Sprawdź aktualizację</string>
     <string name="alert_dialog_wifi_configuration_update_available">Dla wybranego urządzenia dostępna jest aktualizacja.\nCzy zaktualizować urządzenie ?</string>
     <string name="alert_dialog_wifi_configuration_checking_update">Sprawdzanie aktualizacji.</string>
-    <string name="alert_dialog_wifi_configuration_update_successful">Aktualizacja pomyslna.</string>
+    <string name="alert_dialog_wifi_configuration_update_successful">Aktualizacja pomyślna.</string>
     <string name="alert_dialog_wifi_configuration_update_failed">Błąd aktualizacji.</string>
     <string name="alert_dialog_wifi_configuration_update_not_available">Brak dostępnych aktualizacji dla tego urządzenia</string>
     <string name="alert_dialog_wifi_configuration_update_in_progress">Trwa aktualizacja.</string>
-    <!-- alert dialog wifi -cinfiguration - add device -->
+    <!-- alert dialog wifi —configuration — add device -->
     <string name="alert_dialog_wifi_configuration_add_device_title">Dodaj urządzenie</string>
     <string name="alert_dialog_wifi_configuration_add_device_enter_ip_address">Podaj adres IP</string>
     <string name="alert_dialog_wifi_configuration_add_device_add">Dodaj</string>
@@ -140,6 +140,10 @@
     <!-- InformationDialog -->
     <string name="dialog_information_title">Informacja</string>
     <string name="dialog_information_ok">OK</string>
+    <string name="dialog_information_cancel">Anuluj</string>
+    <string name="information_no_bcu_keys">Nie masz tokenów, aby dodać nowy klucz.\nZostaniesz przekierowany do strony zakupu.</string>
+    <string name="information_purchase_ok">Zakup zakończony pomyślnie. Dziękujemy!</string>
+    <string name="information_purchase_failed">Weryfikacja zakupu nie powiodła się.</string>
 
 
     <string name="alert_module_info_bi">Bus index</string>
@@ -177,13 +181,13 @@
 
 
     <string name="dialog_backup_read_list_cancel">Anuluj</string>
-    <string name="dialog_backup_read_list_data_corrupted">Kopia zapasowa uszkodzona - spróbuj ponownie lub wybierz inną.</string>
+    <string name="dialog_backup_read_list_data_corrupted">Kopia zapasowa uszkodzona — spróbuj ponownie lub wybierz inną.</string>
     <string name="dialog_backup_read_list_data_loaded">Kopia zapasowa załadowana poprawnie</string>
     <string name="dialog_backup_read_list_element_author">Autor:</string>
     <string name="dialog_backup_read_list_element_created">Data utworzenia:</string>
     <string name="dialog_backup_read_list_element_description">Opis:</string>
     <string name="dialog_backup_read_list_read">Załaduj</string>
-    <string name="dialog_backup_read_list_tittle">Kopie zapasowe dla : %1$s</string>
+    <string name="dialog_backup_read_list_tittle">Kopie zapasowe dla: %1$s</string>
     <string name="dialog_cancel">Anuluj</string>
     <string name="dialog_information_close">Zamknij</string>
     <string name="dialog_information_do_not_show_again">Nie pokazuj ponownie</string>
@@ -202,13 +206,13 @@
     <string name="dialog_select_car_type_cancel">Anuluj</string>
     <string name="dialog_select_car_type_ok">OK</string>
     <string name="dialog_select_car_type_tittle">Wybierz rodzaj pojazdu</string>
-    <string name="dialog_select_file_to_load">Naciśnij dwa razy aby załądować plik</string>
+    <string name="dialog_select_file_to_load">Naciśnij dwa razy, aby załadować plik</string>
     <string name="dialog_user_create_cancel">Anuluj</string>
     <string name="dialog_user_create_confirm_password">Powtórz hasło</string>
     <string name="dialog_user_create_create">Utwórz</string>
-    <string name="dialog_user_create_create_error">Błąd towrzenia użytkownika</string>
-    <string name="dialog_user_create_email">E-mail</string>
-    <string name="dialog_user_create_email_is_wrong">Adres e-mail nieprawidłowy.</string>
+    <string name="dialog_user_create_create_error">Błąd tworzenia użytkownika</string>
+    <string name="dialog_user_create_email">E—mail</string>
+    <string name="dialog_user_create_email_is_wrong">Adres e—mail nieprawidłowy.</string>
     <string name="dialog_user_create_login">Login</string>
     <string name="dialog_user_create_login_to_short">Login musi posiadać co najmniej 5 znaków</string>
     <string name="dialog_user_create_password">Hasło</string>
@@ -228,21 +232,21 @@
     <string name="dialog_user_password_change">Zmień</string>
     <string name="dialog_user_password_change_error">Błąd zmiany hasła użytkownika</string>
     <string name="dialog_user_password_change_ok">Zmiana hasła użytkownika poprawna</string>
-    <string name="dialog_user_password_confirm_new_password">Potwierdz nowe hasło</string>
+    <string name="dialog_user_password_confirm_new_password">Potwierdź nowe hasło</string>
     <string name="dialog_user_password_login">Login</string>
     <string name="dialog_user_password_login_to_short">Login użytkownika musi posiadać co najmniej 5 znaków</string>
     <string name="dialog_user_password_new_password">Nowe hasło</string>
     <string name="dialog_user_password_password">Hasło</string>
     <string name="dialog_user_password_password_mismatch">Hasła nie zgadzają się</string>
-    <string name="dialog_user_password_password_to_short">Hasło za krótkie - musi posiadać co najmniej 8 znaków</string>
+    <string name="dialog_user_password_password_to_short">Hasło za krótkie — musi posiadać co najmniej 8 znaków</string>
     <string name="dialog_user_password_tittle">Zamień hasło</string>
-    <string name="dialog_user_password_to_short">Hasło za krótkie - musi posiadać co najmniej 8 znaków</string>
+    <string name="dialog_user_password_to_short">Hasło za krótkie — musi posiadać co najmniej 8 znaków</string>
     <string name="dialog_user_info_delete_user">Usuń konto oraz dane</string>
     <string name="dialog_user_info_delete_user_question">Czy na pewno trwale usunąć użytkownika oraz jego wszystkie dane ?</string>
     <string name="dialog_user_info_delete_user_successful">Użytkownik został usunięty</string>
     <string name="dialog_user_info_delete_user_error">Błąd usuwania użytkownika. Skontaktuj się z pomocą techniczną.</string>
 
-    <string name="kwp_connected">KWP połączony z : %1$s</string>
+    <string name="kwp_connected">KWP połączony z: %1$s</string>
     <string name="kwp_connected_failed">Błąd połączenia z DDE</string>
     <string name="main_menu_bluetooth">Bluetooth</string>
     <string name="main_menu_exit">Wyjście</string>
@@ -261,30 +265,30 @@
     <string name="menu_zcs_copy">Kopiuj ZCS</string>
     <string name="message_bluetooth_connection_failed">Błąd połączenia z urządzenie Bluetooth</string>
     <string name="message_bluetooth_connection_success">Połączono z urządzeniem Bluetooth</string>
-    <string name="message_bluetooth_not_enabled_info">Jak chcesz korzystać z urządzenia Bluetooth jeżeli jest on wyłączony? Włącz Bluetooth.</string>
+    <string name="message_bluetooth_not_enabled_info">Jak chcesz korzystać z urządzenia Bluetooth, jeżeli jest on wyłączony? Włącz Bluetooth.</string>
     <string name="message_bluetooth_not_enabled_tittle">Bluetooth włączony</string>
-    <string name="message_bluetooth_not_supported_info">To urządzenie nie obsługuje Bluetooth. Z tego powodu połaczenie Bluetooh będzie niemozliwe.</string>
+    <string name="message_bluetooth_not_supported_info">To urządzenie nie obsługuje Bluetooth. Z tego powodu połączenie Bluetooth będzie niemożliwe.</string>
     <string name="message_bluetooth_not_supported_tittle">Bluetooth</string>
     <string name="message_coding_read_not_ok">Odczyt kodowania niepoprawny</string>
-    <string name="message_coding_read_ok">Odczyt kodowania - poprawny</string>
+    <string name="message_coding_read_ok">Odczyt kodowania — poprawny</string>
     <string name="message_coding_reset_error">Błąd resetu sterownika</string>
     <string name="message_coding_save_not_ok">Błąd zapisu kodowania</string>
     <string name="message_coding_save_ok">Zapis kodowania poprawny. Poczekaj na reset sterownika.</string>
     <string name="message_device_not_found">Nie znaleziono interfejsu. Połącz interfejs i spróbuj ponownie</string>
-    <string name="message_errors_clear_failure">Kasowanie błądów niepoprawne.</string>
+    <string name="message_errors_clear_failure">Kasowanie błędów niepoprawne.</string>
     <string name="message_errors_cleared">Wszystkie błędy zostały usunięte</string>
     <string name="message_errors_no_errors">Brak błędów</string>
-    <string name="message_errors_read_failure">Odczyt błedów niepoprawny</string>
+    <string name="message_errors_read_failure">Odczyt błędów niepoprawny</string>
     <string name="message_information_internet_tittle">TOAF Web service</string>
-    <string name="message_live_data_more_than_ten">Nie możesz wybrać wiecej niz 10 elementów.</string>
+    <string name="message_live_data_more_than_ten">Nie możesz wybrać więcej niż 10 elementów.</string>
     <string name="message_live_data_save_as_template_no_item_selected">Nie wybrano elementów do zapisania jako szablon</string>
     <string name="message_need_to_be_login">Ta funkcja wymaga zalogowania to Toaf Web Service</string>
     <string name="message_no_permission_to_save">Uprawnienia do zapisu w galerii nie są przyznane.</string>
-    <string name="message_permission_background_location_info">W Android 10  wyższej uprawneinia do lokalizacji w tle są niezbędne do odszukania urządzeń Bluetooth</string>
+    <string name="message_permission_background_location_info">W Android 10 i wyższej uprawnienia do lokalizacji w tle są niezbędne do odszukania urządzeń Bluetooth</string>
     <string name="message_permission_background_location_tittle">Uprawnienia lokalizacji w tle</string>
     <string name="message_permission_bluetooth_info">Uprawnienia Bluetooth są obowiązkowe</string>
     <string name="message_permission_bluetooth_tittle">Uprawnienia Bluetooth</string>
-    <string name="message_permission_denied_info">Jeżeli naprawdę nie chcesz używać urządzeń Bluetooth - OK</string>
+    <string name="message_permission_denied_info">Jeżeli naprawdę nie chcesz używać urządzeń Bluetooth — OK</string>
     <string name="message_permission_denied_tittle">Odmowa uprawnień</string>
     <string name="message_permission_fine_location_info">Uprawnienia lokalizacji są niezbędne do odszukiwania urządzeń Bluetooth</string>
     <string name="message_permission_fine_location_tittle">Uprawnienia lokalizacji</string>
@@ -293,16 +297,16 @@
     <string name="message_saved_to_gallery">Zrzut ekranu zapisany w galerii.</string>
     <string name="message_unknown_error">Nieznany błąd.</string>
     <string name="message_zcs_copy_successful">Kopiowanie ZCS poprawne.</string>
-    <string name="message_zcs_read_error">Odczyt ZCS - błąd</string>
-    <string name="message_zcs_read_ok">Odczyt ZCS - poprawny</string>
+    <string name="message_zcs_read_error">Odczyt ZCS — błąd</string>
+    <string name="message_zcs_read_ok">Odczyt ZCS — poprawny</string>
     <string name="message_zcs_value">Wartość: %1$s</string>
-    <string name="message_zcs_write_error">Zapis ZCS - błąd</string>
-    <string name="message_zcs_write_ok">Zapis ZCS - porpawny</string>
+    <string name="message_zcs_write_error">Zapis ZCS — błąd</string>
+    <string name="message_zcs_write_ok">Zapis ZCS — poprawny</string>
 
     <string name="module_bus_index">BI</string>
     <string name="module_coding">Kodowanie</string>
     <string name="module_coding_index">CI</string>
-    <string name="module_control">Kontola</string>
+    <string name="module_control">Kontrola</string>
     <string name="module_advance_control">Zaawansowana kontrola</string>
     <string name="module_diagnostic_index">DI</string>
     <string name="module_error_clear">Wyczyść błędy</string>
@@ -359,7 +363,7 @@
 
     <string name="dialog_user_info_title">Informacje o użytkowniku</string>
     <string name="dialog_user_info_login">Login</string>
-    <string name="dialog_user_info_email">E-mail</string>
+    <string name="dialog_user_info_email">E—mail</string>
     <string name="dialog_user_info_full_version">Pełna wersja</string>
     <string name="dialog_user_info_bcu_keys">Klucze BCU</string>
     <string name="dialog_user_info_eka_codes">Kody EKA</string>
@@ -367,7 +371,7 @@
     <string name="dialog_user_info_full_version_active">Aktywna</string>
     <string name="dialog_user_info_full_version_not_active">Nieaktywna</string>
 
-    <!-- alert Dialog - interface info -->
+    <!-- alert Dialog — interface info -->
     <string name="dialog_interface_info_title">Informacje o interfejsie</string>
     <string name="dialog_interface_info_path">Ścieżka</string>
     <string name="dialog_interface_info_manufacturer">Producent</string>
@@ -379,7 +383,7 @@
     <string name="dialog_user_info_not_available">niedostępne</string>
     <string name="dialog_interface_info_save">Zapisz</string>
     <string name="dialog_interface_info_fast_init_sleep">KWP Sleep</string>
-    <!--alert Dialog Wifi Interface info -->
+    <!-- alert Dialog Wifi Interface info -->
     <string name="dialog_wifi_interface_name">Nazwa</string>
     <string name="dialog_wifi_interface_serial_number">Nr seryjny</string>
     <string name="dialog_wifi_interface_hardware">Sprzęt</string>
@@ -388,7 +392,7 @@
     <string name="privacy_policy_link">Polityka prywatności</string>
 
     <string name="dialog_full_version_tittle">Ta opcja wymaga pełnej wersji programu</string>
-    <string name="dialog_full_version_watch_ad">Obejrzyj reklamę aby kontynuować</string>
+    <string name="dialog_full_version_watch_ad">Obejrzyj reklamę, aby kontynuować</string>
     <string name="dialog_full_version_get_full_version">Kup pełną wersję za %1$s</string>
     <string name="dialog_full_version_cancel_dialog">Anuluj</string>
     <string name="dialog_full_version_or">lub</string>

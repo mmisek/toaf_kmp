@@ -90,8 +90,8 @@
     <string name="coding_all_doors">Wszystkie drzwi</string>
     <string name="coding_allow_complete">Zezwól na zakończenie</string>
     <string name="coding_asynchronous">asynchroniczne</string>
-    <string name="coding_atc">Automatyczna klinatyzacja</string>
-    <string name="coding_auto_before_inch">Automarycznie przed calem</string>
+    <string name="coding_atc">Automatyczna klimatyzacja</string>
+    <string name="coding_auto_before_inch">Automatycznie przed calem</string>
     <string name="coding_automatic">Automatyczne</string>
     <string name="coding_basic_ac">Ręczna klimatyzacja</string>
     <string name="coding_battery_backed">Alarm z baterią</string>
@@ -104,8 +104,8 @@
     <string name="coding_codierung">Kodowanie</string>
     <string name="coding_continuous">Ciągły</string>
     <string name="coding_default">Standardowy</string>
-    <string name="coding_degrees_c">Stopnie Celcjusza</string>
-    <string name="coding_degrees_f">Stopnie Fehreneita</string>
+    <string name="coding_degrees_c">Stopnie Celsjusza</string>
+    <string name="coding_degrees_f">Stopnie Fahrenheit</string>
     <string name="coding_degrees_minus_20">-20 stopnie</string>
     <string name="coding_diesel">Diesel</string>
     <string name="coding_diesel_auto">Diesel, automat</string>
@@ -192,7 +192,7 @@
     <string name="coding_not_coded">nie zakodowany</string>
     <string name="coding_not_fitted">nie wyposażone</string>
     <string name="coding_not_present">nieobecny</string>
-    <string name="coding_not_previous">nie poprzedny</string>
+    <string name="coding_not_previous">nie poprzedni</string>
     <string name="coding_nvsa4">NVSA4</string>
     <string name="coding_off">wyłączone</string>
     <string name="coding_oil">olej</string>
@@ -235,7 +235,7 @@
     <string name="coding_single">pojedynczy</string>
     <string name="coding_spanish">hiszpański</string>
     <string name="coding_speed">prędkość</string>
-    <string name="coding_static">staryczny</string>
+    <string name="coding_static">statyczny</string>
     <string name="coding_strwse">Streetwise</string>
     <string name="coding_synchronous">synchroniczny</string>
     <string name="coding_tel_issued">telefon obecny</string>
@@ -254,7 +254,7 @@
     <string name="coding_waschwasser_alt">stary</string>
     <string name="coding_waschwasser_4reed">4 powtórzenia</string>
     <string name="coding_waschwasser_pwm">PWM</string>
-    <string name="coding_weg_geschw">opcja prędkośći</string>
+    <string name="coding_weg_geschw">opcja prędkości</string>
     <string name="coding_wert_01">opcja 01</string>
     <string name="coding_wert_07">opcaj 07</string>
     <string name="coding_withacoustics">z ultradziękiem</string>

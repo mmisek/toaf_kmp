@@ -4,7 +4,7 @@
 
     <string name="activity_advance_coding_adjustment_matches_error">Wprowadzona wartość nie jest poprawna</string>
     <string name="activity_advance_coding_adjustment_read_error">Błąd odczytu danych adiustacyjnych</string>
-    <string name="activity_advance_coding_adjustment_write_error">Błąd zapisu danych adiustacujnych</string>
+    <string name="activity_advance_coding_adjustment_write_error">Błąd zapisu danych adiustacyjnych</string>
     <string name="activity_advance_coding_adjustment_write_successful">Dane adiustacyjne zapisane poprawnie</string>
     <string name="activity_advance_coding_default_coding">Standardowe kodowanie</string>
     <string name="activity_advance_coding_id_current">Bieżące ID</string>
@@ -30,7 +30,7 @@
     <string name="activity_advance_coding_odometer_programming">Programowanie przebiegu</string>
     <string name="activity_advance_coding_odometer_current">Bieżący przebieg</string>
     <string name="activity_advance_coding_odometer_read_error">Błąd odczytu przebiegu.</string>
-    <string name="activity_advance_coding_odometer_write_error">Bład zapisu przebiegu.</string>
+    <string name="activity_advance_coding_odometer_write_error">Błąd zapisu przebiegu.</string>
     <string name="activity_advance_coding_odometer_write_successful">Przebieg zapisany prawidłowo.</string>
     <string name="activity_advance_coding_odometer_matches_error">Podany przebieg nie jest prawidłowy!</string>
 
@@ -48,7 +48,7 @@
     <string-array name="activity_advance_coding_lsm_auto_light_modes">
         <item>Wyłączone</item>
         <item>DRL - 30% świateł drogowych</item>
-        <item>Światła automatyczne - po uruchomieniu</item>
-        <item>Światła automatyczne - po zapłonie</item>
+        <item>Światła automatyczne — po uruchomieniu</item>
+        <item>Światła automatyczne — po zapłonie</item>
     </string-array>
 </resources>

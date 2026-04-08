@@ -51,7 +51,7 @@ class AndroidToafBilling (context: Context, private val database : Database, pri
         }
     }
 
-    override suspend fun getStripeUrl(elementName: String) = ""
+    override suspend fun getStripeSession(elementName: String) = null
 
     private fun connectToPlayStore() {
         if (billingClient?.isReady != true) {

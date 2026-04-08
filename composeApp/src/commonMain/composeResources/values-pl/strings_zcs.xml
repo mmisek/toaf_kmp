@@ -3,7 +3,7 @@
     <string name="zcs_acu_c10">ACU C10</string>
     <string name="zcs_airbag_curtain">Kurtyny boczne</string>
     <string name="zcs_alarm_no_us">Alarm, bez ultradźwięków</string>
-    <string name="zcs_alarm_type">Typ larmu</string>
+    <string name="zcs_alarm_type">Typ alarmu</string>
     <string name="zcs_alarm_with_us">Alarm z ultradźwiękiem</string>
     <string name="zcs_alloy_18_inch">Felgi - 18 cali</string>
     <string name="zcs_ambient50">Otoczenie - 50</string>
@@ -11,7 +11,7 @@
     <string name="zcs_atc_aircon">System ATC</string>
     <string name="zcs_atc_version">Wersja systemu AC</string>
     <string name="zcs_australia">Australia</string>
-    <string name="zcs_auto">Autmatyczna</string>
+    <string name="zcs_auto">Automatyczna</string>
     <string name="zcs_battery_alarm">Alarm z baterią</string>
     <string name="zcs_boot">Boot</string>
     <string name="zcs_ci_02">CI=02</string>
@@ -35,7 +35,7 @@
     <string name="zcs_english_us">Angielski (US)</string>
     <string name="zcs_eobd">EOBD</string>
     <string name="zcs_ethanol_22pc">Etanol</string>
-    <string name="zcs_fed_emission">Emisyjnośc wg FED</string>
+    <string name="zcs_fed_emission">Emisyjność wg FED</string>
     <string name="zcs_french">Francuzki</string>
     <string name="zcs_front">Tylko przód</string>
     <string name="zcs_front_and_rear">Przód i tył</string>
@@ -81,7 +81,7 @@
     <string name="zcs_pdc">System PDC</string>
     <string name="zcs_pdc_ci_03">PDC z CI=03</string>
     <string name="zcs_pdc_g4_sensors">Czujniki G4, PDC</string>
-    <string name="zcs_pdc_kmb_sounder">Grośnik PDC w liczniku</string>
+    <string name="zcs_pdc_kmb_sounder">Głośnik PDC w liczniku</string>
     <string name="zcs_pencil_coils">Cewki ołówkowe</string>
     <string name="zcs_post_cat_oxygen">Czujnik O2 za katalizatorem</string>
     <string name="zcs_power">Moc</string>
@@ -116,7 +116,7 @@
     <string name="zcs_transit">Tryb Transit</string>
     <string name="zcs_tv_module">Moduł TV</string>
     <string name="zcs_uk">UK</string>
-    <string name="zcs_unleaded_fuel">Paliwo bezołowieowe</string>
+    <string name="zcs_unleaded_fuel">Paliwo bezołowiowe</string>
     <string name="zcs_v8_ford">V8 - Ford</string>
     <string name="zcs_vehicle">Pojazd</string>
     <string name="zcs_vehicle_brand">Marka pojazdu</string>
@@ -124,5 +124,5 @@
     <string name="zcs_xenon_lamps">Lampy Xenon</string>
     <string name="zcs_xpower">XPower</string>
     <string name="zcs_yes">Tak</string>
-    <string name="zcs_zcs_asia_pacific">Azja - pacyfik</string>
+    <string name="zcs_zcs_asia_pacific">Azja - Pacyfik</string>
 </resources>

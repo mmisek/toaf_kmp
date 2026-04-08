@@ -279,9 +279,13 @@
     <string name="dialog_question_title">Вопрос</string>
     <string name="dialog_question_yes">Да</string>
     <string name="dialog_question_no">Нет</string>
-    
+
     <string name="dialog_information_title">Информация</string>
-    <string name="dialog_information_ok">OK</string>
+    <string name="dialog_information_ok">ОК</string>
+    <string name="dialog_information_cancel">Отмена</string>
+    <string name="information_no_bcu_keys">У вас нет токенов для добавления нового ключа.\nПрограмма перенаправит вас к покупке.</string>
+    <string name="information_purchase_ok">Покупка успешно завершена. Спасибо!</string>
+    <string name="information_purchase_failed">Ошибка верификации покупки.</string>
 
     <string name="dialog_input_title">Введите данные</string>
     <string name="dialog_input_cancel">Отменить</string>
@@ -384,7 +388,7 @@
     <string name="AD_save_to_file_message">Вы хотите сохранить данные в файл?</string>
     <string name="AD_save_to_file_button_yes">Да</string>
     <string name="AD_save_to_file_button_no">Нет</string>
-    <string name="AD_save_to_file_success">Данные сохранены в файл : %1$s</string>
+    <string name="AD_save_to_file_success">Данные сохранены в файл: %1$s</string>
     <string name="AD_save_to_file_failed">Сохранение в файл не удалось</string>
 
     <string name="kwp_connected">KWP подключен к : %1$s</string>

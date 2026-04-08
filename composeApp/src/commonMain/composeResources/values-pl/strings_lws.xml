@@ -8,20 +8,20 @@
     <string name="lws_error_05">Błąd EEPROM</string>
     <string name="lws_error_06">Błąd przetwornika ADC</string>
     <string name="lws_error_07">Błąd testu pamięci ROM</string>
-    <string name="lws_error_08">Błąd testu pamięcu RAM</string>
-    <string name="lws_error_09">Not an ASC2-message</string>
+    <string name="lws_error_08">Błąd testu pamięci RAM</string>
+    <string name="lws_error_09">Not an ASC2—message</string>
     <string name="lws_error_0A">Błędna wersja CAN</string>
-    <string name="lws_error_0B">Błędny LWS-ID</string>
+    <string name="lws_error_0B">Błędny LWS—ID</string>
     <string name="lws_error_0C">Szyna CAN wyłączona</string>
     <string name="lws_error_0D">Gradient LWR zbyt duży</string>
     <string name="lws_error_0E">Wartość maksymalna osiągnięta</string>
     <string name="lws_error_0F">Błąd stosu / Błąd wielkości</string>
     <string name="lws_error_10">Watchdog</string>
 
-    <string name="lws_live_data_wheel_speed_left_front">Prędkość koła - lewy przód</string>
-    <string name="lws_live_data_wheel_speed_right_front">Prędkośc koła - prawy przód</string>
-    <string name="lws_live_data_wheel_speed_left_rear">Prędkość koła - lewy tył</string>
-    <string name="lws_live_data_wheel_speed_right_rear">Prędkość koła - prawy tył</string>
+    <string name="lws_live_data_wheel_speed_left_front">Prędkość koła — lewy przód</string>
+    <string name="lws_live_data_wheel_speed_right_front">Prędkość koła — prawy przód</string>
+    <string name="lws_live_data_wheel_speed_left_rear">Prędkość koła — lewy tył</string>
+    <string name="lws_live_data_wheel_speed_right_rear">Prędkość koła — prawy tył</string>
     <string name="lws_live_data_vehicle_speed">Prędkość pojazdu</string>
     <string name="lws_live_data_steering_angle_speed">Prędkość zmiany kąta obrotu</string>
     <string name="lws_live_data_steering_angle">Kąt obrotu kierownicy</string>

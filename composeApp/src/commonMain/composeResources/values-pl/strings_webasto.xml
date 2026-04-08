@@ -10,7 +10,7 @@
     <string name="webasto_error_05">Sterowanie dmuchawą</string>
     <string name="webasto_error_06">Przegrzanie</string>
     <string name="webasto_error_07">Odcięcie - za niskie napięcie</string>
-    <string name="webasto_error_08">Napiecie zasilania za duże</string>
+    <string name="webasto_error_08">Napięcie zasilania za duże</string>
     <string name="webasto_error_09">Sterownik uszkodzony</string>
     <string name="webasto_error_0A">Sterownik błędnie zakodowany</string>
     <string name="webasto_error_0B">Zgaszony płomień</string>
@@ -25,7 +25,7 @@
     <string name="webasto_error_detail_08">Nieprawidłowa wartość, błędny obszar działania</string>
     <string name="webasto_error_detail_40">Błąd obecny</string>
     <string name="webasto_error_detail_80">Błąd sporadyczny</string>
-    <string name="webasto_error_detail_cooling_temperature">Temp. płynu chłodn.</string>
+    <string name="webasto_error_detail_cooling_temperature">Temp. płynu chłodniczego</string>
     <string name="webasto_error_detail_status">Status</string>
 
     <string name="webasto_error_status_ABR11">Wypalanie 11</string>
@@ -83,7 +83,7 @@
     <string name="webasto_error_status_LVT2">Zmiana wkładu VL-TL2</string>
     <string name="webasto_error_status_RP1">Stan oczekiwania 1</string>
     <string name="webasto_error_status_RP2">Stan oczekiwania 2</string>
-    <string name="webasto_error_status_RUA">Oszczedzanie czasu oczekiwania</string>
+    <string name="webasto_error_status_RUA">Oszczędzanie czasu oczekiwania</string>
     <string name="webasto_error_status_STV">Złamanie blokady</string>
     <string name="webasto_error_status_STZ">Czas stabilizacji</string>
     <string name="webasto_error_status_VFOE1">Pompowanie 1</string>
@@ -103,7 +103,7 @@
     <string name="webasto_live_data_glow_pen">Kołek żarowy</string>
     <string name="webasto_live_data_battery_voltage">Napięcie akumulatora</string>
     <string name="webasto_live_data_combustion_air_blower_performance">Wydajność dmuchawy powietrza do spalania</string>
-    <string name="webasto_live_data_duty_cycle_glow_element">Czykl pracy elementy grzejnego</string>
+    <string name="webasto_live_data_duty_cycle_glow_element">Cykl pracy elementy grzejnego</string>
     <string name="webasto_live_data_fuel_pump">Pompa paliwa</string>
     <string name="webasto_live_data_combustion_air_fan">Dmuchawa powietrza do spalania</string>
     <string name="webasto_live_data_glow_plug">Świeca żarowa</string>

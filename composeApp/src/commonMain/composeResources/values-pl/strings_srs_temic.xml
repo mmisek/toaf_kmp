@@ -104,21 +104,21 @@
 <string name="srs_error_detail_0B">Błąd obecny</string>
     <!-- SRS coding-->
 <string name="srs_coding_airbag_driver">Poduszka powietrzna kierowcy</string>
-<string name="srs_coding_its_left">ITS - lewa strona</string>
-<string name="srs_coding_its_right">ITS - prawa strona</string>
+<string name="srs_coding_its_left">ITS — lewa strona</string>
+<string name="srs_coding_its_right">ITS — prawa strona</string>
 <string name="srs_coding_airbag_passenger">Poduszka powietrzna pasażera</string>
 <string name="srs_coding_seat_left_airbag">Poduszka powietrzna lewego siedzenia</string>
 <string name="srs_coding_seat_right_airbag">Poduszka powietrzna prawego siedzenia</string>
-<string name="srs_coding_bp_driver">Napinacz pasa - kierowca</string>
-<string name="srs_coding_bp_passenger">Napinacz pasa - pasażer</string>
-<string name="srs_coding_bp_rear_left">Napinacz pasa - tylny lewy</string>
-<string name="srs_coding_bp_rear_right">Napinacz pasa - tylny prawy</string>
-<string name="srs_coding_bp_rear_middle">Napinacz pasa - tylny środkowy</string>
+<string name="srs_coding_bp_driver">Napinacz pasa — kierowca</string>
+<string name="srs_coding_bp_passenger">Napinacz pasa — pasażer</string>
+<string name="srs_coding_bp_rear_left">Napinacz pasa — tylny lewy</string>
+<string name="srs_coding_bp_rear_right">Napinacz pasa — tylny prawy</string>
+<string name="srs_coding_bp_rear_middle">Napinacz pasa — tylny środkowy</string>
 <string name="srs_coding_ubat_disconnect">Odłączenie baterii</string>
-<string name="srs_coding_belt_buckle_driver">Czujnik pasa - kierowca</string>
-<string name="srs_coding_belt_buckle_passenger">Czujnik pasa - pasażer</string>
+<string name="srs_coding_belt_buckle_driver">Czujnik pasa — kierowca</string>
+<string name="srs_coding_belt_buckle_passenger">Czujnik pasa — pasażer</string>
 <string name="srs_coding_ods">ODS</string>
-<string name="srs_coding_mrsa_front">MRSA - przód</string>
+<string name="srs_coding_mrsa_front">MRSA — przód</string>
 <string name="srs_coding_indication_lamp">Lampka wskaźnikowa</string>
 <string name="srs_coding_trigger_switch">Przełącznik wyzwalający</string>
 

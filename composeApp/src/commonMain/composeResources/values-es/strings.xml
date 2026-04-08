@@ -305,7 +305,11 @@
     <string name="dialog_question_no">No</string>
     <!-- InformationDialog -->
     <string name="dialog_information_title">Información</string>
-    <string name="dialog_information_ok">OK</string>
+    <string name="dialog_information_ok">Aceptar</string>
+    <string name="dialog_information_cancel">Cancelar</string>
+    <string name="information_no_bcu_keys">No tienes tokens para añadir una nueva clave.\nEl programa te redirigirá a la compra.</string>
+    <string name="information_purchase_ok">Compra completada. ¡Gracias!</string>
+    <string name="information_purchase_failed">Error en la verificación de la compra.</string>
 
 
     <!-- dialog make backup -->
