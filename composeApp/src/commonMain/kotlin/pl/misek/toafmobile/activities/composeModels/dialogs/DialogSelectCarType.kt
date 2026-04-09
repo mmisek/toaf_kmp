@@ -43,7 +43,8 @@ object DialogSelectCarType {
         val options = mapOf(
             0 to Res.string.car_type_rover_75,
             1 to Res.string.car_type_rover_25,
-            2 to Res.string.car_type_range_rover_l322
+            2 to Res.string.car_type_range_rover_l322,
+            3 to Res.string.car_type_land_rover_freelander_1
         )
         var selectedItemIndex by remember { mutableIntStateOf(-1) }
         selectedItemIndex = currentIndex

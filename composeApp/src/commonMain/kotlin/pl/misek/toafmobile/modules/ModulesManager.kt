@@ -43,6 +43,7 @@ import pl.misek.toafmobile.modules.rjo.ModuleSCU
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import pl.misek.toafmobile.koin.KoinNames
+import pl.misek.toafmobile.modules.l20.ModuleCCU
 import pl.misek.toafmobile.modules.l322.ModuleTXU
 
 class ModulesManager() : KoinComponent
@@ -90,7 +91,8 @@ class ModulesManager() : KoinComponent
             get<pl.misek.toafmobile.modules.l322.ModuleRadio>(named(KoinNames.ModuleL322Radio.name)),
             //modules.add(new ModuleEMS(kwp_ems2k));
             get<ModuleNavMk3>(named(KoinNames.ModuleR40NavMk3.name)),
-            get<ModuleSCU>(named(KoinNames.ModuleRJOScu.name)))
+            get<ModuleSCU>(named(KoinNames.ModuleRJOScu.name)),
+            get<ModuleCCU>(named(KoinNames.ModuleL20Ccu.name)))
     }
 
     @Composable

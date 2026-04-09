@@ -69,19 +69,17 @@ class ProtocolKWPStar(private var device: IInterfaceDevice?, private val useDela
                     Logger.i{"$tag : $stringBuilder"}
                 }
                 val shift = 0
-                //if (command == (byte)0x81)
-                //    shift = 1;
                 if (result.size > (dataToSend.size + 1)) {
                     message.answer =
                         result.copyOfRange(dataToSend.size + shift, result.size)
                     message.length = message.answer.size
                     if (message.answer.isEmpty()) return message
-                    message.answerCode = message.answer[3]
+                    message.answerCode = message.answer[if (address == 0x40.toByte()) 4 else 3]
                     checksum = 0
                     for (i in 0 until message.answer.size - 1) checksum =
                         (checksum + message.answer[i]).toByte()
                     message.isValid =
-                        (message.answer[message.answer.size - 1] == (checksum.toInt() and 0xFF).toByte()) && (message.answerCode == (command + 0x40).toByte())
+                        (message.answer[message.answer.size - 1] == (checksum.toInt() and 0xFF).toByte()) && (message.answerCode == ((command + 0x40) and 0xFF).toByte())
                 }
             } catch (ex: Exception) {
                 Logger.e{"$tag : ${ex.toString()}"}

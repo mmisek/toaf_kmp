@@ -43,5 +43,6 @@ enum class KoinNames {
     ModuleRJOScu,
     ModuleRJOEdc15,
 
+    ModuleL20Ccu,
     LiveDataLogFolder,
 }

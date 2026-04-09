@@ -22,6 +22,7 @@ import toafmobile.composeapp.generated.resources.dialog_wifi_interface_hardware
 import toafmobile.composeapp.generated.resources.dialog_wifi_interface_software
 import toafmobile.composeapp.generated.resources.module_bcu
 import toafmobile.composeapp.generated.resources.module_description_scu
+import java.util.Locale
 
 class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IModuleVIN,
     IModuleCoding, IModuleLiveData, IModuleEKA {
@@ -69,6 +70,7 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
                     info = ModuleInfo()
                     val answer = message.answer
                     info.id1 = String(answer.copyOfRange(5, 8)) + String.format(
+                        Locale.getDefault(),
                         "%02d%02d%02d",
                         answer[8].toInt() and 0xFF,
                         answer[9].toInt() and 0xFF,

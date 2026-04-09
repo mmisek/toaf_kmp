@@ -408,7 +408,7 @@ private suspend fun doBackup(toafApi : ToafApi, currentModule : IModule?, ewsMod
     }
 
     currentModule.let {
-        moduleInfo = currentModule?.getIdentification()
+        moduleInfo = it?.getIdentification()
         moduleVin = it?.getVIN() ?: ""
         moduleOdometer = it?.getOdometer() ?: ""
     }

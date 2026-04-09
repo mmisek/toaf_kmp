@@ -170,14 +170,6 @@
     <string name="dialog_select_car_type_tittle">Seleziona tipo auto</string>
     <string name="dialog_select_car_type_cancel">Annulla</string>
     <string name="dialog_select_car_type_ok">OK</string>
-    <string name="car_type_rover_75" translatable="false">Rover 75/MG ZT</string>
-    <string name="car_type_rover_25" translatable="false">Rover 25/45 MG ZR/ZS</string>
-    <string name="car_type_range_rover_l322" translatable="false">Range Rover L322</string>
-    <string-array name="dialog_select_car_typ_car_types">
-        <item>@string/car_type_rover_75</item>
-        <item>@string/car_type_rover_25</item>
-        <item>@string/car_type_range_rover_l322</item>
-    </string-array>
     <string name="dialog_interface_info_title">Info interfaccia</string>
     <string name="dialog_interface_info_path">Percorso</string>
     <string name="dialog_interface_info_manufacturer">Produttore</string>
