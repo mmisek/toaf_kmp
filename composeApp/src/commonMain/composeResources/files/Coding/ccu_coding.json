@@ -1,0 +1,423 @@
+{
+    "elements": [
+      {
+        "name": "alarm_enable",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x01",
+        "coding_index": [
+          "02", "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+      {
+        "name": "hazard_confirm",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x02",
+        "coding_index": [
+          "02", "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },	  
+      {
+        "name": "hazard_alarm",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x04",
+        "coding_index": [
+          "02", "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },	  
+      {
+        "name": "continous_sounder",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x08",
+        "coding_index": [
+          "02", "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },	  
+      {
+        "name": "bbus_sounder",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x10",
+        "coding_index": [
+          "02", "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },	  
+      {
+        "name": "double_locking",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x20",
+        "coding_index": [
+          "02", "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },	  
+      {
+        "name": "double_press",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x40",
+        "coding_index": [
+          "02", "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },	  
+      {
+        "name": "enable_spe",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x80",
+        "coding_index": [
+          "02", "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },	  
+      {
+        "name": "mislock_sound",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x01",
+        "coding_index": [
+          "02", "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },		  
+      {
+        "name": "daytime_run",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x04",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },		  	  
+      {
+        "name": "vol_power",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x08",
+        "coding_index": [
+          "02", "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },		  
+      {
+        "name": "windowlift_enable",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x10",
+        "coding_index": [
+          "02", "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },		  
+      {
+        "name": "courtesy_unlock",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x20",
+        "coding_index": [
+          "02", "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },		  
+      {
+        "name": "tail_close_one_shot",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x40",
+        "coding_index": [
+          "02", "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },		  
+      {
+        "name": "selftest",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x80",
+        "coding_index": [
+          "02", "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },		  
+      {
+        "name": "seatbelt_sound",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x01",
+        "coding_index": [
+          "02", "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },		  
+      {
+        "name": "key_in_warn",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x02",
+        "coding_index": [
+          "02", "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },		  
+      {
+        "name": "seatbelt_lamp",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x04",
+        "coding_index": [
+          "02"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+	        {
+        "name": "seatbelt_remind",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x04",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },
+	        {
+        "name": "seatbelt_warn",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x08",
+        "coding_index": [
+          "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      },	  
+      {
+        "name": "cos_value",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x20",
+        "coding_index": [
+          "02"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "nas"
+            },
+            {
+              "data": "0x00",
+              "text": "standard"
+            }
+          ]
+      },		  
+      {
+        "name": "transit_mode",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x80",
+        "coding_index": [
+          "02", "03"
+        ],
+        "coding_values": [
+            {
+              "data": "0x01",
+              "text": "enable"
+            },
+            {
+              "data": "0x00",
+              "text": "disable"
+            }
+          ]
+      }
+	  
+    ]
+}

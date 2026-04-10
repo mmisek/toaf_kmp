@@ -31,6 +31,8 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
 
     private val MODULE_ADDRESS = ModuleAddress.MODULE_CCU.address
 
+    private var localLiveDataElements : List<LiveDataElement> = emptyList()
+
     override fun getModuleProtocol() = kwp
 
     override fun getKoinName() = KoinNames.ModuleL20Ccu
@@ -69,8 +71,7 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
     override fun getModuleDescription() = Res.string.module_description_scu
 
     override suspend fun getIdentification(): ModuleInfo? {
-        //AddKeyFob("NDB053561040434532289P");
-        //WriteVIN("SARRFLNMR5D801842");
+
         securityAccessCalculator(0x1B1B)
         var info: ModuleInfo? = null
         try {
@@ -80,8 +81,10 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
                 if (message.isValid) {
                     info = ModuleInfo()
                     val answer = message.answer
-                    info.id1 = "27VT"
+                    info.id1 = String(answer.copyOfRange(5,7))
                     info.ci = String.format("%02X", answer[7].toInt() and 0xFF)
+                    info.sw = String.format("%02X.%02X", answer[9].toInt() and 0xFF,answer[10].toInt() and 0xFF)
+                    info.hw = String(answer.copyOfRange(11,12))
                     info.serial = String.format("%02X%02X%02X", answer[13].toInt() and 0xFF,answer[14].toInt() and 0xFF,answer[15].toInt() and 0xFF)
                 }
             }
@@ -108,10 +111,6 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
         return null
     }
 
-    fun Int.toBcd(): Byte {
-        require(this in 0..99) { "Must be in 0..99" }
-        return (((this / 10) shl 4) or (this % 10)).toByte()
-    }
     override fun getVinLength(): Int = 17
 
     override suspend fun writeVIN(newVin: String): Boolean {
@@ -258,53 +257,30 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
         return false
     }
 
-    private suspend fun addKeyFob(keyFobCode: String): Boolean {
-        var result = false
-        val data = ByteArray(10)
-        var i = 0
-        while (i < keyFobCode.length - 2) {
-            val index = i / 2
-            data[index] = (16 * keyFobCode.substring(i + 1, i + 2).toInt(16)).toByte()
-            data[index] =
-                (data[index] + keyFobCode.substring(i + 2, i + 3).toInt(16).toByte()).toByte()
-            i += 2
-        }
-        if (moduleInit() && startDiagnosticSession(0x86.toByte()) && securityAccess(0x05.toByte())
-                && kwp.write(MODULE_ADDRESS, 0x1A.toByte(), byteArrayOf(0x80.toByte()), 50).isValid
-                && kwp.write(MODULE_ADDRESS, 0x1A.toByte(), byteArrayOf(0x8A.toByte()), 50).isValid
-                && kwp.write(MODULE_ADDRESS, 0x1A.toByte(), byteArrayOf(0x90.toByte()), 50).isValid
-                && kwp.write(MODULE_ADDRESS, 0x1A.toByte(), byteArrayOf(0x92.toByte()), 50).isValid
-                && kwp.write(MODULE_ADDRESS, 0x1A.toByte(), byteArrayOf(0x95.toByte()), 50).isValid
-            ) {
-                if (kwp.write(MODULE_ADDRESS, 0x3B.toByte(), byteArrayOf(0x7F), 50).isValid) {
-                    try {
-                        Thread.sleep(1000)
-                        result = kwp.write(
-                            MODULE_ADDRESS,
-                            0x3B.toByte(),
-                            byteArrayOf((0x70).toByte()) + data,
-                            50
-                        ).isValid
-                    } catch (_: Exception) {
-                    }
-                }
-                kwp.write(MODULE_ADDRESS, 0x20.toByte(), byteArrayOf(), 50)
-            }
-        return result
-    }
-
     override suspend fun readLiveData(): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = HashMap()
-        val message = kwp.write(MODULE_ADDRESS, 0x21.toByte(), byteArrayOf(0x50), 50)
-        if (message.isValid) {
-            result[0x50] = message.answer.copyOfRange(5, message.answer.size - 1)
-            return result
+        for (element in localLiveDataElements)
+        {
+            val message = kwp.write(MODULE_ADDRESS, 0x21.toByte(), byteArrayOf(element.block.toByte()), 50)
+            if (message.isValid) {
+                val response = message.answer.copyOfRange(3, message.answer.size - 1)
+                result[element.block] = message.answer.copyOfRange(3, message.answer.size - 1)
+                if (element.block == 0x13)
+                {
+                    val x = response[2]
+                    response[2] = response[3]
+                    response[2] = x
+                }
+                result[element.block] = response
+            }
         }
-
-        return null
+        return result.ifEmpty { null }
     }
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean {
-        return (moduleInit() && startDiagnosticSession(0x86.toByte()) && securityAccess(0x05.toByte()))
+        localLiveDataElements = liveDataElements
+        if (moduleInit())
+            return securityAccess(0x01)
+        return false
     }
 }

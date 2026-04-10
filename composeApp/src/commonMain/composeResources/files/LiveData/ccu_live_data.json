@@ -1,0 +1,716 @@
+{
+  "livedata": [
+    {
+      "name": "ignition",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "driver_door",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "open"
+        },
+        {
+          "data": "0x01",
+          "text": "closed"
+        }
+      ]
+    },	
+    {
+      "name": "passenger_door",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "open"
+        },
+        {
+          "data": "0x01",
+          "text": "closed"
+        }
+      ]
+    },		
+    {
+      "name": "boonet",
+      "block": "0x00",
+      "byte": "0x09",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "open"
+        },
+        {
+          "data": "0x01",
+          "text": "closed"
+        }
+      ]
+    },		
+	{
+      "name": "bootlid_tailgate_switch",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "open"
+        },
+        {
+          "data": "0x01",
+          "text": "closed"
+        }
+      ]
+    },	
+	{
+      "name": "side_lamp_rh",
+      "block": "0x09",
+      "byte": "0x04",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },		
+	{
+      "name": "headlamp_switch",
+      "block": "0x09",
+      "byte": "0x02",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },		
+	{
+      "name": "rear_fog_light",
+      "block": "0x09",
+      "byte": "0x03",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "on"
+        },
+        {
+          "data": "0x01",
+          "text": "off"
+        }
+      ]
+    },		
+	{
+      "name": "key_lock",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "lock"
+        },
+        {
+          "data": "0x01",
+          "text": "idle"
+        }
+      ]
+    },	
+	{
+      "name": "key_unlock",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "lock"
+        },
+        {
+          "data": "0x01",
+          "text": "idle"
+        }
+      ]
+    },
+	{
+      "name": "road_speed",
+      "block": "0x01",
+      "byte": "0x03",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+	{
+      "name": "interior_lamps",
+      "block": "0x04",
+      "byte": "0x07",
+      "mask": "0x03",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "short_timer"
+        },
+        {
+          "data": "0x02",
+          "text": "door_timer"
+        }      
+	]
+    },		
+	{
+      "name": "roof_state",
+      "block": "0x00",
+      "byte": "0x0B",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "on"
+        },
+        {
+          "data": "0x01",
+          "text": "off"
+        }
+	]
+    },	
+	{
+      "name": "alarm_status",
+      "block": "0x02",
+      "byte": "0x02",
+      "mask": "0x0F",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "disarmed"
+        },
+        {
+          "data": "0x01",
+          "text": "driver_door_part_arm"
+        },
+        {
+          "data": "0x02",
+          "text": "passenger_door_part_arm"
+        },
+        {
+          "data": "0x04",
+          "text": "boonet_part_arm"
+        },		
+        {
+          "data": "0x08",
+          "text": "fully_armed"
+        }		
+	]
+    },
+		{
+      "name": "locking_state",
+      "block": "0x03",
+      "byte": "0x02",
+      "mask": "0x0F",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "unlocked"
+        },
+        {
+          "data": "0x01",
+          "text": "interia_switch"
+        },
+        {
+          "data": "0x02",
+          "text": "speaker_enabled"
+        },
+        {
+          "data": "0x03",
+          "text": "safety_locked"
+        },
+        {
+          "data": "0x04",
+          "text": "locked"
+        },
+        {
+          "data": "0x05",
+          "text": "double_locked"
+        }
+	]
+    },
+	{
+      "name": "interia_switch",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "tripped"
+        },
+        {
+          "data": "0x01",
+          "text": "set"
+        }
+	]
+    },		
+	{
+      "name": "volumetric_state",
+      "block": "0x02",
+      "byte": "0x03",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "idle"
+        },
+        {
+          "data": "0x01",
+          "text": "setting"
+        }
+	]
+    },
+	{
+      "name": "cdl_lunlock",
+      "block": "0x00",
+      "byte": "0x09",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "idle"
+        },
+        {
+          "data": "0x01",
+          "text": "closed"
+        }
+	]
+    },		
+	{
+      "name": "alarm_switch_boonet",
+      "block": "0x00",
+      "byte": "0x09",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "open"
+        },
+        {
+          "data": "0x01",
+          "text": "closed"
+        }
+	]
+    },		
+	{
+      "name": "alarm_activation",
+      "block": "0x02",
+      "byte": "0x09",
+      "mask": "0x03",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no_trigger"
+        },
+        {
+          "data": "0x01",
+          "text": "time_out"
+        },
+        {
+          "data": "0x02",
+          "text": "triggered"
+        }
+	]
+    },	
+	{
+      "name": "oil_pressure_sensor",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "open"
+        },
+        {
+          "data": "0x01",
+          "text": "closed"
+        }
+	]
+    },		
+	{
+      "name": "immobiliser_signal",
+      "block": "0x44",
+      "byte": "0x02",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "idle"
+        },
+        {
+          "data": "0x01",
+          "text": "remove_deadlock"
+        }
+	]
+    },		
+	{
+      "name": "window_position_edges",
+      "block": "0x13",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },	
+	{
+      "name": "electric_window_control",
+      "block": "0x04",
+      "byte": "0x02",
+      "mask": "0x0F",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "cal_down"
+        },
+        {
+          "data": "0x01",
+          "text": "cal_up"
+        },
+        {
+          "data": "0x02",
+          "text": "cal_stall"
+        },		
+        {
+          "data": "0x03",
+          "text": "stationary"
+        },
+        {
+          "data": "0x04",
+          "text": "goto_comfort_open_state"
+        },
+        {
+          "data": "0x05",
+          "text": "open"
+        },
+        {
+          "data": "0x06",
+          "text": "auto_close"
+        },
+        {
+          "data": "0x07",
+          "text": "down"
+        },
+        {
+          "data": "0x08",
+          "text": "down_stall"
+        },
+        {
+          "data": "0x09",
+          "text": "up"
+        },
+        {
+          "data": "0x0A",
+          "text": "up_stall"
+        },
+        {
+          "data": "0x0B",
+          "text": "failed"
+        }		
+	]
+    },	
+	{
+      "name": "window_monitor",
+      "block": "0x04",
+      "byte": "0x03",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "rising"
+        }
+	]
+    },
+	{
+      "name": "rear_window_wiper",
+      "block": "0x04",
+      "byte": "0x04",
+      "mask": "0x03",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "intermittent"
+        },
+        {
+          "data": "0x01",
+          "text": "rising"
+        },
+		{
+          "data": "0x02",
+          "text": "programmed"
+        },
+		{
+          "data": "0x03",
+          "text": "continous"
+        }
+	]
+    },
+	{
+      "name": "rear_window_wiper_status",
+      "block": "0x07",
+      "byte": "0x08",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "parked"
+        },
+        {
+          "data": "0x01",
+          "text": "intermittent"
+        },
+        {
+          "data": "0x01",
+          "text": "wiping"
+        }
+	]
+    },	
+	{
+      "name": "tail_wash",
+      "block": "0x07",
+      "byte": "0x06",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+	]
+    },	
+	{
+      "name": "front_wiper_interval",
+      "block": "0x07",
+      "byte": "0x02",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+	]
+    },
+	{
+      "name": "front_wiper_park_state",
+      "block": "0x07",
+      "byte": "0x04",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "parked"
+        },
+        {
+          "data": "0x01",
+          "text": "wiping"
+        }
+	]
+    },
+	{
+      "name": "front_wiper_state",
+      "block": "0x04",
+      "byte": "0x05",
+      "mask": "0x03",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "released"
+        },
+        {
+          "data": "0x01",
+          "text": "intermittent"
+        },
+        {
+          "data": "0x02",
+          "text": "wipe_and_wash"
+        }	
+	]
+    },
+	{
+      "name": "front_wash",
+      "block": "0x07",
+      "byte": "0x03",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+	]
+    },
+	{
+      "name": "front_wiper_speed",
+      "block": "0x0A",
+      "byte": "0x02",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },	
+	{
+      "name": "status_reverse_gear",
+      "block": "0x07",
+      "byte": "0x07",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "forward"
+        },
+        {
+          "data": "0x01",
+          "text": "reversed"
+        }
+	]
+    }	
+  ]
+}

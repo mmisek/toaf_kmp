@@ -1,0 +1,172 @@
+{
+    "elements": [
+      {
+        "name": "windowlift_activation",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+      {
+        "name": "interior_lights",
+        "block": "0x01",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+      {
+        "name": "rear_fog_light",
+        "block": "0x02",
+        "byte": "0x00",
+        "value": "0x00"
+      },	  
+      {
+        "name": "receive_power_start",
+        "block": "0x03",
+        "byte": "0x00",
+        "value": "0x00"
+      },	
+      {
+        "name": "receive_power_stop",
+        "block": "0x04",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+      {
+        "name": "driver_door_cdl_motor_start",
+        "block": "0x05",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+      {
+        "name": "driver_door_cdl_motor_stop",
+        "block": "0x06",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+      {
+        "name": "unlock_motors_start",
+        "block": "0x07",
+        "byte": "0x00",
+        "value": "0x00"
+      },	  
+      {
+        "name": "unlock_motors_stop",
+        "block": "0x08",
+        "byte": "0x00",
+        "value": "0x00"
+      },	  
+	  {
+        "name": "double_lock_motors_start",
+        "block": "0x09",
+        "byte": "0x00",
+        "value": "0x00"
+      },	  
+      {
+        "name": "double_lock_motors_stop",
+        "block": "0x0A",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+      {
+        "name": "alarm_led",
+        "block": "0x0B",
+        "byte": "0x00",
+        "value": "0x00"
+      },	  
+      {
+        "name": "volumetric_power_start",
+        "block": "0x0C",
+        "byte": "0x00",
+        "value": "0x00"
+      },	  
+	  {
+        "name": "volumetric_power_stop",
+        "block": "0x0D",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+	  {
+        "name": "hazard_relay",
+        "block": "0x0E",
+        "byte": "0x00",
+        "value": "0x00"
+      },	  
+	  {
+        "name": "horn_start",
+        "block": "0x0F",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+	  {
+        "name": "horn_stop",
+        "block": "0x10",
+        "byte": "0x00",
+        "value": "0x00"
+      },	  
+	  {
+        "name": "immobiliser_output",
+        "block": "0x11",
+        "byte": "0x00",
+        "value": "0x00"
+      },	  	  
+	  {
+        "name": "tail_door_actuator",
+        "block": "0x12",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+ 	  {
+        "name": "window_down_relay",
+        "block": "0x13",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+ 	  {
+        "name": "window_up_relay",
+        "block": "0x14",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+ 	  {
+        "name": "window_sensor_power",
+        "block": "0x15",
+        "byte": "0x00",
+        "value": "0x00"
+      },	  
+ 	  {
+        "name": "ccu_internal_buzzer",
+        "block": "0x16",
+        "byte": "0x00",
+        "value": "0x00"
+      },	  
+ 	  {
+        "name": "open_door_warning",
+        "block": "0x17",
+        "byte": "0x00",
+        "value": "0x00"
+      },	  	  
+ 	  {
+        "name": "tail_wiper_forward_relay",
+        "block": "0x18",
+        "byte": "0x00",
+        "value": "0x00"
+      },	  
+ 	  {
+        "name": "tail_wiper_reverse_relay",
+        "block": "0x19",
+        "byte": "0x00",
+        "value": "0x00"
+      },	
+   	  {
+        "name": "front_wiper_slow",
+        "block": "0x1A",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+   	  {
+        "name": "heated_rear_window_relay",
+        "block": "0x1A",
+        "byte": "0x00",
+        "value": "0x00"
+      }  
+    ]
+}
