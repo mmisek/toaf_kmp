@@ -48,7 +48,7 @@ object ResourceMapperActivityAdvanceCoding {
             "activity_advance_coding_write_default_coding_error" -> Res.string.activity_advance_coding_write_default_coding_error
             "activity_advance_coding_write_default_coding_successful" -> Res.string.activity_advance_coding_write_default_coding_successful
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

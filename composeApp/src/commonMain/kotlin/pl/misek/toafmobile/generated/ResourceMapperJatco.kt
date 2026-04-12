@@ -105,7 +105,7 @@ object ResourceMapperJatco {
             "jatco_live_data_value_p_n_gear" -> Res.string.jatco_live_data_value_p_n_gear
             "jatco_live_data_value_r_gear" -> Res.string.jatco_live_data_value_r_gear
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

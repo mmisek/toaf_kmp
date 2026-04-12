@@ -42,7 +42,7 @@ object ResourceMapperRadio {
             "radio_live_data_value_signal_too_low" -> Res.string.radio_live_data_value_signal_too_low
             "radio_module_info_name" -> Res.string.radio_module_info_name
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

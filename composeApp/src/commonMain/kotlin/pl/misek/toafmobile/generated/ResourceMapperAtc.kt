@@ -68,7 +68,7 @@ object ResourceMapperAtc {
             "atc_live_data_value_right_hand" -> Res.string.atc_live_data_value_right_hand
             "atc_live_data_water_temp" -> Res.string.atc_live_data_water_temp
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

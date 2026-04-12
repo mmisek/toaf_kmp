@@ -58,7 +58,7 @@
       ]
     },		
     {
-      "name": "boonet",
+      "name": "bonnet",
       "block": "0x00",
       "byte": "0x09",
       "mask": "0x01",
@@ -264,7 +264,7 @@
         },
         {
           "data": "0x04",
-          "text": "boonet_part_arm"
+          "text": "bonnet_part_arm"
         },		
         {
           "data": "0x08",
@@ -346,7 +346,7 @@
 	]
     },
 	{
-      "name": "cdl_lunlock",
+      "name": "cdl_unlock",
       "block": "0x00",
       "byte": "0x09",
       "mask": "0x01",
@@ -365,7 +365,7 @@
 	]
     },		
 	{
-      "name": "alarm_switch_boonet",
+      "name": "alarm_switch_bonnet",
       "block": "0x00",
       "byte": "0x09",
       "mask": "0x01",

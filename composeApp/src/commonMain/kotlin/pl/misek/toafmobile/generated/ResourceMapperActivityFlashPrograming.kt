@@ -40,7 +40,7 @@ object ResourceMapperActivityFlashPrograming {
             "activity_flash_programming_wrong_file_size" -> Res.string.activity_flash_programming_wrong_file_size
             "activity_flash_read_identification" -> Res.string.activity_flash_read_identification
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

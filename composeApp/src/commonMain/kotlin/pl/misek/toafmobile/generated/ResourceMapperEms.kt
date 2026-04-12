@@ -222,7 +222,7 @@ object ResourceMapperEms {
             "ems_live_data_vis_butterfly_drive" -> Res.string.ems_live_data_vis_butterfly_drive
             "ems_live_data_vis_butterfly_feedback" -> Res.string.ems_live_data_vis_butterfly_feedback
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

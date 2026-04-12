@@ -122,7 +122,7 @@ object ResourceMapperDsc {
             "dsc_live_data_steering_wheel_angle_speed" -> Res.string.dsc_live_data_steering_wheel_angle_speed
             "dsc_live_data_valve_relay" -> Res.string.dsc_live_data_valve_relay
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

@@ -68,7 +68,7 @@ object ResourceMapperVideo {
             "video_live_data_value_signal_too_low" -> Res.string.video_live_data_value_signal_too_low
             "video_live_data_x_sync" -> Res.string.video_live_data_x_sync
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

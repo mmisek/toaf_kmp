@@ -8,7 +8,7 @@ object ResourceMapperTxu {
     fun stringResource(resourceName: String): StringResource? {
         return when (resourceName) {
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

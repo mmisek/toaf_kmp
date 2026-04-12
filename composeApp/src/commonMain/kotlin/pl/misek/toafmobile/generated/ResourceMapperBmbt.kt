@@ -95,7 +95,7 @@ object ResourceMapperBmbt {
             "bmbt_live_data_value_several_buttons" -> Res.string.bmbt_live_data_value_several_buttons
             "bmbt_live_data_volume_encoder_steps" -> Res.string.bmbt_live_data_volume_encoder_steps
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

@@ -150,7 +150,7 @@ object ResourceMapperSrsL322 {
             "srs_l322_error_description_24" -> Res.string.srs_l322_error_description_24
             "srs_l322_error_description_ff" -> Res.string.srs_l322_error_description_FF
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

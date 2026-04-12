@@ -35,7 +35,7 @@ object ResourceMapperLws {
             "lws_live_data_wheel_speed_right_rear" -> Res.string.lws_live_data_wheel_speed_right_rear
             "lws_live_data_yaw_rate" -> Res.string.lws_live_data_yaw_rate
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

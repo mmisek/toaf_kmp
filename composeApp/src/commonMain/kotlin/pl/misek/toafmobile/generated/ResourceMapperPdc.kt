@@ -137,7 +137,7 @@ object ResourceMapperPdc {
             "pdc_live_data_reverse_gear" -> Res.string.pdc_live_data_reverse_gear
             "pdc_live_data_speed" -> Res.string.pdc_live_data_speed
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

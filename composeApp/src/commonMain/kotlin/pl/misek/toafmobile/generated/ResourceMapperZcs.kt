@@ -133,7 +133,7 @@ object ResourceMapperZcs {
             "zcs_yes" -> Res.string.zcs_yes
             "zcs_zcs_asia_pacific" -> Res.string.zcs_zcs_asia_pacific
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

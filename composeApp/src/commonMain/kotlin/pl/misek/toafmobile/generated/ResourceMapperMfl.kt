@@ -32,7 +32,7 @@ object ResourceMapperMfl {
             "mfl_live_data_radio_control_present" -> Res.string.mfl_live_data_radio_control_present
             "mfl_live_data_telephone_control_present" -> Res.string.mfl_live_data_telephone_control_present
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

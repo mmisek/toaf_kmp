@@ -96,7 +96,7 @@ object ResourceMapperEws {
             "ews_live_data_value_false" -> Res.string.ews_live_data_value_false
             "ews_live_data_value_true" -> Res.string.ews_live_data_value_true
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

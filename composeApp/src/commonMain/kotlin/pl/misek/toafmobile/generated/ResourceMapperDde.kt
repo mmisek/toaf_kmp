@@ -363,7 +363,7 @@ object ResourceMapperDde {
             "dde_live_data_zump_rail" -> Res.string.dde_live_data_zump_rail
             "dde_live_data_zumpqsoll" -> Res.string.dde_live_data_zumpqsoll
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

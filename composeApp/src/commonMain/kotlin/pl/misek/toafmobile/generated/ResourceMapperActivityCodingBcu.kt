@@ -33,7 +33,7 @@ object ResourceMapperActivityCodingBcu {
             "activity_coding_bcu_keys" -> Res.string.activity_coding_bcu_keys
             "activity_coding_bcu_tittle" -> Res.string.activity_coding_bcu_tittle
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

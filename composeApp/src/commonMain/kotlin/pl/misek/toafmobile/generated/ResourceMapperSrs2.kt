@@ -79,7 +79,7 @@ object ResourceMapperSrs2 {
             "srs2_error_80a" -> Res.string.srs2_error_80A
             "srs2_error_863" -> Res.string.srs2_error_863
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

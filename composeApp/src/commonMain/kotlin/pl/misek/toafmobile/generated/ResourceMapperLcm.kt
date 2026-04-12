@@ -229,7 +229,7 @@ object ResourceMapperLcm {
             "lcm_live_data_wt_stop_right" -> Res.string.lcm_live_data_wt_stop_right
             "lcm_live_data_wt_total_time" -> Res.string.lcm_live_data_wt_total_time
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

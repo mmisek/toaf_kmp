@@ -6,7 +6,7 @@ object ResourceMapper {
     fun stringResource(resourceName: String): StringResource? {
         val prefix = resourceName.split('_')
         if (prefix.isEmpty()){
-            Logger.e {"NO RESOURCE for : $resourceName"}
+            Logger.i {"NO RESOURCE for : $resourceName"}
             return null
          }
         return when (prefix[0].lowercase()) {
@@ -20,6 +20,7 @@ object ResourceMapper {
            "bcul322" -> ResourceMapperBcuL322.stringResource(resourceName)
            "bmbt" -> ResourceMapperBmbt.stringResource(resourceName)
            "cc" -> ResourceMapperCc.stringResource(resourceName)
+           "ccu" -> ResourceMapperCcu.stringResource(resourceName)
            "coding" -> ResourceMapperCoding.stringResource(resourceName)
            "dde" -> ResourceMapperDde.stringResource(resourceName)
            "dsc" -> ResourceMapperDsc.stringResource(resourceName)

@@ -57,14 +57,14 @@ def generate_kotlin_mapper():
                 f.write(f'            "{res.lower()}" -> Res.string.{res}\n')
                 
             f.write("        else -> {\n")
-            f.write("""          Logger.e {"NO RESOURCE for : $resourceName" }\n""")
+            f.write("""          Logger.i {"NO RESOURCE for : $resourceName" }\n""")
             f.write("            null\n")
             f.write("        }\n")
             f.write("     }\n")
             f.write("   }\n")
             f.write("}\n")
 
-        print(f"Sukces! Wygenerowano mapowanie dla {len(found_resources)} błędów.")
+        print(f"Sukces! Wygenerowano mapowanie dla {filename}, {len(found_resources)} wpisów.")
     for module in modules:
         outputFileName = OUTPUT_FILE +".kt"
         os.makedirs(os.path.dirname(outputFileName), exist_ok=True)
@@ -77,7 +77,7 @@ def generate_kotlin_mapper():
             f.write("    fun stringResource(resourceName: String): StringResource? {\n")
             f.write("        val prefix = resourceName.split('_')\n")
             f.write("        if (prefix.isEmpty()){\n") 
-            f.write("""            Logger.e {"NO RESOURCE for : $resourceName"}\n""")
+            f.write("""            Logger.i {"NO RESOURCE for : $resourceName"}\n""")
             f.write("""            return null\n""")
             f.write("""         }\n""")
             f.write("        return when (prefix[0].lowercase()) {\n")
@@ -86,7 +86,7 @@ def generate_kotlin_mapper():
                 f.write(f'           "{m}" -> ResourceMapper{module}.stringResource(resourceName)\n')
                 
             f.write("                else -> {\n")
-            f.write("""                  Logger.e {"NO RESOURCE for : $resourceName" }\n""")
+            f.write("""                  Logger.i {"NO RESOURCE for : $resourceName" }\n""")
             f.write("                    null\n")
             f.write("                }\n")
             f.write("            }\n")

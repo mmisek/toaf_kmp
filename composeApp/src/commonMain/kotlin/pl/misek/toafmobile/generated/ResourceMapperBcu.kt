@@ -256,7 +256,7 @@ object ResourceMapperBcu {
             "bcu_live_data_wiper_switch_position_1" -> Res.string.bcu_live_data_wiper_switch_position_1
             "bcu_live_data_wiper_switch_position_2" -> Res.string.bcu_live_data_wiper_switch_position_2
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

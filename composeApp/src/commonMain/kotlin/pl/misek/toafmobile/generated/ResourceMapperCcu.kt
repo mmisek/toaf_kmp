@@ -1,0 +1,149 @@
+package pl.misek.toafmobile.generated
+
+import co.touchlab.kermit.Logger
+import org.jetbrains.compose.resources.StringResource
+import toafmobile.composeapp.generated.resources.*
+
+object ResourceMapperCcu {
+    fun stringResource(resourceName: String): StringResource? {
+        return when (resourceName) {
+            "ccu_coding_alarm_enable" -> Res.string.ccu_coding_alarm_enable
+            "ccu_coding_bbus_sounder" -> Res.string.ccu_coding_bbus_sounder
+            "ccu_coding_continous_sounder" -> Res.string.ccu_coding_continous_sounder
+            "ccu_coding_cos_value" -> Res.string.ccu_coding_cos_value
+            "ccu_coding_courtesy_unlock" -> Res.string.ccu_coding_courtesy_unlock
+            "ccu_coding_daytime_run" -> Res.string.ccu_coding_daytime_run
+            "ccu_coding_double_locking" -> Res.string.ccu_coding_double_locking
+            "ccu_coding_double_press" -> Res.string.ccu_coding_double_press
+            "ccu_coding_enable_spe" -> Res.string.ccu_coding_enable_spe
+            "ccu_coding_hazard_alarm" -> Res.string.ccu_coding_hazard_alarm
+            "ccu_coding_hazard_confirm" -> Res.string.ccu_coding_hazard_confirm
+            "ccu_coding_horn_tone" -> Res.string.ccu_coding_horn_tone
+            "ccu_coding_key_in_warn" -> Res.string.ccu_coding_key_in_warn
+            "ccu_coding_mislock_sound" -> Res.string.ccu_coding_mislock_sound
+            "ccu_coding_seatbelt_lamp" -> Res.string.ccu_coding_seatbelt_lamp
+            "ccu_coding_seatbelt_remind" -> Res.string.ccu_coding_seatbelt_remind
+            "ccu_coding_seatbelt_sound" -> Res.string.ccu_coding_seatbelt_sound
+            "ccu_coding_seatbelt_warn" -> Res.string.ccu_coding_seatbelt_warn
+            "ccu_coding_selftest" -> Res.string.ccu_coding_selftest
+            "ccu_coding_tail_close_one_shot" -> Res.string.ccu_coding_tail_close_one_shot
+            "ccu_coding_transit_mode" -> Res.string.ccu_coding_transit_mode
+            "ccu_coding_vol_power" -> Res.string.ccu_coding_vol_power
+            "ccu_coding_windowlift_enable" -> Res.string.ccu_coding_windowlift_enable
+            "ccu_control_alarm_led" -> Res.string.ccu_control_alarm_led
+            "ccu_control_ccu_internal_buzzer" -> Res.string.ccu_control_ccu_internal_buzzer
+            "ccu_control_double_lock_motors_start" -> Res.string.ccu_control_double_lock_motors_start
+            "ccu_control_double_lock_motors_stop" -> Res.string.ccu_control_double_lock_motors_stop
+            "ccu_control_driver_door_cdl_motor_start" -> Res.string.ccu_control_driver_door_cdl_motor_start
+            "ccu_control_driver_door_cdl_motor_stop" -> Res.string.ccu_control_driver_door_cdl_motor_stop
+            "ccu_control_front_wiper_slow" -> Res.string.ccu_control_front_wiper_slow
+            "ccu_control_hazard_relay" -> Res.string.ccu_control_hazard_relay
+            "ccu_control_heated_rear_window_relay" -> Res.string.ccu_control_heated_rear_window_relay
+            "ccu_control_horn_start" -> Res.string.ccu_control_horn_start
+            "ccu_control_horn_stop" -> Res.string.ccu_control_horn_stop
+            "ccu_control_immobiliser_output" -> Res.string.ccu_control_immobiliser_output
+            "ccu_control_interior_lights" -> Res.string.ccu_control_interior_lights
+            "ccu_control_open_door_warning" -> Res.string.ccu_control_open_door_warning
+            "ccu_control_rear_fog_light" -> Res.string.ccu_control_rear_fog_light
+            "ccu_control_receive_power_start" -> Res.string.ccu_control_receive_power_start
+            "ccu_control_receive_power_stop" -> Res.string.ccu_control_receive_power_stop
+            "ccu_control_tail_door_actuator" -> Res.string.ccu_control_tail_door_actuator
+            "ccu_control_tail_wiper_forward_relay" -> Res.string.ccu_control_tail_wiper_forward_relay
+            "ccu_control_tail_wiper_reverse_relay" -> Res.string.ccu_control_tail_wiper_reverse_relay
+            "ccu_control_unlock_motors_start" -> Res.string.ccu_control_unlock_motors_start
+            "ccu_control_unlock_motors_stop" -> Res.string.ccu_control_unlock_motors_stop
+            "ccu_control_volumetric_power_start" -> Res.string.ccu_control_volumetric_power_start
+            "ccu_control_volumetric_power_stop" -> Res.string.ccu_control_volumetric_power_stop
+            "ccu_control_window_down_relay" -> Res.string.ccu_control_window_down_relay
+            "ccu_control_window_sensor_power" -> Res.string.ccu_control_window_sensor_power
+            "ccu_control_window_up_relay" -> Res.string.ccu_control_window_up_relay
+            "ccu_control_windowlift_activation" -> Res.string.ccu_control_windowlift_activation
+            "ccu_live_data_alarm_activation" -> Res.string.ccu_live_data_alarm_activation
+            "ccu_live_data_alarm_status" -> Res.string.ccu_live_data_alarm_status
+            "ccu_live_data_alarm_switch_bonnet" -> Res.string.ccu_live_data_alarm_switch_bonnet
+            "ccu_live_data_bonnet" -> Res.string.ccu_live_data_bonnet
+            "ccu_live_data_bootlid_tailgate_switch" -> Res.string.ccu_live_data_bootlid_tailgate_switch
+            "ccu_live_data_cdl_unlock" -> Res.string.ccu_live_data_cdl_unlock
+            "ccu_live_data_driver_door" -> Res.string.ccu_live_data_driver_door
+            "ccu_live_data_electric_window_control" -> Res.string.ccu_live_data_electric_window_control
+            "ccu_live_data_front_wash" -> Res.string.ccu_live_data_front_wash
+            "ccu_live_data_front_wash_request" -> Res.string.ccu_live_data_front_wash_request
+            "ccu_live_data_front_wiper_interval" -> Res.string.ccu_live_data_front_wiper_interval
+            "ccu_live_data_front_wiper_park_state" -> Res.string.ccu_live_data_front_wiper_park_state
+            "ccu_live_data_front_wiper_speed" -> Res.string.ccu_live_data_front_wiper_speed
+            "ccu_live_data_front_wiper_state" -> Res.string.ccu_live_data_front_wiper_state
+            "ccu_live_data_headlamp_switch" -> Res.string.ccu_live_data_headlamp_switch
+            "ccu_live_data_ignition" -> Res.string.ccu_live_data_ignition
+            "ccu_live_data_immobiliser_signal" -> Res.string.ccu_live_data_immobiliser_signal
+            "ccu_live_data_interia_switch" -> Res.string.ccu_live_data_interia_switch
+            "ccu_live_data_interior_lamps" -> Res.string.ccu_live_data_interior_lamps
+            "ccu_live_data_key_lock" -> Res.string.ccu_live_data_key_lock
+            "ccu_live_data_key_unlock" -> Res.string.ccu_live_data_key_unlock
+            "ccu_live_data_locking_state" -> Res.string.ccu_live_data_locking_state
+            "ccu_live_data_oil_pressure_sensor" -> Res.string.ccu_live_data_oil_pressure_sensor
+            "ccu_live_data_passenger_door" -> Res.string.ccu_live_data_passenger_door
+            "ccu_live_data_rear_fog_light" -> Res.string.ccu_live_data_rear_fog_light
+            "ccu_live_data_rear_window_wiper" -> Res.string.ccu_live_data_rear_window_wiper
+            "ccu_live_data_rear_window_wiper_status" -> Res.string.ccu_live_data_rear_window_wiper_status
+            "ccu_live_data_road_speed" -> Res.string.ccu_live_data_road_speed
+            "ccu_live_data_roof_state" -> Res.string.ccu_live_data_roof_state
+            "ccu_live_data_side_lamp_rh" -> Res.string.ccu_live_data_side_lamp_rh
+            "ccu_live_data_status_reverse_gear" -> Res.string.ccu_live_data_status_reverse_gear
+            "ccu_live_data_tail_wash" -> Res.string.ccu_live_data_tail_wash
+            "ccu_live_data_value_auto_close" -> Res.string.ccu_live_data_value_auto_close
+            "ccu_live_data_value_bonnet_part_arm" -> Res.string.ccu_live_data_value_bonnet_part_arm
+            "ccu_live_data_value_cal_down" -> Res.string.ccu_live_data_value_cal_down
+            "ccu_live_data_value_cal_stall" -> Res.string.ccu_live_data_value_cal_stall
+            "ccu_live_data_value_cal_up" -> Res.string.ccu_live_data_value_cal_up
+            "ccu_live_data_value_closed" -> Res.string.ccu_live_data_value_closed
+            "ccu_live_data_value_continous" -> Res.string.ccu_live_data_value_continous
+            "ccu_live_data_value_disarmed" -> Res.string.ccu_live_data_value_disarmed
+            "ccu_live_data_value_door_timer" -> Res.string.ccu_live_data_value_door_timer
+            "ccu_live_data_value_double_locked" -> Res.string.ccu_live_data_value_double_locked
+            "ccu_live_data_value_down" -> Res.string.ccu_live_data_value_down
+            "ccu_live_data_value_down_stall" -> Res.string.ccu_live_data_value_down_stall
+            "ccu_live_data_value_driver_door_part_arm" -> Res.string.ccu_live_data_value_driver_door_part_arm
+            "ccu_live_data_value_failed" -> Res.string.ccu_live_data_value_failed
+            "ccu_live_data_value_forward" -> Res.string.ccu_live_data_value_forward
+            "ccu_live_data_value_fully_armed" -> Res.string.ccu_live_data_value_fully_armed
+            "ccu_live_data_value_goto_comfort_open_state" -> Res.string.ccu_live_data_value_goto_comfort_open_state
+            "ccu_live_data_value_idle" -> Res.string.ccu_live_data_value_idle
+            "ccu_live_data_value_interia_switch" -> Res.string.ccu_live_data_value_interia_switch
+            "ccu_live_data_value_intermittent" -> Res.string.ccu_live_data_value_intermittent
+            "ccu_live_data_value_lock" -> Res.string.ccu_live_data_value_lock
+            "ccu_live_data_value_locked" -> Res.string.ccu_live_data_value_locked
+            "ccu_live_data_value_no_trigger" -> Res.string.ccu_live_data_value_no_trigger
+            "ccu_live_data_value_off" -> Res.string.ccu_live_data_value_off
+            "ccu_live_data_value_on" -> Res.string.ccu_live_data_value_on
+            "ccu_live_data_value_open" -> Res.string.ccu_live_data_value_open
+            "ccu_live_data_value_parked" -> Res.string.ccu_live_data_value_parked
+            "ccu_live_data_value_passenger_door_part_arm" -> Res.string.ccu_live_data_value_passenger_door_part_arm
+            "ccu_live_data_value_programmed" -> Res.string.ccu_live_data_value_programmed
+            "ccu_live_data_value_released" -> Res.string.ccu_live_data_value_released
+            "ccu_live_data_value_remove_deadlock" -> Res.string.ccu_live_data_value_remove_deadlock
+            "ccu_live_data_value_reversed" -> Res.string.ccu_live_data_value_reversed
+            "ccu_live_data_value_rising" -> Res.string.ccu_live_data_value_rising
+            "ccu_live_data_value_safety_locked" -> Res.string.ccu_live_data_value_safety_locked
+            "ccu_live_data_value_set" -> Res.string.ccu_live_data_value_set
+            "ccu_live_data_value_setting" -> Res.string.ccu_live_data_value_setting
+            "ccu_live_data_value_short_timer" -> Res.string.ccu_live_data_value_short_timer
+            "ccu_live_data_value_speaker_enabled" -> Res.string.ccu_live_data_value_speaker_enabled
+            "ccu_live_data_value_stationary" -> Res.string.ccu_live_data_value_stationary
+            "ccu_live_data_value_time_out" -> Res.string.ccu_live_data_value_time_out
+            "ccu_live_data_value_triggered" -> Res.string.ccu_live_data_value_triggered
+            "ccu_live_data_value_tripped" -> Res.string.ccu_live_data_value_tripped
+            "ccu_live_data_value_unlocked" -> Res.string.ccu_live_data_value_unlocked
+            "ccu_live_data_value_up" -> Res.string.ccu_live_data_value_up
+            "ccu_live_data_value_up_stall" -> Res.string.ccu_live_data_value_up_stall
+            "ccu_live_data_value_wipe_and_wash" -> Res.string.ccu_live_data_value_wipe_and_wash
+            "ccu_live_data_value_wiping" -> Res.string.ccu_live_data_value_wiping
+            "ccu_live_data_volumetric_state" -> Res.string.ccu_live_data_volumetric_state
+            "ccu_live_data_window_monitor" -> Res.string.ccu_live_data_window_monitor
+            "ccu_live_data_window_position_edges" -> Res.string.ccu_live_data_window_position_edges
+        else -> {
+          Logger.i {"NO RESOURCE for : $resourceName" }
+            null
+        }
+     }
+   }
+}

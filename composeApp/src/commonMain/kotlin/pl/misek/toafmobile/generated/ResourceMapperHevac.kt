@@ -46,7 +46,7 @@ object ResourceMapperHevac {
             "hevac_live_data_pwm_fan_control_voltage" -> Res.string.hevac_live_data_pwm_fan_control_voltage
             "hevac_live_data_solar_sensor" -> Res.string.hevac_live_data_solar_sensor
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

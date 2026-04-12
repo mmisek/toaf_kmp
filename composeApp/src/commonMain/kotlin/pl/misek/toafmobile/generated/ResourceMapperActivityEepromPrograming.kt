@@ -42,7 +42,7 @@ object ResourceMapperActivityEepromPrograming {
             "activity_eeprom_programming_wrong_file_size" -> Res.string.activity_eeprom_programming_wrong_file_size
             "activity_eeprom_read_identification" -> Res.string.activity_eeprom_read_identification
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

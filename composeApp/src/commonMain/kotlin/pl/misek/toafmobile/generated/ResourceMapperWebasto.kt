@@ -124,7 +124,7 @@ object ResourceMapperWebasto {
             "webasto_live_data_work_time_hours" -> Res.string.webasto_live_data_work_time_hours
             "webasto_live_data_work_time_minutes" -> Res.string.webasto_live_data_work_time_minutes
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

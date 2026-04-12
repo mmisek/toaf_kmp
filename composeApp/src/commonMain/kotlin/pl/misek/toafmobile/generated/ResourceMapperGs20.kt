@@ -152,7 +152,7 @@ object ResourceMapperGs20 {
             "gs20_live_data_wheel_speed_rear_left" -> Res.string.gs20_live_data_wheel_speed_rear_left
             "gs20_live_data_wheel_speed_rear_right" -> Res.string.gs20_live_data_wheel_speed_rear_right
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

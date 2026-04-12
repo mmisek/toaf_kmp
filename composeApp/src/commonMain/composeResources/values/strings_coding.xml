@@ -304,4 +304,6 @@
     <string name="coding_e39">E39</string>
     <string name="coding_e39_2">E39 2</string>
     <string name="coding_e38">E38</string>
+	<string name="coding_nas">NAS</string>
+    <string name="coding_standard">standard</string>
 </resources>

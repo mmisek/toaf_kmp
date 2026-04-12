@@ -124,7 +124,7 @@ object ResourceMapperScu {
             "scu_live_data_value_open" -> Res.string.scu_live_data_value_open
             "scu_live_data_value_tripped" -> Res.string.scu_live_data_value_tripped
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

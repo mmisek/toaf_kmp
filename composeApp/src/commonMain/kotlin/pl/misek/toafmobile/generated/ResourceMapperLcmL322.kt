@@ -354,7 +354,7 @@ object ResourceMapperLcmL322 {
             "lcm_l322_live_data_turn_right_front" -> Res.string.lcm_l322_live_data_turn_right_front
             "lcm_l322_live_data_turn_right_rear" -> Res.string.lcm_l322_live_data_turn_right_rear
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

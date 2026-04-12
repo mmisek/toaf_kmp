@@ -317,7 +317,7 @@ object ResourceMapperBcuL322 {
             "bcu_l322_error_fe" -> Res.string.bcu_l322_error_FE
             "bcu_l322_error_ff" -> Res.string.bcu_l322_error_FF
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

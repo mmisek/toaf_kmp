@@ -56,7 +56,7 @@ object ResourceMapperCc {
             "cc_live_data_speed_greater_than_minimum" -> Res.string.cc_live_data_speed_greater_than_minimum
             "cc_live_data_test_completed" -> Res.string.cc_live_data_test_completed
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

@@ -284,7 +284,7 @@ object ResourceMapperMems {
             "mems_live_data_vvc_actual" -> Res.string.mems_live_data_vvc_actual
             "mems_live_data_vvc_target" -> Res.string.mems_live_data_vvc_target
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

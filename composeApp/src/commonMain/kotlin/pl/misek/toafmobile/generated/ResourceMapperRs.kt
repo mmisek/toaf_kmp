@@ -19,7 +19,7 @@ object ResourceMapperRs {
             "rs_live_data_time_point_1" -> Res.string.rs_live_data_time_point_1
             "rs_live_data_time_point_2" -> Res.string.rs_live_data_time_point_2
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

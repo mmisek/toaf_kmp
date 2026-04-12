@@ -115,7 +115,7 @@ object ResourceMapperNavmk3 {
             "navmk3_live_data_wheel_speed_right" -> Res.string.navmk3_live_data_wheel_speed_right
             "navmk3_live_data_wheels_sensors_test" -> Res.string.navmk3_live_data_wheels_sensors_test
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

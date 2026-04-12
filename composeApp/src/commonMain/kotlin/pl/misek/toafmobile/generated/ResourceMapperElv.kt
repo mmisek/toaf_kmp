@@ -91,7 +91,7 @@ object ResourceMapperElv {
             "elv_live_data_value_disturbed" -> Res.string.elv_live_data_value_disturbed
             "elv_live_data_value_non_disturbed" -> Res.string.elv_live_data_value_non_disturbed
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

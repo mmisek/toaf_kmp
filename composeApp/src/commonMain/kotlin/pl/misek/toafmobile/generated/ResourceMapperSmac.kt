@@ -123,7 +123,7 @@ object ResourceMapperSmac {
             "smac_error_sporadic" -> Res.string.smac_error_sporadic
             "smac_error_static" -> Res.string.smac_error_static
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

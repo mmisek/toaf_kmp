@@ -1267,7 +1267,7 @@ object ResourceMapperEdc15 {
             "edc15_error_1917" -> Res.string.edc15_error_1917
             "edc15_error_1918" -> Res.string.edc15_error_1918
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

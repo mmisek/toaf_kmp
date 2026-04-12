@@ -211,6 +211,7 @@ object ResourceMapperCoding {
             "coding_minus_657162" -> Res.string.coding_minus_657162
             "coding_mpg_uk" -> Res.string.coding_mpg_uk
             "coding_mpg_us" -> Res.string.coding_mpg_us
+            "coding_nas" -> Res.string.coding_nas
             "coding_nicht_aktiv" -> Res.string.coding_nicht_aktiv
             "coding_nicht_cod" -> Res.string.coding_nicht_cod
             "coding_no_sia" -> Res.string.coding_no_sia
@@ -272,6 +273,7 @@ object ResourceMapperCoding {
             "coding_single" -> Res.string.coding_single
             "coding_spanish" -> Res.string.coding_spanish
             "coding_speed" -> Res.string.coding_speed
+            "coding_standard" -> Res.string.coding_standard
             "coding_static" -> Res.string.coding_static
             "coding_strwse" -> Res.string.coding_strwse
             "coding_synchronous" -> Res.string.coding_synchronous

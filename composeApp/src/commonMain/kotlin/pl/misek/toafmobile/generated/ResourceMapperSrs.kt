@@ -127,7 +127,7 @@ object ResourceMapperSrs {
             "srs_error_detail_40" -> Res.string.srs_error_detail_40
             "srs_error_detail_80" -> Res.string.srs_error_detail_80
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }

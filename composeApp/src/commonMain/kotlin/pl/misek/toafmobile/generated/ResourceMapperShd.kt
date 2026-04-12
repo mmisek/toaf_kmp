@@ -52,7 +52,7 @@ object ResourceMapperShd {
             "shd_live_data_under_voltage_detection" -> Res.string.shd_live_data_under_voltage_detection
             "shd_live_data_watchdog_trigger_signal" -> Res.string.shd_live_data_watchdog_trigger_signal
         else -> {
-          Logger.e {"NO RESOURCE for : $resourceName" }
+          Logger.i {"NO RESOURCE for : $resourceName" }
             null
         }
      }
