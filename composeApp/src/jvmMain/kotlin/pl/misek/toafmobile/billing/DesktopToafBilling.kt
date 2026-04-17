@@ -18,7 +18,7 @@ class DesktopToafBilling : IToafBilling, KoinComponent {
 
     override suspend fun getStripeSession(elementName: String): StripeSession? {
         var stripeSession : StripeSession? = null
-        if (lastProductInfo != null && lastProductInfo?.productName != elementName)
+        if (lastProductInfo != null && lastProductInfo?.productName == elementName.uppercase())
         {
             stripeSession = toafApi.createStripeCheckout(
                 priceId = lastProductInfo?.priceId ?: "",

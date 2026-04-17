@@ -14,6 +14,6 @@ data class StripeProductInfo (
     val currency : String = "",
     val priceId : String = "",
     val productId : String = "",
-    val productName :String = "",
+    val productName : String = "",
     @SerialName("type") val typeOfProduct : String = ""
 )

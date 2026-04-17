@@ -27,7 +27,6 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.jetbrains.compose.resources.stringArrayResource
 import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
@@ -44,7 +43,7 @@ object DialogSelectCarType {
             0 to Res.string.car_type_rover_75,
             1 to Res.string.car_type_rover_25,
             2 to Res.string.car_type_range_rover_l322,
-            3 to Res.string.car_type_land_rover_freelander_1
+            3 to Res.string.car_type_land_rover_freelander_l314
         )
         var selectedItemIndex by remember { mutableIntStateOf(-1) }
         selectedItemIndex = currentIndex

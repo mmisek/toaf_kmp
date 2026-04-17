@@ -1,6 +1,7 @@
 package pl.misek.toafmobile.modules.rjo
 
 import co.touchlab.kermit.Logger
+import kotlinx.coroutines.delay
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.livedata.LiveDataElement
@@ -14,6 +15,7 @@ import pl.misek.toafmobile.modules.interfaces.IModuleCoding
 import pl.misek.toafmobile.modules.interfaces.IModuleControl
 import pl.misek.toafmobile.modules.interfaces.IModuleEKA
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
+import pl.misek.toafmobile.modules.interfaces.IModuleScuKeys
 import pl.misek.toafmobile.modules.interfaces.IModuleVIN
 import pl.misek.toafmobile.protocols.IProtocol
 import pl.misek.toafmobile.protocols.ProtocolKWPStar
@@ -25,7 +27,7 @@ import toafmobile.composeapp.generated.resources.module_description_scu
 import java.util.Locale
 
 class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IModuleVIN,
-    IModuleCoding, IModuleLiveData, IModuleEKA {
+    IModuleCoding, IModuleLiveData, IModuleEKA, IModuleScuKeys {
     private val tag = "ModuleSCU"
 
     private val MODULE_ADDRESS = ModuleAddress.MODULE_SCU.address
@@ -59,8 +61,6 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
     override fun getModuleDescription() = Res.string.module_description_scu
 
     override suspend fun getIdentification(): ModuleInfo? {
-        //AddKeyFob("NDB053561040434532289P");
-        //WriteVIN("SARRFLNMR5D801842");
         var info: ModuleInfo? = null
         try {
             if (moduleInit()) {
@@ -184,7 +184,7 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
     }
 
     override suspend fun clearAllErrors(): Boolean {
-        addKeyFob("N64AEAF42139873A2B3FEM")
+        //addKeyFob("N64AEAF42139873A2B3FEM")
         /*
         for (int i = 0 ;i < 5 ;i++)
         {
@@ -326,38 +326,27 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
         return result
     }
 
-    private suspend fun addKeyFob(keyFobCode: String): Boolean {
+    override suspend fun addKey(barCode: String): Boolean {
         var result = false
-        val data = ByteArray(10)
-        var i = 0
-        while (i < keyFobCode.length - 2) {
-            val index = i / 2
-            data[index] = (16 * keyFobCode.substring(i + 1, i + 2).toInt(16)).toByte()
-            data[index] =
-                (data[index] + keyFobCode.substring(i + 2, i + 3).toInt(16).toByte()).toByte()
-            i += 2
-        }
-        if (moduleInit() && startDiagnosticSession(0x86.toByte()) && securityAccess(0x05.toByte())
-                && kwp.write(MODULE_ADDRESS, 0x1A.toByte(), byteArrayOf(0x80.toByte()), 50).isValid
-                && kwp.write(MODULE_ADDRESS, 0x1A.toByte(), byteArrayOf(0x8A.toByte()), 50).isValid
-                && kwp.write(MODULE_ADDRESS, 0x1A.toByte(), byteArrayOf(0x90.toByte()), 50).isValid
-                && kwp.write(MODULE_ADDRESS, 0x1A.toByte(), byteArrayOf(0x92.toByte()), 50).isValid
-                && kwp.write(MODULE_ADDRESS, 0x1A.toByte(), byteArrayOf(0x95.toByte()), 50).isValid
-            ) {
-                if (kwp.write(MODULE_ADDRESS, 0x3B.toByte(), byteArrayOf(0x7F), 50).isValid) {
-                    try {
-                        Thread.sleep(1000)
-                        result = kwp.write(
-                            MODULE_ADDRESS,
-                            0x3B.toByte(),
-                            byteArrayOf((0x70).toByte()) + data,
-                            50
-                        ).isValid
-                    } catch (_: Exception) {
-                    }
+        val keyFob = barCode.drop(1).dropLast(1)
+        val data = keyFob.chunked(2).map {it.toInt(16).toByte()}.toByteArray()
+        if (moduleInit() && startDiagnosticSession(0x86.toByte()) && securityAccess(0x05.toByte()))
+        {
+            //if (kwp.write(MODULE_ADDRESS, 0x3B.toByte(), byteArrayOf(0x7F), 50).isValid)
+            //{
+                try {
+                    delay(1000)
+                    result = kwp.write(
+                        MODULE_ADDRESS,
+                        0x3B.toByte(),
+                        byteArrayOf((0x70).toByte()) + data,
+                        50
+                    ).isValid
+                } catch (_: Exception) {
                 }
-                kwp.write(MODULE_ADDRESS, 0x20.toByte(), byteArrayOf(), 50)
-            }
+            //}
+            kwp.write(MODULE_ADDRESS, 0x20.toByte(), byteArrayOf(), 50)
+        }
         return result
     }
 

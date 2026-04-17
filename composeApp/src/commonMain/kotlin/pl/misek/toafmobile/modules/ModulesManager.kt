@@ -43,7 +43,7 @@ import pl.misek.toafmobile.modules.rjo.ModuleSCU
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import pl.misek.toafmobile.koin.KoinNames
-import pl.misek.toafmobile.modules.l20.ModuleCCU
+import pl.misek.toafmobile.modules.l314.ModuleCCU
 import pl.misek.toafmobile.modules.l322.ModuleTXU
 
 class ModulesManager() : KoinComponent

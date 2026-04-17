@@ -41,6 +41,12 @@
     <string name="activity_advance_coding_eka_write_successful">EKA code writing successful</string>
     <string name="activity_advance_coding_eka_matches_error">Entered EKA Code is not correct!</string>
 
+    <string name="activity_advance_coding_scu_keys_programming">SCU keys programming</string>
+    <string name="activity_advance_coding_scu_keys_barcode_validation_failed">Entered Barcode is fail</string>
+    <string name="activity_advance_coding_scu_write_success">Write new key successful.</string>
+    <string name="activity_advance_coding_scu_write_failed">Write new key failed.</string>
+    <string name="activity_advance_coding_scu_new_key_barcode">New key barcode.</string>
+
     <string name="activity_advance_coding_lsm_read_error">Coding read error</string>
     <string name="activity_advance_coding_lsm_write_error">Coding save error</string>
     <string name="activity_advance_coding_lsm_auto_light">Automatic lights</string>

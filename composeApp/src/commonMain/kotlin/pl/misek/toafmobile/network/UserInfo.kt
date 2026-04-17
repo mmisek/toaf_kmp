@@ -9,7 +9,7 @@ data class UserInfo(
     @SerialName("bcu_keys") var bcuKeys: Int = 0,
     val email: String = "",
     val username :String = "",
-    @SerialName("eka_keys") var ekaKeys : Int = 0
+    @SerialName("eka_codes") var ekaKeys : Int = 0
     )
 {
     var isLogged : ServerConnectionState = ServerConnectionState.DISCONNECTED

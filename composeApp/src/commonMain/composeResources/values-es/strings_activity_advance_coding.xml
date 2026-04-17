@@ -41,6 +41,12 @@
     <string name="activity_advance_coding_eka_write_successful">Escritura del código EKA exitosa</string>
     <string name="activity_advance_coding_eka_matches_error">¡El código EKA ingresado no es correcto!</string>
 
+    <string name="activity_advance_coding_scu_keys_programming">Programación de llaves SCU</string>
+    <string name="activity_advance_coding_scu_keys_barcode_validation_failed">El código de barras introducido no jest válido</string>
+    <string name="activity_advance_coding_scu_write_success">Escritura de nueva llave correcta.</string>
+    <string name="activity_advance_coding_scu_write_failed">Error al escribir la nueva llave.</string>
+    <string name="activity_advance_coding_scu_new_key_barcode">Código de barras de la nueva llave.</string>
+    
     <string name="activity_advance_coding_lsm_read_error">Error de lectura de codificación</string>
     <string name="activity_advance_coding_lsm_write_error">Error de guardado de codificación</string>
     <string name="activity_advance_coding_lsm_auto_light">Luces automáticas</string>

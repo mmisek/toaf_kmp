@@ -1,4 +1,4 @@
-package pl.misek.toafmobile.modules.l20
+package pl.misek.toafmobile.modules.l314
 
 import co.touchlab.kermit.Logger
 import kotlinx.coroutines.delay
@@ -7,23 +7,18 @@ import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.livedata.LiveDataElement
 import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.ModuleInfo
-import pl.misek.toafmobile.modules.ModulesFunction
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.ModuleAddress
 import pl.misek.toafmobile.modules.interfaces.IModule
 import pl.misek.toafmobile.modules.interfaces.IModuleCoding
 import pl.misek.toafmobile.modules.interfaces.IModuleControl
-import pl.misek.toafmobile.modules.interfaces.IModuleEKA
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.modules.interfaces.IModuleVIN
 import pl.misek.toafmobile.protocols.IProtocol
 import pl.misek.toafmobile.protocols.ProtocolKWPStar
 import toafmobile.composeapp.generated.resources.Res
-import toafmobile.composeapp.generated.resources.dialog_wifi_interface_hardware
-import toafmobile.composeapp.generated.resources.dialog_wifi_interface_software
 import toafmobile.composeapp.generated.resources.module_bcu
-import toafmobile.composeapp.generated.resources.module_description_scu
-import java.util.Locale
+import toafmobile.composeapp.generated.resources.module_description_ccu
 
 class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IModuleVIN,
     IModuleCoding, IModuleLiveData {
@@ -68,7 +63,7 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
 
     override fun getImageResource() = Res.drawable.module_bcu
 
-    override fun getModuleDescription() = Res.string.module_description_scu
+    override fun getModuleDescription() = Res.string.module_description_ccu
 
     override suspend fun getIdentification(): ModuleInfo? {
 
@@ -211,7 +206,7 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
     }
 
     override fun getSupportedCarTypes(): List<CarType> {
-        return listOf(CarType.L20)
+        return listOf(CarType.L314)
     }
 
     private fun securityAccessCalculator(inKey: Int): Int {

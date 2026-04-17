@@ -41,6 +41,12 @@
     <string name="activity_advance_coding_eka_write_successful">Kod EKA zapisany prawidłowo</string>
     <string name="activity_advance_coding_eka_matches_error">Wprowadzony kod EKA nie jest prawidłowy!</string>
 
+    <string name="activity_advance_coding_scu_keys_programming">Programowanie kluczy SCU</string>
+    <string name="activity_advance_coding_scu_keys_barcode_validation_failed">Wprowadzony kod kreskowy jest nieprawidłowy</string>
+    <string name="activity_advance_coding_scu_write_success">Zapis nowego klucza powiódł się.</string>
+    <string name="activity_advance_coding_scu_write_failed">Zapis nowego klucza nie powiódł się.</string>
+    <string name="activity_advance_coding_scu_new_key_barcode">Kod kreskowy nowego klucza.</string>
+
     <string name="activity_advance_coding_lsm_read_error">Błąd odczytu kodowania</string>
     <string name="activity_advance_coding_lsm_write_error">Błąd zapisu kodowania</string>
     <string name="activity_advance_coding_lsm_auto_light">Światła automatyczne</string>

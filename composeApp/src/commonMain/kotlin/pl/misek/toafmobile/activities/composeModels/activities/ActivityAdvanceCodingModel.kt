@@ -29,6 +29,7 @@ import pl.misek.toafmobile.modules.interfaces.IModuleBcuKeys
 import pl.misek.toafmobile.modules.interfaces.IModuleEKA
 import pl.misek.toafmobile.modules.interfaces.IModuleLSMAutoLight
 import pl.misek.toafmobile.modules.interfaces.IModuleOdometer
+import pl.misek.toafmobile.modules.interfaces.IModuleScuKeys
 import pl.misek.toafmobile.modules.interfaces.IModuleVIN
 import pl.misek.toafmobile.viewModels.UserInfoViewModel
 import toafmobile.composeapp.generated.resources.Res
@@ -133,6 +134,21 @@ fun ActivityModuleAdvanceCodingModel(moduleKoinName : KoinNames, onBackClick : (
                 if (currentModule is IModuleEKA)
                 {
                     AdvanceCodingEka(
+                        koinModuleName = moduleKoinName,
+                        onShowResult = { result, onSuccess, onFail ->
+                            showResult(
+                                scope = scope,
+                                snackBarHostState = snackBarHostState,
+                                result = result,
+                                onSuccess = onSuccess,
+                                onFail = onFail
+                            )
+                        }
+                    )
+                }
+                if (currentModule is IModuleScuKeys)
+                {
+                    AdvanceCoddingScuKeys(
                         koinModuleName = moduleKoinName,
                         onShowResult = { result, onSuccess, onFail ->
                             showResult(

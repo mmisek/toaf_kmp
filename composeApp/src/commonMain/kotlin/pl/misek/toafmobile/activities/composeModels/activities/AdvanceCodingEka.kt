@@ -24,6 +24,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import co.touchlab.kermit.Logger
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
@@ -32,6 +34,8 @@ import pl.misek.toafmobile.activities.composeModels.ActionTypeEnum
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.ToafEditText
 import pl.misek.toafmobile.activities.composeModels.ToafProgressDialog
+import pl.misek.toafmobile.activities.composeModels.ToafWaitingDialog
+import pl.misek.toafmobile.activities.composeModels.dialogs.DialogInformation
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogNotFullVersion
 import pl.misek.toafmobile.activities.definitions.ToafStyles
 import pl.misek.toafmobile.billing.IToafBilling
@@ -58,6 +62,8 @@ fun AdvanceCodingEka(
     var action by remember { mutableStateOf<suspend () -> Any?>({ null }) }
     var actionType by remember {mutableStateOf (ActionTypeEnum.ReadEkaCode)}
     var showProgressDialog by remember { mutableStateOf(false) }
+    var showWaitingDialog by remember { mutableStateOf(false) }
+    var showInformationDialog by remember { mutableStateOf(false) }
     var showFullVersionDialog by remember { mutableStateOf(false) }
     var ekaCodeValidationResult by remember {mutableStateOf(true)}
     var ekaCode by remember{ mutableStateOf<String?>("") }
@@ -65,8 +71,10 @@ fun AdvanceCodingEka(
     val ekaCodeValidationFailText = stringResource(Res.string.activity_advance_coding_eka_matches_error)
     val ekaCodeWriteSuccessText = stringResource(Res.string.activity_advance_coding_eka_write_successful)
     val ekaCodeWriteFailText = stringResource(Res.string.activity_advance_coding_eka_write_error)
+    val ekaCodeReadFailText = stringResource(Res.string.activity_advance_coding_eka_read_error)
     val serverConnectionFailedText = stringResource(Res.string.server_connection_failed)
-    val useMobileVersionToBuyTokens = stringResource(Res.string.useMobileVersionToBuyTokens)
+    val purchaseCheckSuccess = stringResource(Res.string.information_purchase_ok)
+    val purchaseCheckFailed = stringResource(Res.string.information_purchase_failed)
     val activity = getPlatformActivity()
     Surface(
         color = Color.Transparent,
@@ -92,6 +100,28 @@ fun AdvanceCodingEka(
                     {
                         when(actionType)
                         {
+                            ActionTypeEnum.BuyElement ->
+                                if (actionResult)
+                                {
+                                    actionType = ActionTypeEnum.CheckingPurchase
+                                    action = {
+                                        val timeout = 5*60
+                                        var repeatNumber = 0
+                                        var purchaseResult = false
+                                        do
+                                        {
+                                            Logger.i {"Checking purchase, $repeatNumber"}
+                                            purchaseResult = toafApi.checkPurchase(stripeSession?.sessionId!! )
+                                            if (purchaseResult)
+                                                break
+                                            repeatNumber++
+                                            delay(1000)
+                                        } while (repeatNumber < timeout)
+                                        purchaseResult
+                                    }
+                                    showWaitingDialog = true
+                                }
+
                             ActionTypeEnum.ReadEkaCode -> {
                                 scope.launch {
                                     val localUserInfo = toafApi.getUserInfo()
@@ -99,6 +129,8 @@ fun AdvanceCodingEka(
                                         localUserInfo.ekaKeys -= 1
                                         toafApi.updateUserInfo(userInfo = localUserInfo)
                                     }
+                                    if (!actionResult)
+                                        onShowResult(false,null,ekaCodeReadFailText)
                                 }
                             }
                             ActionTypeEnum.WriteEkaCode -> {
@@ -113,6 +145,54 @@ fun AdvanceCodingEka(
                     }
                 },
                 onDismissRequest = {showProgressDialog = false})
+        }
+        if (showWaitingDialog)
+        {
+            ToafWaitingDialog(
+                action = {action()},
+                onSuccess = { actionResult ->
+                    if (actionResult is Boolean) {
+                        when (actionType) {
+                            ActionTypeEnum.CheckingPurchase ->
+                                onShowResult(
+                                    actionResult,
+                                    purchaseCheckSuccess,
+                                    purchaseCheckFailed
+                                )
+
+                            else -> {}
+                        }
+                    }
+                },
+                onError = {},
+                onDismissRequest = {showWaitingDialog = false}
+            )
+        }
+        if (showInformationDialog)
+        {
+            DialogInformation(
+                information =  Res.string.information_no_bcu_keys,
+                onCancelClick = { showInformationDialog = false},
+                onOkClick = {
+                    actionType = ActionTypeEnum.BuyElement
+                    action = {
+                        if (getPlatformType() == PlatformType.Android) {
+                            toafBilling.buyElement(
+                                activity,
+                                ToafConstants.SKU_TOAF_EKA_CODE
+                            )
+                            true
+                        } else {
+                            toafBilling.getElementPrice(ToafConstants.SKU_TOAF_EKA_CODE)
+                            stripeSession = toafBilling.getStripeSession(ToafConstants.SKU_TOAF_EKA_CODE)
+                            stripeSession?.let { NetworkTools.openUrlInBrowser(it.url) }
+                            true
+                        }
+                    }
+                    showInformationDialog = false
+                    showProgressDialog = true
+                }
+            )
         }
         if (showFullVersionDialog)
         {
@@ -159,16 +239,7 @@ fun AdvanceCodingEka(
                             onShowResult(false,null, serverConnectionFailedText)
                         }
                         else if (localUserInfo.ekaKeys == 0) {
-                            if (getPlatformType() == PlatformType.Android) {
-                                toafBilling.buyElement(activity, ToafConstants.SKU_TOAF_EKA_CODE)
-                            } else {
-                                toafBilling.getElementPrice(ToafConstants.SKU_TOAF_EKA_CODE)
-                                stripeSession = toafBilling.getStripeSession(ToafConstants.SKU_TOAF_EKA_CODE)
-                                if (stripeSession != null)
-                                {
-                                    NetworkTools.openUrlInBrowser(stripeSession?.url ?: "")
-                                }
-                            }
+                            showInformationDialog = true
                         }
                         else {
                             ekaCode = (currentModule as IModuleEKA).readEKACode()

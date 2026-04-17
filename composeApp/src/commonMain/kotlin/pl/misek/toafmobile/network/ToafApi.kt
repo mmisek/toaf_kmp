@@ -31,8 +31,8 @@ import java.util.Locale
 
 class ToafApi(private val client: HttpClient) {
     private val tag = "ToafApi"
-    private val url = "https://toaf.roverki.eu:5999"
-    //private val url = "http://192.168.1.3:5999"
+    //private val url = "https://toaf.roverki.eu:5999"
+    private val url = "http://192.168.1.5:5999"
 
     suspend fun loginUser(): ServerConnectionState {
         return try {

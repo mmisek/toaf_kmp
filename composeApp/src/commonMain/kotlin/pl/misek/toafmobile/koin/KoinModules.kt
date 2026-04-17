@@ -23,7 +23,7 @@ import pl.misek.toafmobile.interfaces.ToafWifiEventManager
 import pl.misek.toafmobile.interfaces.ToafWifiManager
 import pl.misek.toafmobile.modules.ModulesManager
 import pl.misek.toafmobile.modules.interfaces.IModule
-import pl.misek.toafmobile.modules.l20.ModuleCCU
+import pl.misek.toafmobile.modules.l314.ModuleCCU
 import pl.misek.toafmobile.modules.l322.ModuleDSC
 import pl.misek.toafmobile.modules.l322.ModuleEHC
 import pl.misek.toafmobile.modules.l322.ModuleELV

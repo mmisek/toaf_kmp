@@ -41,6 +41,12 @@
     <string name="activity_advance_coding_eka_write_successful">Запись кода EKA успешна</string>
     <string name="activity_advance_coding_eka_matches_error">Введенный код EKA некорректен!</string>
 
+    <string name="activity_advance_coding_scu_keys_programming">Программирование ключей SCU</string>
+    <string name="activity_advance_coding_scu_keys_barcode_validation_failed">Введенный штрих-код недействителен</string>
+    <string name="activity_advance_coding_scu_write_success">Запись нового ключа прошла успешно.</string>
+    <string name="activity_advance_coding_scu_write_failed">Ошибка записи нового ключа.</string>
+    <string name="activity_advance_coding_scu_new_key_barcode">Штрих-код нового ключа.</string>
+    
     <string name="activity_advance_coding_lsm_read_error">Ошибка чтения кодировки</string>
     <string name="activity_advance_coding_lsm_write_error">Ошибка сохранения кодировки</string>
     <string name="activity_advance_coding_lsm_auto_light">Автоматический свет</string>
