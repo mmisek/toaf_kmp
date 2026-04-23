@@ -17,7 +17,7 @@ import pl.misek.toafmobile.serial.AndroidSerialDevice
 private const val tag = "UsbEventManager"
 class AndroidUsbEventManager(private val usbBroadcastHandler: IUsbBroadcastHandler, private val usbManager: UsbManager,  val database : Database, private val protocolFactory: ProtocolFactory) :
     DefaultLifecycleObserver, IUsbEventManager
-    {
+{
     private val _usbState = MutableSharedFlow<UsbEvent>(replay = 1, extraBufferCapacity =  10)
     override val usbState = _usbState.asSharedFlow()
 
@@ -72,6 +72,10 @@ class AndroidUsbEventManager(private val usbBroadcastHandler: IUsbBroadcastHandl
     override fun getAvailableDevices(): MutableList<String> = usbBroadcastHandler.getAvailableDevices()
 
     override fun getDeviceInfo(deviceName: String): UsbDeviceInfo {
+        TODO("Not yet implemented")
+    }
+
+    override fun connectWithDevice(deviceName: String) {
         TODO("Not yet implemented")
     }
 }

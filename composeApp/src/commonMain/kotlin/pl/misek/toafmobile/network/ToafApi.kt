@@ -26,14 +26,21 @@ import pl.misek.toafmobile.billing.StripeProductInfo
 import pl.misek.toafmobile.billing.StripeProductInfoResponse
 import pl.misek.toafmobile.billing.StripeSession
 import pl.misek.toafmobile.billing.StripeSessionResponse
+import pl.misek.toafmobile.database.Database
 import java.util.Currency
 import java.util.Locale
 
-class ToafApi(private val client: HttpClient) {
+class ToafApi(private val client: HttpClient, private val database: Database) {
     private val tag = "ToafApi"
     //private val url = "https://toaf.roverki.eu:5999"
     private val url = "http://192.168.1.5:5999"
 
+    private suspend fun isCredentialValid() : Boolean
+    {
+        val credentials = database.getLoginAndPassword()
+        return (credentials != null && credentials.second.isNotEmpty() && credentials.first.isNotEmpty())
+
+    }
     suspend fun loginUser(): ServerConnectionState {
         return try {
             val response = client.post("$url/user/login")
@@ -48,6 +55,8 @@ class ToafApi(private val client: HttpClient) {
     }
 
     suspend fun getCoding(data: JsonObject): Coding? {
+        if (!isCredentialValid())
+            return null
         return try {
             val result = client.post("$url/coding/get") {
                 contentType(ContentType.Application.Json)
@@ -67,6 +76,8 @@ class ToafApi(private val client: HttpClient) {
     }
 
     suspend fun getCodingList(data: JsonObject, isPublic: Boolean): List<BackupElement>? {
+        if (!isCredentialValid())
+            return null
         val urlBackup = if (isPublic) "$url/coding/list/public" else "$url/coding/list"
         return try {
             val response = client.post(urlBackup) {
@@ -87,6 +98,9 @@ class ToafApi(private val client: HttpClient) {
     }
 
     suspend fun addCoding(codingData: JsonObject): Boolean {
+        if (!isCredentialValid())
+            return false
+
         return try {
             val response = client.post("$url/coding/add/") {
                 contentType(ContentType.Application.Json)
@@ -106,6 +120,9 @@ class ToafApi(private val client: HttpClient) {
     }
 
     suspend fun deleteUser(): Boolean {
+        if (!isCredentialValid())
+            return false
+
         return try {
             val response = client.post("$url/user/delete/")
             return if (response.status == HttpStatusCode.OK)
@@ -121,6 +138,9 @@ class ToafApi(private val client: HttpClient) {
     }
 
     suspend fun addUser(data: JsonObject): Boolean {
+        if (!isCredentialValid())
+            return false
+
         return try {
             val response = client.post("$url/user/add/") {
                 contentType(ContentType.Application.Json)
@@ -139,6 +159,8 @@ class ToafApi(private val client: HttpClient) {
     }
 
     suspend fun userChangePass(data: JsonObject): Boolean {
+        if (!isCredentialValid())
+            return false
         return try {
             val response = client.post("$url/user/pass/") {
                 contentType(ContentType.Application.Json)
@@ -157,6 +179,8 @@ class ToafApi(private val client: HttpClient) {
     }
 
     suspend fun getUserInfo(): UserInfo? {
+        if (!isCredentialValid())
+            return null
         return try {
             val response = client.post("$url/user/info/get")
             if (response.status == HttpStatusCode.OK) {
@@ -178,6 +202,8 @@ class ToafApi(private val client: HttpClient) {
     }
 
     suspend fun updateUserInfo(userInfo: UserInfo): Boolean {
+        if (!isCredentialValid())
+            return false
         return try {
             val response = client.post("$url/user/info/update") {
                 contentType(ContentType.Application.Json)
@@ -196,6 +222,8 @@ class ToafApi(private val client: HttpClient) {
     }
 
     suspend fun userAddPurchases(data: JsonObject): Boolean {
+        if (!isCredentialValid())
+            return false
         return try {
             val response = client.post("$url/user/purchases/add") {
                 contentType(ContentType.Application.Json)
@@ -214,6 +242,8 @@ class ToafApi(private val client: HttpClient) {
     }
 
     suspend fun userConsumeBcuKey(vin: String?, keyCode: String?): Boolean {
+        if (!isCredentialValid())
+            return false
         val data = buildJsonObject {
             put("vin", vin ?: "")
             put("key_code", keyCode ?: "")
@@ -237,6 +267,8 @@ class ToafApi(private val client: HttpClient) {
     }
 
     suspend fun uploadFlash(data: JsonObject, file: ByteArray): Boolean {
+        if (!isCredentialValid())
+            return false
         return try {
             val response = client.submitFormWithBinaryData(
                 url = "$url/flash/add/",
@@ -268,6 +300,8 @@ class ToafApi(private val client: HttpClient) {
     }
 
     suspend fun getToafWifiUpdates(data: JsonObject): ToafWifiUpdates? {
+        if (!isCredentialValid())
+            return null
         return try {
             val response = client.post("$url/toaf/wifi/check_update") {
                 contentType(ContentType.Application.Json)
@@ -283,6 +317,8 @@ class ToafApi(private val client: HttpClient) {
     }
 
     suspend fun getToafWifiUpdateFiles(data: JsonObject): List<ToafWifiUpdateFiles?>? {
+        if (!isCredentialValid())
+            return null
         return try {
             val response = client.post("$url/toaf/wifi/get_update") {
                 contentType(ContentType.Application.Json)
@@ -298,6 +334,8 @@ class ToafApi(private val client: HttpClient) {
     }
 
     suspend fun setToafWifiUpdate(data: JsonObject): Boolean {
+        if (!isCredentialValid())
+            return false
         return try {
             val response = client.post("$url/toaf/wifi/save_update/") {
                 contentType(ContentType.Application.Json)
@@ -311,6 +349,8 @@ class ToafApi(private val client: HttpClient) {
     }
 
     suspend fun checkToafVersion(data: JsonObject): Boolean {
+        if (!isCredentialValid())
+            return false
         return try {
             val response = client.post("$url/toaf/version") {
                 contentType(ContentType.Application.Json)
@@ -324,6 +364,8 @@ class ToafApi(private val client: HttpClient) {
     }
 
     suspend fun getStripeProductInfo(productName : String): StripeProductInfo? {
+        if (!isCredentialValid())
+            return null
         return try {
             val supportedCurrency = listOf("PLN","EUR","USD")
             var currencyCode = try {
@@ -358,6 +400,8 @@ class ToafApi(private val client: HttpClient) {
 
     suspend fun createStripeCheckout(priceId :String, productName: String) : StripeSession?
     {
+        if (!isCredentialValid())
+            return null
         return try {
             val data = buildJsonObject {
                 put("priceId", priceId)
@@ -381,6 +425,8 @@ class ToafApi(private val client: HttpClient) {
         }
     }
     suspend fun checkPurchase(purchaseId : String) : Boolean{
+        if (!isCredentialValid())
+            return false
         return try {
             val data = buildJsonObject {
                 put("purchaseId", purchaseId)
@@ -407,6 +453,8 @@ class ToafApi(private val client: HttpClient) {
     }
 
     suspend fun consumeEkaCode() : Boolean{
+        if (!isCredentialValid())
+            return false
         return try {
             val response = client.post("$url/user/eka_codes/consume")
             response.status == HttpStatusCode.OK

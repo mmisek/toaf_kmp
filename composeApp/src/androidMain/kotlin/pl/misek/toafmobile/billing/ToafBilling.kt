@@ -2,7 +2,9 @@ package pl.misek.toafmobile.billing
 
 import android.app.Activity
 import android.content.Context
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.android.billingclient.api.AcknowledgePurchaseParams
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClientStateListener
@@ -22,13 +24,21 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
+import pl.misek.toafmobile.BuildKonfig
 import pl.misek.toafmobile.activities.ToafConstants
 import pl.misek.toafmobile.database.Database
 import pl.misek.toafmobile.database.DatabaseSettingFields
 import pl.misek.toafmobile.network.ToafApi
 import pl.misek.toafmobile.tools.isDebug
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.Date
+import java.util.Locale
 
 class AndroidToafBilling (context: Context, private val database : Database, private val toafApi : ToafApi) : IToafBilling
 {
@@ -121,6 +131,33 @@ class AndroidToafBilling (context: Context, private val database : Database, pri
         for (purchase in purchaseList) {
             if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
                 val sku = purchase.products.firstOrNull() ?: continue
+                val productDetails = productDetailsList?.firstOrNull { x ->x.productId == sku}
+                val pricing = productDetails?.oneTimePurchaseOfferDetails
+
+                val purchaseDetails = buildJsonObject {
+                    put("orderId", purchase.orderId)
+                    put("productId" ,sku)
+                    put("productType", productDetails?.productType)
+                    put("productDescription",productDetails?.description)
+                    put("productValue", pricing?.priceAmountMicros?.div(1_000_000.0))
+                    put("productCurrency", pricing?.priceCurrencyCode?.lowercase())
+                    put("purchaseTime", purchase.purchaseTime)
+                    put("purchaseToken", purchase.purchaseToken)
+                    put("originalJson", purchase.originalJson)
+                    put("signature", purchase.signature)
+                }
+                val details = buildJsonObject {
+                    put("status", purchase.purchaseState)
+                    put("platform", "Android")
+                    put("app_version_code", BuildKonfig.VERSION_CODE)
+                    put("app_version_name", BuildKonfig.VERSION_NAME)
+                    put("purchase_details", purchaseDetails)
+                    put("deviceManufacture", Build.MANUFACTURER)
+                    put("deviceModel", Build.MODEL)
+                    put("deviceOs",Build.VERSION.RELEASE)
+                    put("deviceSdk", Build.VERSION.SDK_INT)
+                }
+
                 Log.d(tag, "processPurchases : $sku")
                 if (isDebug())
                     consumePurchase(purchase)
@@ -136,7 +173,7 @@ class AndroidToafBilling (context: Context, private val database : Database, pri
                                 )
                             ) {
                                 acknowledgePurchase(purchase)
-                                addPurchaseToDatabase(purchase = purchase)
+                                addPurchaseToDatabase(purchase = purchase, details = details)
                             }
                         }
                     }
@@ -151,7 +188,7 @@ class AndroidToafBilling (context: Context, private val database : Database, pri
                                 )
                             ) {
                                 consumePurchase(purchase)
-                                addPurchaseToDatabase(purchase = purchase)
+                                addPurchaseToDatabase(purchase = purchase, details = details)
                             }
                         }
                     }
@@ -166,7 +203,7 @@ class AndroidToafBilling (context: Context, private val database : Database, pri
                                 )
                             ) {
                                 consumePurchase(purchase)
-                                addPurchaseToDatabase(purchase = purchase)
+                                addPurchaseToDatabase(purchase = purchase, details = details)
                             }
                         }
                     }
@@ -190,13 +227,22 @@ class AndroidToafBilling (context: Context, private val database : Database, pri
         }
     }
 
-    private suspend fun addPurchaseToDatabase(purchase: Purchase) : Boolean
+    private suspend fun addPurchaseToDatabase(purchase: Purchase, details: JsonObject) : Boolean
     {
+        val productDetails = productDetailsList?.firstOrNull { it.productId == purchase.products[0] }
+        val pricing = productDetails?.oneTimePurchaseOfferDetails
+        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        val formattedData = sdf.format(Date(purchase.purchaseTime))
+
         val json = buildJsonObject {
             put("purchaseToken",purchase.purchaseToken)
             put("productId", purchase.products[0])
             put("quantity", purchase.quantity)
+            put("value", pricing?.priceAmountMicros?.div(1_000_000.0))
+            put("currency", pricing?.priceCurrencyCode?.lowercase())
+            put("date", formattedData)
             put("purchaseState", if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) 0 else purchase.purchaseState)
+            put("details", details)
         }
         return withContext(Dispatchers.IO)
         {
@@ -244,8 +290,6 @@ class AndroidToafBilling (context: Context, private val database : Database, pri
             processPurchases(purchasesList)
         }
     }
-
-
 
     private fun consumePurchase(purchase: Purchase) {
         val consumeParams = ConsumeParams.newBuilder()

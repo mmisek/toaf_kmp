@@ -8,4 +8,5 @@ interface IUsbEventManager {
     fun handeConnectedDevice(device: UsbDeviceInfo, driver: Any?)
     fun getAvailableDevices() : MutableList<String>
     fun getDeviceInfo(deviceName :String) : UsbDeviceInfo?
+    fun connectWithDevice(deviceName: String)
 }

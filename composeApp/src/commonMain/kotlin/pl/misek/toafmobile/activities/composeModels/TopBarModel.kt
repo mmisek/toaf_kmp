@@ -144,37 +144,40 @@ fun TopBarModelMainActivity(
     {
         serveConnectionState = userInfo.isLogged
     }
-    LaunchedEffect(usbEvent) {
-        when (usbEvent) {
-            is UsbEvent.Attached -> {
-                try {
-                    val lastDeviceType = database.getStringSettingValueByName(DatabaseSettingFields.LAST_DEVICE_TYPE)
-                    val serialPortName = database.getStringSettingValueByName(DatabaseSettingFields.SERIAL_PORT_NAME)
-                    if (lastDeviceType == "USB" && !serialPortName.isNullOrEmpty())
-                    {
-                        serialDevice.connect(serialPortName)
-                        if (serialDevice.isConnected) {
-                            wifiDeviceInfo = null
-                            usbDeviceInfo = (usbEvent as UsbEvent.Attached).device
-                            protocolFactory.updateProtocolFactory(serialDevice)
-                            interfaceConnectionState = ConnectionState.USB_CONNECTED
+    LaunchedEffect(usbEventViewModel) {
+        usbEventViewModel.usbState.collect { usbEvent ->
+            when (usbEvent) {
+                is UsbEvent.Attached -> {
+                    try {
+                        val lastDeviceType =
+                            database.getStringSettingValueByName(DatabaseSettingFields.LAST_DEVICE_TYPE)
+                        val serialPortName =
+                            database.getStringSettingValueByName(DatabaseSettingFields.SERIAL_PORT_NAME)
+                        if (lastDeviceType == "USB" && !serialPortName.isNullOrEmpty()) {
+                            serialDevice.connect(serialPortName)
+                            if (serialDevice.isConnected) {
+                                wifiDeviceInfo = null
+                                usbDeviceInfo = usbEvent.device
+                                protocolFactory.updateProtocolFactory(serialDevice)
+                                interfaceConnectionState = ConnectionState.USB_CONNECTED
+                            }
                         }
+                    } catch (ex: Exception) {
+                        Sentry.captureException(ex)
+                        usbDeviceInfo = null
+                        protocolFactory.updateProtocolFactory(null)
+                        interfaceConnectionState = ConnectionState.USB_DISCONNECTED
                     }
-                } catch (ex: Exception) {
-                    Sentry.captureException(ex)
+                }
+
+                is UsbEvent.Detached -> {
+                    serialDevice.disconnect()
                     usbDeviceInfo = null
-                    protocolFactory.updateProtocolFactory(null)
                     interfaceConnectionState = ConnectionState.USB_DISCONNECTED
                 }
-            }
 
-            is UsbEvent.Detached -> {
-                serialDevice.disconnect()
-                usbDeviceInfo = null
-                interfaceConnectionState = ConnectionState.USB_DISCONNECTED
+                else -> {}
             }
-
-            else -> {}
         }
     }
     LaunchedEffect(wifiEvent)

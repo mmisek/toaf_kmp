@@ -76,6 +76,7 @@ fun AdvanceCodingEka(
     val purchaseCheckSuccess = stringResource(Res.string.information_purchase_ok)
     val purchaseCheckFailed = stringResource(Res.string.information_purchase_failed)
     val activity = getPlatformActivity()
+
     Surface(
         color = Color.Transparent,
         shape = RoundedCornerShape(10.dp),
@@ -96,12 +97,34 @@ fun AdvanceCodingEka(
             ToafProgressDialog(
                 action = { action() },
                 onSuccess = { actionResult ->
-                    if (actionResult is Boolean)
+                    if (actionResult is String?)
+                    {
+                        when(actionType)
+                        {
+                            ActionTypeEnum.ReadEkaCode -> {
+                                if (actionResult == null)
+                                    onShowResult(false, null, ekaCodeReadFailText)
+                                else {
+                                    scope.launch {
+                                        val localUserInfo = toafApi.getUserInfo()
+                                        if (localUserInfo != null) {
+                                            localUserInfo.ekaKeys -= 1
+                                            toafApi.consumeEkaCode()
+                                            toafApi.updateUserInfo(userInfo = localUserInfo)
+                                        }
+                                    }
+                                }
+                            }
+                            else -> {}
+                    }
+
+                    }
+                    else if (actionResult is Boolean)
                     {
                         when(actionType)
                         {
                             ActionTypeEnum.BuyElement ->
-                                if (actionResult)
+                                if (actionResult and (getPlatformType() == PlatformType.Desktop))
                                 {
                                     actionType = ActionTypeEnum.CheckingPurchase
                                     action = {
@@ -122,17 +145,6 @@ fun AdvanceCodingEka(
                                     showWaitingDialog = true
                                 }
 
-                            ActionTypeEnum.ReadEkaCode -> {
-                                scope.launch {
-                                    val localUserInfo = toafApi.getUserInfo()
-                                    if (localUserInfo != null) {
-                                        localUserInfo.ekaKeys -= 1
-                                        toafApi.updateUserInfo(userInfo = localUserInfo)
-                                    }
-                                    if (!actionResult)
-                                        onShowResult(false,null,ekaCodeReadFailText)
-                                }
-                            }
                             ActionTypeEnum.WriteEkaCode -> {
                                 onShowResult(
                                     actionResult,
@@ -237,12 +249,14 @@ fun AdvanceCodingEka(
                         val localUserInfo = toafApi.getUserInfo()
                         if (localUserInfo == null) {
                             onShowResult(false,null, serverConnectionFailedText)
+                            false
                         }
                         else if (localUserInfo.ekaKeys == 0) {
                             showInformationDialog = true
                         }
                         else {
                             ekaCode = (currentModule as IModuleEKA).readEKACode()
+                            ekaCode
                         }
                     }
                     showProgressDialog = true

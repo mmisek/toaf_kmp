@@ -73,5 +73,5 @@ actual fun platformModules(): Module  = module {
     factory<IToafRewardAds> { DesktopToafRewardAds() }
     factory<IFileSupport> { DesktopFileSupport() }
     factory<IUsbBroadcastHandler> { DesktopUsbBroadcastHandler() }
-    factory<IUsbEventManager>{ DesktopUsbEventManager(get(),get(),get()) }
+    single<IUsbEventManager>{ DesktopUsbEventManager(get(),get(),get()) }
 }

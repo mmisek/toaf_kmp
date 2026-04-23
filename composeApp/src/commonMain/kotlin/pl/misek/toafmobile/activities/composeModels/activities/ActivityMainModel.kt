@@ -475,6 +475,7 @@ fun ActivityMainModel(
                                 )
                                 database.updateStringSettingByName(DatabaseSettingFields.LAST_DEVICE_TYPE, "USB")
                                 serialDevice.connect(item)
+                                usbEventManager.connectWithDevice(item)
                                 dialogType = DialogType.None
                             }
                         }

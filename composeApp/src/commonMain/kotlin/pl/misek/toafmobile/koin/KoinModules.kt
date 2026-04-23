@@ -155,7 +155,7 @@ val commonModules = module {
             }
         }
     }
-    single { ToafApi(client = get()) }
+    single { ToafApi(client = get(), database = get()) }
     single { ToafWifiManager() }
     single { ToafWifiEventManager(get()) }
 }

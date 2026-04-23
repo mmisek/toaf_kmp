@@ -33,6 +33,7 @@ import pl.misek.toafmobile.interfaces.UsbDeviceInfo
 import pl.misek.toafmobile.interfaces.wifi.ToafWifiInterface
 import pl.misek.toafmobile.protocols.ProtocolFactory
 import pl.misek.toafmobile.serial.AndroidSerialDevice
+import pl.misek.toafmobile.tools.ActivityProvider
 import pl.misek.toafmobile.tools.hideNavigationBar
 
 class AndroidActivityMain : FragmentActivity() {
@@ -45,6 +46,7 @@ class AndroidActivityMain : FragmentActivity() {
     private lateinit var toafWifiEventManager: ToafWifiEventManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ActivityProvider.currentActivity = this
         protocolFactory = get<ProtocolFactory>()
         database = get<Database>()
         usbEventViewModel = get<IUsbEventManager>()
