@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_atc">Aria condizionata</string>
+    <string name="atc_error_11">Sensore temperatura abitacolo</string>
+    <string name="atc_error_12">Sensore temperatura esterna</string>
+    <string name="atc_error_13">Sensore temperatura evaporatore</string>
+    <string name="atc_error_14">Sensore temperatura liquido di raffreddamento</string>
+    <string name="atc_error_21">Sensore solare sinistro</string>
+    <string name="atc_error_22">Sensore solare destro</string>
+    <string name="atc_error_31">Attuatore miscelazione aria sinistro</string>
+    <string name="atc_error_32">Attuatore miscelazione aria destro</string>
+    <string name="atc_error_33">Attuatore distribuzione aria</string>
+
+    <string name="atc_live_data_left_side_temp">Temperatura lato sinistro</string>
+    <string name="atc_live_data_right_side_temp">Temperatura lato destro</string>
+    <string name="atc_live_data_car_speed">Velocità veicolo</string>
+    <string name="atc_live_data_actual_air_distribution">Distribuzione aria attuale</string>
+    <string name="atc_live_data_right_air_blend_pot">Potenziometro miscelazione aria dx</string>
+    <string name="atc_live_data_left_air_blend_pot">Potenziometro miscelazione aria sx</string>
+    <string name="atc_live_data_right_solar">Sensore solare destro</string>
+    <string name="atc_live_data_left_solar">Sensore solare sinistro</string>
+    <string name="atc_live_data_water_temp">Temp. acqua</string>
+    <string name="atc_live_data_evaporator_temp">Temp. evaporatore</string>
+    <string name="atc_live_data_ambient_temp">Temp. esterna</string>
+    <string name="atc_live_data_in_car_temp">Temp. abitacolo</string>
+    <string name="atc_live_data_passenger_target_temp">Temp. obiettivo passeggero</string>
+    <string name="atc_live_data_passenger_required_temp">Temp. richiesta passeggero</string>
+    <string name="atc_live_data_driver_target_temp">Temp. obiettivo conducente</string>
+    <string name="atc_live_data_driver_required_temp">Temp. richiesta conducente</string>
+    <string name="atc_live_data_target_air_dist">Distribuzione aria obiettivo</string>
+    <string name="atc_live_data_passenger_target_blend">Miscelazione obiettivo passeggero</string>
+    <string name="atc_live_data_passenger_required_blend">Miscelazione richiesta passeggero</string>
+    <string name="atc_live_data_driver_required_blend">Miscelazione richiesta conducente</string>
+    <string name="atc_live_data_blower_speed">Velocità ventola</string>
+    <string name="atc_live_data_hand_drive">Guida (DX/SX)</string>
+    <string name="atc_live_data_recirculation">Ricircolo</string>
+    <string name="atc_live_data_ac_compressor">Compressore AC</string>
+    <string name="atc_live_data_atc_system">Sistema ATC</string>
+    <string name="atc_live_data_value_invalid">non valido</string>
+    <string name="atc_live_data_value_left_hand">guida a sinistra</string>
+    <string name="atc_live_data_value_right_hand">guida a destra</string>
+    <string name="atc_live_data_value_fresh">aria esterna</string>
+    <string name="atc_live_data_value_recirculation">ricircolo</string>
+    <string name="atc_live_data_value_on">acceso</string>
+    <string name="atc_live_data_value_off">spento</string>
+    <string name="atc_control_blower_0">Ventola - 0%</string>
+    <string name="atc_control_blower_15">Ventola - 15%</string>
+    <string name="atc_control_blower_25">Ventola - 25%</string>
+    <string name="atc_control_blower_50">Ventola - 50%</string>
+    <string name="atc_control_blower_75">Ventola - 75%</string>
+    <string name="atc_control_blower_85">Ventola - 85%</string>
+    <string name="atc_control_blower_100">Ventola - 100%</string>
+    <string name="atc_control_ac_compressor_off">Compressore AC - off</string>
+    <string name="atc_control_ac_compressor_on">Compressore AC - on</string>
+    <string name="atc_control_fresh_air">Forza aria esterna</string>
+    <string name="atc_control_recirculation">Forza ricircolo</string>
+    <string name="atc_control_hrw_off">Lunotto termico - off</string>
+    <string name="atc_control_hrw_on">Lunotto termico - on</string>
+    <string name="atc_control_right_blend_flap_cold">Portello miscelazione dx - freddo</string>
+    <string name="atc_control_right_blend_flap_hot">Portello miscelazione dx - caldo</string>
+    <string name="atc_control_left_blend_flap_cold">Portello miscelazione sx - freddo</string>
+    <string name="atc_control_left_blend_flap_hot">Portello miscelazione sx - caldo</string>
+    <string name="atc_control_flap_face">Deflettori - frontale</string>
+    <string name="atc_control_flap_defrost">Deflettori - sbrinamento</string>
+
+</resources>

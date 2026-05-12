@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_flash_programing">Programmazione Flash</string>
+    <string name="activity_flash_read_identification">Identificazione ECU...</string>
+    <string name="activity_flash_programming_flash_reading">Lettura Flash</string>
+    <string name="activity_flash_programming_flash_writing">Scrittura Flash</string>
+    <string name="activity_flash_programming_read_flash">Leggi flash</string>
+    <string name="activity_flash_programming_write_flash">Scrivi flash</string>
+    <string name="activity_flash_programming_tittle">Programmazione flash del modulo</string>
+    <string name="activity_flash_programming_security_access">Accesso di sicurezza</string>
+    <string name="activity_flash_programming_diagnostic_session">Sessione diagnostica</string>
+    <string name="activity_flash_programming_flash_read">Lettura flash</string>
+    <string name="activity_flash_programming_flash_write">Scrittura flash...%1$s</string>
+    <string name="activity_flash_programming_ecu_reset">Reset ECU...attendere</string>
+    <string name="activity_flash_programming_start">Inizio</string>
+    <string name="activity_flash_programming_end">Fine</string>
+    <string name="activity_flash_programming_ok">OK</string>
+    <string name="activity_flash_programming_failed">Fallito</string>
+    <string name="activity_flash_programming_close">Chiudi</string>
+    <string name="activity_flash_programming_read_time">Tempo di lettura</string>
+    <string name="activity_flash_programming_write_time">Tempo di scrittura</string>
+    <string name="activity_flash_programming_written_to">File scritto in: %1$s</string>
+    <string name="activity_flash_programming_write_data_to_file_error">Errore di scrittura su file.</string>
+    <string name="activity_flash_programming_read_size">Byte letti</string>
+    <string name="activity_flash_programming_read_error">Errore di lettura flash!</string>
+    <string name="activity_flash_programming_write_error">Errore di scrittura flash!</string>
+    <string name="activity_flash_programming_flash_erasing">Cancellazione flash...%1$s</string>
+    <string name="activity_flash_programming_flash_writing_end">Fine scrittura flash...%1$s</string>
+    <string name="activity_flash_programming_backup_flash">Backup flash...%1$s</string>
+    <string name="activity_flash_programming_file_name">Nome file: %1$s</string>
+    <string name="activity_flash_programming_file_size">Dimensione file: %1$s byte</string>
+    <string name="activity_flash_programming_wrong_file_size">Dimensione file errata.</string>
+    <string name="activity_flash_programming_ecu_init">Inizializzazione ECU...%1$s</string>
+    <string name="activity_flash_programing_warning">
+        !! ATTENZIONE !!\n\n
+        Tutte queste operazioni possono immobilizzare il veicolo.\n
+        Mentre l\'operazione di lettura è solitamente sicura, la scrittura può rendere il veicolo incapace di avviarsi!
+        L\'autore ha fatto ogni sforzo per garantire che le operazioni siano sicure, ma non lo garantisce.\n
+        Fai tutto a tuo rischio e pericolo!
+    </string>
+</resources>

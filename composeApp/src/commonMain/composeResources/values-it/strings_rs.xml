@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_rs">Sensore pioggia</string>
+    <string name="rs_error_01">Errore hardware interno</string>
+    <string name="rs_error_02">Adattamento al parabrezza non possibile</string>
+    <string name="rs_error_03">Tensione o temperatura fuori tolleranza</string>
+    <string name="rs_error_04">Problemi di comunicazione ASIC - Controller</string>
+    <string name="rs_error_05">Sensore tergicristallo difettoso (nessun rilevamento)</string>
+    <string name="rs_error_06">Contatto di reset motorino tergicristallo difettoso</string>
+    <string name="rs_control_init">Inizializzazione sensore pioggia</string>
+    <string name="rs_live_data_park_position">Tergicristalli in posizione di riposo</string>
+    <string name="rs_live_data_reinforcement">Amplificazione segnale</string>
+    <string name="rs_live_data_time_point_1">Punto temporale 1</string>
+    <string name="rs_live_data_time_point_2">Punto temporale 2</string>
+</resources>

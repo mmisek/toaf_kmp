@@ -6,16 +6,16 @@
     <string name="activity_advance_coding_offset_current">Offset attuale</string>
     <string name="activity_advance_coding_read_button">Leggi</string>
     <string name="activity_advance_coding_save_button">Salva</string>
-    <string name="activity_advance_coding_id_read_error">Errore lettura ID.</string>
-    <string name="activity_advance_coding_id_write_error">Errore scrittura ID.</string>
-    <string name="activity_advance_coding_id_write_successful">Scrittura ID completata con successo</string>
-    <string name="activity_advance_coding_adjustment_read_error">Errore lettura regolazione.</string>
-    <string name="activity_advance_coding_adjustment_write_error">Errore scrittura regolazione.</string>
-    <string name="activity_advance_coding_adjustment_write_successful">Scrittura regolazione completata con successo</string>
+    <string name="activity_advance_coding_id_read_error">Errore di lettura ID.</string>
+    <string name="activity_advance_coding_id_write_error">Errore di scrittura ID.</string>
+    <string name="activity_advance_coding_id_write_successful">Scrittura ID riuscita</string>
+    <string name="activity_advance_coding_adjustment_read_error">Errore di lettura regolazione.</string>
+    <string name="activity_advance_coding_adjustment_write_error">Errore di scrittura regolazione.</string>
+    <string name="activity_advance_coding_adjustment_write_successful">Scrittura regolazione riuscita</string>
 
-    <string name="activity_advance_coding_vin_read_error">Errore lettura VIN.</string>
-    <string name="activity_advance_coding_vin_write_error">Errore scrittura VIN.</string>
-    <string name="activity_advance_coding_vin_write_successful">Scrittura VIN completata con successo</string>
+    <string name="activity_advance_coding_vin_read_error">Errore di lettura VIN.</string>
+    <string name="activity_advance_coding_vin_write_error">Errore di scrittura VIN.</string>
+    <string name="activity_advance_coding_vin_write_successful">Scrittura VIN riuscita</string>
     <string name="activity_advance_coding_vin_programming">Programmazione VIN</string>
     <string name="activity_advance_coding_vin_current">VIN attuale</string>
     <string name="activity_advance_coding_id_programming">Programmazione ID</string>
@@ -24,31 +24,37 @@
     <string name="activity_advance_coding_id_matches_error">L\'ID inserito non è corretto!</string>
     <string name="activity_advance_coding_adjustment_matches_error">La regolazione inserita non è corretta!</string>
     <string name="activity_advance_coding_default_coding">Codifica predefinita</string>
-    <string name="activity_advance_coding_write_default_coding_error">Errore scrittura codifica predefinita.</string>
-    <string name="activity_advance_coding_write_default_coding_successful">Scrittura codifica predefinita completata!</string>
+    <string name="activity_advance_coding_write_default_coding_error">Errore di scrittura codifica predefinita.</string>
+    <string name="activity_advance_coding_write_default_coding_successful">Scrittura codifica predefinita corretta!</string>
 
-    <string name="activity_advance_coding_odometer_programming">Programmazione contachilometri</string>
-    <string name="activity_advance_coding_odometer_current">Contachilometri attuale</string>
-    <string name="activity_advance_coding_odometer_read_error">Errore lettura contachilometri.</string>
-    <string name="activity_advance_coding_odometer_write_error">Errore scrittura contachilometri.</string>
-    <string name="activity_advance_coding_odometer_write_successful">Scrittura contachilometri completata con successo</string>
-    <string name="activity_advance_coding_odometer_matches_error">Il contachilometri inserito non è corretto!</string>
+    <string name="activity_advance_coding_odometer_programming">Programmazione odometro</string>
+    <string name="activity_advance_coding_odometer_current">Odometro attuale</string>
+    <string name="activity_advance_coding_odometer_read_error">Errore di lettura odometro.</string>
+    <string name="activity_advance_coding_odometer_write_error">Errore di scrittura odometro.</string>
+    <string name="activity_advance_coding_odometer_write_successful">Scrittura odometro riuscita</string>
+    <string name="activity_advance_coding_odometer_matches_error">L\'odometro inserito non è corretto!</string>
 
     <string name="activity_advance_coding_eka_programming">Programmazione codice EKA</string>
     <string name="activity_advance_coding_eka_current">Codice EKA attuale</string>
-    <string name="activity_advance_coding_eka_read_error">Errore lettura codice EKA.</string>
-    <string name="activity_advance_coding_eka_write_error">Errore scrittura codice EKA.</string>
-    <string name="activity_advance_coding_eka_write_successful">Scrittura codice EKA completata con successo</string>
+    <string name="activity_advance_coding_eka_read_error">Errore di lettura codice EKA.</string>
+    <string name="activity_advance_coding_eka_write_error">Errore di scrittura codice EKA.</string>
+    <string name="activity_advance_coding_eka_write_successful">Scrittura codice EKA riuscita</string>
     <string name="activity_advance_coding_eka_matches_error">Il codice EKA inserito non è corretto!</string>
 
-    <string name="activity_advance_coding_lsm_read_error">Errore lettura codifica</string>
-    <string name="activity_advance_coding_lsm_write_error">Errore salvataggio codifica</string>
+    <string name="activity_advance_coding_scu_keys_programming">Programmazione chiavi SCU</string>
+    <string name="activity_advance_coding_scu_keys_barcode_validation_failed">Il codice a barre inserito è errato</string>
+    <string name="activity_advance_coding_scu_write_success">Scrittura nuova chiave riuscita.</string>
+    <string name="activity_advance_coding_scu_write_failed">Scrittura nuova chiave fallita.</string>
+    <string name="activity_advance_coding_scu_new_key_barcode">Codice a barre nuova chiave.</string>
+
+    <string name="activity_advance_coding_lsm_read_error">Errore di lettura codifica</string>
+    <string name="activity_advance_coding_lsm_write_error">Errore di salvataggio codifica</string>
     <string name="activity_advance_coding_lsm_auto_light">Luci automatiche</string>
     <string name="activity_advance_coding_lsm_auto_light_current_mode">Modalità attuale</string>
     <string-array name="activity_advance_coding_lsm_auto_light_modes">
         <item>Disabilitato</item>
         <item>DRL - 30% Abbaglianti</item>
-        <item>Accensione automatica luci a motore avviato</item>
-        <item>Accensione automatica luci all\'accensione</item>
+        <item>Luci auto con motore avviato</item>
+        <item>Luci auto con quadro acceso</item>
     </string-array>
 </resources>

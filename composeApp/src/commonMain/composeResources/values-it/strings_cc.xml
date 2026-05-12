@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_cc">Cruise control (V6)</string>
+    <string name="cc_error_01">Livello tensione in uscita: Basso, atteso alto</string>
+    <string name="cc_error_02">Livello uscita valvola: Basso, atteso alto</string>
+    <string name="cc_error_04">Livello uscita pompa: Basso, atteso alto</string>
+    <string name="cc_error_08">Centralina: Errore interno</string>
+    <string name="cc_error_10">Livello tensione in uscita: Alto, atteso basso</string>
+    <string name="cc_error_20">Livello uscita valvola: Alto, atteso basso</string>
+    <string name="cc_error_40">Livello uscita pompa: Alto, atteso basso</string>
+    <string name="cc_error_80">Ingresso velocità: errore di ingresso</string>
+    <string name="cc_error_09">Errore di memoria: errore di lettura</string>
+    <string name="cc_error_detail_01">Azioni dall\'ultimo guasto di tensione</string>
+    <string name="cc_error_detail_02">Azioni dall\'ultimo errore valvola</string>
+    <string name="cc_error_detail_03">Azioni dall\'ultimo guasto pompa</string>
+    <string name="cc_error_detail_04">Azioni dall\'ultimo ingresso velocità</string>
+    <string name="cc_error_detail_05">Valore iniziale dopo RESET</string>
+    <string name="cc_error_detail_07">Velocità obiettivo > Vmax</string>
+    <string name="cc_error_detail_08">Nessuna specifica</string>
+    <string name="cc_error_detail_0A">Uscita relè bassa</string>
+    <string name="cc_error_detail_0B">Controllo valvola basso durante l\'uso</string>
+    <string name="cc_error_detail_0C">Controllo pompa basso durante l\'uso</string>
+    <string name="cc_error_detail_0D">Velocità attuale oltre Vmax</string>
+    <string name="cc_error_detail_0E">Velocità attuale sotto Vmin</string>
+    <string name="cc_error_detail_0F">Limite di accelerazione superato</string>
+    <string name="cc_error_detail_10">Controllo pompa basso all\'accensione</string>
+    <string name="cc_error_detail_11">Controllo valvola basso all\'accensione</string>
+    <string name="cc_error_detail_12">Uscita relè bassa all\'accensione</string>
+    <string name="cc_error_detail_13">Uscita relè alta quando non in uso</string>
+    <string name="cc_error_detail_14">Interruttore freno o frizione aperto</string>
+    <string name="cc_error_detail_15">Luce stop accesa</string>
+    <string name="cc_error_detail_16">Errore nell\'hardware V min ridondante</string>
+    <string name="cc_error_detail_17">Cortocircuito a massa relè</string>
+    <string name="cc_error_detail_18">Differenza tra velocità obiettivo e attuale troppo grande</string>
+    <string name="cc_error_detail_19">Velocità obiettivo differenti</string>
+    <string name="cc_error_detail_1A">Uscita relè alta allo spegnimento</string>
+    <string name="cc_error_detail_1C">Errore nel controllo valvola ridondante</string>
+    <string name="cc_error_detail_1D">Errore nel controllo pompa ridondante</string>
+    <string name="cc_error_detail_1F">Attivazione dell\'interruttore OFF</string>
+    <string name="cc_error_permanent">Guasto permanente</string>
+    <string name="cc_error_sporadic">Errore sporadico</string>
+
+    <string name="cc_live_data_test_completed">Test completato</string>
+    <string name="cc_live_data_cc_active">Cruise control attivo</string>
+    <string name="cc_live_data_actual_speed">Velocità attuale</string>
+    <string name="cc_live_data_set_speed">Velocità impostata</string>
+    <string name="cc_live_data_speed_greater_than_minimum">Velocità superiore al minimo</string>
+    <string name="cc_live_data_speed_detection">Periodo rilevamento velocità > 1.5s</string>
+    <string name="cc_live_data_cruise_off">Attivazione Cruise control OFF</string>
+    <string name="cc_live_data_cruise_on">Attivazione Cruise control ON</string>
+    <string name="cc_live_data_break">Freno attivato</string>
+    <string name="cc_live_data_clutch">Frizione attivata</string>
+
+</resources>

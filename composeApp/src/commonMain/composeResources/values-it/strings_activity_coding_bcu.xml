@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_coding_bcu">Codifica avanzata</string>
+    <string name="activity_coding_bcu_tittle">Codifica e programmazione avanzata</string>
+    <string name="activity_coding_bcu_keys">Programmazione chiavi</string>
+    <string name="activity_coding_bcu_key_add">Aggiungi</string>
+    <string name="activity_coding_bcu_key_delete">Elimina</string>
+    <string name="activity_coding_bcu_key_number">Chiave: %1$d</string>
+    <string name="activity_coding_bcu_key_empty">Vuoto</string>
+    <string name="activity_coding_bcu_key_read_error">Errore di lettura!</string>
+    <string name="activity_coding_bcu_key_remove_tittle">Rimuovi chiave</string>
+    <string name="activity_coding_bcu_key_remove_message">Sei sicuro di voler eliminare questa chiave?</string>
+    <string name="activity_coding_bcu_key_remove_yes">Sì</string>
+    <string name="activity_coding_bcu_key_remove_no">No</string>
+    <string name="activity_coding_bcu_key_remove_error">Errore durante la rimozione della chiave</string>
+    <string name="activity_coding_bcu_key_remove_key_successful">Rimozione chiave riuscita</string>
+    <string name="activity_coding_bcu_key_add_tittle">Aggiungi nuova chiave</string>
+    <string name="activity_coding_bcu_key_add_message">Inserisci il codice della chiave</string>
+    <string name="activity_coding_bcu_key_add_button_add">Aggiungi</string>
+    <string name="activity_coding_bcu_key_add_hint">es. AB54CA</string>
+    <string name="activity_coding_bcu_key_add_button_cancel">Annulla</string>
+    <string name="activity_coding_bcu_key_add_error">Errore durante l\'aggiunta della chiave</string>
+    <string name="activity_coding_bcu_key_add_successful">Aggiunta chiave riuscita</string>
+    <string name="activity_coding_bcu_key_code_not_valid">Il codice chiave inserito non è valido</string>
+    <string name="activity_coding_bcu_key_add_not_supported">Non ancora supportato.</string>
+    <string name="activity_coding_bcu_key_add_sign">+</string>
+    <string name="activity_coding_bcu_key_del_sign">-</string>
+</resources>

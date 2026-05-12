@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_lws">Sensore angolo di sterzata</string>
+    <string name="lws_error_01">Morsetto 30 difettoso</string>
+    <string name="lws_error_02">Corrente sensore fuori intervallo</string>
+    <string name="lws_error_03">Differenza di 90 gradi del cursore troppo grande (Funzionamento normale)</string>
+    <string name="lws_error_04">Differenza di 90 gradi del cursore troppo grande (Operazione di regolazione)</string>
+    <string name="lws_error_05">EEPROM difettosa</string>
+    <string name="lws_error_06">Convertitore A/D difettoso</string>
+    <string name="lws_error_07">Errore controllo ROM</string>
+    <string name="lws_error_08">Errore controllo RAM</string>
+    <string name="lws_error_09">Non è un messaggio ASC2</string>
+    <string name="lws_error_0A">Versione CAN errata</string>
+    <string name="lws_error_0B">ID LWS errato</string>
+    <string name="lws_error_0C">Bus CAN spento</string>
+    <string name="lws_error_0D">Gradiente Lrw troppo grande</string>
+    <string name="lws_error_0E">Massimo Lrw superato</string>
+    <string name="lws_error_0F">Errore Stack / Errore Case</string>
+    <string name="lws_error_10">Watchdog</string>
+
+    <string name="lws_live_data_wheel_speed_left_front">Velocità ruota - anteriore sinistra</string>
+    <string name="lws_live_data_wheel_speed_right_front">Velocità ruota - anteriore destra</string>
+    <string name="lws_live_data_wheel_speed_left_rear">Velocità ruota - posteriore sinistra</string>
+    <string name="lws_live_data_wheel_speed_right_rear">Velocità ruota - posteriore destra</string>
+    <string name="lws_live_data_vehicle_speed">Velocità veicolo</string>
+    <string name="lws_live_data_steering_angle_speed">Angolo di sterzata - velocità</string>
+    <string name="lws_live_data_steering_angle">Angolo di sterzata</string>
+    <string name="lws_live_data_program_cycle_time">Tempo di ciclo programma</string>
+    <string name="lws_live_data_lateral_acceleration">Accelerazione laterale</string>
+    <string name="lws_live_data_synthetic_steering_wheel_angles">Angoli di sterzata sintetici</string>
+    <string name="lws_live_data_yaw_rate">Velocità di imbardata</string>
+
+</resources>

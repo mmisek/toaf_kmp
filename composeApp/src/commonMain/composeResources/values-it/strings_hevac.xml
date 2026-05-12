@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_hevac">Controllo climatizzazione (HEVAC)</string>
+
+    <string name="hevac_error_00">Motorino serranda ventilazione</string>
+    <string name="hevac_error_01">Motorino serranda sbrinatore</string>
+    <string name="hevac_error_02">Motorino serranda zona piedi</string>
+    <string name="hevac_error_03">Motorino serranda aria fresca/ricircolo sinistra</string>
+    <string name="hevac_error_04">Motorino serranda aria fresca/ricircolo destra</string>
+    <string name="hevac_error_05">Unità aria condizionata HEVAC errata</string>
+    <string name="hevac_error_06">Alimentazione sensore pressione/inquinamento</string>
+    <string name="hevac_error_0B">Sensore evaporatore</string>
+    <string name="hevac_error_0D">Sensore scambiatore di calore</string>
+    <string name="hevac_error_12">Sensore temperatura interna</string>
+    <string name="hevac_error_17">Relè sbrinatore lunotto posteriore</string>
+    <string name="hevac_error_18">Relè riscaldatore supplementare</string>
+    <string name="hevac_error_19">Pompa acqua ausiliaria</string>
+    <string name="hevac_error_1A">Valvola acqua</string>
+    <string name="hevac_error_1B">Tensione controllo ventola</string>
+    <string name="hevac_error_1C">Sensore ventola</string>
+    <string name="hevac_error_1D">Comunicazione con riscaldatore supplementare</string>
+    <string name="hevac_error_1E">Sensore inquinamento</string>
+    <string name="hevac_error_1F">Sensore pressione</string>
+    <string name="hevac_error_20">Riscaldamento sensore inquinamento</string>
+    <string name="hevac_error_21">Sensore solare</string>
+    <string name="hevac_error_FF">Modalità risparmio energetico attiva</string>
+
+    <string name="hevac_error_detail_01">Cortocircuito a batt+</string>
+    <string name="hevac_error_detail_02">Cortocircuito a massa</string>
+    <string name="hevac_error_detail_04">Circuito aperto</string>
+    <string name="hevac_error_detail_08">Valore non plausibile, area di lavoro non valida</string>
+    <string name="hevac_error_detail_40">Errore presente</string>
+    <string name="hevac_error_detail_80">Errore sporadico</string>
+
+    <string name="hevac_live_data_power_supply_pollution_sensor">Alimentazione sensore inquinamento</string>
+    <string name="hevac_live_data_power_supply">Alimentazione HEVAC</string>
+    <string name="hevac_live_data_pollution_sensor_heating_voltage">Tensione riscaldamento sensore inquinamento</string>
+    <string name="hevac_live_data_pwm_fan_control_voltage">Tensione controllo ventola PWM</string>
+    <string name="hevac_live_data_outdoor_temperature_sensor">Sensore temperatura esterna</string>
+    <string name="hevac_live_data_evaporator_temperature_sensor">Sensore temperatura evaporatore</string>
+    <string name="hevac_live_data_pollution_sensor_signal">Segnale sensore inquinamento</string>
+    <string name="hevac_live_data_heat_exchanger_sensor">Sensore scambiatore di calore</string>
+    <string name="hevac_live_data_solar_sensor">Sensore solare</string>
+    <string name="hevac_live_data_pressure_sensor">Sensore pressione</string>
+</resources>

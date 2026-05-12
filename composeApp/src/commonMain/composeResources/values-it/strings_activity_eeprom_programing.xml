@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_eeprom_programing">Programmazione EEPROM</string>
+    <string name="activity_eeprom_read_identification">Identificazione ECU...</string>
+    <string name="activity_eeprom_programming_eeprom_reading">lettura eeprom</string>
+    <string name="activity_eeprom_programming_eeprom_writing">scrittura eeprom</string>
+    <string name="activity_eeprom_programming_read_eeprom">Leggi eeprom</string>
+    <string name="activity_eeprom_programming_write_eeprom">Scrivi eeprom</string>
+    <string name="activity_eeprom_programming_tittle">Programmazione eeprom modulo</string>
+    <string name="activity_eeprom_programming_security_access">Accesso di sicurezza…%1$s</string>
+    <string name="activity_eeprom_programming_diagnostic_session">Sessione diagnostica...%1$s</string>
+    <string name="activity_eeprom_programming_eeprom_read">Lettura EEPROM...%1$s</string>
+    <string name="activity_eeprom_programming_eeprom_write">Scrittura EEPROM...%1$s</string>
+    <string name="activity_eeprom_programming_ecu_reset">Reset ECU...attendere</string>
+    <string name="activity_eeprom_programming_start">Avvia</string>
+    <string name="activity_eeprom_programming_end">Fine</string>
+    <string name="activity_eeprom_programming_ok">OK</string>
+    <string name="activity_eeprom_programming_failed">Fallito</string>
+    <string name="activity_eeprom_programming_close">Chiudi</string>
+    <string name="activity_eeprom_programming_read_time">Tempo di lettura : %1$s</string>
+    <string name="activity_eeprom_programming_write_time">Tempo di scrittura : %1$s</string>
+    <string name="activity_eeprom_programming_written_to">File salvato in : %1$s</string>
+    <string name="activity_eeprom_programming_write_data_to_file_error">Errore di scrittura nel file.</string>
+    <string name="activity_eeprom_programming_read_size">Byte letti : %1$s</string>
+    <string name="activity_eeprom_programming_read_error">errore lettura eeprom !</string>
+    <string name="activity_eeprom_programming_write_error">errore scrittura eeprom !</string>
+    <string name="activity_eeprom_programming_eeprom_erasing">cancellazione eeprom...%1$s</string>
+    <string name="activity_eeprom_programming_eeprom_writing_end">fine scrittura eeprom...%1$s</string>
+    <string name="activity_eeprom_programming_backup_eeprom">Backup eeprom...%1$s</string>
+    <string name="activity_eeprom_programming_file_name">Nome file : %1$s</string>
+    <string name="activity_eeprom_programming_file_size">Dimensione file : %1$s byte</string>
+    <string name="activity_eeprom_programming_wrong_file_size">Dimensione file errata.</string>
+    <string name="activity_eeprom_programming_ecu_init">Inizializzazione ECU...%1$s</string>
+    <string name="activity_eeprom_programming_write_skip">Salta scrittura dati a %1$s</string>
+    <string name="activity_eeprom_programming_read_data_size_error">La dimensione dei dati letti non corrisponde alla dimensione della EEPROM!</string>
+
+    <string name="activity_eeprom_programing_warning">
+        !! ATTENZIONE !!\n\n
+        Tutte queste operazioni possono immobilizzare il veicolo.\n
+        Mentre l\'operazione di lettura è solitamente sicura, la scrittura può rendere impossibile l\'avviamento del veicolo!
+        L\'autore ha fatto ogni sforzo per garantire che le operazioni siano sicure - ma non lo garantisce\n
+        Fai tutto a tuo rischio e pericolo!
+    </string>
+</resources>
