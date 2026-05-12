@@ -10,3 +10,4 @@ enum class PlatformType
 }
 expect fun getPlatform(): Platform
 expect fun getPlatformType() : PlatformType
+expect fun getPlatformName() : String

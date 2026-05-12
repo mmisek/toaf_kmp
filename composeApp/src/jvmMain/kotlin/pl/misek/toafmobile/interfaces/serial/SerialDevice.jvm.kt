@@ -7,7 +7,6 @@ import com.fazecast.jSerialComm.SerialPortEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.descriptors.serialDescriptor
 import pl.misek.toafmobile.interfaces.ISerialDevice
 import java.io.ByteArrayOutputStream
 import kotlin.time.measureTime
@@ -105,6 +104,13 @@ class DesktopSerialDevice : ISerialDevice
         }
         if (_serialPort == null)
         {
+            val availablePorts = SerialPort.getCommPorts().map { it.systemPortName }.toSet()
+            if (!availablePorts.contains(_serialPortName))
+            {
+                _serialPort = null
+                Logger.i { "$tag : port $_serialPortName not found in available ports : $availablePorts" }
+                return
+            }
             _serialPort = SerialPort.getCommPort(_serialPortName)
             if (_serialPort != null) {
                 _serialPort?.baudRate = 9600

@@ -153,6 +153,7 @@ val commonModules = module {
                 }
                 header(HttpHeaders.ContentType, io.ktor.http.ContentType.Application.Json)
             }
+            followRedirects = false
         }
     }
     single { ToafApi(client = get(), database = get()) }

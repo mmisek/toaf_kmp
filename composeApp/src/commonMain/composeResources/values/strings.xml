@@ -485,4 +485,10 @@
     <string name="dialog_serial_port_available_ports">Available devices</string>
     <string name="dialog_serial_port_select_port">Select device</string>
     <string name="dialog_serial_port_device">USB device</string>
+
+    <string name="dialog_update_link">https://toaf.roverki.eu</string>
+    <string name="dialog_update_link_name">TOAF Webpage</string>
+    <string name="dialog_update_title">Update available</string>
+    <string name="dialog_update_text_1">TOAF %1$s version is now available. Go to </string>
+    <string name="dialog_update_text_2"> and download update file.</string>
 </resources>

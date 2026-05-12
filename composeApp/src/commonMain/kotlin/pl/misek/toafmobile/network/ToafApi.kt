@@ -18,6 +18,7 @@ import io.ktor.http.contentType
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
+import pl.misek.toafmobile.BuildKonfig
 
 import pl.misek.toafmobile.backup.BackupElement
 import pl.misek.toafmobile.backup.BackupElementResponse
@@ -27,6 +28,7 @@ import pl.misek.toafmobile.billing.StripeProductInfoResponse
 import pl.misek.toafmobile.billing.StripeSession
 import pl.misek.toafmobile.billing.StripeSessionResponse
 import pl.misek.toafmobile.database.Database
+import pl.misek.toafmobile.getPlatformName
 import java.util.Currency
 import java.util.Locale
 
@@ -348,18 +350,25 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
         }
     }
 
-    suspend fun checkToafVersion(data: JsonObject): Boolean {
-        if (!isCredentialValid())
-            return false
+    suspend fun checkToafVersion(): ToafVersionInfo? {
         return try {
-            val response = client.post("$url/toaf/version") {
+            val body = ToafVersionInfo(
+                versionName = BuildKonfig.VERSION_NAME,
+                versionCode = BuildKonfig.VERSION_CODE,
+                platform = getPlatformName())
+            val response = client.post("$url/toaf/version/") {
                 contentType(ContentType.Application.Json)
-                setBody(data.toString())
+                setBody(body)
             }
-            response.status == HttpStatusCode.OK
+            if (response.status == HttpStatusCode.OK) {
+                val info = response.body<ToafVersionInfoResponse>()
+                return info.message
+            }
+            return null
+
         } catch (ex: Exception) {
             Logger.e{"$tag: $ex"}
-            false
+            null
         }
     }
 

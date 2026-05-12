@@ -433,4 +433,9 @@
     <string name="dialog_serial_port_available_ports">Доступные устройства</string>
     <string name="dialog_serial_port_select_port">Выберите устройство</string>
     <string name="dialog_serial_port_device">USB-устройство</string>
+	
+	<string name="dialog_update_link_name">Веб-страница TOAF</string>
+	<string name="dialog_update_title">Доступно обновление</string>
+	<string name="dialog_update_text_1">Версия TOAF %1$s уже доступна. Перейдите на </string>
+	<string name="dialog_update_text_2"> и скачайте файл обновления.</string>	
 </resources>

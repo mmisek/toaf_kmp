@@ -24,7 +24,6 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import io.sentry.Sentry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -34,7 +33,7 @@ import kotlinx.serialization.json.put
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
-import pl.misek.toafmobile.activities.ToafConstants
+import pl.misek.toafmobile.BuildKonfig
 import pl.misek.toafmobile.viewModels.UserInfoViewModel
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.TopBarModelMainActivity
@@ -45,6 +44,7 @@ import pl.misek.toafmobile.activities.composeModels.dialogs.DialogQuestion
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogSelectCarType
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogSerialPort
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogShowInterfaceInfo
+import pl.misek.toafmobile.activities.composeModels.dialogs.DialogShowUpdateInformation
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogShowUserInfo
 import pl.misek.toafmobile.activities.composeModels.menus.MenuMain
 import pl.misek.toafmobile.activities.definitions.ToafColors
@@ -54,20 +54,15 @@ import pl.misek.toafmobile.tools.getPlatformActivity
 import pl.misek.toafmobile.control.FastControlElement
 import pl.misek.toafmobile.database.Database
 import pl.misek.toafmobile.database.DatabaseSettingFields
-import pl.misek.toafmobile.interfaces.ConnectionState
 import pl.misek.toafmobile.interfaces.ISerialDevice
 import pl.misek.toafmobile.interfaces.IUsbEventManager
-import pl.misek.toafmobile.interfaces.ToafWifiEventManager
 import pl.misek.toafmobile.interfaces.ToafWifiManager
 import pl.misek.toafmobile.interfaces.UsbDeviceInfo
-import pl.misek.toafmobile.interfaces.UsbEvent
-import pl.misek.toafmobile.interfaces.WifiEvent
 import pl.misek.toafmobile.interfaces.wifi.ToafWifiDeviceInfo
-import pl.misek.toafmobile.interfaces.wifi.ToafWifiInterface
 import pl.misek.toafmobile.modules.ModulesManager
 import pl.misek.toafmobile.network.ServerConnectionState
 import pl.misek.toafmobile.network.ToafApi
-import pl.misek.toafmobile.protocols.ProtocolFactory
+import pl.misek.toafmobile.network.ToafVersionInfo
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 
@@ -122,6 +117,8 @@ fun ActivityMainModel(
     var wifiDeviceInfo by remember { mutableStateOf<ToafWifiDeviceInfo?>(null) }
     val usbEventManager : IUsbEventManager = koinInject()
 
+    var toafVersionInfo by remember { mutableStateOf<ToafVersionInfo?>(null) }
+    var showNewVersionInfo by remember { mutableStateOf(false) }
     val loginCorrect = stringResource(Res.string.dialog_user_login_login_correct)
     val loginIncorrect = stringResource(Res.string.dialog_user_login_error)
     val createUserLoginTooShort = stringResource(Res.string.dialog_user_create_login_to_short)
@@ -155,6 +152,15 @@ fun ActivityMainModel(
                     fastControlElements.add(element)
                 }
             }
+        }
+    }
+
+    LaunchedEffect(Unit)
+    {
+        withContext(Dispatchers.IO)
+        {
+            toafVersionInfo = toafApi.checkToafVersion()
+            toafVersionInfo?.versionCode?.let { showNewVersionInfo = it > BuildKonfig.VERSION_CODE }
         }
     }
 
@@ -259,6 +265,13 @@ fun ActivityMainModel(
 
                     else -> {}
                 }
+            }
+            if (showNewVersionInfo)
+            {
+                DialogShowUpdateInformation(
+                    versionInfo = toafVersionInfo,
+                    onClose = {showNewVersionInfo = false}
+                )
             }
             if (showUserInfoDialog)
             {

@@ -470,4 +470,9 @@
     <string name="dialog_serial_port_available_ports">Dispositivos disponibles</string>
     <string name="dialog_serial_port_select_port">Seleccionar dispositivo</string>
     <string name="dialog_serial_port_device">Dispositivo USB</string>
+	
+	<string name="dialog_update_link_name">Página web de TOAF</string>
+	<string name="dialog_update_title">Actualización disponible</string>
+	<string name="dialog_update_text_1">La versión %1$s de TOAF ya está disponible. Ve a </string>
+	<string name="dialog_update_text_2"> y descarga el archivo de actualización.</string>
 </resources>
