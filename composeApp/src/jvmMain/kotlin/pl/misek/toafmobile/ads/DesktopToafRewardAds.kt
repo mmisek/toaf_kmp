@@ -4,7 +4,7 @@ class DesktopToafRewardAds : IToafRewardAds {
     override fun isAdLoaded() = false
 
     override fun loadAd(onAdLoaded: () -> Unit, onAdFailed: () -> Unit) {
-        TODO("Not yet implemented")
+
     }
 
     override fun showAd(
@@ -12,6 +12,6 @@ class DesktopToafRewardAds : IToafRewardAds {
         onRewardEarned: (Int) -> Unit,
         onAdClosed: () -> Unit
     ) {
-        TODO("Not yet implemented")
+
     }
 }

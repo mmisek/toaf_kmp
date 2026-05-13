@@ -281,6 +281,22 @@
         "factor_b": "0",
         "unit": "mg/stroke",
         "mask": "0xFFFF"
+      },
+      {
+        "name": "anmUC1",
+        "block": "0x0FF8",
+        "factor_a": "0.0205718988",
+        "factor_b": "0",
+        "unit": "V",
+        "mask": "0xFFFF"
+      },
+      {
+        "name": "anmUC2",
+        "block": "0x0FF9",
+        "factor_a": "0.0205718988",
+        "factor_b": "0",
+        "unit": "V",
+        "mask": "0xFFFF"
       }
     ]
 }

@@ -76,7 +76,7 @@ class AndroidActivityMain : FragmentActivity() {
                 Column(
                     modifier = Modifier.fillMaxSize().padding(innerPadding)
                 ) {
-                    AppNavigation()
+                    AppNavigation({})
                 }
             }
         }

@@ -1,26 +1,24 @@
 package pl.misek.toafmobile.activities
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import kotlinx.serialization.Serializable
-import pl.misek.toafmobile.activities.composeModels.activities.ActivityDiagnosticModel
-import pl.misek.toafmobile.activities.composeModels.activities.ActivityMainModel
-import pl.misek.toafmobile.activities.composeModels.activities.ActivityModuleModel
-import pl.misek.toafmobile.koin.KoinNames
 import androidx.navigation.toRoute
+import kotlinx.serialization.Serializable
 import pl.misek.toafmobile.activities.composeModels.activities.ActivityControlModel
+import pl.misek.toafmobile.activities.composeModels.activities.ActivityDiagnosticModel
 import pl.misek.toafmobile.activities.composeModels.activities.ActivityEepromProgrammingModel
 import pl.misek.toafmobile.activities.composeModels.activities.ActivityFlashProgrammingModel
 import pl.misek.toafmobile.activities.composeModels.activities.ActivityLiveDataModel
+import pl.misek.toafmobile.activities.composeModels.activities.ActivityMainModel
 import pl.misek.toafmobile.activities.composeModels.activities.ActivityModuleAdvanceCodingModel
 import pl.misek.toafmobile.activities.composeModels.activities.ActivityModuleCodingModel
-import kotlin.reflect.typeOf
+import pl.misek.toafmobile.activities.composeModels.activities.ActivityModuleModel
+import pl.misek.toafmobile.koin.KoinNames
 
 @Composable
-fun AppNavigation() {
+fun AppNavigation(onExitApp: () -> Unit) {
     val navController = rememberNavController()
 
     NavHost(
@@ -31,7 +29,7 @@ fun AppNavigation() {
         composable<ComposableMain>{
             ActivityMainModel(
                 onClickDiagnosticButton = {navController.navigate(ComposableDiagnostic)},
-                onDeviceChanged = {},
+                onExitApplication = { onExitApp()},
                 0)
         }
         composable<ComposableDiagnostic>{
@@ -91,11 +89,6 @@ fun AppNavigation() {
                 onBackClick = { navController.popBackStack()})
         }
     }
-}
-
-@Composable
-fun EnumType(x0: Class<KoinNames>) {
-    TODO("Not yet implemented")
 }
 
 @Serializable

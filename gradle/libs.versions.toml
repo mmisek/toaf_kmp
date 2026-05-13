@@ -2,30 +2,35 @@
 kotlin = "2.3.20" # Upewnij się, że masz zgodną wersję z Compose
 agp = "8.9.1"
 compose-multiplatform = "1.10.3"
-composeHotReload = "1.0.0"
-ktor = "3.4.1"
-koin = "4.2.0"
+composeHotReload = "1.1.1"
+ktor = "3.4.3"
+koin = "4.2.1"
 room = "2.8.4"
 ksp = "2.3.5" # KSP musi pasować do wersji Kotlina!
 sqlite = "2.6.2" # Wymagane przez Room w KMP
 lifecycle = "2.10.0"
 navigation = "2.9.2"
-uiTooling = "1.10.6"
-vico = "3.0.3"
+uiTooling = "1.11.1"
+vico = "3.1.0"
 androidx-activityCompose = "1.13.0"
-kotlinx-coroutines = "1.10.2"
-kotlinx-serialization = "1.10.0"
+kotlinx-coroutines = "1.11.0"
+kotlinx-serialization = "1.11.0"
 compose-plugin = "1.10.3"
-sentry-kmp = "0.25.0"
-buildkonfig = "0.17.1"
+sentry-kmp = "0.26.0"
+buildkonfig = "0.20.0"
 usb-serial-android = "3.8.0"
 jserialcomm = "2.11.4"
 billing = "8.3.0"
-ads = "25.1.0"
-kotlinx-datetime = "0.7.1"
+ads = "25.2.0"
+kotlinx-datetime = "0.8.0"
 kermit = "2.1.0"
+aboutLibraries = "14.2.0"
 
 [libraries]
+#AboutLibraries
+aboutLibraries-core = { module = "com.mikepenz:aboutlibraries-core", version.ref = "aboutLibraries" }
+aboutLibraries-compose = { module = "com.mikepenz:aboutlibraries-compose-m3", version.ref = "aboutLibraries" }
+
 # Kermit
 co-touchlab-ketmin = {module="co.touchlab:kermit", version.ref ="kermit"}
 # Ktor
@@ -67,6 +72,7 @@ usb-serial-android = { module = "com.github.mik3y:usb-serial-for-android", versi
 jserialcomm = { module = "com.fazecast:jSerialComm", version.ref = "jserialcomm" }
 
 [plugins]
+aboutLibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutLibraries" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "composeHotReload" }
 androidApplication = { id = "com.android.application", version.ref = "agp" }

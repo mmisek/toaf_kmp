@@ -312,7 +312,7 @@ object JsonSupport {
     }
 
     private fun decodeHexToInt(value: String?): Int {
-        if (value == null) return 0
+        if (value.isNullOrEmpty()) return 0
         return try {
             if (value.startsWith("0x")) {
                 value.substring(2).toInt(16)
@@ -325,7 +325,7 @@ object JsonSupport {
         }
     }
     private fun decodeHexToLong(value: String?): Long {
-        if (value == null) return 0
+        if (value.isNullOrEmpty()) return 0
         return try {
             if (value.startsWith("0x")) {
                 value.substring(2).toLong(16)

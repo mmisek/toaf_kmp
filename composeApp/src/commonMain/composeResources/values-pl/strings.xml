@@ -420,4 +420,24 @@
 	<string name="dialog_update_title">Dostępna aktualizacja</string>
 	<string name="dialog_update_text_1">Wersja TOAF %1$s jest już dostępna. Przejdź do </string>
 	<string name="dialog_update_text_2"> i pobierz plik aktualizacji.</string>
+
+<string name="dialog_about_tittle">O aplikacji</string>
+<string name="dialog_about_app_name">TOAF %1$s %2$s, build(%3$s)</string>
+<string name="dialog_about_web_page">Strona internetowa Toaf : </string>
+<string name="dialog_about_web_page_link">https://toaf.roverki.eu</string>
+<string name="dialog_about_contact">Kontakt : </string>
+<string name="dialog_about_contact_email">toaf@roverki.eu</string>
+<string name="dialog_about_author">Autor : Marcin Misek</string>
+<string name="dialog_about_greetings">Współautorzy oraz szczególne podziękowania dla :
+    MaReK
+    HarryVIP
+    sTERYD
+    longer86
+    sail
+    Markzo
+    oraz wszystkich z klubu Roverki.pl
+</string>
+<string name="dialog_about_tab_about">O programie</string>
+<string name="dialog_about_tab_licences">Licencje</string>
+<string name="main_menu_about">О TOAF</string>
 </resources>

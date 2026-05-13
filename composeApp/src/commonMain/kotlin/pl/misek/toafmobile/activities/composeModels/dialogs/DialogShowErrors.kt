@@ -28,6 +28,7 @@ import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.enums.ModuleAddress
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
+import java.util.Locale
 
 private const val tag = "DialogShowErrors"
 object DialogShowErrors {
@@ -106,8 +107,8 @@ fun ErrorItem(moduleError: ModuleError, showDetails : Boolean, id :Int, onItemCl
         {
             null -> ""
             is String -> v
-            is Int -> v.toString()
-            is Float -> "%.2f".format(v)
+            is Int, is Long, is Byte -> v.toString()
+            is Float, is Double-> "%.2f".format(Locale.US,v)
             else -> {
                 Logger.e {"$tag : no format for data type ${v::class.simpleName}"}
                 ""

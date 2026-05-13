@@ -37,6 +37,7 @@ import pl.misek.toafmobile.BuildKonfig
 import pl.misek.toafmobile.viewModels.UserInfoViewModel
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.TopBarModelMainActivity
+import pl.misek.toafmobile.activities.composeModels.dialogs.DialogAbout
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogChangeUserPassword
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogCreateUser
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogLoginUser
@@ -50,7 +51,6 @@ import pl.misek.toafmobile.activities.composeModels.menus.MenuMain
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import pl.misek.toafmobile.activities.snackbar.ToafSnackBar
 import pl.misek.toafmobile.activities.snackbar.ToafSnackBarHost
-import pl.misek.toafmobile.tools.getPlatformActivity
 import pl.misek.toafmobile.control.FastControlElement
 import pl.misek.toafmobile.database.Database
 import pl.misek.toafmobile.database.DatabaseSettingFields
@@ -83,16 +83,13 @@ private enum class DialogType
 @Composable
 fun ActivityMainModel(
     onClickDiagnosticButton : () ->Unit,
-    onDeviceChanged: suspend () -> Unit,
+    onExitApplication : () -> Unit,
     updateInterface : Int
 ) {
     val scope = rememberCoroutineScope()
-    val activity = getPlatformActivity()
     val database : Database = koinInject()
     val toafApi : ToafApi = koinInject()
     val toafWifiManager : ToafWifiManager = koinInject()
-    val modulesManager : ModulesManager = koinInject()
-    val currentModules = modulesManager.getCurrentModules()
     val serialDevice : ISerialDevice = koinInject()
 
     val userInfoViewModel : UserInfoViewModel = koinViewModel()
@@ -111,6 +108,7 @@ fun ActivityMainModel(
     var showUserLoginDialog by remember { mutableStateOf(false) }
     var showCreateUserDialog by remember { mutableStateOf(false) }
     var showChangeUserPasswordDialog by remember { mutableStateOf(false) }
+    var showAboutDialog by remember { mutableStateOf(false) }
     var currentCarTypeIndex by remember { mutableIntStateOf(0) }
 
     var usbDeviceInfo by remember { mutableStateOf<UsbDeviceInfo?>(null) }
@@ -178,7 +176,9 @@ fun ActivityMainModel(
                         onShowSelectCarType = {showSelectCarTypeDialog = !showSelectCarTypeDialog},
                         onShowUserLogin = {showUserLoginDialog = !showUserLoginDialog},
                         onShowWifiInterfaceConfig =  {dialogType = DialogType.WifiConfig},
-                        onShowUsbInterfaceConfig = {dialogType = DialogType.UsbConfig}
+                        onShowUsbInterfaceConfig = {dialogType = DialogType.UsbConfig},
+                        onCloseApplication =  { onExitApplication() },
+                        onShowAbout = {showAboutDialog = !showAboutDialog}
                     )
                 },
                 onClickShowInterfaceInfo = { usb, wifi ->
@@ -265,6 +265,12 @@ fun ActivityMainModel(
 
                     else -> {}
                 }
+            }
+            if (showAboutDialog)
+            {
+                DialogAbout(
+                    onClose = {showAboutDialog = false}
+                )
             }
             if (showNewVersionInfo)
             {
@@ -585,7 +591,7 @@ fun ActivityMainModelPreview()
 {
     ActivityMainModel(
         onClickDiagnosticButton = {},
-        onDeviceChanged = {},
+        onExitApplication = {},
         updateInterface = 0
     )
 }

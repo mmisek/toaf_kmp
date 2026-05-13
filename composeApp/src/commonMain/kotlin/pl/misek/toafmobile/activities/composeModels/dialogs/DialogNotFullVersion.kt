@@ -22,12 +22,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
+import pl.misek.toafmobile.PlatformType
 import pl.misek.toafmobile.activities.ToafConstants
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import pl.misek.toafmobile.ads.IToafRewardAds
 import pl.misek.toafmobile.billing.IToafBilling
+import pl.misek.toafmobile.getPlatformType
 import pl.misek.toafmobile.tools.getPlatformActivity
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
@@ -42,12 +44,14 @@ fun DialogNotFullVersion(onWatchAdResult: (Boolean) -> Unit, onCloseClick : () -
     var adReady by remember { mutableStateOf(false) }
     val fullVersionPriceText = stringResource(Res.string.dialog_full_version_get_full_version)
     LaunchedEffect(Unit) {
-        adReady = adHelper.isAdLoaded()
-        if (!adReady) {
-            adHelper.loadAd(
-                onAdLoaded = { adReady = true },
-                onAdFailed = { adReady = false }
-            )
+        if (getPlatformType() == PlatformType.Android) {
+            adReady = adHelper.isAdLoaded()
+            if (!adReady) {
+                adHelper.loadAd(
+                    onAdLoaded = { adReady = true },
+                    onAdFailed = { adReady = false }
+                )
+            }
         }
         fullVersionPrice = toafBilling.getElementPrice(ToafConstants.SKU_TOAF_FULL_VERSION)
     }

@@ -17,28 +17,22 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import pl.misek.toafmobile.modules.interfaces.IModule
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.patrykandpatrick.vico.compose.cartesian.CartesianChartHost
 import com.patrykandpatrick.vico.compose.cartesian.Zoom
@@ -56,7 +50,8 @@ import com.patrykandpatrick.vico.compose.cartesian.rememberVicoZoomState
 import com.patrykandpatrick.vico.compose.common.Fill
 import com.patrykandpatrick.vico.compose.common.component.rememberLineComponent
 import com.patrykandpatrick.vico.compose.common.component.rememberTextComponent
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
@@ -65,16 +60,23 @@ import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.TopBarModel
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogQuestion
 import pl.misek.toafmobile.activities.definitions.ToafColors
-import pl.misek.toafmobile.activities.snackbar.ToafSnackBar
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.livedata.LiveDataElement
 import pl.misek.toafmobile.livedata.LiveDataResultElement
 import pl.misek.toafmobile.modules.ModulesManager
+import pl.misek.toafmobile.modules.interfaces.IModule
 import pl.misek.toafmobile.tools.IFileSupport
 import pl.misek.toafmobile.tools.JsonSupport.getLiveDataElements
 import pl.misek.toafmobile.viewModels.LiveDateViewModel
+import toafmobile.composeapp.generated.resources.AD_save_to_file_message
 import toafmobile.composeapp.generated.resources.Res
-import toafmobile.composeapp.generated.resources.*
+import toafmobile.composeapp.generated.resources.activity_live_data
+import toafmobile.composeapp.generated.resources.activity_live_data_stop
+import toafmobile.composeapp.generated.resources.bmbt_live_data_battery_voltage
+import toafmobile.composeapp.generated.resources.button_live_data_start
+import toafmobile.composeapp.generated.resources.cc_live_data_set_speed
+import toafmobile.composeapp.generated.resources.live_data_type_chart
+import toafmobile.composeapp.generated.resources.live_data_type_table
 import java.io.File
 
 private enum class LiveDataType
@@ -286,10 +288,13 @@ private fun LivaDataChart(liveDataElements: List<List<Float>>)
         val lines = getLineSeries(liveDataElements.size)
         val modelProducer = remember { CartesianChartModelProducer() }
         LaunchedEffect(liveDataElements) {
-            withContext(Dispatchers.Default)
-            {
-                modelProducer.runTransaction {
-                    lineSeries { liveDataElements.forEach { data -> series(data) }
+            if (liveDataElements.isNotEmpty()) {
+                withContext(Dispatchers.Default)
+                {
+                    modelProducer.runTransaction {
+                        lineSeries {
+                            liveDataElements.forEach { data -> series(data) }
+                        }
                     }
                 }
             }

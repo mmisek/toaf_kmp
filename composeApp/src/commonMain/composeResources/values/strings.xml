@@ -370,6 +370,7 @@
     <string name="main_menu_bluetooth">Bluetooth</string>
     <string name="main_menu_wifi">WIFI interface</string>
     <string name="main_menu_exit">Exit</string>
+    <string name="main_menu_about">About Toaf</string>
     <string name="main_menu_get_full_version">Get full version</string>
     <!--AlertDialog Module Info -->
     <string name="alert_module_info_read_error">Identification read error.</string>
@@ -491,4 +492,23 @@
     <string name="dialog_update_title">Update available</string>
     <string name="dialog_update_text_1">TOAF %1$s version is now available. Go to </string>
     <string name="dialog_update_text_2"> and download update file.</string>
+
+    <string name="dialog_about_tittle">About application</string>
+    <string name="dialog_about_app_name">TOAF %1$s %2$s, build(%3$s)</string>
+    <string name="dialog_about_web_page">Toaf web page : </string>
+    <string name="dialog_about_web_page_link">https://toaf.roverki.eu</string>
+    <string name="dialog_about_contact">Contact : </string>
+    <string name="dialog_about_contact_email">toaf@roverki.eu</string>
+    <string name="dialog_about_author">Author : Marcin Misek</string>
+    <string name="dialog_about_greetings">Co-authors and special thanks for :
+        MaReK
+        HarryVIP
+        sTERYD
+        longer86
+        sail
+        Markzo
+        and all from Roverki.pl Club
+    </string>
+    <string name="dialog_about_tab_about">About</string>
+    <string name="dialog_about_tab_licences">Licences</string>
 </resources>

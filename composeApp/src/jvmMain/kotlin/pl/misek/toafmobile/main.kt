@@ -7,14 +7,11 @@ import co.touchlab.kermit.Logger
 import co.touchlab.kermit.Severity
 import io.sentry.Sentry
 import org.jetbrains.compose.resources.painterResource
-import org.koin.compose.koinInject
 import org.koin.core.context.GlobalContext
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import pl.misek.toafmobile.activities.AppNavigation
-import pl.misek.toafmobile.database.Database
 import pl.misek.toafmobile.database.ToafDatabase
-import pl.misek.toafmobile.database.ToafDatabase_Impl
 import pl.misek.toafmobile.koin.commonModules
 import pl.misek.toafmobile.koin.platformModules
 import pl.misek.toafmobile.logger.SentryLogWriter
@@ -23,6 +20,8 @@ import toafmobile.composeapp.generated.resources.toaf_icon_windows
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.system.exitProcess
+
+var database : ToafDatabase? = null
 
 fun main() {
     startKoin {
@@ -48,26 +47,29 @@ fun main() {
             SentryLogWriter(minSeverity = Severity.Error)
         )
     }
-    val database = GlobalContext.get().get<ToafDatabase>()
+    database = GlobalContext.get().get<ToafDatabase>()
     setupCrashHandlers(database)
 
     application {
+        fun onExitApp()
+        {
+            safeCloseDatabase(database, "Crash Handler")
+            stopKoin()
+            exitApplication()
+            exitProcess(0)
+        }
         Window(
-            onCloseRequest = {
-                safeCloseDatabase(database, "Crash Handler")
-                stopKoin()
-                exitApplication()
-                exitProcess(0)
-            },
+            onCloseRequest = { onExitApp() },
             title = "Toaf Desktop",
             icon = painterResource(Res.drawable.toaf_icon_windows)
         ) {
-            AppNavigation()
+            AppNavigation(onExitApp = { onExitApp() })
         }
     }
 }
 
-fun setupCrashHandlers(database: ToafDatabase) {
+
+fun setupCrashHandlers(database: ToafDatabase?) {
     // 1. Hak na wypadek ubicia procesu przez system
     Runtime.getRuntime().addShutdownHook(Thread {
         Logger.i {"Awaryjne zamykanie (Shutdown Hook). Czyszczenie zasobów..."}
@@ -84,17 +86,19 @@ fun setupCrashHandlers(database: ToafDatabase) {
         exitProcess(1)
     }
 }
-private fun safeCloseDatabase(database: ToafDatabase, contextInfo: String) {
+private fun safeCloseDatabase(database: ToafDatabase?, contextInfo: String) {
     val executor = Executors.newSingleThreadExecutor()
-    try {
-        Logger.i{"Próba zamknięcia bazy ($contextInfo)..."}
-        // Uruchamiamy zamykanie w osobnym wątku i czekamy maksymalnie 2 sekundy
-        val future = executor.submit { database.close() }
-        future.get(2, TimeUnit.SECONDS)
-        Logger.i {"Baza zamknięta pomyślnie ($contextInfo)."}
-    } catch (e: Exception) {
-        Logger.e {"BŁĄD ZAMYKANIA BAZY ($contextInfo) - Porzucam operację by uniknąć zombie: ${e.message}"}
-    } finally {
-        executor.shutdownNow()
+    if (database != null) {
+        try {
+            Logger.i { "Próba zamknięcia bazy ($contextInfo)..." }
+            // Uruchamiamy zamykanie w osobnym wątku i czekamy maksymalnie 2 sekundy
+            val future = executor.submit { database.close() }
+            future.get(2, TimeUnit.SECONDS)
+            Logger.i { "Baza zamknięta pomyślnie ($contextInfo)." }
+        } catch (e: Exception) {
+            Logger.e { "BŁĄD ZAMYKANIA BAZY ($contextInfo) - Porzucam operację by uniknąć zombie: ${e.message}" }
+        } finally {
+            executor.shutdownNow()
+        }
     }
 }

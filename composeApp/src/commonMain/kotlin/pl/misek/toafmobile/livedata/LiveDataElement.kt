@@ -27,7 +27,7 @@ data class LiveDataElementJson (
     var values: MutableList<LiveDataElementValuesJson>? = null,
     var visible: String? = "",
     var u2: String? = "",
-    var invertA: String? = "",
+    @SerialName("invert_a") var invertA: String? = "",
     var carType: MutableList<String>? = null,
     var format: String? = ""
 )

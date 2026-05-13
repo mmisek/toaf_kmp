@@ -1,8 +1,8 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
-val versionCode = 100
-val versionName = "1.0.0"
+val versionCode = 101
+val versionName = "1.0.1"
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
@@ -12,6 +12,7 @@ plugins {
     alias(libs.plugins.buildkonfig)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.aboutLibraries)
 }
 
 kotlin {
@@ -60,6 +61,8 @@ kotlin {
             implementation(libs.sentry.kmp)
             implementation(libs.kotlinx.datetime)
             implementation(libs.co.touchlab.ketmin)
+            implementation(libs.aboutLibraries.compose)
+            implementation(libs.aboutLibraries.core)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
@@ -105,7 +108,7 @@ android {
 
 dependencies {
     debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation("org.jetbrains.compose.ui:ui-tooling:1.10.2")
+    debugImplementation("org.jetbrains.compose.ui:ui-tooling:1.10.3")
     add("kspAndroid", libs.room.compiler)
     add("kspJvm", libs.room.compiler)
 }
@@ -143,4 +146,14 @@ buildkonfig {
         buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.INT, "VERSION_CODE", versionCode.toString())
         buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "VERSION_NAME", versionName)
     }
+}
+aboutLibraries {
+    export {
+        outputFile = file("src/commonMain/composeResources/files/aboutlibraries.json")
+        prettyPrint = true
+    }
+}
+
+tasks.matching { it.name == "packageReleaseDistributionForCurrentOS" }.configureEach {
+    dependsOn("exportLibraryDefinitions")
 }

@@ -32,7 +32,9 @@ object MenuMain {
         onShowSelectCarType : () -> Unit,
         onShowUserLogin : () -> Unit,
         onShowWifiInterfaceConfig : () -> Unit,
-        onShowUsbInterfaceConfig: () -> Unit
+        onShowUsbInterfaceConfig: () -> Unit,
+        onCloseApplication: () -> Unit,
+        onShowAbout: () -> Unit,
     )
     {
         var expanded by remember {mutableStateOf(false)}
@@ -85,12 +87,22 @@ object MenuMain {
                         }
                     )
                 }
+                HorizontalDivider()
                 DropdownMenuItem(
-                    text = {Text(stringResource(Res.string.activity_coding_menu_load_public_backup))},
-                    leadingIcon =  {Icon(Icons.Default.FileOpen, contentDescription = null)},
+                    text = {Text(stringResource(Res.string.main_menu_about))},
+                    leadingIcon =  {Icon(Icons.Default.Info, contentDescription = null)},
                     onClick = {
                         expanded = false
-                        //onReadPublicBackupClick()
+                        onShowAbout()
+                    }
+                )
+                HorizontalDivider()
+                DropdownMenuItem(
+                    text = {Text(stringResource(Res.string.main_menu_exit))},
+                    leadingIcon =  {Icon(Icons.Default.Close, contentDescription = null)},
+                    onClick = {
+                        expanded = false
+                        onCloseApplication()
                     }
                 )
             }

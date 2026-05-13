@@ -15,5 +15,6 @@ object ToafColors {
     var toafToastSuccess = Color(0xFF05CC08)
     var toafTextColorWhite = Color(0xFFFFFFFF)
     var toafTextColorGrey = Color(0xFFF0F0F0)
+    var toafToastLink = Color(0xFFFF3727)
 
 }

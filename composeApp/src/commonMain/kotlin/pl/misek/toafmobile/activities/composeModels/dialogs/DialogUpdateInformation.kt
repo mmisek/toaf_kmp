@@ -67,13 +67,13 @@ fun DialogShowUpdateInformation(versionInfo : ToafVersionInfo?, onClose : () -> 
                     url = urlLink,
                     styles = TextLinkStyles(
                         style = SpanStyle(
-                            color = Color.Red,
+                            color = ToafColors.toafToastLink,
                             textDecoration = TextDecoration.Underline
                         )
                     )
                 )
                 withLink(link){
-                    append(urlName)
+                    append(urlLink)
                 }
                 append(updateText2)
             }

@@ -34,8 +34,8 @@ import java.util.Locale
 
 class ToafApi(private val client: HttpClient, private val database: Database) {
     private val tag = "ToafApi"
-    //private val url = "https://toaf.roverki.eu:5999"
-    private val url = "http://192.168.1.5:5999"
+    private val url = "https://toaf.roverki.eu:5999"
+    //private val url = "http://192.168.1.5:5999"
 
     private suspend fun isCredentialValid() : Boolean
     {
@@ -51,7 +51,7 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
             else
                 ServerConnectionState.DISCONNECTED
         } catch (ex: Exception) {
-            Logger.i {"$tag: ${ex.toString()}"}
+            Logger.e {"$tag: ${ex.toString()}"}
             ServerConnectionState.DISCONNECTED
         }
     }
@@ -68,11 +68,11 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 val body = result.body<CodingResponse>()
                 body.message.firstOrNull()
             } else {
-                Logger.e {"$tag: ${result.bodyAsText()}"}
+                Logger.i {"$tag: ${result.bodyAsText()}"}
                 null
             }
         } catch (ex: Exception) {
-            Logger.i {"$tag: $ex"}
+            Logger.e {"$tag: $ex"}
             null
         }
     }
@@ -90,11 +90,11 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 val message = response.body<BackupElementResponse>()
                 message.message
             } else {
-                Logger.e {"$tag: ${response.bodyAsText()}"}
+                Logger.i {"$tag: ${response.bodyAsText()}"}
                 null
             }
         } catch (ex: Exception) {
-            Logger.i{"$tag: $ex"}
+            Logger.e {"$tag: $ex"}
             null
         }
     }
@@ -111,12 +111,12 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
             return if (response.status == HttpStatusCode.OK)
                 true
             else {
-                Logger.e {"$tag: ${response.bodyAsText()}"}
+                Logger.i {"$tag: ${response.bodyAsText()}"}
                 false
             }
 
         } catch (ex: Exception) {
-            Logger.i {"$tag: $ex"}
+            Logger.e {"$tag: $ex"}
             false
         }
     }
@@ -130,11 +130,11 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
             return if (response.status == HttpStatusCode.OK)
                 true
             else {
-                Logger.e {"$tag: ${response.bodyAsText()}"}
+                Logger.i {"$tag: ${response.bodyAsText()}"}
                 false
             }
         } catch (ex: Exception) {
-            Logger.i {"$tag: $ex"}
+            Logger.e {"$tag: $ex"}
             false
         }
     }
@@ -151,11 +151,11 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
             return if (response.status == HttpStatusCode.OK)
                 true
             else {
-                Logger.e {"$tag: ${response.bodyAsText()}"}
+                Logger.i {"$tag: ${response.bodyAsText()}"}
                 false
             }
         } catch (ex: Exception) {
-            Logger.i {"$tag: $ex"}
+            Logger.e {"$tag: $ex"}
             false
         }
     }
@@ -171,11 +171,11 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
             return if (response.status == HttpStatusCode.OK)
                 true
             else {
-                Logger.e {"$tag: ${response.bodyAsText()}"}
+                Logger.i {"$tag: ${response.bodyAsText()}"}
                 false
             }
         } catch (ex: Exception) {
-            Logger.i {"$tag: $ex"}
+            Logger.e {"$tag: $ex"}
             false
         }
     }
@@ -193,12 +193,12 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 userInfo
             }
             else {
-                Logger.e {"$tag: ${response.bodyAsText()}"}
+                Logger.i {"$tag: ${response.bodyAsText()}"}
                 null
             }
 
         } catch (ex: Exception) {
-            Logger.i {"$tag: $ex"}
+            Logger.e {"$tag: $ex"}
             null
         }
     }
@@ -214,11 +214,11 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
             return if (response.status == HttpStatusCode.OK)
                 true
             else {
-                Logger.e {"$tag: ${response.bodyAsText()}"}
+                Logger.i {"$tag: ${response.bodyAsText()}"}
                 false
             }
         } catch (ex: Exception) {
-            Logger.i {"$tag: $ex"}
+            Logger.e {"$tag: $ex"}
             false
         }
     }
@@ -234,11 +234,11 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
             return if (response.status == HttpStatusCode.OK)
                 true
             else {
-                Logger.e {"$tag: ${response.bodyAsText()}"}
+                Logger.i {"$tag: ${response.bodyAsText()}"}
                 false
             }
         } catch (ex: Exception) {
-            Logger.i {"$tag: $ex"}
+            Logger.e {"$tag: $ex"}
             false
         }
     }
@@ -259,11 +259,11 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
             return if (response.status == HttpStatusCode.OK)
                 true
             else {
-                Logger.e {"$tag: ${response.bodyAsText()}"}
+                Logger.i {"$tag: ${response.bodyAsText()}"}
                 false
             }
         } catch (ex: Exception) {
-            Logger.i {"$tag: $ex"}
+            Logger.e {"$tag: $ex"}
             false
         }
     }
@@ -292,11 +292,11 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
             return if (response.status == HttpStatusCode.OK)
                 true
             else {
-                Logger.e {"$tag: ${response.bodyAsText()}"}
+                Logger.i {"$tag: ${response.bodyAsText()}"}
                 false
             }
         } catch (ex: Exception) {
-            Logger.i {"$tag: $ex"}
+            Logger.e {"$tag: $ex"}
             false
         }
     }
@@ -313,7 +313,7 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 response.body<ToafWifiUpdates>()
             else null
         } catch (ex: Exception) {
-            Logger.e{"$tag: $ex"}
+            Logger.e {"$tag: $ex"}
             null
         }
     }
@@ -398,11 +398,11 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 return productResponse.data
             }
             else {
-                Logger.e {"$tag: ${response.bodyAsText()}"}
+                Logger.i {"$tag: ${response.bodyAsText()}"}
                 null
             }
         } catch (ex: Exception) {
-            Logger.i { "$tag: $ex" }
+            Logger.e { "$tag: $ex" }
             null
         }
     }
@@ -425,11 +425,11 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 session.data
             }
             else {
-                Logger.e {"$tag: ${response.bodyAsText()}"}
+                Logger.i {"$tag: ${response.bodyAsText()}"}
                 null
             }
         } catch (ex: Exception) {
-            Logger.i { "$tag: $ex" }
+            Logger.e { "$tag: $ex" }
             null
         }
     }
@@ -451,12 +451,12 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
             }
             else
             {
-                Logger.e {"$tag : ${response.bodyAsText()}"}
+                Logger.i {"$tag : ${response.bodyAsText()}"}
                 false
             }
         } catch (ex: Exception)
         {
-            Logger.i { "$tag: $ex" }
+            Logger.e { "$tag: $ex" }
             false
         }
     }
@@ -469,7 +469,7 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
             response.status == HttpStatusCode.OK
         } catch (ex : Exception)
         {
-            Logger.i { "$tag: $ex"}
+            Logger.e { "$tag: $ex"}
             false
         }
 
