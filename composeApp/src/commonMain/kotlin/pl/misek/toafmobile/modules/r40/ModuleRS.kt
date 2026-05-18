@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.r40
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceHelper
@@ -16,6 +17,7 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_description_rs
 import toafmobile.composeapp.generated.resources.module_rs
 
+private const val tag = "ModuleRS"
 class ModuleRS( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddress.MODULE_RS, listOf(CarType.R40)), IModuleControl, IModuleLiveData {
 
     override fun getKoinName() = KoinNames.ModuleR40Rs
@@ -27,9 +29,14 @@ class ModuleRS( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddre
     override suspend fun readLiveData(): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = mutableMapOf()
         val message = interfaceWrite(byteArrayOf(0x1B))
-        if (message.isValid) {
-            result[0x00] = message.answer.copyOfRange(3, message.answer.size)
-            return result
+        try {
+            if (message.isValid) {
+                result[0x00] = message.answer.copyOfRange(3, message.answer.size)
+                return result
+            }
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [readLiveData], $ex, $message"}
         }
         return null
     }
@@ -43,13 +50,18 @@ class ModuleRS( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddre
     override suspend fun getAllErrors(): List<ModuleError> {
         val result: MutableList<ModuleError> = mutableListOf()
         val message = interfaceWrite(byteArrayOf(0x04))
-        if (message.isValid) {
-            if (message.answer[3].toInt() != 0x00) {
-                val errorCode = String.format("%02X", message.answer[3])
-                val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
-                errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5].toInt() and 0xFF)))
-                result.add(ModuleError( ModuleAddress.MODULE_RS, errorCode, errorDescription))
+        try {
+            if (message.isValid) {
+                if (message.answer[3].toInt() != 0x00) {
+                    val errorCode = String.format("%02X", message.answer[3])
+                    val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
+                    errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5].toInt() and 0xFF)))
+                    result.add(ModuleError(ModuleAddress.MODULE_RS, errorCode, errorDescription))
+                }
             }
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [getAllErros], $ex, $message"}
         }
         return result
     }

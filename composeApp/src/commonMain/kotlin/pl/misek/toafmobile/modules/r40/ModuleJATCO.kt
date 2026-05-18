@@ -1,5 +1,7 @@
 package pl.misek.toafmobile.modules.r40
 
+import co.touchlab.kermit.Logger
+import co.touchlab.kermit.Message
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceMapper
@@ -18,9 +20,8 @@ import pl.misek.toafmobile.protocols.ProtocolKWP
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_description_jatco
 import toafmobile.composeapp.generated.resources.module_gearbox
-
+private const val tag = "ModuleJATCO"
 class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IModuleLiveData {
-    private val tag = "ModuleJATCO"
     private val moduleAddress = ModuleAddress.MODULE_JATCO.address
     private val liveDataBlocksToRead: MutableList<Byte> = ArrayList()
 
@@ -49,61 +50,100 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
     override suspend fun getIdentification(): ModuleInfo? {
         var info: ModuleInfo? = null
         var message = kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x80.toByte()))
-        if (message.isValid) {
-            info = ModuleInfo()
-            val answer = message.answer
-            info.id1 = String(answer.copyOfRange(6, 9)) + answer.copyOfRange(9,12).joinToString("") { "%02X".format(it) }
-            info.hw = (answer[13].toInt() and 0xFF).toByte().toHexString()
-            info.ci = (answer[14].toInt() and 0xFF).toString()
-            info.di = (answer[15].toInt() and 0xFF).toByte().toString()
-            info.bi = (answer[16].toInt() and 0xFF).toByte().toHexString()
-            info.sw = (answer[22].toInt() and 0xFF).toByte().toHexString()
-            info.producer = ModulesFunction.getProducer(answer[21].toInt())
-            info.date = String.format(
-                "%02X/%02X/%02X%02X",
-                answer[20].toInt() and 0xFF,
-                answer[19].toInt() and 0xFF,
-                answer[17].toInt() and 0xFF,
-                answer[18].toInt() and 0xFF
-            )
-        }
-        message = kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x87.toByte()))
-        if (message.isValid && info != null) {
-            info.id2 = String(message.answer.copyOfRange(26, 29)) +
-                    message.answer.copyOfRange(29,32).joinToString("") { "%02X".format((it)) }
-        }
-        if (info != null) {
-            info.serial = getSerialNumber()
-        }
-        info?.let {
-            var message = kwp!!.write(moduleAddress,0x1A, byteArrayOf(0x92.toByte()))
-            if (message.isValid)
-                it.additionalInfo.add(Pair(Res.string.module_description_jatco, String(message.answer.copyOfRange(6,message.answer.size -1))))
-            message = kwp!!.write(moduleAddress,0x1A, byteArrayOf(0x94.toByte()))
-            if (message.isValid)
-                it.additionalInfo.add(Pair(Res.string.module_description_jatco, String(message.answer.copyOfRange(6,message.answer.size -1))))
-            message = kwp!!.write(moduleAddress,0x1A, byteArrayOf(0x89.toByte()))
-            if (message.isValid)
-                it.additionalInfo.add(Pair(Res.string.module_description_jatco, String(message.answer.copyOfRange(6, 9)) + message.answer.copyOfRange(9,12).joinToString("") {x-> "%02X".format(x) }))
+        try {
+            if (message.isValid) {
+                info = ModuleInfo()
+                val answer = message.answer
+                info.id1 = String(answer.copyOfRange(6, 9)) + answer.copyOfRange(9, 12)
+                    .joinToString("") { "%02X".format(it) }
+                info.hw = (answer[13].toInt() and 0xFF).toByte().toHexString()
+                info.ci = (answer[14].toInt() and 0xFF).toString()
+                info.di = (answer[15].toInt() and 0xFF).toByte().toString()
+                info.bi = (answer[16].toInt() and 0xFF).toByte().toHexString()
+                info.sw = (answer[22].toInt() and 0xFF).toByte().toHexString()
+                info.producer = ModulesFunction.getProducer(answer[21].toInt())
+                info.date = String.format(
+                    "%02X/%02X/%02X%02X",
+                    answer[20].toInt() and 0xFF,
+                    answer[19].toInt() and 0xFF,
+                    answer[17].toInt() and 0xFF,
+                    answer[18].toInt() and 0xFF
+                )
+            }
+            message = kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x87.toByte()))
+            if (message.isValid && info != null) {
+                info.id2 = String(message.answer.copyOfRange(26, 29)) +
+                        message.answer.copyOfRange(29, 32).joinToString("") { "%02X".format((it)) }
+            }
+            if (info != null) {
+                info.serial = getSerialNumber()
+            }
+            info?.let {
+                var message = kwp!!.write(moduleAddress, 0x1A, byteArrayOf(0x92.toByte()))
+                if (message.isValid)
+                    it.additionalInfo.add(
+                        Pair(
+                            Res.string.module_description_jatco,
+                            String(message.answer.copyOfRange(6, message.answer.size - 1))
+                        )
+                    )
+                message = kwp!!.write(moduleAddress, 0x1A, byteArrayOf(0x94.toByte()))
+                if (message.isValid)
+                    it.additionalInfo.add(
+                        Pair(
+                            Res.string.module_description_jatco,
+                            String(message.answer.copyOfRange(6, message.answer.size - 1))
+                        )
+                    )
+                message = kwp!!.write(moduleAddress, 0x1A, byteArrayOf(0x89.toByte()))
+                if (message.isValid)
+                    it.additionalInfo.add(
+                        Pair(
+                            Res.string.module_description_jatco,
+                            String(message.answer.copyOfRange(6, 9)) + message.answer.copyOfRange(
+                                9,
+                                12
+                            ).joinToString("") { x -> "%02X".format(x) })
+                    )
+            }
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [getIdentification], $ex, $message"}
         }
         return info
     }
 
     private suspend fun getSerialNumber(): String {
         val message = kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x94.toByte()))
-        if (message.isValid) {
-            return String.format(
-                "%02X%02X",
-                message.answer[4].toInt() and 0xFF,
-                message.answer[5].toInt() and 0xFF
-            )
+        try {
+            if (message.isValid) {
+                return String.format(
+                    "%02X%02X",
+                    message.answer[4].toInt() and 0xFF,
+                    message.answer[5].toInt() and 0xFF
+                )
+            }
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [getSErialNumber], $ex, $message"}
         }
         return ""
     }
 
     override suspend fun getVIN(): String? {
         val message = kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x87.toByte()))
-        if (message.isValid) return String(message.answer.copyOfRange(6, 17)) + message.answer.copyOfRange(18, 21).toHexString()
+        try {
+            if (message.isValid) return String(
+                message.answer.copyOfRange(
+                    6,
+                    17
+                )
+            ) + message.answer.copyOfRange(18, 21).toHexString()
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [getVIN], $ex,$message"}
+        }
+
         return null
     }
 
@@ -123,30 +163,40 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
         var result: MutableList<ModuleError>? = null
         if (securityAccess(0x81,0x03)) {
             val message = kwp!!.write(moduleAddress, 0x18.toByte(), byteArrayOf(0x00, 0x00, 0x00), 500)
-            if (message.isValid) {
-                result = mutableListOf()
-                for (i in 0 until (message.answer[5].toInt() and 0xFF)) {
-                    val errorCode = ((message.answer[6 + 3 * i].toInt() and 0xFF) shl 8) + (message.answer[7 + 3 * i].toInt() and 0xFF)
-                    val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
-                    for (j in 0..7) {
-                        if ((message.answer[8 + 3 * i].toInt() and (0x01 shl j)) == (0x01 shl j))
-                        {
-                            ResourceMapper.stringResource(String.format("jatco_error_description_%02X",0x01 shl j))
-                                ?.let {errorDescription.add(Pair(it,null))}
+            try {
+                if (message.isValid) {
+                    result = mutableListOf()
+                    for (i in 0 until (message.answer[5].toInt() and 0xFF)) {
+                        val errorCode =
+                            ((message.answer[6 + 3 * i].toInt() and 0xFF) shl 8) + (message.answer[7 + 3 * i].toInt() and 0xFF)
+                        val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
+                        for (j in 0..7) {
+                            if ((message.answer[8 + 3 * i].toInt() and (0x01 shl j)) == (0x01 shl j)) {
+                                ResourceMapper.stringResource(
+                                    String.format(
+                                        "jatco_error_description_%02X",
+                                        0x01 shl j
+                                    )
+                                )
+                                    ?.let { errorDescription.add(Pair(it, null)) }
+                            }
                         }
-                    }
-                    if ((message.answer[8 + 3 * i].toInt() and 0xFE) == 0xFE) {
-                        ResourceMapper.stringResource("jatco_error_description_FE")
-                            ?.let {errorDescription.add(Pair(it,null))}
-                    }
-                    result.add(
-                        ModuleError(
-                            ModuleAddress.MODULE_JATCO,
-                            String.format("%04X", errorCode),
-                            errorDescription
+                        if ((message.answer[8 + 3 * i].toInt() and 0xFE) == 0xFE) {
+                            ResourceMapper.stringResource("jatco_error_description_FE")
+                                ?.let { errorDescription.add(Pair(it, null)) }
+                        }
+                        result.add(
+                            ModuleError(
+                                ModuleAddress.MODULE_JATCO,
+                                String.format("%04X", errorCode),
+                                errorDescription
+                            )
                         )
-                    )
+                    }
                 }
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [getAllErros], $ex, $message"}
             }
         }
         return result
@@ -169,9 +219,14 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
         val result: MutableMap<Int, ByteArray> = HashMap()
         for (b in liveDataBlocksToRead) {
             val message = kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(b), 100)
-            if (message.isValid)
-                result[b.toInt()] =message.answer.copyOfRange(6, message.length - 1)
-            else return null
+            try {
+                if (message.isValid)
+                    result[b.toInt()] = message.answer.copyOfRange(6, message.length - 1)
+                else return null
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [readLiveData], $ex, $message"}
+            }
         }
         return result
     }
@@ -210,18 +265,23 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
             var message = kwp!!.write(moduleAddress, 0x10.toByte(), byteArrayOf(diagnosticSession.toByte()))
             if (message.isValid) {
                 message = kwp!!.write(moduleAddress, 0x27.toByte(), byteArrayOf(level.toByte()), 1000)
-                if (message.isValid) {
-                    val code =
-                        ((message.answer[6].toInt() and 0xFF) shl 8) + (message.answer[7].toInt() and 0xFF)
-                    if (code == 0x0000) return true
-                    else {
-                        val seed = securityAccessCalculator(level, code)
-                        val data = byteArrayOf(
-                            (level + 1).toByte(),
-                            ((seed and 0xFF00) shr 8).toByte(), (seed and 0xFF).toByte()
-                        )
-                        return kwp!!.write(moduleAddress, 0x27.toByte(), data, 1000).isValid
+                try{
+                    if (message.isValid) {
+                        val code =
+                            ((message.answer[6].toInt() and 0xFF) shl 8) + (message.answer[7].toInt() and 0xFF)
+                        if (code == 0x0000) return true
+                        else {
+                            val seed = securityAccessCalculator(level, code)
+                            val data = byteArrayOf(
+                                (level + 1).toByte(),
+                                ((seed and 0xFF00) shr 8).toByte(), (seed and 0xFF).toByte()
+                            )
+                            return kwp!!.write(moduleAddress, 0x27.toByte(), data, 1000).isValid
+                        }
                     }
+                } catch (ex : Exception)
+                {
+                    Logger.e {"$tag [securityAccess], $ex, $message"}
                 }
             }
         }

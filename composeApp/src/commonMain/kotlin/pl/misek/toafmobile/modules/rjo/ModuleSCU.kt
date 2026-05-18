@@ -26,9 +26,9 @@ import toafmobile.composeapp.generated.resources.module_bcu
 import toafmobile.composeapp.generated.resources.module_description_scu
 import java.util.Locale
 
+private const val tag = "ModuleSCU"
 class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IModuleVIN,
     IModuleCoding, IModuleLiveData, IModuleEKA, IModuleScuKeys {
-    private val tag = "ModuleSCU"
 
     private val MODULE_ADDRESS = ModuleAddress.MODULE_SCU.address
 
@@ -62,41 +62,48 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
 
     override suspend fun getIdentification(): ModuleInfo? {
         var info: ModuleInfo? = null
-        try {
-            if (moduleInit()) {
+        if (moduleInit()) {
                 val message =
                     kwp.write(MODULE_ADDRESS, 0x1A.toByte(), byteArrayOf(0x80.toByte()), 50)
                 if (message.isValid) {
-                    info = ModuleInfo()
-                    val answer = message.answer
-                    info.id1 = String(answer.copyOfRange(5, 8)) + String.format(
-                        Locale.getDefault(),
-                        "%02d%02d%02d",
-                        answer[8].toInt() and 0xFF,
-                        answer[9].toInt() and 0xFF,
-                        answer[10].toInt() and 0xFF
-                    )
-                    info.bi = String.format("%02X", answer[11].toInt() and 0xFF)
-                    info.ci = String.format("%02X", answer[12].toInt() and 0xFF)
-                    info.di = String.format("%02X", answer[13].toInt() and 0xFF)
-                    info.date = String.format(
-                        "%02X/%02X",
-                        answer[15].toInt() and 0xFF,
-                        answer[16].toInt() and 0xFF
-                    )
-                    info.producer = ModulesFunction.getProducer(answer[17].toInt() and 0xFF)
-                    info.sw = String.format("%02X", answer[18].toInt() and 0xFF)
-                    info.serial = getSerialNumber()
-                    info.additionalInfo.add(
-                        Pair(Res.string.dialog_wifi_interface_hardware, getSupplierHardwareReferenceNumber() ?: ""))
-                    info.additionalInfo.add(
-                        Pair(Res.string.dialog_wifi_interface_software, getSupplierSoftwareReferenceNumber() ?: ""))
+                    try {
+                        info = ModuleInfo()
+                        val answer = message.answer
+                        info.id1 = String(answer.copyOfRange(5, 8)) + String.format(
+                            Locale.getDefault(),
+                            "%02d%02d%02d",
+                            answer[8].toInt() and 0xFF,
+                            answer[9].toInt() and 0xFF,
+                            answer[10].toInt() and 0xFF
+                        )
+                        info.bi = String.format("%02X", answer[11].toInt() and 0xFF)
+                        info.ci = String.format("%02X", answer[12].toInt() and 0xFF)
+                        info.di = String.format("%02X", answer[13].toInt() and 0xFF)
+                        info.date = String.format(
+                            "%02X/%02X",
+                            answer[15].toInt() and 0xFF,
+                            answer[16].toInt() and 0xFF
+                        )
+                        info.producer = ModulesFunction.getProducer(answer[17].toInt() and 0xFF)
+                        info.sw = String.format("%02X", answer[18].toInt() and 0xFF)
+                        info.serial = getSerialNumber()
+                        info.additionalInfo.add(
+                            Pair(
+                                Res.string.dialog_wifi_interface_hardware,
+                                getSupplierHardwareReferenceNumber() ?: ""
+                            )
+                        )
+                        info.additionalInfo.add(
+                            Pair(
+                                Res.string.dialog_wifi_interface_software,
+                                getSupplierSoftwareReferenceNumber() ?: ""
+                            )
+                        )
+                    } catch (ex: Exception) {
+                        Logger.e { "$tag [detIdentification]: $ex, $message" }
+                    }
                 }
-            }
-        } catch (ex: Exception) {
-            Logger.e{"$tag : ${ex.toString()}"}
         }
-
         return info
     }
 
@@ -104,7 +111,14 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
         if (moduleInit()) {
             val message = kwp.write(MODULE_ADDRESS, 0x1A.toByte(), byteArrayOf(0x92.toByte()), 50)
             if (message.isValid)
-                return String(message.answer.copyOfRange(5,message.answer.size-1))
+                try {
+                    return String(message.answer.copyOfRange(5,message.answer.size-1))
+                }
+                catch (ex : Exception)
+                {
+                    Logger.e { "$tag : $ex, $message" }
+                }
+
         }
         return null
     }
@@ -113,7 +127,13 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
         if (moduleInit()) {
             val message = kwp.write(MODULE_ADDRESS, 0x1A.toByte(), byteArrayOf(0x95.toByte()), 50)
             if (message.isValid)
-                return String(message.answer.copyOfRange(5,message.answer.size - 1))
+                try {
+                    return String(message.answer.copyOfRange(5,message.answer.size - 1))
+                }
+                catch (ex: Exception)
+                {
+                    Logger.e { "$tag [getSupplierSoftwareReferenceNumber]: $ex, $message" }
+                }
         }
         return null
     }
@@ -122,12 +142,18 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
         if (moduleInit()) {
             val message = kwp.write(MODULE_ADDRESS, 0x1A.toByte(), byteArrayOf(0x8A.toByte()), 50)
             if (message.isValid) {
-                return String(message.answer.copyOfRange( 5, 7)) + String.format(
-                    "%02x%02X%02X",
-                    message.answer[7].toInt() and 0xFF,
-                    message.answer[8].toInt() and 0xFF,
-                    message.answer[9].toInt() and 0xFF
-                )
+                try {
+                    return String(message.answer.copyOfRange(5, 7)) + String.format(
+                        "%02x%02X%02X",
+                        message.answer[7].toInt() and 0xFF,
+                        message.answer[8].toInt() and 0xFF,
+                        message.answer[9].toInt() and 0xFF
+                    )
+                }
+                catch (ex: Exception)
+                {
+                    Logger.e { "$tag [getSerialNumber]: $ex, $message" }
+                }
             }
         }
         return ""
@@ -137,7 +163,12 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
         if (moduleInit()) {
             val message = kwp.write(MODULE_ADDRESS, 0x1A.toByte(), byteArrayOf(0x90.toByte()), 50)
             if (message.isValid) {
-                return String(message.answer.copyOfRange(5, 22))
+                try {
+                    return String(message.answer.copyOfRange(5, 22))
+                } catch ( ex: Exception)
+                {
+                    Logger.e { "$tag [getVIN]: $ex, $message" }
+                }
             }
         }
         return null
@@ -164,20 +195,24 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
         if (moduleInit() && startDiagnosticSession(0x86.toByte()) && securityAccess(0x05.toByte())) {
             val message = kwp.write(MODULE_ADDRESS, 0x21.toByte(), byteArrayOf(0x62.toByte()), 50)
             if (message.isValid) {
-                result = ArrayList()
-                for (i in 5 until message.length - 1) {
-                    for (j in 1..0xa) {
-                        if ((message.answer[i].toInt() and j) == j) {
-                            val error = ModuleError(
-                                ModuleAddress.MODULE_SCU,
-                                String.format("%02X", j),
-                                ArrayList()
-                            )
-                            result.add(error)
+                try {
+                    result = ArrayList()
+                    for (i in 5 until message.length - 1) {
+                        for (j in 1..0xa) {
+                            if ((message.answer[i].toInt() and j) == j) {
+                                val error = ModuleError(
+                                    ModuleAddress.MODULE_SCU,
+                                    String.format("%02X", j),
+                                    ArrayList()
+                                )
+                                result.add(error)
+                            }
                         }
                     }
+                    return result
+                } catch (ex: Exception) {
+                    Logger.e { "$tag [getAllErrors]: $ex, $message" }
                 }
-                return result
             }
         }
         return null
@@ -220,15 +255,20 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
     private suspend fun securityAccess(mode: Byte): Boolean {
         val message = kwp.write(MODULE_ADDRESS, 0x27.toByte(), byteArrayOf(mode), 50)
         if (message.isValid) {
-            val code =
-                ((message.answer[5].toInt() and 0xFF) shl 8) + (message.answer[6].toInt() and 0xFF)
-            val seed = securityAccessCalculator(code)
-            val data = byteArrayOf(
-                (mode + 1).toByte(),
-                ((seed and 0xFF00) shr 8).toByte(),
-                (seed and 0xFF).toByte()
-            )
-            return kwp.write(MODULE_ADDRESS, 0x27.toByte(), data, 50).isValid
+            try {
+                val code =
+                    ((message.answer[5].toInt() and 0xFF) shl 8) + (message.answer[6].toInt() and 0xFF)
+                val seed = securityAccessCalculator(code)
+                val data = byteArrayOf(
+                    (mode + 1).toByte(),
+                    ((seed and 0xFF00) shr 8).toByte(),
+                    (seed and 0xFF).toByte()
+                )
+                return kwp.write(MODULE_ADDRESS, 0x27.toByte(), data, 50).isValid
+            } catch ( ex: Exception)
+            {
+                Logger.e { "$tag [securityAccess]: $ex, $message" }
+            }
         }
         return false
     }
@@ -266,12 +306,17 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
         if (moduleInit() && startDiagnosticSession(0x86.toByte()) && securityAccess(0x05.toByte())) {
             val message = kwp.write(MODULE_ADDRESS, 0x21.toByte(), byteArrayOf(0x60), 50)
             if (message.isValid) {
-                stopDiagnosticSession()
-                return String.format(
-                    "%02X%02X",
-                    message.answer[5].toInt() and 0xFF,
-                    message.answer[6].toInt() and 0xFF
-                )
+                try {
+                    stopDiagnosticSession()
+                    return String.format(
+                        "%02X%02X",
+                        message.answer[5].toInt() and 0xFF,
+                        message.answer[6].toInt() and 0xFF
+                    )
+                } catch ( ex: Exception)
+                {
+                    Logger.e { "$tag [readEKACode]: $ex, $message" }
+                }
             }
         }
         return null
@@ -302,9 +347,14 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
                 val message =
                     kwp.write(MODULE_ADDRESS, 0x21.toByte(), byteArrayOf((i + 0x51).toByte()), 50)
                 if (message.isValid) {
-                    if (result == null )
-                        result = mutableListOf()
-                    result.add(message.answer.copyOfRange(5, message.answer.size - 1))
+                    try {
+                        if (result == null)
+                            result = mutableListOf()
+                        result.add(message.answer.copyOfRange(5, message.answer.size - 1))
+                    } catch (ex : Exception)
+                    {
+                        Logger.e { "$tag [readCoding]: $ex, $message" }
+                    }
                 }
             }
         }
@@ -354,8 +404,13 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
         val result: MutableMap<Int, ByteArray> = HashMap()
         val message = kwp.write(MODULE_ADDRESS, 0x21.toByte(), byteArrayOf(0x50), 50)
         if (message.isValid) {
-            result[0x50] = message.answer.copyOfRange(5, message.answer.size - 1)
-            return result
+            try {
+                result[0x50] = message.answer.copyOfRange(5, message.answer.size - 1)
+                return result
+            } catch ( ex : Exception)
+            {
+                Logger.e { "$tag [readLiveData]: $ex, $message" }
+            }
         }
 
         return null

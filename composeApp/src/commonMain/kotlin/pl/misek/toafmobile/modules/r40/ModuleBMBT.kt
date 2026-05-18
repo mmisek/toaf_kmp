@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.r40
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceHelper
@@ -17,6 +18,7 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_bmbt
 import toafmobile.composeapp.generated.resources.module_description_bmbt
 
+private const val tag = "ModuleBMBT"
 class ModuleBMBT(protocolDS2: ProtocolDS2?) :
     ModuleDS2(protocolDS2, ModuleAddress.MODULE_BMBT, listOf(CarType.R40, CarType.L322)),
     IModuleControl, IModuleLiveData, IModuleEepromProgramming {
@@ -32,7 +34,13 @@ class ModuleBMBT(protocolDS2: ProtocolDS2?) :
         for (i in 1..2) {
             val message = interfaceWrite(byteArrayOf(0x0B, i.toByte()))
             if (message.isValid) {
-                result[i] = message.answer.copyOfRange(3, message.answer.size)
+                try {
+                    result[i] = message.answer.copyOfRange(3, message.answer.size)
+                } catch ( ex : Exception)
+                {
+                    Logger.e{"$tag [readLiveData()], $ex, $message"}
+                    return result.ifEmpty { null }
+                }
             }
         }
         return result.ifEmpty { null }
@@ -77,13 +85,18 @@ class ModuleBMBT(protocolDS2: ProtocolDS2?) :
         var result: MutableList<ModuleError>? = null
         val message = interfaceWrite(byteArrayOf(0x04, 0x01))
         if (message.isValid) {
-            for (i in 0 until message.answer[3]) {
-                val errorCode = String.format("%02X", message.answer[4 + 2 * i])
-                val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
-                errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5 + 2 * i].toInt() and 0x1F)))
-                errorDescription.add(ResourceHelper.getErrorDescriptionIsPresent((message.answer[5 + 2 * i].toInt() and 0x20) == 0x20))
-                if (result == null) result = ArrayList()
-                result.add(ModuleError( ModuleAddress.MODULE_BMBT, errorCode, errorDescription))
+            try {
+                for (i in 0 until message.answer[3]) {
+                    val errorCode = String.format("%02X", message.answer[4 + 2 * i])
+                    val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
+                    errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5 + 2 * i].toInt() and 0x1F)))
+                    errorDescription.add(ResourceHelper.getErrorDescriptionIsPresent((message.answer[5 + 2 * i].toInt() and 0x20) == 0x20))
+                    if (result == null) result = ArrayList()
+                    result.add(ModuleError(ModuleAddress.MODULE_BMBT, errorCode, errorDescription))
+                }
+            } catch ( ex: Exception)
+            {
+                Logger.e {"$tag [getAllErrors], $ex, $message"}
             }
         }
 

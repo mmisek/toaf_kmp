@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.l322
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceHelper
@@ -25,6 +26,7 @@ import java.nio.ByteOrder
 
 class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddress.MODULE_EHC, listOf(CarType.L322)), IModuleLiveData,/* IModuleAdvanceControl,*/ IModuleControl
 {
+    private val tag = "ModuleEHC"
     private var controlFrontLeft: ControlElement? = null
     private var controlFrontRight: ControlElement? = null
     private var controlRearLeft: ControlElement? = null
@@ -73,9 +75,14 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         val blocks = byteArrayOf(0x00)
         for (block in blocks) {
             val message =  interfaceWrite(byteArrayOf(0x0B, block))
-            if (message.isValid) {
-                result[block.toInt()] = message.answer.copyOfRange(3, message.answer.size)
-            } else return null
+            try {
+                if (message.isValid) {
+                    result[block.toInt()] = message.answer.copyOfRange(3, message.answer.size)
+                } else return null
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [readLiveData], $ex, $message"}
+            }
         }
         return result
     }
@@ -85,105 +92,148 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
     override suspend fun getAllErrors(): List<ModuleError>? {
         var result: MutableList<ModuleError>? = null
         var message = interfaceWrite(byteArrayOf(0x04, 0x00))
-        if (message.isValid) {
-            var index = 1
-            while (index < (message.answer[3].toInt() and 0xFF) + 1) {
-                message = interfaceWrite(byteArrayOf(0x04, index.toByte()))
-                if (message.isValid && (message.answer[3].toInt() and 0xFF) > 0) {
-                    val errorCode = String.format("%02X", message.answer[4])
-                    val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
-                    val detailsList = byteArrayOf(0x01,0x02,0x03,0x04,0x07,0x08,0x0A,0x0B,0x0C,0x0D,0xFE.toByte())
-                    for (b in detailsList) {
-                        if ((message.answer[6].toInt() and b.toInt()) == b.toInt()) {
-                            ResourceMapper
-                                .stringResource(String.format("ehc_error_detail_%02X",b))
-                                ?.let { errorDescription.add(Pair(it,null)) }
+        try {
+            if (message.isValid) {
+                var index = 1
+                while (index < (message.answer[3].toInt() and 0xFF) + 1) {
+                    message = interfaceWrite(byteArrayOf(0x04, index.toByte()))
+                    if (message.isValid && (message.answer[3].toInt() and 0xFF) > 0) {
+                        val errorCode = String.format("%02X", message.answer[4])
+                        val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
+                        val detailsList = byteArrayOf(
+                            0x01,
+                            0x02,
+                            0x03,
+                            0x04,
+                            0x07,
+                            0x08,
+                            0x0A,
+                            0x0B,
+                            0x0C,
+                            0x0D,
+                            0xFE.toByte()
+                        )
+                        for (b in detailsList) {
+                            if ((message.answer[6].toInt() and b.toInt()) == b.toInt()) {
+                                ResourceMapper
+                                    .stringResource(String.format("ehc_error_detail_%02X", b))
+                                    ?.let { errorDescription.add(Pair(it, null)) }
+                            }
                         }
+                        errorDescription.add(ResourceHelper.getErrorDescriptionCount(message.answer[7].toInt() and 0xFF))
+                        errorDescription.add(
+                            Pair(
+                                Res.string.ehc_error_detail_mileage,
+                                10 * (256 * (message.answer[9].toInt() and 0xFF) + (message.answer[8].toInt() and 0xFF))
+                            )
+                        )
+                        errorDescription.add(
+                            Pair(
+                                Res.string.ehc_error_detail_voltage,
+                                (message.answer[10].toInt() and 0xFF) * 0.125
+                            )
+                        )
+                        errorDescription.add(
+                            Pair(
+                                Res.string.ehc_error_detail_pressure,
+                                (message.answer[11].toInt() and 0xFF) * 0.125
+                            )
+                        )
+                        errorDescription.add(
+                            Pair(
+                                Res.string.ehc_error_detail_valve_front_right,
+                                if ((message.answer[12].toInt() and 0x01) == 0x01) "1" else "0"
+                            )
+                        )
+                        errorDescription.add(
+                            Pair(
+                                Res.string.ehc_error_detail_valve_front_left,
+                                if ((message.answer[12].toInt() and 0x02) == 0x02) "1" else "0"
+                            )
+                        )
+                        errorDescription.add(
+                            Pair(
+                                Res.string.ehc_error_detail_valve_rear_right,
+                                if ((message.answer[12].toInt() and 0x04) == 0x04) "1" else "0"
+                            )
+                        )
+                        errorDescription.add(
+                            Pair(
+                                Res.string.ehc_error_detail_valve_rear_left,
+                                if ((message.answer[12].toInt() and 0x08) == 0x08) "1" else "0"
+                            )
+                        )
+                        errorDescription.add(
+                            Pair(
+                                Res.string.ehc_error_detail_valve_reservoir,
+                                if ((message.answer[12].toInt() and 0x10) == 0x10) "1" else "0"
+                            )
+                        )
+                        errorDescription.add(
+                            Pair(
+                                Res.string.ehc_error_detail_valve_exhaust,
+                                if ((message.answer[12].toInt() and 0x20) == 0x20) "1" else "0"
+                            )
+                        )
+                        errorDescription.add(
+                            Pair(
+                                Res.string.ehc_error_detail_compressor_relay,
+                                if ((message.answer[12].toInt() and 0x40) == 0x40) "1" else "0"
+                            )
+                        )
+                        errorDescription.add(
+                            Pair(
+                                Res.string.ehc_error_detail_height_pressure_exhaust_valve,
+                                if ((message.answer[13].toInt() and 0x01) == 0x01) "1" else "0"
+                            )
+                        )
+                        errorDescription.add(
+                            Pair(
+                                Res.string.ehc_error_detail_crosslink_valve_rear,
+                                if ((message.answer[13].toInt() and 0x04) == 0x04) "1" else "0"
+                            )
+                        )
+                        errorDescription.add(
+                            Pair(
+                                Res.string.ehc_error_detail_crosslink_valve_left,
+                                if ((message.answer[13].toInt() and 0x08) == 0x08) "1" else "0"
+                            )
+                        )
+                        errorDescription.add(
+                            Pair(
+                                Res.string.ehc_error_detail_compressor_temperature,
+                                (message.answer[14].toInt() and 0xFF) - 40
+                            )
+                        )
+                        errorDescription.add(
+                            Pair(
+                                Res.string.ehc_error_detail_vehicle_speed,
+                                message.answer[15].toInt() and 0xFF
+                            )
+                        )
+                        errorDescription.add(
+                            Pair(
+                                Res.string.ehc_error_detail_average_height_of_car,
+                                (message.answer[16].toInt() and 0xFF)
+                            )
+                        )
+                        if (result == null) result = ArrayList()
+                        result.add(
+                            ModuleError(
+                                ModuleAddress.MODULE_EHC,
+                                errorCode,
+                                errorDescription
+                            )
+                        )
+                    } else {
+                        return result
                     }
-                    errorDescription.add(ResourceHelper.getErrorDescriptionCount(message.answer[7].toInt() and 0xFF))
-                    errorDescription.add(
-                        Pair(Res.string.ehc_error_detail_mileage,
-                            10 * (256 * (message.answer[9].toInt() and 0xFF) + (message.answer[8].toInt() and 0xFF))
-                        )
-                    )
-                    errorDescription.add(
-                        Pair(Res.string.ehc_error_detail_voltage,
-                            (message.answer[10].toInt() and 0xFF) * 0.125)
-                    )
-                    errorDescription.add(
-                        Pair(Res.string.ehc_error_detail_pressure,
-                            (message.answer[11].toInt() and 0xFF) * 0.125
-                        )
-                    )
-                    errorDescription.add(
-                        Pair(Res.string.ehc_error_detail_valve_front_right,
-                            if ((message.answer[12].toInt() and 0x01) == 0x01) "1" else "0"
-                        )
-                    )
-                    errorDescription.add(
-                        Pair(Res.string.ehc_error_detail_valve_front_left,
-                            if ((message.answer[12].toInt() and 0x02) == 0x02) "1" else "0"
-                        )
-                    )
-                    errorDescription.add(
-                        Pair(Res.string.ehc_error_detail_valve_rear_right,
-                            if ((message.answer[12].toInt() and 0x04) == 0x04) "1" else "0"
-                        )
-                    )
-                    errorDescription.add(
-                        Pair(Res.string.ehc_error_detail_valve_rear_left,
-                            if ((message.answer[12].toInt() and 0x08) == 0x08) "1" else "0"
-                        )
-                    )
-                    errorDescription.add(
-                        Pair(Res.string.ehc_error_detail_valve_reservoir,
-                            if ((message.answer[12].toInt() and 0x10) == 0x10) "1" else "0"
-                        )
-                    )
-                    errorDescription.add(
-                        Pair(Res.string.ehc_error_detail_valve_exhaust,
-                            if ((message.answer[12].toInt() and 0x20) == 0x20) "1" else "0"
-                        )
-                    )
-                    errorDescription.add(
-                        Pair(Res.string.ehc_error_detail_compressor_relay,
-                            if ((message.answer[12].toInt() and 0x40) == 0x40) "1" else "0"
-                        )
-                    )
-                    errorDescription.add(
-                        Pair(Res.string.ehc_error_detail_height_pressure_exhaust_valve,
-                            if ((message.answer[13].toInt() and 0x01) == 0x01) "1" else "0"
-                        )
-                    )
-                    errorDescription.add(
-                        Pair(Res.string.ehc_error_detail_crosslink_valve_rear,
-                            if ((message.answer[13].toInt() and 0x04) == 0x04) "1" else "0"
-                        )
-                    )
-                    errorDescription.add(
-                        Pair(Res.string.ehc_error_detail_crosslink_valve_left,
-                            if ((message.answer[13].toInt() and 0x08) == 0x08) "1" else "0"
-                        )
-                    )
-                    errorDescription.add(
-                            Pair(Res.string.ehc_error_detail_compressor_temperature,
-                            (message.answer[14].toInt() and 0xFF) - 40
-                    ))
-                    errorDescription.add(
-                        Pair(Res.string.ehc_error_detail_vehicle_speed,
-                        message.answer[15].toInt() and 0xFF)
-                    )
-                    errorDescription.add(
-                        Pair(Res.string.ehc_error_detail_average_height_of_car,
-                            (message.answer[16].toInt() and 0xFF))
-                    )
-                    if (result == null) result = ArrayList()
-                    result.add(ModuleError(ModuleAddress.MODULE_EHC, errorCode, errorDescription))
-                } else {
-                    return result
+                    index++
                 }
-                index++
             }
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [GetAllErrors], $ex, $message"}
         }
         return result
     }

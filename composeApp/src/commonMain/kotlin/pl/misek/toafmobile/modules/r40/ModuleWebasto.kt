@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.r40
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceHelper
@@ -18,6 +19,7 @@ import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 
+private const val tag = "ModuleWebasto"
 class ModuleWebasto( protocolDS2: ProtocolDS2?) :
     ModuleDS2( protocolDS2, ModuleAddress.MODULE_WEBASTO, listOf(CarType.R40, CarType.L322)),
     IModuleControl, IModuleLiveData, IModuleEepromProgramming /*,IModuleCoding */ {
@@ -34,19 +36,25 @@ class ModuleWebasto( protocolDS2: ProtocolDS2?) :
         var message = interfaceWrite(byteArrayOf(0x0B))
         //message.isValid() = true;
         //message.answer = fakeAnswer;
-        if (message.isValid) {
-            result[0x00] = message.answer.copyOfRange(3, message.answer.size)
+        try {
+            if (message.isValid) {
+                result[0x00] = message.answer.copyOfRange(3, message.answer.size)
+            }
+
+            message = interfaceWrite(byteArrayOf(0x06, 0x04, 0x02, 0xA5.toByte(), 0x03))
+            if (message.isValid) {
+                result[0x01] = message.answer.copyOfRange(3, message.answer.size)
+            }
+            message = interfaceWrite(byteArrayOf(0x06, 0x04, 0x02, 0xAC.toByte(), 0x03))
+            if (message.isValid) {
+                result[0x02] = message.answer.copyOfRange(3, message.answer.size)
+            }
+        } catch (ex: Exception)
+        {
+            Logger.e {"$tag [readLiveData()], $ex, $message"}
         }
 
-        message = interfaceWrite(byteArrayOf(0x06, 0x04, 0x02, 0xA5.toByte(), 0x03))
-        if (message.isValid) {
-            result[0x01] = message.answer.copyOfRange(3, message.answer.size)
-        }
-        message = interfaceWrite(byteArrayOf(0x06, 0x04, 0x02, 0xAC.toByte(), 0x03))
-        if (message.isValid) {
-            result[0x02] = message.answer.copyOfRange(3, message.answer.size)
-        }
-        return if (result.isEmpty()) null else result
+        return result.ifEmpty { null }
     }
 
     override suspend fun control(controlElement: ControlElement): Boolean {
@@ -81,39 +89,60 @@ class ModuleWebasto( protocolDS2: ProtocolDS2?) :
         for (i in 1..3) {
             val message = interfaceWrite(byteArrayOf(0x04, i.toByte()))
             if (message.isValid) {
-                if (result == null) result = ArrayList()
-                if (message.answer[3].toInt() != 0x00 && message.answer.size > 5) {
-                    val errorCode = String.format("%02X", message.answer[4])
-                    val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
-                    errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[6].toInt() and 0xFF)))
-                    errorDescription.add(Pair(Res.string.webasto_error_detail_cooling_temperature,
-                                (message.answer[8].toInt() and 0xFF)))
-                    val statusByte = message.answer[7].toInt() and 0xFF
-                    val webastoFreezeFrameData = WebastoFreezeFrameData().FreezeFrameData[0x00]
-                    if (webastoFreezeFrameData != null && webastoFreezeFrameData.containsKey(
-                            statusByte
+                try {
+                    if (result == null) result = ArrayList()
+                    if (message.answer[3].toInt() != 0x00 && message.answer.size > 5) {
+                        val errorCode = String.format("%02X", message.answer[4])
+                        val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
+                        errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[6].toInt() and 0xFF)))
+                        errorDescription.add(
+                            Pair(
+                                Res.string.webasto_error_detail_cooling_temperature,
+                                (message.answer[8].toInt() and 0xFF)
+                            )
                         )
-                    ) {
-                        val status = webastoFreezeFrameData[statusByte]
-                        ResourceMapper.stringResource("webasto_error_status_$status")
-                            ?.let { errorDescription.add(Pair(Res.string.webasto_error_detail_status, it)) }
-                    }
-
-                    for (errorDescriptionCode in errorDescriptionCodes) {
-                        if ((message.answer[5].toInt() and errorDescriptionCode.toInt()) == errorDescriptionCode.toInt()) {
-                            ResourceMapper
-                                .stringResource(String.format("webasto_error_detail_%02X",errorDescriptionCode))
-                                ?.let { errorDescription.add(Pair(it,null)) }
+                        val statusByte = message.answer[7].toInt() and 0xFF
+                        val webastoFreezeFrameData = WebastoFreezeFrameData().FreezeFrameData[0x00]
+                        if (webastoFreezeFrameData != null && webastoFreezeFrameData.containsKey(
+                                statusByte
+                            )
+                        ) {
+                            val status = webastoFreezeFrameData[statusByte]
+                            ResourceMapper.stringResource("webasto_error_status_$status")
+                                ?.let {
+                                    errorDescription.add(
+                                        Pair(
+                                            Res.string.webasto_error_detail_status,
+                                            it
+                                        )
+                                    )
+                                }
                         }
-                    }
 
-                    result.add(
-                        ModuleError(
-                            ModuleAddress.MODULE_WEBASTO,
-                            errorCode,
-                            errorDescription
+                        for (errorDescriptionCode in errorDescriptionCodes) {
+                            if ((message.answer[5].toInt() and errorDescriptionCode.toInt()) == errorDescriptionCode.toInt()) {
+                                ResourceMapper
+                                    .stringResource(
+                                        String.format(
+                                            "webasto_error_detail_%02X",
+                                            errorDescriptionCode
+                                        )
+                                    )
+                                    ?.let { errorDescription.add(Pair(it, null)) }
+                            }
+                        }
+
+                        result.add(
+                            ModuleError(
+                                ModuleAddress.MODULE_WEBASTO,
+                                errorCode,
+                                errorDescription
+                            )
                         )
-                    )
+                    }
+                } catch (ex : Exception)
+                {
+                    Logger.e {"$tag [getAllErrors], $ex, $message"}
                 }
             }
         }
@@ -132,7 +161,13 @@ class ModuleWebasto( protocolDS2: ProtocolDS2?) :
         val message = interfaceWrite(
             byteArrayOf(0x06, 0x03, 0x00, (address and 0xFF).toByte(), size.toByte())
         )
-        return if (message.isValid) message.answer.copyOfRange(0x03, 3 + size) else null
+        try {
+            return if (message.isValid) message.answer.copyOfRange(0x03, 3 + size) else null
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [readEeprom()], $ex, $message"}
+            return null
+        }
     }
 
     override suspend fun writeEeprom(address: Int, data: ByteArray): Boolean {

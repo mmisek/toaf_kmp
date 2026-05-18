@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.r40
 
+import co.touchlab.kermit.Logger
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.livedata.LiveDataElement
@@ -16,6 +17,7 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_ac
 import toafmobile.composeapp.generated.resources.module_description_atc
 
+private const val tag = "ModuleATC1"
 class ModuleATC( protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddress.MODULE_ATC, listOf(CarType.R40)), IModuleControl, IModuleLiveData
 {
     override fun getKoinName() = KoinNames.ModuleR40Atc
@@ -28,8 +30,14 @@ class ModuleATC( protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddre
         val result: MutableMap<Int, ByteArray> = HashMap()
         val message = interfaceWrite(byteArrayOf(0x0B, 0x00))
         if (message.isValid) {
-            result[0x00] = message.answer.copyOfRange(3, message.answer.size)
-            return result
+            try {
+                result[0x00] = message.answer.copyOfRange(3, message.answer.size)
+                return result
+            } catch ( ex : Exception)
+            {
+                Logger.e {"$tag [readLiveData()]: $ex,$message"}
+                return result
+            }
         }
         return null
     }
@@ -51,10 +59,17 @@ class ModuleATC( protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddre
         var moduleInfo: ModuleInfo? = null
         val message = interfaceWrite(byteArrayOf(0x00))
         if (message.isValid) {
-            moduleInfo = ModuleInfo()
-            moduleInfo.sw = String.format("%02X", message.answer[4])
-            val producer = message.answer[3].toInt()
-            moduleInfo.producer = ModulesFunction.getProducer(producer.toBcd().toInt())
+            try {
+                moduleInfo = ModuleInfo()
+                moduleInfo.sw = String.format("%02X", message.answer[4])
+                val producer = message.answer[3].toInt()
+                moduleInfo.producer = ModulesFunction.getProducer(producer.toBcd().toInt())
+            }
+            catch (ex: Exception)
+            {
+                Logger.e { "$tag [getIdentification()]: $ex , $message"}
+                return moduleInfo
+            }
         }
         return moduleInfo
     }
@@ -66,12 +81,17 @@ class ModuleATC( protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddre
         var result: MutableList<ModuleError>? = null
         val message = interfaceWrite(byteArrayOf(0x04, 0x00))
         if (message.isValid) {
-            for (i in 3 until message.answer.size - 1) {
-                if (message.answer[i].toInt() != 0x00) {
-                    val errorCode = String.format("%02X", message.answer[i])
-                    if (result == null) result = ArrayList()
-                    result.add(ModuleError(ModuleAddress.MODULE_ATC, errorCode, ArrayList()))
+            try {
+                for (i in 3 until message.answer.size - 1) {
+                    if (message.answer[i].toInt() != 0x00) {
+                        val errorCode = String.format("%02X", message.answer[i])
+                        if (result == null) result = ArrayList()
+                        result.add(ModuleError(ModuleAddress.MODULE_ATC, errorCode, ArrayList()))
+                    }
                 }
+            } catch ( ex : Exception)
+            {
+                Logger.e{"$tag [getAllErrors()], $ex, $message"}
             }
         }
 

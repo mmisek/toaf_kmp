@@ -9,6 +9,7 @@ enum class KoinNames {
     ModuleL322Ehc,
     ModuleL322Elv,
     ModuleL322Gs20,
+    ModuleL322Gs8601,
     ModuleL322Hevac,
     ModuleL322Mfl,
     ModuleL322Srs,

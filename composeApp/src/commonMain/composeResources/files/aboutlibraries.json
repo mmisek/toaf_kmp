@@ -3135,6 +3135,28 @@
             ]
         },
         {
+            "uniqueId": "io.ktor:ktor-client-auth-jvm",
+            "artifactVersion": "3.4.3",
+            "name": "ktor-client-auth",
+            "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
+            "website": "https://github.com/ktorio/ktor",
+            "developers": [
+                {
+                    "name": "Jetbrains Team",
+                    "organisationUrl": "https://www.jetbrains.com"
+                }
+            ],
+            "scm": {
+                "url": "https://github.com/ktorio/ktor.git"
+            },
+            "licenses": [
+                "Apache-2.0"
+            ],
+            "funding": [
+                
+            ]
+        },
+        {
             "uniqueId": "io.ktor:ktor-client-content-negotiation-jvm",
             "artifactVersion": "3.4.3",
             "name": "ktor-client-content-negotiation",

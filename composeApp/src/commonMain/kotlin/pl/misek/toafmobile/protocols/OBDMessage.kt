@@ -17,4 +17,18 @@ data class OBDMessage (
         length = 0
         wholeMessage = ByteArray(0)
     }
+    override fun toString(): String {
+        val msgHex = message.joinToString(" ") { "%02X".format(it) }
+        val ansHex = answer.joinToString(" ") { "%02X".format(it) }
+        val wholeHex = wholeMessage?.joinToString(" ") { "%02X".format(it) } ?: "null"
+
+        return "OBDMessage(" +
+                "message=[$msgHex], " +
+                "answer=[$ansHex], " +
+                "isValid=$isValid, " +
+                "answerCode=$answerCode, " +
+                "length=$length, " +
+                "wholeMessage=[$wholeHex]" +
+                ")"
+    }
 }

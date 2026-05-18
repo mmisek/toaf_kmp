@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.l322
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.generated.ResourceHelper
 import pl.misek.toafmobile.generated.ResourceMapper
@@ -19,6 +20,7 @@ class ModuleHEVAC(protocolDS2: ProtocolDS2?) :
     ModuleDS2(protocolDS2, ModuleAddress.MODULE_HEVAC, listOf(CarType.L322)),
     IModuleLiveData /* ,IModuleCoding*/ {
 
+    private val tag = "ModuleHEVAC"
     override fun getKoinName() = KoinNames.ModuleL322Hevac
 
     override fun getImageResource() = Res.drawable.module_ac
@@ -30,22 +32,39 @@ class ModuleHEVAC(protocolDS2: ProtocolDS2?) :
         var x: Byte = 1
         while (x <= 5) {
             val message = interfaceWrite(byteArrayOf(0x04, x))
-            if (message.isValid && message.length > 5) {
-                for (i in 0..1) {
-                    val errorCode = String.format("%02X", message.answer[4 + 9 * i])
-                    val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
-                    errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[6 + 9 * i].toInt() and 0xFF) and 0x1F))
-                    for (j in 0..7) {
-                        if ((message.answer[5 + 9 * i].toInt() and (0x01 shr j)) == (0x01 shr j)) {
-                            ResourceMapper
-                                .stringResource(String.format("hevac_error_detail_%02X",(0x01 shr j)))
-                                ?.let { errorDescription.add(Pair(it,null)) }
+            try {
+                if (message.isValid && message.length > 5) {
+                    for (i in 0..1) {
+                        val errorCode = String.format("%02X", message.answer[4 + 9 * i])
+                        val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
+                        errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[6 + 9 * i].toInt() and 0xFF) and 0x1F))
+                        for (j in 0..7) {
+                            if ((message.answer[5 + 9 * i].toInt() and (0x01 shr j)) == (0x01 shr j)) {
+                                ResourceMapper
+                                    .stringResource(
+                                        String.format(
+                                            "hevac_error_detail_%02X",
+                                            (0x01 shr j)
+                                        )
+                                    )
+                                    ?.let { errorDescription.add(Pair(it, null)) }
+                            }
                         }
+                        if (result == null) result = ArrayList()
+                        result.add(
+                            ModuleError(
+                                ModuleAddress.MODULE_HEVAC,
+                                errorCode,
+                                errorDescription
+                            )
+                        )
                     }
-                    if (result == null) result = ArrayList()
-                    result.add(ModuleError(ModuleAddress.MODULE_HEVAC, errorCode, errorDescription))
                 }
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [getAllErros] ,$ex, $message"}
             }
+
             x = (x + 2).toByte()
         }
         return result!!
@@ -56,10 +75,16 @@ class ModuleHEVAC(protocolDS2: ProtocolDS2?) :
         val result: MutableMap<Int, ByteArray> = HashMap()
         for (i in bytes.indices) {
             val message = interfaceWrite(byteArrayOf(0x0B, bytes[i]))
-            if (message.isValid)
-                result[i] = message.answer.copyOfRange(3, message.answer.size)
-            else
+            try {
+                if (message.isValid)
+                    result[i] = message.answer.copyOfRange(3, message.answer.size)
+                else
+                    return null
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [readLiveData], $ex, $message"}
                 return null
+            }
         }
         return result
     }

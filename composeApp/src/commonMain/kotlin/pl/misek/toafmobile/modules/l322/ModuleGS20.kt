@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.l322
 
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.generated.ResourceHelper
@@ -160,9 +161,13 @@ class ModuleGS20( protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleAddr
         val message = interfaceWrite(byteArrayOf(0x0B, 0x03))
         //message.valid = true;
         //message.answer = fakeAnswer;
-        if (message.isValid) {
-            result[0x00] = message.answer.copyOfRange(3, message.answer.size)
-            return result
+        try {
+            if (message.isValid) {
+                result[0x00] = message.answer.copyOfRange(3, message.answer.size)
+                return result
+            }
+        } catch (ex: Exception) {
+            Logger.e {"$tag [readLiveData], $ex, $message"}
         }
         return null
     }
@@ -172,37 +177,43 @@ class ModuleGS20( protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleAddr
     override suspend fun getIdentification(): ModuleInfo? {
         val mi = ModuleInfo()
         val message = interfaceWrite(byteArrayOf(0x00))
-        if (message.isValid) {
-            val answer = message.answer
-            mi.id1 = String(answer.copyOfRange(3, 6)) + String.format(
-                "%02X%02X%02X",
-                answer[6],
-                answer[7],
-                answer[8]
-            )
-            mi.hw = String(answer.copyOfRange(10, 12))
-            mi.ci = String(answer.copyOfRange(12, 14))
-            mi.di = String(answer.copyOfRange(14, 16))
-            mi.bi = String(answer.copyOfRange(16, 18))
-            mi.date = String(answer.copyOfRange(18, 20)) + "/" + String(answer.copyOfRange(20, 22))
-            mi.serial = String(answer.copyOfRange(22, 32))
-            mi.sw = String(answer.copyOfRange(33, 35))
-            val ai = Pair(
-                Res.string.module_info_change_type,
-                String(answer.copyOfRange(35, 37))
-            )
-            val prod = Pair(
-                Res.string.module_info_product_number,
-                String(answer.copyOfRange(37, 46))
-            )
-            mi.additionalInfo = ArrayList()
-            mi.additionalInfo.add(ai)
-            mi.additionalInfo.add(prod)
-        }
-        if (mi.ci.isEmpty()) {
-            reset()
-            delay(1000)
-            return ModulesFunction.getModuleInfo( interfaceWrite(byteArrayOf(0x00)))
+        try {
+            if (message.isValid) {
+                val answer = message.answer
+                mi.id1 = String(answer.copyOfRange(3, 6)) + String.format(
+                    "%02X%02X%02X",
+                    answer[6],
+                    answer[7],
+                    answer[8]
+                )
+                mi.hw = String(answer.copyOfRange(10, 12))
+                mi.ci = String(answer.copyOfRange(12, 14))
+                mi.di = String(answer.copyOfRange(14, 16))
+                mi.bi = String(answer.copyOfRange(16, 18))
+                mi.date =
+                    String(answer.copyOfRange(18, 20)) + "/" + String(answer.copyOfRange(20, 22))
+                mi.serial = String(answer.copyOfRange(22, 32))
+                mi.sw = String(answer.copyOfRange(33, 35))
+                val ai = Pair(
+                    Res.string.module_info_change_type,
+                    String(answer.copyOfRange(35, 37))
+                )
+                val prod = Pair(
+                    Res.string.module_info_product_number,
+                    String(answer.copyOfRange(37, 46))
+                )
+                mi.additionalInfo = ArrayList()
+                mi.additionalInfo.add(ai)
+                mi.additionalInfo.add(prod)
+            }
+            if (mi.ci.isEmpty()) {
+                reset()
+                delay(1000)
+                return ModulesFunction.getModuleInfo(interfaceWrite(byteArrayOf(0x00)))
+            }
+        }catch ( ex : Exception)
+        {
+            Logger.e {"$tag [getIdentification], $ex, $message"}
         }
         return mi
     }
@@ -211,74 +222,123 @@ class ModuleGS20( protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleAddr
         val nextErrorOffset = 0x13
         var result: MutableList<ModuleError>? = null
         val message = interfaceWrite(byteArrayOf(0x04, 0x01))
-        if (message.isValid) {
-            result = ArrayList()
-            for (n in 0 until (message.answer[3].toInt() and 0xFF)) {
-                val error = message.answer[4 + n * nextErrorOffset].toInt() and 0xFF
-                val errorCode = String.format("%02X", error)
-                val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
+        try {
+            if (message.isValid) {
+                result = ArrayList()
+                for (n in 0 until (message.answer[3].toInt() and 0xFF)) {
+                    val error = message.answer[4 + n * nextErrorOffset].toInt() and 0xFF
+                    val errorCode = String.format("%02X", error)
+                    val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
 
-                for (j in errorDetails.indices) {
-                    if ((message.answer[5 + n * nextErrorOffset].toInt() and errorDetails[j].toInt()) == errorDetails[j].toInt()) {
-                        String.format("gs20_error_detail_%02X", errorDetails[j])
-                        ResourceMapper
-                            .stringResource(String.format("gs20_error_detail_%02X", errorDetails[j]))
-                            ?.let { errorDescription.add(Pair(it,null))}
-                    }
-
-                    errorDescription.add(
-                        ResourceHelper.getErrorDescriptionCount(
-                            (message.answer[6 + n * nextErrorOffset].toInt() and 0xFF)
-                        )
-                    )
-                    errorDescription.add(
-                        ResourceHelper.getErrorDescriptionLogisticCounter(
-                            (message.answer[7 + n * nextErrorOffset].toInt() and 0xFF)
-                        )
-                    )
-
-                    val localErrorMatrix =
-                        errorMatrix[message.answer[4 + n * nextErrorOffset].toInt() and 0xFF]
-                    if (localErrorMatrix != null) {
-                        for (m in 0..2) {
-                            errorDescription.add(
-                                Pair(
-                                    Res.string.dde_error_freeze_frame_number,
-                                    (m + 1).toString()
+                    for (j in errorDetails.indices) {
+                        if ((message.answer[5 + n * nextErrorOffset].toInt() and errorDetails[j].toInt()) == errorDetails[j].toInt()) {
+                            String.format("gs20_error_detail_%02X", errorDetails[j])
+                            ResourceMapper
+                                .stringResource(
+                                    String.format(
+                                        "gs20_error_detail_%02X",
+                                        errorDetails[j]
+                                    )
                                 )
+                                ?.let { errorDescription.add(Pair(it, null)) }
+                        }
+
+                        errorDescription.add(
+                            ResourceHelper.getErrorDescriptionCount(
+                                (message.answer[6 + n * nextErrorOffset].toInt() and 0xFF)
                             )
-                            for (x in localErrorMatrix.indices) {
-                                val currentByte = 8 + x + (n * nextErrorOffset) + (5 * m)
-                                var b = message.answer[currentByte].toInt() and 0xFF
-                                for (y in localErrorMatrix[x].indices) {
-                                    val freezeFrameData =
-                                        errorFreezeFrame[localErrorMatrix[x][y].toInt() and 0xFF]
-                                    if ((localErrorMatrix[x][y].toInt() and 0xFF) == 0x0A) {
-                                        b = (message.answer[currentByte].toInt() and 0xFF) * 256
-                                        b += message.answer[currentByte + 1].toInt() and 0xFF
-                                    }
-                                    if (freezeFrameData != null) {
-                                        if (freezeFrameData.mask.toInt() != 0x00) {
-                                            val c = (b and freezeFrameData.mask.toInt())
-                                            if (freezeFrameData.values?.containsKey(c) == true)
-                                                ResourceMapper.stringResource(String.format("gs20_error_detail_freeze_frame_%02X",localErrorMatrix[x][y].toInt() and 0xFF))
-                                                    ?.let {errorDescription.add(Pair(it, freezeFrameData.values.get(c)))}
-                                        } else {
-                                            val c =(b.toFloat() * freezeFrameData.multiplier / freezeFrameData.divider + freezeFrameData.adder).toDouble()
-                                            String.format("gs20_error_detail_freeze_frame_%02X",localErrorMatrix[x][y].toInt() and 0xFF)
-                                            ResourceMapper
-                                                .stringResource(String.format("gs20_error_detail_freeze_frame_%02X",localErrorMatrix[x][y].toInt() and 0xFF))
-                                                ?.let { errorDescription.add(Pair(it, String.format(Locale.getDefault(),"%0.2f %s",c, freezeFrameData.unit)))}
+                        )
+                        errorDescription.add(
+                            ResourceHelper.getErrorDescriptionLogisticCounter(
+                                (message.answer[7 + n * nextErrorOffset].toInt() and 0xFF)
+                            )
+                        )
+
+                        val localErrorMatrix =
+                            errorMatrix[message.answer[4 + n * nextErrorOffset].toInt() and 0xFF]
+                        if (localErrorMatrix != null) {
+                            for (m in 0..2) {
+                                errorDescription.add(
+                                    Pair(
+                                        Res.string.dde_error_freeze_frame_number,
+                                        (m + 1).toString()
+                                    )
+                                )
+                                for (x in localErrorMatrix.indices) {
+                                    val currentByte = 8 + x + (n * nextErrorOffset) + (5 * m)
+                                    var b = message.answer[currentByte].toInt() and 0xFF
+                                    for (y in localErrorMatrix[x].indices) {
+                                        val freezeFrameData =
+                                            errorFreezeFrame[localErrorMatrix[x][y].toInt() and 0xFF]
+                                        if ((localErrorMatrix[x][y].toInt() and 0xFF) == 0x0A) {
+                                            b = (message.answer[currentByte].toInt() and 0xFF) * 256
+                                            b += message.answer[currentByte + 1].toInt() and 0xFF
+                                        }
+                                        if (freezeFrameData != null) {
+                                            if (freezeFrameData.mask.toInt() != 0x00) {
+                                                val c = (b and freezeFrameData.mask.toInt())
+                                                if (freezeFrameData.values?.containsKey(c) == true)
+                                                    ResourceMapper.stringResource(
+                                                        String.format(
+                                                            "gs20_error_detail_freeze_frame_%02X",
+                                                            localErrorMatrix[x][y].toInt() and 0xFF
+                                                        )
+                                                    )
+                                                        ?.let {
+                                                            errorDescription.add(
+                                                                Pair(
+                                                                    it,
+                                                                    freezeFrameData.values.get(c)
+                                                                )
+                                                            )
+                                                        }
+                                            } else {
+                                                val c =
+                                                    (b.toFloat() * freezeFrameData.multiplier / freezeFrameData.divider + freezeFrameData.adder).toDouble()
+                                                String.format(
+                                                    "gs20_error_detail_freeze_frame_%02X",
+                                                    localErrorMatrix[x][y].toInt() and 0xFF
+                                                )
+                                                ResourceMapper
+                                                    .stringResource(
+                                                        String.format(
+                                                            "gs20_error_detail_freeze_frame_%02X",
+                                                            localErrorMatrix[x][y].toInt() and 0xFF
+                                                        )
+                                                    )
+                                                    ?.let {
+                                                        errorDescription.add(
+                                                            Pair(
+                                                                it,
+                                                                String.format(
+                                                                    Locale.getDefault(),
+                                                                    "%0.2f %s",
+                                                                    c,
+                                                                    freezeFrameData.unit
+                                                                )
+                                                            )
+                                                        )
+                                                    }
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
-                    }
 
-                    result.add(ModuleError(ModuleAddress.MODULE_GS20, errorCode, errorDescription))
+                        result.add(
+                            ModuleError(
+                                ModuleAddress.MODULE_GS20,
+                                errorCode,
+                                errorDescription
+                            )
+                        )
+                    }
                 }
             }
+        } catch ( ex : Exception)
+        {
+            Logger.e {"$tag [getAllErrors], $ex, $message"}
         }
         return result
     }

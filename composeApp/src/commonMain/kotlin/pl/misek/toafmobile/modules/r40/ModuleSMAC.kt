@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.r40
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceHelper
@@ -15,6 +16,7 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_description_smac
 import toafmobile.composeapp.generated.resources.module_smac
 
+private const val tag = "ModuleSMAC"
 class ModuleSMAC( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddress.MODULE_SMAC, listOf(CarType.R40)), IModuleControl, IModuleCoding
 {
     override fun getKoinName() = KoinNames.ModuleR40Smac
@@ -33,9 +35,15 @@ class ModuleSMAC( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAdd
         val result: MutableList<ByteArray> = ArrayList()
         for (i in 0..0xb) {
             val message = interfaceWrite(byteArrayOf(0x08, i.toByte()))
-            if (message.isValid) result.add(
-                    message.answer.copyOfRange(3,message.answer.size - 1))
-            else return null
+            try {
+                if (message.isValid) result.add(
+                    message.answer.copyOfRange(3, message.answer.size - 1)
+                )
+                else return null
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [readCoding], $ex, $message"}
+            }
         }
         return result
     }
@@ -61,23 +69,29 @@ class ModuleSMAC( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAdd
         var result: MutableList<ModuleError>? = null
         for (j in 0..2) {
             val message = interfaceWrite(byteArrayOf(0x04, j.toByte()))
-            if (message.isValid) {
-                for (i in 0..6) {
-                    if ((message.answer[3 + 2 * i].toInt() and 0xFF) != 0xFF) {
-                        val errorCode = String.format("%02X", message.answer[3 + 2 * i])
-                        val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
-                        errorDescription.add(ResourceHelper.getErrorDescriptionCount(message.answer[4 + 2 * i].toInt() and 0x1F))
-                        errorDescription.add(ResourceHelper.getErrorDescriptionIsStatic((message.answer[4 + 2 * i].toInt() and 0x20) == 0x20))
-                        if (result == null) result = ArrayList()
-                        result.add(
-                            ModuleError(
-                                ModuleAddress.MODULE_SHD,
-                                errorCode,
-                                errorDescription
+            try {
+                if (message.isValid) {
+                    for (i in 0..6) {
+                        if ((message.answer[3 + 2 * i].toInt() and 0xFF) != 0xFF) {
+                            val errorCode = String.format("%02X", message.answer[3 + 2 * i])
+                            val errorDescription: MutableList<Pair<StringResource, Any?>> =
+                                ArrayList()
+                            errorDescription.add(ResourceHelper.getErrorDescriptionCount(message.answer[4 + 2 * i].toInt() and 0x1F))
+                            errorDescription.add(ResourceHelper.getErrorDescriptionIsStatic((message.answer[4 + 2 * i].toInt() and 0x20) == 0x20))
+                            if (result == null) result = ArrayList()
+                            result.add(
+                                ModuleError(
+                                    ModuleAddress.MODULE_SHD,
+                                    errorCode,
+                                    errorDescription
+                                )
                             )
-                        )
+                        }
                     }
                 }
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [getAllErrors], $ex, $message"}
             }
         }
         return result
@@ -85,13 +99,19 @@ class ModuleSMAC( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAdd
 
     override suspend fun getVIN(): String? {
         val message = interfaceWrite(byteArrayOf(0x02))
-        if (message.isValid) {
-            return String.format(
-                "%s%02X%02X%02X",
-                String(message.answer.copyOfRange(3, 14)),
-                message.answer[14], message.answer[15], message.answer[16]
-            )
+        try{
+            if (message.isValid) {
+                return String.format(
+                    "%s%02X%02X%02X",
+                    String(message.answer.copyOfRange(3, 14)),
+                    message.answer[14], message.answer[15], message.answer[16]
+                )
+            }
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [getVIN], $ex, $message"}
         }
+
         return null
     }
 

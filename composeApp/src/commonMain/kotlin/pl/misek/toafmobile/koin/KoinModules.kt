@@ -10,6 +10,8 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.basicAuth
 import io.ktor.client.request.header
 import io.ktor.http.HttpHeaders
+import io.ktor.client.plugins.auth.*
+import io.ktor.client.plugins.auth.providers.*
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import org.koin.core.context.startKoin
@@ -28,6 +30,7 @@ import pl.misek.toafmobile.modules.l322.ModuleDSC
 import pl.misek.toafmobile.modules.l322.ModuleEHC
 import pl.misek.toafmobile.modules.l322.ModuleELV
 import pl.misek.toafmobile.modules.l322.ModuleGS20
+import pl.misek.toafmobile.modules.l322.ModuleGS8601
 import pl.misek.toafmobile.modules.l322.ModuleHEVAC
 import pl.misek.toafmobile.modules.l322.ModuleLSM
 import pl.misek.toafmobile.modules.l322.ModuleLWS
@@ -77,6 +80,7 @@ val commonModules = module {
     single(named(KoinNames.ModuleL322Ehc.name)) { ModuleEHC(protocolDS2 = get())}
     single(named(KoinNames.ModuleL322Elv.name)) { ModuleELV(protocolDS2 = get())}
     single(named(KoinNames.ModuleL322Gs20.name)) { ModuleGS20(protocolDS2 = get())}
+    single(named(KoinNames.ModuleL322Gs8601.name)) { ModuleGS8601(protocolDS2 = get())}
     single(named(KoinNames.ModuleL322Hevac.name)) { ModuleHEVAC(protocolDS2 = get())}
     single(named(KoinNames.ModuleL322Lws.name)) { ModuleLWS(protocolDS2 = get())}
     single(named(KoinNames.ModuleL322Mfl.name)) { ModuleMFL(protocolDS2 = get())}
@@ -145,12 +149,25 @@ val commonModules = module {
                 }
                 level = LogLevel.ALL
             }
-            defaultRequest {
-                val currentSettings = database.settingState.value
-                co.touchlab.kermit.Logger.i {"CurrentSettings : ${currentSettings.toString()}"}
-                currentSettings?.let{
-                    basicAuth(it.userLogin ?: "",it.userPassword ?: "")
+            install(Auth)
+            {
+                basic {
+                    credentials {
+                        val userInfo = database.getLoginAndPassword()
+                        if (userInfo != null)
+                        {
+                            co.touchlab.kermit.Logger.i {"CurrentSettings : ${userInfo}"}
+                            BasicAuthCredentials(username = userInfo.first, password = userInfo.second)
+                        }
+                        else
+                        {
+                            null
+                        }
+                    }
                 }
+
+            }
+            defaultRequest {
                 header(HttpHeaders.ContentType, io.ktor.http.ContentType.Application.Json)
             }
             followRedirects = false

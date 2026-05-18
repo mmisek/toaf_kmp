@@ -1,6 +1,6 @@
 package pl.misek.toafmobile.modules.l322
 
-import org.jetbrains.compose.resources.DrawableResource
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.generated.ResourceHelper
 import pl.misek.toafmobile.koin.KoinNames
@@ -13,6 +13,7 @@ import pl.misek.toafmobile.modules.interfaces.IModuleEepromProgramming
 import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.*
 
+private const val tag = "ModuleBCU - L322"
 class ModuleBCU(protocolDS2: ProtocolDS2?) :
     ModuleDS2(protocolDS2, ModuleAddress.MODULE_BCU_L322, listOf(CarType.L322)),
     IModuleCoding, IModuleEepromProgramming /*, IModuleLiveData*/ {
@@ -58,10 +59,16 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
         val result: MutableList<ByteArray> = ArrayList()
         for (i in 0..0x2) {
             val message = interfaceWrite(byteArrayOf(0x08, i.toByte()))
-            if (message.isValid)
-                result.add(message.answer.copyOfRange(3,message.answer.size - 1))
-            else
-                return null
+            try {
+                if (message.isValid)
+                    result.add(message.answer.copyOfRange(3,message.answer.size - 1))
+                else
+                    return null
+            }
+            catch (ex : Exception)
+            {
+                Logger.e {"$tag [readCoding] : $ex, $message"}
+            }
         }
         return result
     }
@@ -88,30 +95,36 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
     override suspend fun getAllErrors(): List<ModuleError>? {
         var result: MutableList<ModuleError>? = null
         var message = interfaceWrite(byteArrayOf(0x04, 0x00))
-        if (message.isValid && (message.answer[3].toInt() and 0xFF) == 0) {
-            return ArrayList()
-        } else if (message.isValid && (message.answer[3].toInt() and 0xFF) > 0) {
-            for (j in 1..2) {
-                message = interfaceWrite(byteArrayOf(0x04, j.toByte()))
-                if (message.isValid && message.answer.size > 4) {
-                    for (i in 0 until (message.answer.size - 4) / 2) {
-                        if ((message.answer[3 + 2 * i].toInt() and 0xFF) != 0xFF) {
-                            val errorCode = String.format("%02X", message.answer[3 + 2 * i])
-                            val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
-                            errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[4 + 2 * i].toInt() and 0x1F)))
-                            errorDescription.add(ResourceHelper.getErrorDescriptionIsStatic((message.answer[4 + 2 * i].toInt() and 0x20) == 0x20))
-                            if (result == null) result = ArrayList()
-                            result.add(
-                                ModuleError(
-                                    ModuleAddress.MODULE_BCU_L322,
-                                    errorCode,
-                                    errorDescription
+        try {
+            if (message.isValid && (message.answer[3].toInt() and 0xFF) == 0) {
+                return ArrayList()
+            } else if (message.isValid && (message.answer[3].toInt() and 0xFF) > 0) {
+                for (j in 1..2) {
+                    message = interfaceWrite(byteArrayOf(0x04, j.toByte()))
+                    if (message.isValid && message.answer.size > 4) {
+                        for (i in 0 until (message.answer.size - 4) / 2) {
+                            if ((message.answer[3 + 2 * i].toInt() and 0xFF) != 0xFF) {
+                                val errorCode = String.format("%02X", message.answer[3 + 2 * i])
+                                val errorDescription: MutableList<Pair<StringResource, Any?>> =
+                                    ArrayList()
+                                errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[4 + 2 * i].toInt() and 0x1F)))
+                                errorDescription.add(ResourceHelper.getErrorDescriptionIsStatic((message.answer[4 + 2 * i].toInt() and 0x20) == 0x20))
+                                if (result == null) result = ArrayList()
+                                result.add(
+                                    ModuleError(
+                                        ModuleAddress.MODULE_BCU_L322,
+                                        errorCode,
+                                        errorDescription
+                                    )
                                 )
-                            )
+                            }
                         }
                     }
                 }
             }
+        } catch (ex :Exception)
+        {
+            Logger.e {"$tag [getAllErrors], $ex, $message"}
         }
         return result
     }
@@ -139,7 +152,13 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
                 size.toByte()
             )
         )
-        return if (message.isValid) message.answer.copyOfRange(0x03, 3 + size) else null
+        try {
+            return if (message.isValid) message.answer.copyOfRange(0x03, 3 + size) else null
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [readEeprom]: $ex, $message"}
+            return null
+        }
     }
 
     override suspend fun writeEeprom(address: Int, data: ByteArray): Boolean {

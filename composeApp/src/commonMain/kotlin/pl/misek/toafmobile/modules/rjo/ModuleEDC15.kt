@@ -27,9 +27,9 @@ import java.util.Locale
 
 class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
     IModuleControl {
-        private var tag = "ModuleEDC15"
-        private var kwp: ProtocolEDC15? = null
-        private val moduleAddress = ModuleAddress.MODULE_EDC15.address
+    private var tag = "ModuleEDC15"
+    private var kwp: ProtocolEDC15? = null
+    private val moduleAddress = ModuleAddress.MODULE_EDC15.address
 
     init {
         if (protocol != null) kwp = protocol
@@ -73,25 +73,31 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
             if (moduleInit()) {
                 var message =
                     kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x80.toByte()), 0)
-                if (message.isValid) {
-                    info = ModuleInfo()
-                    info.id1 = String(message.answer.copyOfRange(5,8)) +
-                        String.format(
-                            "%02d%02d%02d",
-                            message.answer[8].toInt() and 0xFF,
-                            message.answer[9].toInt() and 0xFF,
-                            message.answer[10].toInt() and 0xFF)
-                    info.ci = (message.answer[11].toInt() and 0xFF).toHexString()
-                    info.di = (message.answer[12].toInt() and 0xFF).toHexString()
-                    info.producer = ModulesFunction.getProducer(message.answer[13].toInt())
-                }
-                message =
-                    kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x87.toByte()), 500)
-                if (message.isValid && info != null) {
-                    info.id2 = String(message.answer.copyOfRange(25, 28)) + String.format(
-                        "%02X%02x%02X",
-                        message.answer[28], message.answer[29], message.answer[30]
-                    )
+                try {
+                    if (message.isValid) {
+                        info = ModuleInfo()
+                        info.id1 = String(message.answer.copyOfRange(5, 8)) +
+                                String.format(
+                                    "%02d%02d%02d",
+                                    message.answer[8].toInt() and 0xFF,
+                                    message.answer[9].toInt() and 0xFF,
+                                    message.answer[10].toInt() and 0xFF
+                                )
+                        info.ci = (message.answer[11].toInt() and 0xFF).toHexString()
+                        info.di = (message.answer[12].toInt() and 0xFF).toHexString()
+                        info.producer = ModulesFunction.getProducer(message.answer[13].toInt())
+                    }
+                    message =
+                        kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x87.toByte()), 500)
+                    if (message.isValid && info != null) {
+                        info.id2 = String(message.answer.copyOfRange(25, 28)) + String.format(
+                            "%02X%02x%02X",
+                            message.answer[28], message.answer[29], message.answer[30]
+                        )
+                    }
+                } catch (ex : Exception)
+                {
+                    Logger.e {"$tag [getIdentification], $ex,$message"}
                 }
             }
         } catch (ex: Exception) {
@@ -104,14 +110,19 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
         if (moduleInit()) {
             val message =
                 kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x87.toByte()), 500)
-            if (message.isValid) {
-                return String.format(
-                    "%02x%02X%02X%02X",
-                    message.answer[5].toInt() and 0xFF,
-                    message.answer[6].toInt() and 0xFF,
-                    message.answer[7].toInt() and 0xFF,
-                    message.answer[8].toInt() and 0xFF
-                )
+            try {
+                if (message.isValid) {
+                    return String.format(
+                        "%02x%02X%02X%02X",
+                        message.answer[5].toInt() and 0xFF,
+                        message.answer[6].toInt() and 0xFF,
+                        message.answer[7].toInt() and 0xFF,
+                        message.answer[8].toInt() and 0xFF
+                    )
+                }
+            } catch (ex :Exception)
+            {
+                Logger.e {"$tag [getSerialNumber], $ex, $message "}
             }
         }
         return ""
@@ -121,13 +132,18 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
         if (moduleInit()) {
             val message =
                 kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x87.toByte()), 500)
-            if (message.isValid) {
-                return String(message.answer.copyOfRange(5, 16)) + String.format(
-                    "%02X%02X%02X",
-                    message.answer[16].toInt() and 0xFF,
-                    message.answer[17].toInt() and 0xFF,
-                    message.answer[18].toInt() and 0xFF
-                )
+            try {
+                if (message.isValid) {
+                    return String(message.answer.copyOfRange(5, 16)) + String.format(
+                        "%02X%02X%02X",
+                        message.answer[16].toInt() and 0xFF,
+                        message.answer[17].toInt() and 0xFF,
+                        message.answer[18].toInt() and 0xFF
+                    )
+                }
+            }catch (ex : Exception)
+            {
+                Logger.e {"$tag [getVIN], $ex, $message"}
             }
         }
         return null
@@ -147,6 +163,7 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
                     byteArrayOf(0x00.toByte(), 0x00, 0x00),
                     500
                 )
+            try{
                 if (message.isValid) {
                     val n = message.answer[4].toInt()
                     for (i in 0 until n) {
@@ -164,7 +181,12 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
                     }
                     return result
                 }
+            } catch (ex : Exception)
+            {
+                Logger.e {"$ex [getAllErrors], $ex, $message"}
             }
+        }
+
         }
         return null
     }
@@ -204,34 +226,46 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
 
     private suspend fun securityAccess(mode: Byte): Boolean {
         val message = kwp!!.write(moduleAddress, 0x27.toByte(), byteArrayOf(mode), 3000)
-        if (message.isValid) {
-            val code =
-                ((message.answer[5].toInt() and 0xFF) shl 8) + (message.answer[6].toInt() and 0xFF)
-            val seed = securityAccessCalculator(mode.toInt(), code)
-            val data = byteArrayOf(
-                (mode + 1).toByte(),
-                ((seed and 0xFF00) shr 8).toByte(),
-                (seed and 0xFF).toByte()
-            )
-            return kwp!!.write(moduleAddress, 0x27.toByte(), data, 500).isValid
+        try {
+            if (message.isValid) {
+                val code =
+                    ((message.answer[5].toInt() and 0xFF) shl 8) + (message.answer[6].toInt() and 0xFF)
+                val seed = securityAccessCalculator(mode.toInt(), code)
+                val data = byteArrayOf(
+                    (mode + 1).toByte(),
+                    ((seed and 0xFF00) shr 8).toByte(),
+                    (seed and 0xFF).toByte()
+                )
+                return kwp!!.write(moduleAddress, 0x27.toByte(), data, 500).isValid
+            }
+            return false
+        } catch ( ex : Exception)
+        {
+            Logger.e {"$tag [securityAccess]: $ex, $message"}
+            return false
         }
-        return false
     }
 
     private suspend fun securityAccessFlash(): Boolean {
         val message = kwp!!.write(moduleAddress, 0x27.toByte(), byteArrayOf(0x07), 3000)
-        if (message.isValid) {
-            val code =
-                ((message.answer[5].toInt() and 0xFF) shl 8) + (message.answer[6].toInt() and 0xFF)
-            val seed = securityAccessCalculator(0x08, code)
-            val data = byteArrayOf(
-                (8).toByte(),
-                ((seed and 0xFF00) shr 8).toByte(),
-                (seed and 0xFF).toByte()
-            )
-            return kwp!!.write(moduleAddress, 0x27.toByte(), data, 500).isValid
+        try {
+            if (message.isValid) {
+                val code =
+                    ((message.answer[5].toInt() and 0xFF) shl 8) + (message.answer[6].toInt() and 0xFF)
+                val seed = securityAccessCalculator(0x08, code)
+                val data = byteArrayOf(
+                    (8).toByte(),
+                    ((seed and 0xFF00) shr 8).toByte(),
+                    (seed and 0xFF).toByte()
+                )
+                return kwp!!.write(moduleAddress, 0x27.toByte(), data, 500).isValid
+            }
+            return false
+        } catch ( ex : Exception)
+        {
+            Logger.e {"$tag [securityAccessFlash]: $ex, $message"}
+            return false
         }
-        return false
     }
 
     private suspend fun startDiagnosticSession(mode: Byte): Boolean {
@@ -279,8 +313,13 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
             size
         )
         val message = kwp!!.write(moduleAddress, 0x23.toByte(), data)
-        if (message.isValid) {
-            return message.answer.copyOfRange(4, message.length - 1)
+        try {
+            if (message.isValid) {
+                return message.answer.copyOfRange(4, message.length - 1)
+            }
+        } catch ( ex : Exception)
+        {
+            Logger.e {"$tag [readFlashDAta]: $ex, $message"}
         }
         return byteArrayOf()
     }

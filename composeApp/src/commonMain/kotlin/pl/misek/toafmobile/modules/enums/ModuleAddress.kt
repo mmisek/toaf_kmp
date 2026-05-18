@@ -34,6 +34,7 @@ enum class ModuleAddress(val address: Byte, val moduleName: String, val showName
     MODULE_DSC(0x56.toByte(), "dsc", "DSC"),
     MODULE_HEVAC(0x5B.toByte(), "hevac", "HEVAC"),
     MODULE_GS20(0x32.toByte(), "gs20", "GS20"),
+    MODULE_GS8601(0x32.toByte(), "gs8601", "GS8601"),
     MODULE_BMBT(0xF0.toByte(), "bmbt", "BMBT"),
     MODULE_VIDEO(0xED.toByte(), "video", "VIDEO"),
     MODULE_SCU((0xC5).toByte(), "scu", "SCU"),

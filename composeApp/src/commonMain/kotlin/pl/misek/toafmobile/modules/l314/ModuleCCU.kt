@@ -71,16 +71,30 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
         var info: ModuleInfo? = null
         try {
             if (moduleInit()) {
-                val message =
-                    kwp.write(MODULE_ADDRESS, 0x1A.toByte(), byteArrayOf(), 50)
+                val message = kwp.write(MODULE_ADDRESS, 0x1A.toByte(), byteArrayOf(), 50)
                 if (message.isValid) {
-                    info = ModuleInfo()
-                    val answer = message.answer
-                    info.id1 = String(answer.copyOfRange(5,7))
-                    info.ci = String.format("%02X", answer[7].toInt() and 0xFF)
-                    info.sw = String.format("%02X.%02X", answer[9].toInt() and 0xFF,answer[10].toInt() and 0xFF)
-                    info.hw = String(answer.copyOfRange(11,12))
-                    info.serial = String.format("%02X%02X%02X", answer[13].toInt() and 0xFF,answer[14].toInt() and 0xFF,answer[15].toInt() and 0xFF)
+                    try {
+                        info = ModuleInfo()
+                        val answer = message.answer
+                        info.id1 = String(answer.copyOfRange(5, 7))
+                        info.ci = String.format("%02X", answer[7].toInt() and 0xFF)
+                        info.sw = String.format(
+                            "%02X.%02X",
+                            answer[9].toInt() and 0xFF,
+                            answer[10].toInt() and 0xFF
+                        )
+                        info.hw = String(answer.copyOfRange(11, 12))
+                        info.serial = String.format(
+                            "%02X%02X%02X",
+                            answer[13].toInt() and 0xFF,
+                            answer[14].toInt() and 0xFF,
+                            answer[15].toInt() and 0xFF
+                        )
+                    }
+                    catch (ex : Exception)
+                    {
+                        Logger.e {"$tag : $ex, $message"}
+                    }
                 }
             }
         } catch (ex: Exception) {
@@ -97,10 +111,16 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
         if (moduleInit()) {
             val message = kwp.write(MODULE_ADDRESS, 0x21.toByte(), byteArrayOf(0x15.toByte()), 50)
             if (message.isValid) {
-                var vin = (message.answer[6].toInt() and 0x0F) shl 16
-                vin += (message.answer[7].toInt() and 0xFF) shl 8
-                vin += message.answer[8].toInt() and 0xFF
-                return vin.toString()
+                try {
+                    var vin = (message.answer[6].toInt() and 0x0F) shl 16
+                    vin += (message.answer[7].toInt() and 0xFF) shl 8
+                    vin += message.answer[8].toInt() and 0xFF
+                    return vin.toString()
+                }
+                catch (ex : Exception)
+                {
+                    Logger.e {"$tag: $ex, $message"}
+                }
             }
         }
         return null
@@ -258,15 +278,20 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
         {
             val message = kwp.write(MODULE_ADDRESS, 0x21.toByte(), byteArrayOf(element.block.toByte()), 50)
             if (message.isValid) {
-                val response = message.answer.copyOfRange(3, message.answer.size - 1)
-                result[element.block] = message.answer.copyOfRange(3, message.answer.size - 1)
-                if (element.block == 0x13)
-                {
-                    val x = response[2]
-                    response[2] = response[3]
-                    response[2] = x
+                try {
+                    val response = message.answer.copyOfRange(3, message.answer.size - 1)
+                    result[element.block] = message.answer.copyOfRange(3, message.answer.size - 1)
+                    if (element.block == 0x13) {
+                        val x = response[2]
+                        response[2] = response[3]
+                        response[2] = x
+                    }
+                    result[element.block] = response
                 }
-                result[element.block] = response
+                catch ( ex : Exception)
+                {
+                    Logger.e {"$tag : $ex, $message"}
+                }
             }
         }
         return result.ifEmpty { null }

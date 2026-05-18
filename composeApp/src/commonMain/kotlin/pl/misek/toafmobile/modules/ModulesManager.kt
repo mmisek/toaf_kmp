@@ -44,6 +44,7 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.modules.l314.ModuleCCU
+import pl.misek.toafmobile.modules.l322.ModuleGS8601
 import pl.misek.toafmobile.modules.l322.ModuleTXU
 
 class ModulesManager() : KoinComponent
@@ -84,6 +85,7 @@ class ModulesManager() : KoinComponent
             get<ModuleDSC>(named(KoinNames.ModuleL322Dsc.name)),
             get<ModuleHEVAC>(named(KoinNames.ModuleL322Hevac.name)),
             get<ModuleGS20>(named(KoinNames.ModuleL322Gs20.name)),
+            get<ModuleGS8601>(named(KoinNames.ModuleL322Gs8601.name)),
             get<ModuleWebasto>(named(KoinNames.ModuleR40Webasto.name)),
             get<ModuleBMBT>(named(KoinNames.ModuleR40Bmbt.name)),
             get<ModuleVideo>(named(KoinNames.ModuleR40Video.name)),

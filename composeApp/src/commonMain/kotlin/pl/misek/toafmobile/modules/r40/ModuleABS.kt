@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.r40
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.generated.ResourceHelper
 import pl.misek.toafmobile.koin.KoinNames
@@ -13,6 +14,7 @@ import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 
+private const val tag = "ModuleABS"
 class ModuleABS( protocolDS2: ProtocolDS2?) :ModuleDS2(protocolDS2, ModuleAddress.MODULE_ABS, listOf(CarType.R40)), IModuleLiveData
 {
     override fun getKoinName() = KoinNames.ModuleR40Abs
@@ -26,6 +28,7 @@ class ModuleABS( protocolDS2: ProtocolDS2?) :ModuleDS2(protocolDS2, ModuleAddres
         getIdentification()
         val message =  interfaceWrite(byteArrayOf(0x04, 0x01))
         if (message.isValid && message.answer.size > 3) {
+            try {
             result = ArrayList()
             for (i in 0 until (message.answer[3].toInt() and 0xFF)) {
                 val errorCode = String.format("%02X", message.answer[4 + 4 * i])
@@ -51,7 +54,13 @@ class ModuleABS( protocolDS2: ProtocolDS2?) :ModuleDS2(protocolDS2, ModuleAddres
                     errorDescription.add(Pair(Res.string.abs_error_detail_07,null))
                 result.add(ModuleError(ModuleAddress.MODULE_ABS, errorCode, errorDescription))
             }
+        } catch ( ex : Exception)
+        {
+            Logger.e {"$tag [getAllErrors()]: $ex, $message"}
+            return result
         }
+        }
+
         return result
     }
 
@@ -60,23 +69,29 @@ class ModuleABS( protocolDS2: ProtocolDS2?) :ModuleDS2(protocolDS2, ModuleAddres
         if (interfaceWrite(byteArrayOf(0x00)).isValid) {
             val message = interfaceWrite(byteArrayOf(0x0B))
             if (message.isValid) {
-                val res = message.answer.copyOfRange( 3, message.answer.size - 1)
+                try {
+                    val res = message.answer.copyOfRange(3, message.answer.size - 1)
 
-                var i = 0
-                while (i < 8) {
-                    val a = res[i]
-                    val b = res[i + 1]
-                    res[i] = b
-                    res[i + 1] = a
-                    i += 2
+                    var i = 0
+                    while (i < 8) {
+                        val a = res[i]
+                        val b = res[i + 1]
+                        res[i] = b
+                        res[i + 1] = a
+                        i += 2
+                    }
+                    val c = res[0x0E]
+                    val d = res[0x0F]
+                    res[0x0E] = d
+                    res[0x0F] = c
+
+                    result[0x00] = res
+                    return result
+                } catch ( ex : Exception)
+                {
+                    Logger.e {"$tag [readLiveData()]: $ex , $message"}
+                    return null
                 }
-                val c = res[0x0E]
-                val d = res[0x0F]
-                res[0x0E] = d
-                res[0x0F] = c
-
-                result[0x00] = res
-                return result
             } else return null
         } else return null
     }

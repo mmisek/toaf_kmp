@@ -33,44 +33,58 @@ object JsonSupport {
         moduleAddress: ModuleAddress,
         moduleCodingIndex: Int
     ): List<CodingElement> {
-        val path = "files/Coding/${moduleAddress.moduleName.lowercase(Locale.getDefault())}_coding.json"
-        val bytes = Res.readBytes(path)
-        val jsonString = bytes.decodeToString()
-        val container = Json.decodeFromString<CodingElementContainerJson>(jsonString)
-        val result = container.elements.map {json ->
-            CodingElementJson().apply {
-                name = json.name
-                block = json.block
-                byte = json.byte
-                mask = json.mask
-                codingIndex = json.codingIndex
-                codingValues = json.codingValues
-                codingCustomValues = json.codingCustomValues
-                visible = json.visible
+        val path =
+            "files/Coding/${moduleAddress.moduleName.lowercase(Locale.getDefault())}_coding.json"
+        return try {
+            val bytes = Res.readBytes(path)
+            val jsonString = bytes.decodeToString()
+            val container = Json.decodeFromString<CodingElementContainerJson>(jsonString)
+            val result = container.elements.map { json ->
+                CodingElementJson().apply {
+                    name = json.name
+                    block = json.block
+                    byte = json.byte
+                    mask = json.mask
+                    codingIndex = json.codingIndex
+                    codingValues = json.codingValues
+                    codingCustomValues = json.codingCustomValues
+                    visible = json.visible
+                }
             }
-        }
-        val returnResult = result.map { json ->
-            CodingElement().apply {
-                val resKey = "${moduleAddress.moduleName.lowercase()}_coding_${json.name}".lowercase()
-                name = json.name.lowercase()
-                description = ResourceMapper.stringResource(resKey)
-                block = decodeHexToInt(json.block)
-                byteInBlock = decodeHexToInt(json.byte)
-                mask = decodeHexToInt(json.mask)
-                json.codingIndex?.forEach {
-                    x->codingIndex.add(decodeHexToInt(x))
+            val returnResult = result.map { json ->
+                CodingElement().apply {
+                    val resKey =
+                        "${moduleAddress.moduleName.lowercase()}_coding_${json.name}".lowercase()
+                    name = json.name.lowercase()
+                    description = ResourceMapper.stringResource(resKey)
+                    block = decodeHexToInt(json.block)
+                    byteInBlock = decodeHexToInt(json.byte)
+                    mask = decodeHexToInt(json.mask)
+                    json.codingIndex?.forEach { x ->
+                        codingIndex.add(decodeHexToInt(x))
+                    }
+                    codingValues = ArrayList()
+                    json.codingValues?.forEach { v ->
+                        codingValues.add(
+                            Pair(
+                                decodeHexToInt(v.data),
+                                ResourceMapper.stringResource("coding_${v.text?.lowercase()}")
+                            )
+                        )
+                    }
+                    json.codingCustomValues?.let {
+                        codingCustomValues = Pair(it.min?.toInt() ?: 0, it.max?.toInt() ?: 0)
+                    }
+                    visible = json.visible.toBooleanStrictOrNull() ?: true
                 }
-                codingValues = ArrayList()
-                json.codingValues?.forEach { v ->
-                    codingValues.add(Pair(decodeHexToInt(v.data), ResourceMapper.stringResource("coding_${v.text?.lowercase()}")))
-                }
-                json.codingCustomValues?.let {
-                    codingCustomValues = Pair(it.min?.toInt() ?: 0, it.max?.toInt() ?: 0)
-                }
-                visible = json.visible.toBooleanStrictOrNull() ?: true
             }
+            returnResult.filter { x->x.visible == true and x.codingIndex.contains(moduleCodingIndex) }
         }
-        return returnResult.filter { x->x.visible == true and x.codingIndex.contains(moduleCodingIndex) }
+        catch (ex : Exception)
+        {
+            Logger.e{"$tag : getCodingList($path), ${ex.toString()}"}
+            return listOf()
+        }
     }
 
     suspend fun getLiveDataElements(
@@ -139,7 +153,7 @@ object JsonSupport {
             }
         } catch (ex : Exception)
         {
-            Logger.e{"$tag : getLiveDataElements(), ${ex.toString()}"}
+            Logger.e{"$tag : getLiveDataElements($path), ${ex.toString()}"}
             return null
         }
     }
@@ -182,7 +196,7 @@ object JsonSupport {
         }
         catch (ex : Exception)
         {
-            Logger.e{"$tag : getControlElements, ${ex.toString()}"}
+            Logger.e{"$tag : getControlElements($path), ${ex.toString()}"}
             return null
         }
     }
@@ -229,7 +243,7 @@ object JsonSupport {
         }
         catch (ex : Exception)
         {
-            Logger.e{"$tag : getFreezeFrameList, ${ex.toString()}"}
+            Logger.e{"$tag : getFreezeFrameList($path), ${ex.toString()}"}
             return null
         }
     }
@@ -272,7 +286,7 @@ object JsonSupport {
         }
         catch (ex : Exception)
         {
-            Logger.e{"$tag : getFreezeFrameList, ${ex.toString()}"}
+            Logger.e{"$tag : getFreezeFrameList($path), ${ex.toString()}"}
             return null
         }
     }
@@ -306,7 +320,7 @@ object JsonSupport {
                 }
             }.filter { x -> x.visible }
         } catch (ex: Exception) {
-            Logger.e{"$tag : getFreezeFrameList, ${ex.toString()}"}
+            Logger.e{"$tag : getZCSCodingList($path), ${ex.toString()}"}
             return emptyList()
         }
     }
@@ -320,7 +334,7 @@ object JsonSupport {
                 value.toInt()
             }
         } catch (e: Exception) {
-            Logger.e{"decodeHexToInt: ${e.toString()}"}
+            Logger.e{"decodeHexToInt($value): ${e.toString()}"}
             0
         }
     }
@@ -333,7 +347,7 @@ object JsonSupport {
                 value.toLong()
             }
         } catch (e: Exception) {
-            Logger.e{"decodeHexToLong: ${e.toString()}"}
+            Logger.e{"decodeHexToLong($value): ${e.toString()}"}
             0
         }
     }

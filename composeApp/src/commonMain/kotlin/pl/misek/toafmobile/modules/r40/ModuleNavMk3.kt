@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.r40
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.generated.ResourceHelper
 import pl.misek.toafmobile.koin.KoinNames
@@ -17,6 +18,7 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_description_navi
 import toafmobile.composeapp.generated.resources.module_navigation
 
+private const val tag = "ModuleNavMk3"
 class ModuleNavMk3( protocolDS2: ProtocolDS2?) :
     ModuleDS2( protocolDS2, ModuleAddress.MODULE_NAVMK3, listOf(CarType.R40, CarType.L322)),
     IModuleCoding, IModuleLiveData {
@@ -29,18 +31,25 @@ class ModuleNavMk3( protocolDS2: ProtocolDS2?) :
     override suspend fun getIdentification(): ModuleInfo? {
         val message = interfaceWrite(byteArrayOf(0x00), 200)
         if (message.isValid) {
-            val moduleInfo = ModuleInfo()
-            val answer = message.answer
-            moduleInfo.id1 = ModulesFunction.decodeModuleID(answer.copyOfRange( 3, 10))
-            moduleInfo.hw = String(answer.copyOfRange( 10, 12))
-            moduleInfo.ci = String(answer.copyOfRange( 12, 14))
-            moduleInfo.di = String(answer.copyOfRange( 14, 16))
-            moduleInfo.bi = String(answer.copyOfRange( 16, 18))
-            moduleInfo.date = String(answer.copyOfRange( 18, 20)) + "/" + String(answer.copyOfRange(20,22))
-            //moduleInfo.Serial = new String(message.answer.copyOfRange(22,32));
-            moduleInfo.sw = String(answer.copyOfRange( 32, 34))
-            moduleInfo.producer = ModulesFunction.getProducer(0x56)
-            return moduleInfo
+            try {
+                val moduleInfo = ModuleInfo()
+                val answer = message.answer
+                moduleInfo.id1 = ModulesFunction.decodeModuleID(answer.copyOfRange(3, 10))
+                moduleInfo.hw = String(answer.copyOfRange(10, 12))
+                moduleInfo.ci = String(answer.copyOfRange(12, 14))
+                moduleInfo.di = String(answer.copyOfRange(14, 16))
+                moduleInfo.bi = String(answer.copyOfRange(16, 18))
+                moduleInfo.date =
+                    String(answer.copyOfRange(18, 20)) + "/" + String(answer.copyOfRange(20, 22))
+                //moduleInfo.Serial = new String(message.answer.copyOfRange(22,32));
+                moduleInfo.sw = String(answer.copyOfRange(32, 34))
+                moduleInfo.producer = ModulesFunction.getProducer(0x56)
+                return moduleInfo
+            }
+            catch (ex : Exception)
+            {
+                Logger.e {"$tag [getIdentification] : $ex, $message"}
+            }
         }
         return null
     }
@@ -67,33 +76,63 @@ class ModuleNavMk3( protocolDS2: ProtocolDS2?) :
         var result: MutableList<ModuleError>? = null
         var message = interfaceWrite(byteArrayOf(0x04, 0x01))
         if (message.isValid) {
-            result = ArrayList()
-            for (i in 0 until message.answer[3]) {
-                val errorCode = String.format("%02X", message.answer[4 + 3 * i])
-                val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
-                errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[6 + 3 * i].toInt() and 0xFF)))
-                errorDescription.add(ResourceHelper.getErrorDescriptionIsPresent((message.answer[5 + 2 * i].toInt() and 0x20) == 0x20))
-                result.add(ModuleError( ModuleAddress.MODULE_NAVMK3, errorCode, errorDescription))
+            try {
+                result = ArrayList()
+                for (i in 0 until message.answer[3]) {
+                    val errorCode = String.format("%02X", message.answer[4 + 3 * i])
+                    val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
+                    errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[6 + 3 * i].toInt() and 0xFF)))
+                    errorDescription.add(ResourceHelper.getErrorDescriptionIsPresent((message.answer[5 + 2 * i].toInt() and 0x20) == 0x20))
+                    result.add(
+                        ModuleError(
+                            ModuleAddress.MODULE_NAVMK3,
+                            errorCode,
+                            errorDescription
+                        )
+                    )
+                }
+            }
+            catch (ex: Exception)
+            {
+                Logger.e("$tag [getAllErrors]: $ex, $message")
             }
         }
         message = interfaceWrite(byteArrayOf(0x14, 0x01))
-        if (message.isValid) {
-            if (result == null) result = ArrayList()
-            for (i in 0 until message.answer[3]) {
-                val errorCode = String.format("%02X", message.answer[4 + 3 * i])
-                val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
-                errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[6 + 3 * i].toInt() and 0xFF)))
-                errorDescription.add(ResourceHelper.getErrorDescriptionIsPresent((message.answer[5 + 2 * i].toInt() and 0x20) == 0x20))
-                result.add(ModuleError( ModuleAddress.MODULE_NAVMK3, errorCode, errorDescription))
+        try {
+            if (message.isValid) {
+                if (result == null) result = ArrayList()
+                for (i in 0 until message.answer[3]) {
+                    val errorCode = String.format("%02X", message.answer[4 + 3 * i])
+                    val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
+                    errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[6 + 3 * i].toInt() and 0xFF)))
+                    errorDescription.add(ResourceHelper.getErrorDescriptionIsPresent((message.answer[5 + 2 * i].toInt() and 0x20) == 0x20))
+                    result.add(
+                        ModuleError(
+                            ModuleAddress.MODULE_NAVMK3,
+                            errorCode,
+                            errorDescription
+                        )
+                    )
+                }
             }
         }
+        catch (ex: Exception)
+        {
+            Logger.e("$tag [getAllErrors]: $ex, $message")
+        }
+
         return result
     }
 
     override suspend fun getVIN(): String? {
         val data = readCoding()
         if (data != null) {
-            return String(data[0].copyOfRange(4, 11))
+            try {
+                return String(data[0].copyOfRange(4, 11))
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [getVIN], $ex,$data"}
+            }
         }
         return null
     }
@@ -104,9 +143,16 @@ class ModuleNavMk3( protocolDS2: ProtocolDS2?) :
             ModuleAddress.MODULE_GT.address,
             byteArrayOf(0x08, 0x00, 0x00, 0x00), 200
         )
-        if (message.isValid) result.add(
+        try {
+            if (message.isValid) result.add(
                 message.answer.copyOfRange(3,message.answer.size - 1))
-        else return null
+            else return null
+        }
+        catch (ex : Exception)
+        {
+            Logger.e {"$tag [readCoding]: $ex, $message"}
+        }
+
         return result
     }
 

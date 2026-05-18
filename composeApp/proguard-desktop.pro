@@ -50,11 +50,14 @@
 # ==========================================================
 # Room na desktopie korzysta pod spodem z SQLite JDBC.
 # Zachowanie adnotacji oraz klas wygenerowanych przez KSP.
--keep class androidx.room.** { *; }
+-keep class androidx.room.RoomDatabase.** { *; }
 -keep @androidx.room.Entity class * { *; }
 -keep @androidx.room.Dao class * { *; }
 -keep @androidx.room.Database class * { *; }
 -keep class * extends androidx.room.RoomDatabase { *; }
+-keep class kotlinx.coroutines.** { *; }
+-keepnames class kotlinx.coroutines.** { *; }
+-dontwarn kotlinx.coroutines.**
 
 # BARDZO WAŻNE DLA DESKTOPU: 
 # Sterownik SQLite (xerial sqlite-jdbc) używa JNI do ładowania natywnych bibliotek 

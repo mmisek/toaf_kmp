@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.r40
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceHelper
@@ -16,6 +17,7 @@ import toafmobile.composeapp.generated.resources.module_description_radio
 import toafmobile.composeapp.generated.resources.module_radio
 import toafmobile.composeapp.generated.resources.radio_module_info_name
 
+private const val tag = "ModuleRadio"
 open class ModuleRadio : ModuleDS2, IModuleControl {
     private val radioType: Map<Int, String> = mapOf(
         0x00 to "C23 MID ECE",
@@ -120,16 +122,21 @@ open class ModuleRadio : ModuleDS2, IModuleControl {
             )
         }
         val message = interfaceWrite(byteArrayOf(0x53))
-        if (message.isValid) {
-            val answer = message.answer
-            moduleInfo.serial = String.format(
-                "%02X%02X%02X%02X%02X",
-                (answer[3].toInt() and 0xFF),
-                (answer[4].toInt() and 0xFF),
-                (answer[5].toInt() and 0xFF),
-                (answer[6].toInt() and 0xFF),
-                (answer[7].toInt() and 0xFF)
-            )
+        try {
+            if (message.isValid) {
+                val answer = message.answer
+                moduleInfo.serial = String.format(
+                    "%02X%02X%02X%02X%02X",
+                    (answer[3].toInt() and 0xFF),
+                    (answer[4].toInt() and 0xFF),
+                    (answer[5].toInt() and 0xFF),
+                    (answer[6].toInt() and 0xFF),
+                    (answer[7].toInt() and 0xFF)
+                )
+            }
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [getIdentification], $ex, $message"}
         }
         return moduleInfo
     }
@@ -158,14 +165,19 @@ open class ModuleRadio : ModuleDS2, IModuleControl {
     override suspend fun getAllErrors(): List<ModuleError>? {
         val result: MutableList<ModuleError> = ArrayList()
         val message = interfaceWrite(byteArrayOf(0x04, 0x01))
-        if (message.isValid) {
-            for (i in 0 until message.answer[3]) {
-                val errorCode = String.format("%02X", message.answer[4 + 2 * i])
-                val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
-                errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5 + 2 * i].toInt() and 0x1F)))
-                errorDescription.add(ResourceHelper.getErrorDescriptionIsPresent((message.answer[5 + 2 * i].toInt() and 0x20) == 0x20))
-                result.add(ModuleError( ModuleAddress.MODULE_RADIO, errorCode, errorDescription))
+        try {
+            if (message.isValid) {
+                for (i in 0 until message.answer[3]) {
+                    val errorCode = String.format("%02X", message.answer[4 + 2 * i])
+                    val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
+                    errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5 + 2 * i].toInt() and 0x1F)))
+                    errorDescription.add(ResourceHelper.getErrorDescriptionIsPresent((message.answer[5 + 2 * i].toInt() and 0x20) == 0x20))
+                    result.add(ModuleError(ModuleAddress.MODULE_RADIO, errorCode, errorDescription))
+                }
             }
+        } catch (ex : Exception)
+        {
+            Logger.e {"$ex [getAllErrors], $ex, $message"}
         }
         return result
     }

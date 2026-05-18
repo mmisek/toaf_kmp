@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.r40
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.generated.ResourceHelper
 import pl.misek.toafmobile.generated.ResourceMapper
@@ -16,6 +17,7 @@ import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 
+private const val tag = "ModulePDC"
 class ModulePDC(protocolDS2: ProtocolDS2?) :
     ModuleDS2( protocolDS2, ModuleAddress.MODULE_PDC, listOf(CarType.R40, CarType.RJO)),
     IModuleCoding, IModuleLiveData, IModuleEepromProgramming {
@@ -47,9 +49,14 @@ class ModulePDC(protocolDS2: ProtocolDS2?) :
     override suspend fun readLiveData(): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = HashMap()
         val message = interfaceWrite(byteArrayOf(0x1B))
-        if (message.isValid) {
-            result[0x00] = message.answer.copyOfRange(3, message.answer.size)
-            return result
+        try {
+            if (message.isValid) {
+                result[0x00] = message.answer.copyOfRange(3, message.answer.size)
+                return result
+            }
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [readLiveData], $ex, $message"}
         }
         return null
     }
@@ -58,12 +65,16 @@ class ModulePDC(protocolDS2: ProtocolDS2?) :
 
     override suspend fun readCoding(): List<ByteArray>? {
         val result: MutableList<ByteArray> = ArrayList()
-        run {
-            for (i in 0..0x7) {
-                val message = interfaceWrite(byteArrayOf(0x08, i.toByte()))
+        for (i in 0..0x7) {
+            val message = interfaceWrite(byteArrayOf(0x08, i.toByte()))
+            try {
                 if (message.isValid) result.add(
-                        message.answer.copyOfRange(3,message.answer.size - 1))
+                    message.answer.copyOfRange(3, message.answer.size - 1)
+                )
                 else return null
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [readCoding], $ex, $message"}
             }
         }
         return result
@@ -88,29 +99,40 @@ class ModulePDC(protocolDS2: ProtocolDS2?) :
         var result: MutableList<ModuleError>? = null
         for (j in 0..1) {
             val message = interfaceWrite(byteArrayOf(0x04, (j + 1).toByte()))
-            if (message.isValid) {
-                for (i in 0..6) {
-                    if ((message.answer[6 + 3 * i].toInt() and 0xFF) > 0x00) {
-                        val errorCode = String.format("%02d", (j + 1) * 10 + i)
-                        val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
-                        errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[6 + 3 * i].toInt() and 0xFF)))
-                        for (k in errorsMatrix[8 * j + i].indices) {
-                            if ((message.answer[5 + 3 * i].toInt() and (0x01 shl k)) == (0x01 shl k)) {
-                                ResourceMapper
-                                    .stringResource(String.format("pdc_error_desc_%02d",errorsMatrix[8 * j + i][k]))
-                                    ?.let{errorDescription.add(Pair(it,null))}
+            try {
+                if (message.isValid) {
+                    for (i in 0..6) {
+                        if ((message.answer[6 + 3 * i].toInt() and 0xFF) > 0x00) {
+                            val errorCode = String.format("%02d", (j + 1) * 10 + i)
+                            val errorDescription: MutableList<Pair<StringResource, Any?>> =
+                                ArrayList()
+                            errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[6 + 3 * i].toInt() and 0xFF)))
+                            for (k in errorsMatrix[8 * j + i].indices) {
+                                if ((message.answer[5 + 3 * i].toInt() and (0x01 shl k)) == (0x01 shl k)) {
+                                    ResourceMapper
+                                        .stringResource(
+                                            String.format(
+                                                "pdc_error_desc_%02d",
+                                                errorsMatrix[8 * j + i][k]
+                                            )
+                                        )
+                                        ?.let { errorDescription.add(Pair(it, null)) }
+                                }
                             }
-                        }
-                        if (result == null) result = ArrayList()
-                        result.add(
-                            ModuleError(
-                                ModuleAddress.MODULE_PDC,
-                                errorCode,
-                                errorDescription
+                            if (result == null) result = ArrayList()
+                            result.add(
+                                ModuleError(
+                                    ModuleAddress.MODULE_PDC,
+                                    errorCode,
+                                    errorDescription
+                                )
                             )
-                        )
+                        }
                     }
                 }
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [getAllErrors], $ex, $message"}
             }
         }
         return result
@@ -127,7 +149,13 @@ class ModulePDC(protocolDS2: ProtocolDS2?) :
                 size.toByte()
             )
         )
-        return if (message.isValid) message.answer.copyOfRange(0x03, 3 + size) else null
+        try {
+            return if (message.isValid) message.answer.copyOfRange(0x03, 3 + size) else null
+        } catch ( ex : Exception)
+        {
+            Logger.e {"$tag [readEeprom], $ex,$message"}
+            return null
+        }
     }
 
     override suspend fun writeEeprom(address: Int, data: ByteArray): Boolean {

@@ -31,10 +31,10 @@ import toafmobile.composeapp.generated.resources.*
 import java.util.Calendar
 import java.util.Locale
 
+private const val tag = "ModuleEMS"
 class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramming, IModule,
     IModuleControl,
     IModuleLiveData {
-    private var tag = "ModuleEMS"
     private val moduleAddress = ModuleAddress.MODULE_EMS.address
     private val _programmingState =  MutableSharedFlow<FlashProgrammingState>(replay = 10, extraBufferCapacity = 64, onBufferOverflow = BufferOverflow.DROP_OLDEST)
     override val programmingState = _programmingState.asSharedFlow()
@@ -64,13 +64,17 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
 
     override suspend fun readLiveData(): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = HashMap()
-        run {
-            for (b in liveDataBlocksToRead) {
-                val message = kwp.write(moduleAddress, 0x21.toByte(), byteArrayOf(b), 150)
+        for (b in liveDataBlocksToRead) {
+            val message = kwp.write(moduleAddress, 0x21.toByte(), byteArrayOf(b), 150)
+            try {
                 if (message.isValid) {
                     result[b.toInt()] =
                         message.answer.copyOfRange(6, message.length - 1)
                 } else return null
+            }catch (ex : Exception)
+            {
+                Logger.e {"$tag [readLiveData], $ex, $message"}
+                return null
             }
         }
         return result
@@ -106,81 +110,102 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
         var result: MutableList<ModuleError>? = null
         if (securityAccess(3)) {
             val message = kwp.write(moduleAddress, 0x18.toByte(), byteArrayOf(0x00, 0x00, 0x00))
-            if (message.isValid) {
-                val freezeFrames = JsonSupport.getEMSErrorFreezeFrame()
-                for (i in 0 until (message.answer[5].toInt() and 0xFF)) {
-                    val errorCode =
-                        ((message.answer[6 + 3 * i].toInt() and 0xFF) shl 8) + (message.answer[7 + 3 * i].toInt() and 0xFF)
-                    val message1 = kwp.write(
-                        moduleAddress, 0x17.toByte(), byteArrayOf(
-                            message.answer[6 + 3 * i], message.answer[7 + 3 * i]
-                        )
-                    )
-                    val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
-                    if (message1.isValid) {
-                        errorDescription.add(ResourceHelper.getErrorDescriptionCount(message1.answer[8].toInt() and 0xFF))
-                        for (k in 0..7) {
-                            val number = message1.answer[8].toInt() and (0x01 shl k)
-                            if (number == (0x01 shl k)) {
-                                ResourceMapper.stringResource(String.format("ems_error_detail_%02X",number))
-                                    ?. let {errorDescription.add(Pair(it,null))}
-                            }
-                        }
-                        if (freezeFrames != null) {
-                            val messageFreezeFrame = kwp.write(
-                                moduleAddress, 0x12.toByte(), byteArrayOf(
-                                    0x00, 0x04,
-                                    message.answer[6 + 3 * i],
-                                    message.answer[7 + 3 * i]
-                                )
+            try {
+                if (message.isValid) {
+                    val freezeFrames = JsonSupport.getEMSErrorFreezeFrame()
+                    for (i in 0 until (message.answer[5].toInt() and 0xFF)) {
+                        val errorCode =
+                            ((message.answer[6 + 3 * i].toInt() and 0xFF) shl 8) + (message.answer[7 + 3 * i].toInt() and 0xFF)
+                        val message1 = kwp.write(
+                            moduleAddress, 0x17.toByte(), byteArrayOf(
+                                message.answer[6 + 3 * i], message.answer[7 + 3 * i]
                             )
-                            if (messageFreezeFrame.isValid) {
-                                for (element in freezeFrames) {
-                                    var value: Long = 0x00
-                                    var k = 0
-                                    var m = element.mask
-                                    do {
-                                        value = value shl 8
-                                        value += (messageFreezeFrame.answer[element.byteInBlock + 6 + (k++)].toInt() and 0xFF).toLong()
-                                        m = m shr 8
-                                    } while (m > 0x00)
-
-                                    if (element.u2) {
-                                        if (element.mask == 0xFFL) value = value.toByte().toLong()
-                                        else if (element.mask == 0xFFFFL) value =
-                                            value.toShort().toLong()
-                                    }
-                                    value = value and element.mask
-
-                                    var mask = element.mask
-                                    while ((mask and 0x01L) != 0x01L) {
-                                        mask = mask shr 0x01
-                                        value = value shr 0x01
-                                    }
-                                    errorDescription.add(
-                                        Pair(
-                                            element.description!!,
-                                            String.format(
-                                                Locale.getDefault(),
-                                                "%.2f %s",
-                                                (value * element.factorA + element.factorB).toDouble(),
-                                                element.unit
-                                            ))
+                        )
+                        val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
+                        if (message1.isValid) {
+                            errorDescription.add(ResourceHelper.getErrorDescriptionCount(message1.answer[8].toInt() and 0xFF))
+                            for (k in 0..7) {
+                                val number = message1.answer[8].toInt() and (0x01 shl k)
+                                if (number == (0x01 shl k)) {
+                                    ResourceMapper.stringResource(
+                                        String.format(
+                                            "ems_error_detail_%02X",
+                                            number
+                                        )
                                     )
+                                        ?.let { errorDescription.add(Pair(it, null)) }
                                 }
                             }
-                        } else
-                            Logger.e{"$tag : No freeze frame for code ${String.format("%04X", errorCode)}"}
-                    }
-                    if (result == null) result = ArrayList()
-                    result.add(
-                        ModuleError(
-                            ModuleAddress.MODULE_EMS, String.format("%04X", errorCode).uppercase(
-                                Locale.getDefault()
-                            ), errorDescription
+                            if (freezeFrames != null) {
+                                val messageFreezeFrame = kwp.write(
+                                    moduleAddress, 0x12.toByte(), byteArrayOf(
+                                        0x00, 0x04,
+                                        message.answer[6 + 3 * i],
+                                        message.answer[7 + 3 * i]
+                                    )
+                                )
+                                if (messageFreezeFrame.isValid) {
+                                    for (element in freezeFrames) {
+                                        var value: Long = 0x00
+                                        var k = 0
+                                        var m = element.mask
+                                        do {
+                                            value = value shl 8
+                                            value += (messageFreezeFrame.answer[element.byteInBlock + 6 + (k++)].toInt() and 0xFF).toLong()
+                                            m = m shr 8
+                                        } while (m > 0x00)
+
+                                        if (element.u2) {
+                                            if (element.mask == 0xFFL) value =
+                                                value.toByte().toLong()
+                                            else if (element.mask == 0xFFFFL) value =
+                                                value.toShort().toLong()
+                                        }
+                                        value = value and element.mask
+
+                                        var mask = element.mask
+                                        while ((mask and 0x01L) != 0x01L) {
+                                            mask = mask shr 0x01
+                                            value = value shr 0x01
+                                        }
+                                        errorDescription.add(
+                                            Pair(
+                                                element.description!!,
+                                                String.format(
+                                                    Locale.getDefault(),
+                                                    "%.2f %s",
+                                                    (value * element.factorA + element.factorB).toDouble(),
+                                                    element.unit
+                                                )
+                                            )
+                                        )
+                                    }
+                                }
+                            } else
+                                Logger.e {
+                                    "$tag : No freeze frame for code ${
+                                        String.format(
+                                            "%04X",
+                                            errorCode
+                                        )
+                                    }"
+                                }
+                        }
+                        if (result == null) result = ArrayList()
+                        result.add(
+                            ModuleError(
+                                ModuleAddress.MODULE_EMS,
+                                String.format("%04X", errorCode).uppercase(
+                                    Locale.getDefault()
+                                ),
+                                errorDescription
+                            )
                         )
-                    )
+                    }
                 }
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [getAllErros], $ex ,$message"}
             }
         }
         return result
@@ -209,50 +234,61 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
         if (!startDiagnosticSession(0x81)) return null
         if (!securityAccess(3)) return null
         val message = kwp.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x80.toByte()), 300)
-        if (message.isValid) {
-            try {
-                info = ModuleInfo()
-                val answer = message.answer
-                info.additionalInfo = ArrayList()
-                info.id1 = String(answer.copyOfRange(147, 150)) + String.format(
-                    "%02X%02X%02X",
-                    answer[150].toInt() and 0xFF,
-                    answer[151].toInt() and 0xFF,
-                    answer[152].toInt() and 0xFF
-                )
-                info.id2 = String(answer.copyOfRange(27, 30)) + String.format(
-                    "%02X%02X%02X",
-                    answer[30].toInt() and 0xFF,
-                    answer[31].toInt() and 0xFF,
-                    answer[32].toInt() and 0xFF
-                )
-                info.ci = (answer[165].toInt() and 0xFF).toByte().toHexString()
-                info.di = (answer[166].toInt() and 0xFF).toByte().toHexString()
-                info.sw = (answer[21 * 8 + 5].toInt() and 0xFF).toByte().toHexString()
-                info.date = String.format(
-                    "%02X/%02X/%04X",
-                    answer[167].toInt() and 0xFF,
-                    answer[168].toInt() and 0xFF,
-                    ((answer[169].toInt() and 0xFF) shl 8) + (answer[170].toInt() and 0xFF)
-                )
-                info.additionalInfo.add(Pair(Res.string.module_info_siemens_software_number,String(answer.copyOfRange(153, 162))))
-                info.additionalInfo.add(
-                    Pair(Res.string.module_info_programing_date,
-                        String.format(
-                            "%02X/%02X/%04X",
-                            answer[22].toInt() and 0xFF,
-                            answer[23].toInt() and 0xFF,
-                            ((answer[24].toInt() and 0xFF) shl 8) + (answer[25].toInt() and 0xFF)
+        try {
+            if (message.isValid) {
+                try {
+                    info = ModuleInfo()
+                    val answer = message.answer
+                    info.additionalInfo = ArrayList()
+                    info.id1 = String(answer.copyOfRange(147, 150)) + String.format(
+                        "%02X%02X%02X",
+                        answer[150].toInt() and 0xFF,
+                        answer[151].toInt() and 0xFF,
+                        answer[152].toInt() and 0xFF
+                    )
+                    info.id2 = String(answer.copyOfRange(27, 30)) + String.format(
+                        "%02X%02X%02X",
+                        answer[30].toInt() and 0xFF,
+                        answer[31].toInt() and 0xFF,
+                        answer[32].toInt() and 0xFF
+                    )
+                    info.ci = (answer[165].toInt() and 0xFF).toByte().toHexString()
+                    info.di = (answer[166].toInt() and 0xFF).toByte().toHexString()
+                    info.sw = (answer[21 * 8 + 5].toInt() and 0xFF).toByte().toHexString()
+                    info.date = String.format(
+                        "%02X/%02X/%04X",
+                        answer[167].toInt() and 0xFF,
+                        answer[168].toInt() and 0xFF,
+                        ((answer[169].toInt() and 0xFF) shl 8) + (answer[170].toInt() and 0xFF)
+                    )
+                    info.additionalInfo.add(
+                        Pair(
+                            Res.string.module_info_siemens_software_number,
+                            String(answer.copyOfRange(153, 162))
                         )
                     )
-                )
+                    info.additionalInfo.add(
+                        Pair(
+                            Res.string.module_info_programing_date,
+                            String.format(
+                                "%02X/%02X/%04X",
+                                answer[22].toInt() and 0xFF,
+                                answer[23].toInt() and 0xFF,
+                                ((answer[24].toInt() and 0xFF) shl 8) + (answer[25].toInt() and 0xFF)
+                            )
+                        )
+                    )
 
-                info.serial = String(answer.copyOfRange(36, 46))
+                    info.serial = String(answer.copyOfRange(36, 46))
 
-                info.producer = ModulesFunction.getProducer(answer[171].toInt())
-            } catch (ex: Exception) {
-                Logger.e{"$tag : ${ex.toString()}"}
+                    info.producer = ModulesFunction.getProducer(answer[171].toInt())
+                } catch (ex: Exception) {
+                    Logger.e { "$tag : ${ex.toString()}" }
+                }
             }
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [getIdentification], $ex, $message"}
         }
 
 
@@ -261,16 +297,23 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
 
     override suspend fun getVIN(): String? {
         val message = kwp.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x80.toByte()), 300)
-        return if (message.isValid) {
-            String(message.answer.copyOfRange(7,18)) +
-            String.format(Locale.getDefault(),
-                "%02d%02d%02d",
-                message.answer[18].toInt() and 0xFF,
-                message.answer[19].toInt() and 0xFF,
-                message.answer[20].toInt() and 0xFF
-            )
-        } else {
-            null
+        try {
+            return if (message.isValid) {
+                String(message.answer.copyOfRange(7, 18)) +
+                        String.format(
+                            Locale.getDefault(),
+                            "%02d%02d%02d",
+                            message.answer[18].toInt() and 0xFF,
+                            message.answer[19].toInt() and 0xFF,
+                            message.answer[20].toInt() and 0xFF
+                        )
+            } else {
+                null
+            }
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [getVIN], $ex, $message"}
+            return null
         }
     }
 
@@ -305,27 +348,33 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
     private suspend fun securityAccess(level: Int): Boolean {
         var result = false
         val message = kwp.write(moduleAddress, 0x27.toByte(), byteArrayOf(level.toByte()), 500)
-        if (message.isValid) {
-            val seed =
+        try {
+            if (message.isValid) {
+                val seed =
                 //if (kwp is ProtocolKWPStarEMS2K)
                 //        ((message.answer[5].toInt() and 0xFF) shl 8) + (message.answer[6].toInt() and 0xFF)
-                //else
-                        ((message.answer[6].toInt() and 0xFF) shl 8) + (message.answer[7].toInt() and 0xFF)
-            if (seed == 0x0000) result = true
-            else {
-                val key = securityAccessCalc(seed, level)
-                result = kwp.write(
-                    moduleAddress,
-                    0x27.toByte(),
-                    byteArrayOf(
-                        (level + 1).toByte(),
-                        ((key and 0xFF00) shr 8).toByte(),
-                        (key and 0x00FF).toByte()
-                    ),
-                    200
-                ).isValid
+                    //else
+                    ((message.answer[6].toInt() and 0xFF) shl 8) + (message.answer[7].toInt() and 0xFF)
+                if (seed == 0x0000) result = true
+                else {
+                    val key = securityAccessCalc(seed, level)
+                    result = kwp.write(
+                        moduleAddress,
+                        0x27.toByte(),
+                        byteArrayOf(
+                            (level + 1).toByte(),
+                            ((key and 0xFF00) shr 8).toByte(),
+                            (key and 0x00FF).toByte()
+                        ),
+                        200
+                    ).isValid
+                }
             }
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [securityAccess], $ex, $message"}
         }
+
 
         return result
     }
@@ -362,12 +411,17 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
         if (startDiagnosticSession(0x81)) {
             if (securityAccess(3)) {
                 val message = kwp.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x8A.toByte()))
-                if (message.isValid) {
-                    try {
-                        result = ZcsCoding(message.answer.copyOfRange(6, 26))
-                    } catch (_: Exception) {
-                        return ZcsCoding()
+                try {
+                    if (message.isValid) {
+                        try {
+                            result = ZcsCoding(message.answer.copyOfRange(6, 26))
+                        } catch (_: Exception) {
+                            return ZcsCoding()
+                        }
                     }
+                } catch (ex : Exception)
+                {
+                    Logger.e {"$tag [readZCS], $ex, $message"}
                 }
             }
         }
@@ -473,7 +527,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                                     String.format("%02i:%02i:%02i", hours, minutes, seconds)))
                             _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_ecu_reset))
                         } catch (ex: Exception) {
-                            Logger.e{"$tag : ${ex.toString()}"}
+                            Logger.e{"$tag [WriteFlash]: ${ex.toString()}"}
                         }
                     } else {
                         _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
@@ -553,7 +607,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
             result = result.copyOfRange(0, (endAddress - startAddress).toInt())
             _programmingState.tryEmit(FlashProgrammingState.FlashData(result.toList(),moduleInfo,vin))
         } catch (ex: Exception) {
-            Logger.e{"$tag : ${ex.toString()}"}
+            Logger.e{"$tag [readFlash] : ${ex.toString()}"}
         }
     }
 
@@ -571,8 +625,13 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
             250
         )
         Logger.i{"$tag: ${(System.currentTimeMillis() - start)}"}
-        if (message.isValid) {
-            return message.answer.copyOfRange(5, message.length - 1)
+        try {
+            if (message.isValid) {
+                return message.answer.copyOfRange(5, message.length - 1)
+            }
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [readFlashData], $ex, $message"}
         }
         return byteArrayOf()
     }

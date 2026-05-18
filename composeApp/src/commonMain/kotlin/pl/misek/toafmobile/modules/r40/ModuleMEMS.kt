@@ -29,10 +29,10 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
+private const val tag = "ModuleMEMS"
 class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramming, IModule,
     IModuleControl,
     IModuleLiveData {
-    private var tag = "ModuleMEMS"
     private val moduleAddress = ModuleAddress.MODULE_MEMS.address
     private val _programmingState =  MutableSharedFlow<FlashProgrammingState>(replay = 10, extraBufferCapacity = 64, onBufferOverflow = BufferOverflow.DROP_OLDEST)
     override val programmingState = _programmingState.asSharedFlow()
@@ -64,9 +64,14 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
         run {
             for (b in liveDataBlocksToRead) {
                 val message = kwp.write(moduleAddress, 0x21.toByte(), byteArrayOf(b), 250)
-                if (message.isValid) {
-                    result[b.toInt()] =message.answer.copyOfRange(6, message.length - 1)
-                } else return null
+                try {
+                    if (message.isValid) {
+                        result[b.toInt()] = message.answer.copyOfRange(6, message.length - 1)
+                    } else return null
+                } catch (ex : Exception)
+                {
+                    Logger.e {"$tag[ readLiveData], $ex, $message"}
+                }
             }
         }
         return result
@@ -119,21 +124,26 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
         if (securityAccess(0xA0)) {
             val message =
                 kwp.write(moduleAddress, 0x18.toByte(), byteArrayOf(0x00, 0x00, 0x00), 1000)
-            if (message.isValid) {
-                for (i in 0 until (message.answer[5].toInt() and 0xFF)) {
-                    val errorCode =
-                        ((message.answer[6 + 3 * i].toInt() and 0xFF) shl 8) + (message.answer[7 + 3 * i].toInt() and 0xFF)
-                    if (result == null) result = ArrayList()
-                    result.add(
-                        ModuleError(
-                            ModuleAddress.MODULE_MEMS_ERROR,
-                            String.format("%04X", errorCode).uppercase(
-                                Locale.getDefault()
-                            ),
-                            ArrayList()
+            try {
+                if (message.isValid) {
+                    for (i in 0 until (message.answer[5].toInt() and 0xFF)) {
+                        val errorCode =
+                            ((message.answer[6 + 3 * i].toInt() and 0xFF) shl 8) + (message.answer[7 + 3 * i].toInt() and 0xFF)
+                        if (result == null) result = ArrayList()
+                        result.add(
+                            ModuleError(
+                                ModuleAddress.MODULE_MEMS_ERROR,
+                                String.format("%04X", errorCode).uppercase(
+                                    Locale.getDefault()
+                                ),
+                                ArrayList()
+                            )
                         )
-                    )
+                    }
                 }
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [getAllErros], $ex, $message"}
             }
             endDiagnose()
         }
@@ -143,124 +153,135 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
     override suspend fun getIdentification(): ModuleInfo? {
         var info: ModuleInfo? = null
         var message = kwp.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x9A.toByte()), 250)
-        if (message.isValid) {
-            info = ModuleInfo()
-            info.additionalInfo = ArrayList()
-            info.id1 = String(message.answer.copyOfRange(6, 9)) + String.format(
-                "%02X%02X%02X",
-                message.answer[9].toInt() and 0xFF,
-                message.answer[10].toInt() and 0xFF,
-                message.answer[11].toInt() and 0xFF
-            )
-        }
-        message = kwp.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x9B.toByte()), 1000)
-        if (message.isValid) {
-            if (info == null) {
+        try{
+            if (message.isValid) {
                 info = ModuleInfo()
                 info.additionalInfo = ArrayList()
+                info.id1 = String(message.answer.copyOfRange(6, 9)) + String.format(
+                    "%02X%02X%02X",
+                    message.answer[9].toInt() and 0xFF,
+                    message.answer[10].toInt() and 0xFF,
+                    message.answer[11].toInt() and 0xFF
+                )
             }
-            info.ci = String.format("%02X", message.answer[6].toInt() and 0xFF)
-        }
-        message = kwp.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x9C.toByte()), 1000)
-        if (message.isValid) {
-            if (info == null) {
-                info = ModuleInfo()
-                info.additionalInfo = ArrayList()
+            message = kwp.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x9B.toByte()), 1000)
+            if (message.isValid) {
+                if (info == null) {
+                    info = ModuleInfo()
+                    info.additionalInfo = ArrayList()
+                }
+                info.ci = String.format("%02X", message.answer[6].toInt() and 0xFF)
             }
-
-            info.di = String.format("%02X", message.answer[6].toInt() and 0xFF)
-        }
-        message = kwp.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x9E.toByte()), 1000)
-        if (message.isValid) {
-            if (info == null) {
-                info = ModuleInfo()
-                info.additionalInfo = ArrayList()
-            }
-
-            info.producer = ModulesFunction.getProducer(message.answer[6].toInt())
-        }
-
-        message = kwp.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x87.toByte()))
-        if (message.isValid) {
-            try {
+            message = kwp.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x9C.toByte()), 1000)
+            if (message.isValid) {
                 if (info == null) {
                     info = ModuleInfo()
                     info.additionalInfo = ArrayList()
                 }
 
-                info.id2 = String(message.answer.copyOfRange(26,29)
-                ) + String.format(
-                    "%02X%02X%02X",
-                    message.answer[29].toInt() and 0xFF,
-                    message.answer[30].toInt() and 0xFF,
-                    message.answer[31].toInt() and 0xFF
+                info.di = String.format("%02X", message.answer[6].toInt() and 0xFF)
+            }
+            message = kwp.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x9E.toByte()), 1000)
+            if (message.isValid) {
+                if (info == null) {
+                    info = ModuleInfo()
+                    info.additionalInfo = ArrayList()
+                }
+
+                info.producer = ModulesFunction.getProducer(message.answer[6].toInt())
+            }
+
+            message = kwp.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x87.toByte()))
+            if (message.isValid) {
+                try {
+                    if (info == null) {
+                        info = ModuleInfo()
+                        info.additionalInfo = ArrayList()
+                    }
+
+                    info.id2 = String(message.answer.copyOfRange(26,29)
+                    ) + String.format(
+                        "%02X%02X%02X",
+                        message.answer[29].toInt() and 0xFF,
+                        message.answer[30].toInt() and 0xFF,
+                        message.answer[31].toInt() and 0xFF
+                    )
+                    info.additionalInfo.add(
+                        Pair(
+                            Res.string.module_info_programing_date,
+                            String.format(
+                                "%02X/%02X/%04X",
+                                message.answer[22].toInt() and 0xFF,
+                                message.answer[23].toInt() and 0xFF,
+                                ((message.answer[24].toInt() and 0xFF) shl 8) + (message.answer[25].toInt() and 0xFF)
+                            )
+                        )
+                    )
+
+                    info.serial = String(message.answer.copyOfRange( 36, 46))
+                } catch (ex: Exception) {
+                    Logger.e{"$tag : ${ex.toString()}"}
+                }
+            }
+            message = kwp.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x32.toByte()), 1000)
+            if (message.isValid) {
+                if (info == null) {
+                    info = ModuleInfo()
+                    info.additionalInfo = ArrayList()
+                }
+
+                info.additionalInfo.add(
+                    Pair(
+                        Res.string.module_info_application_ident,
+                        String(message.answer.copyOfRange(6, 14))
+                    )
                 )
                 info.additionalInfo.add(
                     Pair(
-                        Res.string.module_info_programing_date,
-                        String.format(
-                            "%02X/%02X/%04X",
-                            message.answer[22].toInt() and 0xFF,
-                            message.answer[23].toInt() and 0xFF,
-                            ((message.answer[24].toInt() and 0xFF) shl 8) + (message.answer[25].toInt() and 0xFF)
-                        )
+                        Res.string.module_info_calibration_ident,
+                        String(message.answer.copyOfRange(14, 22))
                     )
                 )
-
-                info.serial = String(message.answer.copyOfRange( 36, 46))
-            } catch (ex: Exception) {
-                Logger.e{"$tag : ${ex.toString()}"}
             }
-        }
-        message = kwp.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x32.toByte()), 1000)
-        if (message.isValid) {
-            if (info == null) {
-                info = ModuleInfo()
-                info.additionalInfo = ArrayList()
-            }
+            message = kwp.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x33.toByte()), 1000)
+            if (message.isValid) {
+                if (info == null) {
+                    info = ModuleInfo()
+                    info.additionalInfo = ArrayList()
+                }
 
-            info.additionalInfo.add(
-                Pair(
-                    Res.string.module_info_application_ident,
-                    String(message.answer.copyOfRange(6, 14))
+                info.additionalInfo.add(
+                    Pair(
+                        Res.string.module_info_boot_ident,
+                        String(message.answer.copyOfRange( 14, 22))
+                    )
                 )
-            )
-            info.additionalInfo.add(
-                Pair(
-                    Res.string.module_info_calibration_ident,
-                    String(message.answer.copyOfRange(14, 22))
-                )
-            )
-        }
-        message = kwp.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x33.toByte()), 1000)
-        if (message.isValid) {
-            if (info == null) {
-                info = ModuleInfo()
-                info.additionalInfo = ArrayList()
             }
-
-            info.additionalInfo.add(
-                Pair(
-                    Res.string.module_info_boot_ident,
-                    String(message.answer.copyOfRange( 14, 22))
-                )
-            )
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [getIdentification], $ex, $message"}
         }
         return info
     }
 
     override suspend fun getVIN(): String? {
         val message = kwp.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x87.toByte()), 1000)
-        return if (message.isValid) {
-            String(message.answer.copyOfRange(6,17)) +
-            String.format(
-                "%02X%02X%02X",
-                message.answer[17].toInt() and 0xFF,
-                message.answer[18].toInt() and 0xFF,
-                message.answer[19].toInt() and 0xFF
-            )
-        } else {
-            null
+        try {
+            return if (message.isValid) {
+                String(message.answer.copyOfRange(6, 17)) +
+                        String.format(
+                            "%02X%02X%02X",
+                            message.answer[17].toInt() and 0xFF,
+                            message.answer[18].toInt() and 0xFF,
+                            message.answer[19].toInt() and 0xFF
+                        )
+            } else {
+                null
+            }
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [getVIN], $ex,$message"}
+            return null
         }
     }
 
@@ -284,30 +305,35 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
     private suspend fun securityAccess(level: Int): Boolean {
         var result = false
         var message = OBDMessage()
-        message.isValid = true
-        if (level != 0) message =
-            kwp.write(moduleAddress, 0x10.toByte(), byteArrayOf(level.toByte()), 500)
-        if (message.isValid) {
-            message = kwp.write(moduleAddress, 0x27.toByte(), byteArrayOf(0x01.toByte()), 500)
+        try {
+            message.isValid = true
+            if (level != 0) message =
+                kwp.write(moduleAddress, 0x10.toByte(), byteArrayOf(level.toByte()), 500)
             if (message.isValid) {
-                val seed =
-                    ((message.answer[6].toInt() and 0xFF) shl 8) + (message.answer[7].toInt() and 0xFF)
-                if (seed == 0x0000) result = true
-                else {
-                    val key = securityAccessCalc(seed)
-                    message = kwp.write(
-                        moduleAddress,
-                        0x27.toByte(),
-                        byteArrayOf(
-                            (0x02).toByte(),
-                            ((key and 0xFF00) shr 8).toByte(),
-                            (key and 0x00FF).toByte()
-                        ),
-                        1000
-                    )
-                    result = message.isValid
+                message = kwp.write(moduleAddress, 0x27.toByte(), byteArrayOf(0x01.toByte()), 500)
+                if (message.isValid) {
+                    val seed =
+                        ((message.answer[6].toInt() and 0xFF) shl 8) + (message.answer[7].toInt() and 0xFF)
+                    if (seed == 0x0000) result = true
+                    else {
+                        val key = securityAccessCalc(seed)
+                        message = kwp.write(
+                            moduleAddress,
+                            0x27.toByte(),
+                            byteArrayOf(
+                                (0x02).toByte(),
+                                ((key and 0xFF00) shr 8).toByte(),
+                                (key and 0x00FF).toByte()
+                            ),
+                            1000
+                        )
+                        result = message.isValid
+                    }
                 }
             }
+        } catch (ex :Exception)
+        {
+            Logger.e {"$tag [securityAccess], $ex, $message"}
         }
         return result
     }
@@ -346,12 +372,17 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
         var result: ZcsCoding? = null
         if (securityAccess(0x85)) {
             val message = kwp.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x8A.toByte()), 1000)
-            if (message.isValid) {
-                try {
-                    result = ZcsCoding(message.answer.copyOfRange(6, 26))
-                } catch (ex: Exception) {
-                    Logger.e{"$tag : ${ex.toString()}"}
+            try {
+                if (message.isValid) {
+                    try {
+                        result = ZcsCoding(message.answer.copyOfRange(6, 26))
+                    } catch (ex: Exception) {
+                        Logger.e { "$tag : ${ex.toString()}" }
+                    }
                 }
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [readZCS], $ex, $message"}
             }
         }
         return result
@@ -532,7 +563,7 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
                             }
                         }
                     catch (ex: Exception) {
-                        Logger.e{"$tag : ${ex.toString()}"}
+                        Logger.e{"$tag [writaFlash]: ${ex.toString()}"}
                     }
                 } else _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                         Res.string.activity_flash_programming_diagnostic_session,
@@ -610,7 +641,7 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
             result = result.copyOfRange(0, (endAddress - startAddress).toInt())
             _programmingState.tryEmit(FlashProgrammingState.FlashData(result.toList(),moduleInfo,vin))
         } catch (ex: Exception) {
-            Logger.e{"$tag : ${ex.toString()}"}
+            Logger.e{"$tag [readFlash]: ${ex.toString()}"}
         }
     }
 
@@ -628,7 +659,9 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
         var result = ByteArray(0)
         try {
             result = message.answer.copyOfRange(3, message.length - 1)
-        } catch (_ : Exception) {
+        } catch (ex : Exception) {
+            Logger.e{"$tag [readFlash]: ${ex.toString()}, $message"}
+            return result
         }
         return result
     }

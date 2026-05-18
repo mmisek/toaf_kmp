@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.r40
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceHelper
@@ -27,9 +28,9 @@ import toafmobile.composeapp.generated.resources.module_description_bcu
 import java.util.Arrays
 import kotlin.experimental.inv
 
+private const val tag = "ModuleBCU"
 class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddress.MODULE_BCU, listOf(CarType.R40)), IModuleControl, IModuleCoding, IModuleAdvanceCoding, IModuleLiveData, IModuleVIN,IModuleBcuKeys
 {
-    private val tag = "ModuleBCU"
 
     override fun getKoinName() = KoinNames.ModuleR40Bcu
 
@@ -41,8 +42,14 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         val result: MutableMap<Int, ByteArray> = HashMap()
         val message = interfaceWrite(byteArrayOf(0x0B, 0x00))
         if (message.isValid) {
-            result[0x00] = message.answer.copyOfRange(3, message.answer.size)
-            return result
+            try {
+                result[0x00] = message.answer.copyOfRange(3, message.answer.size)
+                return result
+            }
+            catch (ex: Exception)
+            {
+                Logger.e {"$tag [readLiveData()] , $ex, $message"}
+            }
         }
         return null
     }
@@ -67,7 +74,14 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         for (i in 0..0x8) {
             val message = interfaceWrite(byteArrayOf(0x08, i.toByte()), 150)
             if (message.isValid)
-                result.add(message.answer.copyOfRange(3, message.answer.size - 1))
+                try {
+                    result.add(message.answer.copyOfRange(3, message.answer.size - 1))
+                }
+                catch (ex : Exception)
+                {
+                    Logger.e {"$tag [readCoding()], $ex, $message"}
+                    return null
+                }
             else
                 return null
         }
@@ -94,6 +108,7 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         for (j in 0..4) {
             val message = interfaceWrite(byteArrayOf(0x04, j.toByte()),200L)
             if (message.isValid) {
+                try{
                 if (result == null)
                     result = ArrayList()
                 val n = if (j ==0x04) 5 else 8
@@ -113,6 +128,10 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
                         )
                     }
                 }
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [getAllErrors()] : $ex, $message"}
+            }
             }
         }
         //alarm mislock errors
@@ -120,6 +139,7 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
 
         var message = interfaceWrite(byteArrayOf(0x04, 0x05))
         if (message.isValid) {
+            try{
             if (result == null) result = ArrayList()
             for (i in 0 until 6) {
                 if ((message.answer[3 + 2 * i].toInt() and 0xFF) != 0xFF) {
@@ -137,28 +157,38 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
                     )
                 }
             }
+        } catch (ex :Exception)
+            {
+            Logger.e {"$tag [getAllErrors() -alarm mislock], $ex , $message"}
+        }
         }
         if (!securityAccess()) return null
         message = interfaceWrite(byteArrayOf(0x04, 0x06))
         if (message.isValid) {
-            if (result == null)
-                result = ArrayList()
-            for (i in 0..6) {
-                if ((message.answer[3 + 2 * i].toInt() and 0xFF) != 0xFF) {
-                    val errorCode = String.format("%02X", message.answer[3 + 2 * i])
-                    val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
-                    errorDescription.add(Pair(Res.string.bcu_alarm_trigger, null))
-                    errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[4 + 2 * i].toInt() and 0x1F)))
-                    errorDescription.add(ResourceHelper.getErrorDescriptionIsStatic((message.answer[4 + 2 * i].toInt() and 0x20) == 0x20))
-                    result.add(
-                        ModuleError(
-                            ModuleAddress.MODULE_BCU_ALARM,
-                            errorCode,
-                            errorDescription
+            try {
+                if (result == null)
+                    result = ArrayList()
+                for (i in 0..6) {
+                    if ((message.answer[3 + 2 * i].toInt() and 0xFF) != 0xFF) {
+                        val errorCode = String.format("%02X", message.answer[3 + 2 * i])
+                        val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
+                        errorDescription.add(Pair(Res.string.bcu_alarm_trigger, null))
+                        errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[4 + 2 * i].toInt() and 0x1F)))
+                        errorDescription.add(ResourceHelper.getErrorDescriptionIsStatic((message.answer[4 + 2 * i].toInt() and 0x20) == 0x20))
+                        result.add(
+                            ModuleError(
+                                ModuleAddress.MODULE_BCU_ALARM,
+                                errorCode,
+                                errorDescription
+                            )
                         )
-                    )
+                    }
                 }
+            } catch (ex: Exception)
+            {
+                Logger.e {"$tag [getAllErrors() - BCU alarm] $ex, $message"}
             }
+
         }
         return result
     }
@@ -176,11 +206,16 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         if (!securityAccess()) return null
         val message = interfaceWrite(byteArrayOf(0x02), 500)
         if (message.isValid) {
-            return String.format(
-                "%s%02X%02X%02X",
-                String(message.answer.copyOfRange(3, 14)),
-                message.answer[14], message.answer[15], message.answer[16]
-            )
+            try {
+                return String.format(
+                    "%s%02X%02X%02X",
+                    String(message.answer.copyOfRange(3, 14)),
+                    message.answer[14], message.answer[15], message.answer[16]
+                )
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [getVIN()], $ex, $message"}
+            }
         }
         return null
     }
@@ -202,12 +237,18 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
     private suspend fun securityAccess(): Boolean {
         val message = interfaceWrite(byteArrayOf(0x0E), 500)
         if (!message.isValid) return false
-        val seed =
-            ((message.answer[3].toInt() and 0xFF) shl 8) or (message.answer[4].toInt() and 0xFF)
-        val key = calculateSeed(seed)
-        val data =
-            byteArrayOf(0x64, ((key and 0xFF00) shr 8).toByte(), (key and 0xFF).toByte())
-        return interfaceWrite(data, 500).isValid
+        try {
+            val seed =
+                ((message.answer[3].toInt() and 0xFF) shl 8) or (message.answer[4].toInt() and 0xFF)
+            val key = calculateSeed(seed)
+            val data =
+                byteArrayOf(0x64, ((key and 0xFF00) shr 8).toByte(), (key and 0xFF).toByte())
+            return interfaceWrite(data, 500).isValid
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [securityAccess()], $ex, $message"}
+            return false
+        }
     }
 
     override suspend fun removeKeyAt(position: Int): Boolean {

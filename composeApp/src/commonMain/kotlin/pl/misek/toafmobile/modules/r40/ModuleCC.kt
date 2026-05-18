@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.r40
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.generated.ResourceHelper
 import pl.misek.toafmobile.generated.ResourceMapper
@@ -17,6 +18,7 @@ import pl.misek.toafmobile.protocols.ProtocolKWP
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 
+private const val tag = "ModuleCC"
 class ModuleCC(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
     private var kwp: IProtocol? = null
     private val moduleAddress = ModuleAddress.MODULE_CC.address
@@ -44,15 +46,20 @@ class ModuleCC(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
         var info: ModuleInfo? = null
         val message = kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x80.toByte()), 200)
         if (message.isValid) {
-            val answer = message.answer
-            info = ModuleInfo()
-            info.id1 = String(answer.copyOfRange(6, 16))
-            info.hw = (answer[16].toInt() and 0xFF).toByte().toHexString()
-            info.ci = (answer[17].toInt() and 0xFF).toByte().toHexString()
-            info.di = (answer[18].toInt() and 0xFF).toByte().toHexString()
-            info.sw = (answer[26].toInt() and 0xFF).toByte().toHexString()
-            info.producer = ModulesFunction.getProducer(answer[25].toInt())
-            info.date = ResourceHelper.byteArrayToDate(answer.copyOfRange(21,25))
+            try {
+                val answer = message.answer
+                info = ModuleInfo()
+                info.id1 = String(answer.copyOfRange(6, 16))
+                info.hw = (answer[16].toInt() and 0xFF).toByte().toHexString()
+                info.ci = (answer[17].toInt() and 0xFF).toByte().toHexString()
+                info.di = (answer[18].toInt() and 0xFF).toByte().toHexString()
+                info.sw = (answer[26].toInt() and 0xFF).toByte().toHexString()
+                info.producer = ModulesFunction.getProducer(answer[25].toInt())
+                info.date = ResourceHelper.byteArrayToDate(answer.copyOfRange(21, 25))
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [getIdentification()], $ex, $message"}
+            }
         }
         return info
     }
@@ -70,28 +77,44 @@ class ModuleCC(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
         if (securityAccess03()) {
             val message = kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x04), 500)
             if (message.isValid) {
-                result = ArrayList()
-                for (i in 0..1) {
-                    val n = 0x01
-                    for (j in 0..7) {
-                        if ((message.answer[6 + i].toInt() and (n shl j)) == (n shl j)) {
-                            val errorCode = n shl j
-                            val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
-                            for (k in 1..4) {
-                                ResourceMapper.stringResource(String.format("cc_error_detail_%02X",k))
-                                    ?.let {errorDescription.add(Pair(it,null))}
-                            }
-                            ResourceMapper.stringResource(String.format("cc_error_detail_%02X",0x05 + (message.answer[13].toInt() and 0xFF)))
-                                ?.let {errorDescription.add(Pair(it,null))}
-                            result.add(
-                                ModuleError(
-                                    ModuleAddress.MODULE_CC,
-                                    String.format("%02X", errorCode),
-                                    errorDescription
+                try {
+                    result = ArrayList()
+                    for (i in 0..1) {
+                        val n = 0x01
+                        for (j in 0..7) {
+                            if ((message.answer[6 + i].toInt() and (n shl j)) == (n shl j)) {
+                                val errorCode = n shl j
+                                val errorDescription: MutableList<Pair<StringResource, Any?>> =
+                                    ArrayList()
+                                for (k in 1..4) {
+                                    ResourceMapper.stringResource(
+                                        String.format(
+                                            "cc_error_detail_%02X",
+                                            k
+                                        )
+                                    )
+                                        ?.let { errorDescription.add(Pair(it, null)) }
+                                }
+                                ResourceMapper.stringResource(
+                                    String.format(
+                                        "cc_error_detail_%02X",
+                                        0x05 + (message.answer[13].toInt() and 0xFF)
+                                    )
                                 )
-                            )
+                                    ?.let { errorDescription.add(Pair(it, null)) }
+                                result.add(
+                                    ModuleError(
+                                        ModuleAddress.MODULE_CC,
+                                        String.format("%02X", errorCode),
+                                        errorDescription
+                                    )
+                                )
+                            }
                         }
                     }
+                } catch (ex : Exception)
+                {
+                    Logger.e {"$tag [getAllErros()], $ex, $message"}
                 }
             }
         }
@@ -119,8 +142,12 @@ class ModuleCC(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
         for (i in 0x05..0x7) {
             val message =kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(i.toByte()))
             if (message.isValid) {
-                result[i-0x05] =
-                    message.answer.copyOfRange( 6, message.length - 1)
+                try {
+                    result[i - 0x05] = message.answer.copyOfRange(6, message.length - 1)
+                } catch (ex : Exception)
+                {
+                    Logger.e {"$tag [readLiveData()], $ex, $message"}
+                }
             } else return null
         }
         return result
@@ -135,17 +162,24 @@ class ModuleCC(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
         val level :Byte = 0x03
         val message = kwp!!.write(moduleAddress, 0x27.toByte(), byteArrayOf(level), 500)
         if (message.isValid) {
-            val code =
-                ((message.answer[6].toInt() and 0xFF) shl 8) + (message.answer[7].toInt() and 0xFF)
-            if (code == 0x0000) return true
-            else {
-                val seed = securityAccessCalculator(code)
-                val data = byteArrayOf(
-                    (level + 1).toByte(),
-                    ((seed and 0xFF00) shr 8).toByte(), (seed and 0xFF).toByte()
-                )
-                return kwp!!.write(moduleAddress, 0x27.toByte(), data).isValid
+            try {
+                val code =
+                    ((message.answer[6].toInt() and 0xFF) shl 8) + (message.answer[7].toInt() and 0xFF)
+                if (code == 0x0000) return true
+                else {
+                    val seed = securityAccessCalculator(code)
+                    val data = byteArrayOf(
+                        (level + 1).toByte(),
+                        ((seed and 0xFF00) shr 8).toByte(), (seed and 0xFF).toByte()
+                    )
+                    return kwp!!.write(moduleAddress, 0x27.toByte(), data).isValid
+                }
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [securityAccess03()], $ex, $message"}
+                return false
             }
+
         }
         return false
     }

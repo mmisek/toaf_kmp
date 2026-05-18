@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.r40
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceHelper
@@ -21,6 +22,7 @@ import toafmobile.composeapp.generated.resources.module_description_lcm
 import toafmobile.composeapp.generated.resources.module_lsm
 import java.util.Locale
 
+private const val tag = "ModuleLSM_R40"
 class ModuleLSM(protocolDS2: ProtocolDS2?) :
     ModuleDS2(protocolDS2, ModuleAddress.MODULE_LCM, listOf(CarType.R40)),
     IModuleVIN, IModuleControl, IModuleCoding, IModuleLSMAutoLight, IModuleLiveData,
@@ -214,15 +216,21 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
         val result: MutableMap<Int, ByteArray> = HashMap()
         //Live data
         var message = interfaceWrite(byteArrayOf(0x0B))
-        if (message.isValid) result[0x00] =
-            message.answer.copyOfRange(3, message.answer.size)
-        else return null
-        //Live data - working time
-        message = interfaceWrite(byteArrayOf(0x1B))
-        if (message.isValid) result[0x01] =
-            message.answer.copyOfRange(3, message.answer.size)
-        else return null
-        return result
+        try {
+            if (message.isValid) result[0x00] =
+                message.answer.copyOfRange(3, message.answer.size)
+            else return null
+            //Live data - working time
+            message = interfaceWrite(byteArrayOf(0x1B))
+            if (message.isValid) result[0x01] =
+                message.answer.copyOfRange(3, message.answer.size)
+            else return null
+            return result
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [readLiveData], $ex, $message"}
+            return result
+        }
     }
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean {
@@ -272,13 +280,16 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
         val message = interfaceWrite(byteArrayOf(0x02, 0x02))
         if (message.isValid) {
             try {
-                val vin = String(message.answer.copyOfRange(4,6)) +
-                        String.format("%02X%02X%02X",
+                val vin = String(message.answer.copyOfRange(4, 6)) +
+                        String.format(
+                            "%02X%02X%02X",
                             message.answer[6].toInt() and 0xFF,
                             message.answer[7].toInt() and 0xFF,
-                            message.answer[8].toInt() and 0xFF)
+                            message.answer[8].toInt() and 0xFF
+                        )
                 return vin
-            } catch (_ : Exception) {
+            } catch (ex: Exception) {
+                Logger.e {"$tag [getVIN], $ex, $message"}
                 return null
             }
         }
@@ -291,7 +302,8 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
                 val i =
                     ((message.answer[9].toInt() and 0xFF) shl 8) or (message.answer[10].toInt() and 0xFF)
                 return String.format(Locale.getDefault(), "%d", i * 100)
-            } catch (_ : Exception) {
+            } catch (ex : Exception) {
+                Logger.e {"$tag [getOdometer], $ex, $message"}
                 return null
             }
         }
@@ -302,23 +314,29 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
         var result: MutableList<ModuleError>? = null
         for (n in 0x01..0x9) {
             val message = interfaceWrite(byteArrayOf(0x04, n.toByte()))
-            if (message.isValid) {
-                if (message.answer[3].toInt() != 0x00) {
-                    for (i in 0 until (message.answer[3].toInt() and 0xFF)) {
-                        val errorCode = String.format("%02X", message.answer[4 + 2 * i])
-                        val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
-                        errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5 + 2 * i].toInt() and 0xFF) and 0x1F))
-                        errorDescription.add(ResourceHelper.getErrorDescriptionIsPresent((message.answer[5 + 2 * i].toInt() and 0x20) == 0x20))
-                        if (result == null) result = ArrayList()
-                        result.add(
-                            ModuleError(
-                                ModuleAddress.MODULE_LCM,
-                                errorCode,
-                                errorDescription
+            try {
+                if (message.isValid) {
+                    if (message.answer[3].toInt() != 0x00) {
+                        for (i in 0 until (message.answer[3].toInt() and 0xFF)) {
+                            val errorCode = String.format("%02X", message.answer[4 + 2 * i])
+                            val errorDescription: MutableList<Pair<StringResource, Any?>> =
+                                ArrayList()
+                            errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5 + 2 * i].toInt() and 0xFF) and 0x1F))
+                            errorDescription.add(ResourceHelper.getErrorDescriptionIsPresent((message.answer[5 + 2 * i].toInt() and 0x20) == 0x20))
+                            if (result == null) result = ArrayList()
+                            result.add(
+                                ModuleError(
+                                    ModuleAddress.MODULE_LCM,
+                                    errorCode,
+                                    errorDescription
+                                )
                             )
-                        )
+                        }
                     }
                 }
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [getaAllErrors], $ex, $message"}
             }
         }
         return result
@@ -336,9 +354,15 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
         val result: MutableList<ByteArray> = ArrayList()
         for (i in 0..0xf) {
             val message = interfaceWrite(byteArrayOf(0x08, i.toByte()), 150)
-            if (message.isValid) result.add(
-                    message.answer.copyOfRange(4,message.answer.size - 1))
-            else return null
+            try {
+                if (message.isValid) result.add(
+                    message.answer.copyOfRange(4, message.answer.size - 1)
+                )
+                else return null
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [readCoding], $ex, $message"}
+            }
         }
         return result
     }

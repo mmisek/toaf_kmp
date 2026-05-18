@@ -88,23 +88,29 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
             testerPresentJobSuspend = true
             val message =
                 kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x80.toByte()), 200)
-            if (message.isValid) {
-                info = ModuleInfo()
-                info.id1 = "YWC001160"
-                info.hw = String(message.answer.copyOfRange( 5, 10))
-                info.ci = "02"
-                info.di = (message.answer[18].toInt() and 0xFF).toByte().toHexString()
-                info.producer = "Autoliv"
-            }
-            val seriaNumber = getSerialNumber()
-            if (seriaNumber.isNotEmpty())
-            {
-                if (info == null)
+            try {
+                if (message.isValid) {
                     info = ModuleInfo()
-                info.serial = getSerialNumber()
+                    info.id1 = "YWC001160"
+                    info.hw = String(message.answer.copyOfRange(5, 10))
+                    info.ci = "02"
+                    info.di = (message.answer[18].toInt() and 0xFF).toByte().toHexString()
+                    info.producer = "Autoliv"
+                }
+                val seriaNumber = getSerialNumber()
+                if (seriaNumber.isNotEmpty()) {
+                    if (info == null)
+                        info = ModuleInfo()
+                    info.serial = getSerialNumber()
+                }
+                testerPresentJobSuspend = false
+                lastMessageTime = System.currentTimeMillis()
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [getIdentification()], $ex, $message"}
+                testerPresentJobSuspend = false
+                lastMessageTime = System.currentTimeMillis()
             }
-            testerPresentJobSuspend = false
-            lastMessageTime = System.currentTimeMillis()
         }
         return info
     }
@@ -113,17 +119,25 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
         var result = ""
         testerPresentJobSuspend = true
         val message = kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x81.toByte()), 200)
-        if (message.isValid) {
-            result = String.format(
-                "%02x%02X%02X%02X",
-                message.answer[5].toInt() and 0xFF,
-                message.answer[6].toInt() and 0xFF,
-                message.answer[7].toInt() and 0xFF,
-                message.answer[8].toInt() and 0xFF
-            )
+        try {
+            if (message.isValid) {
+                result = String.format(
+                    "%02x%02X%02X%02X",
+                    message.answer[5].toInt() and 0xFF,
+                    message.answer[6].toInt() and 0xFF,
+                    message.answer[7].toInt() and 0xFF,
+                    message.answer[8].toInt() and 0xFF
+                )
+            }
         }
-        lastMessageTime = System.currentTimeMillis()
-        testerPresentJobSuspend = false
+         catch (ex : Exception)
+         {
+             Logger.e {"$tag [getSerialNumber], $ex, $message"}
+         }
+        finally {
+            lastMessageTime = System.currentTimeMillis()
+            testerPresentJobSuspend = false
+        }
         return result
     }
 
@@ -134,10 +148,14 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
         val message =
             kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x8F.toByte()), 200)
         if (message.isValid) {
-            result =  String(message.answer.copyOfRange(5, 22))
-            lastMessageTime = System.currentTimeMillis()
+            try {
+                result = String(message.answer.copyOfRange(5, 22))
+            } catch (ex : Exception)
+            {
+                Logger.e{"$tag [getVIN], $ex, $message"}
+            }
         }
-
+        lastMessageTime = System.currentTimeMillis()
         testerPresentJobSuspend = false
         return result
     }
@@ -152,22 +170,27 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
         if (!testerPresent()) return null
         val message =
             kwp!!.write(moduleAddress, 0x17.toByte(), byteArrayOf(0xFF.toByte(), 0x00), 200)
-        if (message.isValid) {
-            result = ArrayList()
-            var n = message.answer[4].toInt()
-            if (n > 12) n = 12
-            for (i in 0 until n) {
-                val errorCode =
-                    ((message.answer[5 + 2 * i].toInt() and 0x0F) shl 8) + (message.answer[6 + 2 * i].toInt() and 0xFF)
-                val error = ModuleError(
-                    ModuleAddress.MODULE_SRS2,
-                    String.format("%03X", errorCode),
-                    ArrayList()
-                )
-                if (error.description != null) {
-                    result.add(error)
+        try {
+            if (message.isValid) {
+                result = ArrayList()
+                var n = message.answer[4].toInt()
+                if (n > 12) n = 12
+                for (i in 0 until n) {
+                    val errorCode =
+                        ((message.answer[5 + 2 * i].toInt() and 0x0F) shl 8) + (message.answer[6 + 2 * i].toInt() and 0xFF)
+                    val error = ModuleError(
+                        ModuleAddress.MODULE_SRS2,
+                        String.format("%03X", errorCode),
+                        ArrayList()
+                    )
+                    if (error.description != null) {
+                        result.add(error)
+                    }
                 }
             }
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [getAllErrors], $ex, $message"}
         }
         testerPresentJobSuspend = false
         lastMessageTime = System.currentTimeMillis()
@@ -205,12 +228,16 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
         delay(200)
         val message =
             kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(0xD0.toByte()), 200)
-        testerPresentJobSuspend = false
-        if (message.isValid) {
-            result = ArrayList()
-            result.add(message.answer.copyOfRange(5, 10))
-            lastMessageTime = System.currentTimeMillis()
+        try {
+            if (message.isValid) {
+                result = ArrayList()
+                result.add(message.answer.copyOfRange(5, 10))
+            }
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [readCoding], $ex, $message"}
         }
+        testerPresentJobSuspend = false
         lastMessageTime = System.currentTimeMillis()
         return result
     }
@@ -232,14 +259,20 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
     private suspend fun securityAccess(): Boolean {
         var result = false
         val message = kwp!!.write(moduleAddress, 0x27.toByte(), byteArrayOf(), 200)
-        if (message.isValid) {
-            val code =
-                ((message.answer[4].toInt() and 0xFF) shl 8) + (message.answer[5].toInt() and 0xFF)
-            if (code == 0x0000) return true
-            val seed = securityAccessCalculator(code)
-            val data = byteArrayOf(((seed and 0xFF00) shr 8).toByte(), (seed and 0xFF).toByte())
-            result = kwp!!.write(moduleAddress, 0x27.toByte(), data, 200).isValid
+        try {
+            if (message.isValid) {
+                val code =
+                    ((message.answer[4].toInt() and 0xFF) shl 8) + (message.answer[5].toInt() and 0xFF)
+                if (code == 0x0000) return true
+                val seed = securityAccessCalculator(code)
+                val data = byteArrayOf(((seed and 0xFF00) shr 8).toByte(), (seed and 0xFF).toByte())
+                result = kwp!!.write(moduleAddress, 0x27.toByte(), data, 200).isValid
+            }
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag[ securityAccess], $ex, $message"}
         }
+
         lastMessageTime = System.currentTimeMillis()
 
         return result

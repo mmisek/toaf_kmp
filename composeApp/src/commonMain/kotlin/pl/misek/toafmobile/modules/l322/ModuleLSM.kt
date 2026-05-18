@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.l322
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceHelper
@@ -25,7 +26,7 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
 
     //private val EEPROM_SIZE = 768
     //private val EEPROM_READ_SIZE = 0x24
-
+    private val tag = "ModuleLSM_L322"
     private val marketEce = arrayOf(
         byteArrayOf(0x00,0x5E,0x1B,0x8B.toByte(),0x65,0x63,0x65,0x11,0x03,0x13,0x8B.toByte(),0x20,0x03,0x14,0x88.toByte(),0x40,0x12,0xDB.toByte(),0x01,0x4D,0xF6.toByte(),0x05,0x50,0x7C,0x05,0x50,0x5D,0x26,0x08,0xF6.toByte(),0x05),
         byteArrayOf(0x51,0x27,0x03,0x7A,0x05,0x51,0x13,0xE3.toByte(),0x02,0x03,0x15,0xDC.toByte(),0x01,0x12,0xE3.toByte(),0x02,0x0E,0x12,0xE1.toByte(),0x01,0x0A,0x14,0xDC.toByte(),0x01,0xC6.toByte(),0x01,0xF7.toByte(),0x05,0x52,0x20,0x23),
@@ -65,16 +66,21 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         val result: MutableMap<Int, ByteArray> = HashMap()
         //Live data
         var message = interfaceWrite(byteArrayOf(0x0B))
-        if (message.isValid)
-            result[0x00] = message.answer.copyOfRange(3, message.answer.size)
-        else
-            return null
-        //Live data - working time
-        message = interfaceWrite(byteArrayOf(0x1B))
-        if (message.isValid)
-            result[0x01] = message.answer.copyOfRange(3, message.answer.size)
-        else
-            return null
+        try {
+            if (message.isValid)
+                result[0x00] = message.answer.copyOfRange(3, message.answer.size)
+            else
+                return null
+            //Live data - working time
+            message = interfaceWrite(byteArrayOf(0x1B))
+            if (message.isValid)
+                result[0x01] = message.answer.copyOfRange(3, message.answer.size)
+            else
+                return null
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [readLiveData], $ex, $message"}
+        }
         return result
     }
 
@@ -117,8 +123,8 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
                     "%c%c%02X%02X%02X",
                     answer[4], answer[5], answer[6], answer[7], answer[8]
                 )
-            } catch (_: Exception) {
-                return null
+            } catch (ex: Exception) {
+                Logger.e {"$tag [getVIN], $ex, $message"}
             }
         }
         return null
@@ -131,8 +137,8 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
                 val i =
                     ((message.answer[9].toInt() and 0xFF) shl 8) or (message.answer[10].toInt() and 0xFF)
                 return String.format(Locale.getDefault(), "%d", i * 100)
-            } catch (_: Exception) {
-                return null
+            } catch (ex: Exception) {
+                Logger.e {"$tag [getOdometer], $ex, $message"}
             }
         }
         return null
@@ -143,23 +149,29 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
 
         for (n in 0x01..0x9) {
             val message = interfaceWrite(byteArrayOf(0x04, n.toByte()))
-            if (message.isValid) {
-                if (message.answer[3].toInt() != 0x00) {
-                    for (i in 0 until (message.answer[3].toInt() and 0xFF)) {
-                        val errorCode = String.format("%02X", message.answer[4 + 2 * i])
-                        val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
-                        errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5 + 2 * i].toInt() and 0xFF) and 0x1F))
-                        errorDescription.add(ResourceHelper.getErrorDescriptionIsPresent((message.answer[5 + 2 * i].toInt() and 0x20) == 0x20))
-                        if (result == null) result = ArrayList()
-                        result.add(
-                            ModuleError(
-                                ModuleAddress.MODULE_LCM_L322,
-                                errorCode,
-                                errorDescription
+            try {
+                if (message.isValid) {
+                    if (message.answer[3].toInt() != 0x00) {
+                        for (i in 0 until (message.answer[3].toInt() and 0xFF)) {
+                            val errorCode = String.format("%02X", message.answer[4 + 2 * i])
+                            val errorDescription: MutableList<Pair<StringResource, Any?>> =
+                                ArrayList()
+                            errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5 + 2 * i].toInt() and 0xFF) and 0x1F))
+                            errorDescription.add(ResourceHelper.getErrorDescriptionIsPresent((message.answer[5 + 2 * i].toInt() and 0x20) == 0x20))
+                            if (result == null) result = ArrayList()
+                            result.add(
+                                ModuleError(
+                                    ModuleAddress.MODULE_LCM_L322,
+                                    errorCode,
+                                    errorDescription
+                                )
                             )
-                        )
+                        }
                     }
                 }
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [getAllErros], $ex,$message"}
             }
         }
         return result
@@ -177,16 +189,20 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         val result: MutableList<ByteArray> = ArrayList()
         var i = 0
 
-        var message: OBDMessage
-
-        do {
-            message = interfaceWrite(byteArrayOf(0x08, i++.toByte()))
-            if (message.isValid)
-                result.add(message.answer.copyOfRange(4,message.answer.size - 1))
-            else if
-                    (result.isNotEmpty()) return result
-            else return null
-        } while (message.isValid)
+        var message: OBDMessage? = null
+        try {
+            do {
+                message = interfaceWrite(byteArrayOf(0x08, i++.toByte()))
+                if (message.isValid)
+                    result.add(message.answer.copyOfRange(4, message.answer.size - 1))
+                else if
+                             (result.isNotEmpty()) return result
+                else return null
+            } while (message.isValid)
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [readCoding], $ex, $message"}
+        }
 
         return result
     }

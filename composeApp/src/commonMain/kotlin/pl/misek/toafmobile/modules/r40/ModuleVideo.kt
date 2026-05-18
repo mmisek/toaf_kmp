@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.r40
 
+import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.generated.ResourceHelper
 import pl.misek.toafmobile.koin.KoinNames
@@ -15,6 +16,7 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_description_video
 import toafmobile.composeapp.generated.resources.module_video
 
+private const val tag = "ModuleVideo"
 class ModuleVideo(protocolDS2: ProtocolDS2?) :
     ModuleDS2(protocolDS2, ModuleAddress.MODULE_VIDEO, listOf(CarType.R40, CarType.L322)),
     IModuleLiveData, IModuleEepromProgramming {
@@ -28,7 +30,12 @@ class ModuleVideo(protocolDS2: ProtocolDS2?) :
         val result: MutableMap<Int, ByteArray> = HashMap()
         val message = interfaceWrite(byteArrayOf(0x1B, 0x90.toByte()))
         if (message.isValid) {
-            result[0x00] = message.answer.copyOfRange(3, message.answer.size)
+            try {
+                result[0x00] = message.answer.copyOfRange(3, message.answer.size)
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [readLiveData],$ex, $message"}
+            }
         }
         return result.ifEmpty { null }
     }
@@ -38,26 +45,33 @@ class ModuleVideo(protocolDS2: ProtocolDS2?) :
     override suspend fun getAllErrors(): List<ModuleError>? {
         var result: MutableList<ModuleError>? = null
         var message = interfaceWrite(byteArrayOf(0x04, 0x01))
-        if (message.isValid) {
-            result = ArrayList()
-            val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
-            for (i in 0 until message.answer[3]) {
-                val errorCode = String.format("%02X", 0x80 + message.answer[4 + 2 * i])
-                errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5 + 2 * i].toInt() and 0xFF)))
-                result.add(ModuleError(ModuleAddress.MODULE_VIDEO, errorCode, errorDescription))
+        try {
+            if (message.isValid) {
+                result = ArrayList()
+                val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
+                for (i in 0 until message.answer[3]) {
+                    val errorCode = String.format("%02X", 0x80 + message.answer[4 + 2 * i])
+                    errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5 + 2 * i].toInt() and 0xFF)))
+                    result.add(ModuleError(ModuleAddress.MODULE_VIDEO, errorCode, errorDescription))
+                }
+            }
+            message = interfaceWrite(byteArrayOf(0x14, 0x01))
+            if (message.isValid) {
+                for (i in 0 until message.answer[3]) {
+                    val errorCode = String.format("%02X", message.answer[4 + 2 * i])
+                    val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
+                    errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5 + 2 * i].toInt() and 0xFF)))
+                    if (result == null) result = ArrayList()
+                    result.add(ModuleError(ModuleAddress.MODULE_VIDEO, errorCode, errorDescription))
+                }
             }
         }
-        message = interfaceWrite(byteArrayOf(0x14, 0x01))
-        if (message.isValid) {
-            for (i in 0 until message.answer[3]) {
-                val errorCode = String.format("%02X", message.answer[4 + 2 * i])
-                val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
-                errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5 + 2 * i].toInt() and 0xFF)))
-                if (result == null) result = ArrayList()
-                result.add(ModuleError(ModuleAddress.MODULE_VIDEO, errorCode, errorDescription))
-            }
+        catch (ex : Exception)
+        {
+            Logger.e {"$tag [getAllErrors], $ex, $message"}
         }
         return result
+
     }
 
     override suspend fun readEeprom(address: Int, size: Int): ByteArray? {
@@ -71,7 +85,14 @@ class ModuleVideo(protocolDS2: ProtocolDS2?) :
                 size.toByte()
             )
         )
-        return if (message.isValid) message.answer.copyOfRange(0x03, 3 + size) else null
+        try {
+            return if (message.isValid) message.answer.copyOfRange(0x03, 3 + size) else null
+        }
+        catch (ex : Exception)
+        {
+            Logger.e {"$tag [readEeprom], $ex, $message"}
+            return null
+        }
     }
 
     override suspend fun writeEeprom(address: Int, data: ByteArray): Boolean {

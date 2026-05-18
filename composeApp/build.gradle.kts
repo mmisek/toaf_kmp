@@ -1,8 +1,8 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
-val versionCode = 101
-val versionName = "1.0.1"
+val versionCode = 102
+val versionName = "1.0.2"
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
@@ -50,6 +50,7 @@ kotlin {
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.client.auth)
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.room.runtime)
             implementation(libs.koin.core)
@@ -124,11 +125,17 @@ compose.desktop {
             version = versionName
             packageVersion = versionName
             linux {
+                appCategory = "Utility"
+                menuGroup = "Utility"
+                shortcut = true
                 iconFile.set(project.file("src/commonMain/composeResources/drawable/toaf_icon_linux.png"))
+                debMaintainer = "toaf@roverki.eu"
             }
             windows {
-                iconFile.set(project.file("src/commonMain/composeResources/drawable/toaf_icon_windows.ico"))
+                menu = true
                 menuGroup = "Toaf"
+                shortcut = true
+                iconFile.set(project.file("src/commonMain/composeResources/drawable/toaf_icon_windows.ico"))
                 upgradeUuid = "68d0ed02-7125-4d98-856c-5ef07c0ad3ef"
             }
         }
@@ -154,6 +161,9 @@ aboutLibraries {
     }
 }
 
-tasks.matching { it.name == "packageReleaseDistributionForCurrentOS" }.configureEach {
+tasks.matching {
+    it.name.startsWith("copyNonXmlValueResources") ||
+            it.name.startsWith("generateComposeResClass")
+}.configureEach {
     dependsOn("exportLibraryDefinitions")
 }

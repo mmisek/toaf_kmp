@@ -56,6 +56,7 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
         var info: ModuleInfo? = null
         if (securityAccess(0x05)) {
             val message = kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x80.toByte()))
+            try{
             if (message.isValid) {
                 info = ModuleInfo()
                 val answer = message.answer
@@ -75,18 +76,28 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
                     info.additionalInfo.add(Pair(Res.string.module_info_programing_date, it))
                 }
             }
+            } catch (ex : Exception)
+            {
+                Logger.e{"$tag [getIdentification], $ex, $message"}
+            }
+
         }
         return info
     }
 
     private suspend fun getProgrammingDate(): String? {
         val message = kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x99.toByte()))
-        if (message.isValid) {
-            return String.format(
-                Locale.getDefault(),
-                "%02X/%02X/%02X%02X",
-                message.answer[6], message.answer[7], message.answer[8], message.answer[9]
-            )
+        try {
+            if (message.isValid) {
+                return String.format(
+                    Locale.getDefault(),
+                    "%02X/%02X/%02X%02X",
+                    message.answer[6], message.answer[7], message.answer[8], message.answer[9]
+                )
+            }
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [getProgrammingDate()], $ex, $message"}
         }
         return null
     }
@@ -104,8 +115,13 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
     }
     private suspend fun getSerialNumber(): String? {
         val message = kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x89.toByte()))
-        if (message.isValid) {
-            return String(message.answer.copyOfRange(6, 16))
+        try {
+            if (message.isValid) {
+                return String(message.answer.copyOfRange(6, 16))
+            }
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [getSerialNumber], $ex, $message"}
         }
         return null
     }
@@ -113,8 +129,13 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
     override suspend fun getVIN(): String? {
         if (securityAccess(0x05)) {
             val message = kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x90.toByte()))
-            if (message.isValid) {
-                return String(message.answer.copyOfRange(6, 23))
+            try {
+                if (message.isValid) {
+                    return String(message.answer.copyOfRange(6, 23))
+                }
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [getVIN], $ex, $message"}
             }
         }
         return null
@@ -128,32 +149,43 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
         var result: MutableList<ModuleError>? = null
         if (securityAccess(0x05)) {
             val message = kwp!!.write(moduleAddress, 0x18.toByte(), byteArrayOf(0x00, 0x00), 250)
-            if (message.isValid) {
-                for (i in 0 until (message.answer[5].toInt() and 0xFF)) {
-                    val errorCode =
-                        ((message.answer[6 + 3 * i].toInt() and 0xFF) shl 8) + (message.answer[7 + 3 * i].toInt() and 0xFF)
-                    val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
-                    if ((message.answer[8 + 3 * i].toInt() and 0xFF) == 0x00)
-                        errorDescription.add(
-                            Pair(Res.string.srs_error_detail_00,null))
-                    else {
-                        for (k in 0..7) {
-                            val number = message.answer[8 + 3 * i].toInt() and (0x01 shl k)
-                            if (number == (0x01 shl k)) {
-                                ResourceMapper.stringResource(String.format("srs_error_detail_%02X",number))
-                                    ?. let {errorDescription.add(Pair(it,null))}
-                            }
-                        }
-                        if (result == null) result = ArrayList()
-                        result.add(
-                            ModuleError(
-                                ModuleAddress.MODULE_SRS,
-                                String.format("%04X", errorCode),
-                                errorDescription
+            try {
+                if (message.isValid) {
+                    for (i in 0 until (message.answer[5].toInt() and 0xFF)) {
+                        val errorCode =
+                            ((message.answer[6 + 3 * i].toInt() and 0xFF) shl 8) + (message.answer[7 + 3 * i].toInt() and 0xFF)
+                        val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
+                        if ((message.answer[8 + 3 * i].toInt() and 0xFF) == 0x00)
+                            errorDescription.add(
+                                Pair(Res.string.srs_error_detail_00, null)
                             )
-                        )
+                        else {
+                            for (k in 0..7) {
+                                val number = message.answer[8 + 3 * i].toInt() and (0x01 shl k)
+                                if (number == (0x01 shl k)) {
+                                    ResourceMapper.stringResource(
+                                        String.format(
+                                            "srs_error_detail_%02X",
+                                            number
+                                        )
+                                    )
+                                        ?.let { errorDescription.add(Pair(it, null)) }
+                                }
+                            }
+                            if (result == null) result = ArrayList()
+                            result.add(
+                                ModuleError(
+                                    ModuleAddress.MODULE_SRS,
+                                    String.format("%04X", errorCode),
+                                    errorDescription
+                                )
+                            )
+                        }
                     }
                 }
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [getAllErros], $ex, $message"}
             }
         }
         reset()
@@ -177,10 +209,15 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
         val result: MutableList<ByteArray> = ArrayList()
         if (securityAccess(0x05)) {
             val message = kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x04), 250)
-            if (message.isValid) {
-                result.add(message.answer.copyOfRange(6, 10))
-                reset()
-                return result
+            try {
+                if (message.isValid) {
+                    result.add(message.answer.copyOfRange(6, 10))
+                    reset()
+                    return result
+                }
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag, [readCoding], $ex, $message"}
             }
         }
         return null
@@ -204,21 +241,27 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
     private suspend fun securityAccess(level: Int): Boolean {
         if (testerPresent()) {
             var message = kwp!!.write(moduleAddress, 0x10.toByte(), byteArrayOf(0x85.toByte()))
-            if (message.isValid) {
-                message = kwp!!.write(moduleAddress, 0x27.toByte(), byteArrayOf(level.toByte()), 500)
+            try {
                 if (message.isValid) {
-                    val code =
-                        ((message.answer[6].toInt() and 0xFF) shl 8) + (message.answer[7].toInt() and 0xFF)
-                    if (code == 0x0000) return true
-                    else {
-                        val seed = securityAccessCalculator(code, level)
-                        val data = byteArrayOf(
-                            (level + 1).toByte(),
-                            ((seed and 0xFF00) shr 8).toByte(), (seed and 0xFF).toByte()
-                        )
-                        return kwp!!.write(moduleAddress, 0x27.toByte(), data).isValid
+                    message =
+                        kwp!!.write(moduleAddress, 0x27.toByte(), byteArrayOf(level.toByte()), 500)
+                    if (message.isValid) {
+                        val code =
+                            ((message.answer[6].toInt() and 0xFF) shl 8) + (message.answer[7].toInt() and 0xFF)
+                        if (code == 0x0000) return true
+                        else {
+                            val seed = securityAccessCalculator(code, level)
+                            val data = byteArrayOf(
+                                (level + 1).toByte(),
+                                ((seed and 0xFF00) shr 8).toByte(), (seed and 0xFF).toByte()
+                            )
+                            return kwp!!.write(moduleAddress, 0x27.toByte(), data).isValid
+                        }
                     }
                 }
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [securityAccess], $ex, $message"}
             }
         }
         return false

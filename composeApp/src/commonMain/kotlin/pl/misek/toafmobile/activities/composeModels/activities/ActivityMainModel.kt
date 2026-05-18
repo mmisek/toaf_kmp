@@ -1,6 +1,8 @@
 package pl.misek.toafmobile.activities.composeModels.activities
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.scrollable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -9,6 +11,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
@@ -26,6 +30,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.buildJsonObject
@@ -161,7 +166,18 @@ fun ActivityMainModel(
             toafVersionInfo?.versionCode?.let { showNewVersionInfo = it > BuildKonfig.VERSION_CODE }
         }
     }
-
+    LaunchedEffect(userInfo.isLogged)
+    {
+        ToafSnackBar().showResult(
+            scope = scope,
+            snackBarHostState = snackBarHostName,
+            result = userInfo.isLogged == ServerConnectionState.CONNECTED,
+            messageSuccess = loginCorrect,
+            messageError = loginIncorrect)
+        if (userInfo.isLogged == ServerConnectionState.CONNECTED) {
+            showUserLoginDialog = false
+        }
+    }
     Scaffold(
         snackbarHost = { ToafSnackBarHost(hostState = snackBarHostName) },
         modifier = Modifier
@@ -320,15 +336,6 @@ fun ActivityMainModel(
                             {
                                 database.updateSettings(user, password)
                                 userInfoViewModel.performLoginUser()
-                            }
-                            ToafSnackBar().showResult(
-                                scope = scope,
-                                snackBarHostState = snackBarHostName,
-                                result = userInfo.isLogged == ServerConnectionState.CONNECTED,
-                                messageSuccess = loginCorrect,
-                                messageError = loginIncorrect)
-                            if (userInfo.isLogged == ServerConnectionState.CONNECTED) {
-                                showUserLoginDialog = false
                             }
                         }
                     },

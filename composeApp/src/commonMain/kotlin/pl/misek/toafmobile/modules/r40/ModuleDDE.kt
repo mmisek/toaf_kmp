@@ -352,8 +352,14 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
         if (securityAccess()) {
             val message =  kwp.write(moduleAddress, 0x22.toByte(), byteArrayOf(0x40, 0x09), 500)
             if (message.isValid) {
-                val data = message.answer.copyOfRange( 7, message.length - 1)
-                return ZcsCoding(data)
+                try {
+                    val data = message.answer.copyOfRange(7, message.length - 1)
+                    return ZcsCoding(data)
+                } catch (ex : Exception)
+                {
+                    Logger.e{"$tag [readZCS()], $ex, $message"}
+                    return null
+                }
             }
         }
         return null
@@ -395,7 +401,8 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
             try {
                 for (i in liveDataBlocksToRead.indices) result[liveDataBlocksToRead[i]] =
                     byteArrayOf(message.answer[6 + 2 * i], message.answer[7 + 2 * i])
-            } catch (_: Exception) {
+            } catch (ex: Exception) {
+                Logger.e {"$tag [readLiveData()], $ex, $message"}
                 return null
             }
         }
@@ -445,7 +452,13 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
         for (ddeCodingCell in ddeCodingCells) {
             val message = kwp.write(moduleAddress, 0x30.toByte(), byteArrayOf(ddeCodingCell, 0x01))
             if (message.isValid) {
-                result.add(message.answer.copyOfRange(7, message.answer.size - 1))
+                try {
+                    result.add(message.answer.copyOfRange(7, message.answer.size - 1))
+                } catch (ex : Exception)
+                {
+                    Logger.e {"$tag [readCoding()], $ex, $message"}
+                    return null
+                }
             } else return null
         }
         return result
@@ -489,78 +502,135 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
         var result: MutableList<ModuleError>? = null
         val message = kwp.write(moduleAddress, 0x18.toByte(), byteArrayOf(0x00, 0x00, 0x00))
         if (message.isValid) {
-            val freezeFramesList = JsonSupport.getFreezeFrameList()
-            for (i in 0 until (message.answer[5].toInt() and 0xFF)) {
-                val errorCode =
-                    ((message.answer[6 + 3 * i].toInt() and 0xFF) shl 8) + (message.answer[7 + 3 * i].toInt() and 0xFF)
-                val mess = kwp.write(
-                    moduleAddress, 0x17.toByte(), byteArrayOf(
-                        message.answer[6 + 3 * i],
-                        message.answer[7 + 3 * i]
-                    )
-                )
-                val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
-                if (mess.isValid) {
-                    errorDescription.add(ResourceHelper.getErrorDescriptionCount((mess.answer[8].toInt() and 0xFF)))
-                    for (k in 0..7) {
-                        val number = mess.answer[10].toInt() and (0x01 shl k)
-                        if (number == (0x01 shl k)) {
-                            ResourceMapper.stringResource(String.format("dde_error_detail_%02X", number))
-                                ?.let {errorDescription.add(Pair(it,null))}
-                        }
-                    }
-                    var freezeFrame: DDEFreezeFrame? = null
-                    try {
-                        freezeFrame = freezeFramesList?.let { JsonSupport.getFreezeFrameForErrorCode(it,String.format("%04X", errorCode)) }
-                    } catch (_: Exception) {
-                        Logger.e {"DDE freeFrame error code " + String.format("%04X", errorCode)}
-                    }
-                    if (freezeFrame != null) {
-                        var n = mess.answer[9].toInt() and 0xFF
-                        if (n > 3) n = 3
-                        for (j in 0 until n) {
-                            errorDescription.add(Pair(Res.string.dde_error_freeze_frame_number,(j + 1).toString()))
-                            val errorsMatrix = Arrays.stream(localDdeErrorsMatrix)
-                                .filter { x: DDEErrorsMatrix -> x.errorCode == errorCode }
-                                .findFirst().get()
-                            for (k in 0..7) {
-                                for (index in 10..11) {
-                                    val number = mess.answer[index].toInt() and (0x01 shl k)
-                                    if (number == (0x01 shl k) && errorsMatrix.errorMatrix[2 * k + 1].toInt() != 0x00) {
-                                        ResourceMapper.stringResource(String.format("dde_error_detail_%02X", number))
-                                            ?. let {errorDescription.add(Pair(it,null))}
-                                    }
-                                }
-                            }
-
-                            for (k in freezeFrame.ffDetails.indices) {
-                                val freezeFrameDetail = freezeFrame.ffDetails[k]
-
-                                if ((mess.answer[11 + 7 * j].toInt() and freezeFrameDetail.first) == freezeFrameDetail.first) {
-                                    errorDescription.add(Pair(freezeFrameDetail.second!!,null))
-                                }
-                            }
-
-                            for (k in freezeFrame.ffItems.indices) {
-                                val ff = freezeFrame.ffItems[k]
-                                val x = mess.answer[12 + 7 * j + k].toInt() and 0xFF
-                                ResourceMapper.stringResource("dde_error_ff_" + ff.name)
-                                    ?. let { errorDescription.add(Pair(it,String.format(Locale.getDefault(), "%.2f %s",(x * ff.factorA + ff.factorB).toDouble(),ff.unit)))}
-                            }
-                            val x =((mess.answer[16 + 7 * j].toInt() and 0xFF) shl 8) + (mess.answer[17 + 7 * j].toInt() and 0xFF)
-                            errorDescription.add(Pair(Res.string.dde_error_ff_odometer, String.format(Locale.getDefault(),"%d km",x)))
-                        }
-                    } else
-                        Logger.e {"$tag : No freeze frame for code ${String.format("%04X", errorCode)}"}
-                    if (result == null) result = ArrayList()
-                    result.add(
-                        ModuleError(
-                            ModuleAddress.MODULE_DDE, String.format("%04X", errorCode).uppercase(
-                                Locale.getDefault()
-                            ), errorDescription
+            try {
+                val freezeFramesList = JsonSupport.getFreezeFrameList()
+                for (i in 0 until (message.answer[5].toInt() and 0xFF)) {
+                    val errorCode =
+                        ((message.answer[6 + 3 * i].toInt() and 0xFF) shl 8) + (message.answer[7 + 3 * i].toInt() and 0xFF)
+                    val mess = kwp.write(
+                        moduleAddress, 0x17.toByte(), byteArrayOf(
+                            message.answer[6 + 3 * i],
+                            message.answer[7 + 3 * i]
                         )
                     )
+                    val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
+                    if (mess.isValid) {
+                        errorDescription.add(ResourceHelper.getErrorDescriptionCount((mess.answer[8].toInt() and 0xFF)))
+                        for (k in 0..7) {
+                            val number = mess.answer[10].toInt() and (0x01 shl k)
+                            if (number == (0x01 shl k)) {
+                                ResourceMapper.stringResource(
+                                    String.format(
+                                        "dde_error_detail_%02X",
+                                        number
+                                    )
+                                )
+                                    ?.let { errorDescription.add(Pair(it, null)) }
+                            }
+                        }
+                        var freezeFrame: DDEFreezeFrame? = null
+                        try {
+                            freezeFrame = freezeFramesList?.let {
+                                JsonSupport.getFreezeFrameForErrorCode(
+                                    it,
+                                    String.format("%04X", errorCode)
+                                )
+                            }
+                        } catch (_: Exception) {
+                            Logger.e {
+                                "DDE freeFrame error code " + String.format(
+                                    "%04X",
+                                    errorCode
+                                )
+                            }
+                        }
+                        if (freezeFrame != null) {
+                            var n = mess.answer[9].toInt() and 0xFF
+                            if (n > 3) n = 3
+                            for (j in 0 until n) {
+                                errorDescription.add(
+                                    Pair(
+                                        Res.string.dde_error_freeze_frame_number,
+                                        (j + 1).toString()
+                                    )
+                                )
+                                val errorsMatrix = Arrays.stream(localDdeErrorsMatrix)
+                                    .filter { x: DDEErrorsMatrix -> x.errorCode == errorCode }
+                                    .findFirst().get()
+                                for (k in 0..7) {
+                                    for (index in 10..11) {
+                                        val number = mess.answer[index].toInt() and (0x01 shl k)
+                                        if (number == (0x01 shl k) && errorsMatrix.errorMatrix[2 * k + 1].toInt() != 0x00) {
+                                            ResourceMapper.stringResource(
+                                                String.format(
+                                                    "dde_error_detail_%02X",
+                                                    number
+                                                )
+                                            )
+                                                ?.let { errorDescription.add(Pair(it, null)) }
+                                        }
+                                    }
+                                }
+
+                                for (k in freezeFrame.ffDetails.indices) {
+                                    val freezeFrameDetail = freezeFrame.ffDetails[k]
+
+                                    if ((mess.answer[11 + 7 * j].toInt() and freezeFrameDetail.first) == freezeFrameDetail.first) {
+                                        errorDescription.add(Pair(freezeFrameDetail.second!!, null))
+                                    }
+                                }
+
+                                for (k in freezeFrame.ffItems.indices) {
+                                    val ff = freezeFrame.ffItems[k]
+                                    val x = mess.answer[12 + 7 * j + k].toInt() and 0xFF
+                                    ResourceMapper.stringResource("dde_error_ff_" + ff.name)
+                                        ?.let {
+                                            errorDescription.add(
+                                                Pair(
+                                                    it,
+                                                    String.format(
+                                                        Locale.getDefault(),
+                                                        "%.2f %s",
+                                                        (x * ff.factorA + ff.factorB).toDouble(),
+                                                        ff.unit
+                                                    )
+                                                )
+                                            )
+                                        }
+                                }
+                                val x =
+                                    ((mess.answer[16 + 7 * j].toInt() and 0xFF) shl 8) + (mess.answer[17 + 7 * j].toInt() and 0xFF)
+                                errorDescription.add(
+                                    Pair(
+                                        Res.string.dde_error_ff_odometer,
+                                        String.format(Locale.getDefault(), "%d km", x)
+                                    )
+                                )
+                            }
+                        } else
+                            Logger.e {
+                                "$tag : No freeze frame for code ${
+                                    String.format(
+                                        "%04X",
+                                        errorCode
+                                    )
+                                }"
+                            }
+                        if (result == null) result = ArrayList()
+                        result.add(
+                            ModuleError(
+                                ModuleAddress.MODULE_DDE,
+                                String.format("%04X", errorCode).uppercase(
+                                    Locale.getDefault()
+                                ),
+                                errorDescription
+                            )
+                        )
+                    }
                 }
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag, [getAllErros()], $ex, $message"}
             }
         }
         return result
@@ -582,7 +652,7 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                 info.date = String(answer.copyOfRange(20, 22)) + "/" + String(answer.copyOfRange(22,24))
                 info.serial = String(answer.copyOfRange(38, 46))
             } catch (ex: Exception) {
-                Logger.e {"$tag : ${ex.toString()}"}
+                Logger.e {"$tag, [getIdentification()], $ex, $message"}
             }
         }
         message = kwp.write(
@@ -602,7 +672,7 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                     message.answer[30].toInt() and 0xFF
                 )
             } catch (ex: Exception) {
-                Logger.e {"$tag : ${ex.toString()}"}
+                Logger.e {"$tag, [getIdentification()], $ex, $message"}
             }
         }
         return info
@@ -687,26 +757,39 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
             0x23.toByte(),
             byteArrayOf(0x0F, 0xF9.toByte(), 0x00, 0x06, 0x2E)
         )
-        return if (message.isValid) {
-            String(
-                    message.answer.copyOfRange(5,16)
-            ) + String.format(Locale.getDefault(),
-                "%02d%02d%02d",
-                message.answer[16].toInt() and 0xFF,
-                message.answer[17].toInt() and 0xFF,
-                message.answer[18].toInt() and 0xFF
-            )
-        } else {
-            null
+        if (message.isValid) {
+            try {
+                return String(
+                    message.answer.copyOfRange(5, 16)
+                ) + String.format(
+                    Locale.getDefault(),
+                    "%02d%02d%02d",
+                    message.answer[16].toInt() and 0xFF,
+                    message.answer[17].toInt() and 0xFF,
+                    message.answer[18].toInt() and 0xFF
+                )
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [getVIN()], $ex, $message"}
+                return null
+            }
         }
+        return null
     }
 
     override suspend fun getOdometer(): String? {
         val message =
             kwp.write(moduleAddress, 0x2C.toByte(), byteArrayOf(0x10, 0x0F, 0xD0.toByte()))
-        return if (message.isValid) {
-            String.format(Locale.getDefault(), "%d", (message.answer[6].toInt() shr 8) + message.answer[7] * 10)
-        } else null
+        if (message.isValid) {
+            try {
+                return String.format(Locale.getDefault(), "%d", (message.answer[6].toInt() shr 8) + message.answer[7] * 10)
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [getOdometer()], $ex, $message"}
+                return null
+            }
+        }
+        return null
     }
 
     suspend fun liveDataInjectorsEnable(): Boolean {
@@ -723,33 +806,34 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
             500
         )
         if (message.isValid) {
-            message = kwp.write(moduleAddress, 0x27.toByte(), byteArrayOf(0x01), 800)
-            if (message.isValid) {
-                try {
-                    if (message.answerCode == 0x67.toByte() && message.length == 9 && message.answer[6] == 0x00.toByte() && message.answer[7] == 0x00.toByte())
-                        return true
-                    val seed = ByteArray(4)
-                    for (i in 0..3) {
-                        val a = message.answer[level * 2 + i].toInt()
-                        val b = message.answer[0x2C + i].toInt()
-                        val c = message.answer[0x15 + i].toInt()
-                        val x = (a + b + c) and 0xFF
-                        seed[i] = x.toByte()
-                        seed[i] =
-                            ((message.answer[level * 2 + i] + message.answer[0x2C + i] + message.answer[0x15 + i]) and 0xFF).toByte()
+                message = kwp.write(moduleAddress, 0x27.toByte(), byteArrayOf(0x01), 800)
+                if (message.isValid) {
+                    try {
+                        if (message.answerCode == 0x67.toByte() && message.length == 9 && message.answer[6] == 0x00.toByte() && message.answer[7] == 0x00.toByte())
+                            return true
+                        val seed = ByteArray(4)
+                        for (i in 0..3) {
+                            val a = message.answer[level * 2 + i].toInt()
+                            val b = message.answer[0x2C + i].toInt()
+                            val c = message.answer[0x15 + i].toInt()
+                            val x = (a + b + c) and 0xFF
+                            seed[i] = x.toByte()
+                            seed[i] =
+                                ((message.answer[level * 2 + i] + message.answer[0x2C + i] + message.answer[0x15 + i]) and 0xFF).toByte()
+                        }
+                        message = kwp.write(
+                            moduleAddress,
+                            0x27.toByte(),
+                            byteArrayOf(0x04) + seed,
+                            500
+                        )
+                        result = message.isValid
+                    } catch (ex: Exception) {
+                        Logger.e {"$tag, [securityAccess], $ex, $message"}
+                        result = false
                     }
-                    message =  kwp.write(
-                        moduleAddress,
-                        0x27.toByte(),
-                        byteArrayOf(0x04)  + seed,
-                        500
-                    )
-                    result = message.isValid
-                } catch (_ : Exception) {
-                    result = false
                 }
             }
-        }
         return result
     }
 
@@ -874,7 +958,7 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                                         Res.string.activity_flash_programming_failed))
                             }
                     } catch (ex: Exception) {
-                        Logger.e {"$tag :  ${ex.toString()}"}
+                        Logger.e {"$tag [writeFlash] : $ex"}
                     }
                 } else _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                         Res.string.activity_flash_programming_diagnostic_session,
@@ -972,11 +1056,20 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
         reset()
         kwp.setSpeed(9600)
         try {
-            result = result.copyOfRange( 0, (endAddress - startAddress).toInt())
-            _programmingState.tryEmit(FlashProgrammingState.FlashData(
-                result.toList(), moduleInfo, vin))
+            if (result.size >= (endAddress - startAddress).toInt()) {
+                result = result.copyOfRange(0, (endAddress - startAddress).toInt())
+                _programmingState.tryEmit(
+                    FlashProgrammingState.FlashData(
+                        result.toList(), moduleInfo, vin
+                    )
+                )
+            }
+            else
+            {
+                _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(Res.string.activity_flash_programming_read_flash, Res.string.activity_flash_programming_failed))
+            }
         } catch (ex: Exception) {
-            Logger.e {"$tag : ${ex.toString()}"}
+            Logger.e {"$tag [readFlash]: ${ex.toString()}, Result Size : ${result.size}"}
         }
     }
 
@@ -993,9 +1086,15 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
             ),
             1500
         )
-        return if (message.isValid)
-            message.answer.copyOfRange(5,message.length - 1)
-        else ByteArray(0)
+        if (message.isValid) {
+            try {
+                return message.answer.copyOfRange(5, message.length - 1)
+            } catch (ex: Exception) {
+                Logger.e { "$tag [readFlashData], $ex, $message" }
+                return ByteArray(0)
+            }
+        }
+        return ByteArray(0)
     }
 
     private suspend fun writeFlashData(data: ByteArray): Boolean {
