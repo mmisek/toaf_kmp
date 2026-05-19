@@ -181,8 +181,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
     }
 
     suspend fun getUserInfo(): UserInfo? {
-        if (!isCredentialValid())
+        if (!isCredentialValid()) {
+            Logger.i { "getUserInfo - Credential NOT VALID"}
             return null
+        }
         return try {
             val response = client.post("$url/user/info/get")
             if (response.status == HttpStatusCode.OK) {

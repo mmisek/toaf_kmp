@@ -28,6 +28,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -168,14 +169,17 @@ fun ActivityMainModel(
     }
     LaunchedEffect(userInfo.isLogged)
     {
-        ToafSnackBar().showResult(
-            scope = scope,
-            snackBarHostState = snackBarHostName,
-            result = userInfo.isLogged == ServerConnectionState.CONNECTED,
-            messageSuccess = loginCorrect,
-            messageError = loginIncorrect)
-        if (userInfo.isLogged == ServerConnectionState.CONNECTED) {
-            showUserLoginDialog = false
+        if (userInfo.username.isNotEmpty()) {
+            ToafSnackBar().showResult(
+                scope = scope,
+                snackBarHostState = snackBarHostName,
+                result = userInfo.isLogged == ServerConnectionState.CONNECTED,
+                messageSuccess = loginCorrect,
+                messageError = loginIncorrect
+            )
+            if (userInfo.isLogged == ServerConnectionState.CONNECTED) {
+                showUserLoginDialog = false
+            }
         }
     }
     Scaffold(

@@ -152,11 +152,14 @@ val commonModules = module {
             install(Auth)
             {
                 basic {
+                    sendWithoutRequest { request ->
+                        true
+                    }
                     credentials {
                         val userInfo = database.getLoginAndPassword()
                         if (userInfo != null)
                         {
-                            co.touchlab.kermit.Logger.i {"CurrentSettings : ${userInfo}"}
+                            co.touchlab.kermit.Logger.i {"CurrentSettings : $userInfo"}
                             BasicAuthCredentials(username = userInfo.first, password = userInfo.second)
                         }
                         else
@@ -165,7 +168,6 @@ val commonModules = module {
                         }
                     }
                 }
-
             }
             defaultRequest {
                 header(HttpHeaders.ContentType, io.ktor.http.ContentType.Application.Json)

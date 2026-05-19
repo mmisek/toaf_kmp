@@ -2,6 +2,7 @@ package pl.misek.toafmobile.modules.r40
 
 import co.touchlab.kermit.Logger
 import co.touchlab.kermit.Message
+import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceMapper
