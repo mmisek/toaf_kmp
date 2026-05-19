@@ -5,6 +5,8 @@ import android.net.wifi.WifiManager
 import android.util.Log
 import io.sentry.Sentry
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -35,7 +37,7 @@ class  AndroidWifiManager(private val context: Context) : IWifiManager
         }
     }
 
-    override fun getLocalIpAddress() : String?
+    override fun getLocalIpAddress() : List<String>?
     {
         return try {
             val interfaces = NetworkInterface.getNetworkInterfaces() ?: return null
@@ -46,7 +48,7 @@ class  AndroidWifiManager(private val context: Context) : IWifiManager
                 .filterIsInstance<Inet4Address>()
                 .filter { !it.isLoopbackAddress }
                 .map { it.hostAddress }
-                .firstOrNull()
+                .toList()
         }
         catch ( ex : Exception)
         {
@@ -55,33 +57,28 @@ class  AndroidWifiManager(private val context: Context) : IWifiManager
         }
     }
 
-    override suspend fun scanNetwork() : List<String> = withContext(Dispatchers.IO)
-    {
-        val connectedIps = mutableListOf<String>()
-        val myIp = getLocalIpAddress() ?: return@withContext emptyList()
-        val subnet = myIp.substringBeforeLast(".") + "."
-        val jobs = (1..254).map{ i ->
-            launch {
-                val host = subnet + i
-                if (host != myIp) {
+    override suspend fun scanNetwork(): List<String> = withContext(Dispatchers.IO) {
+        val myIps = getLocalIpAddress() ?: return@withContext emptyList()
+        val results = myIps.flatMap { myIp ->
+            val subnet = myIp.substringBeforeLast(".") + "."
+            (1..254).map { i ->
+                async {
+                    val host = subnet + i
+                    if (host == myIp) return@async null
                     try {
                         val inetAddress = InetAddress.getByName(host)
-                        Log.d(tag, "Scanning IP Address $host")
-                        if (inetAddress.isReachable(150)){
-                            synchronized(connectedIps){
-                                Log.d(tag, "Added IP Address $host")
-                                connectedIps.add(host)
-                            }
+                        if (inetAddress.isReachable(200)) {
+                            host
                         }
-                    } catch (ex : Exception)
-                    {
-                        Sentry.captureException(ex)
+                        else
+                            null
+                    } catch (_: Exception) {
+                        null
                     }
                 }
             }
         }
 
-        jobs.joinAll()
-        return@withContext connectedIps
+        results.awaitAll().filterNotNull()
     }
 }

@@ -22,6 +22,7 @@ import java.io.InputStream
 import java.io.OutputStream
 import java.net.InetSocketAddress
 import java.net.Socket
+import java.net.SocketTimeoutException
 
 class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
     private var tag = "ToafWifiIInterface"
@@ -66,7 +67,8 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
                     }
                 }
             } catch (ex: Exception) {
-                Logger.e{"$tag: ${ex.toString()}"}
+                if (ex !is SocketTimeoutException)
+                    Logger.e{"$tag: ${ex.toString()}"}
             }
             return@withContext null
         }
@@ -85,7 +87,8 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
             try {
                 return result["data"]?.jsonObject
             } catch (ex: Exception) {
-                Logger.e{"$tag: ${ex.toString()}"}
+                if (ex !is SocketTimeoutException)
+                    Logger.e{"$tag: ${ex.toString()}"}
             }
         }
         return null
@@ -106,7 +109,8 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
                 }
             }
         } catch (ex: Exception) {
-            Logger.e{"$tag: ${ex.toString()}"}
+            if (ex !is SocketTimeoutException)
+                Logger.e{"$tag: ${ex.toString()}"}
         }
 
         return null
@@ -129,7 +133,8 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
                 }
             }
         } catch (ex: Exception) {
-            Logger.e{"$tag: ${ex.toString()}"}
+            if (ex !is SocketTimeoutException)
+                Logger.e{"$tag: ${ex.toString()}"}
         }
         return result
     }
@@ -142,7 +147,8 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
             }
             isValid(write("CONFIG_SAVE", jsonObject))
         } catch (ex: Exception) {
-            Logger.e{"$tag : ${ex.toString()}"}
+            if (ex !is SocketTimeoutException)
+                Logger.e{"$tag: ${ex.toString()}"}
             false
         }
     }
@@ -257,6 +263,7 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
                 outputStream?.write(jsonData.toString().toByteArray())
                 outputStream?.flush()
             }
+            delay(20)
             val jsonObject = listener() ?: return@withContext null
             val msg = jsonObject["message"]?.jsonPrimitive?.content
             if (msg == message)
@@ -264,7 +271,8 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
             else
                 return@withContext null
         } catch (ex: Exception) {
-            Logger.e{"$tag: ${ex.toString()}"}
+            if (ex !is SocketTimeoutException)
+                Logger.e{"$tag: ${ex.toString()}"}
             return@withContext null
         }
         finally {
@@ -288,7 +296,8 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
             inputStream = newSocket.getInputStream()
 
         } catch (ex: Exception) {
-            Logger.e{"$tag: ${ex.toString()}"}
+            if (ex !is SocketTimeoutException)
+                Logger.e{"$tag: ${ex.toString()}"}
             disconnect()
             throw ex
         }
@@ -321,16 +330,18 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
                 delay(20)
             }
             val rawResponse = collector.toString("UTF-8").trim()
-            Logger.i{"$tag : $rawResponse"}
+            Logger.i{"$tag [rawResponse]: $rawResponse"}
             if (rawResponse.isEmpty()) return@withContext null
             return@withContext try {
                 Json.parseToJsonElement(rawResponse).jsonObject
             }catch (ex: Exception) {
-                Logger.e{"$tag: ${ex.toString()}"}
+                if (ex !is SocketTimeoutException)
+                    Logger.e{"$tag: ${ex.toString()}"}
                 null
             }
         } catch (ex: Exception) {
-            Logger.e{"$tag: ${ex.toString()}"}
+            if (ex !is SocketTimeoutException)
+                Logger.e{"$tag: ${ex.toString()}"}
             return@withContext null
         }
     }

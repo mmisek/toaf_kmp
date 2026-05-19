@@ -132,7 +132,7 @@ fun ErrorItem(moduleError: ModuleError, showDetails : Boolean, id :Int, onItemCl
                     .fillMaxWidth(),
                     fontSize = 14.sp,
                     color = ToafColors.toafTextColorWhite,
-                    text =  moduleError.code  + " - " + moduleError.description?.let { stringResource(it)}
+                    text =  moduleError.code.uppercase()  + " - " + moduleError.description?.let { stringResource(it)}
                 )
                 if (showDetails)
                 {
