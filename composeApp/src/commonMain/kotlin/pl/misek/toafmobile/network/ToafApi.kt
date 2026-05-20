@@ -3,6 +3,7 @@ package pl.misek.toafmobile.network
 import co.touchlab.kermit.Logger
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
+import io.ktor.client.plugins.HttpRequestTimeoutException
 import io.ktor.client.plugins.timeout
 import io.ktor.client.request.forms.formData
 import io.ktor.client.request.forms.submitFormWithBinaryData
@@ -14,12 +15,10 @@ import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType
-
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import pl.misek.toafmobile.BuildKonfig
-
 import pl.misek.toafmobile.backup.BackupElement
 import pl.misek.toafmobile.backup.BackupElementResponse
 import pl.misek.toafmobile.billing.CheckPurchaseResponse
@@ -37,12 +36,11 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
     private val url = "https://toaf.roverki.eu:5999"
     //private val url = "http://192.168.1.5:5999"
 
-    private suspend fun isCredentialValid() : Boolean
-    {
+    private suspend fun isCredentialValid(): Boolean {
         val credentials = database.getLoginAndPassword()
         return (credentials != null && credentials.second.isNotEmpty() && credentials.first.isNotEmpty())
-
     }
+
     suspend fun loginUser(): ServerConnectionState {
         return try {
             val response = client.post("$url/user/login")
@@ -50,8 +48,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 ServerConnectionState.CONNECTED
             else
                 ServerConnectionState.DISCONNECTED
+        } catch (ex: HttpRequestTimeoutException) {
+            throw ex
         } catch (ex: Exception) {
-            Logger.e {"$tag: ${ex.toString()}"}
+            Logger.withTag(tag).e(ex) { "[loginUser]: ${ex.message}" }
             ServerConnectionState.DISCONNECTED
         }
     }
@@ -68,11 +68,13 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 val body = result.body<CodingResponse>()
                 body.message.firstOrNull()
             } else {
-                Logger.i {"$tag: ${result.bodyAsText()}"}
+                Logger.i { "$tag: ${result.bodyAsText()}" }
                 null
             }
+        } catch (ex: HttpRequestTimeoutException) {
+            throw ex
         } catch (ex: Exception) {
-            Logger.e {"$tag: $ex"}
+            Logger.withTag(tag).e(ex) { "[getCoding]: ${ex.message}" }
             null
         }
     }
@@ -90,11 +92,13 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 val message = response.body<BackupElementResponse>()
                 message.message
             } else {
-                Logger.i {"$tag: ${response.bodyAsText()}"}
+                Logger.i { "$tag: ${response.bodyAsText()}" }
                 null
             }
+        } catch (ex: HttpRequestTimeoutException) {
+            throw ex
         } catch (ex: Exception) {
-            Logger.e {"$tag: $ex"}
+            Logger.withTag(tag).e(ex) { "[getCodingList]: ${ex.message}" }
             null
         }
     }
@@ -108,15 +112,16 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 contentType(ContentType.Application.Json)
                 setBody(codingData.toString())
             }
-            return if (response.status == HttpStatusCode.OK)
+            if (response.status == HttpStatusCode.OK) {
                 true
-            else {
-                Logger.i {"$tag: ${response.bodyAsText()}"}
+            } else {
+                Logger.i { "$tag: ${response.bodyAsText()}" }
                 false
             }
-
+        } catch (ex: HttpRequestTimeoutException) {
+            throw ex
         } catch (ex: Exception) {
-            Logger.e {"$tag: $ex"}
+            Logger.withTag(tag).e(ex) { "[addCoding]: ${ex.message}" }
             false
         }
     }
@@ -127,14 +132,16 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
 
         return try {
             val response = client.post("$url/user/delete/")
-            return if (response.status == HttpStatusCode.OK)
+            if (response.status == HttpStatusCode.OK) {
                 true
-            else {
-                Logger.i {"$tag: ${response.bodyAsText()}"}
+            } else {
+                Logger.i { "$tag: ${response.bodyAsText()}" }
                 false
             }
+        } catch (ex: HttpRequestTimeoutException) {
+            throw ex
         } catch (ex: Exception) {
-            Logger.e {"$tag: $ex"}
+            Logger.withTag(tag).e(ex) { "[deleteUser]: ${ex.message}" }
             false
         }
     }
@@ -148,14 +155,16 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 contentType(ContentType.Application.Json)
                 setBody(data.toString())
             }
-            return if (response.status == HttpStatusCode.OK)
+            if (response.status == HttpStatusCode.OK) {
                 true
-            else {
-                Logger.i {"$tag: ${response.bodyAsText()}"}
+            } else {
+                Logger.i { "$tag: ${response.bodyAsText()}" }
                 false
             }
+        } catch (ex: HttpRequestTimeoutException) {
+            throw ex
         } catch (ex: Exception) {
-            Logger.e {"$tag: $ex"}
+            Logger.withTag(tag).e(ex) { "[addUser]: ${ex.message}" }
             false
         }
     }
@@ -168,21 +177,23 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 contentType(ContentType.Application.Json)
                 setBody(data.toString())
             }
-            return if (response.status == HttpStatusCode.OK)
+            if (response.status == HttpStatusCode.OK) {
                 true
-            else {
-                Logger.i {"$tag: ${response.bodyAsText()}"}
+            } else {
+                Logger.i { "$tag: ${response.bodyAsText()}" }
                 false
             }
+        } catch (ex: HttpRequestTimeoutException) {
+            throw ex
         } catch (ex: Exception) {
-            Logger.e {"$tag: $ex"}
+            Logger.withTag(tag).e(ex) { "[userChangePass]: ${ex.message}" }
             false
         }
     }
 
     suspend fun getUserInfo(): UserInfo? {
         if (!isCredentialValid()) {
-            Logger.i { "getUserInfo - Credential NOT VALID"}
+            Logger.i { "getUserInfo - Credential NOT VALID" }
             return null
         }
         return try {
@@ -193,14 +204,14 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 if (userInfo != null)
                     userInfo.isLogged = ServerConnectionState.CONNECTED
                 userInfo
-            }
-            else {
-                Logger.i {"$tag: ${response.bodyAsText()}"}
+            } else {
+                Logger.i { "$tag: ${response.bodyAsText()}" }
                 null
             }
-
+        } catch (ex: HttpRequestTimeoutException) {
+            throw ex
         } catch (ex: Exception) {
-            Logger.e {"$tag: $ex"}
+            Logger.withTag(tag).e(ex) { "[getUserInfo]: ${ex.message}" }
             null
         }
     }
@@ -213,14 +224,16 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 contentType(ContentType.Application.Json)
                 setBody(userInfo)
             }
-            return if (response.status == HttpStatusCode.OK)
+            if (response.status == HttpStatusCode.OK) {
                 true
-            else {
-                Logger.i {"$tag: ${response.bodyAsText()}"}
+            } else {
+                Logger.i { "$tag: ${response.bodyAsText()}" }
                 false
             }
+        } catch (ex: HttpRequestTimeoutException) {
+            throw ex
         } catch (ex: Exception) {
-            Logger.e {"$tag: $ex"}
+            Logger.withTag(tag).e(ex) { "[updateUserInfo]: ${ex.message}" }
             false
         }
     }
@@ -233,14 +246,16 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 contentType(ContentType.Application.Json)
                 setBody(data.toString())
             }
-            return if (response.status == HttpStatusCode.OK)
+            if (response.status == HttpStatusCode.OK) {
                 true
-            else {
-                Logger.i {"$tag: ${response.bodyAsText()}"}
+            } else {
+                Logger.i { "$tag: ${response.bodyAsText()}" }
                 false
             }
+        } catch (ex: HttpRequestTimeoutException) {
+            throw ex
         } catch (ex: Exception) {
-            Logger.e {"$tag: $ex"}
+            Logger.withTag(tag).e(ex) { "[userAddPurchases]: ${ex.message}" }
             false
         }
     }
@@ -258,14 +273,16 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 contentType(ContentType.Application.Json)
                 setBody(data.toString())
             }
-            return if (response.status == HttpStatusCode.OK)
+            if (response.status == HttpStatusCode.OK) {
                 true
-            else {
-                Logger.i {"$tag: ${response.bodyAsText()}"}
+            } else {
+                Logger.i { "$tag: ${response.bodyAsText()}" }
                 false
             }
+        } catch (ex: HttpRequestTimeoutException) {
+            throw ex
         } catch (ex: Exception) {
-            Logger.e {"$tag: $ex"}
+            Logger.withTag(tag).e(ex) { "[userConsumeBcuKey]: ${ex.message}" }
             false
         }
     }
@@ -291,14 +308,16 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                     requestTimeoutMillis = 5000
                 }
             }
-            return if (response.status == HttpStatusCode.OK)
+            if (response.status == HttpStatusCode.OK) {
                 true
-            else {
-                Logger.i {"$tag: ${response.bodyAsText()}"}
+            } else {
+                Logger.i { "$tag: ${response.bodyAsText()}" }
                 false
             }
+        } catch (ex: HttpRequestTimeoutException) {
+            throw ex
         } catch (ex: Exception) {
-            Logger.e {"$tag: $ex"}
+            Logger.withTag(tag).e(ex) { "[uploadFlash]: ${ex.message}" }
             false
         }
     }
@@ -314,8 +333,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
             if (response.status == HttpStatusCode.OK)
                 response.body<ToafWifiUpdates>()
             else null
+        } catch (ex: HttpRequestTimeoutException) {
+            throw ex
         } catch (ex: Exception) {
-            Logger.e {"$tag: $ex"}
+            Logger.withTag(tag).e(ex) { "[getToafWifiUpdates]: ${ex.message}" }
             null
         }
     }
@@ -331,8 +352,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
             if (response.status == HttpStatusCode.OK)
                 response.body<List<ToafWifiUpdateFiles?>>()
             else null
+        } catch (ex: HttpRequestTimeoutException) {
+            throw ex
         } catch (ex: Exception) {
-            Logger.e{"$tag: $ex"}
+            Logger.withTag(tag).e(ex) { "[getToafWifiUpdateFiles]: ${ex.message}" }
             null
         }
     }
@@ -346,8 +369,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 setBody(data.toString())
             }
             response.status == HttpStatusCode.OK
+        } catch (ex: HttpRequestTimeoutException) {
+            throw ex
         } catch (ex: Exception) {
-            Logger.e{"$tag: $ex"}
+            Logger.withTag(tag).e(ex) { "[setToafWifiUpdate]: ${ex.message}" }
             false
         }
     }
@@ -357,7 +382,8 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
             val body = ToafVersionInfo(
                 versionName = BuildKonfig.VERSION_NAME,
                 versionCode = BuildKonfig.VERSION_CODE,
-                platform = getPlatformName())
+                platform = getPlatformName()
+            )
             val response = client.post("$url/toaf/version/") {
                 contentType(ContentType.Application.Json)
                 setBody(body)
@@ -367,22 +393,22 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 return info.message
             }
             return null
-
+        } catch (ex: HttpRequestTimeoutException) {
+            throw ex
         } catch (ex: Exception) {
-            Logger.e{"$tag: $ex"}
+            Logger.withTag(tag).e(ex) { "[checkToafVersion]: ${ex.message}" }
             null
         }
     }
 
-    suspend fun getStripeProductInfo(productName : String): StripeProductInfo? {
+    suspend fun getStripeProductInfo(productName: String): StripeProductInfo? {
         if (!isCredentialValid())
             return null
         return try {
-            val supportedCurrency = listOf("PLN","EUR","USD")
+            val supportedCurrency = listOf("PLN", "EUR", "USD")
             var currencyCode = try {
                 Currency.getInstance(Locale.getDefault()).currencyCode
-            } catch ( _: Exception)
-            {
+            } catch (_: Exception) {
                 "EUR"
             }
             if (!supportedCurrency.contains(currencyCode))
@@ -398,19 +424,19 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
             if (response.status == HttpStatusCode.OK) {
                 val productResponse = response.body<StripeProductInfoResponse>()
                 return productResponse.data
-            }
-            else {
-                Logger.i {"$tag: ${response.bodyAsText()}"}
+            } else {
+                Logger.i { "$tag: ${response.bodyAsText()}" }
                 null
             }
+        } catch (ex: HttpRequestTimeoutException) {
+            throw ex
         } catch (ex: Exception) {
-            Logger.e { "$tag: $ex" }
+            Logger.withTag(tag).e(ex) { "[getStripeProductInfo]: ${ex.message}" }
             null
         }
     }
 
-    suspend fun createStripeCheckout(priceId :String, productName: String) : StripeSession?
-    {
+    suspend fun createStripeCheckout(priceId: String, productName: String): StripeSession? {
         if (!isCredentialValid())
             return null
         return try {
@@ -418,62 +444,62 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 put("priceId", priceId)
                 put("productName", productName.lowercase())
             }
-            val response = client.post("$url/payments/create-checkout"){
+            val response = client.post("$url/payments/create-checkout") {
                 contentType(ContentType.Application.Json)
                 setBody(data.toString())
             }
             if (response.status == HttpStatusCode.OK) {
                 val session = response.body<StripeSessionResponse>()
                 session.data
-            }
-            else {
-                Logger.i {"$tag: ${response.bodyAsText()}"}
+            } else {
+                Logger.i { "$tag: ${response.bodyAsText()}" }
                 null
             }
+        } catch (ex: HttpRequestTimeoutException) {
+            throw ex
         } catch (ex: Exception) {
-            Logger.e { "$tag: $ex" }
+            Logger.withTag(tag).e(ex) { "[createStripeCheckout]: ${ex.message}" }
             null
         }
     }
-    suspend fun checkPurchase(purchaseId : String) : Boolean{
+
+    suspend fun checkPurchase(purchaseId: String): Boolean {
         if (!isCredentialValid())
             return false
         return try {
             val data = buildJsonObject {
                 put("purchaseId", purchaseId)
             }
-            val response = client.post("$url/user/purchases/check"){
+            val response = client.post("$url/user/purchases/check") {
                 contentType(ContentType.Application.Json)
                 setBody(data.toString())
             }
-            if (response.status == HttpStatusCode.OK)
-            {
+            if (response.status == HttpStatusCode.OK) {
                 val body = response.body<CheckPurchaseResponse>()
                 return (body.data != null && body.data == purchaseId)
-            }
-            else
-            {
-                Logger.i {"$tag : ${response.bodyAsText()}"}
+            } else {
+                Logger.i { "$tag : ${response.bodyAsText()}" }
                 false
             }
-        } catch (ex: Exception)
-        {
-            Logger.e { "$tag: $ex" }
+        } catch (ex: HttpRequestTimeoutException) {
+            throw ex
+        } catch (ex: Exception) {
+            Logger.withTag(tag).e(ex) { "[checkPurchase]: ${ex.message}" }
             false
         }
     }
 
-    suspend fun consumeEkaCode() : Boolean{
+    suspend fun consumeEkaCode(): Boolean {
         if (!isCredentialValid())
             return false
         return try {
             val response = client.post("$url/user/eka_codes/consume")
             response.status == HttpStatusCode.OK
-        } catch (ex : Exception)
-        {
-            Logger.e { "$tag: $ex"}
+        } catch (ex: HttpRequestTimeoutException) {
+            throw ex
+        } catch (ex: Exception) {
+            Logger.withTag(tag).e(ex) { "[consumeEkaCode]: ${ex.message}" }
             false
         }
-
     }
 }

@@ -152,6 +152,7 @@ val commonModules = module {
             install(Auth)
             {
                 basic {
+                    cacheTokens = false
                     sendWithoutRequest { request ->
                         true
                     }

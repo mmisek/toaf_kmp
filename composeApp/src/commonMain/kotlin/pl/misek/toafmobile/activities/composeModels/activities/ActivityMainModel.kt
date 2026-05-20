@@ -167,18 +167,20 @@ fun ActivityMainModel(
             toafVersionInfo?.versionCode?.let { showNewVersionInfo = it > BuildKonfig.VERSION_CODE }
         }
     }
-    LaunchedEffect(userInfo.isLogged)
+    LaunchedEffect(Unit)
     {
-        if (userInfo.username.isNotEmpty()) {
-            ToafSnackBar().showResult(
-                scope = scope,
-                snackBarHostState = snackBarHostName,
-                result = userInfo.isLogged == ServerConnectionState.CONNECTED,
-                messageSuccess = loginCorrect,
-                messageError = loginIncorrect
-            )
-            if (userInfo.isLogged == ServerConnectionState.CONNECTED) {
-                showUserLoginDialog = false
+        userInfoViewModel.loginResultFlow.collect { isSuccess ->
+            if (userInfo.username.isNotEmpty()) {
+                ToafSnackBar().showResult(
+                    scope = scope,
+                    snackBarHostState = snackBarHostName,
+                    result = isSuccess,
+                    messageSuccess = loginCorrect,
+                    messageError = loginIncorrect
+                )
+                if (isSuccess) {
+                    showUserLoginDialog = false
+                }
             }
         }
     }

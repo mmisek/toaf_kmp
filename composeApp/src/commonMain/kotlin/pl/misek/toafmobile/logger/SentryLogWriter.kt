@@ -20,12 +20,12 @@ class SentryLogWriter(private val minSeverity: Severity = Severity.Error) : LogW
         if (throwable != null) {
             Sentry.captureException(throwable) { scope ->
                 scope.level = sentryLevel
-                scope.setTag("kermit_tag", tag)
-                scope.setExtra("kermit_message", message)
+                scope.setTag("function", tag)
+                scope.setExtra("message", message)
             }
         } else {
             Sentry.captureMessage(message, sentryLevel) { scope ->
-                scope.setTag("kermit_tag", tag)
+                scope.setTag("function", tag)
             }
         }
     }

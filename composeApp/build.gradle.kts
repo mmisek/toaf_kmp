@@ -1,8 +1,8 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
-val versionCode = 102
-val versionName = "1.0.2"
+val versionCode = 103
+val versionName = "1.0.3"
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
@@ -37,13 +37,13 @@ kotlin {
             implementation(libs.google.ads)
         }
         commonMain.dependencies {
-            implementation("org.jetbrains.compose.ui:ui-tooling:1.10.3")
-            implementation("org.jetbrains.compose.runtime:runtime:1.10.2")
-            implementation("org.jetbrains.compose.foundation:foundation:1.10.2")
-            implementation("org.jetbrains.compose.material3:material3:1.9.0")
-            implementation("org.jetbrains.compose.ui:ui:1.10.2")
-            implementation("org.jetbrains.compose.components:components-resources:1.10.2")
-            implementation("org.jetbrains.compose.material:material-icons-extended:1.7.3")
+            implementation(libs.compose.ui.tooling)
+            implementation(libs.compose.runtime)
+            implementation(libs.compose.foundation)
+            implementation(libs.compose.material3)
+            implementation(libs.compose.ui)
+            implementation(libs.compose.components.resources)
+            implementation(libs.compose.material.iconsExtended)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(libs.ktor.client.core)
@@ -57,7 +57,7 @@ kotlin {
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
             implementation(libs.navigation.compose)
-            implementation(libs.compose.icons.extended)
+            //implementation(libs.compose.icons.extended)
             implementation(libs.vico.compose.m3)
             implementation(libs.sentry.kmp)
             implementation(libs.kotlinx.datetime)
@@ -109,7 +109,7 @@ android {
 
 dependencies {
     debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation("org.jetbrains.compose.ui:ui-tooling:1.10.3")
+    debugImplementation(libs.compose.ui.tooling)
     add("kspAndroid", libs.room.compiler)
     add("kspJvm", libs.room.compiler)
 }

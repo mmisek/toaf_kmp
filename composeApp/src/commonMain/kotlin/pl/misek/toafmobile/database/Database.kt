@@ -3,6 +3,7 @@ package pl.misek.toafmobile.database
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -110,15 +111,17 @@ class Database(private val dao : ToafDao) {
     suspend fun updateSettings(login: String?, pass: String?): Boolean {
         return withContext(Dispatchers.IO) {
             val settings = dao.getSettings()
+            var result = false
             if (settings == null)
             {
-                insertSettings(login,pass) > 0
+                result = insertSettings(login,pass) > 0
             }
             else {
                 settings.userLogin = login
                 settings.userPassword = pass
-                dao.updateSettings(settings) > 0
+                result = dao.updateSettings(settings) > 0
             }
+            result
         }
     }
 
