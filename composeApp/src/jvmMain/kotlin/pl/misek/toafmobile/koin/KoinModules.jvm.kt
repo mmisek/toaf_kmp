@@ -11,12 +11,11 @@ import org.koin.core.module.Module
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import pl.misek.toafmobile.ads.DesktopToafRewardAds
-import pl.misek.toafmobile.ads.IToafRewardAds
+import pl.misek.toafmobile.ads.ToafRewardAds
 import pl.misek.toafmobile.billing.DesktopToafBilling
 import pl.misek.toafmobile.billing.IToafBilling
 import pl.misek.toafmobile.database.Database
 import pl.misek.toafmobile.database.ToafDatabase
-import pl.misek.toafmobile.database.ToafDatabase_Impl
 import pl.misek.toafmobile.database.dao.ToafDao
 import pl.misek.toafmobile.database.migration.Migration1to2
 import pl.misek.toafmobile.interfaces.DesktopUsbBroadcastHandler
@@ -70,7 +69,7 @@ actual fun platformModules(): Module  = module {
     single<IWifiManager> { DesktopWifiManager() }
     single<ISerialDevice> { DesktopSerialDevice() }
     factory<IToafBilling>  { DesktopToafBilling() }
-    factory<IToafRewardAds> { DesktopToafRewardAds() }
+    factory<ToafRewardAds> { DesktopToafRewardAds() }
     factory<IFileSupport> { DesktopFileSupport() }
     factory<IUsbBroadcastHandler> { DesktopUsbBroadcastHandler() }
     single<IUsbEventManager>{ DesktopUsbEventManager(get(),get(),get()) }

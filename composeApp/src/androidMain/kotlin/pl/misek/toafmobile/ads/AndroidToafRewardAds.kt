@@ -11,7 +11,7 @@ import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import pl.misek.toafmobile.tools.isDebug
 
-class AndroidToafRewardAds(private val context: Context) : IToafRewardAds
+class AndroidToafRewardAds(private val context: Context) : ToafRewardAds
 {
     private val tag = "ToafRewardAds"
     private var rewardedAd : RewardedAd? = null

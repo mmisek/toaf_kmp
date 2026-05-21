@@ -1,6 +1,6 @@
 package pl.misek.toafmobile.ads
 
-class DesktopToafRewardAds : IToafRewardAds {
+class DesktopToafRewardAds : ToafRewardAds {
     override fun isAdLoaded() = false
 
     override fun loadAd(onAdLoaded: () -> Unit, onAdFailed: () -> Unit) {

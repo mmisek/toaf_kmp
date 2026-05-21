@@ -89,9 +89,9 @@ private enum class BackupType
 @Composable
 fun ActivityModuleCodingModel(moduleKoinName : KoinNames, onBackClick : () ->Unit) {
     val modulesManager : ModulesManager = koinInject()
-    val currentModule = modulesManager.getCurrentModules().firstOrNull {it.getKoinName() == moduleKoinName} as? IModule
-    val ewsModule = modulesManager.getCurrentModules().firstOrNull {it.getKoinName() == KoinNames.ModuleR40Ews } as? IModule
-    val ipkModule = modulesManager.getCurrentModules().firstOrNull {it.getKoinName() == KoinNames.ModuleR40Ipk } as? IModule
+    val currentModule = modulesManager.getCurrentModules().firstOrNull {it.getKoinName() == moduleKoinName}
+    val ewsModule = modulesManager.getCurrentModules().firstOrNull {it.getKoinName() == KoinNames.ModuleR40Ews }
+    val ipkModule = modulesManager.getCurrentModules().firstOrNull {it.getKoinName() == KoinNames.ModuleR40Ipk }
     var showProgressDialog by remember { mutableStateOf(false) }
     var action by remember { mutableStateOf<suspend () -> Any?>({ null }) }
     var actionType by remember {mutableStateOf (ActionTypeEnum.None)}

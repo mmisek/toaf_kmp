@@ -4,14 +4,13 @@ import android.content.Context.USB_SERVICE
 import android.hardware.usb.UsbManager
 import androidx.room.Room
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
-import com.hoho.android.usbserial.driver.UsbSerialDriver
 import com.hoho.android.usbserial.driver.UsbSerialProber
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.Module
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import pl.misek.toafmobile.ads.AndroidToafRewardAds
-import pl.misek.toafmobile.ads.IToafRewardAds
+import pl.misek.toafmobile.ads.ToafRewardAds
 import pl.misek.toafmobile.billing.AndroidToafBilling
 import pl.misek.toafmobile.billing.IToafBilling
 import pl.misek.toafmobile.database.Database
@@ -51,7 +50,7 @@ actual fun platformModules(): Module = module {
         val driver = UsbSerialProber.getDefaultProber().findAllDrivers(get())
         AndroidSerialDevice(get(),null) }
     single<IToafBilling> { AndroidToafBilling(androidContext(),get(),get()) }
-    single<IToafRewardAds> { AndroidToafRewardAds(androidContext()) }
+    single<ToafRewardAds> { AndroidToafRewardAds(androidContext()) }
     single<IFileSupport> { AndroidFileSupport(androidContext()) }
     single<IUsbBroadcastHandler> { AndroidUsbBroadcastHandler(androidContext()) }
     single<IUsbEventManager> {

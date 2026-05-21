@@ -1,6 +1,8 @@
 package pl.misek.toafmobile
 
 import android.app.Application
+import co.touchlab.kermit.Logger
+import com.google.android.gms.ads.MobileAds
 import io.sentry.Sentry
 import io.sentry.android.core.SentryAndroid
 import org.koin.android.ext.koin.androidContext
@@ -8,6 +10,7 @@ import org.koin.core.context.startKoin
 import pl.misek.toafmobile.koin.commonModules
 import pl.misek.toafmobile.koin.platformModules
 
+private const val tag = "ToafApplication"
 class ToafApplication : Application() {
     override fun onCreate() {
         super.onCreate()
@@ -22,6 +25,9 @@ class ToafApplication : Application() {
             options.tracesSampleRate = 1.0
             options.isDebug = false
             options.isAnrEnabled = true
+        }
+        MobileAds.initialize(this) {initializationStatus ->
+            Logger.i {"MobileAds : ${initializationStatus.adapterStatusMap}"}
         }
     }
 }

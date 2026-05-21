@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -40,6 +42,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 import pl.misek.toafmobile.BuildKonfig
+import pl.misek.toafmobile.PlatformType
 import pl.misek.toafmobile.viewModels.UserInfoViewModel
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.TopBarModelMainActivity
@@ -57,9 +60,11 @@ import pl.misek.toafmobile.activities.composeModels.menus.MenuMain
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import pl.misek.toafmobile.activities.snackbar.ToafSnackBar
 import pl.misek.toafmobile.activities.snackbar.ToafSnackBarHost
+import pl.misek.toafmobile.ads.AdMobBanner
 import pl.misek.toafmobile.control.FastControlElement
 import pl.misek.toafmobile.database.Database
 import pl.misek.toafmobile.database.DatabaseSettingFields
+import pl.misek.toafmobile.getPlatformType
 import pl.misek.toafmobile.interfaces.ISerialDevice
 import pl.misek.toafmobile.interfaces.IUsbEventManager
 import pl.misek.toafmobile.interfaces.ToafWifiManager
@@ -223,6 +228,7 @@ fun ActivityMainModel(
                 modifier = Modifier
                     .padding(paddingValues)
                     .background(ToafColors.toafBackground)
+                    .fillMaxSize()
             ) {
                 ToafButtons.GreenButton(
                     modifier = Modifier
@@ -236,6 +242,7 @@ fun ActivityMainModel(
                     contentPadding = PaddingValues(2.dp),
                     verticalArrangement = Arrangement.spacedBy(2.dp),
                     horizontalArrangement = Arrangement.spacedBy(2.dp),
+                    modifier = Modifier.weight(1f)
                 ) {
                     items(fastControlElements.size){index ->
                         /*
@@ -264,6 +271,11 @@ fun ActivityMainModel(
                             modifier =  Modifier.fillMaxWidth().aspectRatio(1.5f)
                         )*/
                     }
+                }
+                if (getPlatformType() == PlatformType.Android)
+                {
+                    if (!userInfo.isFullVersion())
+                        AdMobBanner(modifier = Modifier.padding(bottom = 48.dp))
                 }
             }
             if (showInterfaceInformation != ShowInterfaceTypeInformation.None) {

@@ -27,7 +27,7 @@ import pl.misek.toafmobile.activities.ToafConstants
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
 import pl.misek.toafmobile.activities.definitions.ToafColors
-import pl.misek.toafmobile.ads.IToafRewardAds
+import pl.misek.toafmobile.ads.ToafRewardAds
 import pl.misek.toafmobile.billing.IToafBilling
 import pl.misek.toafmobile.getPlatformType
 import pl.misek.toafmobile.tools.getPlatformActivity
@@ -39,7 +39,7 @@ fun DialogNotFullVersion(onWatchAdResult: (Boolean) -> Unit, onCloseClick : () -
 {
     val activity = getPlatformActivity()
     val toafBilling : IToafBilling = koinInject()
-    val adHelper : IToafRewardAds = koinInject()
+    val adHelper : ToafRewardAds = koinInject()
     var fullVersionPrice by remember { mutableStateOf<String?>(null) }
     var adReady by remember { mutableStateOf(false) }
     val fullVersionPriceText = stringResource(Res.string.dialog_full_version_get_full_version)
