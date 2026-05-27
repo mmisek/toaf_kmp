@@ -46,13 +46,11 @@ actual fun platformModules(): Module = module {
     single{ Database(get()) }
     single<IWifiManager> { AndroidWifiManager(get()) }
     single<UsbManager> { androidContext().getSystemService(USB_SERVICE) as UsbManager }
-    factory<ISerialDevice> {
-        val driver = UsbSerialProber.getDefaultProber().findAllDrivers(get())
-        AndroidSerialDevice(get(),null) }
+    factory<ISerialDevice> { AndroidSerialDevice(get()) }
     single<IToafBilling> { AndroidToafBilling(androidContext(),get(),get()) }
     single<ToafRewardAds> { AndroidToafRewardAds(androidContext()) }
     single<IFileSupport> { AndroidFileSupport(androidContext()) }
-    single<IUsbBroadcastHandler> { AndroidUsbBroadcastHandler(androidContext()) }
-    single<IUsbEventManager> {
+    single <IUsbBroadcastHandler> { AndroidUsbBroadcastHandler(androidContext()) }
+    factory<IUsbEventManager> {
         AndroidUsbEventManager(usbBroadcastHandler = get(), usbManager = get(), database = get(), protocolFactory = get() ) }
 }

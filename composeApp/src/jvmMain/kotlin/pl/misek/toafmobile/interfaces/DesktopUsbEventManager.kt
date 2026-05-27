@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.interfaces
 
+import androidx.lifecycle.DefaultLifecycleObserver
 import co.touchlab.kermit.Logger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +13,8 @@ import pl.misek.toafmobile.interfaces.serial.DesktopSerialDevice
 import pl.misek.toafmobile.protocols.ProtocolFactory
 
 private const val tag = "DesktopUsbEventManager"
-class DesktopUsbEventManager(private val usbBroadcastHandler: IUsbBroadcastHandler, val database : Database, private val protocolFactory: ProtocolFactory) : IUsbEventManager
+class DesktopUsbEventManager(private val usbBroadcastHandler: IUsbBroadcastHandler, val database : Database, private val protocolFactory: ProtocolFactory) :
+    DefaultLifecycleObserver, IUsbEventManager
 {
     private val _usbState = MutableSharedFlow<UsbEvent>(replay = 1, extraBufferCapacity = 10)
     override val usbState = _usbState.asSharedFlow()

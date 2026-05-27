@@ -151,8 +151,12 @@ fun TopBarModelMainActivity(
                     try {
                         val lastDeviceType =
                             database.getStringSettingValueByName(DatabaseSettingFields.LAST_DEVICE_TYPE)
-                        val serialPortName =
+                        var serialPortName =
                             database.getStringSettingValueByName(DatabaseSettingFields.SERIAL_PORT_NAME)
+                        if (getPlatformType() == PlatformType.Android)
+                        {
+                            serialPortName = "FAKEDECIVE"
+                        }
                         if (lastDeviceType == "USB" && !serialPortName.isNullOrEmpty()) {
                             serialDevice.connect(serialPortName)
                             if (serialDevice.isConnected) {

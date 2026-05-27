@@ -5,12 +5,13 @@ import android.hardware.usb.UsbManager
 import co.touchlab.kermit.Logger
 import com.hoho.android.usbserial.driver.UsbSerialDriver
 import com.hoho.android.usbserial.driver.UsbSerialPort
+import com.hoho.android.usbserial.driver.UsbSerialProber
 import kotlinx.coroutines.delay
 import pl.misek.toafmobile.interfaces.ISerialDevice
 import java.io.ByteArrayOutputStream
 import kotlin.time.measureTime
 
-class AndroidSerialDevice (private val usbManager: UsbManager, private val _usbDriver: UsbSerialDriver?) : ISerialDevice
+class AndroidSerialDevice (private val usbManager: UsbManager) : ISerialDevice
 {
     private var tag = "SerialDevice"
     private var fastInitSleep = 25
@@ -84,6 +85,9 @@ class AndroidSerialDevice (private val usbManager: UsbManager, private val _usbD
         if (_serialPort != null && _serialPort!!.isOpen) {
             try {
                 _serialPort?.close()
+                _connection?.close()
+                _serialPort = null
+                _connection = null
             } catch (ex: Exception) {
                 Logger.e{"$tag : ${ex.toString()}"}
             }
@@ -91,11 +95,21 @@ class AndroidSerialDevice (private val usbManager: UsbManager, private val _usbD
     }
 
     override fun connect(deviceName : String) {
-        if (_connection == null)
-            _connection = usbManager.openDevice(_usbDriver?.device)
+        val usbDriver =  UsbSerialProber.getDefaultProber().findAllDrivers(usbManager).firstOrNull()
+        if (_connection == null) {
+            _connection = usbManager.openDevice(usbDriver?.device)
+        }
         if (_connection != null) {
-            if (_usbDriver?.ports?.isNotEmpty() == true)
-                _serialPort = _usbDriver.ports[0]
+            if (usbDriver?.ports?.isNotEmpty() == true) {
+                _serialPort = usbDriver.ports[0]
+                try {
+                    if (_serialPort?.isOpen!!)
+                        _serialPort?.close()
+                }catch ( ex : Exception)
+                {
+                    Logger.i{"$tag : ${ex.toString()}"}
+                }
+            }
             if (_serialPort != null && !_serialPort?.isOpen!!) {
                 try {
                     _serialPort?.open(_connection)

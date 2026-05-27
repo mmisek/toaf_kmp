@@ -69,8 +69,8 @@ fun <T> ToafProgressDialog(
 
         } catch (ex : Exception)
         {
-            Sentry.captureException(ex)
-            Logger.e {"$tag : ${ex.toString()}"}
+            //Sentry.captureException(ex)
+            //Logger.e {"$tag : ${ex.toString()}"}
             onError(ex)
         }
         finally {

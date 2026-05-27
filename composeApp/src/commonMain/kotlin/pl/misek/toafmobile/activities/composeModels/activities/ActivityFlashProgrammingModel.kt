@@ -37,10 +37,12 @@ import pl.misek.toafmobile.interfaces.ISerialDevice
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.modules.ModulesManager
 import pl.misek.toafmobile.modules.enums.FlashProgrammingState
+import pl.misek.toafmobile.modules.interfaces.IModuleEepromProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleFlashProgramming
 import pl.misek.toafmobile.network.ToafApi
 import pl.misek.toafmobile.protocols.ProtocolFactory
 import pl.misek.toafmobile.tools.IFileSupport
+import pl.misek.toafmobile.tools.isDebug
 import pl.misek.toafmobile.viewModels.UserInfoViewModel
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
@@ -74,6 +76,13 @@ fun ActivityFlashProgrammingModel(moduleKoinName: KoinNames, onBackClick : () ->
     val notSupportedText = stringResource(Res.string.activity_main_function_not_supported_yet)
     val badInterfaceText = stringResource(Res.string.activity_main_function_need_usb_device)
     val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.US)
+
+    val programmingProcess = { fileData: ByteArray ->
+        scope.launch {
+            flashModule.writeFlash(fileData)
+        }
+    }
+
     val saveFileLauncher : (String) -> Unit? = fileSupport.saveDataLauncher(
         data = flashReadData,
         onResult = {result ->
@@ -85,7 +94,7 @@ fun ActivityFlashProgrammingModel(moduleKoinName: KoinNames, onBackClick : () ->
         })
     val readFileAndProgram = fileSupport.readDataLauncher(
         onResult = { result ->
-            //programmingProcess(result)
+            programmingProcess(result)
         }
     )
     LaunchedEffect(flashModule) {
@@ -199,7 +208,20 @@ fun ActivityFlashProgrammingModel(moduleKoinName: KoinNames, onBackClick : () ->
                     modifier = Modifier.padding(5.dp).fillMaxWidth(),
                     buttonText = Res.string.activity_flash_programming_write_flash,
                     onClick = {
-                        showResult(scope, snackBarHostState,false,null,notSupportedText)
+                        if (isDebug()) {
+                            if (protocolFactory.currentDevice !is ISerialDevice) {
+                                showResult(scope, snackBarHostState, false, null, badInterfaceText)
+                            } else {
+                                statusText = ""
+                                if (userInfo.isFullVersion())
+                                    readFileAndProgram()
+                                else
+                                    showFullVersionDialog = true
+                                }
+                            }
+                        else {
+                            showResult(scope, snackBarHostState, false, null, notSupportedText)
+                        }
                         /*
                         if (!userInfo.isFullVersion())
                             readFileAndProgram()

@@ -303,7 +303,7 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
                 ).isValid
             }
         } catch (ex: Exception) {
-            Logger.e{"$tag : ${ex.toString()}"}
+            Logger.e{"$tag [writeVin]: ${ex.toString()}"}
         }
         return false
     }

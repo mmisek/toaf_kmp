@@ -61,11 +61,6 @@ class AndroidActivityMain : FragmentActivity() {
 
             }
         }
-        //setAdView()
-        //MobileAds.initialize(
-        //    this
-        //) { }
-        //toafAds = ToafRewardAds(this)
         checkIntentForUsbDevices(intent)
         setContent {
             Scaffold(
@@ -117,38 +112,6 @@ class AndroidActivityMain : FragmentActivity() {
             }
         }
     }
-    /*
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding!!.root)
-        binding!!.activityMainButtonDiagnostic.setOnClickListener { openDiagnosticModule() }
-        Companion.fragmentManager = supportFragmentManager
-        setSupportActionBar(binding!!.activityMainToolbar)
-        if (supportActionBar != null) {
-            supportActionBar!!.setDisplayShowHomeEnabled(false)
-            supportActionBar!!.setDisplayHomeAsUpEnabled(false)
-            supportActionBar!!.subtitle = BuildConfig.VERSION_NAME
-        }
-        val layoutInflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        binding!!.activityMainFrameControl.addView(layoutInflater.inflate(R.layout.modules, null))
-        binding!!.activityMainFrameLiveData.addView(layoutInflater.inflate(R.layout.modules, null))
-
-        runOnUiThread { initModules(this@ActivityMain, null) }
-        enableUSBFilters()
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-
-        setAdView()
-        MobileAds.initialize(
-            this
-        ) { }
-        toafAds = ToafRewardAds(this)
-        //var parser = new JSONSupportKotlin();
-        //parser.getControlElements("EHC");
-        //AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("es"));
-    }
-    */
-
 
     override fun onDestroy() {
         super.onDestroy()
@@ -184,7 +147,7 @@ class AndroidActivityMain : FragmentActivity() {
             val usbDevices = UsbSerialProber.getDefaultProber().findAllDrivers(usbManager)
             if (usbDevices.isNotEmpty())
             {
-                device = AndroidSerialDevice(usbManager, usbDevices[0])
+                device = AndroidSerialDevice(usbManager,)
                 device?.connect("")
                 //interfaceConnectionState =  if (device?.isConnected == true) ConnectionState.USB_CONNECTED else ConnectionState.USB_DISCONNECTED
             }

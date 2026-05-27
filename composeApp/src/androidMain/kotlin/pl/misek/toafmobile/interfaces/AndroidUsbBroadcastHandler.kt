@@ -28,7 +28,7 @@ class AndroidUsbBroadcastHandler(private var context : Context) : IUsbBroadcastH
                 Logger.i {"$tag : onReceive : ${intent?.action}"}
                 when(intent?.action)
                 {
-                    UsbManager.ACTION_USB_ACCESSORY_ATTACHED -> {
+                    UsbManager.ACTION_USB_DEVICE_ATTACHED -> {
                         val device = IntentCompat.getParcelableExtra<UsbDevice>(intent,UsbManager.EXTRA_DEVICE,UsbDevice::class.java)
                         device?.let {
                             val driver = UsbSerialProber.getDefaultProber().probeDevice(device)
@@ -59,7 +59,7 @@ class AndroidUsbBroadcastHandler(private var context : Context) : IUsbBroadcastH
             }
         }
         val filter = IntentFilter(actionUsbPermission).apply {
-            addAction(UsbManager.ACTION_USB_ACCESSORY_ATTACHED)
+            addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED)
             addAction(UsbManager.ACTION_USB_DEVICE_DETACHED)
         }
         val listenToBroadcastFromOtherApps = ContextCompat.RECEIVER_EXPORTED

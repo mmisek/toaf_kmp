@@ -14,7 +14,7 @@ import pl.misek.toafmobile.database.DatabaseSettingFields
 import pl.misek.toafmobile.protocols.ProtocolFactory
 import pl.misek.toafmobile.serial.AndroidSerialDevice
 
-private const val tag = "UsbEventManager"
+private const val tag = "AndroidUsbEventManager"
 class AndroidUsbEventManager(private val usbBroadcastHandler: IUsbBroadcastHandler, private val usbManager: UsbManager,  val database : Database, private val protocolFactory: ProtocolFactory) :
     DefaultLifecycleObserver, IUsbEventManager
 {
@@ -27,7 +27,7 @@ class AndroidUsbEventManager(private val usbBroadcastHandler: IUsbBroadcastHandl
 
     private fun startObserveUsbEvent(){
         CoroutineScope(Dispatchers.Main).launch {
-        usbBroadcastHandler.observeUsbEvent().collect { event ->
+            usbBroadcastHandler.observeUsbEvent().collect { event ->
                 _usbState.tryEmit(event)
                 when(event) {
                     UsbEvent.Idle ->  {}
@@ -47,7 +47,7 @@ class AndroidUsbEventManager(private val usbBroadcastHandler: IUsbBroadcastHandl
         Log.d(tag, "$device was attached")
         CoroutineScope(Dispatchers.IO).launch()
         {
-            val serialDevice = AndroidSerialDevice(usbManager = usbManager, driver)
+            val serialDevice = AndroidSerialDevice(usbManager = usbManager)
             protocolFactory.updateProtocolFactory(serialDevice)
             val result = database.updateStringSettingByName(DatabaseSettingFields.LAST_DEVICE_TYPE, "USB")
             if (!result) {
