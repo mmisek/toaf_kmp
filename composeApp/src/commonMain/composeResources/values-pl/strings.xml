@@ -124,7 +124,7 @@
     <string name="alert_dialog_wifi_configuration_add_device_enter_ip_address">Podaj adres IP</string>
     <string name="alert_dialog_wifi_configuration_add_device_add">Dodaj</string>
     <string name="alert_dialog_wifi_configuration_add_device_cancel">Anuluj</string>
-
+    <string name="alert_dialog_wifi_configuration_not_found">Nie znaleziono interfejsów</string>
 
     <string name="alert_dialog_zcs_copy_button_cancel">Anuluj</string>
     <string name="alert_dialog_zcs_copy_button_copy">Kopiuj</string>

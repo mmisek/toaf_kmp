@@ -232,6 +232,7 @@
 
 
     <!-- alert dialog - wifi configuration -->
+    <string name="alert_dialog_wifi_configuration_not_found">Nie se han encontrado interfaces</string>
     <string name="alert_dialog_wifi_configuration_title">TOAF WiFi Interface - configuración</string>
     <string name="alert_dialog_wifi_configuration_button_select">Seleccionar</string>
     <string name="alert_dialog_wifi_configuration_button_config">Configurar</string>

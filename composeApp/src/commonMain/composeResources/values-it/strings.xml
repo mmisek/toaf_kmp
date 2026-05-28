@@ -235,6 +235,7 @@
     <string name="alert_dialog_wifi_configuration_add_device_enter_ip_address">Inserisci indirizzo IP</string>
     <string name="alert_dialog_wifi_configuration_add_device_add">Aggiungi</string>
     <string name="alert_dialog_wifi_configuration_add_device_cancel">Annulla</string>
+    <string name="alert_dialog_wifi_configuration_not_found">Nessuna interfaccia trovata</string>
     <string name="dialog_user_login_tittle">Accesso utente</string>
     <string name="dialog_user_login_login">Login</string>
     <string name="dialog_user_login_password">Password</string>

@@ -43,27 +43,32 @@ class ToafWifiManager {
         val database: Database = koinInject()
         val scope = rememberCoroutineScope()
         val wifiManager : IWifiManager = koinInject()
-        val devicesList = remember { mutableStateListOf<ToafWifiDeviceInfo>() }
+        var devicesList by remember { mutableStateOf<List<ToafWifiDeviceInfo>?>(null) }
+        var scanningInProgress by remember { mutableStateOf(false) }
         if (deviceInfo != null)
-            devicesList.add(deviceInfo)
+            devicesList = devicesList.orEmpty() +deviceInfo
         DialogToafWifiConfiguration(
             devicesList = devicesList,
             onCancelClick = { onCancelClick() },
             onFindDevicesClick = {
+                scanningInProgress = true
+                devicesList = emptyList()
                 scope.launch {
                     withContext(Dispatchers.IO)
                     {
-                        devicesList.clear()
                         val ipList = wifiManager.scanNetwork()
                         for (ip in ipList) {
                             Logger.i{"Scan $ip to ToafWifiInterface"}
                             val twi = ToafWifiInterface(ipAddress = ip)
                             val info = twi.getDeviceInfo()
                             info?.let {
-                                devicesList.add(info)
+                                withContext(Dispatchers.Main){
+                                    devicesList = devicesList.orEmpty() + it
+                                }
                             }
                         }
                     }
+                    scanningInProgress = false
                 }
             },
             onAddDeviceClick = { onAddInterfaceClick() },
@@ -90,7 +95,8 @@ class ToafWifiManager {
                     }
                 }
             },
-            onConfigWifiDeviceClick = { item -> item?.let { onConfigDeviceClick(item) } }
+            onConfigWifiDeviceClick = { item -> item?.let { onConfigDeviceClick(item) } },
+            inProgress = scanningInProgress
         )
     }
 

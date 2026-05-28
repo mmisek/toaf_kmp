@@ -240,7 +240,8 @@
     <string name="alert_dialog_wifi_configuration_add_device_enter_ip_address">Введите IP адрес</string>
     <string name="alert_dialog_wifi_configuration_add_device_add">Добавить</string>
     <string name="alert_dialog_wifi_configuration_add_device_cancel">Отмена</string>
-    
+    <string name="alert_dialog_wifi_configuration_not_found">Интерфейсы не найдены</string>
+
     <string name="dialog_user_login_tittle">Вход пользователя</string>
     <string name="dialog_user_login_login">Логин</string>
     <string name="dialog_user_login_password">Пароль</string>

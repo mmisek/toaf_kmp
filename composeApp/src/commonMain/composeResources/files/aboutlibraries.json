@@ -418,10 +418,10 @@
         },
         {
             "uniqueId": "androidx.compose.material3:material3-android",
-            "artifactVersion": "1.4.0",
+            "artifactVersion": "1.5.0-alpha08",
             "name": "Compose Material3 Components",
             "description": "Compose Material You Design Components library",
-            "website": "https://developer.android.com/jetpack/androidx/releases/compose-material3#1.4.0",
+            "website": "https://developer.android.com/jetpack/androidx/releases/compose-material3#1.5.0-alpha08",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -493,10 +493,10 @@
         },
         {
             "uniqueId": "androidx.compose.material:material-ripple-android",
-            "artifactVersion": "1.9.3",
+            "artifactVersion": "1.9.4",
             "name": "Compose Material Ripple",
             "description": "Material ripple used to build interactive components",
-            "website": "https://developer.android.com/jetpack/androidx/releases/compose-material#1.9.3",
+            "website": "https://developer.android.com/jetpack/androidx/releases/compose-material#1.9.4",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -1214,6 +1214,31 @@
             "name": "Android Graphics Path",
             "description": "Query segment data for android.graphics.Path objects",
             "website": "https://developer.android.com/jetpack/androidx/releases/graphics#1.0.1",
+            "developers": [
+                {
+                    "name": "The Android Open Source Project"
+                }
+            ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            },
+            "scm": {
+                "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
+                "url": "https://cs.android.com/androidx/platform/frameworks/support"
+            },
+            "licenses": [
+                "Apache-2.0"
+            ],
+            "funding": [
+                
+            ]
+        },
+        {
+            "uniqueId": "androidx.graphics:graphics-shapes-desktop",
+            "artifactVersion": "1.1.0",
+            "name": "Graphics Shapes",
+            "description": "create and render rounded polygonal shapes",
+            "website": "https://developer.android.com/jetpack/androidx/releases/graphics#1.1.0",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -2585,7 +2610,7 @@
         },
         {
             "uniqueId": "com.google.android.gms:play-services-ads",
-            "artifactVersion": "25.2.0",
+            "artifactVersion": "25.3.0",
             "name": "play-services-ads",
             "description": "",
             "developers": [
@@ -2600,7 +2625,7 @@
         },
         {
             "uniqueId": "com.google.android.gms:play-services-ads-api",
-            "artifactVersion": "25.2.0",
+            "artifactVersion": "25.3.0",
             "name": "play-services-ads-api",
             "description": "",
             "developers": [
@@ -2951,7 +2976,7 @@
         },
         {
             "uniqueId": "com.mikepenz:aboutlibraries-compose-core-jvm",
-            "artifactVersion": "14.2.0",
+            "artifactVersion": "14.2.1",
             "name": "AboutLibraries Compose UI Library",
             "description": "AboutLibraries automatically detects all dependencies of a project and collects their information including the license. Optionally visualising it via the provided ui components.",
             "website": "https://github.com/mikepenz/AboutLibraries",
@@ -2974,7 +2999,7 @@
         },
         {
             "uniqueId": "com.mikepenz:aboutlibraries-compose-m3-jvm",
-            "artifactVersion": "14.2.0",
+            "artifactVersion": "14.2.1",
             "name": "AboutLibraries Compose Material 3 Library",
             "description": "AboutLibraries automatically detects all dependencies of a project and collects their information including the license. Optionally visualising it via the provided ui components.",
             "website": "https://github.com/mikepenz/AboutLibraries",
@@ -2997,7 +3022,7 @@
         },
         {
             "uniqueId": "com.mikepenz:aboutlibraries-core-jvm",
-            "artifactVersion": "14.2.0",
+            "artifactVersion": "14.2.1",
             "name": "AboutLibraries Core Library",
             "description": "AboutLibraries automatically detects all dependencies of a project and collects their information including the license. Optionally visualising it via the provided ui components.",
             "website": "https://github.com/mikepenz/AboutLibraries",
@@ -3893,7 +3918,7 @@
         },
         {
             "uniqueId": "org.jetbrains.compose.annotation-internal:annotation",
-            "artifactVersion": "1.9.1",
+            "artifactVersion": "1.9.3",
             "name": "Annotation",
             "description": "Provides source annotations for tooling and readability.",
             "website": "https://github.com/JetBrains/compose-jb",
@@ -3917,7 +3942,7 @@
         },
         {
             "uniqueId": "org.jetbrains.compose.collection-internal:collection",
-            "artifactVersion": "1.9.1",
+            "artifactVersion": "1.9.3",
             "name": "collections",
             "description": "Standalone efficient collections.",
             "website": "https://github.com/JetBrains/compose-jb",
@@ -4169,7 +4194,7 @@
         },
         {
             "uniqueId": "org.jetbrains.compose.material3:material3-desktop",
-            "artifactVersion": "1.9.0",
+            "artifactVersion": "1.10.0-alpha05",
             "name": "Compose Material3 Components",
             "description": "Compose Material You Design Components library",
             "website": "https://github.com/JetBrains/compose-jb",
@@ -4337,7 +4362,7 @@
         },
         {
             "uniqueId": "org.jetbrains.compose.ui:ui-backhandler-android-debug",
-            "artifactVersion": "1.9.1",
+            "artifactVersion": "1.9.3",
             "name": "Compose Multiplatform BackHandler",
             "description": "Provides BackHandler in Compose Multiplatform projects",
             "website": "https://github.com/JetBrains/compose-jb",

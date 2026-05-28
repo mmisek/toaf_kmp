@@ -257,6 +257,7 @@
     <string name="alert_dialog_wifi_configuration_message_debug_mode">DEBUG MODE</string>
     <string name="alert_dialog_wifi_configuration_message_devices_not_found">Toaf WIFI interfaces not found</string>
     <string name="alert_dialog_wifi_configuration_message_searching">Searching interfaces…</string>
+    <string name="alert_dialog_wifi_configuration_not_found">No interfaces found</string>
     <string name="alert_dialog_wifi_configuration_check_update">Check update</string>
     <string name="alert_dialog_wifi_configuration_update_available">For selected device update is available\nUpdate selected device ?</string>
     <string name="alert_dialog_wifi_configuration_checking_update">Update checking...</string>
