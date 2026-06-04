@@ -1,0 +1,152 @@
+package pl.misek.toafmobile.generated
+
+import co.touchlab.kermit.Logger
+import org.jetbrains.compose.resources.StringResource
+import toafmobile.composeapp.generated.resources.*
+
+object ResourceMapperGs8601 {
+    fun stringResource(resourceName: String): StringResource? {
+        return when (resourceName) {
+            "gs8601_error_01" -> Res.string.gs8601_error_01
+            "gs8601_error_02" -> Res.string.gs8601_error_02
+            "gs8601_error_03" -> Res.string.gs8601_error_03
+            "gs8601_error_04" -> Res.string.gs8601_error_04
+            "gs8601_error_05" -> Res.string.gs8601_error_05
+            "gs8601_error_0f" -> Res.string.gs8601_error_0f
+            "gs8601_error_10" -> Res.string.gs8601_error_10
+            "gs8601_error_11" -> Res.string.gs8601_error_11
+            "gs8601_error_12" -> Res.string.gs8601_error_12
+            "gs8601_error_13" -> Res.string.gs8601_error_13
+            "gs8601_error_20" -> Res.string.gs8601_error_20
+            "gs8601_error_21" -> Res.string.gs8601_error_21
+            "gs8601_error_22" -> Res.string.gs8601_error_22
+            "gs8601_error_30" -> Res.string.gs8601_error_30
+            "gs8601_error_31" -> Res.string.gs8601_error_31
+            "gs8601_error_32" -> Res.string.gs8601_error_32
+            "gs8601_error_33" -> Res.string.gs8601_error_33
+            "gs8601_error_34" -> Res.string.gs8601_error_34
+            "gs8601_error_35" -> Res.string.gs8601_error_35
+            "gs8601_error_36" -> Res.string.gs8601_error_36
+            "gs8601_error_37" -> Res.string.gs8601_error_37
+            "gs8601_error_38" -> Res.string.gs8601_error_38
+            "gs8601_error_39" -> Res.string.gs8601_error_39
+            "gs8601_error_3a" -> Res.string.gs8601_error_3a
+            "gs8601_error_3b" -> Res.string.gs8601_error_3b
+            "gs8601_error_3c" -> Res.string.gs8601_error_3c
+            "gs8601_error_3d" -> Res.string.gs8601_error_3d
+            "gs8601_error_3e" -> Res.string.gs8601_error_3e
+            "gs8601_error_40" -> Res.string.gs8601_error_40
+            "gs8601_error_41" -> Res.string.gs8601_error_41
+            "gs8601_error_50" -> Res.string.gs8601_error_50
+            "gs8601_error_51" -> Res.string.gs8601_error_51
+            "gs8601_error_52" -> Res.string.gs8601_error_52
+            "gs8601_error_53" -> Res.string.gs8601_error_53
+            "gs8601_error_60" -> Res.string.gs8601_error_60
+            "gs8601_error_61" -> Res.string.gs8601_error_61
+            "gs8601_error_70" -> Res.string.gs8601_error_70
+            "gs8601_error_71" -> Res.string.gs8601_error_71
+            "gs8601_error_72" -> Res.string.gs8601_error_72
+            "gs8601_error_80" -> Res.string.gs8601_error_80
+            "gs8601_error_81" -> Res.string.gs8601_error_81
+            "gs8601_error_82" -> Res.string.gs8601_error_82
+            "gs8601_error_84" -> Res.string.gs8601_error_84
+            "gs8601_error_85" -> Res.string.gs8601_error_85
+            "gs8601_error_90" -> Res.string.gs8601_error_90
+            "gs8601_error_91" -> Res.string.gs8601_error_91
+            "gs8601_error_93" -> Res.string.gs8601_error_93
+            "gs8601_error_95" -> Res.string.gs8601_error_95
+            "gs8601_error_97" -> Res.string.gs8601_error_97
+            "gs8601_error_98" -> Res.string.gs8601_error_98
+            "gs8601_error_99" -> Res.string.gs8601_error_99
+            "gs8601_error_detail_01" -> Res.string.gs8601_error_detail_01
+            "gs8601_error_detail_02" -> Res.string.gs8601_error_detail_02
+            "gs8601_error_detail_03" -> Res.string.gs8601_error_detail_03
+            "gs8601_error_detail_04" -> Res.string.gs8601_error_detail_04
+            "gs8601_error_detail_05" -> Res.string.gs8601_error_detail_05
+            "gs8601_error_detail_06" -> Res.string.gs8601_error_detail_06
+            "gs8601_error_detail_0a" -> Res.string.gs8601_error_detail_0A
+            "gs8601_error_detail_0b" -> Res.string.gs8601_error_detail_0B
+            "gs8601_error_detail_0c" -> Res.string.gs8601_error_detail_0C
+            "gs8601_error_detail_0d" -> Res.string.gs8601_error_detail_0D
+            "gs8601_error_detail_10" -> Res.string.gs8601_error_detail_10
+            "gs8601_error_detail_20" -> Res.string.gs8601_error_detail_20
+            "gs8601_error_detail_40" -> Res.string.gs8601_error_detail_40
+            "gs8601_error_detail_80" -> Res.string.gs8601_error_detail_80
+            "gs8601_error_detail_fe" -> Res.string.gs8601_error_detail_FE
+            "gs8601_error_detail_freeze_frame_01" -> Res.string.gs8601_error_detail_freeze_frame_01
+            "gs8601_error_detail_freeze_frame_02" -> Res.string.gs8601_error_detail_freeze_frame_02
+            "gs8601_error_detail_freeze_frame_03" -> Res.string.gs8601_error_detail_freeze_frame_03
+            "gs8601_error_detail_freeze_frame_04" -> Res.string.gs8601_error_detail_freeze_frame_04
+            "gs8601_error_detail_freeze_frame_05" -> Res.string.gs8601_error_detail_freeze_frame_05
+            "gs8601_error_detail_freeze_frame_06" -> Res.string.gs8601_error_detail_freeze_frame_06
+            "gs8601_error_detail_freeze_frame_07" -> Res.string.gs8601_error_detail_freeze_frame_07
+            "gs8601_error_detail_freeze_frame_08" -> Res.string.gs8601_error_detail_freeze_frame_08
+            "gs8601_error_detail_freeze_frame_09" -> Res.string.gs8601_error_detail_freeze_frame_09
+            "gs8601_error_detail_freeze_frame_0a" -> Res.string.gs8601_error_detail_freeze_frame_0A
+            "gs8601_error_detail_freeze_frame_0b" -> Res.string.gs8601_error_detail_freeze_frame_0B
+            "gs8601_error_detail_freeze_frame_0c" -> Res.string.gs8601_error_detail_freeze_frame_0C
+            "gs8601_error_detail_freeze_frame_0d" -> Res.string.gs8601_error_detail_freeze_frame_0D
+            "gs8601_error_detail_freeze_frame_0e" -> Res.string.gs8601_error_detail_freeze_frame_0E
+            "gs8601_error_detail_freeze_frame_0f" -> Res.string.gs8601_error_detail_freeze_frame_0F
+            "gs8601_error_detail_freeze_frame_10" -> Res.string.gs8601_error_detail_freeze_frame_10
+            "gs8601_error_detail_freeze_frame_11" -> Res.string.gs8601_error_detail_freeze_frame_11
+            "gs8601_live_data_asc_button" -> Res.string.gs8601_live_data_asc_button
+            "gs8601_live_data_asc_control" -> Res.string.gs8601_live_data_asc_control
+            "gs8601_live_data_battery_voltage" -> Res.string.gs8601_live_data_battery_voltage
+            "gs8601_live_data_break_signal" -> Res.string.gs8601_live_data_break_signal
+            "gs8601_live_data_dkg" -> Res.string.gs8601_live_data_dkg
+            "gs8601_live_data_driving_in_a_curve" -> Res.string.gs8601_live_data_driving_in_a_curve
+            "gs8601_live_data_engine_speed" -> Res.string.gs8601_live_data_engine_speed
+            "gs8601_live_data_engine_temperature" -> Res.string.gs8601_live_data_engine_temperature
+            "gs8601_live_data_error_lamp" -> Res.string.gs8601_live_data_error_lamp
+            "gs8601_live_data_gear" -> Res.string.gs8601_live_data_gear
+            "gs8601_live_data_gearbox_shift_l1" -> Res.string.gs8601_live_data_gearbox_shift_l1
+            "gs8601_live_data_gearbox_shift_l3" -> Res.string.gs8601_live_data_gearbox_shift_l3
+            "gs8601_live_data_gearbox_shift_l4" -> Res.string.gs8601_live_data_gearbox_shift_l4
+            "gs8601_live_data_gearbox_shift_l5" -> Res.string.gs8601_live_data_gearbox_shift_l5
+            "gs8601_live_data_gearbox_temperature" -> Res.string.gs8601_live_data_gearbox_temperature
+            "gs8601_live_data_kick_down" -> Res.string.gs8601_live_data_kick_down
+            "gs8601_live_data_last_change" -> Res.string.gs8601_live_data_last_change
+            "gs8601_live_data_oil_aging" -> Res.string.gs8601_live_data_oil_aging
+            "gs8601_live_data_output_speed" -> Res.string.gs8601_live_data_output_speed
+            "gs8601_live_data_program_automatic" -> Res.string.gs8601_live_data_program_automatic
+            "gs8601_live_data_program_sport_manual" -> Res.string.gs8601_live_data_program_sport_manual
+            "gs8601_live_data_solenoid_valve_1" -> Res.string.gs8601_live_data_solenoid_valve_1
+            "gs8601_live_data_solenoid_valve_2" -> Res.string.gs8601_live_data_solenoid_valve_2
+            "gs8601_live_data_solenoid_valve_3" -> Res.string.gs8601_live_data_solenoid_valve_3
+            "gs8601_live_data_solenoid_valve_shift_lock" -> Res.string.gs8601_live_data_solenoid_valve_shift_lock
+            "gs8601_live_data_steptronic_slot" -> Res.string.gs8601_live_data_steptronic_slot
+            "gs8601_live_data_tip_down" -> Res.string.gs8601_live_data_tip_down
+            "gs8601_live_data_tip_up" -> Res.string.gs8601_live_data_tip_up
+            "gs8601_live_data_torque_converter_turbine_speed" -> Res.string.gs8601_live_data_torque_converter_turbine_speed
+            "gs8601_live_data_value_1_gear" -> Res.string.gs8601_live_data_value_1_gear
+            "gs8601_live_data_value_1_to_2" -> Res.string.gs8601_live_data_value_1_to_2
+            "gs8601_live_data_value_2_gear" -> Res.string.gs8601_live_data_value_2_gear
+            "gs8601_live_data_value_2_to_1" -> Res.string.gs8601_live_data_value_2_to_1
+            "gs8601_live_data_value_2_to_3" -> Res.string.gs8601_live_data_value_2_to_3
+            "gs8601_live_data_value_3_gear" -> Res.string.gs8601_live_data_value_3_gear
+            "gs8601_live_data_value_3_to_2" -> Res.string.gs8601_live_data_value_3_to_2
+            "gs8601_live_data_value_3_to_4" -> Res.string.gs8601_live_data_value_3_to_4
+            "gs8601_live_data_value_4_gear" -> Res.string.gs8601_live_data_value_4_gear
+            "gs8601_live_data_value_4_to_3" -> Res.string.gs8601_live_data_value_4_to_3
+            "gs8601_live_data_value_4_to_5" -> Res.string.gs8601_live_data_value_4_to_5
+            "gs8601_live_data_value_5_gear" -> Res.string.gs8601_live_data_value_5_gear
+            "gs8601_live_data_value_5_to_4" -> Res.string.gs8601_live_data_value_5_to_4
+            "gs8601_live_data_value_d_to_r" -> Res.string.gs8601_live_data_value_d_to_r
+            "gs8601_live_data_value_data" -> Res.string.gs8601_live_data_value_data
+            "gs8601_live_data_value_pn_to_d" -> Res.string.gs8601_live_data_value_pn_to_d
+            "gs8601_live_data_value_pn_to_r" -> Res.string.gs8601_live_data_value_pn_to_r
+            "gs8601_live_data_value_program" -> Res.string.gs8601_live_data_value_program
+            "gs8601_live_data_value_r_to_d" -> Res.string.gs8601_live_data_value_r_to_d
+            "gs8601_live_data_value_rom" -> Res.string.gs8601_live_data_value_rom
+            "gs8601_live_data_wheel_speed_front_left" -> Res.string.gs8601_live_data_wheel_speed_front_left
+            "gs8601_live_data_wheel_speed_front_right" -> Res.string.gs8601_live_data_wheel_speed_front_right
+            "gs8601_live_data_wheel_speed_rear_left" -> Res.string.gs8601_live_data_wheel_speed_rear_left
+            "gs8601_live_data_wheel_speed_rear_right" -> Res.string.gs8601_live_data_wheel_speed_rear_right
+        else -> {
+          Logger.i {"NO RESOURCE for : $resourceName" }
+            null
+        }
+     }
+   }
+}

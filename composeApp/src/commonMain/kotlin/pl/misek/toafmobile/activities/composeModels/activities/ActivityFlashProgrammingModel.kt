@@ -222,12 +222,6 @@ fun ActivityFlashProgrammingModel(moduleKoinName: KoinNames, onBackClick : () ->
                         else {
                             showResult(scope, snackBarHostState, false, null, notSupportedText)
                         }
-                        /*
-                        if (!userInfo.isFullVersion())
-                            readFileAndProgram()
-                        else
-                            showFullVersionDialog = true
-                         */
                     })
 
                 StatusLogWindow(

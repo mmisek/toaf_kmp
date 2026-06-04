@@ -16,6 +16,7 @@ import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
+import java.util.Locale
 
 private const val tag = "ModulePDC"
 class ModulePDC(protocolDS2: ProtocolDS2?) :
@@ -103,7 +104,7 @@ class ModulePDC(protocolDS2: ProtocolDS2?) :
                 if (message.isValid) {
                     for (i in 0..6) {
                         if ((message.answer[6 + 3 * i].toInt() and 0xFF) > 0x00) {
-                            val errorCode = String.format("%02d", (j + 1) * 10 + i)
+                            val errorCode = String.format(Locale.getDefault(), "%02d", (j + 1) * 10 + i)
                             val errorDescription: MutableList<Pair<StringResource, Any?>> =
                                 ArrayList()
                             errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[6 + 3 * i].toInt() and 0xFF)))

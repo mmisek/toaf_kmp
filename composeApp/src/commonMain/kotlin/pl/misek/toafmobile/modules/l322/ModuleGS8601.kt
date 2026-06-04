@@ -1,9 +1,11 @@
 package pl.misek.toafmobile.modules.l322
 
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.generated.ResourceHelper
 import pl.misek.toafmobile.generated.ResourceMapper
+import pl.misek.toafmobile.generated.ResourceMapperGs8601
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.livedata.LiveDataElement
 import pl.misek.toafmobile.modules.ModuleDS2
@@ -56,85 +58,78 @@ class ModuleGS8601(protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleAdd
     )
 
     private val errorFreezeFrame: Map<Int, GS20FreezeFrameData> = mapOf(
-        0x01 to GS20FreezeFrameData("", 0.toByte(), 1f, 0f, 0f, null),
+        0x01 to GS20FreezeFrameData("", 0.toByte(), 1f, 1f, 0f, null),
         0x02 to GS20FreezeFrameData("%", 0.toByte(), 100f, 255f, 0f, null),
         0x03 to GS20FreezeFrameData("%", 0.toByte(), 100f, 255f, 0f, null),
         0x04 to GS20FreezeFrameData("rpm", 0.toByte(), 16f, 1f, 0f, null),
         0x05 to GS20FreezeFrameData("rpm", 0.toByte(), 32f, 1f, 0f, null),
         0x06 to GS20FreezeFrameData("rpm", 0.toByte(), 32f, 1f, 0f, null),
-        0x07 to GS20FreezeFrameData("ºC", 0.toByte(), 1f, 1f, -40f, null),
+        0x07 to GS20FreezeFrameData("ºC", 0.toByte(), 1f, 1f, -48f, null),
         0x08 to GS20FreezeFrameData("ºC", 0.toByte(), 1f, 1f, -40f, null),
-        0x09 to GS20FreezeFrameData("V", 0.toByte(), 1f, 10f, 0f, null),
+        0x09 to GS20FreezeFrameData("V", 0.toByte(), 16f, 198f, 0f, null),
         0x0A to GS20FreezeFrameData("km", 0.toByte(), 10f, 1f, 0f, null),
-        0x0B to GS20FreezeFrameData("", 0x80.toByte(), 1f, 1f, 0f, booleanMap),
-        0x0C to GS20FreezeFrameData("", 0x40.toByte(), 1f, 1f, 0f, booleanMap),
-        0x0D to GS20FreezeFrameData("", 0x20.toByte(), 1f, 1f, 0f, booleanMap),
-        0x0E to GS20FreezeFrameData("", 0x02.toByte(), 1f, 1f, 0f, booleanMap),
-        0x0F to GS20FreezeFrameData("", 0x01.toByte(), 1f, 1f, 0f, booleanMap),
-        0x10 to GS20FreezeFrameData("", 0x80.toByte(), 1f, 1f, 0f, booleanMap),
-        0x11 to GS20FreezeFrameData("", 0x40.toByte(), 1f, 1f, 0f, booleanMap),
-        0x12 to GS20FreezeFrameData("", 0x20.toByte(), 1f, 1f, 0f, booleanMap),
-        0x13 to GS20FreezeFrameData("", 0x10.toByte(), 1f, 1f, 0f, booleanMap),
-        0x14 to GS20FreezeFrameData("", 0x08.toByte(), 1f, 1f, 0f, booleanMap),
-        0x15 to GS20FreezeFrameData("", 0x04.toByte(), 1f, 1f, 0f, booleanMap),
-        0x16 to GS20FreezeFrameData("", 0x02.toByte(), 1f, 1f, 0f, booleanMap),
-        0x17 to GS20FreezeFrameData("", 0x01.toByte(), 1f, 1f, 0f, booleanMap),
-        0x18 to GS20FreezeFrameData("", 0xE0.toByte(), 1f, 1f, 0f, gearMap),
-        0x19 to GS20FreezeFrameData("", 0x10.toByte(), 1f, 1f, 0f, booleanMap),
-        0x1A to GS20FreezeFrameData("", 0x08.toByte(), 1f, 1f, 0f, booleanMap),
-        0x1B to GS20FreezeFrameData("", 0x02.toByte(), 1f, 1f, 0f, booleanMap),
-        0x1C to GS20FreezeFrameData("", 0x01.toByte(), 1f, 1f, 0f, booleanMap),
-        0x1D to GS20FreezeFrameData("", 0x80.toByte(), 1f, 1f, 0f, booleanMap),
-        0x1E to GS20FreezeFrameData("", 0x40.toByte(), 1f, 1f, 0f, booleanMap),
-        0x21 to GS20FreezeFrameData("", 0x7F.toByte(), 1f, 1f, 0f, lastChangeMap),
-        0x22 to GS20FreezeFrameData("", 0x07.toByte(), 1f, 1f, 0f, checksumErrorMap),
-        0x23 to GS20FreezeFrameData("", 0x04.toByte(), 1f, 1f, 0f, booleanMap),
-        0x24 to GS20FreezeFrameData("rpm", 0.toByte(), 32f, 1f, 0f, null),
-        0x25 to GS20FreezeFrameData("", 0.toByte(), 1f, 1f, 0f, null)
+        0x0B to GS20FreezeFrameData("", 0.toByte(), 1f, 1f, 0f, booleanMap),
+        0x0C to GS20FreezeFrameData("", 0.toByte(), 1f, 1f, 0f, booleanMap),
+        0x0D to GS20FreezeFrameData("", 0.toByte(), 1f, 1f, 0f, booleanMap),
+        0x0E to GS20FreezeFrameData("", 0.toByte(), 1f, 1f, 0f, booleanMap),
+        0x0F to GS20FreezeFrameData("", 0.toByte(), 1f, 1f, 0f, booleanMap),
+        0x10 to GS20FreezeFrameData("", 0.toByte(), 1f, 1f, 0f, booleanMap),
+        0x11 to GS20FreezeFrameData("rpm", 0.toByte(), 32f, 1f, 0f, null),
     )
 
-    private val errorMatrix: Map<Int, Array<ByteArray>> = mapOf(
-        0x01 to arrayOf(byteArrayOf(0x1D, 0x21),byteArrayOf(0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17),byteArrayOf(0x09),byteArrayOf(0x0A)),
-        0x04 to arrayOf(byteArrayOf(0x1D, 0x21),byteArrayOf(0x08),byteArrayOf(0x09),byteArrayOf(0x0A)),
-        0x10 to arrayOf(byteArrayOf(0x1D, 0x21),byteArrayOf(0x08),byteArrayOf(0x09),byteArrayOf(0x0A)),
-        0x11 to arrayOf(byteArrayOf(0x1D, 0x21),byteArrayOf(0x08),byteArrayOf(0x09),byteArrayOf(0x0A)),
-        0x12 to arrayOf(byteArrayOf(0x1D, 0x21),byteArrayOf(0x08),byteArrayOf(0x09),byteArrayOf(0x0A)),
-        0x13 to arrayOf(byteArrayOf(0x0B, 0x0C, 0x0D, 0x23, 0x0E, 0x0F),byteArrayOf(0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17),byteArrayOf(0x09),byteArrayOf(0x0A)),
-        0x20 to arrayOf(byteArrayOf(0x1D, 0x21),byteArrayOf(0x08),byteArrayOf(0x24),byteArrayOf(0x0A)),
-        0x21 to arrayOf(byteArrayOf(0x1D, 0x21),byteArrayOf(0x08),byteArrayOf(0x05),byteArrayOf(0x0A)),
-        0x22 to arrayOf(byteArrayOf(0x06), byteArrayOf(0x07),byteArrayOf(0x09), byteArrayOf(0x0A)),
-        0x30 to arrayOf(byteArrayOf(0x25),byteArrayOf(0x08),byteArrayOf(0x0B, 0x0C, 0x0D, 0x23, 0x0E, 0x0F),byteArrayOf(0x0A)),
-        0x32 to arrayOf(byteArrayOf(0x1D, 0x21),byteArrayOf(0x08),byteArrayOf(0x09),byteArrayOf(0x0A)),
-        0x34 to arrayOf(byteArrayOf(0x1D, 0x21),byteArrayOf(0x08),byteArrayOf(0x09),byteArrayOf(0x0A)),
-        0x35 to arrayOf(byteArrayOf(0x1D, 0x21),byteArrayOf(0x08),byteArrayOf(0x09),byteArrayOf(0x0A)),
-        0x36 to arrayOf(byteArrayOf(0x1D, 0x21),byteArrayOf(0x08),byteArrayOf(0x09),byteArrayOf(0x0A)),
-        0x37 to arrayOf(byteArrayOf(0x1D, 0x21),byteArrayOf(0x08),byteArrayOf(0x09),byteArrayOf(0x0A)),
-        0x3B to arrayOf(byteArrayOf(0x1D, 0x21),byteArrayOf(0x08),byteArrayOf(0x02),byteArrayOf(0x0A)),
-        0x3C to arrayOf(byteArrayOf(0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17),byteArrayOf(0x05),byteArrayOf(0x09),byteArrayOf(0x0A)),
-        0x3D to arrayOf(byteArrayOf(0x06), byteArrayOf(0x07), byteArrayOf(0x09), byteArrayOf(0x0A)),
-        0x3F to arrayOf(byteArrayOf(0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17),byteArrayOf(0x05),byteArrayOf(0x09),byteArrayOf(0x0A)),
-        0x50 to arrayOf(byteArrayOf(0x06), byteArrayOf(0x22), byteArrayOf(0x09), byteArrayOf(0x0A)),
-        0x51 to arrayOf(byteArrayOf(0x09), byteArrayOf(0x09), byteArrayOf(0x09), byteArrayOf(0x0A)),
-        0x52 to arrayOf(byteArrayOf(0x09), byteArrayOf(0x09), byteArrayOf(0x09), byteArrayOf(0x0A)),
-        0x53 to arrayOf(byteArrayOf(0x09), byteArrayOf(0x09), byteArrayOf(0x09), byteArrayOf(0x0A)),
-        0x54 to arrayOf(byteArrayOf(0x09), byteArrayOf(0x09), byteArrayOf(0x09), byteArrayOf(0x0A)),
-        0x60 to arrayOf(byteArrayOf(0x06), byteArrayOf(0x07), byteArrayOf(0x09), byteArrayOf(0x0A)),
-        0x70 to arrayOf(byteArrayOf(0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17),byteArrayOf(0x06),byteArrayOf(0x09),byteArrayOf(0x0A)),
-        0x71 to arrayOf(byteArrayOf(0x1D, 0x21),byteArrayOf(0x02),byteArrayOf(0x09),byteArrayOf(0x0A)),
-        0x72 to arrayOf(byteArrayOf(0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17),byteArrayOf(0x25),byteArrayOf(0x09),byteArrayOf(0x0A)),
-        0x78 to arrayOf(byteArrayOf(0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17),byteArrayOf(0x06),byteArrayOf(0x09),byteArrayOf(0x0A)),
-        0x80 to arrayOf(byteArrayOf(0x1D, 0x21),byteArrayOf(0x08),byteArrayOf(0x09),byteArrayOf(0x0A)),
-        0x81 to arrayOf(byteArrayOf(0x06), byteArrayOf(0x05), byteArrayOf(0x09), byteArrayOf(0x0A)),
-        0x82 to arrayOf(byteArrayOf(0x06), byteArrayOf(0x05), byteArrayOf(0x09), byteArrayOf(0x0A)),
-        0x83 to arrayOf(byteArrayOf(0x06), byteArrayOf(0x05), byteArrayOf(0x09), byteArrayOf(0x0A)),
-        0x90 to arrayOf(byteArrayOf(0x01), byteArrayOf(0x08), byteArrayOf(0x09), byteArrayOf(0x0A)),
-        0x91 to arrayOf(byteArrayOf(0x1D, 0x21),byteArrayOf(0x05),byteArrayOf(0x03),byteArrayOf(0x0A)),
-        0x92 to arrayOf(byteArrayOf(0x1D, 0x21),byteArrayOf(0x06),byteArrayOf(0x02),byteArrayOf(0x0A)),
-        0x93 to arrayOf(byteArrayOf(0x1D, 0x21),byteArrayOf(0x06),byteArrayOf(0x05),byteArrayOf(0x0A)),
-        0x94 to arrayOf(byteArrayOf(0x06), byteArrayOf(0x08), byteArrayOf(0x09), byteArrayOf(0x0A)),
-        0x95 to arrayOf(byteArrayOf(0x01D, 0x21),byteArrayOf(0x05),byteArrayOf(0x09),byteArrayOf(0x0A)),
-        0x96 to arrayOf(byteArrayOf(0x01D, 0x21),byteArrayOf(0x05),byteArrayOf(0x09),byteArrayOf(0x0A)),
-        0x97 to arrayOf(byteArrayOf(0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17),byteArrayOf(0x05),byteArrayOf(0x09),byteArrayOf(0x0A))
+    private val errorMatrix: Map<Int, Array<Int>> = mapOf(
+        0x01 to arrayOf(0x0C, 0x08, 0x09),
+        0x02 to arrayOf(0x0C, 0x08, 0x09),
+        0x03 to arrayOf(0x0C, 0x08, 0x09),
+        0x04 to arrayOf(0x0C, 0x08, 0x09),
+        0x05 to arrayOf(0x0C, 0x08, 0x09),
+        0x0F to arrayOf(0x0C, 0x08, 0x09),
+        0x10 to arrayOf(0x0C, 0x08, 0x09),
+        0x11 to arrayOf(0x0C, 0x08, 0x09),
+        0x12 to arrayOf(0x0C, 0x08, 0x09),
+        0x13 to arrayOf(0x0A, 0x0B, 0x09),
+        0x20 to arrayOf(0x0C, 0x08, 0x04),
+        0x21 to arrayOf(0x0C, 0x09, 0x05),
+        0x22 to arrayOf(0x06, 0x07, 0x09),
+        0x30 to arrayOf(0x0C, 0x08, 0x0E),
+        0x31 to arrayOf(0x0C, 0x08, 0x05),
+        0x32 to arrayOf(0x02, 0x04, 0x05),
+        0x33 to arrayOf(0x02, 0x04, 0x05),
+        0x34 to arrayOf(0x02, 0x04, 0x05),
+        0x35 to arrayOf(0x02, 0x04, 0x05),
+        0x36 to arrayOf(0x02, 0x04, 0x05),
+        0x37 to arrayOf(0x02, 0x04, 0x05),
+        0x38 to arrayOf(0x0C, 0x08, 0x05),
+        0x39 to arrayOf(0x0C, 0x08, 0x05),
+        0x3A to arrayOf(0x0C, 0x08, 0x05),
+        0x3B to arrayOf(0x0C, 0x08, 0x02),
+        0x3C to arrayOf(0x0B, 0x05, 0x09),
+        0x3D to arrayOf(0x0C, 0x08, 0x05),
+        0x3E to arrayOf(0x0C, 0x08, 0x04),
+        0x40 to arrayOf(0x02, 0x08, 0x05),
+        0x41 to arrayOf(0x02, 0x11, 0x05),
+        0x50 to arrayOf(0x06, 0x10, 0x09),
+        0x51 to arrayOf(0x09, 0x09, 0x09),
+        0x52 to arrayOf(0x09, 0x09, 0x09),
+        0x53 to arrayOf(0x09, 0x09, 0x09),
+        0x60 to arrayOf(0x06, 0x07, 0x09),
+        0x61 to arrayOf(0x09, 0x09, 0x09),
+        0x70 to arrayOf(0x0B, 0x05, 0x09),
+        0x71 to arrayOf(0x0C, 0x02, 0x09),
+        0x72 to arrayOf(0x0B, 0x0D, 0x09),
+        0x80 to arrayOf(0x05, 0x08, 0x09),
+        0x81 to arrayOf(0x06, 0x05, 0x09),
+        0x82 to arrayOf(0x0C, 0x06, 0x0B),
+        0x84 to arrayOf(0x06, 0x05, 0x09),
+        0x85 to arrayOf(0x0B, 0x06, 0x04),
+        0x90 to arrayOf(0x01, 0x08, 0x09),
+        0x91 to arrayOf(0x06, 0x0C, 0x09),
+        0x93 to arrayOf(0x0C, 0x06, 0x05),
+        0x95 to arrayOf(0x0C, 0x09, 0x05),
+        0x97 to arrayOf(0x09, 0x05, 0x0B),
+        0x98 to arrayOf(0x06, 0x05, 0x02),
+        0x99 to arrayOf(0x0B, 0x05, 0x04),
+        0xFF to arrayOf(0xFF, 0xFF, 0xFF),
     )
 
     private val errorDetails = byteArrayOf(
@@ -172,110 +167,114 @@ class ModuleGS8601(protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleAdd
         val message = interfaceWrite(byteArrayOf(0x00))
         if (message.isValid) {
             val answer = message.answer
-            mi.id1 = String(answer.copyOfRange(3, 6)) + String.format(
-                "%02X%02X%02X",
-                answer[6],
-                answer[7],
-                answer[8]
-            )
+            mi.id1 = String(answer.copyOfRange(3, 10))
             mi.hw = String(answer.copyOfRange(10, 12))
             mi.ci = String(answer.copyOfRange(12, 14))
             mi.di = String(answer.copyOfRange(14, 16))
             mi.bi = String(answer.copyOfRange(16, 18))
             mi.date = String(answer.copyOfRange(18, 20)) + "/" + String(answer.copyOfRange(20, 22))
             mi.serial = String(answer.copyOfRange(22, 32))
-            mi.sw = String(answer.copyOfRange(33, 35))
+            mi.sw = String(answer.copyOfRange(32, 34))
             val ai = Pair(
                 Res.string.module_info_change_type,
-                String(answer.copyOfRange(35, 37))
+                String(answer.copyOfRange(34, 36))
             )
             val prod = Pair(
                 Res.string.module_info_product_number,
-                String(answer.copyOfRange(37, 46))
+                String(answer.copyOfRange(36, 45))
             )
             mi.additionalInfo = ArrayList()
             mi.additionalInfo.add(ai)
             mi.additionalInfo.add(prod)
+            return  mi
         }
-        if (mi.ci.isEmpty()) {
-            reset()
-            delay(1000)
-            return ModulesFunction.getModuleInfo( interfaceWrite(byteArrayOf(0x00)))
-        }
-        return mi
+        return null
     }
 
     override suspend fun getAllErrors(): List<ModuleError>? {
         val nextErrorOffset = 0x13
         var result: MutableList<ModuleError>? = null
-        val message = interfaceWrite(byteArrayOf(0x04, 0x01))
+        val message = interfaceWrite(byteArrayOf(0x04,0x01))
         if (message.isValid) {
-            result = ArrayList()
-            for (n in 0 until (message.answer[3].toInt() and 0xFF)) {
-                val error = message.answer[4 + n * nextErrorOffset].toInt() and 0xFF
-                val errorCode = String.format("%02X", error)
-                val errorDescription: MutableList<Pair<StringResource,Any?>> = ArrayList()
-
-                for (j in errorDetails.indices) {
-                    if ((message.answer[5 + n * nextErrorOffset].toInt() and errorDetails[j].toInt()) == errorDetails[j].toInt()) {
-                        String.format("gs20_error_detail_%02X", errorDetails[j])
-                        ResourceMapper
-                            .stringResource(String.format("gs20_error_detail_%02X", errorDetails[j]))
-                            ?.let { errorDescription.add(Pair(it,null))}
-                    }
+            try {
+                val errorCount = message.answer[3].toInt() and 0xFF
+                result = ArrayList()
+                for( n in 0..<errorCount)
+                {
+                    val error = message.answer[4 + n * nextErrorOffset].toInt() and 0xFF
+                    val errorCode = String.format("%02X", error)
+                    val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
 
                     errorDescription.add(
                         ResourceHelper.getErrorDescriptionCount(
-                            (message.answer[6 + n * nextErrorOffset].toInt() and 0xFF)
-                        )
-                    )
-                    errorDescription.add(
-                        ResourceHelper.getErrorDescriptionLogisticCounter(
-                            (message.answer[7 + n * nextErrorOffset].toInt() and 0xFF)
+                            (message.answer[5 + n * nextErrorOffset].toInt() and 0xFF)
                         )
                     )
 
-                    val localErrorMatrix =
-                        errorMatrix[message.answer[4 + n * nextErrorOffset].toInt() and 0xFF]
-                    if (localErrorMatrix != null) {
-                        for (m in 0..2) {
-                            errorDescription.add(
-                                Pair(
-                                    Res.string.dde_error_freeze_frame_number,
-                                    (m + 1).toString()
-                                )
+                    val freezeFrameCount = message.answer[6 + n * nextErrorOffset].toInt() and 0xFF
+                    var freezeFrameNumber = 0
+                    repeat(freezeFrameCount)
+                    {
+                        errorDescription.add(
+                            Pair(
+                                Res.string.dde_error_freeze_frame_number,
+                                (freezeFrameNumber + 1).toString()
                             )
-                            for (x in localErrorMatrix.indices) {
-                                val currentByte = 8 + x + (n * nextErrorOffset) + (5 * m)
-                                var b = message.answer[currentByte].toInt() and 0xFF
-                                for (y in localErrorMatrix[x].indices) {
-                                    val freezeFrameData =
-                                        errorFreezeFrame[localErrorMatrix[x][y].toInt() and 0xFF]
-                                    if ((localErrorMatrix[x][y].toInt() and 0xFF) == 0x0A) {
-                                        b = (message.answer[currentByte].toInt() and 0xFF) * 256
-                                        b += message.answer[currentByte + 1].toInt() and 0xFF
-                                    }
-                                    if (freezeFrameData != null) {
-                                        if (freezeFrameData.mask.toInt() != 0x00) {
-                                            val c = (b and freezeFrameData.mask.toInt())
-                                            if (freezeFrameData.values?.containsKey(c) == true)
-                                                ResourceMapper.stringResource(String.format("gs20_error_detail_freeze_frame_%02X",localErrorMatrix[x][y].toInt() and 0xFF))
-                                                    ?.let {errorDescription.add(Pair(it, freezeFrameData.values.get(c)))}
-                                        } else {
-                                            val c =(b.toFloat() * freezeFrameData.multiplier / freezeFrameData.divider + freezeFrameData.adder).toDouble()
-                                            String.format("gs20_error_detail_freeze_frame_%02X",localErrorMatrix[x][y].toInt() and 0xFF)
-                                            ResourceMapper
-                                                .stringResource(String.format("gs20_error_detail_freeze_frame_%02X",localErrorMatrix[x][y].toInt() and 0xFF))
-                                                ?.let { errorDescription.add(Pair(it, String.format(Locale.getDefault(),"%0.2f %s",c, freezeFrameData.unit)))}
+                        )
+                        val localErrorMatrix = errorMatrix[error]
+                        if (localErrorMatrix != null) {
+                            for (i in 0..<localErrorMatrix.size) {
+                                val eff = errorFreezeFrame[localErrorMatrix[i]]
+                                if (eff != null) {
+                                    val rawValue = (message.answer[(i + 8) + 5 * freezeFrameNumber + n * nextErrorOffset].toInt() and 0xFF)
+                                    val value = rawValue.toFloat() * eff.multiplier / eff.divider + eff.adder
+                                    val detailName =
+                                        String.format("gs8601_error_detail_freeze_frame_%02X", localErrorMatrix[i]).lowercase()
+                                    if (eff.unit.isEmpty()) {
+                                        ResourceMapperGs8601.stringResource(detailName)?.let {
+                                            errorDescription.add(
+                                                Pair(
+                                                    it,
+                                                    String.format(
+                                                        Locale.getDefault(),
+                                                        "%.2f",
+                                                        value
+                                                    )
+                                                )
+                                            )
+                                        }
+                                    } else {
+                                        ResourceMapperGs8601.stringResource(detailName)?.let {
+                                            errorDescription.add(
+                                                Pair(
+                                                    it,
+                                                    String.format(
+                                                        Locale.getDefault(),
+                                                        "%.2f %s",
+                                                        value,
+                                                        eff.unit
+                                                    )
+                                                )
+                                            )
                                         }
                                     }
                                 }
                             }
+                            val odometer =
+                                ((message.answer[11 + 5 * freezeFrameNumber + n * nextErrorOffset].toInt() and 0xFF) shl 8) + (message.answer[12 + 5 * freezeFrameNumber + n * nextErrorOffset].toInt() and 0xFF)
+                            errorDescription.add(
+                                Pair(
+                                    Res.string.dde_error_ff_odometer,
+                                    String.format(Locale.getDefault(), "%d km", odometer)
+                                )
+                            )
                         }
+                        freezeFrameNumber++
                     }
-
                     result.add(ModuleError(ModuleAddress.MODULE_GS20, errorCode, errorDescription))
                 }
+            } catch (ex: Exception) {
+                Logger.e { "$tag [getIdentification], $ex, $message" }
             }
         }
         return result

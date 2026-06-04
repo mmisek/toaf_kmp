@@ -39,6 +39,11 @@ object ResourceMapperActivityAdvanceCoding {
             "activity_advance_coding_offset_programming" -> Res.string.activity_advance_coding_offset_programming
             "activity_advance_coding_read_button" -> Res.string.activity_advance_coding_read_button
             "activity_advance_coding_save_button" -> Res.string.activity_advance_coding_save_button
+            "activity_advance_coding_scu_keys_barcode_validation_failed" -> Res.string.activity_advance_coding_scu_keys_barcode_validation_failed
+            "activity_advance_coding_scu_keys_programming" -> Res.string.activity_advance_coding_scu_keys_programming
+            "activity_advance_coding_scu_new_key_barcode" -> Res.string.activity_advance_coding_scu_new_key_barcode
+            "activity_advance_coding_scu_write_failed" -> Res.string.activity_advance_coding_scu_write_failed
+            "activity_advance_coding_scu_write_success" -> Res.string.activity_advance_coding_scu_write_success
             "activity_advance_coding_vin_current" -> Res.string.activity_advance_coding_vin_current
             "activity_advance_coding_vin_matches_error" -> Res.string.activity_advance_coding_vin_matches_error
             "activity_advance_coding_vin_programming" -> Res.string.activity_advance_coding_vin_programming

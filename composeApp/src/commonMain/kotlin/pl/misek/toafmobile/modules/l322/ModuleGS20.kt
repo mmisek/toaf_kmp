@@ -312,7 +312,7 @@ class ModuleGS20( protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleAddr
                                                                 it,
                                                                 String.format(
                                                                     Locale.getDefault(),
-                                                                    "%0.2f %s",
+                                                                    "%.2f %s",
                                                                     c,
                                                                     freezeFrameData.unit
                                                                 )
