@@ -1,0 +1,458 @@
+{
+  "livedata": [
+
+    {
+      "name": "engine_speed",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0xFF",
+      "factor_a": "32",
+      "factor_b": "0",
+      "unit": "rpm"
+    },
+    {
+      "name": "torque_converter_turbine_speed",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0xFF",
+      "factor_a": "32",
+      "factor_b": "0",
+      "unit": "rpm"
+    },
+    {
+      "name": "output_speed",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0xFF",
+      "factor_a": "32",
+      "factor_b": "0",
+      "unit": "rpm"
+    },
+    {
+      "name": "throttle_position",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0xFF",
+      "factor_a": "0.39566929",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "engine_load",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0xFF",
+      "factor_a": "4",
+      "factor_b": "0",
+      "unit": "Nm"
+    },
+    {
+      "name": "engine_temperature",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "-48",
+      "unit": "°C"
+    },
+    {
+      "name": "gearbox_temperature",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "-55",
+      "unit": "°C"
+    },
+    {
+      "name": "battery_voltage",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0xFF",
+      "factor_a": "0.08080808",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "wheel_speed_front_left",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0xFF",
+      "factor_a": "16",
+      "factor_b": "0",
+      "unit": "rpm"
+    },
+    {
+      "name": "wheel_speed_front_right",
+      "block": "0x00",
+      "byte": "0x09",
+      "mask": "0xFF",
+      "factor_a": "16",
+      "factor_b": "0",
+      "unit": "rpm"
+    },
+    {
+      "name": "wheel_speed_rear_left",
+      "block": "0x00",
+      "byte": "0x0A",
+      "mask": "0xFF",
+      "factor_a": "16",
+      "factor_b": "0",
+      "unit": "rpm"
+    },
+    {
+      "name": "wheel_speed_rear_right",
+      "block": "0x00",
+      "byte": "0x0B",
+      "mask": "0xFF",
+      "factor_a": "16",
+      "factor_b": "0",
+      "unit": "rpm"
+    },
+    {
+      "name": "eds1_current",
+      "block": "0x00",
+      "byte": "0x0C",
+      "mask": "0xFF",
+      "factor_a": "-2.44706",
+      "factor_b": "780",
+      "unit": "mA"
+    },
+    {
+      "name": "eds2_current",
+      "block": "0x00",
+      "byte": "0x0D",
+      "mask": "0xFF",
+      "factor_a": "-2.44706",
+      "factor_b": "780",
+      "unit": "mA"
+    },
+    {
+      "name": "eds3_current",
+      "block": "0x00",
+      "byte": "0x0E",
+      "mask": "0xFF",
+      "factor_a": "-2.44706",
+      "factor_b": "780",
+      "unit": "mA"
+    },
+    {
+      "name": "eds4_current",
+      "block": "0x00",
+      "byte": "0x0F",
+      "mask": "0xFF",
+      "factor_a": "-2.44706",
+      "factor_b": "780",
+      "unit": "mA"
+    },
+    {
+      "name": "eds5_current",
+      "block": "0x00",
+      "byte": "0x10",
+      "mask": "0xFF",
+      "factor_a": "-2.44706",
+      "factor_b": "780",
+      "unit": "mA"
+    },
+
+    {
+      "name": "solenoid_valve_1",
+      "block": "0x00",
+      "byte": "0x11",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "solenoid_valve_2",
+      "block": "0x00",
+      "byte": "0x11",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "solenoid_valve_3",
+      "block": "0x00",
+      "byte": "0x11",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "solenoid_valve_shift_lock",
+      "block": "0x00",
+      "byte": "0x11",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "brake_signal",
+      "block": "0x00",
+      "byte": "0x11",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+
+    {
+      "name": "gearbox_switch_l1",
+      "block": "0x00",
+      "byte": "0x12",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "gearbox_switch_l2",
+      "block": "0x00",
+      "byte": "0x12",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "gearbox_switch_l3",
+      "block": "0x00",
+      "byte": "0x12",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "gearbox_switch_l4",
+      "block": "0x00",
+      "byte": "0x12",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "program_taster",
+      "block": "0x00",
+      "byte": "0x12",
+      "mask": "0x0E",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        { "data": "0x02", "text": "M" },
+        { "data": "0x04", "text": "S_M" },
+        { "data": "0x08", "text": "A" }
+      ]
+    },
+    {
+      "name": "emergency_program",
+      "block": "0x00",
+      "byte": "0x12",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+
+    {
+      "name": "fgr_system",
+      "block": "0x00",
+      "byte": "0x13",
+      "mask": "0xE0",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        { "data": "0x00", "text": "passive" },
+        { "data": "0x20", "text": "constant_speed" },
+        { "data": "0x40", "text": "resume" },
+        { "data": "0x60", "text": "set_accelerate" },
+        { "data": "0x80", "text": "set_decelerate" }
+      ]
+    },
+    {
+      "name": "asc_active",
+      "block": "0x00",
+      "byte": "0x13",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "asc_button",
+      "block": "0x00",
+      "byte": "0x13",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "driver_type",
+      "block": "0x00",
+      "byte": "0x13",
+      "mask": "0x07",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+
+    {
+      "name": "gear",
+      "block": "0x00",
+      "byte": "0x14",
+      "mask": "0xE0",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        { "data": "0x20", "text": "1_gear" },
+        { "data": "0x40", "text": "2_gear" },
+        { "data": "0x60", "text": "3_gear" },
+        { "data": "0x80", "text": "4_gear" },
+        { "data": "0xA0", "text": "5_gear" },
+        { "data": "0xC0", "text": "1m_gear" },
+        { "data": "0xE0", "text": "R_gear" }
+      ]
+    },
+    {
+      "name": "kick_down",
+      "block": "0x00",
+      "byte": "0x14",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "cornering_error",
+      "block": "0x00",
+      "byte": "0x14",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "tip_down",
+      "block": "0x00",
+      "byte": "0x14",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "tip_up",
+      "block": "0x00",
+      "byte": "0x14",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+
+    {
+      "name": "manual_gate",
+      "block": "0x00",
+      "byte": "0x12",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+
+    {
+      "name": "shift_in_progress",
+      "block": "0x00",
+      "byte": "0x15",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "gear_engaging",
+      "block": "0x00",
+      "byte": "0x15",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "upshift",
+      "block": "0x00",
+      "byte": "0x15",
+      "mask": "0x60",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        { "data": "0x00", "text": "upshift_active" },
+        { "data": "0x20", "text": "downshift_active" },
+        { "data": "0x40", "text": "no_shift" }
+      ]
+    },
+    {
+      "name": "low_range",
+      "block": "0x00",
+      "byte": "0x15",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+
+    {
+      "name": "shift_lock_variant",
+      "block": "0x00",
+      "byte": "0x16",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "gearbox_selector",
+      "block": "0x00",
+      "byte": "0x16",
+      "mask": "0x70",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        { "data": "0x00", "text": "unknown" },
+        { "data": "0x10", "text": "bottom_E38_E39" },
+        { "data": "0x20", "text": "top_E34" },
+        { "data": "0x30", "text": "middle" }
+      ]
+    },
+    {
+      "name": "selector_lever_position",
+      "block": "0x00",
+      "byte": "0x16",
+      "mask": "0x0F",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        { "data": "0x00", "text": "P_or_N" },
+        { "data": "0x01", "text": "R" },
+        { "data": "0x02", "text": "N" },
+        { "data": "0x03", "text": "D" },
+        { "data": "0x04", "text": "3" },
+        { "data": "0x05", "text": "2" },
+        { "data": "0x06", "text": "1" }
+      ]
+    }
+  ]
+}

@@ -90,55 +90,76 @@ object ResourceMapperGs8601 {
             "gs8601_error_detail_freeze_frame_0f" -> Res.string.gs8601_error_detail_freeze_frame_0F
             "gs8601_error_detail_freeze_frame_10" -> Res.string.gs8601_error_detail_freeze_frame_10
             "gs8601_error_detail_freeze_frame_11" -> Res.string.gs8601_error_detail_freeze_frame_11
+            "gs8601_live_data_asc_active" -> Res.string.gs8601_live_data_asc_active
             "gs8601_live_data_asc_button" -> Res.string.gs8601_live_data_asc_button
-            "gs8601_live_data_asc_control" -> Res.string.gs8601_live_data_asc_control
             "gs8601_live_data_battery_voltage" -> Res.string.gs8601_live_data_battery_voltage
-            "gs8601_live_data_break_signal" -> Res.string.gs8601_live_data_break_signal
-            "gs8601_live_data_dkg" -> Res.string.gs8601_live_data_dkg
-            "gs8601_live_data_driving_in_a_curve" -> Res.string.gs8601_live_data_driving_in_a_curve
+            "gs8601_live_data_brake_signal" -> Res.string.gs8601_live_data_brake_signal
+            "gs8601_live_data_cornering_error" -> Res.string.gs8601_live_data_cornering_error
+            "gs8601_live_data_driver_type" -> Res.string.gs8601_live_data_driver_type
+            "gs8601_live_data_eds1_current" -> Res.string.gs8601_live_data_eds1_current
+            "gs8601_live_data_eds2_current" -> Res.string.gs8601_live_data_eds2_current
+            "gs8601_live_data_eds3_current" -> Res.string.gs8601_live_data_eds3_current
+            "gs8601_live_data_eds4_current" -> Res.string.gs8601_live_data_eds4_current
+            "gs8601_live_data_eds5_current" -> Res.string.gs8601_live_data_eds5_current
+            "gs8601_live_data_emergency_program" -> Res.string.gs8601_live_data_emergency_program
+            "gs8601_live_data_engine_load" -> Res.string.gs8601_live_data_engine_load
             "gs8601_live_data_engine_speed" -> Res.string.gs8601_live_data_engine_speed
             "gs8601_live_data_engine_temperature" -> Res.string.gs8601_live_data_engine_temperature
-            "gs8601_live_data_error_lamp" -> Res.string.gs8601_live_data_error_lamp
+            "gs8601_live_data_fgr_system" -> Res.string.gs8601_live_data_fgr_system
             "gs8601_live_data_gear" -> Res.string.gs8601_live_data_gear
-            "gs8601_live_data_gearbox_shift_l1" -> Res.string.gs8601_live_data_gearbox_shift_l1
-            "gs8601_live_data_gearbox_shift_l3" -> Res.string.gs8601_live_data_gearbox_shift_l3
-            "gs8601_live_data_gearbox_shift_l4" -> Res.string.gs8601_live_data_gearbox_shift_l4
-            "gs8601_live_data_gearbox_shift_l5" -> Res.string.gs8601_live_data_gearbox_shift_l5
+            "gs8601_live_data_gear_engaging" -> Res.string.gs8601_live_data_gear_engaging
+            "gs8601_live_data_gearbox_selector" -> Res.string.gs8601_live_data_gearbox_selector
+            "gs8601_live_data_gearbox_switch_l1" -> Res.string.gs8601_live_data_gearbox_switch_l1
+            "gs8601_live_data_gearbox_switch_l2" -> Res.string.gs8601_live_data_gearbox_switch_l2
+            "gs8601_live_data_gearbox_switch_l3" -> Res.string.gs8601_live_data_gearbox_switch_l3
+            "gs8601_live_data_gearbox_switch_l4" -> Res.string.gs8601_live_data_gearbox_switch_l4
             "gs8601_live_data_gearbox_temperature" -> Res.string.gs8601_live_data_gearbox_temperature
             "gs8601_live_data_kick_down" -> Res.string.gs8601_live_data_kick_down
-            "gs8601_live_data_last_change" -> Res.string.gs8601_live_data_last_change
-            "gs8601_live_data_oil_aging" -> Res.string.gs8601_live_data_oil_aging
+            "gs8601_live_data_low_range" -> Res.string.gs8601_live_data_low_range
+            "gs8601_live_data_manual_gate" -> Res.string.gs8601_live_data_manual_gate
             "gs8601_live_data_output_speed" -> Res.string.gs8601_live_data_output_speed
-            "gs8601_live_data_program_automatic" -> Res.string.gs8601_live_data_program_automatic
-            "gs8601_live_data_program_sport_manual" -> Res.string.gs8601_live_data_program_sport_manual
+            "gs8601_live_data_program_taster" -> Res.string.gs8601_live_data_program_taster
+            "gs8601_live_data_selector_lever_position" -> Res.string.gs8601_live_data_selector_lever_position
+            "gs8601_live_data_shift_in_progress" -> Res.string.gs8601_live_data_shift_in_progress
+            "gs8601_live_data_shift_lock_variant" -> Res.string.gs8601_live_data_shift_lock_variant
             "gs8601_live_data_solenoid_valve_1" -> Res.string.gs8601_live_data_solenoid_valve_1
             "gs8601_live_data_solenoid_valve_2" -> Res.string.gs8601_live_data_solenoid_valve_2
             "gs8601_live_data_solenoid_valve_3" -> Res.string.gs8601_live_data_solenoid_valve_3
             "gs8601_live_data_solenoid_valve_shift_lock" -> Res.string.gs8601_live_data_solenoid_valve_shift_lock
-            "gs8601_live_data_steptronic_slot" -> Res.string.gs8601_live_data_steptronic_slot
+            "gs8601_live_data_throttle_position" -> Res.string.gs8601_live_data_throttle_position
             "gs8601_live_data_tip_down" -> Res.string.gs8601_live_data_tip_down
             "gs8601_live_data_tip_up" -> Res.string.gs8601_live_data_tip_up
             "gs8601_live_data_torque_converter_turbine_speed" -> Res.string.gs8601_live_data_torque_converter_turbine_speed
+            "gs8601_live_data_upshift" -> Res.string.gs8601_live_data_upshift
+            "gs8601_live_data_value_1" -> Res.string.gs8601_live_data_value_1
             "gs8601_live_data_value_1_gear" -> Res.string.gs8601_live_data_value_1_gear
-            "gs8601_live_data_value_1_to_2" -> Res.string.gs8601_live_data_value_1_to_2
+            "gs8601_live_data_value_1m_gear" -> Res.string.gs8601_live_data_value_1m_gear
+            "gs8601_live_data_value_2" -> Res.string.gs8601_live_data_value_2
             "gs8601_live_data_value_2_gear" -> Res.string.gs8601_live_data_value_2_gear
-            "gs8601_live_data_value_2_to_1" -> Res.string.gs8601_live_data_value_2_to_1
-            "gs8601_live_data_value_2_to_3" -> Res.string.gs8601_live_data_value_2_to_3
+            "gs8601_live_data_value_3" -> Res.string.gs8601_live_data_value_3
             "gs8601_live_data_value_3_gear" -> Res.string.gs8601_live_data_value_3_gear
-            "gs8601_live_data_value_3_to_2" -> Res.string.gs8601_live_data_value_3_to_2
-            "gs8601_live_data_value_3_to_4" -> Res.string.gs8601_live_data_value_3_to_4
             "gs8601_live_data_value_4_gear" -> Res.string.gs8601_live_data_value_4_gear
-            "gs8601_live_data_value_4_to_3" -> Res.string.gs8601_live_data_value_4_to_3
-            "gs8601_live_data_value_4_to_5" -> Res.string.gs8601_live_data_value_4_to_5
             "gs8601_live_data_value_5_gear" -> Res.string.gs8601_live_data_value_5_gear
-            "gs8601_live_data_value_5_to_4" -> Res.string.gs8601_live_data_value_5_to_4
-            "gs8601_live_data_value_d_to_r" -> Res.string.gs8601_live_data_value_d_to_r
-            "gs8601_live_data_value_data" -> Res.string.gs8601_live_data_value_data
-            "gs8601_live_data_value_pn_to_d" -> Res.string.gs8601_live_data_value_pn_to_d
-            "gs8601_live_data_value_pn_to_r" -> Res.string.gs8601_live_data_value_pn_to_r
-            "gs8601_live_data_value_program" -> Res.string.gs8601_live_data_value_program
-            "gs8601_live_data_value_r_to_d" -> Res.string.gs8601_live_data_value_r_to_d
-            "gs8601_live_data_value_rom" -> Res.string.gs8601_live_data_value_rom
+            "gs8601_live_data_value_a" -> Res.string.gs8601_live_data_value_A
+            "gs8601_live_data_value_d" -> Res.string.gs8601_live_data_value_D
+            "gs8601_live_data_value_m" -> Res.string.gs8601_live_data_value_M
+            "gs8601_live_data_value_n" -> Res.string.gs8601_live_data_value_N
+            "gs8601_live_data_value_p_or_n" -> Res.string.gs8601_live_data_value_P_or_N
+            "gs8601_live_data_value_r" -> Res.string.gs8601_live_data_value_R
+            "gs8601_live_data_value_r_gear" -> Res.string.gs8601_live_data_value_R_gear
+            "gs8601_live_data_value_s_m" -> Res.string.gs8601_live_data_value_S_M
+            "gs8601_live_data_value_bottom_e38_e39" -> Res.string.gs8601_live_data_value_bottom_E38_E39
+            "gs8601_live_data_value_constant_speed" -> Res.string.gs8601_live_data_value_constant_speed
+            "gs8601_live_data_value_downshift_active" -> Res.string.gs8601_live_data_value_downshift_active
+            "gs8601_live_data_value_middle" -> Res.string.gs8601_live_data_value_middle
+            "gs8601_live_data_value_no_shift" -> Res.string.gs8601_live_data_value_no_shift
+            "gs8601_live_data_value_passive" -> Res.string.gs8601_live_data_value_passive
+            "gs8601_live_data_value_resume" -> Res.string.gs8601_live_data_value_resume
+            "gs8601_live_data_value_set_accelerate" -> Res.string.gs8601_live_data_value_set_accelerate
+            "gs8601_live_data_value_set_decelerate" -> Res.string.gs8601_live_data_value_set_decelerate
+            "gs8601_live_data_value_top_e34" -> Res.string.gs8601_live_data_value_top_E34
+            "gs8601_live_data_value_unknown" -> Res.string.gs8601_live_data_value_unknown
+            "gs8601_live_data_value_upshift_active" -> Res.string.gs8601_live_data_value_upshift_active
             "gs8601_live_data_wheel_speed_front_left" -> Res.string.gs8601_live_data_wheel_speed_front_left
             "gs8601_live_data_wheel_speed_front_right" -> Res.string.gs8601_live_data_wheel_speed_front_right
             "gs8601_live_data_wheel_speed_rear_left" -> Res.string.gs8601_live_data_wheel_speed_rear_left
