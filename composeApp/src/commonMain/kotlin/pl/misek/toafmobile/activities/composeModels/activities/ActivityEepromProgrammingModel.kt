@@ -252,7 +252,7 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
                     modifier = Modifier.padding(5.dp).fillMaxWidth(),
                     buttonText = Res.string.activity_eeprom_programming_write_eeprom,
                     onClick = {
-                        if (!userInfo.isFullVersion())
+                        if (userInfo.isFullVersion())
                             readFileAndProgram()
                         else
                             showFullVersionDialog = true

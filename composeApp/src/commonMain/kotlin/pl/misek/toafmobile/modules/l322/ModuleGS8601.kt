@@ -15,13 +15,14 @@ import pl.misek.toafmobile.modules.ModulesFunction
 import pl.misek.toafmobile.modules.containers.GS20FreezeFrameData
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.ModuleAddress
+import pl.misek.toafmobile.modules.interfaces.IModuleEepromProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 import java.util.Locale
 
-class ModuleGS8601(protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleAddress.MODULE_GS8601, listOf(CarType.L322)),IModuleLiveData {
+class ModuleGS8601(protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleAddress.MODULE_GS8601, listOf(CarType.L322)),IModuleLiveData, IModuleEepromProgramming {
     private var tag = "ModuleGS8601"
     private val booleanMap: Map<Int, StringResource> = mapOf(
         0x00 to Res.string.coding_not_active,
@@ -205,9 +206,16 @@ class ModuleGS8601(protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleAdd
                     val errorCode = String.format("%02X", error)
                     val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
 
+                    for (j in errorDetails.indices) {
+                        if ((message.answer[5 + n * nextErrorOffset].toInt() and errorDetails[j].toInt()) == errorDetails[j].toInt()) {
+                            val errorDetailName = String.format("gs8601_error_detail_%02X", errorDetails[j])
+                            ResourceMapper.stringResource(errorDetailName)?.let { errorDescription.add(Pair(it, null)) }
+                        }
+                    }
+
                     errorDescription.add(
                         ResourceHelper.getErrorDescriptionCount(
-                            (message.answer[5 + n * nextErrorOffset].toInt() and 0xFF)
+                            (message.answer[7 + n * nextErrorOffset].toInt() and 0xFF)
                         )
                     )
 
@@ -271,12 +279,47 @@ class ModuleGS8601(protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleAdd
                         }
                         freezeFrameNumber++
                     }
-                    result.add(ModuleError(ModuleAddress.MODULE_GS20, errorCode, errorDescription))
+                    result.add(ModuleError(ModuleAddress.MODULE_GS8601, errorCode, errorDescription))
                 }
             } catch (ex: Exception) {
                 Logger.e { "$tag [getIdentification], $ex, $message" }
             }
         }
         return result
+    }
+    override fun getEepromSize(): Int  = 256
+
+    override fun getEepromReadSize(): Int  = 0x10
+
+    override fun getEepromWriteSize(): Int  = 0x10
+
+    override suspend fun readEeprom(address: Int, size: Int): ByteArray? {
+        val message = interfaceWrite(
+            byteArrayOf(
+                0x06,
+                0x03,
+                0x00,
+                0x00,
+                (address and 0xFF).toByte(),
+                size.toByte()))
+        try {
+            return if (message.isValid) message.answer.copyOfRange(0x03, 3 + size) else null
+        } catch (ex : Exception) {
+            Logger.e {"$tag [readEeprom], $ex, $message"}
+            return null
+        }
+    }
+
+    override suspend fun writeEeprom(address: Int, data: ByteArray): Boolean {
+        val size = data.size
+        val dataToWrite =
+            byteArrayOf(
+                0x07,
+                0x03,
+                0x00,
+                0x00,
+                (address and 0xFF).toByte(),
+                (size / 2).toByte()) + data
+        return interfaceWrite(dataToWrite).isValid
     }
 }
