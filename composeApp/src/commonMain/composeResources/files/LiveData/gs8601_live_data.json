@@ -436,7 +436,7 @@
         { "data": "0x30", "text": "middle" }
       ]
     },
-    {
+	{
       "name": "selector_lever_position",
       "block": "0x00",
       "byte": "0x16",

@@ -7,6 +7,21 @@ import toafmobile.composeapp.generated.resources.*
 object ResourceMapperGs8601 {
     fun stringResource(resourceName: String): StringResource? {
         return when (resourceName) {
+            "gs8601_control_eds_solenoid_1" -> Res.string.gs8601_control_eds_solenoid_1
+            "gs8601_control_eds_solenoid_2" -> Res.string.gs8601_control_eds_solenoid_2
+            "gs8601_control_eds_solenoid_3" -> Res.string.gs8601_control_eds_solenoid_3
+            "gs8601_control_eds_solenoid_4" -> Res.string.gs8601_control_eds_solenoid_4
+            "gs8601_control_eds_solenoid_5" -> Res.string.gs8601_control_eds_solenoid_5
+            "gs8601_control_engine_torque_intervention" -> Res.string.gs8601_control_engine_torque_intervention
+            "gs8601_control_fault_indicator_lamp" -> Res.string.gs8601_control_fault_indicator_lamp
+            "gs8601_control_programme_display" -> Res.string.gs8601_control_programme_display
+            "gs8601_control_reset_adaptation" -> Res.string.gs8601_control_reset_adaptation
+            "gs8601_control_reverse_light" -> Res.string.gs8601_control_reverse_light
+            "gs8601_control_selector_lever_display" -> Res.string.gs8601_control_selector_lever_display
+            "gs8601_control_shift_lock_solenoid" -> Res.string.gs8601_control_shift_lock_solenoid
+            "gs8601_control_shift_solenoid_1" -> Res.string.gs8601_control_shift_solenoid_1
+            "gs8601_control_shift_solenoid_2" -> Res.string.gs8601_control_shift_solenoid_2
+            "gs8601_control_shift_solenoid_3" -> Res.string.gs8601_control_shift_solenoid_3
             "gs8601_error_01" -> Res.string.gs8601_error_01
             "gs8601_error_02" -> Res.string.gs8601_error_02
             "gs8601_error_03" -> Res.string.gs8601_error_03

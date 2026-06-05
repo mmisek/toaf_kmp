@@ -165,4 +165,21 @@
     <string name="gs8601_error_detail_freeze_frame_0F">Current gear</string>
     <string name="gs8601_error_detail_freeze_frame_10">Checksum error</string>
 	<string name="gs8601_error_detail_freeze_frame_11">Turbine speed (rpm)</string>	
+	
+    <string name="gs8601_control_eds_solenoid_1">EDS pressure solenoid 1</string>
+    <string name="gs8601_control_eds_solenoid_2">EDS pressure solenoid 2</string>
+    <string name="gs8601_control_eds_solenoid_3">EDS pressure solenoid 3</string>
+    <string name="gs8601_control_eds_solenoid_4">EDS pressure solenoid 4</string>
+    <string name="gs8601_control_eds_solenoid_5">EDS pressure solenoid 5</string>
+    <string name="gs8601_control_shift_solenoid_1">Shift solenoid 1</string>
+    <string name="gs8601_control_shift_solenoid_2">Shift solenoid 2</string>
+    <string name="gs8601_control_shift_solenoid_3">Shift solenoid 3</string>
+    <string name="gs8601_control_shift_lock_solenoid">Shift lock solenoid</string>
+    <string name="gs8601_control_reverse_light">Reverse light relay</string>
+    <string name="gs8601_control_engine_torque_intervention">Engine torque intervention (CAN)</string>
+    <string name="gs8601_control_selector_lever_display">Selector lever position display</string>
+    <string name="gs8601_control_programme_display">Shift programme display</string>
+    <string name="gs8601_control_fault_indicator_lamp">Fault indicator lamp</string>
+    <string name="gs8601_control_reset_adaptation">Reset adaptation</string>
+	
 </resources>

@@ -137,7 +137,6 @@ private fun ControlList(items: List<ControlElement>?, module: IModule, databaseI
 private fun ControlListPlaceholder(item :ControlElement?,module: IModule, isFastControlElement : Boolean, snackBarHostState: SnackbarHostState,onRefreshNeeded : () -> Int)
 {
     val database : Database = koinInject()
-    var sliderPosition by remember { mutableFloatStateOf(0f) }
     val scope = rememberCoroutineScope()
     var action by remember { mutableStateOf<suspend () -> Any?>({ null }) }
     var actionType by remember {mutableStateOf (ActionTypeEnum.None)}
@@ -146,8 +145,9 @@ private fun ControlListPlaceholder(item :ControlElement?,module: IModule, isFast
     val fastActionItemSizeReachedLimit = stringResource(Res.string.activity_control_fast_action_limit_reached)
     val controlSuccessText = stringResource(Res.string.activity_control_control_correct)
     val controlFailText = stringResource(Res.string.activity_control_control_error)
-    if (item?.controlSetValue != null)
-        sliderPosition = item.controlSetValue?.max?.div(2f) ?: 0f
+    var sliderPosition by remember(item) {
+        mutableFloatStateOf(item?.controlSetValue?.min?.toFloat() ?: 0f)
+    }
     Column (
         modifier = Modifier
             .fillMaxWidth()
@@ -246,6 +246,8 @@ private fun ControlListPlaceholder(item :ControlElement?,module: IModule, isFast
                     value = sliderPosition,
                     valueRange = item.controlSetValue!!.min.toFloat() ..item.controlSetValue!!.max.toFloat(),
                     onValueChange = { newValue ->
+                        if (item.controlSetValue != null)
+                            item.controlSetValue?.value = newValue.toInt()
                         sliderPosition = newValue
                     }
                 )

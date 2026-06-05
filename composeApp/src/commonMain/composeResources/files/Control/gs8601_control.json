@@ -1,0 +1,164 @@
+{
+  "elements": [
+    {
+      "name": "eds_solenoid_1",
+      "block": "0x00",
+      "byte": "0x01",
+      "value": "0x00",
+      "set_value": {
+        "min": "0",
+        "max": "255",
+        "unit": "s"
+      }
+    },
+    {
+      "name": "eds_solenoid_2",
+      "block": "0x00",
+      "byte": "0x02",
+      "value": "0x00",
+      "set_value": {
+        "min": "0",
+        "max": "255",
+        "unit": "s"
+      }
+    },
+    {
+      "name": "eds_solenoid_3",
+      "block": "0x00",
+      "byte": "0x03",
+      "value": "0x00",
+      "set_value": {
+        "min": "0",
+        "max": "255",
+        "unit": "s"
+      }
+    },
+    {
+      "name": "eds_solenoid_4",
+      "block": "0x00",
+      "byte": "0x04",
+      "value": "0x00",
+      "set_value": {
+        "min": "0",
+        "max": "255",
+        "unit": "s"
+      }
+    },
+    {
+      "name": "eds_solenoid_5",
+      "block": "0x00",
+      "byte": "0x05",
+      "value": "0x00",
+      "set_value": {
+        "min": "0",
+        "max": "255",
+        "unit": "s"
+      }
+    },
+    {
+      "name": "shift_solenoid_1",
+      "block": "0x00",
+      "byte": "0x10",
+      "value": "0x00",
+      "set_value": {
+        "min": "0",
+        "max": "255",
+        "unit": "s"
+      }
+    },
+    {
+      "name": "shift_solenoid_2",
+      "block": "0x00",
+      "byte": "0x11",
+      "value": "0x00",
+      "set_value": {
+        "min": "0",
+        "max": "255",
+        "unit": "s"
+      }
+    },
+    {
+      "name": "shift_solenoid_3",
+      "block": "0x00",
+      "byte": "0x12",
+      "value": "0x00",
+      "set_value": {
+        "min": "0",
+        "max": "255",
+        "unit": "s"
+      }
+    },
+    {
+      "name": "shift_lock_solenoid",
+      "block": "0x00",
+      "byte": "0x13",
+      "value": "0x00",
+      "set_value": {
+        "min": "0",
+        "max": "255",
+        "unit": "s"
+      }
+    },
+    {
+      "name": "reverse_light",
+      "block": "0x00",
+      "byte": "0x20",
+      "value": "0x00",
+      "set_value": {
+        "min": "0",
+        "max": "255",
+        "unit": "s"
+      }
+    },
+    {
+      "name": "engine_torque_intervention",
+      "block": "0x00",
+      "byte": "0x30",
+      "value": "0x00",
+      "set_value": {
+        "min": "0",
+        "max": "255",
+        "unit": "s"
+      }
+    },
+    {
+      "name": "selector_lever_display",
+      "block": "0x00",
+      "byte": "0x31",
+      "value": "0x00",
+      "set_value": {
+        "min": "0",
+        "max": "255",
+        "unit": "s"
+      }
+    },
+    {
+      "name": "programme_display",
+      "block": "0x00",
+      "byte": "0x32",
+      "value": "0x00",
+      "set_value": {
+        "min": "0",
+        "max": "255",
+        "unit": "s"
+      }
+    },
+    {
+      "name": "fault_indicator_lamp",
+      "block": "0x00",
+      "byte": "0x33",
+      "value": "0x00",
+      "set_value": {
+        "min": "0",
+        "max": "255",
+        "unit": "s"
+      }
+    },
+    {
+      "name": "reset_adaptation",
+      "block": "0x01",
+      "byte": "0x00",
+      "value": "0x00"
+    }	
+  ]
+}
