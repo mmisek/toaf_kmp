@@ -1,8 +1,8 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
-val versionCode = 103
-val versionName = "1.0.3"
+val appVersionCode = 105
+val appVersionName = "1.0.5"
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
@@ -85,8 +85,9 @@ android {
     defaultConfig {
         applicationId = "pl.misek.toafmobile"
         minSdk = 24
-        versionCode = versionCode
-        versionName = versionName
+        targetSdk = 35
+        versionCode = appVersionCode
+        versionName = appVersionName
     }
     packaging {
         resources {
@@ -95,7 +96,12 @@ android {
     }
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-android.pro"
+            )
         }
     }
     compileOptions {
@@ -122,8 +128,8 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Rpm, TargetFormat.Msi, TargetFormat.Exe, TargetFormat.Deb, TargetFormat.Pkg)
             packageName = "Toaf Desktop"
-            version = versionName
-            packageVersion = versionName
+            version = appVersionName
+            packageVersion = appVersionName
             linux {
                 appCategory = "Utility"
                 menuGroup = "Utility"
@@ -150,8 +156,8 @@ compose.desktop {
 buildkonfig {
     packageName = "pl.misek.toafmobile"
     defaultConfigs {
-        buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.INT, "VERSION_CODE", versionCode.toString())
-        buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "VERSION_NAME", versionName)
+        buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.INT, "VERSION_CODE", appVersionCode.toString())
+        buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "VERSION_NAME", appVersionName)
     }
 }
 aboutLibraries {

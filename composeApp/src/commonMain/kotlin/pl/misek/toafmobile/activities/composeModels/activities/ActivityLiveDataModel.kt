@@ -40,6 +40,8 @@ import com.patrykandpatrick.vico.compose.cartesian.axis.HorizontalAxis
 import com.patrykandpatrick.vico.compose.cartesian.axis.VerticalAxis
 import com.patrykandpatrick.vico.compose.cartesian.axis.rememberAxisGuidelineComponent
 import com.patrykandpatrick.vico.compose.cartesian.data.CartesianChartModelProducer
+import com.patrykandpatrick.vico.compose.cartesian.data.LineCartesianLayerModel
+import com.patrykandpatrick.vico.compose.cartesian.data.lineModel
 import com.patrykandpatrick.vico.compose.cartesian.data.lineSeries
 import com.patrykandpatrick.vico.compose.cartesian.layer.LineCartesianLayer
 import com.patrykandpatrick.vico.compose.cartesian.layer.rememberLine
@@ -288,13 +290,12 @@ private fun LivaDataChart(liveDataElements: List<List<Float>>)
         val lines = getLineSeries(liveDataElements.size)
         val modelProducer = remember { CartesianChartModelProducer() }
         LaunchedEffect(liveDataElements) {
+            val validateSeries = liveDataElements.filter { it.isNotEmpty() }
             if (liveDataElements.isNotEmpty()) {
                 withContext(Dispatchers.Default)
                 {
                     modelProducer.runTransaction {
-                        lineSeries {
-                            liveDataElements.forEach { data -> series(data) }
-                        }
+                        lineModel { validateSeries.forEach { data -> series(data) } }
                     }
                 }
             }

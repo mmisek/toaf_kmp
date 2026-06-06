@@ -4,6 +4,7 @@ import android.app.Application
 import co.touchlab.kermit.Logger
 import com.google.android.gms.ads.MobileAds
 import io.sentry.Sentry
+import io.sentry.SentryOptions
 import io.sentry.android.core.SentryAndroid
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -25,6 +26,12 @@ class ToafApplication : Application() {
             options.tracesSampleRate = 1.0
             options.isDebug = false
             options.isAnrEnabled = true
+            options.beforeSend = SentryOptions.BeforeSendCallback{event, _ ->
+                event.setTag("APP_VERSION_CODE", BuildKonfig.VERSION_CODE.toString())
+                event.setTag("APP_VERSION_NAME", BuildKonfig.VERSION_NAME)
+                event.setTag("APP_PLATFORM", getPlatformName())
+                event
+            }
         }
         MobileAds.initialize(this) {initializationStatus ->
             Logger.i {"MobileAds : ${initializationStatus.adapterStatusMap}"}

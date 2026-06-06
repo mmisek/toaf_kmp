@@ -271,11 +271,11 @@ class AndroidToafBilling (context: Context, private val database : Database, pri
         val params = QueryProductDetailsParams.newBuilder()
             .setProductList(productList)
             .build()
-        billingClient?.queryProductDetailsAsync(params) { billingResult, productList ->
+        billingClient?.queryProductDetailsAsync(params) { billingResult, queryResult ->
             if (billingResult.responseCode == BillingClient.BillingResponseCode.OK)
             {
-                productDetailsList = productList.productDetailsList
-                productsPrices = productList.productDetailsList.associate { details->
+                productDetailsList = queryResult.productDetailsList
+                productsPrices = queryResult.productDetailsList.associate { details->
                     val price = details.oneTimePurchaseOfferDetails?.formattedPrice ?: "---"
                     Log.d(tag,"queryProductDetailsAsync ${details.productId} : $price")
                     details.productId to price

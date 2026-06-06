@@ -42,7 +42,12 @@ class AndroidUsbBroadcastHandler(private var context : Context) : IUsbBroadcastH
                     UsbManager.ACTION_USB_DEVICE_DETACHED -> {
                         val device = IntentCompat.getParcelableExtra<UsbDevice>(intent,UsbManager.EXTRA_DEVICE,UsbDevice::class.java)
                         device?.let {
-                            trySend(UsbEvent.Detached(device.getUsbDeviceInfo()))
+                            try {
+                                trySend(UsbEvent.Detached(device.getUsbDeviceInfo()))
+                            } catch ( ex : Exception)
+                            {
+                                Logger.w { "$tag : UsbManager.ACTION_USB_DEVICE_DETACHED Error , ${ex.message}" }
+                            }
                         }
                     }
                     actionUsbPermission ->{
@@ -78,13 +83,36 @@ class AndroidUsbBroadcastHandler(private var context : Context) : IUsbBroadcastH
 
     fun UsbDevice.getUsbDeviceInfo() : UsbDeviceInfo
     {
+        val serial = try {
+            this.serialNumber
+        } catch (e: Exception)
+        {
+            Logger.w { "$tag : No permission to read serial number for ${this.deviceName}"}
+            ""
+        }
+
+        val manufacturerName = try {
+            this.manufacturerName
+        } catch (e: Exception)
+        {
+            Logger.w { "$tag : No permission to read manufacturerName for ${this.deviceName}"}
+            ""
+        }
+
+        val version = try {
+            this.manufacturerName
+        } catch (e: Exception)
+        {
+            Logger.w { "$tag : No permission to read verison for ${this.deviceName}"}
+            ""
+        }
         return UsbDeviceInfo(
-            serialNumber = this.serialNumber,
+            serialNumber = serial,
             name = this.deviceName,
             productId = this.productId.toString(),
             vendorID = this.vendorId.toString(),
-            manufacturer = this.manufacturerName,
-            version = this.version
+            manufacturer = manufacturerName,
+            version = version
         )
     }
 

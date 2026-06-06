@@ -1,3 +1,3 @@
 package pl.misek.toafmobile.tools
 
-actual fun isDebug() = true
+actual fun isDebug() = false
