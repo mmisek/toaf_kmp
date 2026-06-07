@@ -10,7 +10,7 @@ import pl.misek.toafmobile.interfaces.IKWPInterfaceDevice
 class ProtocolDS2(private var device: IInterfaceDevice?) : IProtocol {
     private val tag = "ProtocolDS2"
     private var useDelay: Boolean = false
-
+    private var currentBaudRate = 9600
     fun disconnect() {
         device?.disconnect()
     }
@@ -33,7 +33,7 @@ class ProtocolDS2(private var device: IInterfaceDevice?) : IProtocol {
         data: ByteArray,
         readTimeout: Long?
     ): OBDMessage {
-        if (device is IKWPInterfaceDevice) {
+        if (device is IKWPInterfaceDevice && currentBaudRate == 9600) {
             (device as IKWPInterfaceDevice).setDS2Device()
         }
 
@@ -101,6 +101,10 @@ class ProtocolDS2(private var device: IInterfaceDevice?) : IProtocol {
     }
 
     override fun setSpeed(baud: Int) {
+        if (device is IKWPInterfaceDevice) {
+            (device as IKWPInterfaceDevice).setBaudrate(baud)
+            currentBaudRate = baud
+        }
     }
 
     override fun setDevice(newDevice: IInterfaceDevice?) {

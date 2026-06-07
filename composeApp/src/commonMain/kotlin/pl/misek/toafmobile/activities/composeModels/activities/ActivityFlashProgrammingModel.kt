@@ -104,6 +104,8 @@ fun ActivityFlashProgrammingModel(moduleKoinName: KoinNames, onBackClick : () ->
             is FlashProgrammingState.Message -> {
                 if (state.message is String)
                     statusText += state.message + "\n"
+                else if (state.message is StringResource)
+                    statusText += getString(state.message) + "\n"
             }
             is FlashProgrammingState.MessageWithParameter -> {
                 val param = when (val v = state.parameter)

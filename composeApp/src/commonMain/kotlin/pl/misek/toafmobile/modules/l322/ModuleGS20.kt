@@ -1,7 +1,10 @@
 package pl.misek.toafmobile.modules.l322
 
 import co.touchlab.kermit.Logger
+import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.generated.ResourceHelper
 import pl.misek.toafmobile.generated.ResourceMapper
@@ -13,15 +16,23 @@ import pl.misek.toafmobile.modules.ModuleInfo
 import pl.misek.toafmobile.modules.ModulesFunction
 import pl.misek.toafmobile.modules.containers.GS20FreezeFrameData
 import pl.misek.toafmobile.modules.enums.CarType
+import pl.misek.toafmobile.modules.enums.FlashProgrammingState
 import pl.misek.toafmobile.modules.enums.ModuleAddress
+import pl.misek.toafmobile.modules.interfaces.IModuleFlashProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
+import java.util.Calendar
 import java.util.Locale
 
-class ModuleGS20( protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleAddress.MODULE_GS20, listOf(CarType.L322)),IModuleLiveData {
+class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleAddress.MODULE_GS20, listOf(CarType.L322))
+    ,IModuleLiveData
+    , IModuleFlashProgramming
+{
     private var tag = "ModuleGS20"
+    private val _programmingState =  MutableSharedFlow<FlashProgrammingState>(replay = 10, extraBufferCapacity = 64, onBufferOverflow = BufferOverflow.DROP_OLDEST)
+    override val programmingState = _programmingState.asSharedFlow()
     private val booleanMap: Map<Int, StringResource> = mapOf(
         0x00 to Res.string.coding_not_active,
         0x01 to Res.string.coding_active
@@ -176,7 +187,7 @@ class ModuleGS20( protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleAddr
 
     override suspend fun getIdentification(): ModuleInfo? {
         val mi = ModuleInfo()
-        val message = interfaceWrite(byteArrayOf(0x00))
+        val message = interfaceWrite(byteArrayOf(0x00),200)
         try {
             if (message.isValid) {
                 val answer = message.answer
@@ -341,5 +352,167 @@ class ModuleGS20( protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleAddr
             Logger.e {"$tag [getAllErrors], $ex, $message"}
         }
         return result
+    }
+    override suspend fun writeFlash(data: ByteArray) {
+        var blockSize = 0xF8
+        val steps = 0x3B
+        val startTime = Calendar.getInstance().time
+
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_start))
+        _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
+            Res.string.activity_flash_programming_file_size,
+            data.size.toString()))
+        if (data.size != 0x3FFE) {
+            _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_wrong_file_size))
+        } else {
+            _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_read_identification))
+            val moduleInfo = getIdentification()
+            val vin = getVIN()
+            if (moduleInfo != null) {
+                _programmingState.tryEmit(FlashProgrammingState.Message("ID1 : " + moduleInfo.id1))
+                _programmingState.tryEmit(FlashProgrammingState.Message("ID2 : " + moduleInfo.id2))
+            }
+            _programmingState.tryEmit(FlashProgrammingState.Message("VIN : $vin"))
+
+            var progress = 0
+            _programmingState.tryEmit(FlashProgrammingState.Progress(progress))
+            var x = 0xf8
+            while (x < 0x3928) {
+                /*
+                                    dataToWrite = data.copyOfRange(0x00, 0xF8)
+                                    if (writeFlashData(dataToWrite)) {
+                                        _programmingState.tryEmit(FlashProgrammingState.Progress(progress++ * 100 / steps))
+                                    } else {
+                                        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_write_error))
+                                    }
+                                }
+                */
+            }
+
+            val endTime = Calendar.getInstance().time
+            val totalMillis = endTime.time - startTime.time
+            val seconds = (totalMillis / 1000).toInt() % 60
+            val minutes = ((totalMillis / 1000).toInt() / 60) % 60
+            val hours = (totalMillis / 1000).toInt() / 3600
+            _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
+                Res.string.activity_flash_programming_write_time,
+                String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds)
+            ))
+            _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_ecu_reset))
+        }
+    }
+
+    override suspend fun readFlash() {
+        val startAddress: Long = 0x090000
+        val size: Long = 0x010000
+        var result = ByteArray(0)
+        val blockSize = 0x80
+        val endAddress = startAddress + size
+        val steps = size.toInt() / blockSize
+        val startTime = Calendar.getInstance().time
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_start))
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_read_identification))
+
+        val moduleInfo = getIdentification()
+        interfaceWrite(byteArrayOf(0x0D))
+        if (moduleInfo != null) {
+            _programmingState.tryEmit(FlashProgrammingState.Message("ID: ${moduleInfo.id1}"))
+        }
+        var x = 0f
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_flash_reading))
+        if (setEcuBaudRate(125000)) {
+            var i = startAddress
+            while (i < endAddress) {
+                _programmingState.tryEmit(FlashProgrammingState.Progress(((x++ * 100) / steps).toInt()))
+                val data = readFlashData(i, blockSize)
+                if (data.size == blockSize) {
+                    result += data
+                } else {
+                    _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_read_error))
+                    setEcuBaudRate(9600)
+                    return
+                }
+                i += blockSize.toLong()
+            }
+
+            val endTime = Calendar.getInstance().time
+            val totalMillis = endTime.time - startTime.time
+            val seconds = (totalMillis / 1000).toInt() % 60
+            val minutes = ((totalMillis / 1000).toInt() / 60) % 60
+            val hours = (totalMillis / 1000).toInt() / 3600
+
+            _programmingState.tryEmit(
+                FlashProgrammingState.MessageWithParameter(
+                    Res.string.activity_flash_programming_read_time,
+                    String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds)
+                )
+            )
+
+            _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_end))
+            _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_close))
+
+            try {
+                result = result.copyOfRange(0, (endAddress - startAddress).toInt())
+                _programmingState.tryEmit(
+                    FlashProgrammingState.FlashData(
+                        result.toList(),
+                        moduleInfo,
+                        ""
+                    )
+                )
+            } catch (ex: Exception) {
+                Logger.e { "$tag [readFlash]: ${ex.toString()}" }
+            }
+            setEcuBaudRate(9600)
+        }
+        else
+        {
+            _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_read_error))
+            setEcuBaudRate(9600)
+            return
+        }
+    }
+
+    private suspend fun readFlashData(address: Long, size: Int): ByteArray {
+        val message = interfaceWrite(
+            byteArrayOf(
+                0x06,
+                0x00,
+                ((address and 0xFF0000L) shr 16).toByte(),
+                ((address and 0x00FF00L) shr 8).toByte(),
+                ((address and 0x0000FFL)).toByte(),
+                ((size and 0xFF)).toByte()
+            )
+        )
+        var result = ByteArray(0)
+        if (message.isValid) {
+            try {
+                result = message.answer.copyOfRange(3, message.length - 1)
+            } catch (ex: Exception) {
+                Logger.e { "$tag [readFlash]: ${ex.toString()}, $message" }
+                return result
+            }
+        }
+        return result
+    }
+
+    private suspend fun writeFlashData(data: ByteArray): Boolean {
+        return false
+    }
+
+    private suspend fun setEcuBaudRate(baudRate : Long) : Boolean
+    {
+        if (protocolDS2 != null) {
+            val message = interfaceWrite(byteArrayOf(0x91.toByte(),
+                ((baudRate and 0xFF0000L) shr 16).toByte(),
+                ((baudRate and 0x00FF00L) shr 8).toByte(),
+                ((baudRate and 0x0000FFL)).toByte(),
+                0x01))
+            if (message.isValid) {
+                protocolDS2.setSpeed(baudRate.toInt())
+                return true
+            }
+        }
+        return false
     }
 }

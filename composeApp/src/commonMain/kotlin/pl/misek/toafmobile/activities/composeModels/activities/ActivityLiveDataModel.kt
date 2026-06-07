@@ -289,7 +289,7 @@ private fun LivaDataChart(liveDataElements: List<List<Float>>)
     if (liveDataElements.isNotEmpty()) {
         val lines = getLineSeries(liveDataElements.size)
         val modelProducer = remember { CartesianChartModelProducer() }
-        LaunchedEffect(liveDataElements) {
+        LaunchedEffect(liveDataElements, modelProducer) {
             val validateSeries = liveDataElements.filter { it.isNotEmpty() }
             if (liveDataElements.isNotEmpty()) {
                 withContext(Dispatchers.Default)
@@ -341,12 +341,14 @@ private fun LivaDataChart(liveDataElements: List<List<Float>>)
                 ),
             ),
             modelProducer = modelProducer,
+            zoomState =  rememberVicoZoomState(),
+                    /*
             zoomState = rememberVicoZoomState(
                 initialZoom = Zoom.Content,
                 zoomEnabled = true,
                 minZoom = Zoom.Content,
                 maxZoom = Zoom.fixed(50f)
-            ),
+            ),*/
             scrollState = rememberVicoScrollState(
                 scrollEnabled = true
             ),
