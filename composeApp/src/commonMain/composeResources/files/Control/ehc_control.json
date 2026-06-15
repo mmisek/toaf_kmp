@@ -2,80 +2,80 @@
     "elements": [
       {
         "name": "height_access",
-        "block": "0x01",
+        "block": "0x1C",
         "byte": "0x01",
         "value": "0x02"
       },
       {
         "name": "height_motorway",
-        "block": "0x01",
+        "block": "0x1C",
         "byte": "0x01",
         "value": "0x04"
       },
       {
         "name": "height_standard",
-        "block": "0x01",
+        "block": "0x1C",
         "byte": "0x01",
         "value": "0x08"
       },
       {
         "name": "height_offroad",
-        "block": "0x01",
+        "block": "0x1C",
         "byte": "0x01",
         "value": "0x10"
       },
       {
         "name": "mode_all_off",
-        "block": "0x00",
-        "byte": "0x01",
+        "block": "0x1C",
+        "byte": "0x00",
         "value": "0x00"
       },
       {
         "name": "mode_verbose",
-        "block": "0x00",
-        "byte": "0x01",
+        "block": "0x1C",
+        "byte": "0x00",
         "value": "0x01"
       },
       {
         "name": "mode_activation_lock",
-        "block": "0x00",
-        "byte": "0x01",
+        "block": "0x1C",
+        "byte": "0x00",
         "value": "0x02"
       },
       {
         "name": "mode_transport",
-        "block": "0x00",
-        "byte": "0x01",
+        "block": "0x1C",
+        "byte": "0x00",
         "value": "0x04"
       },
       {
         "name": "mode_very_tight_tolerances",
-        "block": "0x00",
-        "byte": "0x01",
+        "block": "0x1C",
+        "byte": "0x00",
         "value": "0x08"
       },
       {
         "name": "mode_emc_test",
-        "block": "0x00",
-        "byte": "0x01",
+        "block": "0x1C",
+        "byte": "0x00",
         "value": "0x10"
       },
       {
         "name": "mode_hand_control",
-        "block": "0x00",
-        "byte": "0x01",
+        "block": "0x1C",
+        "byte": "0x00",
         "value": "0x20"
       },
       {
         "name": "mode_laboratory_auto_test",
-        "block": "0x00",
-        "byte": "0x01",
+        "block": "0x1C",
+        "byte": "0x00",
         "value": "0x40"
       },
       {
         "name": "mode_no_response_to_user_request",
-        "block": "0x00",
-        "byte": "0x01",
+        "block": "0x1C",
+        "byte": "0x00",
         "value": "0x80"
       },
       {

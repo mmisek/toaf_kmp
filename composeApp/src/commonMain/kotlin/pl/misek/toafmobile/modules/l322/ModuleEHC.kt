@@ -1,6 +1,7 @@
 package pl.misek.toafmobile.modules.l322
 
 import co.touchlab.kermit.Logger
+import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceHelper
@@ -15,6 +16,7 @@ import pl.misek.toafmobile.modules.enums.EHCControlWheel
 import pl.misek.toafmobile.modules.enums.EHCControlWheelDirection
 import pl.misek.toafmobile.modules.enums.ModuleAddress
 import pl.misek.toafmobile.modules.interfaces.IModuleControl
+import pl.misek.toafmobile.modules.interfaces.IModuleEepromProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.protocols.ProtocolDS2
 import pl.misek.toafmobile.tools.JsonSupport
@@ -23,8 +25,11 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.measureTime
 
-class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddress.MODULE_EHC, listOf(CarType.L322)), IModuleLiveData,/* IModuleAdvanceControl,*/ IModuleControl
+class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddress.MODULE_EHC, listOf(CarType.L322)),
+    IModuleLiveData,/* IModuleAdvanceControl,*/ IModuleControl, IModuleEepromProgramming
 {
     private val tag = "ModuleEHC"
     private var controlFrontLeft: ControlElement? = null
@@ -33,9 +38,20 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
     private var controlRearRight: ControlElement? = null
     private var controlValveDrain: ControlElement? = null
     private var controlCompressorSwitch: ControlElement? = null
+    private val errorDetailsList = byteArrayOf(0x01, 0x02,0x03,0x04,0x07,0x08,0x0A, 0x0B,0x0C, 0x0D,0xFE.toByte())
 
     private suspend fun getControlElements()
     {
+        if (controlFrontLeft != null
+            || controlFrontRight != null
+            || controlRearLeft != null
+            || controlRearRight != null
+            || controlValveDrain != null
+            || controlCompressorSwitch != null)
+        {
+            return
+        }
+
         val controlElements = JsonSupport.getControlElements(getModuleName())
         if (controlElements != null) {
             controlFrontLeft = controlElements.stream()
@@ -90,30 +106,25 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean = true
 
     override suspend fun getAllErrors(): List<ModuleError>? {
+        val fakeAnswer = byteArrayOf(0xAC.toByte(), 0x13.toByte(), 0xA0.toByte(), 0x02.toByte(), 0x36.toByte(), 0x00.toByte(), 0x61.toByte(), 0x01.toByte(), 0x86.toByte(), 0x90.toByte(),
+            0x70.toByte(), 0x59.toByte(), 0x00.toByte(), 0x00.toByte(), 0x58.toByte(), 0x00.toByte(), 0xFE.toByte(), 0x00.toByte(), 0xD2.toByte(),
+            0xAC.toByte(), 0x05.toByte(), 0x04.toByte(), 0x00.toByte(), 0xAD.toByte(), 0xAC.toByte(), 0x07.toByte(), 0xA0.toByte(),
+            0x02.toByte(), 0x24.toByte(), 0x26.toByte(), 0x0B.toByte())
         var result: MutableList<ModuleError>? = null
-        var message = interfaceWrite(byteArrayOf(0x04, 0x00))
+        var message = interfaceWrite(byteArrayOf(0x04, 0x00),250)
         try {
-            if (message.isValid) {
+            //message.answer = fakeAnswer
+            if (message.isValid)
+            {
                 var index = 1
-                while (index < (message.answer[3].toInt() and 0xFF) + 1) {
-                    message = interfaceWrite(byteArrayOf(0x04, index.toByte()))
-                    if (message.isValid && (message.answer[3].toInt() and 0xFF) > 0) {
+                result = ArrayList()
+                repeat (message.answer[3].toInt() and 0xFF) {
+                    message = interfaceWrite(byteArrayOf(0x04, index.toByte()),250)
+                    index++
+                    if (message.isValid) {
                         val errorCode = String.format("%02X", message.answer[4])
                         val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
-                        val detailsList = byteArrayOf(
-                            0x01,
-                            0x02,
-                            0x03,
-                            0x04,
-                            0x07,
-                            0x08,
-                            0x0A,
-                            0x0B,
-                            0x0C,
-                            0x0D,
-                            0xFE.toByte()
-                        )
-                        for (b in detailsList) {
+                        for (b in errorDetailsList) {
                             if ((message.answer[6].toInt() and b.toInt()) == b.toInt()) {
                                 ResourceMapper
                                     .stringResource(String.format("ehc_error_detail_%02X", b))
@@ -217,7 +228,6 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
                                 (message.answer[16].toInt() and 0xFF)
                             )
                         )
-                        if (result == null) result = ArrayList()
                         result.add(
                             ModuleError(
                                 ModuleAddress.MODULE_EHC,
@@ -225,11 +235,9 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
                                 errorDescription
                             )
                         )
-                    } else {
-                        return result
                     }
-                    index++
                 }
+
             }
         } catch (ex : Exception)
         {
@@ -242,19 +250,32 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
 
     //override fun getAdvanceControlTitle(): String =  resources.getString(R.string.activity_control_ehc_calibration_tittle)
 
-    override suspend fun control(controlElement: ControlElement): Boolean {
+    override suspend fun control(controlElement: ControlElement): Boolean{
         val data: ByteArray
         getControlElements()
+        var result = false
         when (controlElement.block) {
-            0x00, 0x01 -> data = byteArrayOf(0x1C, 0x00, controlElement.value.toByte(), 0x00)
             0x02 -> {
                 data = byteArrayOf(0x0C, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00)
                 data[controlElement.byteInBlock + 2] = controlElement.value.toByte()
+                interfaceWrite(byteArrayOf(0x1C, 0x00, 0x20, 0x00),500)
+                result = interfaceWrite(data,500).isValid;
+                if (result)
+                {
+                    repeat(5)
+                    {
+                        interfaceWrite(byteArrayOf(0x9E.toByte()))
+                        delay(500.milliseconds)
+                    }
+                }
             }
-
-            else -> return false
+            0x1C -> {
+                data = byteArrayOf(0x1C, controlElement.byteInBlock.toByte(), controlElement.value.toByte(), 0x00)
+                result =  interfaceWrite(data,500).isValid
+            }
         }
-        return interfaceWrite(data).isValid
+
+        return result
     }
 
     suspend fun readAdjustmentData(): EHCAdjustmentData {
@@ -318,5 +339,80 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
 //}
 
         //return false;
+    }
+
+    override suspend fun readEeprom(address: Int, size: Int): ByteArray? {
+        val message = interfaceWrite(
+            byteArrayOf(
+                0x06,
+                0x00,
+                ((address and 0xFF0000) shr 16).toByte(),
+                ((address and 0x00FF00) shr 8).toByte(),
+                ((address and 0x0000FF)).toByte(),
+                size.toByte()
+            ),
+            250
+        )
+        return if (message.isValid) message.answer.copyOfRange(0x03, message.answer.size - 1) else null
+    }
+
+    override suspend fun writeEeprom(address: Int, data: ByteArray): Boolean {
+        val dataToWrite =
+            byteArrayOf(
+                0x07,
+                0x00,
+                ((address and 0xFF0000) shr 16).toByte(),
+                ((address and 0x00FF00) shr 8).toByte(),
+                ((address and 0x0000FF)).toByte(),
+                0x01) + data
+        return interfaceWrite(dataToWrite).isValid
+    }
+
+    override fun getEepromSize(): Int = 512
+
+    override fun getEepromReadSize() : Int = 16
+
+    override fun getEepromWriteSize(): Int = 1
+
+    private fun calculateKeyNormal(seed : Int) : Int
+    {
+        val hi =  (((seed and 0xFF00) shr 8) xor 0xFA) or 0x80
+        val low = (((seed and 0x00FF)) xor 0x23 ) or 0x80
+        return (hi shl 8) + low
+    }
+
+    private fun calculateKeyExpert(seed : Int) : Int
+    {
+        val hi =  (((seed and 0xFF00) shr 8) xor 0xAD) or 0x08
+        val low = (((seed and 0x00FF)) xor 0xDE ) or 0x08
+        return (hi shl 8) + low
+    }
+
+    suspend fun securityAccess(level : Int) : Boolean
+    {
+        val message = interfaceWrite(byteArrayOf(0x93.toByte(),level.toByte()))
+        if (!message.isValid)
+            return false
+        try {
+            val seed = ((message.answer[3].toInt() and 0xFF) shl 8) or (message.answer[4].toInt() and 0xFF)
+            val key = when (level) {
+                0 -> calculateKeyNormal(seed)
+                1 -> calculateKeyExpert(seed)
+                else -> return false
+            }
+            return interfaceWrite(byteArrayOf(0x94.toByte(), 0x00, (key shr 8).toByte(), (key and 0xFF).toByte())).isValid
+
+        } catch ( ex : Exception)
+        {
+            Logger.e {"$tag [securityAccess], $ex, $message"}
+            return false
+        }
+    }
+
+    override  suspend fun  beforeRead(){
+        securityAccess(1)
+    }
+    override suspend fun beforeWrite() {
+        securityAccess(1)
     }
 }

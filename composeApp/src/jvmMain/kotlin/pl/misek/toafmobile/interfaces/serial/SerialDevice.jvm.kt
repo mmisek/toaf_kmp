@@ -9,6 +9,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import pl.misek.toafmobile.interfaces.ISerialDevice
 import java.io.ByteArrayOutputStream
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.measureTime
 
 class DesktopSerialDevice : ISerialDevice
@@ -17,6 +18,7 @@ class DesktopSerialDevice : ISerialDevice
     private var fastInitSleep = 25
     private var _serialPort : SerialPort? = null
     private var _serialPortName = ""
+    private val repeatTimes = 5
 
     override suspend fun write(data: ByteArray?, forceAnswer: Boolean, useDelay: Boolean): ByteArray? {
         return write(data, 50, true, useDelay)
@@ -35,7 +37,7 @@ class DesktopSerialDevice : ISerialDevice
                     for (b in data) {
                         _serialPort!!.writeBytes(byteArrayOf(b), 1)
                         try {
-                            delay(4)
+                            delay(4.milliseconds)
                         } catch (ex: Exception) {
                             Logger.e{"$tag : ${ex.toString()}"}
                         }
@@ -46,20 +48,22 @@ class DesktopSerialDevice : ISerialDevice
                 Logger.e{"$tag : ${ex.toString()}"}
                 return@withContext null
             }
-            delay(timeout ?: 50)
+            delay((timeout ?: 100).milliseconds)
             if (forceAnswer) {
                 val outputStream = ByteArrayOutputStream()
                 var result: ByteArray?
                 val buffer = ByteArray(512)
                 try {
+                    var repeat = 0
                     val time = measureTime {
                         var n : Int
                         do {
                             n = _serialPort!!.readBytes(buffer, buffer.size)
                             if (n > 0)
                                 outputStream.write(buffer, 0, n)
-                            delay(5)
-                        } while (n > 0)
+                            delay(10.milliseconds)
+                            repeat++
+                        } while (repeat < repeatTimes)
                         result = outputStream.toByteArray()
                     }
                     Logger.i{"$tag : Reading Time : $time"}

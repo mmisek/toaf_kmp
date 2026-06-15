@@ -6,7 +6,10 @@ import co.touchlab.kermit.Logger
 import com.hoho.android.usbserial.driver.UsbSerialDriver
 import com.hoho.android.usbserial.driver.UsbSerialPort
 import com.hoho.android.usbserial.driver.UsbSerialProber
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 import pl.misek.toafmobile.interfaces.ISerialDevice
 import java.io.ByteArrayOutputStream
 import kotlin.time.measureTime
@@ -17,7 +20,7 @@ class AndroidSerialDevice (private val usbManager: UsbManager) : ISerialDevice
     private var fastInitSleep = 25
     private var _connection: UsbDeviceConnection? = null
     private var _serialPort: UsbSerialPort? = null
-
+    private val _repeatTimes = 5
     override suspend fun write(data: ByteArray?, forceAnswer: Boolean, useDelay: Boolean): ByteArray? {
         return write(data, 250, true, useDelay)
     }
@@ -27,58 +30,68 @@ class AndroidSerialDevice (private val usbManager: UsbManager) : ISerialDevice
         timeout: Long?,
         forceAnswer: Boolean,
         useDelay: Boolean
-    ): ByteArray? {
-        if (_serialPort == null) connect("")
-        if (_serialPort != null && _serialPort!!.isOpen) {
+    ): ByteArray? = withContext(Dispatchers.IO) {
+        if (_serialPort == null)
+            connect("")
+        val port = _serialPort?.takeIf {it.isOpen} ?: return@withContext null
+
+        try {
+            port.purgeHwBuffers(true, true)
+        }
+        catch (ex: UnsupportedOperationException) {
+        } catch (ex: Exception) {
+            Logger.e { "$tag : purge before write: $ex" }
+        }
+        try {
+            if (useDelay && data != null) {
+                for (b in data) {
+                    port.write(byteArrayOf(b), 10)
+                    delay(4)
+                }
+            } else
+                port.write(data, timeout?.toInt() ?: 0)
+        } catch (ex: CancellationException) {
+            throw ex
+        }
+        catch (ex: Exception) {
+            Logger.e{"$tag : write error : ${ex.toString()}"}
+            return@withContext null
+        }
+        delay(timeout ?: 250)
+        if (forceAnswer) {
+            val outputStream = ByteArrayOutputStream()
+            var result: ByteArray?
+            val buffer = ByteArray(512)
+            var n : Int
             try {
-                if (useDelay && data != null) {
-                    for (b in data) {
-                        _serialPort?.write(byteArrayOf(b), 10)
-                        try {
-                            delay(4)
-                        } catch (ex: Exception) {
-                            Logger.e{"$tag : ${ex.toString()}"}
-                        }
-                    }
-                } else
-                    _serialPort?.write(data, timeout?.toInt() ?: 0)
+                var repeat = 0
+                val time = measureTime {
+                    do {
+                        n = port.read(buffer,buffer.size, 100)
+                        if (n > 0)
+                            outputStream.write(buffer, 0, n)
+                        delay(10)
+                        repeat++
+                    } while (repeat < _repeatTimes)
+                    result = outputStream.toByteArray()
+                }
+                Logger.i{"$tag : Reading Time : $time"}
             } catch (ex: Exception) {
                 Logger.e{"$tag : ${ex.toString()}"}
-                return null
+                result = null
             }
-            delay(25)
-            if (forceAnswer) {
-                val outputStream = ByteArrayOutputStream()
-                var result: ByteArray?
-                val buffer = ByteArray(512)
-                var n : Int
-                try {
-                    val time = measureTime {
-                        do {
-                            n = _serialPort?.read(buffer, 25) ?: 0
-                            if (n > 0)
-                                outputStream.write(buffer, 0, n)
-                            delay(5)
-                        } while (n > 0)
-                        result = outputStream.toByteArray()
-                    }
-                    Logger.i{"$tag : Reading Time : $time"}
-                } catch (ex: Exception) {
-                    Logger.e{"$tag : ${ex.toString()}"}
-                    result = null
-                }
-                return result
-            } else {
-                try {
-                    _serialPort?.purgeHwBuffers(true, true)
-                } catch (ex: Exception) {
-                    Logger.e{"$tag : ${ex.toString()}"}
-                }
+            return@withContext result
+        } else {
+            try {
+                port.purgeHwBuffers(true, true)
             }
+            catch (ex: UnsupportedOperationException) {
+            } catch (ex: Exception) {
+                Logger.e{"$tag : ${ex.toString()}"}
+            }
+        }
 
-            return null
-        }else
-            return null
+        return@withContext null
     }
 
     override fun disconnect() {

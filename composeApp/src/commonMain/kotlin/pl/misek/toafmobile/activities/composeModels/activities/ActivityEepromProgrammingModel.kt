@@ -94,10 +94,11 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
                     currentModule.getIdentification()
                 }
                 if (moduleIdentification != null) {
+                    eepromModule.beforeWrite()
                     statusText += "\nID: " + moduleIdentification!!.id1
                     var currentTry = 0
                     val maxTry = 3
-                    var i = 0;
+                    var i = 0
                     while (i < eepromSize) {
                         val data = fileData.copyOfRange(i, i + bytesToWrite)
                         val success =
@@ -193,6 +194,7 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
                             moduleIdentification = withContext(Dispatchers.IO){
                                 currentModule.getIdentification()}
                             if (moduleIdentification != null) {
+                                eepromModule.beforeRead()
                                 statusText += "\nID: " + moduleIdentification!!.id1
                                 var i = 0
                                 do

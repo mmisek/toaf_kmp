@@ -37,7 +37,7 @@ open class ModuleDS2(
         TODO("Not yet implemented")
     }
     override suspend fun getIdentification(): ModuleInfo? {
-        val mi = interfaceWrite(byteArrayOf(0x00)).let { ModulesFunction.getModuleInfo(it) }
+        val mi = interfaceWrite(byteArrayOf(0x00),250).let { ModulesFunction.getModuleInfo(it) }
         if (mi != null && mi.ci == "") {
             reset()
             delay(1000)

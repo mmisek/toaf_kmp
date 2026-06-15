@@ -28,6 +28,7 @@ import pl.misek.toafmobile.billing.StripeSession
 import pl.misek.toafmobile.billing.StripeSessionResponse
 import pl.misek.toafmobile.database.Database
 import pl.misek.toafmobile.getPlatformName
+import java.net.UnknownHostException
 import java.util.Currency
 import java.util.Locale
 
@@ -48,8 +49,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 ServerConnectionState.CONNECTED
             else
                 ServerConnectionState.DISCONNECTED
+        }  catch (ex: UnknownHostException) {
+            ServerConnectionState.DISCONNECTED
         } catch (ex: HttpRequestTimeoutException) {
-            throw ex
+            ServerConnectionState.DISCONNECTED
         } catch (ex: Exception) {
             Logger.withTag(tag).e(ex) { "[loginUser]: ${ex.message}" }
             ServerConnectionState.DISCONNECTED
@@ -71,8 +74,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 Logger.i { "$tag: ${result.bodyAsText()}" }
                 null
             }
+        }  catch (ex: UnknownHostException) {
+            null
         } catch (ex: HttpRequestTimeoutException) {
-            throw ex
+            null
         } catch (ex: Exception) {
             Logger.withTag(tag).e(ex) { "[getCoding]: ${ex.message}" }
             null
@@ -95,8 +100,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 Logger.i { "$tag: ${response.bodyAsText()}" }
                 null
             }
+        }  catch (ex: UnknownHostException) {
+            null
         } catch (ex: HttpRequestTimeoutException) {
-            throw ex
+            null
         } catch (ex: Exception) {
             Logger.withTag(tag).e(ex) { "[getCodingList]: ${ex.message}" }
             null
@@ -118,8 +125,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 Logger.i { "$tag: ${response.bodyAsText()}" }
                 false
             }
+        }  catch (ex: UnknownHostException) {
+            false
         } catch (ex: HttpRequestTimeoutException) {
-            throw ex
+            false
         } catch (ex: Exception) {
             Logger.withTag(tag).e(ex) { "[addCoding]: ${ex.message}" }
             false
@@ -138,8 +147,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 Logger.i { "$tag: ${response.bodyAsText()}" }
                 false
             }
+        }  catch (ex: UnknownHostException) {
+            false
         } catch (ex: HttpRequestTimeoutException) {
-            throw ex
+            false
         } catch (ex: Exception) {
             Logger.withTag(tag).e(ex) { "[deleteUser]: ${ex.message}" }
             false
@@ -161,8 +172,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 Logger.i { "$tag: ${response.bodyAsText()}" }
                 false
             }
+        }  catch (ex: UnknownHostException) {
+            false
         } catch (ex: HttpRequestTimeoutException) {
-            throw ex
+            false
         } catch (ex: Exception) {
             Logger.withTag(tag).e(ex) { "[addUser]: ${ex.message}" }
             false
@@ -183,8 +196,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 Logger.i { "$tag: ${response.bodyAsText()}" }
                 false
             }
+        }  catch (ex: UnknownHostException) {
+            false
         } catch (ex: HttpRequestTimeoutException) {
-            throw ex
+            false
         } catch (ex: Exception) {
             Logger.withTag(tag).e(ex) { "[userChangePass]: ${ex.message}" }
             false
@@ -208,8 +223,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 Logger.i { "$tag: ${response.bodyAsText()}" }
                 null
             }
+        }  catch (ex: UnknownHostException) {
+            null
         } catch (ex: HttpRequestTimeoutException) {
-            throw ex
+            null
         } catch (ex: Exception) {
             Logger.withTag(tag).e(ex) { "[getUserInfo]: ${ex.message}" }
             null
@@ -230,8 +247,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 Logger.i { "$tag: ${response.bodyAsText()}" }
                 false
             }
+        }  catch (ex: UnknownHostException) {
+            false
         } catch (ex: HttpRequestTimeoutException) {
-            throw ex
+            false
         } catch (ex: Exception) {
             Logger.withTag(tag).e(ex) { "[updateUserInfo]: ${ex.message}" }
             false
@@ -252,8 +271,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 Logger.i { "$tag: ${response.bodyAsText()}" }
                 false
             }
+        }  catch (ex: UnknownHostException) {
+            false
         } catch (ex: HttpRequestTimeoutException) {
-            throw ex
+            false
         } catch (ex: Exception) {
             Logger.withTag(tag).e(ex) { "[userAddPurchases]: ${ex.message}" }
             false
@@ -279,8 +300,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 Logger.i { "$tag: ${response.bodyAsText()}" }
                 false
             }
+        }  catch (ex: UnknownHostException) {
+            false
         } catch (ex: HttpRequestTimeoutException) {
-            throw ex
+            false
         } catch (ex: Exception) {
             Logger.withTag(tag).e(ex) { "[userConsumeBcuKey]: ${ex.message}" }
             false
@@ -314,8 +337,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 Logger.i { "$tag: ${response.bodyAsText()}" }
                 false
             }
+        }  catch (ex: UnknownHostException) {
+            false
         } catch (ex: HttpRequestTimeoutException) {
-            throw ex
+            false
         } catch (ex: Exception) {
             Logger.withTag(tag).e(ex) { "[uploadFlash]: ${ex.message}" }
             false
@@ -333,8 +358,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
             if (response.status == HttpStatusCode.OK)
                 response.body<ToafWifiUpdates>()
             else null
+        }  catch (ex: UnknownHostException) {
+            null
         } catch (ex: HttpRequestTimeoutException) {
-            throw ex
+            null
         } catch (ex: Exception) {
             Logger.withTag(tag).e(ex) { "[getToafWifiUpdates]: ${ex.message}" }
             null
@@ -352,8 +379,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
             if (response.status == HttpStatusCode.OK)
                 response.body<List<ToafWifiUpdateFiles?>>()
             else null
+        }  catch (ex: UnknownHostException) {
+            null
         } catch (ex: HttpRequestTimeoutException) {
-            throw ex
+            null
         } catch (ex: Exception) {
             Logger.withTag(tag).e(ex) { "[getToafWifiUpdateFiles]: ${ex.message}" }
             null
@@ -369,8 +398,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 setBody(data.toString())
             }
             response.status == HttpStatusCode.OK
+        }  catch (ex: UnknownHostException) {
+            false
         } catch (ex: HttpRequestTimeoutException) {
-            throw ex
+            false
         } catch (ex: Exception) {
             Logger.withTag(tag).e(ex) { "[setToafWifiUpdate]: ${ex.message}" }
             false
@@ -393,8 +424,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 return info.message
             }
             return null
+        }  catch (ex: UnknownHostException) {
+            null
         } catch (ex: HttpRequestTimeoutException) {
-            throw ex
+            null
         } catch (ex: Exception) {
             Logger.withTag(tag).e(ex) { "[checkToafVersion]: ${ex.message}" }
             null
@@ -428,8 +461,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 Logger.i { "$tag: ${response.bodyAsText()}" }
                 null
             }
+        }  catch (ex: UnknownHostException) {
+            null
         } catch (ex: HttpRequestTimeoutException) {
-            throw ex
+            null
         } catch (ex: Exception) {
             Logger.withTag(tag).e(ex) { "[getStripeProductInfo]: ${ex.message}" }
             null
@@ -455,8 +490,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 Logger.i { "$tag: ${response.bodyAsText()}" }
                 null
             }
+        }  catch (ex: UnknownHostException) {
+            null
         } catch (ex: HttpRequestTimeoutException) {
-            throw ex
+            null
         } catch (ex: Exception) {
             Logger.withTag(tag).e(ex) { "[createStripeCheckout]: ${ex.message}" }
             null
@@ -481,8 +518,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
                 Logger.i { "$tag : ${response.bodyAsText()}" }
                 false
             }
+        }  catch (ex: UnknownHostException) {
+            false
         } catch (ex: HttpRequestTimeoutException) {
-            throw ex
+            false
         } catch (ex: Exception) {
             Logger.withTag(tag).e(ex) { "[checkPurchase]: ${ex.message}" }
             false
@@ -495,8 +534,10 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
         return try {
             val response = client.post("$url/user/eka_codes/consume")
             response.status == HttpStatusCode.OK
+        }  catch (ex: UnknownHostException) {
+            false
         } catch (ex: HttpRequestTimeoutException) {
-            throw ex
+            false
         } catch (ex: Exception) {
             Logger.withTag(tag).e(ex) { "[consumeEkaCode]: ${ex.message}" }
             false

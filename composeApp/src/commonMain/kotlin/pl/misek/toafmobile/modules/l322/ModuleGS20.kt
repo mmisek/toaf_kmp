@@ -27,7 +27,7 @@ import java.util.Calendar
 import java.util.Locale
 
 class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleAddress.MODULE_GS20, listOf(CarType.L322))
-    ,IModuleLiveData
+    , IModuleLiveData
     , IModuleFlashProgramming
 {
     private var tag = "ModuleGS20"

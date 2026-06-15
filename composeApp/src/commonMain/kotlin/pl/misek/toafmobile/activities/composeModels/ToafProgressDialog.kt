@@ -25,6 +25,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import co.touchlab.kermit.Logger
 import io.sentry.kotlin.multiplatform.Sentry
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.StringResource
@@ -62,15 +63,17 @@ fun <T> ToafProgressDialog(
     val dialogShape = RoundedCornerShape(8.dp)
     LaunchedEffect(Unit) {
         try {
-            withContext(Dispatchers.IO) {
-                val result = action()
-                onSuccess(result)
+            val result = withContext(Dispatchers.IO) {
+                action()
             }
+            onSuccess(result)
 
-        } catch (ex : Exception)
+        }catch (ex : CancellationException)
         {
-            //Sentry.captureException(ex)
-            //Logger.e {"$tag : ${ex.toString()}"}
+            throw  ex
+        }
+        catch (ex : Exception)
+        {
             onError(ex)
         }
         finally {

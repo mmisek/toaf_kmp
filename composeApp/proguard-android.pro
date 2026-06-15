@@ -125,3 +125,12 @@
 # This is generated automatically by the Android Gradle plugin.
 -dontwarn java.awt.Desktop$Action
 -dontwarn java.awt.Desktop
+
+# Zachowaj wszystkie enumy w projekcie
+-keep enum pl.misek.toafmobile.** { *; }
+
+# Ogólna reguła dla wszystkich enumów (zabezpieczenie na przyszłość)
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}

@@ -1,8 +1,8 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
-val appVersionCode = 105
-val appVersionName = "1.0.5"
+val appVersionCode = 107
+val appVersionName = "1.0.7"
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
@@ -16,7 +16,7 @@ plugins {
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
     androidTarget {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_17)
@@ -144,6 +144,11 @@ compose.desktop {
                 iconFile.set(project.file("src/commonMain/composeResources/drawable/toaf_icon_windows.ico"))
                 upgradeUuid = "68d0ed02-7125-4d98-856c-5ef07c0ad3ef"
             }
+            modules(
+                "java.instrument",
+                "java.management",
+                "jdk.unsupported"
+            )
         }
         buildTypes.release.proguard{
             configurationFiles.from(project.file("proguard-desktop.pro"))

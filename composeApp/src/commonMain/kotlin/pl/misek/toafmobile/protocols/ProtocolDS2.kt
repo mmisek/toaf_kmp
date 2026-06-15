@@ -53,31 +53,37 @@ class ProtocolDS2(private var device: IInterfaceDevice?) : IProtocol {
         }
 
         message.wholeMessage = withContext(Dispatchers.IO) { device?.write(dataToSend, readTimeout, true, useDelay)}
+
         if (message.wholeMessage != null && message.wholeMessage!!.isNotEmpty()) {
-            val messageToLog =
-                message.message.joinToString(" ") { "[%02X]".format(it) } +
-                        " : " +
-                        message.wholeMessage!!.joinToString(" ") { "[%02X]".format(it) }
-            Logger.i{"$tag:  $messageToLog"}
-        }
+            try {
+                val messageToLog =
+                    message.message.joinToString(" ") { "[%02X]".format(it) } +
+                            " : " +
+                            message.answer.joinToString(" ") { "[%02X]".format(it) } + "" +
+                            "\n" +
+                            message.wholeMessage!!.joinToString(" ") { "[%02X]".format(it) }
+                Logger.i { "$tag:  $messageToLog" }
+                message.answer =
+                    message.wholeMessage!!.copyOfRange(dataToSend.size, message.wholeMessage!!.size)
+                message.length = message.answer.size
+                if (message.answer.isEmpty())
+                    return message
 
-        try {
-            message.answer =
-                message.wholeMessage!!.copyOfRange(dataToSend.size, message.wholeMessage!!.size)
-            message.length = message.answer.size
-            if (message.answer.isEmpty())
-                return message
-
-            message.answerCode = message.answer[2]
-            val checkSum = message.answer.dropLast(1)
-                .fold(0x00.toByte()) { acc, byte -> (acc.toInt() xor byte.toInt()).toByte() }
-            message.isValid =
-                (message.answer[message.answer.size - 1] == checkSum) && (message.answerCode == 0xA0.toByte())
-        } catch (_: Exception) {
-            message.answer = ByteArray(0)
-            message.length = 0
-            message.answerCode = 0x00.toByte()
-            message.isValid = false
+                message.answerCode = message.answer[2]
+                val checkSum = message.answer.dropLast(1)
+                    .fold(0x00.toByte()) { acc, byte -> (acc.toInt() xor byte.toInt()).toByte() }
+                message.isValid =
+                    (message.answer[message.answer.size - 1] == checkSum) && (message.answerCode == 0xA0.toByte())
+                Logger.i { "$tag : Message CS = ${message.answer[message.answer.size - 1]}" }
+                Logger.i { "$tag : Calculated CS = $checkSum" }
+                Logger.i { "$tag : AnswerCode = ${message.answerCode}" }
+                Logger.i { "$tag: Message Valid : ${message.isValid}" }
+            } catch (_: Exception) {
+                message.answer = ByteArray(0)
+                message.length = 0
+                message.answerCode = 0x00.toByte()
+                message.isValid = false
+            }
         }
         return message
     }

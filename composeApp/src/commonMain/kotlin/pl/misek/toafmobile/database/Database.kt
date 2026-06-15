@@ -52,7 +52,11 @@ class Database(private val dao : ToafDao) {
 
     suspend fun updateStringSettingByName(name: String, value: String?): Boolean {
         return withContext(Dispatchers.IO) {
-            val settings = dao.getSettings() ?: return@withContext false
+            val settings = dao.getSettings() ?: run {
+                val newSettings = SettingsEntity()
+                dao.insertSettings(newSettings)
+                dao.getSettings() ?: return@withContext false
+            }
 
             var changed = true
             when (name) {

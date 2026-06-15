@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="module_description_gs8601">Gearbox - GS8.60.1 (ZF)</string>
-    <!-- GS8601 live data parameter names -->
+
     <string name="gs8601_live_data_engine_speed">Engine speed</string>
     <string name="gs8601_live_data_torque_converter_turbine_speed">Torque converter turbine speed</string>
     <string name="gs8601_live_data_output_speed">Output shaft speed</string>
@@ -48,7 +48,6 @@
     <string name="gs8601_live_data_gearbox_selector">Gear selector position</string>
     <string name="gs8601_live_data_selector_lever_position">Selector lever position</string>
  
-    <!-- GS8601 live data values -->
     <string name="gs8601_live_data_value_M">Manual</string>
     <string name="gs8601_live_data_value_S_M">Sport / Manual</string>
     <string name="gs8601_live_data_value_A">Automatic</string>
@@ -181,5 +180,4 @@
     <string name="gs8601_control_programme_display">Shift programme display</string>
     <string name="gs8601_control_fault_indicator_lamp">Fault indicator lamp</string>
     <string name="gs8601_control_reset_adaptation">Reset adaptation</string>
-	
 </resources>

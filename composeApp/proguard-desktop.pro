@@ -157,3 +157,12 @@
 -keepclassmembers class * {
     static <fields>;
 }
+
+# Zachowaj wszystkie enumy w projekcie
+-keep enum pl.misek.toafmobile.** { *; }
+
+# Ogólna reguła dla wszystkich enumów (zabezpieczenie na przyszłość)
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}

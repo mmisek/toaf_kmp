@@ -448,12 +448,13 @@ class ModuleGS8601(protocolDS2: ProtocolDS2?) :
 
         _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_end))
         _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_close))
-
-        try {
-            result = result.copyOfRange(0, (endAddress - startAddress).toInt())
-            _programmingState.tryEmit(FlashProgrammingState.FlashData(result.toList(),moduleInfo,vin))
-        } catch (ex: Exception) {
-            Logger.e{"${tag} [readFlash]: ${ex.toString()}"}
+        if (result.size.toLong() == size) {
+            try {
+                result = result.copyOfRange(0, (endAddress - startAddress).toInt())
+                _programmingState.tryEmit(FlashProgrammingState.FlashData(result.toList(), moduleInfo, vin))
+            } catch (ex: Exception) {
+                Logger.e { "$tag [readFlash]: ${ex.toString()}" }
+            }
         }
     }
 
@@ -470,11 +471,13 @@ class ModuleGS8601(protocolDS2: ProtocolDS2?) :
             50
         )
         var result = ByteArray(0)
-        try {
-            result = message.answer.copyOfRange(3, message.length - 1)
-        } catch (ex : Exception) {
-            Logger.e{"$tag [readFlash]: ${ex.toString()}, $message"}
-            return result
+        if (message.isValid) {
+            try {
+                result = message.answer.copyOfRange(3, message.length - 1)
+            } catch (ex: Exception) {
+                Logger.e { "$tag [readFlashData]: ${ex.toString()}, $message" }
+                return result
+            }
         }
         return result
     }
