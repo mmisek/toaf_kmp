@@ -2,6 +2,7 @@ package pl.misek.toafmobile.modules.enums
 
 enum class ModuleAddress(val address: Byte, val moduleName: String, val showName: String) {
     MODULE_DDE(0x12.toByte(), "dde", "DDE"),
+    MODULE_ME72(0x12.toByte(), "me72", "ME7.2"),
     MODULE_EMS(0x13.toByte(), "ems", "EMS"),
     MODULE_MEMS(0x13.toByte(), "mems", "MEMS"),
     MODULE_EDC15(0x13.toByte(), "edc15", "EDC15"),

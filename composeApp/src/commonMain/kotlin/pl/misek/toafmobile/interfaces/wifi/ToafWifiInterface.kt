@@ -23,6 +23,7 @@ import java.io.OutputStream
 import java.net.InetSocketAddress
 import java.net.Socket
 import java.net.SocketTimeoutException
+import kotlin.time.Duration.Companion.milliseconds
 
 class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
     private var tag = "ToafWifiIInterface"
@@ -263,7 +264,7 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
                 outputStream?.write(jsonData.toString().toByteArray())
                 outputStream?.flush()
             }
-            delay(20)
+            delay(20.milliseconds)
             val jsonObject = listener() ?: return@withContext null
             val msg = jsonObject["message"]?.jsonPrimitive?.content
             if (msg == message)
@@ -321,14 +322,19 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
             val bytesRead = inputStream?.read(buffer) ?: -1
             if (bytesRead <=0) return@withContext null
             collector.write(buffer,0,bytesRead)
-            delay(20)
-            while ((inputStream?.available() ?: 0) > 0) {
+            delay(20.milliseconds)
+            val maxRepeat = 5
+            var repeat = 0
+
+            do{
                 val additionalBytes = inputStream?.read(buffer) ?: -1
                 if (additionalBytes > 0) {
                     collector.write(buffer, 0, additionalBytes)
                 }
-                delay(20)
-            }
+                delay(20.milliseconds)
+                repeat++
+            } while (repeat < maxRepeat)
+
             val rawResponse = collector.toString("UTF-8").trim()
             Logger.i{"$tag [rawResponse]: $rawResponse"}
             if (rawResponse.isEmpty()) return@withContext null
