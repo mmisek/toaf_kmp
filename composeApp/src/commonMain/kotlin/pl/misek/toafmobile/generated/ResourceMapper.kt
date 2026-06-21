@@ -37,6 +37,7 @@ object ResourceMapper {
            "lcm" -> ResourceMapperLcm.stringResource(resourceName)
            "lcml322" -> ResourceMapperLcmL322.stringResource(resourceName)
            "lws" -> ResourceMapperLws.stringResource(resourceName)
+           "me72" -> ResourceMapperMe72.stringResource(resourceName)
            "mems" -> ResourceMapperMems.stringResource(resourceName)
            "mfl" -> ResourceMapperMfl.stringResource(resourceName)
            "navmk3" -> ResourceMapperNavmk3.stringResource(resourceName)
