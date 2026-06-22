@@ -4,8 +4,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.AlertDialog
@@ -16,6 +18,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,7 +42,7 @@ object DialogShowErrors {
     fun ShowErrors(errors : List<ModuleError>?, onClose : () -> Unit, onDeleteErrors: () -> Unit, onShare : (data : String) -> Unit)
     {
         var expandId by remember { mutableIntStateOf(-1) }
-        val errorsString = ErrorsToString(errors)
+        val errorsString = errorsToString(errors)
         AlertDialog(
             shape = toafShape,
             modifier = Modifier.border(
@@ -65,45 +68,53 @@ object DialogShowErrors {
                 }
             },
             text = {
-                LazyColumn(
+                Column(
                     modifier = Modifier
-                        .padding(1.dp)
                         .fillMaxWidth()
-                        .height(300.dp)
                         .background(ToafColors.toafBackground)
-                ) {
-                    items(errors!!.size) { index ->
-                        ErrorItem(
-                            moduleError = errors[index],
-                            showDetails = expandId == index,
-                            id = index,
-                            onItemClick = { index ->
-                                expandId = if (expandId == index) -1 else index
-                            })
+                )
+                {
+                    LazyColumn(
+                        modifier = Modifier
+                            .padding(1.dp)
+                            .fillMaxWidth()
+                            .weight(1f,fill = false)
+                            .background(ToafColors.toafBackground)
+                    ) {
+                        items(errors!!.size) { index ->
+                            ErrorItem(
+                                moduleError = errors[index],
+                                showDetails = expandId == index,
+                                id = index,
+                                onItemClick = { index ->
+                                    expandId = if (expandId == index) -1 else index
+                                })
+                        }
                     }
+                    Spacer(modifier = Modifier.fillMaxWidth().height(20.dp))
+                    ToafButtons.GreenButton(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(2.dp),
+                        buttonText = Res.string.alert_dialog_errors_button_share,
+                        onClick = { onShare(errorsString) })
+                    ToafButtons.GreenButton(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(2.dp),
+                        buttonText = Res.string.alert_module_info_close,
+                        onClick = {onClose()})
+                    ToafButtons.RedButton(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(2.dp),
+                        buttonText = Res.string.module_error_clear,
+                        onClick = { onDeleteErrors() })
                 }
-                ToafButtons.GreenButton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(2.dp),
-                    buttonText = Res.string.alert_dialog_errors_button_share,
-                    onClick = {onShare(errorsString)})
             },
             confirmButton = {
-                ToafButtons.GreenButton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(2.dp),
-                    buttonText = Res.string.alert_module_info_close,
-                    onClick = {onClose()})
             },
             dismissButton = {
-                ToafButtons.RedButton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(2.dp),
-                    buttonText = Res.string.module_error_clear,
-                    onClick = { onDeleteErrors() })
             }
         )
     }
@@ -135,7 +146,7 @@ fun ErrorItem(moduleError: ModuleError, showDetails : Boolean, id :Int, onItemCl
                             .fillMaxWidth(),
                         color = ToafColors.toafTextColorWhite,
                         fontSize = 10.sp,
-                        text = DetailsToString(moduleError)
+                        text = detailsToString(moduleError)
                     )
                 }
             }
@@ -143,7 +154,7 @@ fun ErrorItem(moduleError: ModuleError, showDetails : Boolean, id :Int, onItemCl
 }
 
 @Composable
-fun DetailsToString(error : ModuleError) : String{
+fun detailsToString(error : ModuleError) : String{
     val sb = StringBuilder()
     for (detail in error.details) {
         val param = when (val v = detail.second) {
@@ -165,12 +176,12 @@ fun DetailsToString(error : ModuleError) : String{
 }
 
 @Composable
-fun ErrorsToString(errors : List<ModuleError>?): String {
+fun errorsToString(errors : List<ModuleError>?): String {
     if (errors != null) {
         val sb = StringBuilder()
-        sb.append(stringResource(if (getPlatformType() == PlatformType.Android) Res.string.app_name_mobile else Res.string.app_name_desktop) + BuildKonfig.VERSION_NAME)
+        sb.append(stringResource(if (getPlatformType() == PlatformType.Android) Res.string.app_name_mobile else Res.string.app_name_desktop)).append(" ").append(BuildKonfig.VERSION_NAME).append("\n")
         for (error in errors) {
-            sb.append("------------------")
+            sb.append("------------------\n")
             sb.append(error.code.uppercase() + " - " + error.description?.let { stringResource(it) })
             sb.append(DetailsToString(error))
         }

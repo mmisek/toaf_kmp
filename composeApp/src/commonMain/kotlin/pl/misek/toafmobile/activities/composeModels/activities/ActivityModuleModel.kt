@@ -19,6 +19,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
+import pl.misek.toafmobile.PlatformType
 import pl.misek.toafmobile.activities.composeModels.ActionTypeEnum
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.ToafProgressDialog
@@ -27,6 +28,7 @@ import pl.misek.toafmobile.activities.composeModels.dialogs.DialogShowErrors
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogShowIdentification.ShowIdentification
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import pl.misek.toafmobile.activities.snackbar.ToafSnackBarHost
+import pl.misek.toafmobile.getPlatformType
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.ModuleInfo
@@ -67,12 +69,12 @@ fun ActivityModuleModel(
     var action by remember { mutableStateOf<suspend () -> Any?>({ null }) }
     var actionType by remember {mutableStateOf (ActionTypeEnum.None)}
     val shareHandler = rememberShareHandler()
-    var showCopiedSnackbar by remember { mutableStateOf(false) }
     val moduleIdentificationFailText = stringResource(Res.string.alert_module_info_read_error)
     val moduleReadErrorFailText = stringResource(Res.string.message_errors_read_failure)
     val moduleHasNoErrorsText = stringResource(Res.string.message_errors_no_errors)
     val moduleErrorClearSuccessText = stringResource(Res.string.message_errors_cleared)
     val moduleErrorClearFailText = stringResource(Res.string.message_errors_clear_failure)
+    val dataCopiedToClipboard = stringResource(Res.string.data_copied_to_clipboard)
     Scaffold(
         modifier = Modifier
             .padding(all = 0.dp)
@@ -135,6 +137,17 @@ fun ActivityModuleModel(
                                     )
                                     if (isSuccess)
                                         showModuleErrors = false
+                                }
+                                ActionTypeEnum.DataCopiedToClipboard -> {
+                                    if (getPlatformType() == PlatformType.Desktop) {
+                                        showResult(
+                                            scope,
+                                            snackBarHostState,
+                                            true,
+                                            dataCopiedToClipboard,
+                                            null
+                                        )
+                                    }
                                 }
                                 else -> {}
                             }
@@ -238,6 +251,8 @@ fun ActivityModuleModel(
                             showProgressDialog = true
                         },
                         onShare = { data ->
+                            actionType = ActionTypeEnum.DataCopiedToClipboard
+                            action = { }
                             shareHandler.shareMessage(data)
                         }
                     )

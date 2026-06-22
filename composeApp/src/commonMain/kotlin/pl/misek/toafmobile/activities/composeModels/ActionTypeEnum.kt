@@ -19,5 +19,6 @@ enum class ActionTypeEnum {
     ReadCodingBackup,
     SaveCodingBackup,
     BuyElement,
-    CheckingPurchase
+    CheckingPurchase,
+    DataCopiedToClipboard
 }
