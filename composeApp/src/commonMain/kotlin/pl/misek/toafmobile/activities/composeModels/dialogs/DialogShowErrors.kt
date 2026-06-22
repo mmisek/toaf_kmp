@@ -21,9 +21,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.stringResource
+import pl.misek.toafmobile.BuildKonfig
+import pl.misek.toafmobile.PlatformType
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
 import pl.misek.toafmobile.activities.definitions.ToafColors
+import pl.misek.toafmobile.getPlatformType
 import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.enums.ModuleAddress
 import toafmobile.composeapp.generated.resources.Res
@@ -33,9 +36,10 @@ import java.util.Locale
 private const val tag = "DialogShowErrors"
 object DialogShowErrors {
     @Composable
-    fun ShowErrors(errors : List<ModuleError>?, onClose : () -> Unit, onDeleteErrors: () -> Unit)
+    fun ShowErrors(errors : List<ModuleError>?, onClose : () -> Unit, onDeleteErrors: () -> Unit, onShare : (data : String) -> Unit)
     {
         var expandId by remember { mutableIntStateOf(-1) }
+        val errorsString = ErrorsToString(errors)
         AlertDialog(
             shape = toafShape,
             modifier = Modifier.border(
@@ -78,6 +82,12 @@ object DialogShowErrors {
                             })
                     }
                 }
+                ToafButtons.GreenButton(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(2.dp),
+                    buttonText = Res.string.alert_dialog_errors_button_share,
+                    onClick = {onShare(errorsString)})
             },
             confirmButton = {
                 ToafButtons.GreenButton(
@@ -98,27 +108,10 @@ object DialogShowErrors {
         )
     }
 }
+
 @Composable
 fun ErrorItem(moduleError: ModuleError, showDetails : Boolean, id :Int, onItemClick : (Int) -> Unit)
 {
-    val details = StringBuilder()
-    for (detail in moduleError.details) {
-        val param = when (val v = detail.second)
-        {
-            null -> ""
-            is String -> v
-            is Int, is Long, is Byte -> v.toString()
-            is Float, is Double-> "%.2f".format(Locale.US,v)
-            else -> {
-                Logger.e {"$tag : no format for data type ${v::class.simpleName}"}
-                ""
-            }
-        }
-        if (param.isEmpty())
-            details.append("\t${stringResource(detail.first)}\n")
-        else
-            details.append("\t${stringResource(detail.first)}: ${param}\n")
-    }
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -142,12 +135,50 @@ fun ErrorItem(moduleError: ModuleError, showDetails : Boolean, id :Int, onItemCl
                             .fillMaxWidth(),
                         color = ToafColors.toafTextColorWhite,
                         fontSize = 10.sp,
-                        text = details.toString()
+                        text = DetailsToString(moduleError)
                     )
                 }
             }
     )
 }
+
+@Composable
+fun DetailsToString(error : ModuleError) : String{
+    val sb = StringBuilder()
+    for (detail in error.details) {
+        val param = when (val v = detail.second) {
+            null -> ""
+            is String -> v
+            is Int, is Long, is Byte -> v.toString()
+            is Float, is Double -> "%.2f".format(Locale.US, v)
+            else -> {
+                Logger.e { "$tag : no format for data type ${v::class.simpleName}" }
+                ""
+            }
+        }
+        if (param.isEmpty())
+            sb.append("\t${stringResource(detail.first)}\n")
+        else
+            sb.append("\t${stringResource(detail.first)}: ${param}\n")
+    }
+    return sb.toString()
+}
+
+@Composable
+fun ErrorsToString(errors : List<ModuleError>?): String {
+    if (errors != null) {
+        val sb = StringBuilder()
+        sb.append(stringResource(if (getPlatformType() == PlatformType.Android) Res.string.app_name_mobile else Res.string.app_name_desktop) + BuildKonfig.VERSION_NAME)
+        for (error in errors) {
+            sb.append("------------------")
+            sb.append(error.code.uppercase() + " - " + error.description?.let { stringResource(it) })
+            sb.append(DetailsToString(error))
+        }
+        return sb.toString()
+    }
+    return ""
+}
+
 @Composable
 @Preview(showBackground = true, backgroundColor = 0xff000000)
 fun ShowErrorsPreview()
@@ -158,5 +189,5 @@ fun ShowErrorsPreview()
     errors.add(ModuleError(ModuleAddress.MODULE_BCU,"8C",listOf(
         Pair(Res.string.module_error_clear, "test"),
         Pair(Res.string.module_live_data, null))))
-    DialogShowErrors.ShowErrors(errors = errors, onClose = {}, {})
+    DialogShowErrors.ShowErrors(errors = errors, onClose = {}, {},{})
 }

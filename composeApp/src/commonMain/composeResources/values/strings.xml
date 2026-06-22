@@ -19,7 +19,7 @@
         This is test version of this service and it may in every moment not work and all data may disappear for ever.
     </string>
     <string name="message_permission_bluetooth_tittle">Bluetooth permission</string>
-    <string name="message_permission_bluetooth_info">Bluetooth permission is necessary to use bluetooth devices.\n
+    <string name="message_permission_bluetooth_info">Bluetooth permission is necessary to use Bluetooth devices.\n
         Grant this permission if you want to use connect via Bluetooth with your car.</string>
     <string name="message_permission_fine_location_tittle">Fine location permission</string>
     <string name="message_permission_fine_location_info">Fine location permission is necessary to discover Bluetooth devices.\n
@@ -291,6 +291,8 @@
     <string name="dialog_user_login_change_password">Change password</string>
     <string name="dialog_user_login_login_correct">Login successful</string>
     <string name="dialog_user_login_error">Login error. Wrong login or password</string>
+    <string name="dialog_user_login_hide_password">Hide</string>
+    <string name="dialog_user_login_show_password">Show</string>
     <!-- dialog user_change password -->
     <string name="dialog_user_password_tittle">Change password</string>
     <string name="dialog_user_password_login">Login</string>

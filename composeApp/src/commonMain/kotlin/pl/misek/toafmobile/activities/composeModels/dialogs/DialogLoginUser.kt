@@ -13,8 +13,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
@@ -33,6 +36,7 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
@@ -61,6 +65,7 @@ object DialogLoginUser {
         val privacyUrl = "https://pastebin.com/98DhVxHG"
         val uriHandler = LocalUriHandler.current
         var userLogin by remember { mutableStateOf("") }
+        var passwordVisible by remember { mutableStateOf(false) }
         var userPassword by remember { mutableStateOf("") }
         LaunchedEffect(Unit) {
             val userCredential = withContext(Dispatchers.IO) { database?.getLoginAndPassword() }
@@ -135,7 +140,6 @@ object DialogLoginUser {
                         OutlinedTextField(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                //.weight(1f)
                                 .padding(all = 5.dp),
                             value = userPassword,
                             onValueChange = { userPassword = it },
@@ -152,10 +156,17 @@ object DialogLoginUser {
                                 unfocusedLabelColor = Color.White,
                                 disabledBorderColor = Color.White
                             ),
-                            visualTransformation = PasswordVisualTransformation(),
+                            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                             leadingIcon = {
                                 Icon(Icons.Default.Lock, contentDescription = null, tint = Color.White)
+                            },
+                            trailingIcon = {
+                                val icon = if (passwordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff
+                                val description = if (passwordVisible) stringResource(Res.string.dialog_user_login_hide_password) else stringResource(Res.string.dialog_user_login_show_password)
+                                IconButton(onClick = {passwordVisible = !passwordVisible}){
+                                    Icon(imageVector = icon, contentDescription = description, tint = Color.White)
+                                }
                             },
                             singleLine = true
                         )

@@ -37,6 +37,8 @@ import pl.misek.toafmobile.modules.interfaces.IModuleControl
 import pl.misek.toafmobile.modules.interfaces.IModuleEepromProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleFlashProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
+import pl.misek.toafmobile.tools.ShareHandler
+import pl.misek.toafmobile.tools.rememberShareHandler
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 
@@ -64,6 +66,8 @@ fun ActivityModuleModel(
     var showProgressDialog by remember { mutableStateOf(false) }
     var action by remember { mutableStateOf<suspend () -> Any?>({ null }) }
     var actionType by remember {mutableStateOf (ActionTypeEnum.None)}
+    val shareHandler = rememberShareHandler()
+    var showCopiedSnackbar by remember { mutableStateOf(false) }
     val moduleIdentificationFailText = stringResource(Res.string.alert_module_info_read_error)
     val moduleReadErrorFailText = stringResource(Res.string.message_errors_read_failure)
     val moduleHasNoErrorsText = stringResource(Res.string.message_errors_no_errors)
@@ -232,6 +236,9 @@ fun ActivityModuleModel(
                             actionType = ActionTypeEnum.ClearErrors
                             action = { currentModule.clearAllErrors() }
                             showProgressDialog = true
+                        },
+                        onShare = { data ->
+                            shareHandler.shareMessage(data)
                         }
                     )
                 }
