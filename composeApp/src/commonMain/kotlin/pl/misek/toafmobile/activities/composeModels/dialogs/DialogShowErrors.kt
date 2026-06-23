@@ -182,8 +182,8 @@ fun errorsToString(errors : List<ModuleError>?): String {
         sb.append(stringResource(if (getPlatformType() == PlatformType.Android) Res.string.app_name_mobile else Res.string.app_name_desktop)).append(" ").append(BuildKonfig.VERSION_NAME).append("\n")
         for (error in errors) {
             sb.append("------------------\n")
-            sb.append(error.code.uppercase() + " - " + error.description?.let { stringResource(it) })
-            sb.append(DetailsToString(error))
+            sb.append(error.code.uppercase() + " - " + error.description?.let { stringResource(it) } + "\n")
+            sb.append(detailsToString(error))
         }
         return sb.toString()
     }

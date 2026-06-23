@@ -254,6 +254,7 @@ fun ActivityModuleModel(
                             actionType = ActionTypeEnum.DataCopiedToClipboard
                             action = { }
                             shareHandler.shareMessage(data)
+                            showProgressDialog = true
                         }
                     )
                 }
