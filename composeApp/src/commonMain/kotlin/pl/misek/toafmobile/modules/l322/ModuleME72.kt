@@ -92,14 +92,14 @@ class ModuleME72(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
 
     override fun getImageResource() = Res.drawable.module_engine
 
-    override fun getModuleDescription() = Res.string.module_description_ems
+    override fun getModuleDescription() = Res.string.module_description_me72
 
     override fun getModuleName(): String {
-        return ModuleAddress.MODULE_EMS.showName
+        return ModuleAddress.MODULE_ME72.showName
     }
 
     override fun getModuleAddress(): ModuleAddress {
-        return ModuleAddress.MODULE_EMS
+        return ModuleAddress.MODULE_ME72
     }
 
     override suspend fun clearAllErrors(): Boolean {
@@ -231,6 +231,8 @@ class ModuleME72(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
                     val id2 = String(message.answer.copyOfRange(25, 28)) + hexExpand(message.answer, 28, 31)
                     aif = Aif(vin, id2)
                 }
+                else
+                    break
             } catch (ex: Exception) {
                 Logger.e { "$tag [getAIF], $ex, $message" }
                 return null

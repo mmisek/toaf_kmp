@@ -3,15 +3,18 @@ package pl.misek.toafmobile.serial
 import android.hardware.usb.UsbDeviceConnection
 import android.hardware.usb.UsbManager
 import co.touchlab.kermit.Logger
+import com.hoho.android.usbserial.driver.FtdiSerialDriver
 import com.hoho.android.usbserial.driver.UsbSerialDriver
 import com.hoho.android.usbserial.driver.UsbSerialPort
 import com.hoho.android.usbserial.driver.UsbSerialProber
+import com.hoho.android.usbserial.util.SerialInputOutputManager
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import pl.misek.toafmobile.interfaces.ISerialDevice
 import java.io.ByteArrayOutputStream
+import java.util.concurrent.TimeUnit
 import kotlin.time.measureTime
 
 class AndroidSerialDevice (private val usbManager: UsbManager) : ISerialDevice
@@ -20,10 +23,12 @@ class AndroidSerialDevice (private val usbManager: UsbManager) : ISerialDevice
     private var fastInitSleep = 25
     private var _connection: UsbDeviceConnection? = null
     private var _serialPort: UsbSerialPort? = null
-    private val _repeatTimes = 5
+    private val rxBuffer = java.util.concurrent.LinkedBlockingQueue<Byte>()
+    private var ioManager: SerialInputOutputManager? = null
     override suspend fun write(data: ByteArray?, forceAnswer: Boolean, useDelay: Boolean): ByteArray? {
-        return write(data, 250, true, useDelay)
+        return write(data, 50, true, useDelay)
     }
+
 
     override suspend fun write(
         data: ByteArray?,
@@ -36,13 +41,7 @@ class AndroidSerialDevice (private val usbManager: UsbManager) : ISerialDevice
         val port = _serialPort?.takeIf {it.isOpen} ?: return@withContext null
 
         try {
-            port.purgeHwBuffers(true, true)
-        }
-        catch (ex: UnsupportedOperationException) {
-        } catch (ex: Exception) {
-            Logger.e { "$tag : purge before write: $ex" }
-        }
-        try {
+            rxBuffer.clear()
             if (useDelay && data != null) {
                 for (b in data) {
                     port.write(byteArrayOf(b), 10)
@@ -59,20 +58,45 @@ class AndroidSerialDevice (private val usbManager: UsbManager) : ISerialDevice
         }
         delay(timeout ?: 250)
         if (forceAnswer) {
+            val out = ByteArrayOutputStream()
+            val start = System.currentTimeMillis()
+            var lastByteAt = start
+            val totalTimeout = timeout ?: 1000
+            val idleGap = 50L
+
+            while (System.currentTimeMillis() - start < totalTimeout) {
+                val b = rxBuffer.poll()
+                if (b != null) {
+                    out.write(b.toInt() and 0xFF)
+                    lastByteAt = System.currentTimeMillis()
+                } else {
+                    if (out.size() > 0 && System.currentTimeMillis() - lastByteAt > idleGap) break
+                    delay(2)
+                }
+            }
+            return@withContext out.toByteArray().takeIf { it.isNotEmpty() }
+        }
+        /*
+        delay(timeout ?: 25)
+        if (forceAnswer) {
             val outputStream = ByteArrayOutputStream()
             var result: ByteArray?
             val buffer = ByteArray(512)
-            var n : Int
             try {
-                var repeat = 0
                 val time = measureTime {
-                    do {
-                        n = port.read(buffer,buffer.size, 100)
-                        if (n > 0)
+                    var idleMs = 0L
+                    val maxIdle = 300L
+                    val totalDeadline = 2000L
+                    val start = System.currentTimeMillis()
+                    while (idleMs < maxIdle && System.currentTimeMillis() - start < totalDeadline) {
+                        val n = port.read(buffer, buffer.size, 25)
+                        if (n > 0) {
                             outputStream.write(buffer, 0, n)
-                        delay(10)
-                        repeat++
-                    } while (repeat < _repeatTimes)
+                            idleMs = 0
+                        } else {
+                            idleMs += 25
+                        }
+                    }
                     result = outputStream.toByteArray()
                 }
                 Logger.i{"$tag : Reading Time : $time"}
@@ -81,16 +105,7 @@ class AndroidSerialDevice (private val usbManager: UsbManager) : ISerialDevice
                 result = null
             }
             return@withContext result
-        } else {
-            try {
-                port.purgeHwBuffers(true, true)
-            }
-            catch (ex: UnsupportedOperationException) {
-            } catch (ex: Exception) {
-                Logger.e{"$tag : ${ex.toString()}"}
-            }
-        }
-
+    */
         return@withContext null
     }
 
@@ -105,6 +120,18 @@ class AndroidSerialDevice (private val usbManager: UsbManager) : ISerialDevice
                 Logger.e{"$tag : ${ex.toString()}"}
             }
         }
+    }
+
+
+    fun startIoManager(port: UsbSerialPort?) {
+        ioManager = SerialInputOutputManager(port, object : SerialInputOutputManager.Listener {
+            override fun onNewData(data: ByteArray) {
+                for (b in data) rxBuffer.put(b)   // wątek w tle ciągle odbiera
+            }
+            override fun onRunError(e: Exception) {
+                Logger.e { "$tag : IO manager error: $e" }
+            }
+        }).also { it.start() }
     }
 
     override fun connect(deviceName : String) {
@@ -132,6 +159,10 @@ class AndroidSerialDevice (private val usbManager: UsbManager) : ISerialDevice
                         UsbSerialPort.STOPBITS_1,
                         UsbSerialPort.PARITY_EVEN
                     )
+                    (_serialPort as? FtdiSerialDriver.FtdiSerialPort)?.let {
+                        try { it.setLatencyTimer(1) } catch (_: Exception) {}
+                    }
+                    startIoManager(_serialPort)
                 } catch (ex: Exception) {
                     Logger.e{"$tag : ${ex.toString()}"}
                 }
