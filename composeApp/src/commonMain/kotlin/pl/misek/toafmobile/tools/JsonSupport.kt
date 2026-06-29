@@ -91,12 +91,12 @@ object JsonSupport {
         moduleAddress: ModuleAddress
     ): List<LiveDataElement>? {
         return getLiveDataElements(
-            moduleAddress.showName.lowercase()
+            moduleAddress.showName.replace(".","").lowercase()
         )
     }
 
     suspend fun getLiveDataElements(moduleName: String): List<LiveDataElement>? {
-        val path = "files/LiveData/${moduleName.lowercase(Locale.getDefault())}_live_data.json"
+        val path = "files/LiveData/${moduleName.replace(".","").lowercase(Locale.getDefault())}_live_data.json"
         val bytes = Res.readBytes(path)
         val jsonString = bytes.decodeToString()
         val container = Json.decodeFromString<LivaDataElementContainerJson>(jsonString)
@@ -115,6 +115,8 @@ object JsonSupport {
                 invertA = json.invertA
                 carType = json.carType
                 format = json.format
+                service = json.service
+                swap = json.swap
             }
         }
         return try {
@@ -123,6 +125,7 @@ object JsonSupport {
                     val resRey = "${moduleName.lowercase()}_live_data_${elementJson.name.lowercase()}"
                     name = elementJson.name
                     descriptionResKey = ResourceMapper.stringResource(resRey)
+                    service = decodeHexToInt(elementJson.service)
                     block = decodeHexToInt(elementJson.block)
                     byteInBlock = decodeHexToInt(elementJson.byte)
                     mask = if (elementJson.mask.isNullOrEmpty()) 0L else decodeHexToLong(elementJson.mask)
@@ -149,6 +152,7 @@ object JsonSupport {
                         LiveDataFormat.Standard
                     else
                         LiveDataFormat.valueOf(elementJson.format!!)
+                    swap = elementJson.swap.toBoolean()
                 }
             }
         } catch (ex : Exception)

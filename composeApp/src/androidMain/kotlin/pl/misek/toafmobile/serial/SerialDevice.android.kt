@@ -76,36 +76,6 @@ class AndroidSerialDevice (private val usbManager: UsbManager) : ISerialDevice
             }
             return@withContext out.toByteArray().takeIf { it.isNotEmpty() }
         }
-        /*
-        delay(timeout ?: 25)
-        if (forceAnswer) {
-            val outputStream = ByteArrayOutputStream()
-            var result: ByteArray?
-            val buffer = ByteArray(512)
-            try {
-                val time = measureTime {
-                    var idleMs = 0L
-                    val maxIdle = 300L
-                    val totalDeadline = 2000L
-                    val start = System.currentTimeMillis()
-                    while (idleMs < maxIdle && System.currentTimeMillis() - start < totalDeadline) {
-                        val n = port.read(buffer, buffer.size, 25)
-                        if (n > 0) {
-                            outputStream.write(buffer, 0, n)
-                            idleMs = 0
-                        } else {
-                            idleMs += 25
-                        }
-                    }
-                    result = outputStream.toByteArray()
-                }
-                Logger.i{"$tag : Reading Time : $time"}
-            } catch (ex: Exception) {
-                Logger.e{"$tag : ${ex.toString()}"}
-                result = null
-            }
-            return@withContext result
-    */
         return@withContext null
     }
 

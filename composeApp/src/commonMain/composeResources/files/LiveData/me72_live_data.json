@@ -1,0 +1,1926 @@
+{
+  "livedata": [
+    {
+      "name": "DSLSRTKATM",
+      "service": "0x23",
+      "block": "0x3809B4",
+      "byte": "0x05",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "-50",
+      "unit": ""
+    },
+    {
+      "name": "DSLSRML",
+      "service": "0x23",
+      "block": "0x00F852",
+      "byte": "0x05",
+      "mask": "0xFFFF",
+      "swap": "true",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": ""
+    },
+    {
+      "name": "S_EVAN_S",
+      "service": "0x23",
+      "block": "0x380976",
+      "byte": "0x05",
+      "mask": "0xFFFF",
+      "u2": "true",
+      "factor_a": "0.25",
+      "factor_b": "0",
+      "unit": "°KW"
+    },
+    {
+      "name": "NW_B1_FL1",
+      "service": "0x23",
+      "block": "0x38301C",
+      "byte": "0x05",
+      "mask": "0xFFFF",
+      "u2": "true",
+      "swap": "true",
+      "factor_a": "0.0039",
+      "factor_b": "0",
+      "unit": "°KW"
+    },
+    {
+      "name": "NW_B1_FL2",
+      "service": "0x23",
+      "block": "0x38301E",
+      "byte": "0x05",
+      "mask": "0xFFFF",
+      "u2": "true",
+      "swap": "true",
+      "factor_a": "0.0039",
+      "factor_b": "0",
+      "unit": "°KW"
+    },
+    {
+      "name": "NW_B1_FL3",
+      "service": "0x23",
+      "block": "0x383020",
+      "byte": "0x05",
+      "mask": "0xFFFF",
+      "u2": "true",
+      "swap": "true",
+      "factor_a": "0.0039",
+      "factor_b": "0",
+      "unit": "°KW"
+    },
+    {
+      "name": "NW_B1_FL4",
+      "service": "0x23",
+      "block": "0x383022",
+      "byte": "0x05",
+      "mask": "0xFFFF",
+      "u2": "true",
+      "swap": "true",
+      "factor_a": "0.0039",
+      "factor_b": "0",
+      "unit": "°KW"
+    },
+    {
+      "name": "NW_B2_FL1",
+      "service": "0x23",
+      "block": "0x383024",
+      "byte": "0x05",
+      "mask": "0xFFFF",
+      "u2": "true",
+      "swap": "true",
+      "factor_a": "0.0039",
+      "factor_b": "0",
+      "unit": "°KW"
+    },
+    {
+      "name": "NW_B2_FL2",
+      "service": "0x23",
+      "block": "0x383026",
+      "byte": "0x05",
+      "mask": "0xFFFF",
+      "u2": "true",
+      "swap": "true",
+      "factor_a": "0.0039",
+      "factor_b": "0",
+      "unit": "°KW"
+    },
+    {
+      "name": "NW_B2_FL3",
+      "service": "0x23",
+      "block": "0x383028",
+      "byte": "0x05",
+      "mask": "0xFFFF",
+      "u2": "true",
+      "swap": "true",
+      "factor_a": "0.0039",
+      "factor_b": "0",
+      "unit": "°KW"
+    },
+    {
+      "name": "NW_B2_FL4",
+      "service": "0x23",
+      "block": "0x38302A",
+      "byte": "0x05",
+      "mask": "0xFFFF",
+      "u2": "true",
+      "swap": "true",
+      "factor_a": "0.0039",
+      "factor_b": "0",
+      "unit": "°KW"
+    },
+    {
+      "name": "TNST_W",
+      "service": "0x23",
+      "block": "0x3813DC",
+      "byte": "0x05",
+      "mask": "0xFFFF",
+      "u2": "true",
+      "swap": "true",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "°KW"
+    },
+    {
+      "name": "TPLDP",
+      "service": "0x23",
+      "block": "0x382572",
+      "byte": "0x05",
+      "mask": "0xFFFF",
+      "u2": "true",
+      "swap": "true",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "°KW"
+    },
+    {
+      "name": "LRNSTEP",
+      "service": "0x23",
+      "block": "0x380C2F",
+      "byte": "0x05",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": ""
+    },
+    {
+      "name": "TI_W",
+      "service": "0x22",
+      "block": "0x4000",
+      "byte": "0x07",
+      "mask": "0xFFFF",
+      "factor_a": "0.016",
+      "factor_b": "0",
+      "unit": "ms"
+    },
+    {
+      "name": "FR_W",
+      "service": "0x22",
+      "block": "0x4000",
+      "byte": "0x09",
+      "mask": "0xFFFF",
+      "factor_a": "0.0000305",
+      "factor_b": "0",
+      "unit": ""
+    },
+    {
+      "name": "FR2_W",
+      "service": "0x22",
+      "block": "0x4000",
+      "byte": "0x0B",
+      "mask": "0xFFFF",
+      "factor_a": "0.0000305",
+      "factor_b": "0",
+      "unit": ""
+    },
+    {
+      "name": "VFZG",
+      "service": "0x22",
+      "block": "0x4000",
+      "byte": "0x0D",
+      "mask": "0xFF",
+      "factor_a": "1.25",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "NMOT_W",
+      "service": "0x22",
+      "block": "0x4000",
+      "byte": "0x0E",
+      "mask": "0xFFFF",
+      "factor_a": "0.25",
+      "factor_b": "0",
+      "unit": "min-1"
+    },
+    {
+      "name": "NSOL",
+      "service": "0x22",
+      "block": "0x4000",
+      "byte": "0x10",
+      "mask": "0xFF",
+      "factor_a": "10",
+      "factor_b": "0",
+      "unit": "min-1"
+    },
+    {
+      "name": "WNWI_0",
+      "service": "0x22",
+      "block": "0x4000",
+      "byte": "0x11",
+      "mask": "0xFFFF",
+      "u2": "true",
+      "factor_a": "0.0039",
+      "factor_b": "0",
+      "unit": "°KW"
+    },
+    {
+      "name": "WNWI_1",
+      "service": "0x22",
+      "block": "0x4000",
+      "byte": "0x13",
+      "mask": "0xFFFF",
+      "u2": "true",
+      "factor_a": "0.0039",
+      "factor_b": "0",
+      "unit": "°KW"
+    },
+    {
+      "name": "TANS",
+      "service": "0x22",
+      "block": "0x4000",
+      "byte": "0x15",
+      "mask": "0xFF",
+      "factor_a": "0.75",
+      "factor_b": "-48",
+      "unit": "° C"
+    },
+    {
+      "name": "TMOT",
+      "service": "0x22",
+      "block": "0x4000",
+      "byte": "0x16",
+      "mask": "0xFF",
+      "factor_a": "0.75",
+      "factor_b": "-48",
+      "unit": "° C"
+    },
+    {
+      "name": "ZWOUT",
+      "service": "0x22",
+      "block": "0x4000",
+      "byte": "0x17",
+      "mask": "0xFF",
+      "factor_a": "0.75",
+      "factor_b": "0",
+      "unit": "°"
+    },
+    {
+      "name": "WDKBA",
+      "service": "0x22",
+      "block": "0x4000",
+      "byte": "0x18",
+      "mask": "0xFF",
+      "factor_a": "0.39216",
+      "factor_b": "0",
+      "unit": "% DK"
+    },
+    {
+      "name": "MSHFM_W",
+      "service": "0x22",
+      "block": "0x4000",
+      "byte": "0x19",
+      "mask": "0xFFFF",
+      "factor_a": "0.1",
+      "factor_b": "0",
+      "unit": "kg/h"
+    },
+    {
+      "name": "MIIST_W",
+      "service": "0x22",
+      "block": "0x4000",
+      "byte": "0x1B",
+      "mask": "0xFFFF",
+      "factor_a": "0.0015259",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "UB",
+      "service": "0x22",
+      "block": "0x4000",
+      "byte": "0x1D",
+      "mask": "0xFF",
+      "factor_a": "0.095",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "UPWG_W",
+      "service": "0x22",
+      "block": "0x4000",
+      "byte": "0x1E",
+      "mask": "0xFFFF",
+      "factor_a": "0.0048828",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "UPWG1_W",
+      "service": "0x30",
+      "block": "0x46",
+      "byte": "0x07",
+      "mask": "0xFFFF",
+      "factor_a": "0.0048828",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "UPWG2_W",
+      "service": "0x30",
+      "block": "0x47",
+      "byte": "0x07",
+      "mask": "0xFFFF",
+      "factor_a": "0.0048828",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "TKA",
+      "service": "0x22",
+      "block": "0x4000",
+      "byte": "0x20",
+      "mask": "0xFF",
+      "factor_a": "0.75",
+      "factor_b": "-48",
+      "unit": "° C"
+    },
+    {
+      "name": "ILB",
+      "service": "0x22",
+      "block": "0x4001",
+      "byte": "0x07",
+      "mask": "0xFFFF",
+      "u2": "true",
+      "factor_a": "0.0711",
+      "factor_b": "0",
+      "unit": ""
+    },
+    {
+      "name": "USVK",
+      "service": "0x22",
+      "block": "0x4003",
+      "byte": "0x18",
+      "mask": "0xFFFF",
+      "factor_a": "0.0048818",
+      "factor_b": "-1.0",
+      "unit": "V"
+    },
+    {
+      "name": "USVK2",
+      "service": "0x22",
+      "block": "0x4003",
+      "byte": "0x1A",
+      "mask": "0xFFFF",
+      "factor_a": "0.0048818",
+      "factor_b": "-1.0",
+      "unit": "V"
+    },
+    {
+      "name": "USNK",
+      "service": "0x30",
+      "block": "0x48",
+      "byte": "0x07",
+      "mask": "0xFFFF",
+      "factor_a": "0.0048818",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "USNK2",
+      "service": "0x30",
+      "block": "0x45",
+      "byte": "0x07",
+      "mask": "0xFFFF",
+      "factor_a": "0.0048818",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "RKAT_W",
+      "service": "0x22",
+      "block": "0x4004",
+      "byte": "0x07",
+      "mask": "0xFFFF",
+      "u2": "true",
+      "factor_a": "0.046875",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "RKAT2_W",
+      "service": "0x22",
+      "block": "0x4004",
+      "byte": "0x09",
+      "mask": "0xFFFF",
+      "u2": "true",
+      "factor_a": "0.046875",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "FRA_W",
+      "service": "0x22",
+      "block": "0x4004",
+      "byte": "0x0B",
+      "mask": "0xFFFF",
+      "u2": "true",
+      "factor_a": "0.0000305",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "FRA2_W",
+      "service": "0x22",
+      "block": "0x4004",
+      "byte": "0x0D",
+      "mask": "0xFFFF",
+      "u2": "true",
+      "factor_a": "0.0000305",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "PHLSNV",
+      "service": "0x22",
+      "block": "0x4004",
+      "byte": "0x0F",
+      "mask": "0xFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": ""
+    },
+    {
+      "name": "PHLSNV2",
+      "service": "0x22",
+      "block": "0x4004",
+      "byte": "0x10",
+      "mask": "0xFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": ""
+    },
+    {
+      "name": "PHLSNH",
+      "service": "0x22",
+      "block": "0x4004",
+      "byte": "0x11",
+      "mask": "0xFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": ""
+    },
+    {
+      "name": "PHLSNH2",
+      "service": "0x22",
+      "block": "0x4004",
+      "byte": "0x12",
+      "mask": "0xFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": ""
+    },
+    {
+      "name": "TPLRVK_W",
+      "service": "0x22",
+      "block": "0x4004",
+      "byte": "0x13",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "s"
+    },
+    {
+      "name": "TPLRVK2_W",
+      "service": "0x22",
+      "block": "0x4004",
+      "byte": "0x15",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "s"
+    },
+    {
+      "name": "TATEIST",
+      "service": "0x22",
+      "block": "0x4005",
+      "byte": "0x07",
+      "mask": "0xFF",
+      "factor_a": "0.39062",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "TANWR_0",
+      "service": "0x22",
+      "block": "0x4005",
+      "byte": "0x0C",
+      "mask": "0xFF",
+      "factor_a": "0.39216",
+      "factor_b": "0",
+      "unit": "%TV"
+    },
+    {
+      "name": "TANWR_1",
+      "service": "0x22",
+      "block": "0x4005",
+      "byte": "0x0D",
+      "mask": "0xFF",
+      "factor_a": "0.39216",
+      "factor_b": "0",
+      "unit": "%TV"
+    },
+    {
+      "name": "TAML",
+      "service": "0x22",
+      "block": "0x4005",
+      "byte": "0x0E",
+      "mask": "0xFF",
+      "factor_a": "0.39216",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "LUTSFI1",
+      "service": "0x22",
+      "block": "0x4003",
+      "byte": "0x07",
+      "mask": "0xFFFF",
+      "u2": "true",
+      "factor_a": "0.0027756",
+      "factor_b": "0",
+      "unit": "sec-1"
+    },
+    {
+      "name": "B_NAC",
+      "service": "0x22",
+      "block": "0x4001",
+      "byte": "0x09",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_FHZ",
+      "service": "0x22",
+      "block": "0x4001",
+      "byte": "0x09",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_NFTEV",
+      "service": "0x22",
+      "block": "0x4001",
+      "byte": "0x09",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_DKPU",
+      "service": "0x22",
+      "block": "0x4001",
+      "byte": "0x09",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_NSUB",
+      "service": "0x22",
+      "block": "0x4001",
+      "byte": "0x09",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_KO",
+      "service": "0x22",
+      "block": "0x4002",
+      "byte": "0x07",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "S_BRS",
+      "service": "0x22",
+      "block": "0x4002",
+      "byte": "0x07",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "S_BLS",
+      "service": "0x22",
+      "block": "0x4002",
+      "byte": "0x07",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_KUPPL",
+      "service": "0x22",
+      "block": "0x4002",
+      "byte": "0x07",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_ESTART",
+      "service": "0x22",
+      "block": "0x4002",
+      "byte": "0x07",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_KL15",
+      "service": "0x22",
+      "block": "0x4002",
+      "byte": "0x07",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_FOR11",
+      "service": "0x22",
+      "block": "0x4003",
+      "byte": "0x23",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": ""
+    },
+    {
+      "name": "B_HSHE",
+      "service": "0x22",
+      "block": "0x4005",
+      "byte": "0x0D",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_HSHE2",
+      "service": "0x22",
+      "block": "0x4005",
+      "byte": "0x0D",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_HSVE",
+      "service": "0x22",
+      "block": "0x4005",
+      "byte": "0x0D",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_HSVE2",
+      "service": "0x22",
+      "block": "0x4005",
+      "byte": "0x0D",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_LR",
+      "service": "0x22",
+      "block": "0x4007",
+      "byte": "0x07",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_LR2",
+      "service": "0x22",
+      "block": "0x4007",
+      "byte": "0x07",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_SBBVK",
+      "service": "0x22",
+      "block": "0x4007",
+      "byte": "0x07",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_SBBVK2",
+      "service": "0x22",
+      "block": "0x4007",
+      "byte": "0x07",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_SBBHK",
+      "service": "0x22",
+      "block": "0x4007",
+      "byte": "0x07",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_SBBHK2",
+      "service": "0x22",
+      "block": "0x4007",
+      "byte": "0x07",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_VL",
+      "service": "0x22",
+      "block": "0x4007",
+      "byte": "0x07",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_LL",
+      "service": "0x22",
+      "block": "0x4007",
+      "byte": "0x07",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_UMAERF",
+      "service": "0x22",
+      "block": "0x4007",
+      "byte": "0x08",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_SA",
+      "service": "0x22",
+      "block": "0x4007",
+      "byte": "0x08",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_TEHB",
+      "service": "0x22",
+      "block": "0x4007",
+      "byte": "0x08",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_EWS_OK",
+      "service": "0x22",
+      "block": "0x4007",
+      "byte": "0x08",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_PN",
+      "service": "0x22",
+      "block": "0x4007",
+      "byte": "0x08",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_NOKATFZG",
+      "service": "0x30",
+      "block": "0xA8",
+      "byte": "0x07",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "L_FGR",
+      "service": "0x21",
+      "block": "0x07",
+      "byte": "0x06",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_FGRTVE",
+      "service": "0x21",
+      "block": "0x07",
+      "byte": "0x06",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_FGRHSA",
+      "service": "0x21",
+      "block": "0x07",
+      "byte": "0x06",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_FGRTSE",
+      "service": "0x21",
+      "block": "0x07",
+      "byte": "0x06",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_FGRAT",
+      "service": "0x21",
+      "block": "0x07",
+      "byte": "0x06",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_FGRTWA",
+      "service": "0x21",
+      "block": "0x07",
+      "byte": "0x06",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_FGRTBE",
+      "service": "0x21",
+      "block": "0x07",
+      "byte": "0x06",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_CDLSV",
+      "service": "0x21",
+      "block": "0x05",
+      "byte": "0x06",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_CDAGR",
+      "service": "0x21",
+      "block": "0x05",
+      "byte": "0x06",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_CDSLS",
+      "service": "0x21",
+      "block": "0x05",
+      "byte": "0x06",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_CDHSV",
+      "service": "0x21",
+      "block": "0x05",
+      "byte": "0x06",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_CDTES",
+      "service": "0x21",
+      "block": "0x05",
+      "byte": "0x06",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_HSRDY",
+      "service": "0x21",
+      "block": "0x05",
+      "byte": "0x07",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_TESRDY",
+      "service": "0x21",
+      "block": "0x05",
+      "byte": "0x07",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_SLSRDY",
+      "service": "0x21",
+      "block": "0x05",
+      "byte": "0x07",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_LSRDY",
+      "service": "0x21",
+      "block": "0x05",
+      "byte": "0x07",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_KATRDY",
+      "service": "0x21",
+      "block": "0x05",
+      "byte": "0x07",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_AGRRDY",
+      "service": "0x21",
+      "block": "0x05",
+      "byte": "0x07",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "L_LDPR",
+      "service": "0x22",
+      "block": "0x4002",
+      "byte": "0x07",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_LDPEIN",
+      "service": "0x22",
+      "block": "0x4005",
+      "byte": "0x0D",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_SLP",
+      "service": "0x22",
+      "block": "0x4005",
+      "byte": "0x0D",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_STA",
+      "service": "0x22",
+      "block": "0x4005",
+      "byte": "0x0E",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_EBL",
+      "service": "0x22",
+      "block": "0x4005",
+      "byte": "0x0E",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_KOE",
+      "service": "0x22",
+      "block": "0x4005",
+      "byte": "0x0D",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_EKP",
+      "service": "0x22",
+      "block": "0x4005",
+      "byte": "0x0E",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_SLV",
+      "service": "0x22",
+      "block": "0x4005",
+      "byte": "0x0D",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_ETR",
+      "service": "0x22",
+      "block": "0x4005",
+      "byte": "0x0E",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_AKR",
+      "service": "0x22",
+      "block": "0x4005",
+      "byte": "0x0E",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_ASC_PKW",
+      "service": "0x30",
+      "block": "0xA8",
+      "byte": "0x07",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_ACC",
+      "service": "0x30",
+      "block": "0xA8",
+      "byte": "0x07",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "B_AUTGET",
+      "service": "0x30",
+      "block": "0xA8",
+      "byte": "0x07",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "false"
+        },
+        {
+          "data": "0x01",
+          "text": "true"
+        }
+      ]
+    },
+    {
+      "name": "NWSDSTAT",
+      "service": "0x21",
+      "block": "0x14",
+      "byte": "0x06",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": ""
+    },
+    {
+      "name": "NWSDSTAT2",
+      "service": "0x21",
+      "block": "0x14",
+      "byte": "0x07",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": ""
+    },
+    {
+      "name": "WNWI_W0",
+      "service": "0x21",
+      "block": "0x14",
+      "byte": "0x08",
+      "mask": "0xFFFF",
+      "u2": "true",
+      "factor_a": "0.0039",
+      "factor_b": "0",
+      "unit": "°KW"
+    },
+    {
+      "name": "WNWI_W1",
+      "service": "0x21",
+      "block": "0x14",
+      "byte": "0x0A",
+      "mask": "0xFFFF",
+      "u2": "true",
+      "factor_a": "0.0039",
+      "factor_b": "0",
+      "unit": "°KW"
+    },
+    {
+      "name": "NWSSTAT",
+      "service": "0x21",
+      "block": "0x13",
+      "byte": "0x06",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": ""
+    },
+    {
+      "name": "NWSSTAT2",
+      "service": "0x21",
+      "block": "0x13",
+      "byte": "0x07",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": ""
+    },
+    {
+      "name": "TNWSFI",
+      "service": "0x21",
+      "block": "0x13",
+      "byte": "0x08",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "sec"
+    },
+    {
+      "name": "TNWSFI2",
+      "service": "0x21",
+      "block": "0x13",
+      "byte": "0x0A",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "sec"
+    },
+    {
+      "name": "TNWSSI",
+      "service": "0x21",
+      "block": "0x13",
+      "byte": "0x0C",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "sec"
+    },
+    {
+      "name": "TNWSSI2",
+      "service": "0x21",
+      "block": "0x13",
+      "byte": "0x0E",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "sec"
+    },
+    {
+      "name": "DNSLBV",
+      "service": "0x30",
+      "block": "0xA1",
+      "byte": "0x09",
+      "mask": "0xFF",
+      "factor_a": "10",
+      "factor_b": "0",
+      "unit": ""
+    },
+    {
+      "name": "DNLLMV",
+      "service": "0x30",
+      "block": "0xA1",
+      "byte": "0x07",
+      "mask": "0xFF",
+      "factor_a": "10",
+      "factor_b": "0",
+      "unit": ""
+    },
+    {
+      "name": "DNFSACMV",
+      "service": "0x30",
+      "block": "0xA1",
+      "byte": "0x0A",
+      "mask": "0xFF",
+      "factor_a": "10",
+      "factor_b": "0",
+      "unit": ""
+    },
+    {
+      "name": "DNSACMV",
+      "service": "0x30",
+      "block": "0xA1",
+      "byte": "0x08",
+      "mask": "0xFF",
+      "factor_a": "10",
+      "factor_b": "0",
+      "unit": ""
+    },
+    {
+      "name": "DNFSMV",
+      "service": "0x30",
+      "block": "0xA1",
+      "byte": "0x0B",
+      "mask": "0xFF",
+      "factor_a": "10",
+      "factor_b": "0",
+      "unit": ""
+    }
+  ]
+}

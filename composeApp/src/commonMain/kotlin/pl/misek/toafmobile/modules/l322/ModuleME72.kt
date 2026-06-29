@@ -24,6 +24,7 @@ import pl.misek.toafmobile.modules.interfaces.IModuleFlashProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.modules.interfaces.IModuleZCS
 import pl.misek.toafmobile.protocols.IProtocol
+import pl.misek.toafmobile.protocols.OBDMessage
 import pl.misek.toafmobile.protocols.ProtocolKWP
 import pl.misek.toafmobile.tools.JsonSupport
 import toafmobile.composeapp.generated.resources.Res
@@ -32,14 +33,16 @@ import java.util.Calendar
 import java.util.Locale
 
 private const val tag = "ModuleME72"
-class ModuleME72(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramming, IModule,
-    IModuleControl,
-    IModuleLiveData {
+class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
+    //IModuleControl,
+    IModuleLiveData
+    //IModuleFlashProgramming
+{
     private val moduleAddress = ModuleAddress.MODULE_ME72.address
     private val _programmingState =  MutableSharedFlow<FlashProgrammingState>(replay = 10, extraBufferCapacity = 64, onBufferOverflow = BufferOverflow.DROP_OLDEST)
-    override val programmingState = _programmingState.asSharedFlow()
-    private val liveDataBlocksToRead: MutableList<Byte> =
-        ArrayList()
+    //override val programmingState = _programmingState.asSharedFlow()
+    private val liveDataBlocksToRead: MutableList<Byte> = ArrayList()
+    private var _liveDataElements : List<LiveDataElement> = ArrayList()
 
     override fun getKoinName() = KoinNames.ModuleMe72
 
@@ -55,21 +58,28 @@ class ModuleME72(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
         //return kwp.Write(MODULE_ADDRESS,MODULE_DDE,new byte[] {(byte)0x82}).isValid();
         return false
     }
-
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean {
+        _liveDataElements = liveDataElements
         liveDataBlocksToRead.clear()
-        for (el in liveDataElements) liveDataBlocksToRead.add(el.block.toByte())
-        return securityAccess(0x03.toByte().toInt())
+        for (el in liveDataElements)
+            liveDataBlocksToRead.add(el.block.toByte())
+        return true
     }
 
     override suspend fun readLiveData(): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = HashMap()
-        for (b in liveDataBlocksToRead) {
-            val message = kwp.write(moduleAddress, 0x21.toByte(), byteArrayOf(b), 150)
+        for (b in _liveDataElements) {
+            var message = OBDMessage()
+            if (b.service == 0x23)
+                message = kwp.write(moduleAddress, b.service.toByte(), byteArrayOf((b.block shr 16).toByte(), (b.block shr 8).toByte(), b.block.toByte(), 0x05,0x02), 150)
+            else if (b.service == 0x22 || b.service == 0x30)
+                message = kwp.write(moduleAddress, b.service.toByte(), byteArrayOf((b.block shr 8).toByte(), b.block.toByte()), 150)
+            else if (b.service == 0x21)
+                message = kwp.write(moduleAddress, b.service.toByte(), byteArrayOf(b.block.toByte()), 150)
             try {
                 if (message.isValid) {
-                    result[b.toInt()] =
-                        message.answer.copyOfRange(6, message.length - 1)
+                    result[b.block] =
+                        message.answer.copyOfRange(0, message.length - 1)
                 } else return null
             }catch (ex : Exception)
             {
@@ -79,7 +89,7 @@ class ModuleME72(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
         }
         return result
     }
-
+/*
     override suspend fun control(controlElement: ControlElement): Boolean {
         return if (securityAccess(3)) {
             kwp.write(
@@ -89,7 +99,7 @@ class ModuleME72(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
             ).isValid
         } else false
     }
-
+*/
     override fun getImageResource() = Res.drawable.module_engine
 
     override fun getModuleDescription() = Res.string.module_description_me72
@@ -204,13 +214,6 @@ class ModuleME72(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
     }
     private suspend fun readAIF() : Aif?
     {
-        //var message = kwp.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x01))
-        //if (message.isValid)
-        //{
-            //val baseAddressHi = message.answer[0x42].toInt() and 0xFF
-            //val baseAddressMi = message.answer[0x43].toInt() and 0xFF
-            //val baseAddressLo = message.answer[0x44].toInt() and 0xFF
-            //var address = (baseAddressHi shl 16) + (baseAddressMi shl 8) + baseAddressLo
         var address = 0x81FD54
         var aif = Aif("","")
         for (x in 0..14) {
@@ -239,15 +242,12 @@ class ModuleME72(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
             }
         }
         return aif
-        //}
-        //return null
     }
 
     override suspend fun getVIN(): String?{
         val aif = readAIF()
         return aif?.vin
     }
-
 
     override suspend fun getOdometer(): String? {
         return null
@@ -329,43 +329,7 @@ class ModuleME72(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
         return kwp.write(moduleAddress, 0x31.toByte(), byteArrayOf(0xFB.toByte())).isValid
     }
 
-    override suspend fun readZCS(): ZcsCoding? {
-        var result: ZcsCoding? = null
-        if (startDiagnosticSession(0x81)) {
-            if (securityAccess(3)) {
-                val message = kwp.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x8A.toByte()))
-                try {
-                    if (message.isValid) {
-                        try {
-                            result = ZcsCoding(message.answer.copyOfRange(6, 26))
-                        } catch (_: Exception) {
-                            return ZcsCoding()
-                        }
-                    }
-                } catch (ex : Exception)
-                {
-                    Logger.e {"$tag [readZCS], $ex, $message"}
-                }
-            }
-        }
-        return result
-    }
-
-    override suspend fun writeZCS(data: ZcsCoding): Boolean {
-        if (startDiagnosticSession(0x85)) {
-            if (securityAccess(7)) {
-                //if (BootMode())
-                run {
-                    return kwp.write(
-                        moduleAddress,
-                        0x3B.toByte(),
-                        byteArrayOf(0x8A.toByte()) + data.bytes).isValid
-                }
-            }
-        }
-        return false
-    }
-
+    /*
     override suspend fun writeFlash(data: ByteArray)  {
         //var inData = data
         val blockSize = 0x5C
@@ -569,6 +533,7 @@ class ModuleME72(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
         return true
         //return  message.isValid();
     }
+    */
 
     override fun getSupportedCarTypes(): List<CarType> {
         return listOf(CarType.L322)

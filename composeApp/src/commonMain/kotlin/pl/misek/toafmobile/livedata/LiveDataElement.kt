@@ -29,7 +29,9 @@ data class LiveDataElementJson (
     var u2: String? = "",
     @SerialName("invert_a") var invertA: String? = "",
     var carType: MutableList<String>? = null,
-    var format: String? = ""
+    var format: String? = "",
+    var service : String? = "",
+    var swap : String? = ""
 )
 
 data class LiveDataElement(
@@ -49,7 +51,9 @@ data class LiveDataElement(
     var invertA: Boolean = false,
     var supportedCarType: MutableList<CarType>? = null,
     var formatedValue : String = "",
-    var liveDataFormat: LiveDataFormat = LiveDataFormat.Standard
+    var liveDataFormat: LiveDataFormat = LiveDataFormat.Standard,
+    var service: Int = 0,
+    var swap : Boolean = false
 )
 enum class LiveDataFormat {
     Standard,

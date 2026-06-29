@@ -3,7 +3,8 @@ package pl.misek.toafmobile.generated
 import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 object ResourceMapper {
-    fun stringResource(resourceName: String): StringResource? {
+    fun stringResource(baseResourceName: String): StringResource? {
+        val resourceName = baseResourceName.replace(".","")
         val prefix = resourceName.split('_')
         if (prefix.isEmpty()){
             Logger.i {"NO RESOURCE for : $resourceName"}

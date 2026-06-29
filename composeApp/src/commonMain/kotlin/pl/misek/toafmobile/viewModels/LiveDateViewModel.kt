@@ -1,6 +1,5 @@
 package pl.misek.toafmobile.viewModels
 
-import androidx.compose.runtime.Composable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import co.touchlab.kermit.Logger
@@ -13,14 +12,11 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.StringResource
-import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.livedata.LiveDataElement
 import pl.misek.toafmobile.livedata.LiveDataFormat
 import pl.misek.toafmobile.livedata.LiveDataResultElement
 import pl.misek.toafmobile.modules.interfaces.IModule
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
-import toafmobile.composeapp.generated.resources.Res
-import toafmobile.composeapp.generated.resources.bcu_alarm_error_11
 import java.io.File
 import java.nio.ByteBuffer
 import java.text.SimpleDateFormat
@@ -43,7 +39,7 @@ class LiveDateViewModel(
     val isActive = _isActive.asStateFlow()
 
     private var _saveFileEvent = Channel<File> (Channel.BUFFERED)
-    val saveFileEvent = _saveFileEvent.receiveAsFlow();
+    val saveFileEvent = _saveFileEvent.receiveAsFlow()
 
     private var _liveDataChartResults = MutableStateFlow<List<MutableList<Float>>>(emptyList())
     val liveDataCharResult = _liveDataChartResults.asStateFlow()
@@ -119,10 +115,12 @@ class LiveDateViewModel(
             val byteInBlock = liveDataElement.byteInBlock
             if (liveDataElement.liveDataFormat == LiveDataFormat.Standard)
             {
-                val tempByteValue = (block as ByteArray).copyOfRange(
+                var tempByteValue = (block as ByteArray).copyOfRange(
                     byteInBlock,
                     byteInBlock + calculateLengthFromMask(mask)
                 )
+                if (liveDataElement.swap)
+                    tempByteValue = tempByteValue.reversed().toByteArray()
 
                 var tempValue = if (liveDataElement.u2) {
                     val paddledBytes = ByteArray(8)
