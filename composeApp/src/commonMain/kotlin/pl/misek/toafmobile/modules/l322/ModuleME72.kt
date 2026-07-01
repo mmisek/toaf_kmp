@@ -117,6 +117,7 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
     }
 
     override suspend fun getAllErrors(): List<ModuleError>? {
+        val locale = Locale.getDefault()
         var result: MutableList<ModuleError>? = null
         var message = kwp.write(moduleAddress, 0xA0.toByte(), byteArrayOf(0x00))
         if (message.isValid) {
@@ -157,7 +158,7 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
                                 if (freezeFrameMatrix != null) {
                                     val x = message.answer[29+j].toInt() and 0xFF
                                     val value = freezeFrameMatrix.factorA * x + freezeFrameMatrix.factorB
-                                    val valueString = if (freezeFrameMatrix.unit == "") String.format("%.2f", value) else String.format("%.2f %s", value, freezeFrameMatrix.unit)
+                                    val valueString = if (freezeFrameMatrix.unit == "") String.format(locale, "%.2f", value) else String.format(locale, "%.2f %s", value, freezeFrameMatrix.unit)
                                     if (0x8C.toByte() == matrix.details[j])
                                         Logger.i {"tag"}
                                     ResourceMapper.stringResource(

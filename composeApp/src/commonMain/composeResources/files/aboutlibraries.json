@@ -618,10 +618,10 @@
         },
         {
             "uniqueId": "androidx.compose.ui:ui-android",
-            "artifactVersion": "1.11.2",
+            "artifactVersion": "1.11.4",
             "name": "Compose UI",
             "description": "Compose UI primitives. This library contains the primitives that form the Compose UI Toolkit, such as drawing, measurement and layout.",
-            "website": "https://developer.android.com/jetpack/androidx/releases/compose-ui#1.11.2",
+            "website": "https://developer.android.com/jetpack/androidx/releases/compose-ui#1.11.4",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -643,10 +643,10 @@
         },
         {
             "uniqueId": "androidx.compose.ui:ui-geometry-android",
-            "artifactVersion": "1.11.2",
+            "artifactVersion": "1.11.4",
             "name": "Compose Geometry",
             "description": "Compose classes related to dimensions without units",
-            "website": "https://developer.android.com/jetpack/androidx/releases/compose-ui#1.11.2",
+            "website": "https://developer.android.com/jetpack/androidx/releases/compose-ui#1.11.4",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -668,10 +668,10 @@
         },
         {
             "uniqueId": "androidx.compose.ui:ui-graphics-android",
-            "artifactVersion": "1.11.2",
+            "artifactVersion": "1.11.4",
             "name": "Compose Graphics",
             "description": "Compose graphics",
-            "website": "https://developer.android.com/jetpack/androidx/releases/compose-ui#1.11.2",
+            "website": "https://developer.android.com/jetpack/androidx/releases/compose-ui#1.11.4",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -693,10 +693,10 @@
         },
         {
             "uniqueId": "androidx.compose.ui:ui-text-android",
-            "artifactVersion": "1.11.2",
+            "artifactVersion": "1.11.4",
             "name": "Compose UI Text",
             "description": "Compose Text primitives and utilities",
-            "website": "https://developer.android.com/jetpack/androidx/releases/compose-ui#1.11.2",
+            "website": "https://developer.android.com/jetpack/androidx/releases/compose-ui#1.11.4",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -718,10 +718,10 @@
         },
         {
             "uniqueId": "androidx.compose.ui:ui-tooling-android",
-            "artifactVersion": "1.11.2",
+            "artifactVersion": "1.11.4",
             "name": "Compose Tooling",
             "description": "Compose tooling library. This library exposes information to our tools for better IDE support.",
-            "website": "https://developer.android.com/jetpack/androidx/releases/compose-ui#1.11.2",
+            "website": "https://developer.android.com/jetpack/androidx/releases/compose-ui#1.11.4",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -743,10 +743,10 @@
         },
         {
             "uniqueId": "androidx.compose.ui:ui-tooling-data-android",
-            "artifactVersion": "1.11.2",
+            "artifactVersion": "1.11.4",
             "name": "Compose Tooling Data",
             "description": "Compose tooling library data. This library provides data about compose for different tooling purposes.",
-            "website": "https://developer.android.com/jetpack/androidx/releases/compose-ui#1.11.2",
+            "website": "https://developer.android.com/jetpack/androidx/releases/compose-ui#1.11.4",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -768,10 +768,10 @@
         },
         {
             "uniqueId": "androidx.compose.ui:ui-tooling-preview-android",
-            "artifactVersion": "1.11.2",
+            "artifactVersion": "1.11.4",
             "name": "Compose UI Preview Tooling",
             "description": "Compose tooling library API. This library provides the API required to declare @Preview composables in user apps.",
-            "website": "https://developer.android.com/jetpack/androidx/releases/compose-ui#1.11.2",
+            "website": "https://developer.android.com/jetpack/androidx/releases/compose-ui#1.11.4",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -793,10 +793,10 @@
         },
         {
             "uniqueId": "androidx.compose.ui:ui-unit-android",
-            "artifactVersion": "1.11.2",
+            "artifactVersion": "1.11.4",
             "name": "Compose Unit",
             "description": "Compose classes for simple units",
-            "website": "https://developer.android.com/jetpack/androidx/releases/compose-ui#1.11.2",
+            "website": "https://developer.android.com/jetpack/androidx/releases/compose-ui#1.11.4",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -818,10 +818,10 @@
         },
         {
             "uniqueId": "androidx.compose.ui:ui-util-android",
-            "artifactVersion": "1.11.2",
+            "artifactVersion": "1.11.4",
             "name": "Compose Util",
             "description": "Internal Compose utilities used by other modules",
-            "website": "https://developer.android.com/jetpack/androidx/releases/compose-ui#1.11.2",
+            "website": "https://developer.android.com/jetpack/androidx/releases/compose-ui#1.11.4",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -2061,10 +2061,10 @@
         },
         {
             "uniqueId": "androidx.sqlite:sqlite-bundled-jvm",
-            "artifactVersion": "2.6.2",
+            "artifactVersion": "2.7.0",
             "name": "SQLite Bundled Integration",
             "description": "The implementation of SQLite library using the bundled SQLite.",
-            "website": "https://developer.android.com/jetpack/androidx/releases/sqlite#2.6.2",
+            "website": "https://developer.android.com/jetpack/androidx/releases/sqlite#2.7.0",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -2086,10 +2086,10 @@
         },
         {
             "uniqueId": "androidx.sqlite:sqlite-framework-android",
-            "artifactVersion": "2.6.2",
+            "artifactVersion": "2.7.0",
             "name": "SQLite Framework Integration",
             "description": "The implementation of SQLite library using the framework code.",
-            "website": "https://developer.android.com/jetpack/androidx/releases/sqlite#2.6.2",
+            "website": "https://developer.android.com/jetpack/androidx/releases/sqlite#2.7.0",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -2111,10 +2111,10 @@
         },
         {
             "uniqueId": "androidx.sqlite:sqlite-jvm",
-            "artifactVersion": "2.6.2",
+            "artifactVersion": "2.7.0",
             "name": "SQLite",
             "description": "SQLite API",
-            "website": "https://developer.android.com/jetpack/androidx/releases/sqlite#2.6.2",
+            "website": "https://developer.android.com/jetpack/androidx/releases/sqlite#2.7.0",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -2462,7 +2462,7 @@
         },
         {
             "uniqueId": "com.android.billingclient:billing",
-            "artifactVersion": "9.0.0",
+            "artifactVersion": "9.1.0",
             "name": "billing",
             "description": "",
             "developers": [
@@ -2477,7 +2477,7 @@
         },
         {
             "uniqueId": "com.android.billingclient:billing-ktx",
-            "artifactVersion": "9.0.0",
+            "artifactVersion": "9.1.0",
             "name": "billing-ktx",
             "description": "",
             "developers": [
@@ -2610,7 +2610,7 @@
         },
         {
             "uniqueId": "com.google.android.gms:play-services-ads",
-            "artifactVersion": "25.3.0",
+            "artifactVersion": "25.4.0",
             "name": "play-services-ads",
             "description": "",
             "developers": [
@@ -2625,7 +2625,7 @@
         },
         {
             "uniqueId": "com.google.android.gms:play-services-ads-api",
-            "artifactVersion": "25.3.0",
+            "artifactVersion": "25.4.0",
             "name": "play-services-ads-api",
             "description": "",
             "developers": [
@@ -2762,6 +2762,21 @@
             "uniqueId": "com.google.android.gms:play-services-tasks",
             "artifactVersion": "18.2.0",
             "name": "play-services-tasks",
+            "description": "",
+            "developers": [
+                
+            ],
+            "licenses": [
+                "ASDKL"
+            ],
+            "funding": [
+                
+            ]
+        },
+        {
+            "uniqueId": "com.google.android.play:hsdp",
+            "artifactVersion": "2.0.1",
+            "name": "hsdp",
             "description": "",
             "developers": [
                 
@@ -3045,7 +3060,7 @@
         },
         {
             "uniqueId": "com.patrykandpatrick.vico:compose-desktop",
-            "artifactVersion": "3.2.2",
+            "artifactVersion": "3.2.3",
             "name": "Vico",
             "description": "A powerful and extensible multiplatform chart library.",
             "website": "https://github.com/patrykandpatrick/vico",
@@ -3117,7 +3132,7 @@
         },
         {
             "uniqueId": "io.insert-koin:koin-compose-jvm",
-            "artifactVersion": "4.2.1",
+            "artifactVersion": "4.2.2",
             "name": "Koin",
             "description": "KOIN - Kotlin simple Dependency Injection Framework",
             "website": "https://insert-koin.io/",
@@ -3139,7 +3154,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-client-auth-jvm",
-            "artifactVersion": "3.5.0",
+            "artifactVersion": "3.5.1",
             "name": "ktor-client-auth",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3161,7 +3176,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-client-content-negotiation-jvm",
-            "artifactVersion": "3.5.0",
+            "artifactVersion": "3.5.1",
             "name": "ktor-client-content-negotiation",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3183,7 +3198,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-client-core-jvm",
-            "artifactVersion": "3.5.0",
+            "artifactVersion": "3.5.1",
             "name": "ktor-client-core",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3205,7 +3220,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-client-logging-jvm",
-            "artifactVersion": "3.5.0",
+            "artifactVersion": "3.5.1",
             "name": "ktor-client-logging",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3227,7 +3242,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-client-okhttp-jvm",
-            "artifactVersion": "3.5.0",
+            "artifactVersion": "3.5.1",
             "name": "ktor-client-okhttp",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3249,7 +3264,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-events-jvm",
-            "artifactVersion": "3.5.0",
+            "artifactVersion": "3.5.1",
             "name": "ktor-events",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3271,7 +3286,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-http-cio-jvm",
-            "artifactVersion": "3.5.0",
+            "artifactVersion": "3.5.1",
             "name": "ktor-http-cio",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3293,7 +3308,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-http-jvm",
-            "artifactVersion": "3.5.0",
+            "artifactVersion": "3.5.1",
             "name": "ktor-http",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3315,7 +3330,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-io-jvm",
-            "artifactVersion": "3.5.0",
+            "artifactVersion": "3.5.1",
             "name": "ktor-io",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3337,7 +3352,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-network-jvm",
-            "artifactVersion": "3.5.0",
+            "artifactVersion": "3.5.1",
             "name": "ktor-network",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3359,7 +3374,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-serialization-jvm",
-            "artifactVersion": "3.5.0",
+            "artifactVersion": "3.5.1",
             "name": "ktor-serialization",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3381,7 +3396,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-serialization-kotlinx-json-jvm",
-            "artifactVersion": "3.5.0",
+            "artifactVersion": "3.5.1",
             "name": "ktor-serialization-kotlinx-json",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3403,7 +3418,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-serialization-kotlinx-jvm",
-            "artifactVersion": "3.5.0",
+            "artifactVersion": "3.5.1",
             "name": "ktor-serialization-kotlinx",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3425,7 +3440,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-sse-jvm",
-            "artifactVersion": "3.5.0",
+            "artifactVersion": "3.5.1",
             "name": "ktor-sse",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3447,7 +3462,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-utils-jvm",
-            "artifactVersion": "3.5.0",
+            "artifactVersion": "3.5.1",
             "name": "ktor-utils",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3469,7 +3484,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-websocket-serialization-jvm",
-            "artifactVersion": "3.5.0",
+            "artifactVersion": "3.5.1",
             "name": "ktor-websocket-serialization",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3491,7 +3506,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-websockets-jvm",
-            "artifactVersion": "3.5.0",
+            "artifactVersion": "3.5.1",
             "name": "ktor-websockets",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3989,7 +4004,7 @@
             ]
         },
         {
-            "uniqueId": "org.jetbrains.compose.desktop:desktop-jvm-windows-x64",
+            "uniqueId": "org.jetbrains.compose.desktop:desktop-jvm-linux-x64",
             "artifactVersion": "1.11.1",
             "name": "Compose Desktop",
             "description": "Compose Desktop",
@@ -4650,7 +4665,7 @@
         },
         {
             "uniqueId": "org.jetbrains.kotlin:kotlin-stdlib",
-            "artifactVersion": "2.3.21",
+            "artifactVersion": "2.4.0",
             "name": "Kotlin Stdlib",
             "description": "Kotlin Standard Library",
             "website": "https://kotlinlang.org/",
@@ -4674,7 +4689,7 @@
         },
         {
             "uniqueId": "org.jetbrains.kotlin:kotlin-stdlib-common",
-            "artifactVersion": "2.3.21",
+            "artifactVersion": "2.4.0",
             "name": "Kotlin Stdlib Common",
             "description": "Kotlin Common Standard Library (legacy, use kotlin-stdlib instead)",
             "website": "https://kotlinlang.org/",
@@ -5124,9 +5139,9 @@
             ]
         },
         {
-            "uniqueId": "org.jetbrains.skiko:skiko-awt-runtime-windows-x64",
+            "uniqueId": "org.jetbrains.skiko:skiko-awt-runtime-linux-x64",
             "artifactVersion": "0.144.6",
-            "name": "Skiko JVM Runtime for Windows X64",
+            "name": "Skiko JVM Runtime for Linux X64",
             "description": "Kotlin Skia bindings",
             "website": "https://www.github.com/JetBrains/skiko",
             "developers": [
