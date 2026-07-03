@@ -25,6 +25,7 @@ import pl.misek.toafmobile.database.DatabaseSettingFields
 import pl.misek.toafmobile.interfaces.wifi.ToafWifiDeviceInfo
 import pl.misek.toafmobile.interfaces.wifi.ToafWifiInterface
 import pl.misek.toafmobile.network.IWifiManager
+import pl.misek.toafmobile.tools.JsonSupport
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 
@@ -38,6 +39,7 @@ class ToafWifiManager {
         onAddInterfaceClick: () -> Unit,
         onConfigDeviceClick: (ToafWifiDeviceInfo) -> Unit,
         onSelectDevice: (ToafWifiDeviceInfo) -> Unit,
+        onShowResult: (result: Boolean, onSuccessText: String?, onFailText: String?) -> Unit,
         deviceInfo: ToafWifiDeviceInfo? = null
     ) {
         val database: Database = koinInject()
@@ -45,8 +47,15 @@ class ToafWifiManager {
         val wifiManager : IWifiManager = koinInject()
         var devicesList by remember { mutableStateOf<List<ToafWifiDeviceInfo>?>(null) }
         var scanningInProgress by remember { mutableStateOf(false) }
-        if (deviceInfo != null)
-            devicesList = devicesList.orEmpty() +deviceInfo
+        var updateInProgress by remember { mutableStateOf(false) }
+        val updateSuccessText = stringResource(Res.string.alert_dialog_wifi_configuration_update_successful)
+        val updateFailed = stringResource(Res.string.alert_dialog_wifi_configuration_update_failed)
+        if (deviceInfo != null) {
+            if (devicesList == null)
+                devicesList = emptyList()
+            if (!devicesList!!.contains(deviceInfo))
+                devicesList = devicesList.orEmpty() + deviceInfo
+        }
         DialogToafWifiConfiguration(
             devicesList = devicesList,
             onCancelClick = { onCancelClick() },
@@ -96,7 +105,43 @@ class ToafWifiManager {
                 }
             },
             onConfigWifiDeviceClick = { item -> item?.let { onConfigDeviceClick(item) } },
-            inProgress = scanningInProgress
+            onUpdateDeviceClick = {item ->
+                item?.let {
+                    scope.launch {
+                        updateInProgress = true
+                        var updateResult = true
+                        withContext(Dispatchers.IO)
+                        {
+                            val twi = ToafWifiInterface(it.ipAddress ?: "")
+                            val updateInfo = JsonSupport.getFirmwareUpdateVersion()
+                            for (file in updateInfo.files)
+                            {
+                                val path = "files/firmware/$file"
+                                val bytes = Res.readBytes(path)
+                                val fileLines = bytes.decodeToString()
+                                updateResult = twi.updateFile(file,fileLines.lines().map {line -> "$line\n"})
+                            }
+
+                            if (updateResult)
+                            {
+                                val device = twi.getDeviceInfo()
+                                var deviceInfoFile = "AA00;0.0;0;0"
+                                if (device != null) {
+                                    deviceInfoFile = (device.serialNumber + ";" + device.hardwareVersion + ";" + updateInfo.version)
+                                }
+                                twi.updateFile("device.txt", listOf(deviceInfoFile))
+                                twi.resetDevice()
+                            }
+                        }
+                        onShowResult(updateResult,updateSuccessText,updateFailed)
+                        updateInProgress = false
+                    }
+                }
+
+            },
+            scanInProgress = scanningInProgress,
+            updateInProgress = updateInProgress
+
         )
     }
 

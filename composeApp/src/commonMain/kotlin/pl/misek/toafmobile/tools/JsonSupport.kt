@@ -13,6 +13,7 @@ import pl.misek.toafmobile.control.ControlElementContainerJson
 import pl.misek.toafmobile.control.ControlElementJson
 import pl.misek.toafmobile.control.ControlSetValue
 import pl.misek.toafmobile.generated.ResourceMapper
+import pl.misek.toafmobile.interfaces.wifi.ToafWifiUpdateInfo
 import pl.misek.toafmobile.livedata.LivaDataElementContainerJson
 import pl.misek.toafmobile.livedata.LiveDataElement
 import pl.misek.toafmobile.livedata.LiveDataElementJson
@@ -292,6 +293,22 @@ object JsonSupport {
         {
             Logger.e{"$tag : getFreezeFrameList($path), ${ex.toString()}"}
             return null
+        }
+    }
+
+    suspend fun getFirmwareUpdateVersion() : ToafWifiUpdateInfo
+    {
+        try {
+            val path = "files/firmware/update.json"
+            val bytes = Res.readBytes(path)
+            val jsonString = bytes.decodeToString()
+            val container = Json.decodeFromString<ToafWifiUpdateInfo>(jsonString)
+            return container
+        }
+        catch (ex : Exception)
+        {
+            Logger.e{"$tag : getFirmwareUpdateVersion(), ${ex.toString()}"}
+            return ToafWifiUpdateInfo("0.0", emptyList())
         }
     }
 

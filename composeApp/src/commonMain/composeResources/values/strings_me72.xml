@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="module_description_me72">N62 V8 Engine (ME 7.2)</string>
+    <string name="module_description_me72">M62 V8 Engine (ME 7.2)</string>
     <string name="me72_error_01">Leakage Diagnosis pump Output</string>
     <string name="me72_error_02">Solenoid Valve DMTL Output</string>
     <string name="me72_error_03">switched Oxygen sensors</string>

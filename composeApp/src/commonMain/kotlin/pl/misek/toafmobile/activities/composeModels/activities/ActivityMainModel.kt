@@ -535,6 +535,15 @@ fun ActivityMainModel(
                         onSelectDevice = {item ->
                             showResult(scope, snackBarHostName,true, "Wybrano : ${item.deviceName}", null)
                         },
+                        onShowResult = { result, successText, failText ->
+                            showResult(
+                                scope,
+                                snackBarHostName,
+                                result,
+                                successText,
+                                failText
+                            )
+                        },
                         deviceInfo = wifiDeviceToAdd
                     )
                 DialogType.WifiConfigDevice -> {
@@ -559,7 +568,7 @@ fun ActivityMainModel(
                         onCancelClick = { dialogType = DialogType.WifiConfig },
                         onAddClick ={ item ->
                             wifiDeviceToAdd = item
-                            dialogType = DialogType.WifiAddDevice},
+                            dialogType = DialogType.WifiConfig},
                         onShowResult = { result, successText, failText -> showResult(scope,snackBarHostName, result, successText,failText)}
                     )
                 }

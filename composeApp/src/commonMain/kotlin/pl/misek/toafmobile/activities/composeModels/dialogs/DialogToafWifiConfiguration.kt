@@ -34,7 +34,9 @@ import pl.misek.toafmobile.interfaces.UsbEvent
 import pl.misek.toafmobile.interfaces.WifiEvent
 import pl.misek.toafmobile.interfaces.wifi.ToafWifiDeviceInfo
 import pl.misek.toafmobile.interfaces.wifi.ToafWifiInterface
+import pl.misek.toafmobile.interfaces.wifi.ToafWifiUpdateInfo
 import pl.misek.toafmobile.protocols.ProtocolFactory
+import pl.misek.toafmobile.tools.JsonSupport
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 
@@ -47,7 +49,9 @@ fun DialogToafWifiConfiguration(
     onAddDeviceClick: () ->Unit,
     onConfigWifiDeviceClick: (selectedItem : ToafWifiDeviceInfo?) -> Unit,
     onSelectDeviceClick: (selectedItem : ToafWifiDeviceInfo?) -> Unit,
-    inProgress : Boolean
+    onUpdateDeviceClick: (selectedItem : ToafWifiDeviceInfo?) -> Unit,
+    scanInProgress : Boolean,
+    updateInProgress : Boolean
 ) {
 
     var selectedSerialNumber by remember { mutableStateOf("") }
@@ -55,7 +59,11 @@ fun DialogToafWifiConfiguration(
     val wifiEventManager : ToafWifiEventManager = koinInject()
     val wifiEvent = wifiEventManager.wifiEvent.collectAsState()
     val protocolFactory : ProtocolFactory = koinInject()
-
+    var updateInfo by remember { mutableStateOf(ToafWifiUpdateInfo("0.0",emptyList())) }
+    LaunchedEffect(devicesList?.size)
+    {
+        updateInfo = JsonSupport.getFirmwareUpdateVersion()
+    }
     LaunchedEffect(wifiEvent.value) {
         when (val wifi = wifiEvent.value) {
             is WifiEvent.Connected -> {
@@ -102,7 +110,7 @@ fun DialogToafWifiConfiguration(
                 modifier = Modifier
                     .padding(2.dp)
             ) {
-                if (inProgress)
+                if (scanInProgress || updateInProgress)
                 {
                     Box(
                         modifier = Modifier
@@ -120,7 +128,7 @@ fun DialogToafWifiConfiguration(
                             )
                             Spacer(modifier = Modifier.height(12.dp))
                             Text(
-                                text = stringResource(Res.string.alert_dialog_wifi_configuration_message_searching),
+                                text = if (scanInProgress) stringResource(Res.string.alert_dialog_wifi_configuration_message_searching) else stringResource(Res.string.alert_dialog_wifi_configuration_update_in_progress),
                                 style = MaterialTheme.typography.titleMedium,
                                 color = Color.White
                             )
@@ -160,12 +168,14 @@ fun DialogToafWifiConfiguration(
                                     onClick = {},
                                     modifier =  Modifier.fillMaxWidth().padding(2.dp)
                                 )
-                                ToafButtons.GreenButton(
-                                    buttonText = R.string.alert_dialog_wifi_configuration_check_update,
-                                    onClick = {},
-                                    modifier =  Modifier.fillMaxWidth().padding(2.dp)
-                                )
                                 */
+                                if (compareFirmwareVersion(devicesList[index].softwareVersion ?: "100",  updateInfo.version)) {
+                                    ToafButtons.GreenButton(
+                                        buttonText = Res.string.alert_dialog_wifi_configuration_check_update,
+                                        onClick = {onUpdateDeviceClick(devicesList[index])},
+                                        modifier = Modifier.fillMaxWidth().padding(2.dp)
+                                    )
+                                }
                             }
                             HorizontalDivider(
                                 Modifier,
@@ -271,6 +281,18 @@ fun WifiInterfaceItem(
     }
 }
 
+fun compareFirmwareVersion(oldVersion: String, newVersion : String) : Boolean
+{
+    var result = false
+    try {
+        val new = newVersion.toFloat()
+        val old = oldVersion.toFloat()
+        result = new > old
+    }
+    catch (_ : Exception) {
+    }
+    return  result
+}
 @Preview(showBackground = true)
 @Composable
 fun DialogToafWifiConfigurationPreview() {
@@ -284,6 +306,8 @@ fun DialogToafWifiConfigurationPreview() {
         onFindDevicesClick = {},
         onConfigWifiDeviceClick = {},
         onSelectDeviceClick = {_ ->},
-        inProgress = true
+        onUpdateDeviceClick = {_ ->},
+        scanInProgress = true,
+        updateInProgress = false
     )
 }

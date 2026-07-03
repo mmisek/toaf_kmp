@@ -146,7 +146,8 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
                 put("ssid", ssid)
                 put("password", password)
             }
-            isValid(write("CONFIG_SAVE", jsonObject))
+            val answer = write("CONFIG_SAVE", jsonObject)
+            isValid(answer)
         } catch (ex: Exception) {
             if (ex !is SocketTimeoutException)
                 Logger.e{"$tag: ${ex.toString()}"}
@@ -192,7 +193,7 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
             val result = write("UPDATE_SAVE", jsonObject)
             val resultData = result?.get("data")?.jsonObject
             val size = resultData?.get("fileSize")?.jsonPrimitive?.content?.toInt()
-            return isValid(resultData)  && size == sentBytes
+            return isValid(result)  && size == sentBytes
         } catch (ex: Exception) {
             Logger.e{"$tag: ${ex.toString()}"}
             return false

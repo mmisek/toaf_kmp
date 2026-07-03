@@ -1,18 +1,16 @@
 package pl.misek.toafmobile.network
 
 import co.touchlab.kermit.Logger
-import io.sentry.Sentry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.joinAll
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.net.Inet4Address
 import java.net.InetAddress
 import java.net.NetworkInterface
 import java.util.Collections
 
+private const val tag = "WifiManager"
 
 class DesktopWifiManager : IWifiManager{
     override fun isHotspotEnable(): Boolean {
@@ -42,6 +40,7 @@ class DesktopWifiManager : IWifiManager{
     override suspend fun scanNetwork(): List<String> = withContext(Dispatchers.IO) {
         val myIps = getLocalIpAddress() ?: return@withContext emptyList()
         val results = myIps.flatMap { myIp ->
+            Logger.withTag(tag).i {"Local Ip : $myIp"}
             val subnet = myIp.substringBeforeLast(".") + "."
             (1..254).map { i ->
                 async {
@@ -49,7 +48,7 @@ class DesktopWifiManager : IWifiManager{
                     if (host == myIp) return@async null
                     try {
                         val inetAddress = InetAddress.getByName(host)
-                        if (inetAddress.isReachable(200)) {
+                        if (inetAddress.isReachable(500)) {
                             host
                         }
                         else

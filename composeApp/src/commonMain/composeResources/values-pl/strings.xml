@@ -112,7 +112,7 @@
     <string name="alert_dialog_wifi_configuration_message_devices_not_found">Nie znaleziono interfejsu Toaf WIFI</string>
     <string name="alert_dialog_wifi_configuration_message_searching">Wyszukiwanie interfejsu…</string>
     <string name="alert_dialog_wifi_configuration_title">TOAF WIFI — konfiguracja</string>
-    <string name="alert_dialog_wifi_configuration_check_update">Sprawdź aktualizację</string>
+    <string name="alert_dialog_wifi_configuration_check_update">Aktualizuj urządzenie</string>
     <string name="alert_dialog_wifi_configuration_update_available">Dla wybranego urządzenia dostępna jest aktualizacja.\nCzy zaktualizować urządzenie ?</string>
     <string name="alert_dialog_wifi_configuration_checking_update">Sprawdzanie aktualizacji.</string>
     <string name="alert_dialog_wifi_configuration_update_successful">Aktualizacja pomyślna.</string>

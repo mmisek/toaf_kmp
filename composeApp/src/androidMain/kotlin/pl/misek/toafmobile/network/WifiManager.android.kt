@@ -2,13 +2,10 @@ package pl.misek.toafmobile.network
 
 import android.content.Context
 import android.net.wifi.WifiManager
-import android.util.Log
-import io.sentry.Sentry
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.joinAll
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.net.Inet4Address
 import java.net.InetAddress
@@ -60,6 +57,7 @@ class  AndroidWifiManager(private val context: Context) : IWifiManager
     override suspend fun scanNetwork(): List<String> = withContext(Dispatchers.IO) {
         val myIps = getLocalIpAddress() ?: return@withContext emptyList()
         val results = myIps.flatMap { myIp ->
+            Logger.withTag(tag).i {"Local Ip : $myIp"}
             val subnet = myIp.substringBeforeLast(".") + "."
             (1..254).map { i ->
                 async {
