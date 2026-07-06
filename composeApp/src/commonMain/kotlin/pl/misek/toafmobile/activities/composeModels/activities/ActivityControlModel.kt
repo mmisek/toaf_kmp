@@ -6,12 +6,14 @@ import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
@@ -43,6 +45,7 @@ import pl.misek.toafmobile.activities.composeModels.ActionTypeEnum
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.ToafProgressDialog
 import pl.misek.toafmobile.activities.composeModels.TopBarModel
+import pl.misek.toafmobile.activities.composeModels.menus.ToafVerticalScrollbar
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import pl.misek.toafmobile.activities.definitions.ToafStyles
 import pl.misek.toafmobile.activities.snackbar.ToafSnackBarHost
@@ -64,6 +67,7 @@ fun ActivityControlModel(moduleKoinName : KoinNames, onBackClick : () -> Unit) {
     var databaseElements by remember { mutableStateOf<List<FastControlElement>?>(emptyList()) }
     var isLoading by remember { mutableStateOf(false) }
     var refreshNeeded by remember { mutableIntStateOf(0) }
+
     LaunchedEffect(Unit, refreshNeeded) {
         withContext(Dispatchers.IO)
         {
@@ -100,15 +104,17 @@ fun ActivityControlModel(moduleKoinName : KoinNames, onBackClick : () -> Unit) {
             }
             else
             {
-            Column(modifier = Modifier
-                .padding(paddingValues)
-                .background(ToafColors.toafBackground)) {
+            Column(
+                modifier = Modifier
+                    .padding(paddingValues)
+                    .background(ToafColors.toafBackground)
+            ) {
                 ControlList(
                     items = controlElements,
                     module = currentModule,
                     databaseItems = databaseElements,
                     snackBarHostState = snackBarHostState,
-                    onRefreshNeeded = {refreshNeeded++}
+                    onRefreshNeeded = { refreshNeeded++ }
                 )
             }
             }
@@ -119,16 +125,33 @@ fun ActivityControlModel(moduleKoinName : KoinNames, onBackClick : () -> Unit) {
 @Composable
 private fun ControlList(items: List<ControlElement>?, module: IModule, databaseItems: List<FastControlElement>?, snackBarHostState: SnackbarHostState, onRefreshNeeded: () -> Int)
 {
-    LazyColumn (
-        modifier = Modifier.
-        background(ToafColors.toafBackground),
-        verticalArrangement = Arrangement.spacedBy(0.dp)
-    ){
-        items(items!!.size) { index ->
-            //val isFastControlElement = databaseItems?.first { x : FastControlElement -> x.}
-            //?.anyMatch { x: FastControlElement -> x. name.equals(items[index].name) }
-            val isFastControlElement = false
-            ControlListPlaceholder(items[index], module, isFastControlElement, snackBarHostState = snackBarHostState, onRefreshNeeded)
+    val listState = rememberLazyListState()
+
+    Box (modifier = Modifier.fillMaxSize())
+    {
+        LazyColumn(
+            state = listState,
+            modifier = Modifier.background(ToafColors.toafBackground).fillMaxSize(),
+            contentPadding = PaddingValues(end = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(0.dp)
+        ) {
+            items(items!!.size) { index ->
+                //val isFastControlElement = databaseItems?.first { x : FastControlElement -> x.}
+                //?.anyMatch { x: FastControlElement -> x. name.equals(items[index].name) }
+                val isFastControlElement = false
+                ControlListPlaceholder(
+                    items[index],
+                    module,
+                    isFastControlElement,
+                    snackBarHostState = snackBarHostState,
+                    onRefreshNeeded
+                )
+            }
+        }
+        Box(
+            modifier = Modifier.align(Alignment.CenterEnd)
+        ) {
+            ToafVerticalScrollbar(listState = listState)
         }
     }
 }

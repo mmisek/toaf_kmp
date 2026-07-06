@@ -4,15 +4,19 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -65,6 +69,7 @@ import pl.misek.toafmobile.activities.composeModels.TopBarModel
 import pl.misek.toafmobile.activities.composeModels.dialogs.CodingBackupDialog
 import pl.misek.toafmobile.activities.composeModels.dialogs.CodingReadBackupDialog
 import pl.misek.toafmobile.activities.composeModels.menus.MenuCoding
+import pl.misek.toafmobile.activities.composeModels.menus.ToafVerticalScrollbar
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import pl.misek.toafmobile.activities.snackbar.ToafSnackBarHost
 import pl.misek.toafmobile.backup.BackupElement
@@ -452,19 +457,30 @@ private suspend fun doBackup(toafApi : ToafApi, currentModule : IModule?, ewsMod
 @Composable
 private fun CodingList(items: List<CodingElement>?, currentCoding: List<ByteArray>, onRefreshNeeded: (List<ByteArray>) -> Unit)
 {
-    LazyColumn (
-        modifier = Modifier.
-        background(ToafColors.toafBackground),
-        verticalArrangement = Arrangement.spacedBy(0.dp)
-    )
+    val listState = rememberLazyListState()
+    Box(modifier = Modifier.fillMaxSize())
     {
-        items(items!!.size) { index ->
-            if (items[index].visible) {
-                CodingListPlaceholder(
-                    item = items[index],
-                    currentCoding = currentCoding,
-                    onRefreshNeeded = onRefreshNeeded)
+        LazyColumn(
+            state = listState,
+            modifier = Modifier.background(ToafColors.toafBackground).fillMaxSize(),
+            contentPadding = PaddingValues(end = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(0.dp)
+        )
+        {
+            items(items?.size ?: 0) { index ->
+                if (items!![index].visible) {
+                    CodingListPlaceholder(
+                        item = items[index],
+                        currentCoding = currentCoding,
+                        onRefreshNeeded = onRefreshNeeded
+                    )
+                }
             }
+        }
+        Box(
+            modifier = Modifier.align(Alignment.CenterEnd)
+        ) {
+            ToafVerticalScrollbar(listState = listState)
         }
     }
 }

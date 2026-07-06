@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.rememberScrollbarAdapter
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -27,6 +28,29 @@ actual fun ToafVerticalScrollbar(gridState : LazyGridState) {
         VerticalScrollbar(
             modifier = Modifier.align(Alignment.Center),
             adapter = rememberScrollbarAdapter(scrollState = gridState),
+            style = ScrollbarStyle(
+                minimalHeight = 24.dp,
+                thickness = 12.dp,
+                shape = RoundedCornerShape(10.dp),
+                hoverDurationMillis = 0,
+                unhoverColor = ToafColors.toafTextColorWhite.copy(alpha = 0.5f),
+                hoverColor = ToafColors.toafTextColorWhite.copy(alpha = 0.8f)
+            )
+        )
+    }
+}
+
+@Composable
+actual fun ToafVerticalScrollbar(listState: LazyListState) {
+    Box(
+        modifier = Modifier
+            .fillMaxHeight()
+            .width(16.dp)
+            .background(Color.Gray.copy(alpha = 0.1f))
+    ) {
+        VerticalScrollbar(
+            modifier = Modifier.align(Alignment.Center),
+            adapter = rememberScrollbarAdapter(scrollState = listState),
             style = ScrollbarStyle(
                 minimalHeight = 24.dp,
                 thickness = 12.dp,

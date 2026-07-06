@@ -3,14 +3,17 @@ package pl.misek.toafmobile.activities.composeModels.activities
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.Scaffold
@@ -61,6 +64,7 @@ import org.koin.core.parameter.parametersOf
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.TopBarModel
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogQuestion
+import pl.misek.toafmobile.activities.composeModels.menus.ToafVerticalScrollbar
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.livedata.LiveDataElement
@@ -107,6 +111,7 @@ fun ActivityLiveDataModel(moduleKoinName : KoinNames, onBackClick :() -> Unit)
     var liveDataType by remember {mutableStateOf(LiveDataType.Table) }
     val livaDataTypeChartText = Res.string.live_data_type_chart
     val liveDataTypeTableText = Res.string.live_data_type_table
+    val listState = rememberLazyListState()
     LaunchedEffect(Unit) {
         liveDataElements.clear()
         if (isPreview)
@@ -190,25 +195,38 @@ fun ActivityLiveDataModel(moduleKoinName : KoinNames, onBackClick :() -> Unit)
                     }
                 }
                 if (!liveDataViewModelIsActive) {
-                    LazyColumn(
-                        modifier = Modifier.fillMaxHeight().fillMaxWidth()
-                    ) {
-                        items(
-                            count = liveDataElements.size
-                        ) { item ->
-                            val elementDescription = liveDataElements[item].descriptionResKey?.let { stringResource(it) }
-                            CheckboxRow(
-                                element = liveDataElements[item],
-                                isChecked = selectedLiveDataElements.contains(liveDataElements[item]),
-                                onCheckedChange = {
-                                    val element = liveDataElements[item]
-                                    if (selectedLiveDataElements.contains(element)) {
-                                        selectedLiveDataElements.remove(element)
-                                    } else {
-                                        element.description = elementDescription
-                                        selectedLiveDataElements.add(element)
+
+                    Box(modifier = Modifier.fillMaxSize())
+                    {
+                        LazyColumn(
+                            state = listState,
+                            modifier = Modifier.fillMaxHeight().fillMaxWidth()
+                        ) {
+                            items(
+                                count = liveDataElements.size
+                            ) { item ->
+                                val elementDescription =
+                                    liveDataElements[item].descriptionResKey?.let {
+                                        stringResource(it)
                                     }
-                                })
+                                CheckboxRow(
+                                    element = liveDataElements[item],
+                                    isChecked = selectedLiveDataElements.contains(liveDataElements[item]),
+                                    onCheckedChange = {
+                                        val element = liveDataElements[item]
+                                        if (selectedLiveDataElements.contains(element)) {
+                                            selectedLiveDataElements.remove(element)
+                                        } else {
+                                            element.description = elementDescription
+                                            selectedLiveDataElements.add(element)
+                                        }
+                                    })
+                            }
+                        }
+                        Box(
+                            modifier = Modifier.align(Alignment.CenterEnd)
+                        ) {
+                            ToafVerticalScrollbar(listState = listState)
                         }
                     }
                 }
