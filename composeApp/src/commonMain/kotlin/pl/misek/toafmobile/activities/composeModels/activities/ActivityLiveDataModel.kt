@@ -420,10 +420,12 @@ private fun ResultRow(element : LiveDataResultElement?) {
             {
                 Text(
                     modifier = Modifier
-                        .padding(1.dp),
+                        .weight(1f)
+                        .padding(end = 8.dp),
                     text = if (element.description != null) stringResource(element.description!!) else element.name,
                     color = ToafColors.toafTextColorWhite,
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    maxLines = 2
                 )
                 Text(
                     modifier = Modifier
@@ -432,7 +434,9 @@ private fun ResultRow(element : LiveDataResultElement?) {
                         ?: element.valueWithUnit?.takeIf { it.isNotEmpty() }
                         ?: "---",
                     color = ToafColors.toafTextColorWhite,
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    maxLines = 1,
+                    softWrap = false
                 )
             }
         }

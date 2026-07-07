@@ -131,16 +131,18 @@ private fun ControlList(items: List<ControlElement>?, module: IModule, databaseI
     {
         LazyColumn(
             state = listState,
-            modifier = Modifier.background(ToafColors.toafBackground).fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .background(ToafColors.toafBackground),
             contentPadding = PaddingValues(end = 16.dp),
             verticalArrangement = Arrangement.spacedBy(0.dp)
         ) {
-            items(items!!.size) { index ->
+            items(items?.size ?: 0) { index ->
                 //val isFastControlElement = databaseItems?.first { x : FastControlElement -> x.}
                 //?.anyMatch { x: FastControlElement -> x. name.equals(items[index].name) }
                 val isFastControlElement = false
                 ControlListPlaceholder(
-                    items[index],
+                    items!![index],
                     module,
                     isFastControlElement,
                     snackBarHostState = snackBarHostState,
