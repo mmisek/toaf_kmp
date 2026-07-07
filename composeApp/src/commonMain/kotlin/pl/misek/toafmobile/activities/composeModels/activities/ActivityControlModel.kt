@@ -53,6 +53,7 @@ import pl.misek.toafmobile.control.FastControlElement
 import pl.misek.toafmobile.database.Database
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.modules.ModulesManager
+import pl.misek.toafmobile.network.UserInfo
 import pl.misek.toafmobile.tools.JsonSupport
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
@@ -109,13 +110,15 @@ fun ActivityControlModel(moduleKoinName : KoinNames, onBackClick : () -> Unit) {
                     .padding(paddingValues)
                     .background(ToafColors.toafBackground)
             ) {
+                /*
                 ControlList(
                     items = controlElements,
                     module = currentModule,
                     databaseItems = databaseElements,
                     snackBarHostState = snackBarHostState,
                     onRefreshNeeded = { refreshNeeded++ }
-                )
+                )*/
+                AdvanceControlLws(userInfo = UserInfo(),{ _, _, _ ->})
             }
             }
         }

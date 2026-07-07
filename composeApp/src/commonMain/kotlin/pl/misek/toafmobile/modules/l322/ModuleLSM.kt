@@ -10,6 +10,7 @@ import pl.misek.toafmobile.modules.ModuleDS2
 import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.ModuleAddress
+import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceControl
 import pl.misek.toafmobile.modules.interfaces.IModuleCoding
 import pl.misek.toafmobile.modules.interfaces.IModuleControl
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
@@ -22,7 +23,14 @@ import toafmobile.composeapp.generated.resources.module_lsm
 
 import java.util.Locale
 
-class ModuleLSM(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddress.MODULE_LCM_L322, listOf(CarType.L322)), IModuleVIN, IModuleControl, IModuleCoding, IModuleLiveData {
+class ModuleLSM(protocolDS2: ProtocolDS2?) :
+    ModuleDS2(protocolDS2, ModuleAddress.MODULE_LCM_L322, listOf(CarType.L322)),
+    IModuleVIN,
+    IModuleControl,
+    IModuleCoding,
+    IModuleLiveData
+    //IModuleAdvanceControl
+{
 
     //private val EEPROM_SIZE = 768
     //private val EEPROM_READ_SIZE = 0x24
@@ -278,6 +286,8 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         }
         return data
     } /*
+
+
     @Override
     public byte[] ReadEeprom(int address, int size) {
         OBDMessage message = InterfaceWrite(
