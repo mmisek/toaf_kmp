@@ -13,6 +13,7 @@ import pl.misek.toafmobile.modules.enums.ModuleAddress
 import pl.misek.toafmobile.modules.interfaces.IModuleCoding
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.protocols.ProtocolDS2
+import sun.security.krb5.Confounder.bytes
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 
@@ -20,6 +21,7 @@ class ModuleDSC(protocolDS2: ProtocolDS2?) :
     ModuleDS2(protocolDS2, ModuleAddress.MODULE_DSC, listOf(CarType.L322)),
     /*IModuleAdvanceControl,*/ IModuleCoding, IModuleLiveData {
     private val tag ="ModuleDSC"
+
     override fun getKoinName() = KoinNames.ModuleL322Dsc
 
     override fun getImageResource() = Res.drawable.module_abs
@@ -153,7 +155,31 @@ class ModuleDSC(protocolDS2: ProtocolDS2?) :
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean = interfaceWrite(byteArrayOf(0x00)).isValid
 
+    suspend fun initLwsCalibration() : Boolean { 
+        return interfaceWrite(initBlock).isValid
+    }
+    suspend fun writeLwsCalibration() : Boolean
+    {
+        return interfaceWrite(byteArrayOf(0x32,0x00,0x86.toByte(),0xFF.toByte(),0x88.toByte(),0x00,0x00,0x00,0x00,0x00,0x00)).isValid
+    }
+    
     //override fun getAdvanceControlActivity(context: Context): Intent = Intent(context, ActivityControlDSC::class.java)
 
     //override fun getAdvanceControlTitle(): String = resources.getString(R.string.activity_control_dsc_brake_bleeding)
+
+    val initBlock: ByteArray = bytes(
+        0x56.toByte(), 0x9D.toByte(), 0x31.toByte(), 0x05.toByte(), 0x00.toByte(), 0x00.toByte(), 0xBB.toByte(), 0x07.toByte(), 0x07.toByte(), 0x89.toByte(), 0x07.toByte(), 0x00.toByte(), 0xB1.toByte(),
+        0x02.toByte(), 0x24.toByte(), 0xA1.toByte(), 0xA4.toByte(), 0x20.toByte(), 0x2C.toByte(), 0xA1.toByte(), 0xFF.toByte(), 0x00.toByte(), 0x2E.toByte(), 0xE8.toByte(), 0x2C.toByte(), 0x28.toByte(),
+        0xE9.toByte(), 0x2C.toByte(), 0x02.toByte(), 0x00.toByte(), 0x00.toByte(), 0x2A.toByte(), 0xA2.toByte(), 0x79.toByte(), 0x22.toByte(), 0xE8.toByte(), 0x28.toByte(), 0x1E.toByte(), 0x65.toByte(),
+        0x02.toByte(), 0x00.toByte(), 0x28.toByte(), 0xA4.toByte(), 0x00.toByte(), 0x2A.toByte(), 0x88.toByte(), 0x00.toByte(), 0x1E.toByte(), 0xDF.toByte(), 0x46.toByte(), 0x51.toByte(), 0xFE.toByte(),
+        0x1E.toByte(), 0x1D.toByte(), 0x78.toByte(), 0x23.toByte(), 0x1D.toByte(), 0xD7.toByte(), 0xE8.toByte(), 0x51.toByte(), 0xF8.toByte(), 0x1F.toByte(), 0x1C.toByte(), 0x08.toByte(), 0x02.toByte(),
+        0x1C.toByte(), 0xA1.toByte(), 0xB4.toByte(), 0x20.toByte(), 0x2C.toByte(), 0xA1.toByte(), 0xFF.toByte(), 0x00.toByte(), 0x2E.toByte(), 0xE8.toByte(), 0x2C.toByte(), 0x28.toByte(), 0xE9.toByte(),
+        0x2C.toByte(), 0x02.toByte(), 0x00.toByte(), 0x00.toByte(), 0x2A.toByte(), 0x64.toByte(), 0x1C.toByte(), 0x28.toByte(), 0xA4.toByte(), 0x00.toByte(), 0x2A.toByte(), 0xE8.toByte(), 0x28.toByte(),
+        0x1C.toByte(), 0x38.toByte(), 0x1E.toByte(), 0x16.toByte(), 0xA1.toByte(), 0x01.toByte(), 0x01.toByte(), 0x20.toByte(), 0x71.toByte(), 0x07.toByte(), 0x1F.toByte(), 0x09.toByte(), 0x1F.toByte(),
+        0x20.toByte(), 0x92.toByte(), 0x1C.toByte(), 0x20.toByte(), 0x3A.toByte(), 0x22.toByte(), 0x03.toByte(), 0x94.toByte(), 0x21.toByte(), 0x20.toByte(), 0xB0.toByte(), 0x20.toByte(), 0x22.toByte(),
+        0xC6.toByte(), 0x1C.toByte(), 0x22.toByte(), 0xE0.toByte(), 0x24.toByte(), 0x94.toByte(), 0x07.toByte(), 0x40.toByte(), 0x9A.toByte(), 0x40.toByte(), 0x00.toByte(), 0xDF.toByte(), 0x19.toByte(),
+        0xA2.toByte(), 0x79.toByte(), 0x60.toByte(), 0x88.toByte(), 0x00.toByte(), 0x60.toByte(), 0xD7.toByte(), 0x04.toByte(), 0x07.toByte(), 0x40.toByte(), 0x27.toByte(), 0x7E.toByte(), 0xE9.toByte(),
+        0x00.toByte(), 0xAA.toByte(), 0x20.toByte(), 0xFF.toByte(), 0x62.toByte(), 0x68.toByte(), 0x62.toByte(), 0x60.toByte(), 0xD9.toByte(), 0x02.toByte(), 0x07.toByte(), 0x40.toByte(), 0xF0.toByte(),
+        0x26.toByte()
+    )
 }

@@ -30,5 +30,10 @@
     <string name="lws_live_data_lateral_acceleration">Lateral acceleration</string>
     <string name="lws_live_data_synthetic_steering_wheel_angles">Synthetic steering wheel angles</string>
     <string name="lws_live_data_yaw_rate">Yaw rate</string>
+	
+	<string name="lws_advance_control_title">LWS calibration</string>
+	<string name="lws_advance_control_write_adjustment">Write calibration data</string>
+	<string name="lws_advance_control_calibration_failed">Calibration failed</string>
+	<string name="lws_advance_control_calibration_successful">Calibration successful</string>
 
 </resources>

@@ -22,6 +22,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -37,6 +38,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import jdk.internal.net.http.common.Utils.close
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -45,6 +48,7 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import pl.misek.toafmobile.PlatformType
+import pl.misek.toafmobile.activities.composeModels.ActionTypeEnum
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.ToafEditText
 import pl.misek.toafmobile.activities.composeModels.ToafProgressDialog
@@ -57,6 +61,8 @@ import pl.misek.toafmobile.modules.ModulesManager
 import pl.misek.toafmobile.modules.interfaces.IModule
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.modules.interfaces.IModuleVIN
+import pl.misek.toafmobile.modules.l322.ModuleDSC
+import pl.misek.toafmobile.modules.viewModels.LwsSteeringAngleViewModel
 import pl.misek.toafmobile.network.UserInfo
 import pl.misek.toafmobile.tools.JsonSupport
 import toafmobile.composeapp.generated.resources.Res
@@ -71,61 +77,32 @@ private const val tag = "AdvanceControlLws"
 fun AdvanceControlLws(userInfo: UserInfo, onShowResult : (result : Boolean, onSuccess : String?, onFail : String?) -> Unit) {
     val modulesManager : ModulesManager = koinInject()
     val moduleLws = modulesManager.getCurrentModules().firstOrNull { it.getKoinName() == KoinNames.ModuleL322Lws }
-    val moduleAbs = modulesManager.getCurrentModules().firstOrNull { it.getKoinName() == KoinNames.ModuleL322Dsc }
+    val moduleDsc = modulesManager.getCurrentModules().firstOrNull { it.getKoinName() == KoinNames.ModuleL322Dsc }
     var action by remember { mutableStateOf<suspend () -> Any?>({ null }) }
+    var actionType by remember {mutableStateOf (ActionTypeEnum.None)}
     var showProgressDialog by remember { mutableStateOf(false) }
     var dialogShowNotFullVersion by remember { mutableStateOf(false) }
-    var vinValidationResult by remember { mutableStateOf(true) }
-    val writeVinSuccessText = stringResource(Res.string.activity_advance_coding_vin_write_successful)
-    val writeVinFailText = stringResource(Res.string.activity_advance_coding_vin_write_error)
-    val readVinFailText = stringResource(Res.string.activity_advance_coding_vin_read_error)
-    val vinIsNotCorrectedText = stringResource(Res.string.activity_advance_coding_vin_matches_error)
+    val calibrationSuccessful = stringResource(Res.string.lws_advance_control_calibration_successful)
+    val calibrationFailed = stringResource(Res.string.lws_advance_control_calibration_failed)
     val dialogFullVersionTittle = stringResource(Res.string.dialog_full_version_tittle)
     val moduleLiveData = moduleLws as? IModuleLiveData
-    var liveDataElement by remember {mutableStateOf<LiveDataElement?>(null) }
     var liveDataText by remember { mutableStateOf("---") }
-    var rotation by remember { mutableFloatStateOf(0f) }
+    val viewModel : LwsSteeringAngleViewModel = koinInject()
+    val rotation by viewModel.angle.collectAsState()
     LaunchedEffect(Unit)
     {
-        if (moduleLws != null) {
-            val liveDataElements = JsonSupport.getLiveDataElements(moduleLws.getModuleName())
-            liveDataElement = liveDataElements?.firstOrNull {x->x.name == "steering_angle"}
-            if (moduleLiveData != null && liveDataElement != null)
-            {
-                moduleLiveData.startLiveDataRead(listOf(liveDataElement!!))
-            }
-        }
+        moduleLiveData?.startLiveDataRead(emptyList())
     }
-    LaunchedEffect(Unit)
+    LaunchedEffect(rotation)
     {
-        while(true)
-        {
-            withContext(Dispatchers.IO)
-            {
-                if (moduleLiveData != null && liveDataElement != null) {
-                    val liveData = moduleLiveData.readLiveData()
-                    try {
-                        val block = (liveData?.get(liveDataElement?.block ?: 0) as ByteArray)
-                        val rawValue = (block[liveDataElement?.byteInBlock
-                            ?: 0].toInt() shl 8) + (block[(liveDataElement?.byteInBlock
-                            ?: 0) + 1].toInt())
-                        val value = rawValue.toFloat() * (liveDataElement?.factorA
-                            ?: 1f) + (liveDataElement?.factorB ?: 0f)
-                        rotation = value
-                        liveDataText = String.format(
-                            Locale.getDefault(),
-                            "%.2f %s",
-                            value,
-                            liveDataElement?.unit ?: ""
-                        )
-                    } catch (_: Exception) {
-                        liveDataText = "---"
-                    }
-                    delay(25.milliseconds)
-                }
-            }
-        }
+        liveDataText = if (rotation.isNaN()) "---"  else
+            String.format(
+            Locale.getDefault(),
+            "%.2f °",
+            rotation)
+
     }
+
     Surface(
         color = Color.Transparent,
         shape = RoundedCornerShape(10.dp),
@@ -143,13 +120,16 @@ fun AdvanceControlLws(userInfo: UserInfo, onShowResult : (result : Boolean, onSu
     )
     {
         Text(
-            text = stringResource(Res.string.activity_advance_coding_vin_programming),
+            text = stringResource(Res.string.lws_advance_control_title),
             textAlign = TextAlign.Center,
             style = TextStyle(color = Color.White, fontSize = 16.sp),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(all = 2.dp)
         )
+
+        Spacer(Modifier.height(12.dp))
+
         SteeringCalibrationScreen(rotation, Modifier.fillMaxWidth().weight(1f))
 
         Spacer(Modifier.height(12.dp))
@@ -162,9 +142,19 @@ fun AdvanceControlLws(userInfo: UserInfo, onShowResult : (result : Boolean, onSu
         Spacer(Modifier.height(12.dp))
 
         ToafButtons.GreenButton(
-            buttonText = "Zapisz Punkt ",
+            buttonText = Res.string.lws_advance_control_write_adjustment,
             modifier = Modifier.fillMaxWidth().padding(start = 10.dp, end = 10.dp),
-            onClick = { }
+            onClick = {
+                actionType = ActionTypeEnum.LwsCalibration
+                showProgressDialog = true
+                action = {
+                    val m = moduleDsc as? ModuleDSC
+                    if (m?.getIdentification() != null)
+                        m.initLwsCalibration() && m.writeLwsCalibration()
+                    false
+                }
+                showProgressDialog = false
+            }
         )
         Row(
             modifier = Modifier
@@ -179,8 +169,8 @@ fun AdvanceControlLws(userInfo: UserInfo, onShowResult : (result : Boolean, onSu
                         if (actionResult is Boolean) {
                             onShowResult(
                                 actionResult,
-                                writeVinSuccessText,
-                                writeVinFailText
+                                calibrationSuccessful,
+                                calibrationFailed
                             )
                         }
                     },
@@ -188,10 +178,12 @@ fun AdvanceControlLws(userInfo: UserInfo, onShowResult : (result : Boolean, onSu
                         onShowResult(
                             false,
                             null,
-                            writeVinFailText
+                            calibrationFailed
                         )
                     },
-                    onDismissRequest = { showProgressDialog = false })
+                    onDismissRequest = {
+                        actionType = ActionTypeEnum.None
+                        showProgressDialog = false })
             }
             if (dialogShowNotFullVersion) {
                 DialogNotFullVersion(
@@ -199,30 +191,17 @@ fun AdvanceControlLws(userInfo: UserInfo, onShowResult : (result : Boolean, onSu
                     onCloseClick = { dialogShowNotFullVersion = false }
                 )
             }
-            Text(
-                text = liveDataText,
-                textAlign = TextAlign.Center,
-                style = TextStyle(color = Color.White),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(all = 2.dp)
-            )
-            ToafButtons.GreenButton(
-                buttonText = Res.string.activity_advance_coding_read_button,
-                modifier = Modifier.weight(1f).padding(ToafStyles.buttonPadding),
-                onClick = {
-                    action = {
-                    }
-                    showProgressDialog = true
-                })
         }
         }
     }
 }
 @Composable
 fun SteeringWheelLive(targetAngle: Float, modifier: Modifier = Modifier) {
+    var lastValidAngle by remember { mutableFloatStateOf(0f) }
+    if (!targetAngle.isNaN())
+        lastValidAngle = targetAngle
     val angle by animateFloatAsState(
-        targetValue = targetAngle,
+        targetValue = lastValidAngle,
         animationSpec = tween(durationMillis = 120, easing = LinearEasing),
         label = "steer"
     )

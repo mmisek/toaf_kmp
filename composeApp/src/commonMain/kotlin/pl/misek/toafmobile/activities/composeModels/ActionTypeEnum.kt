@@ -20,5 +20,6 @@ enum class ActionTypeEnum {
     SaveCodingBackup,
     BuyElement,
     CheckingPurchase,
-    DataCopiedToClipboard
+    DataCopiedToClipboard,
+    LwsCalibration
 }

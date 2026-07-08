@@ -60,6 +60,7 @@ import pl.misek.toafmobile.modules.r40.ModuleVideo
 import pl.misek.toafmobile.modules.r40.ModuleWebasto
 import pl.misek.toafmobile.modules.rjo.ModuleEDC15
 import pl.misek.toafmobile.modules.rjo.ModuleSCU
+import pl.misek.toafmobile.modules.viewModels.LwsSteeringAngleViewModel
 import pl.misek.toafmobile.network.ToafApi
 import pl.misek.toafmobile.protocols.ProtocolFactory
 import pl.misek.toafmobile.viewModels.LiveDateViewModel
@@ -181,6 +182,8 @@ val commonModules = module {
     single { ToafApi(client = get(), database = get()) }
     single { ToafWifiManager() }
     single { ToafWifiEventManager(get()) }
+
+    viewModel { LwsSteeringAngleViewModel(get(named(KoinNames.ModuleL322Lws.name))) }
 }
 
 fun initKoin(appDeclaration: KoinAppDeclaration = {})

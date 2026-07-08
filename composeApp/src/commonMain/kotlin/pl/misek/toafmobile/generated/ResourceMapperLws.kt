@@ -7,6 +7,10 @@ import toafmobile.composeapp.generated.resources.*
 object ResourceMapperLws {
     fun stringResource(resourceName: String): StringResource? {
         return when (resourceName) {
+            "lws_advance_control_calibration_failed" -> Res.string.lws_advance_control_calibration_failed
+            "lws_advance_control_calibration_successful" -> Res.string.lws_advance_control_calibration_successful
+            "lws_advance_control_title" -> Res.string.lws_advance_control_title
+            "lws_advance_control_write_adjustment" -> Res.string.lws_advance_control_write_adjustment
             "lws_error_01" -> Res.string.lws_error_01
             "lws_error_02" -> Res.string.lws_error_02
             "lws_error_03" -> Res.string.lws_error_03
