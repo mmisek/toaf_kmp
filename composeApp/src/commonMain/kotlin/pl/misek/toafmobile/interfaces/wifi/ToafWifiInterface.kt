@@ -265,7 +265,7 @@ class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
                 outputStream?.write(jsonData.toString().toByteArray())
                 outputStream?.flush()
             }
-            delay(20.milliseconds)
+            delay(50.milliseconds)
             val jsonObject = listener() ?: return@withContext null
             val msg = jsonObject["message"]?.jsonPrimitive?.content
             if (msg == message)

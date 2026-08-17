@@ -14,6 +14,7 @@ import pl.misek.toafmobile.modules.interfaces.IModule
 import pl.misek.toafmobile.protocols.IProtocol
 import pl.misek.toafmobile.protocols.OBDMessage
 import pl.misek.toafmobile.protocols.ProtocolDS2
+import kotlin.time.Duration.Companion.milliseconds
 
 open class ModuleDS2(
     protocolDS2: ProtocolDS2?,

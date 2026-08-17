@@ -1,6 +1,7 @@
 package pl.misek.toafmobile.modules.l322
 
 import co.touchlab.kermit.Logger
+import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.generated.ResourceHelper
 import pl.misek.toafmobile.koin.KoinNames
@@ -19,6 +20,7 @@ import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_description_lws
 import toafmobile.composeapp.generated.resources.module_lws
+import kotlin.time.Duration.Companion.milliseconds
 
 class ModuleLWS( protocolDS2: ProtocolDS2?) :
     ModuleDS2(protocolDS2, ModuleAddress.MODULE_LWS, listOf(CarType.L322)),
