@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.fragment.app.FragmentActivity
+import co.touchlab.kermit.Logger
 import com.hoho.android.usbserial.driver.UsbSerialProber
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -169,12 +170,20 @@ class AndroidActivityMain : FragmentActivity() {
 
     fun UsbDevice.getUsbDeviceInfo() : UsbDeviceInfo
     {
+        val serial = try { this.serialNumber } catch (ex: SecurityException) {
+            Logger.w{"$tag: no permission to read serialNumber for ${this.deviceName}: $ex"}
+            null
+        }
+        val manufacturer = try { this.manufacturerName } catch (ex: SecurityException) {
+            Logger.w{"$tag: no permission to read manufacturerName for ${this.deviceName}: $ex"}
+            null
+        }
         return UsbDeviceInfo(
-            serialNumber = this.serialNumber,
+            serialNumber = serial,
             name = this.deviceName,
             productId = this.productId.toString(),
             vendorID = this.vendorId.toString(),
-            manufacturer = this.manufacturerName,
+            manufacturer = manufacturer,
             version = this.version
         )
     }
