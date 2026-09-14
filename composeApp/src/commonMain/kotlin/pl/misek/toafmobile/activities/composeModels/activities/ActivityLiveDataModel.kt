@@ -32,6 +32,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.PointerEventPass
+import androidx.compose.ui.input.pointer.PointerEventType
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -318,8 +321,53 @@ private fun LivaDataChart(liveDataElements: List<List<Float>>)
                 }
             }
         }
+        // Zoom.max/Zoom.fixed create a new instance on every call, so it must be
+        // remembered - otherwise the zoom state below would see a "changed" maxZoom on
+        // every recomposition (i.e. every incoming sample) and reset itself.
+        val maxZoom = remember { Zoom.max(Zoom.fixed(50f), Zoom.Content) }
+        // null = auto-fit mode ("1x": every sample is always visible). Once the user
+        // zooms in with the wheel this holds their chosen absolute zoom factor, until
+        // they zoom back out to the fit-all level, at which point it becomes null again.
+        val manualZoomFactor = remember { mutableStateOf<Float?>(null) }
+        // Identity must stay stable (see the maxZoom comment above), but its *behavior*
+        // reacts to manualZoomFactor, so this alone drives auto vs. manual mode - Vico's
+        // own "auto until the user zooms" flag can't be reset once tripped, so we don't
+        // rely on it at all.
+        val dynamicInitialZoom = remember {
+            Zoom { context, layerDimensions, bounds ->
+                manualZoomFactor.value ?: Zoom.Content.getValue(context, layerDimensions, bounds)
+            }
+        }
+        val zoomState = rememberVicoZoomState(
+            // We handle the wheel ourselves below (ordinary drag/touch panning still
+            // goes through Vico normally), so that zooming back out to 1x can cleanly
+            // resume auto-fit.
+            zoomEnabled = false,
+            initialZoom = dynamicInitialZoom,
+            minZoom = Zoom.Content,
+            maxZoom = maxZoom
+        )
         CartesianChartHost(
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .pointerInput(zoomState) {
+                    awaitPointerEventScope {
+                        while (true) {
+                            // Initial pass: intercept the wheel before Vico's own
+                            // (unrelated to zoom, since zoomEnabled = false) drag/scroll
+                            // handling can treat it as panning.
+                            val event = awaitPointerEvent(PointerEventPass.Initial)
+                            if (event.type != PointerEventType.Scroll) continue
+                            val change = event.changes.firstOrNull() ?: continue
+                            val minValue = zoomState.valueRange.start
+                            val requested = zoomState.value * (1f - change.scrollDelta.y * 0.1f)
+                            manualZoomFactor.value =
+                                if (requested <= minValue + 0.0001f) null else requested
+                            change.consume()
+                        }
+                    }
+                },
             chart = rememberCartesianChart(
                 layers = arrayOf(
                     rememberLineCartesianLayer(
@@ -359,14 +407,7 @@ private fun LivaDataChart(liveDataElements: List<List<Float>>)
                 ),
             ),
             modelProducer = modelProducer,
-            zoomState =  rememberVicoZoomState(),
-                    /*
-            zoomState = rememberVicoZoomState(
-                initialZoom = Zoom.Content,
-                zoomEnabled = true,
-                minZoom = Zoom.Content,
-                maxZoom = Zoom.fixed(50f)
-            ),*/
+            zoomState = zoomState,
             scrollState = rememberVicoScrollState(
                 scrollEnabled = true
             ),
