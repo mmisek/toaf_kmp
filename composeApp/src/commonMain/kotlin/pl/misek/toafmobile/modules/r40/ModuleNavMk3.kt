@@ -126,15 +126,18 @@ class ModuleNavMk3( protocolDS2: ProtocolDS2?) :
 
     override suspend fun getVIN(): String? {
         val data = readCoding()
-        if (data != null) {
-            try {
-                return String(data[0].copyOfRange(4, 11))
-            } catch (ex : Exception)
-            {
-                Logger.e {"$tag [getVIN], $ex,$data"}
-            }
+        val codingBytes = data?.firstOrNull()
+        if (codingBytes == null || codingBytes.size < 11) {
+            Logger.w {"$tag [getVIN]: coding data too short or missing, $data"}
+            return null
         }
-        return null
+        return try {
+            String(codingBytes.copyOfRange(4, 11))
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [getVIN], $ex,$data"}
+            null
+        }
     }
 
     override suspend fun readCoding(): List<ByteArray>? {
