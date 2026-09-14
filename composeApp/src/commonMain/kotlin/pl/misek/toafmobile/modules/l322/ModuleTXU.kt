@@ -21,6 +21,7 @@ import kotlin.time.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.todayIn
 import java.util.Locale
+import kotlinx.coroutines.CancellationException
 
 class ModuleTXU(protocolKWP: ProtocolKWP?) : IModule
 {
@@ -94,6 +95,8 @@ class ModuleTXU(protocolKWP: ProtocolKWP?) : IModule
                     )
                 )
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [getIdentification], $ex, $message"}
@@ -107,6 +110,8 @@ class ModuleTXU(protocolKWP: ProtocolKWP?) : IModule
             if (message.isValid) {
                 return String(message.answer.copyOfRange(6, message.answer.size - 1))
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [getSerialNumber], $ex, $message"}
@@ -139,6 +144,8 @@ class ModuleTXU(protocolKWP: ProtocolKWP?) : IModule
                     )
                 }
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [getAllErros], $ex, $message"}

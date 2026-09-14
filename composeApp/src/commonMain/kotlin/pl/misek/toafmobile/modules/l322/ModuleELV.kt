@@ -14,6 +14,7 @@ import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_description_elv
 import toafmobile.composeapp.generated.resources.module_elv
+import kotlinx.coroutines.CancellationException
 
 class ModuleELV( protocolDS2: ProtocolDS2?) :
     ModuleDS2(protocolDS2, ModuleAddress.MODULE_ELV, listOf(CarType.L322)),
@@ -55,6 +56,8 @@ class ModuleELV( protocolDS2: ProtocolDS2?) :
                         )
                     }
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [getAllErrors], $ex, $message"}
@@ -71,6 +74,8 @@ class ModuleELV( protocolDS2: ProtocolDS2?) :
                 result[0] = message.answer.copyOfRange(3, message.answer.size)
             else
                 return null
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e { "$tag [readLiveData],$ex, $message" }
@@ -91,6 +96,8 @@ class ModuleELV( protocolDS2: ProtocolDS2?) :
                     result += message.answer.copyOfRange(3, 0x13)
                     address = (address + 0x10).toByte()
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [readEeprom], $ex, $message"}

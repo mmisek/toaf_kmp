@@ -3,6 +3,7 @@ package pl.misek.toafmobile.modules
 import co.touchlab.kermit.Logger
 import pl.misek.toafmobile.protocols.OBDMessage
 import java.util.Locale
+import kotlinx.coroutines.CancellationException
 
 object ModulesFunction {
     private var tag = "ModulesFunctions"
@@ -146,6 +147,8 @@ object ModulesFunction {
                     "%06d",
                     ((answer[1].toInt() and 0x0F) shl 16) or ((answer[2].toInt() and 0xFF) shl 8) or (answer[3].toInt() and 0xFF)
                 )
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex: Exception) {
                 Logger.e{"$tag, ${ex.toString()}"}
                 return "--"
@@ -178,6 +181,8 @@ object ModulesFunction {
                     answer[9].toInt() and 0xFF
                 )
                 moduleInfo.producer = getProducer(answer[10].toInt() and 0xFF).toString()
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex: Exception) {
                 Logger.e{"$tag, ${ex.toString()}"}
             }

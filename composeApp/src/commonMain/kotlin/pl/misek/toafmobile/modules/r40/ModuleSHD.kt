@@ -15,6 +15,7 @@ import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_description_shd
 import toafmobile.composeapp.generated.resources.module_sunroof
+import kotlinx.coroutines.CancellationException
 
 private const val tag = "ModuleSHD"
 class ModuleSHD(protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddress.MODULE_SHD, listOf(CarType.R40)), IModuleCoding, IModuleLiveData
@@ -33,6 +34,8 @@ class ModuleSHD(protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddre
                 result[0x00] = message.answer.copyOfRange(3, message.answer.size)
                 return result
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [readLiveData], $ex, $message"}
@@ -49,6 +52,8 @@ class ModuleSHD(protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddre
             if (message.isValid) result.add(
                 message.answer.copyOfRange(3,message.answer.size - 1))
             else return null
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [readCoding], $ex, $message"}
@@ -80,6 +85,8 @@ class ModuleSHD(protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddre
                     result.add(ModuleError(ModuleAddress.MODULE_SHD, errorCode, errorDescription))
                 }
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch ( ex : Exception)
         {
             Logger.e {"$tag [getAllErrors], $ex, $message"}

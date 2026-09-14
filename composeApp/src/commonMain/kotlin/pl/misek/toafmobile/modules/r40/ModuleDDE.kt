@@ -5,6 +5,7 @@ import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.CancellationException
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.coding.ZcsCoding
 import pl.misek.toafmobile.control.ControlElement
@@ -355,6 +356,8 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                 try {
                     val data = message.answer.copyOfRange(7, message.length - 1)
                     return ZcsCoding(data)
+                } catch (ex: CancellationException) {
+                    throw ex
                 } catch (ex : Exception)
                 {
                     Logger.e{"$tag [readZCS()], $ex, $message"}
@@ -401,6 +404,8 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
             try {
                 for (i in liveDataBlocksToRead.indices) result[liveDataBlocksToRead[i]] =
                     byteArrayOf(message.answer[6 + 2 * i], message.answer[7 + 2 * i])
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex: Exception) {
                 Logger.e {"$tag [readLiveData()], $ex, $message"}
                 return null
@@ -454,6 +459,8 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
             if (message.isValid) {
                 try {
                     result.add(message.answer.copyOfRange(7, message.answer.size - 1))
+                } catch (ex: CancellationException) {
+                    throw ex
                 } catch (ex : Exception)
                 {
                     Logger.e {"$tag [readCoding()], $ex, $message"}
@@ -536,6 +543,8 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                                     String.format("%04X", errorCode)
                                 )
                             }
+                        } catch (ex: CancellationException) {
+                            throw ex
                         } catch (_: Exception) {
                             Logger.e {
                                 "DDE freeFrame error code " + String.format(
@@ -628,6 +637,8 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                         )
                     }
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag, [getAllErros()], $ex, $message"}
@@ -651,6 +662,8 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                 info.sw = String(answer.copyOfRange(34, 36))
                 info.date = String(answer.copyOfRange(20, 22)) + "/" + String(answer.copyOfRange(22,24))
                 info.serial = String(answer.copyOfRange(38, 46))
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex: Exception) {
                 Logger.e {"$tag, [getIdentification()], $ex, $message"}
             }
@@ -671,6 +684,8 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                     message.answer[29].toInt() and 0xFF,
                     message.answer[30].toInt() and 0xFF
                 )
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex: Exception) {
                 Logger.e {"$tag, [getIdentification()], $ex, $message"}
             }
@@ -768,6 +783,8 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                     message.answer[17].toInt() and 0xFF,
                     message.answer[18].toInt() and 0xFF
                 )
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [getVIN()], $ex, $message"}
@@ -783,6 +800,8 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
         if (message.isValid) {
             try {
                 return String.format(Locale.getDefault(), "%d", (message.answer[6].toInt() shr 8) + message.answer[7] * 10)
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [getOdometer()], $ex, $message"}
@@ -828,6 +847,8 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                             500
                         )
                         result = message.isValid
+                    } catch (ex: CancellationException) {
+                        throw ex
                     } catch (ex: Exception) {
                         Logger.e {"$tag, [securityAccess], $ex, $message"}
                         result = false
@@ -854,6 +875,8 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
             reset()
             try {
                 delay(10 * 1000)
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (_ : Exception) {
             }
             val moduleInfo = getIdentification()
@@ -957,6 +980,8 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                                         Res.string.activity_flash_programming_flash_erasing,
                                         Res.string.activity_flash_programming_failed))
                             }
+                    } catch (ex: CancellationException) {
+                        throw ex
                     } catch (ex: Exception) {
                         Logger.e {"$tag [writeFlash] : $ex"}
                     }
@@ -1006,6 +1031,9 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                         Res.string.activity_flash_programming_ok))
                 try {
                     kwp.setSpeed(38400)
+                }
+                catch (ex: CancellationException) {
+                    throw ex
                 }
                 catch (ex: Exception)
                 {
@@ -1068,6 +1096,8 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
             {
                 _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(Res.string.activity_flash_programming_read_flash, Res.string.activity_flash_programming_failed))
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex: Exception) {
             Logger.e {"$tag [readFlash]: ${ex.toString()}, Result Size : ${result.size}"}
         }
@@ -1089,6 +1119,8 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
         if (message.isValid) {
             try {
                 return message.answer.copyOfRange(5, message.length - 1)
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex: Exception) {
                 Logger.e { "$tag [readFlashData], $ex, $message" }
                 return ByteArray(0)

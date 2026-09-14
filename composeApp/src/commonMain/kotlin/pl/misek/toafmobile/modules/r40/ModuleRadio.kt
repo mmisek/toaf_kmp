@@ -16,6 +16,7 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_description_radio
 import toafmobile.composeapp.generated.resources.module_radio
 import toafmobile.composeapp.generated.resources.radio_module_info_name
+import kotlinx.coroutines.CancellationException
 
 private const val tag = "ModuleRadio"
 open class ModuleRadio : ModuleDS2, IModuleControl {
@@ -134,6 +135,8 @@ open class ModuleRadio : ModuleDS2, IModuleControl {
                     (answer[7].toInt() and 0xFF)
                 )
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [getIdentification], $ex, $message"}
@@ -175,6 +178,8 @@ open class ModuleRadio : ModuleDS2, IModuleControl {
                     result.add(ModuleError(ModuleAddress.MODULE_RADIO, errorCode, errorDescription))
                 }
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$ex [getAllErrors], $ex, $message"}

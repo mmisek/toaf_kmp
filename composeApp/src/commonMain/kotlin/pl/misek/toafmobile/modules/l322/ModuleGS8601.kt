@@ -5,6 +5,7 @@ import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.CancellationException
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceHelper
@@ -294,6 +295,8 @@ class ModuleGS8601(protocolDS2: ProtocolDS2?) :
                     }
                     result.add(ModuleError(ModuleAddress.MODULE_GS8601, errorCode, errorDescription))
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex: Exception) {
                 Logger.e { "$tag [getIdentification], $ex, $message" }
             }
@@ -317,6 +320,8 @@ class ModuleGS8601(protocolDS2: ProtocolDS2?) :
                 size.toByte()))
         try {
             return if (message.isValid) message.answer.copyOfRange(0x03, 3 + size) else null
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception) {
             Logger.e {"$tag [readEeprom], $ex, $message"}
             return null
@@ -452,6 +457,8 @@ class ModuleGS8601(protocolDS2: ProtocolDS2?) :
             try {
                 result = result.copyOfRange(0, (endAddress - startAddress).toInt())
                 _programmingState.tryEmit(FlashProgrammingState.FlashData(result.toList(), moduleInfo, vin))
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex: Exception) {
                 Logger.e { "$tag [readFlash]: ${ex.toString()}" }
             }
@@ -474,6 +481,8 @@ class ModuleGS8601(protocolDS2: ProtocolDS2?) :
         if (message.isValid) {
             try {
                 result = message.answer.copyOfRange(3, message.length - 1)
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex: Exception) {
                 Logger.e { "$tag [readFlashData]: ${ex.toString()}, $message" }
                 return result

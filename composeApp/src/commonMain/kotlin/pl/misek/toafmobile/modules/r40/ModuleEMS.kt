@@ -5,6 +5,7 @@ import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.CancellationException
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.coding.ZcsCoding
 import pl.misek.toafmobile.control.ControlElement
@@ -71,7 +72,9 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                     result[b.toInt()] =
                         message.answer.copyOfRange(6, message.length - 1)
                 } else return null
-            }catch (ex : Exception)
+            }catch (ex: CancellationException) {
+                throw ex
+            } catch (ex : Exception)
             {
                 Logger.e {"$tag [readLiveData], $ex, $message"}
                 return null
@@ -203,6 +206,8 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                         )
                     }
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [getAllErros], $ex ,$message"}
@@ -282,10 +287,14 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                     info.serial = String(answer.copyOfRange(36, 46))
 
                     info.producer = ModulesFunction.getProducer(answer[171].toInt())
+                } catch (ex: CancellationException) {
+                    throw ex
                 } catch (ex: Exception) {
                     Logger.e { "$tag : ${ex.toString()}" }
                 }
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [getIdentification], $ex, $message"}
@@ -310,6 +319,8 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
             } else {
                 null
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [getVIN], $ex, $message"}
@@ -370,6 +381,8 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                     ).isValid
                 }
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [securityAccess], $ex, $message"}
@@ -415,10 +428,14 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                     if (message.isValid) {
                         try {
                             result = ZcsCoding(message.answer.copyOfRange(6, 26))
+                        } catch (ex: CancellationException) {
+                            throw ex
                         } catch (_: Exception) {
                             return ZcsCoding()
                         }
                     }
+                } catch (ex: CancellationException) {
+                    throw ex
                 } catch (ex : Exception)
                 {
                     Logger.e {"$tag [readZCS], $ex, $message"}
@@ -466,6 +483,8 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
             endDiagnosticSession()
             try {
                 delay(1000)
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (_ : Exception) {
             }
             if (startDiagnosticSession(0x85) && securityAccess(7)) {
@@ -526,6 +545,8 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                                     Res.string.activity_flash_programming_write_time,
                                     String.format("%02i:%02i:%02i", hours, minutes, seconds)))
                             _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_ecu_reset))
+                        } catch (ex: CancellationException) {
+                            throw ex
                         } catch (ex: Exception) {
                             Logger.e{"$tag [WriteFlash]: ${ex.toString()}"}
                         }
@@ -606,6 +627,8 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
         try {
             result = result.copyOfRange(0, (endAddress - startAddress).toInt())
             _programmingState.tryEmit(FlashProgrammingState.FlashData(result.toList(),moduleInfo,vin))
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex: Exception) {
             Logger.e{"$tag [readFlash] : ${ex.toString()}"}
         }
@@ -629,6 +652,8 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
             if (message.isValid) {
                 return message.answer.copyOfRange(5, message.length - 1)
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [readFlashData], $ex, $message"}

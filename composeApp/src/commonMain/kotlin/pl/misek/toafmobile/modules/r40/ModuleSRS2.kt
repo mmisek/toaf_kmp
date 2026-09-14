@@ -8,6 +8,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.CancellationException
 import pl.misek.toafmobile.interfaces.IKWPInterfaceDevice
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.modules.ModuleError
@@ -105,6 +106,8 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
                 }
                 testerPresentJobSuspend = false
                 lastMessageTime = System.currentTimeMillis()
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [getIdentification()], $ex, $message"}
@@ -130,6 +133,9 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
                 )
             }
         }
+         catch (ex: CancellationException) {
+             throw ex
+         }
          catch (ex : Exception)
          {
              Logger.e {"$tag [getSerialNumber], $ex, $message"}
@@ -150,6 +156,8 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
         if (message.isValid) {
             try {
                 result = String(message.answer.copyOfRange(5, 22))
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e{"$tag [getVIN], $ex, $message"}
@@ -188,6 +196,8 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
                     }
                 }
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [getAllErrors], $ex, $message"}
@@ -233,6 +243,8 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
                 result = ArrayList()
                 result.add(message.answer.copyOfRange(5, 10))
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [readCoding], $ex, $message"}
@@ -268,6 +280,8 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
                 val data = byteArrayOf(((seed and 0xFF00) shr 8).toByte(), (seed and 0xFF).toByte())
                 result = kwp!!.write(moduleAddress, 0x27.toByte(), data, 200).isValid
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag[ securityAccess], $ex, $message"}

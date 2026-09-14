@@ -15,6 +15,7 @@ import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_description_smac
 import toafmobile.composeapp.generated.resources.module_smac
+import kotlinx.coroutines.CancellationException
 
 private const val tag = "ModuleSMAC"
 class ModuleSMAC( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddress.MODULE_SMAC, listOf(CarType.R40)), IModuleControl, IModuleCoding
@@ -40,6 +41,8 @@ class ModuleSMAC( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAdd
                     message.answer.copyOfRange(3, message.answer.size - 1)
                 )
                 else return null
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [readCoding], $ex, $message"}
@@ -89,6 +92,8 @@ class ModuleSMAC( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAdd
                         }
                     }
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [getAllErrors], $ex, $message"}
@@ -107,6 +112,8 @@ class ModuleSMAC( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAdd
                     message.answer[14], message.answer[15], message.answer[16]
                 )
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [getVIN], $ex, $message"}

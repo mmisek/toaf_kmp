@@ -16,6 +16,7 @@ import pl.misek.toafmobile.protocols.ProtocolDS2
 import sun.security.krb5.Confounder.bytes
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
+import kotlinx.coroutines.CancellationException
 
 class ModuleDSC(protocolDS2: ProtocolDS2?) :
     ModuleDS2(protocolDS2, ModuleAddress.MODULE_DSC, listOf(CarType.L322)),
@@ -80,6 +81,8 @@ class ModuleDSC(protocolDS2: ProtocolDS2?) :
                     result.add(ModuleError(ModuleAddress.MODULE_DSC, errorCode, errorDescription))
                 }
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex :Exception)
         {
             Logger.e {"$tag [getAllErrors], $ex, $message"}
@@ -109,6 +112,8 @@ class ModuleDSC(protocolDS2: ProtocolDS2?) :
                 } else {
                     return null
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e{"$tag [readLiveData], $ex, $message"}
@@ -126,6 +131,8 @@ class ModuleDSC(protocolDS2: ProtocolDS2?) :
                 result.add(message.answer.copyOfRange(3, message.answer.size - 1))
             else
                 return null
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [readCoding], $ex, $message"}

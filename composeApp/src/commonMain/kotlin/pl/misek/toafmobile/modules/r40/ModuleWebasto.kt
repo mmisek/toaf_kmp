@@ -18,6 +18,7 @@ import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
+import kotlinx.coroutines.CancellationException
 
 private const val tag = "ModuleWebasto"
 class ModuleWebasto( protocolDS2: ProtocolDS2?) :
@@ -49,6 +50,8 @@ class ModuleWebasto( protocolDS2: ProtocolDS2?) :
             if (message.isValid) {
                 result[0x02] = message.answer.copyOfRange(3, message.answer.size)
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex: Exception)
         {
             Logger.e {"$tag [readLiveData()], $ex, $message"}
@@ -140,6 +143,8 @@ class ModuleWebasto( protocolDS2: ProtocolDS2?) :
                             )
                         )
                     }
+                } catch (ex: CancellationException) {
+                    throw ex
                 } catch (ex : Exception)
                 {
                     Logger.e {"$tag [getAllErrors], $ex, $message"}
@@ -163,6 +168,8 @@ class ModuleWebasto( protocolDS2: ProtocolDS2?) :
         )
         try {
             return if (message.isValid) message.answer.copyOfRange(0x03, 3 + size) else null
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [readEeprom()], $ex, $message"}

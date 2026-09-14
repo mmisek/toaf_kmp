@@ -17,6 +17,7 @@ import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_bmbt
 import toafmobile.composeapp.generated.resources.module_description_bmbt
+import kotlinx.coroutines.CancellationException
 
 private const val tag = "ModuleBMBT"
 class ModuleBMBT(protocolDS2: ProtocolDS2?) :
@@ -36,6 +37,8 @@ class ModuleBMBT(protocolDS2: ProtocolDS2?) :
             if (message.isValid) {
                 try {
                     result[i] = message.answer.copyOfRange(3, message.answer.size)
+                } catch (ex: CancellationException) {
+                    throw ex
                 } catch ( ex : Exception)
                 {
                     Logger.e{"$tag [readLiveData()], $ex, $message"}
@@ -94,6 +97,8 @@ class ModuleBMBT(protocolDS2: ProtocolDS2?) :
                     if (result == null) result = ArrayList()
                     result.add(ModuleError(ModuleAddress.MODULE_BMBT, errorCode, errorDescription))
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch ( ex: Exception)
             {
                 Logger.e {"$tag [getAllErrors], $ex, $message"}

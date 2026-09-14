@@ -2,6 +2,7 @@ package pl.misek.toafmobile.modules.l322
 
 import co.touchlab.kermit.Logger
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.CancellationException
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceHelper
@@ -95,6 +96,8 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
                 if (message.isValid) {
                     result[block.toInt()] = message.answer.copyOfRange(3, message.answer.size)
                 } else return null
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [readLiveData], $ex, $message"}
@@ -239,6 +242,8 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
                 }
 
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [GetAllErrors], $ex, $message"}
@@ -402,6 +407,8 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
             }
             return interfaceWrite(byteArrayOf(0x94.toByte(), 0x00, (key shr 8).toByte(), (key and 0xFF).toByte())).isValid
 
+        } catch (ex: CancellationException) {
+            throw ex
         } catch ( ex : Exception)
         {
             Logger.e {"$tag [securityAccess], $ex, $message"}

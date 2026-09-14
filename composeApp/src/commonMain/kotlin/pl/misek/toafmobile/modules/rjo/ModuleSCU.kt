@@ -1,6 +1,7 @@
 package pl.misek.toafmobile.modules.rjo
 
 import co.touchlab.kermit.Logger
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.delay
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.koin.KoinNames
@@ -99,8 +100,10 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
                                 getSupplierSoftwareReferenceNumber() ?: ""
                             )
                         )
+                    } catch (ex: CancellationException) {
+                        throw ex
                     } catch (ex: Exception) {
-                        Logger.e { "$tag [detIdentification]: $ex, $message" }
+                        Logger.e { "$tag [getIdentification]: $ex, $message" }
                     }
                 }
         }
@@ -113,6 +116,10 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
             if (message.isValid)
                 try {
                     return String(message.answer.copyOfRange(5,message.answer.size-1))
+                }
+                catch (ex : CancellationException)
+                {
+                    throw ex
                 }
                 catch (ex : Exception)
                 {
@@ -129,6 +136,10 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
             if (message.isValid)
                 try {
                     return String(message.answer.copyOfRange(5,message.answer.size - 1))
+                }
+                catch (ex: CancellationException)
+                {
+                    throw ex
                 }
                 catch (ex: Exception)
                 {
@@ -150,6 +161,10 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
                         message.answer[9].toInt() and 0xFF
                     )
                 }
+                catch (ex: CancellationException)
+                {
+                    throw ex
+                }
                 catch (ex: Exception)
                 {
                     Logger.e { "$tag [getSerialNumber]: $ex, $message" }
@@ -165,6 +180,8 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
             if (message.isValid) {
                 try {
                     return String(message.answer.copyOfRange(5, 22))
+                } catch (ex: CancellationException) {
+                    throw ex
                 } catch ( ex: Exception)
                 {
                     Logger.e { "$tag [getVIN]: $ex, $message" }
@@ -210,6 +227,8 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
                         }
                     }
                     return result
+                } catch (ex: CancellationException) {
+                    throw ex
                 } catch (ex: Exception) {
                     Logger.e { "$tag [getAllErrors]: $ex, $message" }
                 }
@@ -265,6 +284,8 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
                     (seed and 0xFF).toByte()
                 )
                 return kwp.write(MODULE_ADDRESS, 0x27.toByte(), data, 50).isValid
+            } catch (ex: CancellationException) {
+                throw ex
             } catch ( ex: Exception)
             {
                 Logger.e { "$tag [securityAccess]: $ex, $message" }
@@ -313,6 +334,8 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
                         message.answer[5].toInt() and 0xFF,
                         message.answer[6].toInt() and 0xFF
                     )
+                } catch (ex: CancellationException) {
+                    throw ex
                 } catch ( ex: Exception)
                 {
                     Logger.e { "$tag [readEKACode]: $ex, $message" }
@@ -351,6 +374,8 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
                         if (result == null)
                             result = mutableListOf()
                         result.add(message.answer.copyOfRange(5, message.answer.size - 1))
+                    } catch (ex: CancellationException) {
+                        throw ex
                     } catch (ex : Exception)
                     {
                         Logger.e { "$tag [readCoding]: $ex, $message" }
@@ -392,6 +417,8 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
                         byteArrayOf((0x70).toByte()) + data,
                         50
                     ).isValid
+                } catch (ex: CancellationException) {
+                    throw ex
                 } catch (_: Exception) {
                 }
             //}
@@ -407,6 +434,8 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
             try {
                 result[0x50] = message.answer.copyOfRange(5, message.answer.size - 1)
                 return result
+            } catch (ex: CancellationException) {
+                throw ex
             } catch ( ex : Exception)
             {
                 Logger.e { "$tag [readLiveData]: $ex, $message" }

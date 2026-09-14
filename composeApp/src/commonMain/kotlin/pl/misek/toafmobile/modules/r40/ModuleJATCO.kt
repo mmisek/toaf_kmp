@@ -6,6 +6,7 @@ import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.CancellationException
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceMapper
@@ -137,6 +138,8 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
                             ).joinToString("") { x -> "%02X".format(x) })
                     )
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [getIdentification], $ex, $message"}
@@ -154,6 +157,8 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
                     message.answer[5].toInt() and 0xFF
                 )
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [getSErialNumber], $ex, $message"}
@@ -170,6 +175,8 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
                     17
                 )
             ) + message.answer.copyOfRange(17, 20).toHexString()
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [getVIN], $ex,$message"}
@@ -225,6 +232,8 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
                         )
                     }
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [getAllErros], $ex, $message"}
@@ -254,6 +263,8 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
                 if (message.isValid)
                     result[b.toInt()] = message.answer.copyOfRange(6, message.length - 1)
                 else return null
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [readLiveData], $ex, $message"}
@@ -312,6 +323,8 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
                         return kwp!!.write(moduleAddress, 0x27.toByte(), data, 1000).isValid
                     }
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [securityAccess], $ex, $message"}
@@ -395,6 +408,8 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
                     return result.isValid
                 }
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex: Exception) {
             Logger.e{"$tag [writeVin]: ${ex.toString()}"}
         }
@@ -424,6 +439,8 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
             //endDiagnosticSession()
             try {
                 delay(1000)
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (_ : Exception) {
             }
             if (securityAccess(0x83,0x05,false)) {
@@ -484,6 +501,8 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
                                 Res.string.activity_flash_programming_write_time,
                                 String.format(Locale.getDefault(),"%02d:%02d:%02d", hours, minutes, seconds)))
                             _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_ecu_reset))
+                        } catch (ex: CancellationException) {
+                            throw ex
                         } catch (ex: Exception) {
                             Logger.e{"$tag [WriteFlash]: ${ex.toString()}"}
                         }
@@ -558,6 +577,8 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
         try {
             result = result.copyOfRange(0, (endAddress - startAddress).toInt())
             _programmingState.tryEmit(FlashProgrammingState.FlashData(result.toList(),moduleInfo,vin))
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex: Exception) {
             Logger.e{"$tag [readFlash] : ${ex.toString()}"}
         }
@@ -581,6 +602,8 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
             if (message.isValid) {
                 return message.answer.copyOfRange(5, message.length - 1)
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [readFlashData], $ex, $message"}

@@ -2,6 +2,7 @@ package pl.misek.toafmobile.modules.l322
 
 import co.touchlab.kermit.Logger
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.CancellationException
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.generated.ResourceMapper
 import pl.misek.toafmobile.koin.KoinNames
@@ -127,6 +128,8 @@ class ModuleSRS(protocolDS2: ProtocolDS2?) :
                     val answer = message.answer
                     return String.format("%02d%02d%02d", answer[5], answer[6], answer[7])
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [getProgrammingDate()], $ex, $message"}
@@ -142,6 +145,8 @@ class ModuleSRS(protocolDS2: ProtocolDS2?) :
                 if (message.isValid) {
                     return String(message.answer.copyOfRange(6, message.answer.size))
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [getSErialNumber], $ex, $message"}
@@ -161,6 +166,8 @@ class ModuleSRS(protocolDS2: ProtocolDS2?) :
                         answer[4], answer[5], answer[6], answer[7], answer[8]
                     )
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [getVIN], $ex, $message"}
@@ -206,6 +213,8 @@ class ModuleSRS(protocolDS2: ProtocolDS2?) :
                             )
                         }
                     }
+                } catch (ex: CancellationException) {
+                    throw ex
                 } catch (ex : Exception)
                 {
                     Logger.e {"$tag [getAllErros], $ex, $message"}
@@ -243,6 +252,8 @@ class ModuleSRS(protocolDS2: ProtocolDS2?) :
                     } else if (result != null) {
                         return result.ifEmpty { null }
                     }
+                } catch (ex: CancellationException) {
+                    throw ex
                 } catch (ex : Exception)
                 {
                     Logger.e {"$tag [radCoding], $ex, $message"}
@@ -283,6 +294,8 @@ class ModuleSRS(protocolDS2: ProtocolDS2?) :
                         }
                     }
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [securityAccess], $ex,$message"}
@@ -325,6 +338,9 @@ class ModuleSRS(protocolDS2: ProtocolDS2?) :
         )
         try{
             return if (message.isValid) message.answer.copyOfRange(0x03, 3 + size) else null
+        }
+        catch (ex: CancellationException) {
+            throw ex
         }
         catch (ex : Exception)
         {

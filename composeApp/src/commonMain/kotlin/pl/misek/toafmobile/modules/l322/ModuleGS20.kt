@@ -5,6 +5,7 @@ import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.CancellationException
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.generated.ResourceHelper
 import pl.misek.toafmobile.generated.ResourceMapper
@@ -177,6 +178,8 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
                 result[0x00] = message.answer.copyOfRange(3, message.answer.size)
                 return result
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex: Exception) {
             Logger.e {"$tag [readLiveData], $ex, $message"}
         }
@@ -222,7 +225,9 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
                 delay(1000)
                 return ModulesFunction.getModuleInfo(interfaceWrite(byteArrayOf(0x00)))
             }
-        }catch ( ex : Exception)
+        }catch (ex: CancellationException) {
+            throw ex
+        } catch ( ex : Exception)
         {
             Logger.e {"$tag [getIdentification], $ex, $message"}
         }
@@ -347,6 +352,8 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
                     }
                 }
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch ( ex : Exception)
         {
             Logger.e {"$tag [getAllErrors], $ex, $message"}
@@ -460,6 +467,8 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
                         ""
                     )
                 )
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex: Exception) {
                 Logger.e { "$tag [readFlash]: ${ex.toString()}" }
             }
@@ -488,6 +497,8 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
         if (message.isValid) {
             try {
                 result = message.answer.copyOfRange(3, message.length - 1)
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex: Exception) {
                 Logger.e { "$tag [readFlash]: ${ex.toString()}, $message" }
                 return result

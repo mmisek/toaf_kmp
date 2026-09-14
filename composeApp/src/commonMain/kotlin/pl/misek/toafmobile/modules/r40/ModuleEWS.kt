@@ -18,6 +18,7 @@ import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_description_ews
 import toafmobile.composeapp.generated.resources.module_ews
+import kotlinx.coroutines.CancellationException
 
 private const val tag = "ModuleEWS"
 class ModuleEWS(protocolDS2: ProtocolDS2?) :
@@ -45,6 +46,8 @@ class ModuleEWS(protocolDS2: ProtocolDS2?) :
                 }
             }
             return null
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [readZCS], $ex, $message"}
@@ -81,6 +84,8 @@ class ModuleEWS(protocolDS2: ProtocolDS2?) :
             )
             else return null
             return result
+        } catch (ex: CancellationException) {
+            throw ex
         } catch ( ex : Exception)
         {
             Logger.e {"$tag [readCoding], $ex, $message"}
@@ -120,6 +125,8 @@ class ModuleEWS(protocolDS2: ProtocolDS2?) :
                         )
                     }
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e { "$tag [getAllErros], $ex, $message" }
@@ -137,6 +144,8 @@ class ModuleEWS(protocolDS2: ProtocolDS2?) :
                     message.answer.copyOfRange(4, message.answer.size)
                 )
             } else null
+        } catch (ex: CancellationException) {
+            throw ex
         } catch ( ex : Exception)
         {
             Logger.e {"$tag [getVIN], $ex,$message"}
@@ -153,6 +162,8 @@ class ModuleEWS(protocolDS2: ProtocolDS2?) :
                     ((message.answer[8].toInt() and 0xFF) shl 16) or ((message.answer[7].toInt() and 0xFF) shl 8) or (message.answer[6].toInt() and 0xFF)
                 return String.format("%d", odometer)
             } else return null
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [getOdometer],$ex, $message"}
@@ -173,6 +184,8 @@ class ModuleEWS(protocolDS2: ProtocolDS2?) :
                 return result
             }
             return null
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex :Exception)
         {
             Logger.e {"$tag [readLiveData], $ex, $message"}

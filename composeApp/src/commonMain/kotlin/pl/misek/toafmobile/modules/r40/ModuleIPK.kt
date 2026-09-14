@@ -2,6 +2,7 @@ package pl.misek.toafmobile.modules.r40
 
 import co.touchlab.kermit.Logger
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.CancellationException
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.coding.ZcsCoding
 import pl.misek.toafmobile.control.ControlElement
@@ -49,6 +50,8 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
             if (message.isValid) result =
                 ZcsCoding(message.answer.copyOfRange(4, message.length))
             return result
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [readZCS], $ex, $message"}
@@ -150,6 +153,8 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
                 } else {
                     return null
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [readCoding], $ex, $message"}
@@ -179,6 +184,8 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
             } while (crcStart < dataToSave[0].size)
             dataToSave[0][0x59] = crc
             return dataToSave
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex: Exception) {
             return dataToSave
         }
@@ -205,6 +212,8 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
                     result.add(ModuleError(ModuleAddress.MODULE_IPK, errorCode, errorDescription))
                 }
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [getAllErrors], $ex, $message"}
@@ -226,6 +235,8 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
                     message.answer[8]
                 )
             } else null
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [getVIN], $ex, $message"}
@@ -254,6 +265,8 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
                     message.answer[4], message.answer[5], message.answer[6]
                 )
             } else null
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [getOdometer],$ex, $message"}
@@ -281,6 +294,8 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
         val message = interfaceWrite(byteArrayOf(0x06, 0x03, 0x00, 0x00, adr, (size / 2).toByte()))
         try {
             return if (message.isValid) message.answer.copyOfRange(0x03, 0x03 + size) else null
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [readEeprom], $ex, $message"}

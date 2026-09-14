@@ -21,6 +21,7 @@ import kotlin.time.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.todayIn
 import java.util.Locale
+import kotlinx.coroutines.CancellationException
 
 class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdvanceCoding, IModuleVIN
 {
@@ -76,6 +77,8 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
                     info.additionalInfo.add(Pair(Res.string.module_info_programing_date, it))
                 }
             }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e{"$tag [getIdentification], $ex, $message"}
@@ -95,6 +98,8 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
                     message.answer[6], message.answer[7], message.answer[8], message.answer[9]
                 )
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [getProgrammingDate()], $ex, $message"}
@@ -119,6 +124,8 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
             if (message.isValid) {
                 return String(message.answer.copyOfRange(6, 16))
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [getSerialNumber], $ex, $message"}
@@ -133,6 +140,8 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
                 if (message.isValid) {
                     return String(message.answer.copyOfRange(6, 23))
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [getVIN], $ex, $message"}
@@ -183,6 +192,8 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
                         }
                     }
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [getAllErros], $ex, $message"}
@@ -215,6 +226,8 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
                     reset()
                     return result
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag, [readCoding], $ex, $message"}
@@ -259,6 +272,8 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
                         }
                     }
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [securityAccess], $ex, $message"}
@@ -302,6 +317,8 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
                     250
                 ).isValid
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex: Exception) {
             Logger.e{"$tag [writeVin]: ${ex.toString()}"}
         }

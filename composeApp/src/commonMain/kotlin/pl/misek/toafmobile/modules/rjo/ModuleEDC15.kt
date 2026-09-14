@@ -4,6 +4,7 @@ import co.touchlab.kermit.Logger
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.CancellationException
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import pl.misek.toafmobile.control.ControlElement
@@ -95,11 +96,15 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
                             message.answer[28], message.answer[29], message.answer[30]
                         )
                     }
+                } catch (ex: CancellationException) {
+                    throw ex
                 } catch (ex : Exception)
                 {
                     Logger.e {"$tag [getIdentification], $ex,$message"}
                 }
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex: Exception) {
             Logger.e{"$tag : ${ex.toString()}"}
         }
@@ -120,6 +125,8 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
                         message.answer[8].toInt() and 0xFF
                     )
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex :Exception)
             {
                 Logger.e {"$tag [getSerialNumber], $ex, $message "}
@@ -141,7 +148,9 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
                         message.answer[18].toInt() and 0xFF
                     )
                 }
-            }catch (ex : Exception)
+            }catch (ex: CancellationException) {
+                throw ex
+            } catch (ex : Exception)
             {
                 Logger.e {"$tag [getVIN], $ex, $message"}
             }
@@ -181,6 +190,8 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
                     }
                     return result
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$ex [getAllErrors], $ex, $message"}
@@ -239,6 +250,8 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
                 return kwp!!.write(moduleAddress, 0x27.toByte(), data, 500).isValid
             }
             return false
+        } catch (ex: CancellationException) {
+            throw ex
         } catch ( ex : Exception)
         {
             Logger.e {"$tag [securityAccess]: $ex, $message"}
@@ -261,6 +274,8 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
                 return kwp!!.write(moduleAddress, 0x27.toByte(), data, 500).isValid
             }
             return false
+        } catch (ex: CancellationException) {
+            throw ex
         } catch ( ex : Exception)
         {
             Logger.e {"$tag [securityAccessFlash]: $ex, $message"}
@@ -317,6 +332,8 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
             if (message.isValid) {
                 return message.answer.copyOfRange(4, message.length - 1)
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch ( ex : Exception)
         {
             Logger.e {"$tag [readFlashDAta]: $ex, $message"}
@@ -445,6 +462,8 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
             if (continueProcess) {
                 try {
                     result = result.copyOfRange(0, (endAddress - startAddress).toInt())
+                } catch (ex: CancellationException) {
+                    throw ex
                 } catch (ex: Exception) {
                     Logger.e{"$tag : ${ex.toString()}"}
                 }
@@ -459,6 +478,8 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
                                     Res.string.activity_flash_programming_written_to,
                                     it))
                         }
+                } catch (ex: CancellationException) {
+                    throw ex
                 } catch (ex: Exception) {
                     _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_write_data_to_file_error))
                 }
@@ -473,6 +494,8 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
                     _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                             Res.string.activity_flash_programming_backup_flash,
                             Res.string.activity_flash_programming_ok))
+                } catch (ex: CancellationException) {
+                    throw ex
                 } catch (ex: Exception) {
                     Logger.e{"$tag : ${ex.toString()}"}
                     _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
@@ -480,7 +503,9 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
                             Res.string.activity_flash_programming_failed))
                 }
             }
-        }catch (_: Exception) {
+        }catch (ex: CancellationException) {
+            throw ex
+        } catch (_: Exception) {
         }
         _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_end))
         _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_close))

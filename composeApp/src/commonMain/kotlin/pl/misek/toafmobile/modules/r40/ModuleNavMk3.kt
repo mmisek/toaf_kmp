@@ -17,6 +17,7 @@ import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_description_navi
 import toafmobile.composeapp.generated.resources.module_navigation
+import kotlinx.coroutines.CancellationException
 
 private const val tag = "ModuleNavMk3"
 class ModuleNavMk3( protocolDS2: ProtocolDS2?) :
@@ -45,6 +46,9 @@ class ModuleNavMk3( protocolDS2: ProtocolDS2?) :
                 moduleInfo.sw = String(answer.copyOfRange(32, 34))
                 moduleInfo.producer = ModulesFunction.getProducer(0x56)
                 return moduleInfo
+            }
+            catch (ex: CancellationException) {
+                throw ex
             }
             catch (ex : Exception)
             {
@@ -94,6 +98,9 @@ class ModuleNavMk3( protocolDS2: ProtocolDS2?) :
                     )
                 }
             }
+            catch (ex: CancellationException) {
+                throw ex
+            }
             catch (ex: Exception)
             {
                 Logger.e("$tag [getAllErrors]: $ex, $message")
@@ -120,6 +127,9 @@ class ModuleNavMk3( protocolDS2: ProtocolDS2?) :
                 }
             }
         }
+        catch (ex: CancellationException) {
+            throw ex
+        }
         catch (ex: Exception)
         {
             Logger.e("$tag [getAllErrors]: $ex, $message")
@@ -137,6 +147,8 @@ class ModuleNavMk3( protocolDS2: ProtocolDS2?) :
         }
         return try {
             String(codingBytes.copyOfRange(4, 11))
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [getVIN], $ex,$data"}
@@ -154,6 +166,9 @@ class ModuleNavMk3( protocolDS2: ProtocolDS2?) :
             if (message.isValid) result.add(
                 message.answer.copyOfRange(3,message.answer.size - 1))
             else return null
+        }
+        catch (ex: CancellationException) {
+            throw ex
         }
         catch (ex : Exception)
         {

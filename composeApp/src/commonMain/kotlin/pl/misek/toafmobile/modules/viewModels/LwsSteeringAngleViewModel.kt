@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.conflate
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.CancellationException
 import pl.misek.toafmobile.modules.l322.ModuleLWS
 import pl.misek.toafmobile.tools.JsonSupport
 import kotlin.time.Duration.Companion.milliseconds
@@ -37,6 +38,8 @@ class LwsSteeringAngleViewModel(private val module : ModuleLWS?): ViewModel()
                 val block = liveData?.get(liveDataElement.block) as ByteArray
                 val rawValue = (block[liveDataElement.byteInBlock].toInt() shl 8) + (block[liveDataElement.byteInBlock + 1].toInt())
                 rawValue.toFloat() * liveDataElement.factorA + liveDataElement.factorB
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (_ : Exception)
             {
                 Float.NaN

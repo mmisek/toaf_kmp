@@ -27,6 +27,7 @@ import toafmobile.composeapp.generated.resources.module_bcu
 import toafmobile.composeapp.generated.resources.module_description_bcu
 import java.util.Arrays
 import kotlin.experimental.inv
+import kotlinx.coroutines.CancellationException
 
 private const val tag = "ModuleBCU"
 class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddress.MODULE_BCU, listOf(CarType.R40)), IModuleControl, IModuleCoding, IModuleAdvanceCoding, IModuleLiveData, IModuleVIN,IModuleBcuKeys
@@ -45,6 +46,9 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
             try {
                 result[0x00] = message.answer.copyOfRange(3, message.answer.size)
                 return result
+            }
+            catch (ex: CancellationException) {
+                throw ex
             }
             catch (ex: Exception)
             {
@@ -76,6 +80,9 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
             if (message.isValid)
                 try {
                     result.add(message.answer.copyOfRange(3, message.answer.size - 1))
+                }
+                catch (ex: CancellationException) {
+                    throw ex
                 }
                 catch (ex : Exception)
                 {
@@ -128,6 +135,8 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
                         )
                     }
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [getAllErrors()] : $ex, $message"}
@@ -157,6 +166,8 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
                     )
                 }
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex :Exception)
             {
             Logger.e {"$tag [getAllErrors() -alarm mislock], $ex , $message"}
@@ -184,6 +195,8 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
                         )
                     }
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex: Exception)
             {
                 Logger.e {"$tag [getAllErrors() - BCU alarm] $ex, $message"}
@@ -212,6 +225,8 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
                     String(message.answer.copyOfRange(3, 14)),
                     message.answer[14], message.answer[15], message.answer[16]
                 )
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [getVIN()], $ex, $message"}
@@ -244,6 +259,8 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
             val data =
                 byteArrayOf(0x64, ((key and 0xFF00) shr 8).toByte(), (key and 0xFF).toByte())
             return interfaceWrite(data, 500).isValid
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [securityAccess()], $ex, $message"}

@@ -21,6 +21,7 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_description_lcm
 import toafmobile.composeapp.generated.resources.module_lsm
 import java.util.Locale
+import kotlinx.coroutines.CancellationException
 
 private const val tag = "ModuleLSM_R40"
 class ModuleLSM(protocolDS2: ProtocolDS2?) :
@@ -226,6 +227,8 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
                 message.answer.copyOfRange(3, message.answer.size)
             else return null
             return result
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [readLiveData], $ex, $message"}
@@ -288,6 +291,8 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
                             message.answer[8].toInt() and 0xFF
                         )
                 return vin
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex: Exception) {
                 Logger.e {"$tag [getVIN], $ex, $message"}
                 return null
@@ -302,6 +307,8 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
                 val i =
                     ((message.answer[9].toInt() and 0xFF) shl 8) or (message.answer[10].toInt() and 0xFF)
                 return String.format(Locale.getDefault(), "%d", i * 100)
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception) {
                 Logger.e {"$tag [getOdometer], $ex, $message"}
                 return null
@@ -334,6 +341,8 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
                         }
                     }
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [getaAllErrors], $ex, $message"}
@@ -359,6 +368,8 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
                     message.answer.copyOfRange(4, message.answer.size - 1)
                 )
                 else return null
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [readCoding], $ex, $message"}

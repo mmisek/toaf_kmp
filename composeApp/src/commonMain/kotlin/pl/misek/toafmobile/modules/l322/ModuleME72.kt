@@ -5,6 +5,7 @@ import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.CancellationException
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.coding.ZcsCoding
 import pl.misek.toafmobile.control.ControlElement
@@ -81,7 +82,9 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
                     result[b.block] =
                         message.answer.copyOfRange(0, message.length - 1)
                 } else return null
-            }catch (ex : Exception)
+            }catch (ex: CancellationException) {
+                throw ex
+            } catch (ex : Exception)
             {
                 Logger.e {"$tag [readLiveData], $ex, $message"}
                 return null
@@ -176,6 +179,8 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
                     }
 
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex: Exception) {
                 Logger.e { "$tag [getAllErros], $ex ,$message" }
             }
@@ -202,10 +207,14 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
                     info.bi = String(answer.copyOfRange(18, 20))
                     info.date = String(answer.copyOfRange(20, 22)) + "/" + String(answer.copyOfRange(22, 24))
                     info.serial = String(answer.copyOfRange(24,34))
+                } catch (ex: CancellationException) {
+                    throw ex
                 } catch (ex: Exception) {
                     Logger.e { "$tag : ${ex.toString()}" }
                 }
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [getIdentification], $ex, $message"}
@@ -237,6 +246,8 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
                 }
                 else
                     break
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex: Exception) {
                 Logger.e { "$tag [getAIF], $ex, $message" }
                 return null
@@ -294,6 +305,8 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
                     ).isValid
                 }
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [securityAccess], $ex, $message"}
@@ -354,6 +367,8 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
             endDiagnosticSession()
             try {
                 delay(1000)
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (_ : Exception) {
             }
             if (startDiagnosticSession(0x85) && securityAccess(7)) {
@@ -414,6 +429,8 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
                                     Res.string.activity_flash_programming_write_time,
                                     String.format("%02i:%02i:%02i", hours, minutes, seconds)))
                             _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_ecu_reset))
+                        } catch (ex: CancellationException) {
+                            throw ex
                         } catch (ex: Exception) {
                             Logger.e{"$tag [WriteFlash]: ${ex.toString()}"}
                         }
@@ -494,6 +511,8 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
         try {
             result = result.copyOfRange(0, (endAddress - startAddress).toInt())
             _programmingState.tryEmit(FlashProgrammingState.FlashData(result.toList(),moduleInfo,vin))
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex: Exception) {
             Logger.e{"$tag [readFlash] : ${ex.toString()}"}
         }
@@ -517,6 +536,8 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
             if (message.isValid) {
                 return message.answer.copyOfRange(5, message.length - 1)
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [readFlashData], $ex, $message"}

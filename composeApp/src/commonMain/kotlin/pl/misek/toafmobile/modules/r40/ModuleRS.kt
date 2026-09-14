@@ -16,6 +16,7 @@ import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_description_rs
 import toafmobile.composeapp.generated.resources.module_rs
+import kotlinx.coroutines.CancellationException
 
 private const val tag = "ModuleRS"
 class ModuleRS( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddress.MODULE_RS, listOf(CarType.R40)), IModuleControl, IModuleLiveData {
@@ -34,6 +35,8 @@ class ModuleRS( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddre
                 result[0x00] = message.answer.copyOfRange(3, message.answer.size)
                 return result
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [readLiveData], $ex, $message"}
@@ -59,6 +62,8 @@ class ModuleRS( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddre
                     result.add(ModuleError(ModuleAddress.MODULE_RS, errorCode, errorDescription))
                 }
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [getAllErros], $ex, $message"}

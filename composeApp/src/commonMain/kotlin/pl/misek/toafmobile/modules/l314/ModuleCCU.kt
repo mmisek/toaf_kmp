@@ -2,6 +2,7 @@ package pl.misek.toafmobile.modules.l314
 
 import co.touchlab.kermit.Logger
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.CancellationException
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.livedata.LiveDataElement
@@ -91,12 +92,17 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
                             answer[15].toInt() and 0xFF
                         )
                     }
+                    catch (ex: CancellationException) {
+                        throw ex
+                    }
                     catch (ex : Exception)
                     {
                         Logger.e {"$tag : $ex, $message"}
                     }
                 }
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex: Exception) {
             Logger.e{"$tag : ${ex.toString()}"}
         }
@@ -116,6 +122,9 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
                     vin += (message.answer[7].toInt() and 0xFF) shl 8
                     vin += message.answer[8].toInt() and 0xFF
                     return vin.toString()
+                }
+                catch (ex: CancellationException) {
+                    throw ex
                 }
                 catch (ex : Exception)
                 {
@@ -287,6 +296,9 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
                         response[2] = x
                     }
                     result[element.block] = response
+                }
+                catch (ex: CancellationException) {
+                    throw ex
                 }
                 catch ( ex : Exception)
                 {

@@ -14,6 +14,7 @@ import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_description_mfl
 import toafmobile.composeapp.generated.resources.module_mfl
+import kotlinx.coroutines.CancellationException
 
 class ModuleMFL( protocolDS2: ProtocolDS2?) :
     ModuleDS2( protocolDS2, ModuleAddress.MODULE_MFL, listOf(CarType.L322)),
@@ -50,6 +51,8 @@ class ModuleMFL( protocolDS2: ProtocolDS2?) :
                         )
                     }
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch ( ex : Exception)
             {
                 Logger.e {"$tag [getAllErrors], $ex, $message"}
@@ -66,6 +69,8 @@ class ModuleMFL( protocolDS2: ProtocolDS2?) :
                 message.answer.copyOfRange(3, message.answer.size)
             else
                 return null
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [readLiveData], $ex, $message"}

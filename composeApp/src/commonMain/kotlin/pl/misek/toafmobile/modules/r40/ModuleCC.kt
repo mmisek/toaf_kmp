@@ -17,6 +17,7 @@ import pl.misek.toafmobile.protocols.IProtocol
 import pl.misek.toafmobile.protocols.ProtocolKWP
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
+import kotlinx.coroutines.CancellationException
 
 private const val tag = "ModuleCC"
 class ModuleCC(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
@@ -56,6 +57,8 @@ class ModuleCC(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
                 info.sw = (answer[26].toInt() and 0xFF).toByte().toHexString()
                 info.producer = ModulesFunction.getProducer(answer[25].toInt())
                 info.date = ResourceHelper.byteArrayToDate(answer.copyOfRange(21, 25))
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [getIdentification()], $ex, $message"}
@@ -112,6 +115,8 @@ class ModuleCC(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
                             }
                         }
                     }
+                } catch (ex: CancellationException) {
+                    throw ex
                 } catch (ex : Exception)
                 {
                     Logger.e {"$tag [getAllErros()], $ex, $message"}
@@ -144,6 +149,8 @@ class ModuleCC(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
             if (message.isValid) {
                 try {
                     result[i - 0x05] = message.answer.copyOfRange(6, message.length - 1)
+                } catch (ex: CancellationException) {
+                    throw ex
                 } catch (ex : Exception)
                 {
                     Logger.e {"$tag [readLiveData()], $ex, $message"}
@@ -174,6 +181,8 @@ class ModuleCC(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
                     )
                     return kwp!!.write(moduleAddress, 0x27.toByte(), data).isValid
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [securityAccess03()], $ex, $message"}

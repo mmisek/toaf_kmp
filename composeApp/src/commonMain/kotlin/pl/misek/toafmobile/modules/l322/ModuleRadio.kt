@@ -9,6 +9,7 @@ import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_description_radio
 import toafmobile.composeapp.generated.resources.module_radio
+import kotlinx.coroutines.CancellationException
 
 class ModuleRadio(protocolDS2: ProtocolDS2?) :
     ModuleRadio(protocolDS2, listOf(CarType.L322)),
@@ -28,6 +29,8 @@ class ModuleRadio(protocolDS2: ProtocolDS2?) :
             if (message.isValid) {
                 result.add(message.answer.copyOfRange(3, message.answer.size - 1))
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch ( ex : Exception)
         {
             Logger.e {"$tag [readCoding], $ex, $message"}

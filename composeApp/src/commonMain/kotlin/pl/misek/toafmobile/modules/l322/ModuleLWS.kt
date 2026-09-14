@@ -2,6 +2,7 @@ package pl.misek.toafmobile.modules.l322
 
 import co.touchlab.kermit.Logger
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.CancellationException
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.generated.ResourceHelper
 import pl.misek.toafmobile.koin.KoinNames
@@ -69,6 +70,8 @@ class ModuleLWS( protocolDS2: ProtocolDS2?) :
                     result.add(ModuleError(ModuleAddress.MODULE_LWS, errorCode, errorDescription))
                 }
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch ( ex : Exception)
         {
             Logger.e {"$tag [getAllErrors], $ex, $message"}
@@ -91,6 +94,8 @@ class ModuleLWS( protocolDS2: ProtocolDS2?) :
                     result[i] = message.answer.copyOfRange(3, message.answer.size)
                 else
                     return null
+            } catch (ex: CancellationException) {
+                throw ex
             } catch ( ex : Exception)
             {
                 Logger.e {"$tag [readLiveDAta], $ex, $message"}
@@ -109,6 +114,8 @@ class ModuleLWS( protocolDS2: ProtocolDS2?) :
                     result.add(message.answer.copyOfRange(4, message.answer.size - 1))
                 else
                     return null
+            } catch (ex: CancellationException) {
+                throw ex
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [readCoding], $ex, $message"}
@@ -146,6 +153,8 @@ class ModuleLWS( protocolDS2: ProtocolDS2?) :
             size.toByte()))
         try {
             return if (message.isValid) message.answer.copyOfRange(0x03, 3 + size) else null
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception) {
             Logger.e {"$tag [readEeprom], $ex, $message"}
             return null
@@ -179,10 +188,14 @@ class ModuleLWS( protocolDS2: ProtocolDS2?) :
                         answer[10], answer[9], answer[8], answer[7], answer[6]
                     )
                     return LWSAdjustmentData(oldOffset, oldId, oldVin)
+                } catch (ex: CancellationException) {
+                    throw ex
                 } catch (_: Exception) {
                     return null
                 }
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [readAdjustmentData], $ex, $message"}

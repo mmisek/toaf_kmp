@@ -12,6 +12,7 @@ import pl.misek.toafmobile.modules.interfaces.IModuleCoding
 import pl.misek.toafmobile.modules.interfaces.IModuleEepromProgramming
 import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.*
+import kotlinx.coroutines.CancellationException
 
 private const val tag = "ModuleBCU - L322"
 class ModuleBCU(protocolDS2: ProtocolDS2?) :
@@ -64,6 +65,9 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
                     result.add(message.answer.copyOfRange(3,message.answer.size - 1))
                 else
                     return null
+            }
+            catch (ex: CancellationException) {
+                throw ex
             }
             catch (ex : Exception)
             {
@@ -122,6 +126,8 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
                     }
                 }
             }
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex :Exception)
         {
             Logger.e {"$tag [getAllErrors], $ex, $message"}
@@ -154,6 +160,8 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
         )
         try {
             return if (message.isValid) message.answer.copyOfRange(0x03, 3 + size) else null
+        } catch (ex: CancellationException) {
+            throw ex
         } catch (ex : Exception)
         {
             Logger.e {"$tag [readEeprom]: $ex, $message"}

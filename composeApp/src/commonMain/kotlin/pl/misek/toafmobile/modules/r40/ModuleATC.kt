@@ -16,6 +16,7 @@ import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_ac
 import toafmobile.composeapp.generated.resources.module_description_atc
+import kotlinx.coroutines.CancellationException
 
 private const val tag = "ModuleATC1"
 class ModuleATC( protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddress.MODULE_ATC, listOf(CarType.R40)), IModuleControl, IModuleLiveData
@@ -33,6 +34,8 @@ class ModuleATC( protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddre
             try {
                 result[0x00] = message.answer.copyOfRange(3, message.answer.size)
                 return result
+            } catch (ex: CancellationException) {
+                throw ex
             } catch ( ex : Exception)
             {
                 Logger.e {"$tag [readLiveData()]: $ex,$message"}
@@ -65,6 +68,9 @@ class ModuleATC( protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddre
                 val producer = message.answer[3].toInt()
                 moduleInfo.producer = ModulesFunction.getProducer(producer.toBcd().toInt())
             }
+            catch (ex: CancellationException) {
+                throw ex
+            }
             catch (ex: Exception)
             {
                 Logger.e { "$tag [getIdentification()]: $ex , $message"}
@@ -89,6 +95,8 @@ class ModuleATC( protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddre
                         result.add(ModuleError(ModuleAddress.MODULE_ATC, errorCode, ArrayList()))
                     }
                 }
+            } catch (ex: CancellationException) {
+                throw ex
             } catch ( ex : Exception)
             {
                 Logger.e{"$tag [getAllErrors()], $ex, $message"}
