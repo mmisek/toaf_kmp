@@ -312,7 +312,7 @@ private fun LivaDataChart(liveDataElements: List<List<Float>>)
         val modelProducer = remember { CartesianChartModelProducer() }
         LaunchedEffect(liveDataElements, modelProducer) {
             val validateSeries = liveDataElements.filter { it.isNotEmpty() }
-            if (liveDataElements.isNotEmpty()) {
+            if (validateSeries.isNotEmpty()) {
                 withContext(Dispatchers.Default)
                 {
                     modelProducer.runTransaction {
