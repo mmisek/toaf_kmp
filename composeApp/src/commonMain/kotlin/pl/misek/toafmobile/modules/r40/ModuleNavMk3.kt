@@ -78,11 +78,13 @@ class ModuleNavMk3( protocolDS2: ProtocolDS2?) :
         if (message.isValid) {
             try {
                 result = ArrayList()
-                for (i in 0 until message.answer[3]) {
+                val declaredCount = message.answer[3].toInt() and 0xFF
+                val availableCount = ((message.answer.size - 4) / 3).coerceAtLeast(0)
+                for (i in 0 until minOf(declaredCount, availableCount)) {
                     val errorCode = String.format("%02X", message.answer[4 + 3 * i])
                     val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
                     errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[6 + 3 * i].toInt() and 0xFF)))
-                    errorDescription.add(ResourceHelper.getErrorDescriptionIsPresent((message.answer[5 + 2 * i].toInt() and 0x20) == 0x20))
+                    errorDescription.add(ResourceHelper.getErrorDescriptionIsPresent((message.answer[5 + 3 * i].toInt() and 0x20) == 0x20))
                     result.add(
                         ModuleError(
                             ModuleAddress.MODULE_NAVMK3,
@@ -101,11 +103,13 @@ class ModuleNavMk3( protocolDS2: ProtocolDS2?) :
         try {
             if (message.isValid) {
                 if (result == null) result = ArrayList()
-                for (i in 0 until message.answer[3]) {
+                val declaredCount = message.answer[3].toInt() and 0xFF
+                val availableCount = ((message.answer.size - 4) / 3).coerceAtLeast(0)
+                for (i in 0 until minOf(declaredCount, availableCount)) {
                     val errorCode = String.format("%02X", message.answer[4 + 3 * i])
                     val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
                     errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[6 + 3 * i].toInt() and 0xFF)))
-                    errorDescription.add(ResourceHelper.getErrorDescriptionIsPresent((message.answer[5 + 2 * i].toInt() and 0x20) == 0x20))
+                    errorDescription.add(ResourceHelper.getErrorDescriptionIsPresent((message.answer[5 + 3 * i].toInt() and 0x20) == 0x20))
                     result.add(
                         ModuleError(
                             ModuleAddress.MODULE_NAVMK3,
