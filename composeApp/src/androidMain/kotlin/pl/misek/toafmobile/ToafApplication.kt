@@ -26,6 +26,7 @@ class ToafApplication : Application() {
             options.tracesSampleRate = 1.0
             options.isDebug = false
             options.isAnrEnabled = true
+            options.isTombstoneEnabled = true
             options.beforeSend = SentryOptions.BeforeSendCallback{event, _ ->
                 event.setTag("APP_VERSION_CODE", BuildKonfig.VERSION_CODE.toString())
                 event.setTag("APP_VERSION_NAME", BuildKonfig.VERSION_NAME)

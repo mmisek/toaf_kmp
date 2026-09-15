@@ -28,6 +28,9 @@
         <meta-data
             android:name="io.sentry.dsn"
             android:value="https://d58e2adef3189565b4341038b83d85b0@o4510877541269504.ingest.de.sentry.io/4510877548937296" />
+        <meta-data
+            android:name="io.sentry.tombstone.enable"
+            android:value="true" />
         <activity android:name=".activities.AndroidActivityMain"
             android:launchMode="singleTop"
             android:exported="true">

@@ -31,11 +31,16 @@ class AndroidUsbBroadcastHandler(private var context : Context) : IUsbBroadcastH
                     UsbManager.ACTION_USB_DEVICE_ATTACHED -> {
                         val device = IntentCompat.getParcelableExtra<UsbDevice>(intent,UsbManager.EXTRA_DEVICE,UsbDevice::class.java)
                         device?.let {
-                            val driver = UsbSerialProber.getDefaultProber().probeDevice(device)
-                            if (driver != null)
-                                trySend(UsbEvent.Attached(device = device.getUsbDeviceInfo(), driver = driver))
-                            else
-                                trySend(UsbEvent.Error("Not Use SerialDevice"))
+                            try {
+                                val driver = UsbSerialProber.getDefaultProber().probeDevice(device)
+                                if (driver != null)
+                                    trySend(UsbEvent.Attached(device = device.getUsbDeviceInfo(), driver = driver))
+                                else
+                                    trySend(UsbEvent.Error("Not Use SerialDevice"))
+                            } catch (ex: Exception)
+                            {
+                                Logger.w { "$tag : UsbManager.ACTION_USB_DEVICE_ATTACHED Error , ${ex.message}" }
+                            }
                         }
                     }
 
