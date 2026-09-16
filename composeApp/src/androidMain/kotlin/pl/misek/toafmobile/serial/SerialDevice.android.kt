@@ -25,6 +25,12 @@ class AndroidSerialDevice (private val usbManager: UsbManager) : ISerialDevice
     private var _serialPort: UsbSerialPort? = null
     private val rxBuffer = java.util.concurrent.LinkedBlockingQueue<Byte>()
     private var ioManager: SerialInputOutputManager? = null
+    // Diagnostic only (DS2 timing investigation): timestamp of the most recent write,
+    // read by the background onNewData() callback to log arrival times relative to it.
+    private var lastWriteAtNanos: Long = 0L
+
+    private fun ByteArray.toHex() = joinToString(" ") { "%02X".format(it) }
+
     override suspend fun write(data: ByteArray?, forceAnswer: Boolean, useDelay: Boolean): ByteArray? {
         return write(data, 50, true, useDelay)
     }
@@ -42,6 +48,8 @@ class AndroidSerialDevice (private val usbManager: UsbManager) : ISerialDevice
 
         try {
             rxBuffer.clear()
+            lastWriteAtNanos = System.nanoTime()
+            Logger.i { "$tag [timing] write start data=${data?.toHex()}" }
             if (useDelay && data != null) {
                 for (b in data) {
                     port.write(byteArrayOf(b), 10)
@@ -56,12 +64,16 @@ class AndroidSerialDevice (private val usbManager: UsbManager) : ISerialDevice
             Logger.e{"$tag : write error : ${ex.toString()}"}
             return@withContext null
         }
-        delay(timeout ?: 250)
+        Logger.i { "$tag [timing] write done (+${(System.nanoTime() - lastWriteAtNanos) / 1_000_000}ms since write start)" }
         if (forceAnswer) {
             val out = ByteArrayOutputStream()
             val start = System.currentTimeMillis()
             var lastByteAt = start
-            val totalTimeout = timeout ?: 1000
+            // Start listening immediately instead of an unconditional delay(timeout ?: 250)
+            // first - keep the same overall time budget as before (that delay plus the
+            // read window) so a slow answer still gets the same total time to arrive, but
+            // a fast one is no longer held up by a wait it didn't need.
+            val totalTimeout = (timeout ?: 250) + (timeout ?: 1000)
             val idleGap = 50L
 
             while (System.currentTimeMillis() - start < totalTimeout) {
@@ -74,7 +86,9 @@ class AndroidSerialDevice (private val usbManager: UsbManager) : ISerialDevice
                     delay(2)
                 }
             }
-            return@withContext out.toByteArray().takeIf { it.isNotEmpty() }
+            val result = out.toByteArray()
+            Logger.i { "$tag [timing] read loop done, ${result.size}B total (+${(System.nanoTime() - lastWriteAtNanos) / 1_000_000}ms since write start): ${result.toHex()}" }
+            return@withContext result.takeIf { it.isNotEmpty() }
         }
         return@withContext null
     }
@@ -96,6 +110,8 @@ class AndroidSerialDevice (private val usbManager: UsbManager) : ISerialDevice
     fun startIoManager(port: UsbSerialPort?) {
         ioManager = SerialInputOutputManager(port, object : SerialInputOutputManager.Listener {
             override fun onNewData(data: ByteArray) {
+                val sinceWriteMs = if (lastWriteAtNanos > 0) (System.nanoTime() - lastWriteAtNanos) / 1_000_000 else -1
+                Logger.i { "$tag [timing] onNewData +${sinceWriteMs}ms since write start, ${data.size}B: ${data.toHex()}" }
                 for (b in data) rxBuffer.put(b)   // wątek w tle ciągle odbiera
             }
             override fun onRunError(e: Exception) {

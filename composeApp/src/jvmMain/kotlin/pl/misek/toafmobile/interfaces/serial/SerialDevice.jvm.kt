@@ -18,7 +18,8 @@ class DesktopSerialDevice : ISerialDevice
     private var fastInitSleep = 25
     private var _serialPort : SerialPort? = null
     private var _serialPortName = ""
-    private val repeatTimes = 5
+
+    private fun ByteArray.toHex() = joinToString(" ") { "%02X".format(it) }
 
     override suspend fun write(data: ByteArray?, forceAnswer: Boolean, useDelay: Boolean): ByteArray? {
         return write(data, 50, true, useDelay)
@@ -32,6 +33,10 @@ class DesktopSerialDevice : ISerialDevice
     ): ByteArray? = withContext(Dispatchers.IO) {
         if (_serialPort == null) connect(_serialPortName)
         if (_serialPort != null && _serialPort!!.isOpen) {
+            // Diagnostic only (DS2 timing investigation): nanoTime reference for all
+            // [timing] log lines below, so arrival times can be compared to write start.
+            val writeStartNanos = System.nanoTime()
+            Logger.i { "$tag [timing] write start data=${data?.toHex()}" }
             try {
                 if (useDelay && data != null) {
                     for (b in data) {
@@ -48,25 +53,37 @@ class DesktopSerialDevice : ISerialDevice
                 Logger.e{"$tag : ${ex.toString()}"}
                 return@withContext null
             }
-            delay((timeout ?: 100).milliseconds)
+            Logger.i { "$tag [timing] write done (+${(System.nanoTime() - writeStartNanos) / 1_000_000}ms since write start)" }
             if (forceAnswer) {
                 val outputStream = ByteArrayOutputStream()
                 var result: ByteArray?
                 val buffer = ByteArray(512)
                 try {
-                    var repeat = 0
+                    val start = System.currentTimeMillis()
+                    var lastByteAt = start
+                    // Start reading immediately instead of an unconditional
+                    // delay(timeout ?: 100) first, then keep the same overall time budget
+                    // as before (that delay plus the fixed read window) so a slow answer
+                    // still gets the same total time to arrive, stopping early once the
+                    // line has gone quiet for a bit (idleGap) after some data came in.
+                    val totalTimeout = (timeout ?: 100) + (timeout ?: 500)
+                    val idleGap = 50L
                     val time = measureTime {
-                        var n : Int
-                        do {
-                            n = _serialPort!!.readBytes(buffer, buffer.size)
-                            if (n > 0)
+                        while (System.currentTimeMillis() - start < totalTimeout) {
+                            val n = _serialPort!!.readBytes(buffer, buffer.size)
+                            if (n > 0) {
+                                Logger.i { "$tag [timing] read +${(System.nanoTime() - writeStartNanos) / 1_000_000}ms since write start, ${n}B: ${buffer.copyOfRange(0, n).toHex()}" }
                                 outputStream.write(buffer, 0, n)
-                            delay(10.milliseconds)
-                            repeat++
-                        } while (repeat < repeatTimes)
+                                lastByteAt = System.currentTimeMillis()
+                            } else {
+                                if (outputStream.size() > 0 && System.currentTimeMillis() - lastByteAt > idleGap) break
+                                delay(2.milliseconds)
+                            }
+                        }
                         result = outputStream.toByteArray()
                     }
                     Logger.i{"$tag : Reading Time : $time"}
+                    Logger.i { "$tag [timing] read loop done, ${result?.size ?: 0}B total (+${(System.nanoTime() - writeStartNanos) / 1_000_000}ms since write start): ${result?.toHex()}" }
                 } catch (ex: Exception) {
                     Logger.e{"$tag : ${ex.toString()}"}
                     result = null

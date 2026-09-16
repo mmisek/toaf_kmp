@@ -101,6 +101,10 @@ open class ProtocolKWP(private var device: IInterfaceDevice?, var useDelay: Bool
                         (checkSum.toInt() xor message.answer[i].toInt()).toByte()
                     message.isValid =
                         (message.answer[message.answer.size - 1] == checkSum) && (message.answerCode == (command + 0x40).toByte())
+                    Logger.i { "$tag : Message CS = ${message.answer[message.answer.size - 1]}" }
+                    Logger.i { "$tag : Calculated CS = $checkSum" }
+                    Logger.i { "$tag : AnswerCode = ${message.answerCode}" }
+                    Logger.i { "$tag: Message Valid : ${message.isValid}" }
                 }
             } catch (ex: Exception) {
                 Logger.e{"$tag: ${ex.toString()}"}

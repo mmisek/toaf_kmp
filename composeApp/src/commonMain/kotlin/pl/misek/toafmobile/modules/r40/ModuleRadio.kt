@@ -112,9 +112,9 @@ open class ModuleRadio : ModuleDS2, IModuleControl {
     override fun getModuleDescription() = Res.string.module_description_radio
 
     override suspend fun getIdentification(): ModuleInfo? {
-        val moduleInfo = super.getIdentification()
-        val radioCode = moduleInfo!!.di.toInt(16)
-        if (radioType.containsKey(radioCode)) {
+        val moduleInfo = super.getIdentification() ?: return null
+        val radioCode = moduleInfo.di.toIntOrNull(16)
+        if (radioCode != null && radioType.containsKey(radioCode)) {
             moduleInfo.additionalInfo.add(
                 Pair(
                     Res.string.radio_module_info_name,
