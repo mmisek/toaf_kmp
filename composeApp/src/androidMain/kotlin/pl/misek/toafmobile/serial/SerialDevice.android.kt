@@ -75,12 +75,30 @@ class AndroidSerialDevice (private val usbManager: UsbManager) : ISerialDevice
             // a fast one is no longer held up by a wait it didn't need.
             val totalTimeout = (timeout ?: 250) + (timeout ?: 1000)
             val idleGap = 50L
+            // Diagnostic only: DS2/KWP both echo the request before the real answer, so
+            // once we've received exactly `echoSize` bytes the echo is complete; anything
+            // beyond that is the start of the real answer. If both arrive in the same
+            // chunk (common on fast/local links) the two timestamps below end up equal -
+            // that's expected, not a bug.
+            val echoSize = data?.size ?: 0
+            var echoAtMs = -1L
+            var answerStartAtMs = -1L
 
             while (System.currentTimeMillis() - start < totalTimeout) {
                 val b = rxBuffer.poll()
                 if (b != null) {
                     out.write(b.toInt() and 0xFF)
                     lastByteAt = System.currentTimeMillis()
+                    val size = out.size()
+                    if (echoAtMs < 0 && echoSize > 0 && size >= echoSize) {
+                        echoAtMs = (System.nanoTime() - lastWriteAtNanos) / 1_000_000
+                        Logger.i { "$tag [timing] echo complete after ${echoAtMs}ms since write start" }
+                    }
+                    if (answerStartAtMs < 0 && size > echoSize) {
+                        answerStartAtMs = (System.nanoTime() - lastWriteAtNanos) / 1_000_000
+                        val sinceEcho = if (echoAtMs >= 0) answerStartAtMs - echoAtMs else -1
+                        Logger.i { "$tag [timing] answer started after ${answerStartAtMs}ms since write start (+${sinceEcho}ms after echo)" }
+                    }
                 } else {
                     if (out.size() > 0 && System.currentTimeMillis() - lastByteAt > idleGap) break
                     delay(2)

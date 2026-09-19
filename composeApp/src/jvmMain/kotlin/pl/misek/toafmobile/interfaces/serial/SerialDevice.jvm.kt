@@ -68,6 +68,14 @@ class DesktopSerialDevice : ISerialDevice
                     // line has gone quiet for a bit (idleGap) after some data came in.
                     val totalTimeout = (timeout ?: 100) + (timeout ?: 500)
                     val idleGap = 50L
+                    // Diagnostic only: DS2/KWP both echo the request before the real
+                    // answer, so once we've received exactly `echoSize` bytes the echo is
+                    // complete; anything beyond that is the start of the real answer. If
+                    // both arrive in the same chunk (common on fast/local links) the two
+                    // timestamps below end up equal - that's expected, not a bug.
+                    val echoSize = data?.size ?: 0
+                    var echoAtMs = -1L
+                    var answerStartAtMs = -1L
                     val time = measureTime {
                         while (System.currentTimeMillis() - start < totalTimeout) {
                             val n = _serialPort!!.readBytes(buffer, buffer.size)
@@ -75,6 +83,16 @@ class DesktopSerialDevice : ISerialDevice
                                 Logger.i { "$tag [timing] read +${(System.nanoTime() - writeStartNanos) / 1_000_000}ms since write start, ${n}B: ${buffer.copyOfRange(0, n).toHex()}" }
                                 outputStream.write(buffer, 0, n)
                                 lastByteAt = System.currentTimeMillis()
+                                val size = outputStream.size()
+                                if (echoAtMs < 0 && echoSize > 0 && size >= echoSize) {
+                                    echoAtMs = (System.nanoTime() - writeStartNanos) / 1_000_000
+                                    Logger.i { "$tag [timing] echo complete after ${echoAtMs}ms since write start" }
+                                }
+                                if (answerStartAtMs < 0 && size > echoSize) {
+                                    answerStartAtMs = (System.nanoTime() - writeStartNanos) / 1_000_000
+                                    val sinceEcho = if (echoAtMs >= 0) answerStartAtMs - echoAtMs else -1
+                                    Logger.i { "$tag [timing] answer started after ${answerStartAtMs}ms since write start (+${sinceEcho}ms after echo)" }
+                                }
                             } else {
                                 if (outputStream.size() > 0 && System.currentTimeMillis() - lastByteAt > idleGap) break
                                 delay(2.milliseconds)
