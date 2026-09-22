@@ -16,6 +16,7 @@ import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import kotlinx.serialization.json.put
+import pl.misek.toafmobile.activities.ToafConstants
 import pl.misek.toafmobile.interfaces.IInterfaceDevice
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
@@ -28,7 +29,7 @@ import kotlin.time.Duration.Companion.milliseconds
 class ToafWifiInterface(ipAddress: String) : IInterfaceDevice {
     private var tag = "ToafWifiIInterface"
     val wifiAddress: String = ipAddress
-    private val wifiPort = 65432
+    private val wifiPort = ToafConstants.TOAF_WIFI_PORT
     private val bufferSize = 1024
 
     private var wifiTimeout = 2000

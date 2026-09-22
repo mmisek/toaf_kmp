@@ -7,9 +7,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.withContext
+import pl.misek.toafmobile.activities.ToafConstants
 import java.net.Inet4Address
-import java.net.InetAddress
+import java.net.InetSocketAddress
 import java.net.NetworkInterface
+import java.net.Socket
 import java.util.Collections
 
 class  AndroidWifiManager(private val context: Context) : IWifiManager
@@ -63,13 +65,17 @@ class  AndroidWifiManager(private val context: Context) : IWifiManager
                 async {
                     val host = subnet + i
                     if (host == myIp) return@async null
+                    // InetAddress.isReachable() is unreliable on Android: unprivileged
+                    // apps can't send raw ICMP pings, and its TCP-port-7 fallback almost
+                    // never has anything listening. Probe the actual port our device
+                    // listens on instead, with a timeout generous enough to cover a cold
+                    // ARP cache - the reason the very first scan of a device the phone
+                    // hasn't talked to yet used to come back empty, requiring a rescan.
                     try {
-                        val inetAddress = InetAddress.getByName(host)
-                        if (inetAddress.isReachable(200)) {
-                            host
+                        Socket().use { socket ->
+                            socket.connect(InetSocketAddress(host, ToafConstants.TOAF_WIFI_PORT), 400)
                         }
-                        else
-                            null
+                        host
                     } catch (_: Exception) {
                         null
                     }

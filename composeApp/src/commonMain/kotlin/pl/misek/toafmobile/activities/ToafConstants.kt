@@ -11,4 +11,5 @@ object ToafConstants {
     const val SKU_TOAF_EKA_CODE: String = "toaf_eka_code"
 
     const val ACTION_USB_PERMISSION: String = "com.android.example.USB_PERMISSION"
+    const val TOAF_WIFI_PORT: Int = 65432
 }
