@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="module_description_lws">Steering angle sensor</string>
+    <string name="advance_control_lws_calibration">LWS sensor calibration</string>
     <!-- Errors -->
     <string name="lws_error_01">Clamp 30 defective</string>
     <string name="lws_error_02">Sensor current out of range</string>

@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import kotlinx.serialization.Serializable
+import pl.misek.toafmobile.activities.composeModels.activities.ActivityAdvanceControlModel
 import pl.misek.toafmobile.activities.composeModels.activities.ActivityControlModel
 import pl.misek.toafmobile.activities.composeModels.activities.ActivityDiagnosticModel
 import pl.misek.toafmobile.activities.composeModels.activities.ActivityEepromProgrammingModel

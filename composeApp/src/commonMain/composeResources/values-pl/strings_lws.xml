@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="module_description_lws">Czujnik kąta skrętu</string>
+    <string name="advance_control_lws_calibration">Kalibracja czujnika LWS</string>
     <string name="lws_error_01">Błąd zasilania</string>
     <string name="lws_error_02">Czujnik poza zakresem</string>
     <string name="lws_error_03">Różnica kątów zyt duża, 90 stopni, normalna praca</string>

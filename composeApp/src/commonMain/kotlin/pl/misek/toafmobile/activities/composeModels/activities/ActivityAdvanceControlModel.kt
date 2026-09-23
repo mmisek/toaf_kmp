@@ -32,6 +32,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import pl.misek.toafmobile.modules.interfaces.IModule
 import pl.misek.toafmobile.modules.interfaces.IModuleControl
+import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceControl
+import pl.misek.toafmobile.modules.interfaces.AdvanceControlElement
 import pl.misek.toafmobile.control.ControlElement
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
@@ -53,6 +55,7 @@ import pl.misek.toafmobile.control.FastControlElement
 import pl.misek.toafmobile.database.Database
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.modules.ModulesManager
+import pl.misek.toafmobile.modules.l322.ModuleLWS
 import pl.misek.toafmobile.network.UserInfo
 import pl.misek.toafmobile.tools.JsonSupport
 import toafmobile.composeapp.generated.resources.Res
@@ -61,23 +64,19 @@ import toafmobile.composeapp.generated.resources.*
 @Composable
 fun ActivityAdvanceControlModel(moduleKoinName : KoinNames, onBackClick : () -> Unit) {
     val modulesManage : ModulesManager = koinInject()
-    val database : Database = koinInject()
-    val snackBarHostState = remember { SnackbarHostState() }
-    val currentModule = modulesManage.getCurrentModules().firstOrNull {it.getKoinName() == moduleKoinName} as IModule
-    var controlElements by remember { mutableStateOf<List<ControlElement>?>(emptyList()) }
-    var databaseElements by remember { mutableStateOf<List<FastControlElement>?>(emptyList()) }
-    var isLoading by remember { mutableStateOf(false) }
-    var refreshNeeded by remember { mutableIntStateOf(0) }
-
-    LaunchedEffect(Unit, refreshNeeded) {
-        withContext(Dispatchers.IO)
-        {
-            controlElements = JsonSupport.getControlElements(
-                moduleName = currentModule.getModuleName())
-            databaseElements = database.selectFastControlElementsForModule(currentModule.getModuleName())
-            isLoading = false
-        }
+    val currentModule = modulesManage.getCurrentModules().firstOrNull {it.getKoinName() == moduleKoinName}
+    val advanceControlElements = remember(currentModule) {
+        (currentModule as? IModuleAdvanceControl)?.getAdvanceControlElements() ?: emptyList()
     }
+    ActivityAdvanceControlContent(advanceControlElements, onBackClick)
+}
+
+@Composable
+private fun ActivityAdvanceControlContent(advanceControlElements : List<AdvanceControlElement>, onBackClick : () -> Unit) {
+    val snackBarHostState = remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
+    var selectedElement by remember { mutableStateOf<AdvanceControlElement?>(null) }
+
     Scaffold(
         modifier = Modifier
             .padding(all = 0.dp)
@@ -87,39 +86,44 @@ fun ActivityAdvanceControlModel(moduleKoinName : KoinNames, onBackClick : () -> 
         containerColor = ToafColors.toafBackground,
         topBar = {
             TopBarModel(
-                titleResource = Res.string.activity_control_subtitle,
-                onBackClicked = { onBackClick() })
+                titleResource = selectedElement?.name ?: Res.string.module_advance_control,
+                onBackClicked = {
+                    if (selectedElement != null)
+                        selectedElement = null
+                    else
+                        onBackClick()
+                })
         },
         content = { paddingValues ->
-            if (isLoading)
-            {
-                Box(modifier = Modifier
-                    .padding(paddingValues)
-                    .fillMaxSize(),
-                    contentAlignment = Alignment.Center)
-                {
-                    CircularProgressIndicator(
-                        color = ToafColors.toafTextColorWhite
-                    )
-                }
-            }
-            else
-            {
             Column(
                 modifier = Modifier
                     .padding(paddingValues)
+                    .fillMaxSize()
                     .background(ToafColors.toafBackground)
             ) {
-                /*
-                ControlList(
-                    items = controlElements,
-                    module = currentModule,
-                    databaseItems = databaseElements,
-                    snackBarHostState = snackBarHostState,
-                    onRefreshNeeded = { refreshNeeded++ }
-                )*/
-                AdvanceControlLws(userInfo = UserInfo(),{ _, _, _ ->})
-            }
+                val element = selectedElement
+                if (element == null)
+                {
+                    advanceControlElements.forEach { item ->
+                        ToafButtons.GreenButton(
+                            modifier = Modifier.padding(5.dp).fillMaxWidth(),
+                            buttonText = item.name,
+                            onClick = { selectedElement = item }
+                        )
+                    }
+                }
+                else
+                {
+                    element.content { result, onSuccess, onFail ->
+                        showResult(
+                            scope = scope,
+                            snackBarHostState = snackBarHostState,
+                            result = result,
+                            onSuccess = onSuccess,
+                            onFail = onFail
+                        )
+                    }
+                }
             }
         }
     )
@@ -343,5 +347,5 @@ private fun ControlListPlaceholder(item :ControlElement?,module: IModule, isFast
 @Composable
 fun ActivityAdvanceControlModulePreview()
 {
-    ActivityAdvanceControlModel(KoinNames.ModuleR40Bcu) {}
+    ActivityAdvanceControlContent(ModuleLWS(null).getAdvanceControlElements()) {}
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="module_description_lws">Sensor de ángulo de dirección</string>
+    <string name="advance_control_lws_calibration">Calibración del sensor LWS</string>
     <!-- Errors -->
     <string name="lws_error_01">Abrazadera 30 defectuosa</string>
     <string name="lws_error_02">Corriente del sensor fuera de rango</string>

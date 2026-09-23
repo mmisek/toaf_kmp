@@ -110,16 +110,14 @@ fun ActivityControlModel(moduleKoinName : KoinNames, onBackClick : () -> Unit) {
                     .padding(paddingValues)
                     .background(ToafColors.toafBackground)
             ) {
-                /*
                 ControlList(
                     items = controlElements,
                     module = currentModule,
                     databaseItems = databaseElements,
                     snackBarHostState = snackBarHostState,
                     onRefreshNeeded = { refreshNeeded++ }
-                )*/
-                AdvanceControlLws(userInfo = UserInfo(),{ _, _, _ ->})
-            }
+                )
+                }
             }
         }
     )

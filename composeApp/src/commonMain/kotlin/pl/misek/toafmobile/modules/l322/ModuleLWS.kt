@@ -12,20 +12,25 @@ import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.containers.LWSAdjustmentData
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.ModuleAddress
+import pl.misek.toafmobile.activities.composeModels.activities.AdvanceControlLws
+import pl.misek.toafmobile.modules.interfaces.AdvanceControlElement
 import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceCoding
+import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceControl
 import pl.misek.toafmobile.modules.interfaces.IModuleEepromProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleLWSCoding
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.modules.interfaces.IModuleVIN
+import pl.misek.toafmobile.network.UserInfo
 import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
+import toafmobile.composeapp.generated.resources.advance_control_lws_calibration
 import toafmobile.composeapp.generated.resources.module_description_lws
 import toafmobile.composeapp.generated.resources.module_lws
 import kotlin.time.Duration.Companion.milliseconds
 
 class ModuleLWS( protocolDS2: ProtocolDS2?) :
     ModuleDS2(protocolDS2, ModuleAddress.MODULE_LWS, listOf(CarType.L322)),
-    IModuleAdvanceCoding, IModuleLiveData, IModuleEepromProgramming, IModuleVIN, IModuleLWSCoding {
+    IModuleAdvanceCoding, IModuleLiveData, IModuleEepromProgramming, IModuleVIN, IModuleLWSCoding, IModuleAdvanceControl {
     private val tag = "ModuleLWS"
     private val standardCoding = arrayOf(
         byteArrayOf(0x06,0x01,0x3F,0xC7.toByte(),0x6C,0x8B.toByte(),0x3A,0xEB.toByte(),0xED.toByte(),0xFA.toByte(),0x45,0x32,0x20,0x00,0x40,0x93.toByte()),
@@ -41,6 +46,12 @@ class ModuleLWS( protocolDS2: ProtocolDS2?) :
     override fun getImageResource() = Res.drawable.module_lws
 
     override fun getModuleDescription()= Res.string.module_description_lws
+
+    override fun getAdvanceControlElements() = listOf(
+        AdvanceControlElement(Res.string.advance_control_lws_calibration) { onShowResult ->
+            AdvanceControlLws(userInfo = UserInfo(), onShowResult = onShowResult)
+        }
+    )
 
     override suspend fun getVIN(): String? = readAdjustmentData()?.Vin
 

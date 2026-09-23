@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="module_description_lws">Sensore angolo di sterzata</string>
+    <string name="advance_control_lws_calibration">Calibrazione sensore LWS</string>
     <string name="lws_error_01">Morsetto 30 difettoso</string>
     <string name="lws_error_02">Corrente sensore fuori intervallo</string>
     <string name="lws_error_03">Differenza di 90 gradi del cursore troppo grande (Funzionamento normale)</string>

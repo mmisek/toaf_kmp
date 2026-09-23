@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="module_description_lws">Датчик угла поворота рулевого колеса</string>
+    <string name="advance_control_lws_calibration">Калибровка датчика LWS</string>
     <string name="lws_error_01">Клемма 30 неисправна</string>
     <string name="lws_error_02">Ток датчика вне диапазона</string>
     <string name="lws_error_03">Разница 90° ползунка слишком велика (Норм. режим)</string>
