@@ -34,6 +34,7 @@ import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.ModuleInfo
 import pl.misek.toafmobile.modules.ModulesManager
 import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceCoding
+import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceControl
 import pl.misek.toafmobile.modules.interfaces.IModuleCoding
 import pl.misek.toafmobile.modules.interfaces.IModuleControl
 import pl.misek.toafmobile.modules.interfaces.IModuleEepromProgramming
@@ -50,7 +51,8 @@ fun ActivityModuleModel(
     onCodingClick : () -> Unit,
     onCodingAdvanceClick: () -> Unit,
     onLiveDataClick : () -> Unit,
-    onControlClick : () ->Unit,
+    onControlClick : () -> Unit,
+    onAdvanceControlClick : () -> Unit,
     onEepromProgrammingClick : () ->Unit,
     onFlashProgrammingClick : () ->Unit,
     onBackClick : () ->Unit
@@ -227,6 +229,14 @@ fun ActivityModuleModel(
                         onClick = { onControlClick()}
                     )
                 }
+                if (currentModule is IModuleAdvanceControl)
+                {
+                    ToafButtons.GreenButton(
+                        modifier = Modifier.padding(5.dp).fillMaxWidth(),
+                        buttonText = Res.string.module_advance_control,
+                        onClick = { onAdvanceControlClick()}
+                    )
+                }
                 if (showModuleInfo)
                     ShowIdentification(
                         info = moduleIdentification,
@@ -273,6 +283,7 @@ fun ActivityModuleModelPreview()
         onCodingAdvanceClick = {},
         onLiveDataClick = {},
         onControlClick = {},
+        onAdvanceControlClick = {},
         onEepromProgrammingClick = {},
         onFlashProgrammingClick = {},
         onBackClick = {}

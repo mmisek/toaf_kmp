@@ -46,6 +46,7 @@ fun AppNavigation(onExitApp: () -> Unit) {
                 onCodingAdvanceClick = {navController.navigate(ComposableAdvanceCoding(args.moduleKoinName))},
                 onLiveDataClick = {navController.navigate(ComposableLiveData(args.moduleKoinName))},
                 onControlClick = {navController.navigate(ComposableControl(args.moduleKoinName))},
+                onAdvanceControlClick = {navController.navigate(ComposableAdvanceControl(args.moduleKoinName))},
                 onEepromProgrammingClick = {navController.navigate(ComposableEeprom(args.moduleKoinName))},
                 onFlashProgrammingClick = {navController.navigate(ComposableFlash(args.moduleKoinName))},
                 onBackClick = { navController.popBackStack()})
@@ -73,6 +74,12 @@ fun AppNavigation(onExitApp: () -> Unit) {
         composable<ComposableControl> { backStackEntry ->
             val args = backStackEntry.toRoute<ComposableControl>()
             ActivityControlModel(
+                moduleKoinName = KoinNames.valueOf(args.moduleKoinName),
+                onBackClick = { navController.popBackStack()})
+        }
+        composable< ComposableAdvanceControl> { backStackEntry ->
+            val args = backStackEntry.toRoute<ComposableAdvanceControl>()
+            ActivityAdvanceControlModel(
                 moduleKoinName = KoinNames.valueOf(args.moduleKoinName),
                 onBackClick = { navController.popBackStack()})
         }
@@ -105,6 +112,8 @@ data class ComposableAdvanceCoding(val moduleKoinName :String)
 data class ComposableLiveData(val moduleKoinName :String)
 @Serializable
 data class ComposableControl(val moduleKoinName :String)
+@Serializable
+data class ComposableAdvanceControl(val moduleKoinName :String)
 @Serializable
 data class ComposableEeprom(val moduleKoinName :String)
 @Serializable
