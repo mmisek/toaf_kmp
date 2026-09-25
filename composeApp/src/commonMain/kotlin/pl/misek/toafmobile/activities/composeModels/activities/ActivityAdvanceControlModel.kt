@@ -42,6 +42,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
+import org.koin.compose.viewmodel.koinViewModel
+import androidx.compose.runtime.collectAsState
+import pl.misek.toafmobile.viewModels.UserInfoViewModel
 import pl.misek.toafmobile.activities.ToafConstants
 import pl.misek.toafmobile.activities.composeModels.ActionTypeEnum
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
@@ -68,11 +71,13 @@ fun ActivityAdvanceControlModel(moduleKoinName : KoinNames, onBackClick : () -> 
     val advanceControlElements = remember(currentModule) {
         (currentModule as? IModuleAdvanceControl)?.getAdvanceControlElements() ?: emptyList()
     }
-    ActivityAdvanceControlContent(advanceControlElements, onBackClick)
+    val userInfoViewModel : UserInfoViewModel = koinViewModel()
+    val userInfo by userInfoViewModel.userInfo.collectAsState()
+    ActivityAdvanceControlContent(advanceControlElements, userInfo, onBackClick)
 }
 
 @Composable
-private fun ActivityAdvanceControlContent(advanceControlElements : List<AdvanceControlElement>, onBackClick : () -> Unit) {
+private fun ActivityAdvanceControlContent(advanceControlElements : List<AdvanceControlElement>, userInfo : UserInfo, onBackClick : () -> Unit) {
     val snackBarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
     var selectedElement by remember { mutableStateOf<AdvanceControlElement?>(null) }
@@ -114,7 +119,7 @@ private fun ActivityAdvanceControlContent(advanceControlElements : List<AdvanceC
                 }
                 else
                 {
-                    element.content { result, onSuccess, onFail ->
+                    element.content(userInfo) { result, onSuccess, onFail ->
                         showResult(
                             scope = scope,
                             snackBarHostState = snackBarHostState,
@@ -347,5 +352,5 @@ private fun ControlListPlaceholder(item :ControlElement?,module: IModule, isFast
 @Composable
 fun ActivityAdvanceControlModulePreview()
 {
-    ActivityAdvanceControlContent(ModuleLWS(null).getAdvanceControlElements()) {}
+    ActivityAdvanceControlContent(ModuleLWS(null).getAdvanceControlElements(), UserInfo()) {}
 }

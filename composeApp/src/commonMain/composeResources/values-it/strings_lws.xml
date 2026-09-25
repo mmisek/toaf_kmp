@@ -31,4 +31,8 @@
     <string name="lws_live_data_synthetic_steering_wheel_angles">Angoli di sterzata sintetici</string>
     <string name="lws_live_data_yaw_rate">Velocità di imbardata</string>
 
+    <string name="lws_advance_control_title">Calibrazione LWS</string>
+    <string name="lws_advance_control_write_adjustment">Scrivi dati di calibrazione</string>
+    <string name="lws_advance_control_calibration_failed">Calibrazione non riuscita</string>
+    <string name="lws_advance_control_calibration_successful">Calibrazione riuscita</string>
 </resources>

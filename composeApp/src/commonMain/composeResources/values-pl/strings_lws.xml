@@ -30,4 +30,9 @@
     <string name="lws_live_data_lateral_acceleration">Przyspieszenie boczne</string>
     <string name="lws_live_data_synthetic_steering_wheel_angles">Kąty kierownicy syntetyczne</string>
     <string name="lws_live_data_yaw_rate">Wskaźnik odchylenia</string>
+
+    <string name="lws_advance_control_title">Kalibracja LWS</string>
+    <string name="lws_advance_control_write_adjustment">Zapisz dane kalibracji</string>
+    <string name="lws_advance_control_calibration_failed">Kalibracja nieudana</string>
+    <string name="lws_advance_control_calibration_successful">Kalibracja zakończona pomyślnie</string>
 </resources>

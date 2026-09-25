@@ -31,4 +31,9 @@
     <string name="lws_live_data_lateral_acceleration">Aceleración lateral</string>
     <string name="lws_live_data_synthetic_steering_wheel_angles">Ángulos sintéticos del volante</string>
     <string name="lws_live_data_yaw_rate">Tasa de guiñada</string>
+
+    <string name="lws_advance_control_title">Calibración LWS</string>
+    <string name="lws_advance_control_write_adjustment">Escribir datos de calibración</string>
+    <string name="lws_advance_control_calibration_failed">Error de calibración</string>
+    <string name="lws_advance_control_calibration_successful">Calibración exitosa</string>
 </resources>

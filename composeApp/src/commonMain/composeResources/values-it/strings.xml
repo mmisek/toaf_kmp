@@ -72,7 +72,7 @@
     <string name="activity_main_button_diagnostic">Diagnosi</string>
     <string name="activity_main_toaf_expired_tittle">TOAF è scaduto</string>
     <string name="activity_mail_toaf_expire_info">"         !! IMPORTANTE !!          Questa versione mobile di TOAF è scaduta e non tutte le funzioni potrebbero operare correttamente. Aggiorna il programma per continuare. Il programma verrà ora chiuso.     "</string>
-    <string name="activity_main_function_not_supported_in_this_version">Questa funzione non è supportata in questa versione mobile di TOAF.</string>
+    <string name="activity_main_function_not_supported_in_this_version">Funzione disponibile solo nella versione completa del programma.</string>
     <string name="activity_main_function_not_supported_yet">Questa funzione non è ancora supportata</string>
 
     <string name="activity_zcs_coding">Codifica ZCS</string>
@@ -416,6 +416,9 @@
     <string name="dialog_full_version_cancel_dialog">Annulla</string>
     <string name="dialog_full_version_or">o</string>
     <string name="dialog_full_version_ad_is_not_ready">L\'annuncio non è pronto.</string>
+    <string name="dialog_full_version_login_required">Accedi per acquistare la versione completa.</string>
+    <string name="dialog_full_version_price_error">Errore durante il recupero delle informazioni sul prezzo.</string>
+    <string name="dialog_full_version_login_required_for_price">Accedi per ottenere le informazioni sul prezzo.</string>
     <string name="activity_coding_load_public_backup_info">!! IMPORTANTE !! Un backup pubblico potrebbe essere corrotto, potrebbe mandare in crash il modulo, disabilitare le chiavi nel modulo BCU e molto altro… Ricordati di fare un backup della tua codifica! Assicurati di sapere cosa stai facendo!</string>
 
     <string name="server_connection_failed">Connessione al server TOAF fallita</string>

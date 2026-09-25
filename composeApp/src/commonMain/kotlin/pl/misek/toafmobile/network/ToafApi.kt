@@ -37,7 +37,7 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
     private val url = "https://toaf.roverki.eu:5999"
     //private val url = "http://192.168.1.5:5999"
 
-    private suspend fun isCredentialValid(): Boolean {
+    suspend fun isCredentialValid(): Boolean {
         val credentials = database.getLoginAndPassword()
         return (credentials != null && credentials.second.isNotEmpty() && credentials.first.isNotEmpty())
     }

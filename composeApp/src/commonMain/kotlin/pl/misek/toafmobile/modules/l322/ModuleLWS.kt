@@ -20,7 +20,6 @@ import pl.misek.toafmobile.modules.interfaces.IModuleEepromProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleLWSCoding
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.modules.interfaces.IModuleVIN
-import pl.misek.toafmobile.network.UserInfo
 import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.advance_control_lws_calibration
@@ -48,8 +47,8 @@ class ModuleLWS( protocolDS2: ProtocolDS2?) :
     override fun getModuleDescription()= Res.string.module_description_lws
 
     override fun getAdvanceControlElements() = listOf(
-        AdvanceControlElement(Res.string.advance_control_lws_calibration) { onShowResult ->
-            AdvanceControlLws(userInfo = UserInfo(), onShowResult = onShowResult)
+        AdvanceControlElement(Res.string.advance_control_lws_calibration) { userInfo, onShowResult ->
+            AdvanceControlLws(userInfo = userInfo, onShowResult = onShowResult)
         }
     )
 

@@ -146,14 +146,14 @@ fun AdvanceControlLws(userInfo: UserInfo, onShowResult : (result : Boolean, onSu
             modifier = Modifier.fillMaxWidth().padding(start = 10.dp, end = 10.dp),
             onClick = {
                 actionType = ActionTypeEnum.LwsCalibration
-                showProgressDialog = true
                 action = {
                     val m = moduleDsc as? ModuleDSC
-                    if (m?.getIdentification() != null)
-                        m.initLwsCalibration() && m.writeLwsCalibration()
-                    false
+                    m?.getIdentification() != null && m.initLwsCalibration() && m.writeLwsCalibration()
                 }
-                showProgressDialog = false
+                if (userInfo.isFullVersion())
+                    showProgressDialog = true
+                else
+                    dialogShowNotFullVersion = true
             }
         )
         Row(

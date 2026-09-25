@@ -75,7 +75,7 @@
     <string name="activity_main_button_diagnostic">Диагностика</string>
     <string name="activity_main_toaf_expired_tittle">TOAF устарел</string>
     <string name="activity_mail_toaf_expire_info">"         !! ВАЖНО !!          Эта мобильная версия TOAF истекла, и не все функции могут работать корректно.          Пожалуйста, обновите программу для продолжения работы.            Программа будет закрыта сейчас.     "</string>
-    <string name="activity_main_function_not_supported_in_this_version">Эта функция не поддерживается в этой мобильной версии TOAF.</string>
+    <string name="activity_main_function_not_supported_in_this_version">Функция доступна только в полной версии программы.</string>
     <string name="activity_main_function_not_supported_yet">Эта функция пока не поддерживается</string>
 
     <string name="activity_zcs_coding">Кодирование ZCS</string>
@@ -426,6 +426,9 @@
     <string name="dialog_full_version_cancel_dialog">Отмена</string>
     <string name="dialog_full_version_or">или</string>
     <string name="dialog_full_version_ad_is_not_ready">Реклама не готова.</string>
+    <string name="dialog_full_version_login_required">Войдите, чтобы купить полную версию.</string>
+    <string name="dialog_full_version_price_error">Ошибка получения информации о цене.</string>
+    <string name="dialog_full_version_login_required_for_price">Войдите, чтобы получить информацию о цене.</string>
     <string name="activity_coding_load_public_backup_info">!! ВАЖНО !! Публичная резервная копия может быть повреждена, может сломать ваш модуль, отключить ключи в модуле BCU и многое другое… Не забывайте делать резервную копию вашей кодировки! Убедитесь, что вы знаете, что делаете!</string>
     <string name="server_connection_failed">Ошибка подключения к серверу Toaf</string>
     <string name="activity_main_function_need_usb_device">Для этой функции требуется USB-интерфейс!</string>

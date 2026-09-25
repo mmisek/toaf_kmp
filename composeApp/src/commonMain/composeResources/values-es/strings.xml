@@ -83,7 +83,7 @@
 
         El programa se cerrará ahora.
     </string>
-    <string name="activity_main_function_not_supported_in_this_version">Esta función no es compatible con esta versión móvil de TOAF.</string>
+    <string name="activity_main_function_not_supported_in_this_version">Función disponible solo en la versión completa del programa.</string>
     <string name="activity_main_function_not_supported_yet">Esta función aún no es compatible</string>
 
     <!-- activity ZCS coding -->
@@ -463,6 +463,9 @@
     <string name="dialog_full_version_cancel_dialog">Cancelar</string>
     <string name="dialog_full_version_or">o</string>
     <string name="dialog_full_version_ad_is_not_ready">El anuncio no está listo.</string>
+    <string name="dialog_full_version_login_required">Inicia sesión para comprar la versión completa.</string>
+    <string name="dialog_full_version_price_error">Error al obtener la información del precio.</string>
+    <string name="dialog_full_version_login_required_for_price">Inicia sesión para obtener la información del precio.</string>
     <string name="alert_dialog_wifi_configuration_ip_address_is_not_valid">¡La dirección IP no es válida!</string>
     <string name="live_data_type_table">Tabla</string>
     <string name="server_connection_failed">Error de conexión con el servidor Toaf</string>

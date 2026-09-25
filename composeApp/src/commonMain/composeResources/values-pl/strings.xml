@@ -44,7 +44,7 @@
     <string name="activity_live_data_stop">Stop</string>
     <string name="activity_main_button_diagnostic">Diagnostyka</string>
     <string name="activity_mail_toaf_expire_info">!! WAŻNE !! Ta wersja mobilna TOAF jest przestarzała i nie wszystkie funkcje mogą działać poprawnie. Proszę zaktualizować program, aby kontynuować pracę. Program zostanie teraz zamknięty.</string>
-    <string name="activity_main_function_not_supported_in_this_version">Ta funkcja jest niedostępna w tej wersji programu</string>
+    <string name="activity_main_function_not_supported_in_this_version">Funkcja dostępna tylko w pełnej wersji programu.</string>
     <string name="activity_main_function_not_supported_yet">Ta funkcja nie jest jeszcze dostępna</string>
     <string name="activity_main_function_need_usb_device">Ta funkcja wymaga interfejsu USB!</string>
     <string name="activity_main_toaf_expired_tittle">TOAF Mobile jest przestarzały</string>
@@ -397,6 +397,9 @@
     <string name="dialog_full_version_cancel_dialog">Anuluj</string>
     <string name="dialog_full_version_or">lub</string>
     <string name="dialog_full_version_ad_is_not_ready">Reklama nie jest gotowa.</string>
+    <string name="dialog_full_version_login_required">Zaloguj się, aby kupić pełną wersję.</string>
+    <string name="dialog_full_version_price_error">Błąd pobierania informacji o cenie.</string>
+    <string name="dialog_full_version_login_required_for_price">Zaloguj się, aby uzyskać informację o cenie.</string>
     <string name="activity_coding_load_public_backup_info">!! WAŻNE !! Publiczna kopia zapasowa może być uszkodzona, może spowodować awarię modułu, wyłączyć klucze w module BCU i wiele więcej… Pamiętaj, aby wykonać kopię zapasową swojego kodowania! Upewnij się, że wiesz, co robisz!</string>
 <string name="message_information_internet_info" >Od wersji 0.0.7 TOAF wymaga dostępu do usług internetowych TOAF.\n
         Musisz utworzyć konto i być zalogowanym przez cały czas korzystania z TOAF.\n

@@ -31,4 +31,8 @@
     <string name="lws_live_data_synthetic_steering_wheel_angles">Синтетические углы рулевого колеса</string>
     <string name="lws_live_data_yaw_rate">Скорость рыскания</string>
 
+    <string name="lws_advance_control_title">Калибровка LWS</string>
+    <string name="lws_advance_control_write_adjustment">Записать данные калибровки</string>
+    <string name="lws_advance_control_calibration_failed">Ошибка калибровки</string>
+    <string name="lws_advance_control_calibration_successful">Калибровка выполнена успешно</string>
 </resources>
