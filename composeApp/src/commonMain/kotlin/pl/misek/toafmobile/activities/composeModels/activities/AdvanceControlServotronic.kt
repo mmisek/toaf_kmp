@@ -80,7 +80,7 @@ val SERVOTRONIC_CURRENT_MAX = servotronicRawToMa(SERVOTRONIC_RAW_MAX)
 fun validateServotronicValue(points : List<ServotronicPoint>, index : Int, input : String, texts : ServotronicValidationTexts) : String?
 {
     val currentMa = input.trim().toIntOrNull() ?: return texts.notNumber
-    if (currentMa < SERVOTRONIC_CURRENT_MIN || currentMa > SERVOTRONIC_CURRENT_MAX)
+    if (currentMa !in SERVOTRONIC_CURRENT_MIN..SERVOTRONIC_CURRENT_MAX)
         return String.format(texts.outOfRange, SERVOTRONIC_CURRENT_MIN, SERVOTRONIC_CURRENT_MAX)
     val raw = servotronicMaToRaw(currentMa)
     val previous = points.getOrNull(index - 1)
