@@ -159,30 +159,25 @@ fun AdvanceCodingBcuKeys(
                 helpText = Res.string.activity_coding_bcu_key_add_help,
                 helpImage = Res.drawable.rover75barcode,
                 onCancelClick = { showInputDialog = false },
+                validate = { keyCode ->
+                    if (Regex("^[0-9a-fA-F]{6}$").matches(keyCode)) null else onKeyIsNotValidText
+                },
                 onOkClick = {keyCode ->
-                    val regex = Regex("^[0-9a-fA-F]{6}$")
-                    if (!regex.matches(keyCode))
-                    {
-                        onShowResult(false,null, onKeyIsNotValidText)
-                    }
-                    else
-                    {
-                        showInputDialog = false
-                        keyCodeToProcess = keyCode
-                        action = {
-                            val localUserInfo = toafApi.getUserInfo()
-                            if (localUserInfo == null)
-                                onShowResult(false,null, serverConnectionFailedText)
-                            else if (localUserInfo.bcuKeys == 0) {
-                                showInformationDialog = true
-                            }
-                            else {
-                                (currentModule as IModuleBcuKeys).addKeyAt(keyIdToProcess, keyCode)
-                            }
+                    showInputDialog = false
+                    keyCodeToProcess = keyCode
+                    action = {
+                        val localUserInfo = toafApi.getUserInfo()
+                        if (localUserInfo == null)
+                            onShowResult(false,null, serverConnectionFailedText)
+                        else if (localUserInfo.bcuKeys == 0) {
+                            showInformationDialog = true
                         }
-                        actionType = ActionTypeEnum.AddKey
-                        showProgressDialog = true
+                        else {
+                            (currentModule as IModuleBcuKeys).addKeyAt(keyIdToProcess, keyCode)
+                        }
                     }
+                    actionType = ActionTypeEnum.AddKey
+                    showProgressDialog = true
                 }
             )
         }

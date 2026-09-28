@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_servotronic_title">Mapa Servotronic</string>
+    <string name="advance_control_servotronic_speed">Prędkość [km/h]</string>
+    <string name="advance_control_servotronic_current">Prąd [mA]</string>
+    <string name="advance_control_servotronic_read">Odczytaj</string>
+    <string name="advance_control_servotronic_write">Zapisz</string>
+    <string name="advance_control_servotronic_read_successful">Odczyt mapy Servotronic zakończony pomyślnie</string>
+    <string name="advance_control_servotronic_read_failed">Błąd odczytu mapy Servotronic</string>
+    <string name="advance_control_servotronic_write_successful">Zapis mapy Servotronic zakończony pomyślnie</string>
+    <string name="advance_control_servotronic_write_failed">Błąd zapisu mapy Servotronic</string>
+    <string name="advance_control_servotronic_no_data">Brak danych. Odczytaj wartości z modułu.</string>
+    <string name="advance_control_servotronic_default_map">Wczytaj domyślną mapę (CI %1$s):</string>
+    <string name="advance_control_servotronic_edit_title">Zmiana wartości prądu</string>
+    <string name="advance_control_servotronic_edit_save">Zapisz</string>
+    <string name="advance_control_servotronic_validation_not_number">Wprowadź liczbę całkowitą.</string>
+    <string name="advance_control_servotronic_validation_out_of_range">Wartość musi mieścić się w zakresie od %1$d do %2$d mA.</string>
+    <string name="advance_control_servotronic_validation_greater_than_previous">Wartość nie może być większa niż wartość dla poprzedniej prędkości (%1$d mA przy %2$d km/h).</string>
+    <string name="advance_control_servotronic_validation_less_than_next">Wartość nie może być mniejsza niż wartość dla następnej prędkości (%1$d mA przy %2$d km/h).</string>
+</resources>

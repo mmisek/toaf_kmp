@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_servotronic_title">Servotronic map</string>
+    <string name="advance_control_servotronic_speed">Speed [km/h]</string>
+    <string name="advance_control_servotronic_current">Current [mA]</string>
+    <string name="advance_control_servotronic_read">Read</string>
+    <string name="advance_control_servotronic_write">Write</string>
+    <string name="advance_control_servotronic_read_successful">Servotronic map read successfully</string>
+    <string name="advance_control_servotronic_read_failed">Servotronic map read failed</string>
+    <string name="advance_control_servotronic_write_successful">Servotronic map written successfully</string>
+    <string name="advance_control_servotronic_write_failed">Servotronic map write failed</string>
+    <string name="advance_control_servotronic_no_data">No data. Read the values from the module.</string>
+    <string name="advance_control_servotronic_default_map">Load default map (CI %1$s):</string>
+    <string name="advance_control_servotronic_edit_title">Change current value</string>
+    <string name="advance_control_servotronic_edit_save">Save</string>
+    <string name="advance_control_servotronic_validation_not_number">Enter an integer.</string>
+    <string name="advance_control_servotronic_validation_out_of_range">The value must be between %1$d and %2$d mA.</string>
+    <string name="advance_control_servotronic_validation_greater_than_previous">The value cannot be greater than the value for the previous speed (%1$d mA at %2$d km/h).</string>
+    <string name="advance_control_servotronic_validation_less_than_next">The value cannot be less than the value for the next speed (%1$d mA at %2$d km/h).</string>
+</resources>

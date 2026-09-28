@@ -21,5 +21,7 @@ enum class ActionTypeEnum {
     BuyElement,
     CheckingPurchase,
     DataCopiedToClipboard,
-    LwsCalibration
+    LwsCalibration,
+    ReadServotronic,
+    WriteServotronic
 }

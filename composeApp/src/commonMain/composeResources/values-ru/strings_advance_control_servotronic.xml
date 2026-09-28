@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_servotronic_title">Карта Servotronic</string>
+    <string name="advance_control_servotronic_speed">Скорость [км/ч]</string>
+    <string name="advance_control_servotronic_current">Ток [мА]</string>
+    <string name="advance_control_servotronic_read">Прочитать</string>
+    <string name="advance_control_servotronic_write">Записать</string>
+    <string name="advance_control_servotronic_read_successful">Карта Servotronic успешно прочитана</string>
+    <string name="advance_control_servotronic_read_failed">Ошибка чтения карты Servotronic</string>
+    <string name="advance_control_servotronic_write_successful">Карта Servotronic успешно записана</string>
+    <string name="advance_control_servotronic_write_failed">Ошибка записи карты Servotronic</string>
+    <string name="advance_control_servotronic_no_data">Нет данных. Прочитайте значения из модуля.</string>
+    <string name="advance_control_servotronic_default_map">Загрузить карту по умолчанию (CI %1$s):</string>
+    <string name="advance_control_servotronic_edit_title">Изменение значения тока</string>
+    <string name="advance_control_servotronic_edit_save">Сохранить</string>
+    <string name="advance_control_servotronic_validation_not_number">Введите целое число.</string>
+    <string name="advance_control_servotronic_validation_out_of_range">Значение должно быть в диапазоне от %1$d до %2$d мА.</string>
+    <string name="advance_control_servotronic_validation_greater_than_previous">Значение не может быть больше значения для предыдущей скорости (%1$d мА при %2$d км/ч).</string>
+    <string name="advance_control_servotronic_validation_less_than_next">Значение не может быть меньше значения для следующей скорости (%1$d мА при %2$d км/ч).</string>
+</resources>

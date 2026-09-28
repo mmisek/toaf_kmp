@@ -105,9 +105,7 @@
           "block": "0x00",
           "byte": "0x00",
           "mask": "0x10",
-          "coding_index": [
-           "10"
-          ],
+          "coding_index": ["04"],
           "coding_values": [
               {
                 "data": "0x01",
@@ -371,11 +369,11 @@
           ],
           "coding_values": [
               {
-                "data": "0x01",
+                "data": "0x00",
                 "text": "active"
               },
               {
-                "data": "0x00",
+                "data": "0x01",
                 "text": "inactive"
               }
             ]
@@ -385,16 +383,14 @@
           "block": "0x00",
           "byte": "0x01",
           "mask": "0x80",
-          "coding_index": [
-           "10"
-          ],
+          "coding_index": ["04", "10"],
           "coding_values": [
               {
-                "data": "0x01",
+                "data": "0x00",
                 "text": "active"
               },
               {
-                "data": "0x00",
+                "data": "0x01",
                 "text": "inactive"
               }
             ]
@@ -468,11 +464,11 @@
             ],
           "coding_values": [
               {
-                "data": "0x01",
+                "data": "0x00",
                 "text": "active"
               },
               {
-                "data": "0x00",
+                "data": "0x01",
                 "text": "inactive"
               }
             ],
@@ -603,11 +599,11 @@
           ],
           "coding_values": [
               {
-                "data": "0x01",
+                "data": "0x00",
                 "text": "active"
               },
               {
-                "data": "0x00",
+                "data": "0x01",
                 "text": "inactive"
               }
             ]
@@ -660,11 +656,11 @@
           ],
           "coding_values": [
               {
-                "data": "0x01",
+                "data": "0x00",
                 "text": "active"
               },
               {
-                "data": "0x00",
+                "data": "0x01",
                 "text": "inactive"
               }
             ]
@@ -1481,7 +1477,7 @@
           "name": "AUTOLOCK_SPEED",
           "block": "0x00",
           "byte": "0x05",
-          "mask": "0x70",
+          "mask": "0xE0",
           "coding_index": [
            "04"
           ],
@@ -1804,11 +1800,11 @@
           ],
           "coding_values": [
               {
-                "data": "0x00",
+                "data": "0x01",
                 "text": "active"
               },
               {
-                "data": "0x01",
+                "data": "0x00",
                 "text": "inactive"
               }
             ]
@@ -2341,11 +2337,11 @@
             ],
           "coding_values": [
               {
-                "data": "0x01",
+                "data": "0x00",
                 "text": "active"
               },
               {
-                "data": "0x00",
+                "data": "0x01",
                 "text": "inactive"
               }
             ]
@@ -2420,11 +2416,11 @@
             ],
           "coding_values": [
               {
-                "data": "0x01",
+                "data": "0x00",
                 "text": "active"
               },
               {
-                "data": "0x00",
+                "data": "0x01",
                 "text": "inactive"
               }
             ],
@@ -2441,11 +2437,11 @@
             ],
           "coding_values": [
               {
-                "data": "0x01",
+                "data": "0x00",
                 "text": "active"
               },
               {
-                "data": "0x00",
+                "data": "0x01",
                 "text": "inactive"
               }
             ],
@@ -2462,11 +2458,11 @@
             ],
           "coding_values": [
               {
-                "data": "0x01",
+                "data": "0x00",
                 "text": "active"
               },
               {
-                "data": "0x00",
+                "data": "0x01",
                 "text": "inactive"
               }
             ],
@@ -2483,11 +2479,11 @@
             ],
           "coding_values": [
               {
-                "data": "0x01",
+                "data": "0x00",
                 "text": "active"
               },
               {
-                "data": "0x00",
+                "data": "0x01",
                 "text": "inactive"
               }
             ],
@@ -2504,11 +2500,11 @@
             ],
           "coding_values": [
               {
-                "data": "0x01",
+                "data": "0x00",
                 "text": "active"
               },
               {
-                "data": "0x00",
+                "data": "0x01",
                 "text": "inactive"
               }
             ],
@@ -2595,11 +2591,11 @@
                 "text": "us"
               },
               {
-                "data": "0x10",
+                "data": "0x02",
                 "text": "klroff"
               },
               {
-                "data": "0x11",
+                "data": "0x03",
                 "text": "reserve2"
               }
             ]
@@ -2684,29 +2680,25 @@
           "name": "SERVOTRONIC_MAP_SOURCE",
           "block": "0x00",
           "byte": "0x0B",
-          "mask": "0x20",
-          "coding_index": [
-           "10"
-          ],
+          "mask": "0x02",
+          "coding_index": ["04"],
           "coding_values": [
               {
-                "data": "0x01",
+                "data": "0x00",
                 "text": "rom"
               },
               {
-                "data": "0x00",
+                "data": "0x01",
                 "text": "eeprom"
               }
             ]
         },
         {
-          "name": "SERVOTRONIC_MAP_SOURCE",
+          "name": "SERVOTRONIC_NUMCYL",
           "block": "0x00",
           "byte": "0x0B",
           "mask": "0xF0",
-          "coding_index": [
-           "10"
-          ],
+          "coding_index": ["04"],
           "coding_values": [
               {
                 "data": "0x06",
@@ -2890,7 +2882,7 @@
           "name": "SERVOTRONIC_MAP_SOURCE",
           "block": "0x00",
           "byte": "0x0D",
-          "mask": "0x01",
+          "mask": "0x02",
           "coding_index": [
            "10"
           ],
@@ -2915,7 +2907,7 @@
           ],
           "coding_values": [
               {
-                "data": "0x07",
+                "data": "0x06",
                 "text": "6_cylinders"
               },
               {
@@ -3061,7 +3053,7 @@
           "name": "K_BUS_REMOTE_DISABLE",
           "block": "0x00",
           "byte": "0x0D",
-          "mask": "0x40",
+          "mask": "0x80",
           "coding_index": [
            "04"
           ],
@@ -3214,19 +3206,19 @@
           ],
           "coding_values": [
               {
-                "data": "0x00",
+                "data": "0x01",
                 "text": "0_2s"
               },
               {
-                "data": "0x01",
+                "data": "0x02",
                 "text": "0_4s"
               },
               {
-                "data": "0x03",
+                "data": "0x04",
                 "text": "0_8s"
               },
               {
-                "data": "0x04",
+                "data": "0x08",
                 "text": "1_6s"
               }
             ],
@@ -3242,19 +3234,19 @@
           ],
           "coding_values": [
               {
-                "data": "0x00",
+                "data": "0x01",
                 "text": "0_2s"
               },
               {
-                "data": "0x01",
+                "data": "0x02",
                 "text": "0_4s"
               },
               {
-                "data": "0x03",
+                "data": "0x04",
                 "text": "0_8s"
               },
               {
-                "data": "0x04",
+                "data": "0x08",
                 "text": "1_6s"
               }
             ],
@@ -3397,7 +3389,7 @@
           "name": "SELECTIVE_CDL",
           "block": "0x00",
           "byte": "0x0F",
-          "mask": "0x40",
+          "mask": "0x80",
           "coding_index": [
            "10"
           ],
@@ -3449,7 +3441,7 @@
                 "text": "8_kmh"
               },
               {
-                "data": "0x42",
+                "data": "0x04",
                 "text": "16_kmh"
               }
             ]
@@ -3693,19 +3685,19 @@
           ],
           "coding_values": [
               {
-                "data": "0x00",
+                "data": "0x01",
                 "text": "0_2s"
               },
               {
-                "data": "0x01",
+                "data": "0x02",
                 "text": "0_4s"
               },
               {
-                "data": "0x03",
+                "data": "0x04",
                 "text": "0_8s"
               },
               {
-                "data": "0x04",
+                "data": "0x08",
                 "text": "1_6s"
               }
             ],
@@ -3721,19 +3713,19 @@
           ],
           "coding_values": [
               {
-                "data": "0x00",
+                "data": "0x01",
                 "text": "0_2s"
               },
               {
-                "data": "0x01",
+                "data": "0x02",
                 "text": "0_4s"
               },
               {
-                "data": "0x03",
+                "data": "0x04",
                 "text": "0_8s"
               },
               {
-                "data": "0x04",
+                "data": "0x08",
                 "text": "1_6s"
               }
             ],
@@ -3803,7 +3795,7 @@
           "name": "DEBOUNCE_3",
           "block": "0x00",
           "byte": "0x13",
-          "mask": "0x04",
+          "mask": "0x08",
           "coding_index": [
            "10"
           ],
