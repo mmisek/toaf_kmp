@@ -433,6 +433,7 @@
     <string name="dialog_update_title">Aggiornamento disponibile</string>
     <string name="dialog_update_text_1">La versione di TOAF %1$s è ora disponibile. Vai su </string>
     <string name="dialog_update_text_2"> e scarica il file di aggiornamento.</string>
+    <string name="dialog_help_title">Aiuto</string>
 
 <string name="dialog_about_tittle">Informazioni sull\'applicazione</string>
 <string name="dialog_about_app_name">TOAF %1$s %2$s, build(%3$s)</string>

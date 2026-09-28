@@ -3,8 +3,10 @@ package pl.misek.toafmobile.activities.composeModels
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Help
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -23,6 +25,7 @@ import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.activity_advance_coding
+import toafmobile.composeapp.generated.resources.dialog_help_title
 
 @Composable
 fun ToafEditText(
@@ -32,6 +35,7 @@ fun ToafEditText(
     value : String,
     readOnly : Boolean = false,
     isError : Boolean? = null,
+    onHelpClick : (() -> Unit)? = null,
     onValueChanged :(newValue :String) -> Unit)
 {
     var newValue by remember { mutableStateOf(value) }
@@ -69,6 +73,17 @@ fun ToafEditText(
                     contentDescription = null,
                     tint = if (isError) Color.Red else Color.Green
                 )
+            }
+        },
+        trailingIcon = onHelpClick?.let {
+            {
+                IconButton(onClick = it) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.Help,
+                        contentDescription = stringResource(Res.string.dialog_help_title),
+                        tint = Color.White
+                    )
+                }
             }
         }
     )

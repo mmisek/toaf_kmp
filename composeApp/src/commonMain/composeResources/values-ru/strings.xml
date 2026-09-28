@@ -442,6 +442,7 @@
 	<string name="dialog_update_title">Доступно обновление</string>
 	<string name="dialog_update_text_1">Версия TOAF %1$s уже доступна. Перейдите на </string>
 	<string name="dialog_update_text_2"> и скачайте файл обновления.</string>	
+	<string name="dialog_help_title">Помощь</string>
 <string name="dialog_about_tittle">О приложении</string>
 <string name="dialog_about_app_name">TOAF %1$s %2$s, build(%3$s)</string>
 <string name="dialog_about_web_page">Веб-сайт Toaf : </string>

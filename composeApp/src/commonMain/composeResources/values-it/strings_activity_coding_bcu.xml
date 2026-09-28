@@ -18,6 +18,7 @@
     <string name="activity_coding_bcu_key_add_message">Inserisci il codice della chiave</string>
     <string name="activity_coding_bcu_key_add_button_add">Aggiungi</string>
     <string name="activity_coding_bcu_key_add_hint">es. AB54CA</string>
+    <string name="activity_coding_bcu_key_add_help">Il codice della chiave si trova sull\'etichetta con il codice a barre. Inserisci i 6 caratteri evidenziati dalla cornice rossa nell\'immagine.</string>
     <string name="activity_coding_bcu_key_add_button_cancel">Annulla</string>
     <string name="activity_coding_bcu_key_add_error">Errore durante l\'aggiunta della chiave</string>
     <string name="activity_coding_bcu_key_add_successful">Aggiunta chiave riuscita</string>

@@ -476,6 +476,7 @@
     <string name="dialog_update_title">Update available</string>
     <string name="dialog_update_text_1">TOAF %1$s version is now available. Go to </string>
     <string name="dialog_update_text_2"> and download update file.</string>
+    <string name="dialog_help_title">Help</string>
 
     <string name="dialog_about_tittle">About application</string>
     <string name="dialog_about_app_name">TOAF %1$s %2$s, build(%3$s)</string>

@@ -17,6 +17,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.activities.definitions.ToafColors
@@ -27,9 +28,10 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 
 @Composable
-fun DialogInput (title : StringResource, name : StringResource, value : String, onCancelClick : () -> Unit, onOkClick : (String) -> Unit)
+fun DialogInput (title : StringResource, name : StringResource, value : String, onCancelClick : () -> Unit, onOkClick : (String) -> Unit, helpText :StringResource? = null, helpImage : DrawableResource? = null)
 {
     var newValue by remember { mutableStateOf(value) }
+    var showHelp by remember { mutableStateOf(false) }
 
     AlertDialog(
         shape = toafShape,
@@ -63,7 +65,14 @@ fun DialogInput (title : StringResource, name : StringResource, value : String, 
                 name = name,
                 value = newValue,
                 onValueChanged = {v -> newValue = v},
+                onHelpClick = if (helpText != null) { { showHelp = true } } else null
                 )
+            if (showHelp && helpText != null) {
+                DialogHelp(
+                    helpText = helpText,
+                    image = helpImage,
+                    onClose = { showHelp = false })
+            }
         },
         confirmButton = {
             Column {
@@ -93,5 +102,7 @@ private fun DialogInputPreview()
         name = Res.string.activity_coding_bcu_key_add_hint,
         value = "AB112",
         onCancelClick = {},
-        onOkClick = {})
+        onOkClick = {},
+        helpText =  Res.string.activity_coding_bcu_key_add_hint,
+        helpImage = Res.drawable.rover75barcode)
 }

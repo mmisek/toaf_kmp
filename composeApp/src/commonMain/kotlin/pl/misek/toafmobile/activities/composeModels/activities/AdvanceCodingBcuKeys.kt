@@ -156,6 +156,8 @@ fun AdvanceCodingBcuKeys(
                 title = Res.string.activity_coding_bcu_key_add_message,
                 name = Res.string.activity_coding_bcu_key_add_hint,
                 value = "",
+                helpText = Res.string.activity_coding_bcu_key_add_help,
+                helpImage = Res.drawable.rover75barcode,
                 onCancelClick = { showInputDialog = false },
                 onOkClick = {keyCode ->
                     val regex = Regex("^[0-9a-fA-F]{6}$")

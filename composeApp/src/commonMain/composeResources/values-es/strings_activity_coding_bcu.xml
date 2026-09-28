@@ -18,6 +18,7 @@
     <string name="activity_coding_bcu_key_add_message">Ingrese el código de la llave</string>
     <string name="activity_coding_bcu_key_add_button_add">Agregar</string>
     <string name="activity_coding_bcu_key_add_hint">ej. AB54CA</string>
+    <string name="activity_coding_bcu_key_add_help">El código de la llave se encuentra en la etiqueta con el código de barras. Introduce los 6 caracteres marcados con el marco rojo en la imagen.</string>
     <string name="activity_coding_bcu_key_add_button_cancel">Cancelar</string>
     <string name="activity_coding_bcu_key_add_error">Error al agregar la llave</string>
     <string name="activity_coding_bcu_key_add_successful">Llave agregada con éxito</string>

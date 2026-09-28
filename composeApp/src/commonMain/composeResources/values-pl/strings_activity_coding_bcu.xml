@@ -6,6 +6,7 @@
     <string name="activity_coding_bcu_key_add_button_cancel">Anuluj</string>
     <string name="activity_coding_bcu_key_add_error">Błąd dodawania pilota</string>
     <string name="activity_coding_bcu_key_add_hint">np: AB54CA</string>
+    <string name="activity_coding_bcu_key_add_help">Kod klucza znajdziesz na etykiecie z kodem kreskowym. Przepisz 6 znaków zaznaczonych na rysunku czerwoną ramką.</string>
     <string name="activity_coding_bcu_key_add_message">Podaj kod pilota</string>
     <string name="activity_coding_bcu_key_add_not_supported">Nie obsługiwane.</string>
     <string name="activity_coding_bcu_key_add_successful">Dodanie pilota pomyślne</string>

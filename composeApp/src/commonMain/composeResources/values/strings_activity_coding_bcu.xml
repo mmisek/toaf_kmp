@@ -18,6 +18,7 @@
     <string name="activity_coding_bcu_key_add_message">Enter key code</string>
     <string name="activity_coding_bcu_key_add_button_add">Add</string>
     <string name="activity_coding_bcu_key_add_hint">ex. AB54CA</string>
+    <string name="activity_coding_bcu_key_add_help">The key code can be found on the barcode label. Enter the 6 characters marked with the red frame in the picture.</string>
     <string name="activity_coding_bcu_key_add_button_cancel">Cancel</string>
     <string name="activity_coding_bcu_key_add_error">Adding key error</string>
     <string name="activity_coding_bcu_key_add_successful">Adding key successful</string>
