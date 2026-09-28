@@ -134,11 +134,15 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
             Logger.e { "$tag [writeServotronicPoints]: invalid coding blocks" }
             return false
         }
+        coding.forEachIndexed { i, block ->
+            if (!isCodingChecksumValid(block))
+                Logger.w { "$tag [writeServotronicPoints]: block $i checksum invalid - will be corrected" }
+        }
         points.forEachIndexed { i, point ->
             speedBlock!![layout.offset + i] = point.speed.toByte()
             currentBlock!![layout.offset + i] = point.rawDec.toByte()
         }
-        // writeCoding przelicza sume kontrolna kazdego bloku przed zapisem
+        // writeCoding przelicza sume kontrolna kazdego bloku przed zapisem, poprawiajac takze bledne CS
         return writeCoding(coding)
     }
     /*
@@ -176,7 +180,8 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
 */
     /**
      * Odczyt wszystkich blokow kodowania. Zwraca null, jezeli ktorykolwiek blok nie zostal odczytany
-     * poprawnie - odczyt jest zawsze kompletny (bloki 0-2) i kazdy blok ma poprawna sume kontrolna.
+     * poprawnie - odczyt jest zawsze kompletny (bloki 0-2). Suma kontrolna nie jest tu sprawdzana,
+     * zeby mozna bylo odczytac i poprawic kodowanie z blednym CS.
      */
     override suspend fun readCoding(): List<ByteArray>? {
         val result: MutableList<ByteArray> = ArrayList()
@@ -188,8 +193,8 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
                     return null
                 }
                 val block = message.answer.copyOfRange(3, message.answer.size - 1)
-                if (!isCodingBlockValid(block)) {
-                    Logger.e { "$tag [readCoding] : block $i invalid (size or checksum), $message" }
+                if (block.size < 2) {
+                    Logger.e { "$tag [readCoding] : block $i too short, $message" }
                     return null
                 }
                 result.add(block)
@@ -264,8 +269,8 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
         return result
     }
 
-    /** Blok musi zawierac dane i sume kontrolna: XOR wszystkich bajtow poza ostatnim == ostatni bajt */
-    private fun isCodingBlockValid(block: ByteArray): Boolean {
+    /** Suma kontrolna bloku: XOR wszystkich bajtow poza ostatnim == ostatni bajt */
+    private fun isCodingChecksumValid(block: ByteArray): Boolean {
         if (block.size < 2) return false
         var cs = 0x00
         for (i in 0 until block.size - 1) cs = cs xor (block[i].toInt() and 0xFF)

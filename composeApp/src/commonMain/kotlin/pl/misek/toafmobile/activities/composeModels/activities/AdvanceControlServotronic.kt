@@ -68,15 +68,8 @@ data class ServotronicValidationTexts(
     val lessThanNext : String
 )
 
-/** Gorny limit pradu wynika z pojemnosci jednego bajtu: 255 * 3.533 = 901 mA */
 val SERVOTRONIC_CURRENT_MAX = servotronicRawToMa(SERVOTRONIC_RAW_MAX)
 
-/**
- * Zwraca komunikat bledu lub null, jezeli wartosc jest poprawna.
- * input to prad w mA. Wartosci pradu musza byc nierosnace wraz z predkoscia: punkt n nie moze byc
- * wiekszy od punktu n-1 ani mniejszy od punktu n+1. Porownanie odbywa sie na wartosciach surowych,
- * zeby zaokraglenia przy skalowaniu nie wplywaly na wynik.
- */
 fun validateServotronicValue(points : List<ServotronicPoint>, index : Int, input : String, texts : ServotronicValidationTexts) : String?
 {
     val currentMa = input.trim().toIntOrNull() ?: return texts.notNumber
