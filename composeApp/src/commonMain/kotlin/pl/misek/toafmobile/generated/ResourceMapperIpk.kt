@@ -115,11 +115,6 @@ object ResourceMapperIpk {
             "ipk_error_desc_04" -> Res.string.ipk_error_desc_04
             "ipk_error_desc_40" -> Res.string.ipk_error_desc_40
             "ipk_error_desc_80" -> Res.string.ipk_error_desc_80
-            "ipk_temperature_gauge_click_to_edit" -> Res.string.ipk_temperature_gauge_click_to_edit
-            "ipk_temperature_gauge_enter_temperature_value" -> Res.string.ipk_temperature_gauge_enter_temperature_value
-            "ipk_temperature_gauge_incorrect_temperature_value" -> Res.string.ipk_temperature_gauge_incorrect_temperature_value
-            "ipk_temperature_gauge_new_temperature_value" -> Res.string.ipk_temperature_gauge_new_temperature_value
-            "ipk_temperature_gauge_tittle" -> Res.string.ipk_temperature_gauge_tittle
         else -> {
           Logger.i {"NO RESOURCE for : $resourceName" }
             null

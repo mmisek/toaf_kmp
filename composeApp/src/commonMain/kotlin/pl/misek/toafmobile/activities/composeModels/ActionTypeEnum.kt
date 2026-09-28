@@ -23,5 +23,7 @@ enum class ActionTypeEnum {
     DataCopiedToClipboard,
     LwsCalibration,
     ReadServotronic,
-    WriteServotronic
+    WriteServotronic,
+    ReadTemperatureGauge,
+    WriteTemperatureGauge
 }

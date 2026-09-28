@@ -124,9 +124,4 @@
         <item>All services</item>
     </string-array>
 
-    <string name="ipk_temperature_gauge_incorrect_temperature_value">Incorrect temperature value</string>
-    <string name="ipk_temperature_gauge_tittle">Temperature gauge calibration</string>
-    <string name="ipk_temperature_gauge_click_to_edit">Click temperature value to change it</string>
-    <string name="ipk_temperature_gauge_enter_temperature_value">Enter new temperature value</string>
-    <string name="ipk_temperature_gauge_new_temperature_value">New value</string>
 </resources>

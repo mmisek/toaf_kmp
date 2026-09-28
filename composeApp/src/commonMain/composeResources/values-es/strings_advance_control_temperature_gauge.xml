@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_temperature_gauge_title">Calibración del indicador de temperatura</string>
+    <string name="advance_control_temperature_gauge_click_to_edit">Pulse un valor de temperatura para cambiarlo.</string>
+    <string name="advance_control_temperature_gauge_no_data">Sin datos. Lea los valores del módulo.</string>
+    <string name="advance_control_temperature_gauge_read">Leer</string>
+    <string name="advance_control_temperature_gauge_write">Escribir</string>
+    <string name="advance_control_temperature_gauge_read_successful">Valores del indicador de temperatura leídos correctamente</string>
+    <string name="advance_control_temperature_gauge_read_failed">Error al leer los valores del indicador de temperatura</string>
+    <string name="advance_control_temperature_gauge_write_successful">Valores del indicador de temperatura escritos correctamente</string>
+    <string name="advance_control_temperature_gauge_write_failed">Error al escribir los valores del indicador de temperatura</string>
+    <string name="advance_control_temperature_gauge_edit_title">Cambiar valor de temperatura [°C]</string>
+    <string name="advance_control_temperature_gauge_edit_save">Guardar</string>
+    <string name="advance_control_temperature_gauge_start_of_blue">Inicio de la zona azul</string>
+    <string name="advance_control_temperature_gauge_end_of_blue">Fin de la zona azul</string>
+    <string name="advance_control_temperature_gauge_one_quarter">1/4 de la escala</string>
+    <string name="advance_control_temperature_gauge_start_of_buffer">Inicio de la zona central</string>
+    <string name="advance_control_temperature_gauge_end_of_buffer">Fin de la zona central</string>
+    <string name="advance_control_temperature_gauge_three_quarter">3/4 de la escala</string>
+    <string name="advance_control_temperature_gauge_overheat">Sobrecalentamiento</string>
+    <string name="advance_control_temperature_gauge_validation_not_number">Introduzca un número entero.</string>
+    <string name="advance_control_temperature_gauge_validation_out_of_range">El valor debe estar entre %1$d y %2$d °C.</string>
+    <string name="advance_control_temperature_gauge_validation_less_than_previous">El valor no puede ser menor que el del punto anterior (%1$s: %2$d °C).</string>
+    <string name="advance_control_temperature_gauge_validation_greater_than_next">El valor no puede ser mayor que el del punto siguiente (%1$s: %2$d °C).</string>
+</resources>

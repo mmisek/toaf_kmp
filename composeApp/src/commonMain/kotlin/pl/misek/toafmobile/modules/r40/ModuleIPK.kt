@@ -4,6 +4,7 @@ import co.touchlab.kermit.Logger
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.CancellationException
 import org.jetbrains.compose.resources.StringResource
+import pl.misek.toafmobile.activities.composeModels.activities.AdvanceControlTemperatureGauge
 import pl.misek.toafmobile.coding.ZcsCoding
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceHelper
@@ -13,15 +14,19 @@ import pl.misek.toafmobile.modules.ModuleDS2
 import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.ModuleAddress
+import pl.misek.toafmobile.modules.enums.TemperatureGaugeEnum
+import pl.misek.toafmobile.modules.interfaces.AdvanceControlElement
 import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceCoding
+import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceControl
 import pl.misek.toafmobile.modules.interfaces.IModuleCoding
 import pl.misek.toafmobile.modules.interfaces.IModuleControl
 import pl.misek.toafmobile.modules.interfaces.IModuleEepromProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleVIN
 import pl.misek.toafmobile.modules.interfaces.IModuleZCS
-import pl.misek.toafmobile.modules.interfaces.ITemperatureGauge
+import pl.misek.toafmobile.modules.interfaces.ITemperatureCoding
 import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
+import toafmobile.composeapp.generated.resources.advance_control_temperature_gauge_title
 import toafmobile.composeapp.generated.resources.module_description_ipk
 import toafmobile.composeapp.generated.resources.module_ipk
 
@@ -29,7 +34,7 @@ private const val tag = "ModuleIPK"
 class ModuleIPK(protocolDS2: ProtocolDS2?) :
     ModuleDS2( protocolDS2, ModuleAddress.MODULE_IPK, listOf(CarType.R40)),
     IModuleZCS, IModuleVIN, IModuleControl, IModuleCoding, IModuleAdvanceCoding,
-    IModuleEepromProgramming, ITemperatureGauge {
+    IModuleEepromProgramming, IModuleAdvanceControl, ITemperatureCoding {
 
     enum class ServiceType {
         Oil,
@@ -42,6 +47,31 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
     override fun getImageResource() = Res.drawable.module_ipk
 
     override fun getModuleDescription() = Res.string.module_description_ipk
+
+    override fun getAdvanceControlElements() = listOf(
+        AdvanceControlElement(Res.string.advance_control_temperature_gauge_title) { userInfo, onShowResult ->
+            AdvanceControlTemperatureGauge(userInfo = userInfo, onShowResult = onShowResult)
+        }
+    )
+
+    /*
+     * Progi wskaznika temperatury [°C] w kodowaniu (blok 0), jeden bajt na prog,
+     * co drugi bajt od F3h w kolejnosci TemperatureGaugeEnum: F3, F5, F7, F9, FB, FD, FF.
+     */
+    private fun temperatureGaugeAddress(gauge: TemperatureGaugeEnum) = 0xF3 + 2 * gauge.ordinal
+
+    override suspend fun readTemperatureGauge(): Map<TemperatureGaugeEnum, Int>? {
+        val coding = readCoding()?.firstOrNull() ?: return null
+        return TemperatureGaugeEnum.entries.associateWith { coding[temperatureGaugeAddress(it)].toInt() and 0xFF }
+    }
+
+    override suspend fun writeTemperatureGauge(values: Map<TemperatureGaugeEnum, Int>): Boolean {
+        val coding = readCoding()?.firstOrNull() ?: return false
+        values.forEach { (gauge, value) -> coding[temperatureGaugeAddress(gauge)] = value.toByte() }
+        val result =  writeCoding(listOf(coding))
+        reset()
+        return result
+    }
 
     override suspend fun readZCS(): ZcsCoding? {
         var result: ZcsCoding? = null

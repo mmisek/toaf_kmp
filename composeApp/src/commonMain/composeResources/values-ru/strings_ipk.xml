@@ -123,9 +123,4 @@
         <item>Все сервисы</item>
     </string-array>
 
-    <string name="ipk_temperature_gauge_incorrect_temperature_value">Неверное значение температуры</string>
-    <string name="ipk_temperature_gauge_tittle">Калибровка датчика температуры</string>
-    <string name="ipk_temperature_gauge_click_to_edit">Нажмите на значение температуры для изменения</string>
-    <string name="ipk_temperature_gauge_enter_temperature_value">Введите новое значение температуры</string>
-    <string name="ipk_temperature_gauge_new_temperature_value">Новое значение</string>
 </resources>

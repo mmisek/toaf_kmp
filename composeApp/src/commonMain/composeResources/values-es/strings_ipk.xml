@@ -128,10 +128,5 @@
     <item>Todos los servicios</item>
 </string-array>
 
-<string name="ipk_temperature_gauge_incorrect_temperature_value">Valor de temperatura incorrecto</string>
-<string name="ipk_temperature_gauge_tittle">Calibración del indicador de temperatura</string>
-<string name="ipk_temperature_gauge_click_to_edit">Haga clic en el valor de la temperatura para cambiarlo</string>
-<string name="ipk_temperature_gauge_enter_temperature_value">Ingrese el nuevo valor de temperatura</string>
-<string name="ipk_temperature_gauge_new_temperature_value">Nuevo valor</string>
 
 </resources>

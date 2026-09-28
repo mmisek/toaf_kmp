@@ -112,10 +112,5 @@
     <string name="ipk_error_desc_40">Błąd obecny</string>
     <string name="ipk_error_desc_80">Błąd sporadyczny</string>
 
-    <string name="ipk_temperature_gauge_incorrect_temperature_value">Nieprawidłowa wartość temperatury</string>
-    <string name="ipk_temperature_gauge_tittle">Adiustacja wskaźnika temperatury</string>
-    <string name="ipk_temperature_gauge_click_to_edit">Naciśnij wartość temperatury by ją zmienić</string>
-    <string name="ipk_temperature_gauge_enter_temperature_value">Podaj nową wartość temperatury</string>
-    <string name="ipk_temperature_gauge_new_temperature_value">Nowa wartość</string>
 
 </resources>

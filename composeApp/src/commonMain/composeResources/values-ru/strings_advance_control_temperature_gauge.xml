@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_temperature_gauge_title">Калибровка указателя температуры</string>
+    <string name="advance_control_temperature_gauge_click_to_edit">Нажмите на значение температуры, чтобы изменить его.</string>
+    <string name="advance_control_temperature_gauge_no_data">Нет данных. Считайте значения из модуля.</string>
+    <string name="advance_control_temperature_gauge_read">Чтение</string>
+    <string name="advance_control_temperature_gauge_write">Запись</string>
+    <string name="advance_control_temperature_gauge_read_successful">Значения указателя температуры успешно считаны</string>
+    <string name="advance_control_temperature_gauge_read_failed">Не удалось считать значения указателя температуры</string>
+    <string name="advance_control_temperature_gauge_write_successful">Значения указателя температуры успешно записаны</string>
+    <string name="advance_control_temperature_gauge_write_failed">Не удалось записать значения указателя температуры</string>
+    <string name="advance_control_temperature_gauge_edit_title">Изменить значение температуры [°C]</string>
+    <string name="advance_control_temperature_gauge_edit_save">Сохранить</string>
+    <string name="advance_control_temperature_gauge_start_of_blue">Начало синей зоны</string>
+    <string name="advance_control_temperature_gauge_end_of_blue">Конец синей зоны</string>
+    <string name="advance_control_temperature_gauge_one_quarter">1/4 шкалы</string>
+    <string name="advance_control_temperature_gauge_start_of_buffer">Начало средней зоны</string>
+    <string name="advance_control_temperature_gauge_end_of_buffer">Конец средней зоны</string>
+    <string name="advance_control_temperature_gauge_three_quarter">3/4 шкалы</string>
+    <string name="advance_control_temperature_gauge_overheat">Перегрев</string>
+    <string name="advance_control_temperature_gauge_validation_not_number">Введите целое число.</string>
+    <string name="advance_control_temperature_gauge_validation_out_of_range">Значение должно быть в диапазоне от %1$d до %2$d °C.</string>
+    <string name="advance_control_temperature_gauge_validation_less_than_previous">Значение не может быть меньше, чем для предыдущей точки (%1$s: %2$d °C).</string>
+    <string name="advance_control_temperature_gauge_validation_greater_than_next">Значение не может быть больше, чем для следующей точки (%1$s: %2$d °C).</string>
+</resources>
