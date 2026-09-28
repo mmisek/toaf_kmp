@@ -13,15 +13,22 @@ import pl.misek.toafmobile.modules.enums.ModuleAddress
 import pl.misek.toafmobile.modules.interfaces.IModuleCoding
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.protocols.ProtocolDS2
-import sun.security.krb5.Confounder.bytes
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.delay
 
 class ModuleDSC(protocolDS2: ProtocolDS2?) :
     ModuleDS2(protocolDS2, ModuleAddress.MODULE_DSC, listOf(CarType.L322)),
     /*IModuleAdvanceControl,*/ IModuleCoding, IModuleLiveData {
     private val tag ="ModuleDSC"
+
+    private companion object {
+        const val ANSWER_BUSY: Byte = 0xA1.toByte()
+        const val MAX_BUSY_RETRIES = 10
+        const val BUSY_RETRY_DELAY_MS = 200L
+        const val ERROR_RECORD_SIZE = 5
+    }
 
     override fun getKoinName() = KoinNames.ModuleL322Dsc
 
@@ -33,50 +40,45 @@ class ModuleDSC(protocolDS2: ProtocolDS2?) :
         var result: MutableList<ModuleError>? = null
 
         interfaceWrite(byteArrayOf(0x00))
-        val message = interfaceWrite(byteArrayOf(0x04, 0x01))
+        var message = interfaceWrite(byteArrayOf(0x04, 0x01))
+        var busyRetries = 0
+        while (message.answerCode == ANSWER_BUSY && busyRetries < MAX_BUSY_RETRIES) {
+            delay(BUSY_RETRY_DELAY_MS)
+            message = interfaceWrite(byteArrayOf(0x04, 0x01))
+            busyRetries++
+        }
         try {
             if (message.isValid && message.answer.size > 3) {
                 result = ArrayList()
                 val errorDetails =
                     arrayOf(
-                        intArrayOf(0x00, 0x01),
-                        intArrayOf(0x03, 0x02),
-                        intArrayOf(0x04, 0x05),
-                        intArrayOf(0x07, 0x06),
-                        intArrayOf(0x09, 0x08),
-                        intArrayOf(0x0B, 0x0A),
-                        intArrayOf(0x0D, 0x0C),
-                        intArrayOf(0x0F, 0x0F)
+                        // [bit set, bit clear] per status bit 0..7
+                        intArrayOf(0x08, 0x09), // bit0 ACB
+                        intArrayOf(0x0A, 0x0B), // bit1 HBA
+                        intArrayOf(0x0C, 0x0D), // bit2 ECD
+                        intArrayOf(0x0E, 0x0F), // bit3 HDC
+                        intArrayOf(0x00, 0x01), // bit4 ASC passive
+                        intArrayOf(0x02, 0x03), // bit5 ABS control
+                        intArrayOf(0x04, 0x05), // bit6 stop light switch
+                        intArrayOf(0x06, 0x07)  // bit7 ASC control
                     )
+                // Record layout: [code, status, count, speedHi, speedLo]
                 for (i in 0 until (message.answer[3].toInt() and 0xFF)) {
-                    val errorCode = String.format("%02X", message.answer[4 + 4 * i])
+                    val offset = 4 + ERROR_RECORD_SIZE * i
+                    if (offset + ERROR_RECORD_SIZE > message.answer.size - 1) break
+                    val errorCode = String.format("%02X", message.answer[offset])
+                    val status = message.answer[offset + 1].toInt() and 0xFF
                     val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
-                    errorDescription.add(ResourceHelper.getErrorDescriptionCount(message.answer[6 + 4 * i].toInt() and 0xFF))
-                    errorDescription.add(
-                        ResourceHelper.getErrorDescriptionSpeed(
-                            ((message.answer[7 + 4 * i].toInt() and 0xFF) shl 8) + 0.0625 * (message.answer[8 + 4 * i].toInt() and 0xFF)
-                        )
-                    )
+                    errorDescription.add(ResourceHelper.getErrorDescriptionCount(message.answer[offset + 2].toInt() and 0xFF))
+                    val rawSpeed = ((message.answer[offset + 3].toInt() and 0xFF) shl 8) +
+                            (message.answer[offset + 4].toInt() and 0xFF)
+                    errorDescription.add(ResourceHelper.getErrorDescriptionSpeed(rawSpeed * 0.0625))
                     for (j in errorDetails.indices) {
-                        if ((message.answer[5 + 4 * i].toInt() and (0x01 shl j)) == (0x01 shl j)) {
-                            ResourceMapper
-                                .stringResource(
-                                    String.format(
-                                        "dsc_error_detail_%02X",
-                                        errorDetails[j][1]
-                                    )
-                                )
-                                ?.let { errorDescription.add(Pair(it, null)) }
-                        } else {
-                            ResourceMapper
-                                .stringResource(
-                                    String.format(
-                                        "dsc_error_detail_%02X",
-                                        errorDetails[j][1]
-                                    )
-                                )
-                                ?.let { errorDescription.add(Pair(it, null)) }
-                        }
+                        val bitSet = (status and (0x01 shl j)) != 0
+                        val detail = if (bitSet) errorDetails[j][0] else errorDetails[j][1]
+                        ResourceMapper
+                            .stringResource(String.format("dsc_error_detail_%02X", detail))
+                            ?.let { errorDescription.add(Pair(it, null)) }
                     }
                     result.add(ModuleError(ModuleAddress.MODULE_DSC, errorCode, errorDescription))
                 }

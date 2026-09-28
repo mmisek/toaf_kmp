@@ -25,7 +25,9 @@ class ProtocolDS2(private var device: IInterfaceDevice?) : IProtocol {
     }
 
     suspend fun write(destinationDevice: Byte, data: ByteArray, readTimeout: Long?): OBDMessage {
-        return writeToDs2(destinationDevice, data, readTimeout).takeIf { it.isValid } ?: OBDMessage()
+        val message = writeToDs2(destinationDevice, data, readTimeout)
+        // Keep the answer code for invalid messages so callers can detect e.g. BUSY (0xA1)
+        return message.takeIf { it.isValid } ?: OBDMessage().also { it.answerCode = message.answerCode }
     }
 
     private suspend fun writeToDs2(
