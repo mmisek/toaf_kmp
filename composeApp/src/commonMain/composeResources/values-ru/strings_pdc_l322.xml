@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pdc_l322_coding_num_sensors">Количество датчиков</string>
+    <string name="pdc_l322_coding_not_kl15_powered">Работа только при включенном зажигании (KL15)</string>
+    <string name="pdc_l322_coding_one_sounder">Только один сигнализатор</string>
+    <string name="pdc_l322_coding_pdc_switch">Выключатель PDC</string>
+    <string name="pdc_l322_coding_reversing_signal">Сигнал заднего хода</string>
+    <string name="pdc_l322_coding_activation_delay">Задержка включения</string>
+    <string name="pdc_l322_coding_switch_function">Функция выключателя (отключение PDC на бездорожье)</string>
+    <string name="pdc_l322_coding_active_on_ign">Активен при включении зажигания</string>
+    <string name="pdc_l322_coding_deactivation">Отключение</string>
+    <string name="pdc_l322_coding_audible_switch_on_first">Звуковой сигнал включения только в первый раз</string>
+    <string name="pdc_l322_coding_audible_switch_on_always">Звуковой сигнал включения всегда</string>
+    <string name="pdc_l322_coding_audible_switch_off">Звуковой сигнал выключения</string>
+    <string name="pdc_l322_coding_signal_by_switch">Сигнал от выключателя</string>
+    <string name="pdc_l322_coding_emergency_signal">Аварийный сигнал при неисправности</string>
+    <string name="pdc_l322_coding_ice_suppression">Подавление обледенения</string>
+    <string name="pdc_l322_coding_sensor_spacing">Расстояние между датчиками</string>
+    <string name="pdc_l322_coding_max_detect_area">Максимальная зона обнаружения</string>
+    <string name="pdc_l322_coding_offsets">Смещения диапазона измерения</string>
+    <string name="pdc_l322_coding_permanent_tones">Диапазон непрерывного сигнала</string>
+    <string name="pdc_l322_coding_range_trunk_corner">Диапазон измерения – угол двери багажника</string>
+    <string name="pdc_l322_coding_range_trunk_centre">Диапазон измерения – центр двери багажника</string>
+    <string name="pdc_l322_coding_rear_volume">Громкость сзади</string>
+    <string name="pdc_l322_coding_rear_sounder">Задний сигнализатор</string>
+    <string name="pdc_l322_coding_front_volume">Громкость спереди</string>
+    <string name="pdc_l322_coding_front_sounder">Передний сигнализатор</string>
+    <string name="pdc_l322_coding_speed_switch_on">Скорость включения</string>
+    <string name="pdc_l322_coding_speed_switch_off">Скорость выключения</string>
+    <string name="pdc_l322_coding_switch_off_distance">Расстояние выключения</string>
+    <string name="pdc_l322_coding_speed_signal">Сигнал скорости</string>
+    <string name="pdc_l322_coding_tball_present_dist">Фаркоп</string>
+</resources>

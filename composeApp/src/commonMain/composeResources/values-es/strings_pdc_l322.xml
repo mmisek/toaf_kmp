@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pdc_l322_coding_num_sensors">Número de sensores</string>
+    <string name="pdc_l322_coding_not_kl15_powered">Funcionamiento solo con contacto (KL15)</string>
+    <string name="pdc_l322_coding_one_sounder">Solo un avisador</string>
+    <string name="pdc_l322_coding_pdc_switch">Interruptor PDC</string>
+    <string name="pdc_l322_coding_reversing_signal">Señal de marcha atrás</string>
+    <string name="pdc_l322_coding_activation_delay">Retardo de activación</string>
+    <string name="pdc_l322_coding_switch_function">Función del interruptor (suspensión todoterreno)</string>
+    <string name="pdc_l322_coding_active_on_ign">Activo al dar contacto</string>
+    <string name="pdc_l322_coding_deactivation">Desactivación</string>
+    <string name="pdc_l322_coding_audible_switch_on_first">Señal acústica de activación solo la primera vez</string>
+    <string name="pdc_l322_coding_audible_switch_on_always">Señal acústica de activación siempre</string>
+    <string name="pdc_l322_coding_audible_switch_off">Señal acústica de desactivación</string>
+    <string name="pdc_l322_coding_signal_by_switch">Señal por interruptor</string>
+    <string name="pdc_l322_coding_emergency_signal">Señal de emergencia por fallo</string>
+    <string name="pdc_l322_coding_ice_suppression">Supresión de hielo</string>
+    <string name="pdc_l322_coding_sensor_spacing">Separación de sensores</string>
+    <string name="pdc_l322_coding_max_detect_area">Área de detección máxima</string>
+    <string name="pdc_l322_coding_offsets">Desplazamientos del rango de medición</string>
+    <string name="pdc_l322_coding_permanent_tones">Rango de tono continuo</string>
+    <string name="pdc_l322_coding_range_trunk_corner">Rango de medición esquina del portón</string>
+    <string name="pdc_l322_coding_range_trunk_centre">Rango de medición centro del portón</string>
+    <string name="pdc_l322_coding_rear_volume">Volumen trasero</string>
+    <string name="pdc_l322_coding_rear_sounder">Avisador trasero</string>
+    <string name="pdc_l322_coding_front_volume">Volumen delantero</string>
+    <string name="pdc_l322_coding_front_sounder">Avisador delantero</string>
+    <string name="pdc_l322_coding_speed_switch_on">Velocidad de activación</string>
+    <string name="pdc_l322_coding_speed_switch_off">Velocidad de desactivación</string>
+    <string name="pdc_l322_coding_switch_off_distance">Distancia de desactivación</string>
+    <string name="pdc_l322_coding_speed_signal">Señal de velocidad</string>
+    <string name="pdc_l322_coding_tball_present_dist">Enganche de remolque</string>
+</resources>

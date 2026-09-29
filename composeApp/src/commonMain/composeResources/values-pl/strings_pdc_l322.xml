@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pdc_l322_coding_num_sensors">Liczba czujników</string>
+    <string name="pdc_l322_coding_not_kl15_powered">Praca tylko przy zapłonie (KL15)</string>
+    <string name="pdc_l322_coding_one_sounder">Tylko jeden sygnalizator</string>
+    <string name="pdc_l322_coding_pdc_switch">Przełącznik PDC</string>
+    <string name="pdc_l322_coding_reversing_signal">Sygnał biegu wstecznego</string>
+    <string name="pdc_l322_coding_activation_delay">Opóźnienie włączenia</string>
+    <string name="pdc_l322_coding_switch_function">Funkcja przełącznika (zawieszenie PDC w terenie)</string>
+    <string name="pdc_l322_coding_active_on_ign">Aktywny po włączeniu zapłonu</string>
+    <string name="pdc_l322_coding_deactivation">Wyłączanie</string>
+    <string name="pdc_l322_coding_audible_switch_on_first">Sygnał dźwiękowy włączenia tylko za pierwszym razem</string>
+    <string name="pdc_l322_coding_audible_switch_on_always">Sygnał dźwiękowy włączenia zawsze</string>
+    <string name="pdc_l322_coding_audible_switch_off">Sygnał dźwiękowy wyłączenia</string>
+    <string name="pdc_l322_coding_signal_by_switch">Sygnał od przełącznika</string>
+    <string name="pdc_l322_coding_emergency_signal">Sygnał awaryjny przy usterce</string>
+    <string name="pdc_l322_coding_ice_suppression">Tłumienie oblodzenia</string>
+    <string name="pdc_l322_coding_sensor_spacing">Rozstaw czujników</string>
+    <string name="pdc_l322_coding_max_detect_area">Maksymalny zasięg wykrywania</string>
+    <string name="pdc_l322_coding_offsets">Przesunięcia zakresu pomiaru</string>
+    <string name="pdc_l322_coding_permanent_tones">Zakres tonu ciągłego</string>
+    <string name="pdc_l322_coding_range_trunk_corner">Zakres pomiaru – narożnik klapy</string>
+    <string name="pdc_l322_coding_range_trunk_centre">Zakres pomiaru – środek klapy</string>
+    <string name="pdc_l322_coding_rear_volume">Głośność tył</string>
+    <string name="pdc_l322_coding_rear_sounder">Sygnalizator tylny</string>
+    <string name="pdc_l322_coding_front_volume">Głośność przód</string>
+    <string name="pdc_l322_coding_front_sounder">Sygnalizator przedni</string>
+    <string name="pdc_l322_coding_speed_switch_on">Prędkość włączenia</string>
+    <string name="pdc_l322_coding_speed_switch_off">Prędkość wyłączenia</string>
+    <string name="pdc_l322_coding_switch_off_distance">Droga wyłączenia</string>
+    <string name="pdc_l322_coding_speed_signal">Sygnał prędkości</string>
+    <string name="pdc_l322_coding_tball_present_dist">Hak holowniczy</string>
+</resources>

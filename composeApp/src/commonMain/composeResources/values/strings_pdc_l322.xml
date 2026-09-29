@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pdc_l322_coding_num_sensors">Number of sensors</string>
+    <string name="pdc_l322_coding_not_kl15_powered">Operation only with terminal 15</string>
+    <string name="pdc_l322_coding_one_sounder">Only one sounder</string>
+    <string name="pdc_l322_coding_pdc_switch">PDC switch</string>
+    <string name="pdc_l322_coding_reversing_signal">Reversing signal</string>
+    <string name="pdc_l322_coding_activation_delay">Activation delay</string>
+    <string name="pdc_l322_coding_switch_function">Switch function (off-road suspend)</string>
+    <string name="pdc_l322_coding_active_on_ign">Active on ignition</string>
+    <string name="pdc_l322_coding_deactivation">Deactivation</string>
+    <string name="pdc_l322_coding_audible_switch_on_first">Audible switch-on signal only first time</string>
+    <string name="pdc_l322_coding_audible_switch_on_always">Audible switch-on signal always</string>
+    <string name="pdc_l322_coding_audible_switch_off">Audible switch-off signal</string>
+    <string name="pdc_l322_coding_signal_by_switch">Signal by switch</string>
+    <string name="pdc_l322_coding_emergency_signal">Failure emergency signal</string>
+    <string name="pdc_l322_coding_ice_suppression">Ice suppression</string>
+    <string name="pdc_l322_coding_sensor_spacing">Sensor spacing</string>
+    <string name="pdc_l322_coding_max_detect_area">Maximum detection area</string>
+    <string name="pdc_l322_coding_offsets">Measuring range offsets</string>
+    <string name="pdc_l322_coding_permanent_tones">Continuous tone range</string>
+    <string name="pdc_l322_coding_range_trunk_corner">Measuring range tailgate corner</string>
+    <string name="pdc_l322_coding_range_trunk_centre">Measuring range tailgate centre</string>
+    <string name="pdc_l322_coding_rear_volume">Rear volume</string>
+    <string name="pdc_l322_coding_rear_sounder">Rear sounder</string>
+    <string name="pdc_l322_coding_front_volume">Front volume</string>
+    <string name="pdc_l322_coding_front_sounder">Front sounder</string>
+    <string name="pdc_l322_coding_speed_switch_on">Switch-on speed</string>
+    <string name="pdc_l322_coding_speed_switch_off">Switch-off speed</string>
+    <string name="pdc_l322_coding_switch_off_distance">Switch-off distance</string>
+    <string name="pdc_l322_coding_speed_signal">Speed signal</string>
+    <string name="pdc_l322_coding_tball_present_dist">Towball</string>
+</resources>

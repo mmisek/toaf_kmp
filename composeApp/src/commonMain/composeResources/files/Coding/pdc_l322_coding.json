@@ -1,0 +1,532 @@
+{
+    "elements": [
+        {
+            "name": "NUM_SENSORS",
+            "block": "0x00",
+            "byte": "0x00",
+            "mask": "0x01",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "four"
+                },
+                {
+                    "data": "0x01",
+                    "text": "eight"
+                }
+            ]
+        },
+        {
+            "name": "NOT_KL15_POWERED",
+            "block": "0x00",
+            "byte": "0x00",
+            "mask": "0x02",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "active"
+                },
+                {
+                    "data": "0x01",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "ONE_SOUNDER",
+            "block": "0x00",
+            "byte": "0x00",
+            "mask": "0x08",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "PDC_SWITCH",
+            "block": "0x00",
+            "byte": "0x00",
+            "mask": "0x10",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "REVERSING_SIGNAL",
+            "block": "0x00",
+            "byte": "0x00",
+            "mask": "0x20",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "ACTIVATION_DELAY",
+            "block": "0x00",
+            "byte": "0x00",
+            "mask": "0x40",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "active"
+                },
+                {
+                    "data": "0x01",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "SWITCH_FUNCTION",
+            "block": "0x00",
+            "byte": "0x00",
+            "mask": "0x80",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "bmw"
+                },
+                {
+                    "data": "0x01",
+                    "text": "l30"
+                }
+            ]
+        },
+        {
+            "name": "ACTIVE_ON_IGN",
+            "block": "0x00",
+            "byte": "0x01",
+            "mask": "0x01",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "DEACTIVATION",
+            "block": "0x00",
+            "byte": "0x01",
+            "mask": "0x02",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "speed"
+                },
+                {
+                    "data": "0x01",
+                    "text": "reverse"
+                }
+            ]
+        },
+        {
+            "name": "AUDIBLE_SWITCH_ON_FIRST",
+            "block": "0x00",
+            "byte": "0x01",
+            "mask": "0x04",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "AUDIBLE_SWITCH_ON_ALWAYS",
+            "block": "0x00",
+            "byte": "0x01",
+            "mask": "0x08",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "AUDIBLE_SWITCH_OFF",
+            "block": "0x00",
+            "byte": "0x01",
+            "mask": "0x10",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "SIGNAL_BY_SWITCH",
+            "block": "0x00",
+            "byte": "0x01",
+            "mask": "0x20",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "EMERGENCY_SIGNAL",
+            "block": "0x00",
+            "byte": "0x01",
+            "mask": "0x40",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "ICE_SUPPRESSION",
+            "block": "0x00",
+            "byte": "0x01",
+            "mask": "0x80",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "active"
+                },
+                {
+                    "data": "0x01",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "SENSOR_SPACING",
+            "block": "0x00",
+            "byte": "0x02",
+            "mask": "0xFFFFFFFF",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x2F323146",
+                    "text": "l30"
+                },
+                {
+                    "data": "0x2F323341",
+                    "text": "l30_06my"
+                }
+            ]
+        },
+        {
+            "name": "MAX_DETECT_AREA",
+            "block": "0x00",
+            "byte": "0x06",
+            "mask": "0xFFFFFFFF",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x3C964664",
+                    "text": "l30"
+                }
+            ]
+        },
+        {
+            "name": "OFFSETS",
+            "block": "0x00",
+            "byte": "0x0A",
+            "mask": "0xFFFFFFFF",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x02010201",
+                    "text": "l30"
+                }
+            ]
+        },
+        {
+            "name": "PERMANENT_TONES",
+            "block": "0x00",
+            "byte": "0x0E",
+            "mask": "0xFFFF",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x1E1E",
+                    "text": "l30"
+                }
+            ]
+        },
+        {
+            "name": "RANGE_TRUNK_CORNER",
+            "block": "0x00",
+            "byte": "0x10",
+            "mask": "0x0F",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "default"
+                }
+            ],
+            "visible": "false"
+        },
+        {
+            "name": "RANGE_TRUNK_CENTRE",
+            "block": "0x00",
+            "byte": "0x10",
+            "mask": "0xF0",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "default"
+                }
+            ],
+            "visible": "false"
+        },
+        {
+            "name": "REAR_VOLUME",
+            "block": "0x00",
+            "byte": "0x11",
+            "mask": "0x07",
+            "coding_index": [
+                "3"
+            ],
+            "custom_values": {
+                "min": "2",
+                "max": "7"
+            }
+        },
+        {
+            "name": "REAR_SOUNDER",
+            "block": "0x00",
+            "byte": "0x11",
+            "mask": "0x08",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "loudspeaker"
+                },
+                {
+                    "data": "0x01",
+                    "text": "gong"
+                }
+            ]
+        },
+        {
+            "name": "FRONT_VOLUME",
+            "block": "0x00",
+            "byte": "0x11",
+            "mask": "0x70",
+            "coding_index": [
+                "3"
+            ],
+            "custom_values": {
+                "min": "2",
+                "max": "7"
+            }
+        },
+        {
+            "name": "FRONT_SOUNDER",
+            "block": "0x00",
+            "byte": "0x11",
+            "mask": "0x80",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "loudspeaker"
+                },
+                {
+                    "data": "0x01",
+                    "text": "gong"
+                }
+            ]
+        },
+        {
+            "name": "SPEED_SWITCH_ON",
+            "block": "0x00",
+            "byte": "0x12",
+            "mask": "0xFF",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "default"
+                }
+            ],
+            "visible": "false"
+        },
+        {
+            "name": "SPEED_SWITCH_OFF",
+            "block": "0x00",
+            "byte": "0x13",
+            "mask": "0xFF",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x1E",
+                    "text": "default"
+                }
+            ],
+            "visible": "false"
+        },
+        {
+            "name": "SWITCH_OFF_DISTANCE",
+            "block": "0x00",
+            "byte": "0x14",
+            "mask": "0xFF",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x32",
+                    "text": "default"
+                }
+            ],
+            "visible": "false"
+        },
+        {
+            "name": "SPEED_SIGNAL",
+            "block": "0x00",
+            "byte": "0x15",
+            "mask": "0xFF",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x8C",
+                    "text": "default"
+                }
+            ],
+            "visible": "false"
+        },
+        {
+            "name": "TBALL_PRESENT_DIST",
+            "block": "0x00",
+            "byte": "0x16",
+            "mask": "0xFF",
+            "coding_index": [
+                "3"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "not_present"
+                },
+                {
+                    "data": "0x80",
+                    "text": "present"
+                }
+            ]
+        }
+    ]
+}
