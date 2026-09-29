@@ -117,6 +117,7 @@ fun ActivityModuleCodingModel(moduleKoinName : KoinNames, onBackClick : () ->Uni
     val backupSaveFailText = stringResource(Res.string.dialog_make_backup_save_error)
     val writeCodingSuccessText = stringResource(Res.string.message_coding_save_ok)
     val writeCodingFailText = stringResource(Res.string.message_coding_save_not_ok)
+    val readCodingFailText = stringResource(Res.string.message_coding_read_not_ok)
 
     LaunchedEffect(Unit, backupType) {
         if (backupType != BackupType.None) {
@@ -249,8 +250,8 @@ fun ActivityModuleCodingModel(moduleKoinName : KoinNames, onBackClick : () ->Uni
                                     isPublic = isPublic
                                 )
                             }
+                            showProgressDialog = true
                         }
-                        showProgressDialog = true
                     }
                 )
             }
@@ -308,22 +309,29 @@ fun ActivityModuleCodingModel(moduleKoinName : KoinNames, onBackClick : () ->Uni
                             ActionTypeEnum.ReadCoding ->
                             {
                                 val data = (result as? List<*>)?.filterIsInstance<ByteArray>()
-                                data?.let {
-                                    val codingToBackup = it.toList()
-                                    currentCoding = it.toList()
-                                    actionType = ActionTypeEnum.SaveCodingBackup
+                                if (data.isNullOrEmpty()) {
+                                    showResult(
+                                        scope = scope,
+                                        snackBarHostState = snackBarHostState,
+                                        result = false,
+                                        onSuccess = null,
+                                        onFail = readCodingFailText
+                                    )
+                                } else {
+                                    val codingToBackup = data.toList()
+                                    currentCoding = codingToBackup
+                                    // Autobackup w tle, bez okna postepu
                                     scope.launch {
-                                            doBackup(
-                                                toafApi = toafApi,
-                                                currentModule = currentModule,
-                                                ewsModule = ewsModule,
-                                                ipkModule = ipkModule,
-                                                currentCoding = codingToBackup,
-                                                description = "Autobackup",
-                                                isPublic = false
-                                            )
-                                        }
-                                    showProgressDialog = true
+                                        doBackup(
+                                            toafApi = toafApi,
+                                            currentModule = currentModule,
+                                            ewsModule = ewsModule,
+                                            ipkModule = ipkModule,
+                                            currentCoding = codingToBackup,
+                                            description = "Autobackup",
+                                            isPublic = false
+                                        )
+                                    }
                                 }
                             }
                             ActionTypeEnum.WriteCoding ->
@@ -339,6 +347,24 @@ fun ActivityModuleCodingModel(moduleKoinName : KoinNames, onBackClick : () ->Uni
                             }
                             else -> {}
 
+                        }
+                    },
+                    onError = {
+                        val failText = when (actionType) {
+                            ActionTypeEnum.ReadCoding -> readCodingFailText
+                            ActionTypeEnum.WriteCoding -> writeCodingFailText
+                            ActionTypeEnum.SaveCodingBackup -> backupSaveFailText
+                            ActionTypeEnum.ReadCodingBackup -> backupLoadFailText
+                            else -> null
+                        }
+                        failText?.let {
+                            showResult(
+                                scope = scope,
+                                snackBarHostState = snackBarHostState,
+                                result = false,
+                                onSuccess = null,
+                                onFail = it
+                            )
                         }
                     },
                     onDismissRequest = {showProgressDialog = false}
@@ -560,17 +586,9 @@ private fun CodingListPlaceholder(item : CodingElement, currentCoding : List<Byt
                             DropdownMenuItem(
                                 text = { opt?.let {Text(it)}  },
                                 onClick = {
-                                    val newCoding = currentCoding.toMutableList()
                                     currentCodingOption = opt
-                                    if (currentCoding.isNotEmpty()) {
-                                        val newCodingValue = item.codingValues.first { x -> x.second?.equals(option.second) == true }.first
-                                            newCoding[item.block] = currentCoding[item.block].setBits(
-                                                item.mask,
-                                            newCodingValue,
-                                            item.byteInBlock
-                                        )
-                                        onRefreshNeeded(newCoding)
-                                    }
+                                    // Wartosc bezposrednio z wybranej opcji - teksty moga sie powtarzac lub byc puste
+                                    currentCoding.withItemValue(item, option.first)?.let { onRefreshNeeded(it) }
                                     expanded = false
                                 },
                                 contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding
@@ -584,7 +602,7 @@ private fun CodingListPlaceholder(item : CodingElement, currentCoding : List<Byt
                 val min = item.codingCustomValues?.first ?: 0
                 val max = item.codingCustomValues?.second ?: 0
                 val range = min..max
-                val customValue = if (currentCoding.isNotEmpty()) currentCoding[item.block].extractWithMask(item.byteInBlock,item.mask) else min
+                val customValue = currentCoding.readItemValue(item) ?: min
                Row(
                    modifier = Modifier
                        .fillMaxWidth()
@@ -595,11 +613,7 @@ private fun CodingListPlaceholder(item : CodingElement, currentCoding : List<Byt
                    IconButton(
                        onClick = {
                            val newCustomValue = (customValue-1).coerceIn(range)
-                           if (currentCoding.isNotEmpty()) {
-                               val newCoding = currentCoding.toMutableList()
-                               newCoding[item.block] = currentCoding[item.block].setBits(item.mask,newCustomValue, item.byteInBlock)
-                               onRefreshNeeded(newCoding)
-                           }
+                           currentCoding.withItemValue(item, newCustomValue)?.let { onRefreshNeeded(it) }
                        },
                        enabled = customValue > range.first)
                    {
@@ -613,11 +627,7 @@ private fun CodingListPlaceholder(item : CodingElement, currentCoding : List<Byt
                                if (newValue <= range.last)
                                {
                                    val newCustomValue = (newValue).coerceIn(range)
-                                   if (currentCoding.isNotEmpty()) {
-                                       val newCoding = currentCoding.toMutableList()
-                                       newCoding[item.block] = currentCoding[item.block].setBits(item.mask,newCustomValue, item.byteInBlock)
-                                       onRefreshNeeded(currentCoding)
-                                       }
+                                   currentCoding.withItemValue(item, newCustomValue)?.let { onRefreshNeeded(it) }
                                }
                            }
                        },
@@ -631,15 +641,7 @@ private fun CodingListPlaceholder(item : CodingElement, currentCoding : List<Byt
                    IconButton(
                        onClick = {
                            val newCustomValue = (customValue + 1).coerceIn(range)
-                           if (currentCoding.isNotEmpty()) {
-                               val newCoding = currentCoding.toMutableList()
-                               newCoding[item.block] = currentCoding[item.block].setBits(
-                                   item.mask,
-                                   newCustomValue,
-                                   item.byteInBlock
-                               )
-                               onRefreshNeeded(newCoding)
-                           }
+                           currentCoding.withItemValue(item, newCustomValue)?.let { onRefreshNeeded(it) }
                         },
                        enabled =  customValue < range.last)
                    {
@@ -654,68 +656,77 @@ private fun CodingListPlaceholder(item : CodingElement, currentCoding : List<Byt
 
 private fun decodeCodingValue(item : CodingElement, currentCoding: List<ByteArray>?) : Int
 {
-    if (!currentCoding.isNullOrEmpty())
-    {
-        val value = currentCoding[item.block].extractWithMask(item.byteInBlock, item.mask)
-        val index = item.codingValues.indexOfFirst { x ->x.first == value }
-        return index.coerceAtLeast(0)
-    }
-    return 0
+    val value = currentCoding?.readItemValue(item) ?: return 0
+    val index = item.codingValues.indexOfFirst { x ->x.first == value }
+    return index.coerceAtLeast(0)
 }
 
-private fun ByteArray.extractWithMask(pos: Int, mask :Int) :Int
+/** Wartosc elementu kodowania, null gdy brak bloku wskazanego w JSON */
+private fun List<ByteArray>.readItemValue(item : CodingElement) : Int? =
+    getOrNull(item.block)?.extractWithMask(item.byteInBlock, item.mask)
+
+/** Kodowanie z nowa wartoscia elementu, null gdy brak bloku wskazanego w JSON */
+private fun List<ByteArray>.withItemValue(item : CodingElement, value : Int) : List<ByteArray>?
 {
+    val block = getOrNull(item.block) ?: return null
+    return toMutableList().also { it[item.block] = block.setBits(item.mask, value, item.byteInBlock) }
+}
+
+// Liczba bajtow pola wynika z maski (traktowanej bez znaku), bajty w kolejnosci big-endian
+private fun maskBytes(mask: Int): Int {
     val unsignedMask = mask.toLong() and 0xFFFFFFFFL
-    val bytesNeeded = when{
+    return when {
         unsignedMask <= 0xFF -> 1
         unsignedMask <= 0xFFFF -> 2
         unsignedMask <= 0xFFFFFF -> 3
         else -> 4
     }
-    var rawValue = 0
-    for (i in 0 until bytesNeeded)
-    {
-        val byteValue = if (pos + 1 <= this.size) this[pos+i].toInt() and 0xFF else 0
-        rawValue = (rawValue shl 8) or byteValue
-    }
-    return (rawValue and mask) ushr Integer.numberOfTrailingZeros(mask)
 }
 
+private fun ByteArray.extractWithMask(pos: Int, mask :Int) :Int
+{
+    var rawValue = 0
+    for (i in 0 until maskBytes(mask))
+    {
+        val index = pos + i
+        val byteValue = if (index in indices) this[index].toInt() and 0xFF else 0
+        rawValue = (rawValue shl 8) or byteValue
+    }
+    return (rawValue and mask) ushr mask.countTrailingZeroBits()
+}
+
+/**
+ * Zwraca kopie z wartoscia [data] wpisana pod maske [mask] od bajtu [position].
+ * Gdy pole nie miesci sie w bloku albo wartosc nie miesci sie w masce, zwraca niezmieniona kopie.
+ */
 fun ByteArray.setBits(mask: Int, data: Int, position: Int): ByteArray {
     val output = this.copyOf()
+    if (mask == 0) return output
 
-    if (position < 0 || position >= output.size) {
-        throw IllegalArgumentException()
+    val bytesNeeded = maskBytes(mask)
+    if (position < 0 || position + bytesNeeded > output.size) {
+        Logger.e { "$tag [setBits] field out of block: position=$position, bytes=$bytesNeeded, size=${output.size}" }
+        return output
     }
-    val shift = Integer.numberOfTrailingZeros(mask)
-
-    val alignedData = (data shl shift) and mask
+    val shift = mask.countTrailingZeroBits()
+    val maxValue = (mask.toLong() and 0xFFFFFFFFL) ushr shift
+    val unsignedData = data.toLong() and 0xFFFFFFFFL
+    if (unsignedData > maxValue) {
+        Logger.e { "$tag [setBits] value 0x${unsignedData.toString(16)} does not fit mask 0x${(mask.toLong() and 0xFFFFFFFFL).toString(16)}" }
+        return output
+    }
 
     var currentMask = mask
-    var currentData = alignedData
-    var currentPos = when {
-        mask  <= 0xFF -> position
-        mask <= 0xFFFF -> position + 1
-        mask <= 0xFFFFFF -> position + 2
-        else -> position + 3
-    }
-
-    while (currentMask != 0 && currentPos >= 0) {
+    var currentData = (data shl shift) and mask
+    for (currentPos in position + bytesNeeded - 1 downTo position) {
         val maskByte = currentMask and 0xFF
-
         if (maskByte != 0) {
-            val dataByte = currentData and 0xFF
             val originalByte = output[currentPos].toInt() and 0xFF
-            val resultByte = (originalByte and maskByte.inv()) or (dataByte and maskByte)
-            output[currentPos] = resultByte.toByte()
+            output[currentPos] = ((originalByte and maskByte.inv()) or (currentData and maskByte)).toByte()
         }
-
         currentMask = currentMask ushr 8
         currentData = currentData ushr 8
-
-        currentPos--
     }
-
     return output
 }
 

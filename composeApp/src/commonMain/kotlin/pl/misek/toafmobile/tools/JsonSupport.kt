@@ -350,7 +350,8 @@ object JsonSupport {
         if (value.isNullOrEmpty()) return 0
         return try {
             if (value.startsWith("0x")) {
-                value.substring(2).toInt(16)
+                // Przez Long, aby wartosci/maski powyzej 0x7FFFFFFF (np. 0xFFFF0000) zachowaly wzor bitowy
+                value.substring(2).toLong(16).toInt()
             } else {
                 value.toInt()
             }
