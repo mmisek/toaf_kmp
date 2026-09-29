@@ -16,6 +16,7 @@ object ResourceMapperIpk {
             "ipk_coding_cc_lights" -> Res.string.ipk_coding_cc_lights
             "ipk_coding_cc_washer_fluid" -> Res.string.ipk_coding_cc_washer_fluid
             "ipk_coding_coding_done" -> Res.string.ipk_coding_coding_done
+            "ipk_coding_consumption_cal_factor" -> Res.string.ipk_coding_consumption_cal_factor
             "ipk_coding_distance_to_servce" -> Res.string.ipk_coding_distance_to_servce
             "ipk_coding_drive_hand" -> Res.string.ipk_coding_drive_hand
             "ipk_coding_engine" -> Res.string.ipk_coding_engine
@@ -42,6 +43,7 @@ object ResourceMapperIpk {
             "ipk_coding_sia_interval_distance" -> Res.string.ipk_coding_sia_interval_distance
             "ipk_coding_sia_liter_limit" -> Res.string.ipk_coding_sia_liter_limit
             "ipk_coding_sia_lower_rpm" -> Res.string.ipk_coding_sia_lower_rpm
+            "ipk_coding_sia_time_limit" -> Res.string.ipk_coding_sia_time_limit
             "ipk_coding_sia_upper_rpm" -> Res.string.ipk_coding_sia_upper_rpm
             "ipk_coding_sls_warning" -> Res.string.ipk_coding_sls_warning
             "ipk_coding_speedo_display" -> Res.string.ipk_coding_speedo_display

@@ -44,6 +44,8 @@
     <string name="ipk_coding_sia_upper_rpm">Indicatore intervallo di servizio - limite superiore giri/min</string>
     <string name="ipk_coding_sia_lower_rpm">Indicatore intervallo di servizio - limite inferiore giri/min</string>
     <string name="ipk_coding_sia_interval_distance">Indicatore intervallo di servizio - distanza</string>
+    <string name="ipk_coding_sia_time_limit">Indicatore intervallo di servizio - limite di tempo [giorni]</string>
+    <string name="ipk_coding_consumption_cal_factor">Fattore di calibrazione del consumo di carburante</string>
     <string name="ipk_coding_last_service_type">Ultimo tipo di servizio</string>
     <string name="ipk_coding_tc_on_k_bus">Controllo trazione su K-BUS</string>
     <string name="ipk_coding_sls_warning">Sistema aria secondaria</string>

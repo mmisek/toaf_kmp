@@ -36,6 +36,8 @@
     <string name="ipk_coding_sia_algorithm">SII — algorytm</string>
     <string name="ipk_coding_sia_indication_parameter">SII — parametr</string>
     <string name="ipk_coding_sia_interval_distance">SII — dystans</string>
+    <string name="ipk_coding_sia_time_limit">SII — limit czasu [dni]</string>
+    <string name="ipk_coding_consumption_cal_factor">Współczynnik kalibracji zużycia paliwa</string>
     <string name="ipk_coding_sia_liter_limit">SII — limit</string>
     <string name="ipk_coding_sia_lower_rpm">SII — dolne obroty silnika</string>
     <string name="ipk_coding_sia_upper_rpm">SII — górne obroty silnika</string>

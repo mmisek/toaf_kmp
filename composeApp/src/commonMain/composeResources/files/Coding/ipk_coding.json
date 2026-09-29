@@ -41,6 +41,22 @@
         ]
       },
       {
+        "name": "CONSUMPTION_CAL_FACTOR",
+        "block": "0x00",
+        "byte": "0x08",
+        "mask": "0x01FF",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "custom_values": {
+          "min": "0",
+          "max": "511"
+        }
+      },
+      {
         "name": "MSG_DISPLAY_TIME_1",
         "block": "0x00",
         "byte": "0x0E",
@@ -471,7 +487,7 @@
         "name": "DRIVE_HAND",
         "block": "0x00",
         "byte": "0x7E",
-        "mask": "0x04",
+        "mask": "0x02",
         "coding_index": [
             "1",
             "2",
@@ -503,11 +519,11 @@
               "text": "version4"
             },
             {
-              "data": "0x40",
+              "data": "0x01",
               "text": "version25"
             },
             {
-              "data": "0x80",
+              "data": "0x02",
               "text": "no_sia"
             }
           ]
@@ -586,7 +602,7 @@
         "name": "FUEL_CONSUMPTION_UNITS",
         "block": "0x00",
         "byte": "0xAA",
-        "mask": "0x02",
+        "mask": "0x03",
         "coding_index": [
             "1",
             "2",
@@ -1001,6 +1017,22 @@
               "text": "no_time_insp"
             }
           ]
+      },
+      {
+        "name": "SIA_TIME_LIMIT",
+        "block": "0x00",
+        "byte": "0xEA",
+        "mask": "0x07FF",
+        "coding_index": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+        "custom_values": {
+          "min": "0",
+          "max": "2047"
+        }
       },
       {
         "name": "AUDIBLE_SPEED_WARNING",
