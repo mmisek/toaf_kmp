@@ -13,6 +13,7 @@ object ResourceMapperLcmL322 {
             "lcm_l322_coding_auto_lights" -> Res.string.lcm_l322_coding_auto_lights
             "lcm_l322_coding_belt_buckle_switch_hardwired_or_k_bus" -> Res.string.lcm_l322_coding_belt_buckle_switch_hardwired_or_k_bus
             "lcm_l322_coding_bi_xenon_lights_presence" -> Res.string.lcm_l322_coding_bi_xenon_lights_presence
+            "lcm_l322_coding_brake_light_fail_warning" -> Res.string.lcm_l322_coding_brake_light_fail_warning
             "lcm_l322_coding_break_light_switch_fail_at_ignition_off" -> Res.string.lcm_l322_coding_break_light_switch_fail_at_ignition_off
             "lcm_l322_coding_break_light_switch_prescence" -> Res.string.lcm_l322_coding_break_light_switch_prescence
             "lcm_l322_coding_break_lights_fail_warning" -> Res.string.lcm_l322_coding_break_lights_fail_warning
@@ -53,7 +54,7 @@ object ResourceMapperLcmL322 {
             "lcm_l322_coding_follow_me_home_with_front_fog_lamps" -> Res.string.lcm_l322_coding_follow_me_home_with_front_fog_lamps
             "lcm_l322_coding_follow_me_home_with_front_position_lamps" -> Res.string.lcm_l322_coding_follow_me_home_with_front_position_lamps
             "lcm_l322_coding_follow_me_home_with_high_beam_headlamps" -> Res.string.lcm_l322_coding_follow_me_home_with_high_beam_headlamps
-            "lcm_l322_coding_follow_me_home_with_kl85g" -> Res.string.lcm_l322_coding_follow_me_home_with_kl85g
+            "lcm_l322_coding_follow_me_home_with_kl58g" -> Res.string.lcm_l322_coding_follow_me_home_with_kl58g
             "lcm_l322_coding_follow_me_home_with_license_plate_light" -> Res.string.lcm_l322_coding_follow_me_home_with_license_plate_light
             "lcm_l322_coding_follow_me_home_with_low_beam_headlights" -> Res.string.lcm_l322_coding_follow_me_home_with_low_beam_headlights
             "lcm_l322_coding_follow_me_home_with_rear_fog_lamps" -> Res.string.lcm_l322_coding_follow_me_home_with_rear_fog_lamps

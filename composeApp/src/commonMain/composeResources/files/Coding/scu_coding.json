@@ -766,6 +766,67 @@
         ]
       },
       {
+        "name": "AUTO_RELOCK_TIME",
+        "block": "0x01",
+        "byte": "0x00",
+        "mask": "0xFF",
+        "coding_index": ["01","02"],
+        "custom_values": {
+          "min": "0",
+          "max": "255"
+        }
+      },
+      {
+        "name": "PASSIVE_IMMOB_DELAY",
+        "block": "0x01",
+        "byte": "0x01",
+        "mask": "0xFF",
+        "coding_index": ["01","02"],
+        "custom_values": {
+          "min": "0",
+          "max": "255"
+        }
+      },
+      {
+        "name": "TRANS_COIL_ACT_TIME",
+        "block": "0x01",
+        "byte": "0x02",
+        "mask": "0xFF",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x05",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "DRV_WIN_TIMEOUT",
+        "block": "0x01",
+        "byte": "0x03",
+        "mask": "0xFF",
+        "coding_index": ["01","02"],
+        "custom_values": {
+          "min": "0",
+          "max": "255"
+        }
+      },
+      {
+        "name": "CRANK_DISABLE_RPM",
+        "block": "0x01",
+        "byte": "0x04",
+        "mask": "0xFF",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x07",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
         "name": "CRANK_DISABLE_DELAY",
         "block": "0x01",
         "byte": "0x05",
@@ -781,6 +842,118 @@
             "text": "disable"
           }
         ]
+      },
+      {
+        "name": "CRANK_RE_ENABLE_RPM",
+        "block": "0x01",
+        "byte": "0x06",
+        "mask": "0xFF",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x04",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "CRANK_RE_ENABLE_DELAY",
+        "block": "0x01",
+        "byte": "0x07",
+        "mask": "0xFF",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x01",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "SCREEN_WASH_RATIO",
+        "block": "0x01",
+        "byte": "0x08",
+        "mask": "0xFF",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x05",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "WIN_STALL_CURRENT",
+        "block": "0x01",
+        "byte": "0x09",
+        "mask": "0xFF",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x7A",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "DI_BULB_BLOW_TRIG",
+        "block": "0x01",
+        "byte": "0x0A",
+        "mask": "0xFF",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x32",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "TRAILER_TELLTALE_DI_LEV",
+        "block": "0x01",
+        "byte": "0x0B",
+        "mask": "0xFF",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x50",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "HAZ_TRAILER_TRIG_LEV",
+        "block": "0x01",
+        "byte": "0x0C",
+        "mask": "0xFF",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x91",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "MICROWAVE_GAIN",
+        "block": "0x01",
+        "byte": "0x0D",
+        "mask": "0xFF",
+        "coding_index": ["01","02"],
+        "coding_values": [
+          {
+            "data": "0x31",
+            "text": "default"
+          }
+        ],
+        "visible": "false"
       },
       {
         "name": "AUTO_LOCK_SCALE_FACTOR",

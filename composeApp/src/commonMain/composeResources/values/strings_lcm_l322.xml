@@ -116,6 +116,7 @@
     <string name ="lcm_l322_coding_reversing_lights_fail_warning">Reversing lights fail warning</string>
     <string name ="lcm_l322_coding_fehler_bremslicht">Front Fog Lamp fail warning</string>
     <string name ="lcm_l322_coding_break_lights_fail_warning">Brake Light Left/Right and CHMSL fail warning</string>
+    <string name ="lcm_l322_coding_brake_light_fail_warning">Brake light fail warning</string>
     <string name ="lcm_l322_coding_number_plate_light_fail_warning">Number plate light fail warning</string>
     <string name ="lcm_l322_coding_trailer_light_fail_monitoring">Trailer lights fail monitoring</string>
     <string name ="lcm_l322_coding_break_light_switch_prescence">Brake Light Switch prescence</string>
@@ -157,7 +158,7 @@
     <string name ="lcm_l322_coding_follow_me_home_with_low_beam_headlights">Follow Me Home with low beam headlights</string>
     <string name ="lcm_l322_coding_follow_me_home_with_rear_position_lamps">Follow Me Home with rear position lamps</string>
     <string name ="lcm_l322_coding_follow_me_home_with_front_position_lamps">Follow Me Home with front position lamps</string>
-    <string name ="lcm_l322_coding_follow_me_home_with_kl85g">Follow Me Home with KL.58g</string>
+    <string name ="lcm_l322_coding_follow_me_home_with_kl58g">Follow Me Home with KL.58g</string>
     <string name ="lcm_l322_coding_follow_me_home_with_license_plate_light">Follow Me Home with license plate light</string>
     <string name ="lcm_l322_coding_follow_me_home_with_front_fog_lamps">Follow Me Home with front fog lamps</string>
     <string name ="lcm_l322_coding_follow_me_home_with_high_beam_headlamps">Follow Me Home with high beam headlamps</string>

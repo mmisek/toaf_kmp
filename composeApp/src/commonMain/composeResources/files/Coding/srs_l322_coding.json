@@ -3,7 +3,7 @@
       {
         "name": "driver_airbag_stage_1",
         "block": "0x00",
-        "byte": "0x01",
+        "byte": "0x00",
         "mask": "0x01",
         "coding_index": [
           "41"
@@ -479,7 +479,7 @@
         "name": "four_wire_voltage_buckle_switch",
         "block": "0x00",
         "byte": "0x03",
-        "mask": "0x40",
+        "mask": "0x80",
         "coding_index": [
           "41"
         ],

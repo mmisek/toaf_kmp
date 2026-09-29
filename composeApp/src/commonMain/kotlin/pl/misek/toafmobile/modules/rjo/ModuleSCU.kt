@@ -28,6 +28,7 @@ import toafmobile.composeapp.generated.resources.module_description_scu
 import java.util.Locale
 
 private const val tag = "ModuleSCU"
+private const val CODING_BLOCKS = 2 // 0x51, 0x52
 class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IModuleVIN,
     IModuleCoding, IModuleLiveData, IModuleEKA, IModuleScuKeys {
 
@@ -366,20 +367,23 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
     override suspend fun readCoding(): List<ByteArray>? {
         var result: MutableList<ByteArray>? = null
         if (moduleInit() && startDiagnosticSession(0x86.toByte()) && securityAccess(0x05.toByte())) {
-            for (i in 0..2) {
+            for (i in 0 until CODING_BLOCKS) {
                 val message =
                     kwp.write(MODULE_ADDRESS, 0x21.toByte(), byteArrayOf((i + 0x51).toByte()), 50)
-                if (message.isValid) {
-                    try {
-                        if (result == null)
-                            result = mutableListOf()
-                        result.add(message.answer.copyOfRange(5, message.answer.size - 1))
-                    } catch (ex: CancellationException) {
-                        throw ex
-                    } catch (ex : Exception)
-                    {
-                        Logger.e { "$tag [readCoding]: $ex, $message" }
-                    }
+                if (!message.isValid) {
+                    Logger.e { "$tag [readCoding]: block ${(i + 0x51).toString(16)} read failed, $message" }
+                    return null
+                }
+                try {
+                    if (result == null)
+                        result = mutableListOf()
+                    result.add(message.answer.copyOfRange(5, message.answer.size - 1))
+                } catch (ex: CancellationException) {
+                    throw ex
+                } catch (ex : Exception)
+                {
+                    Logger.e { "$tag [readCoding]: $ex, $message" }
+                    return null
                 }
             }
         }

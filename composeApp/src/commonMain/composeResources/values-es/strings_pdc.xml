@@ -99,7 +99,7 @@
 <string name="pdc_coding_front_center_scaling">Escalado de centro delantero</string>
 <string name="pdc_coding_only_ignition_operated">Operado solo con encendido</string>
 <string name="pdc_coding_one_tone_generator">Generador de un tono</string>
-<string name="pdc_coding_pdc_counter">Contador PDC</string>
+<string name="pdc_coding_pdc_counter">Interruptor PDC</string>
 <string name="pdc_coding_reverse_chime">Campanilla de reversa</string>
 <string name="pdc_coding_switch_on_delay_returning_chime">Retraso en encender la campanilla de retorno</string>
 <string name="pdc_coding_pdc_on_when_ignition">Encender PDC con encendido</string>

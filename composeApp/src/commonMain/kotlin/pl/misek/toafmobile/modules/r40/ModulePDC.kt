@@ -20,9 +20,16 @@ import java.util.Locale
 import kotlinx.coroutines.CancellationException
 
 private const val tag = "ModulePDC"
-class ModulePDC(protocolDS2: ProtocolDS2?) :
-    ModuleDS2( protocolDS2, ModuleAddress.MODULE_PDC, listOf(CarType.R40, CarType.RJO)),
+open class ModulePDC protected constructor(
+    protocolDS2: ProtocolDS2?,
+    moduleAddress: ModuleAddress,
+    carTypeList: List<CarType>
+) :
+    ModuleDS2( protocolDS2, moduleAddress, carTypeList),
     IModuleCoding, IModuleLiveData, IModuleEepromProgramming {
+
+    constructor(protocolDS2: ProtocolDS2?) : this(protocolDS2, ModuleAddress.MODULE_PDC, listOf(CarType.R40, CarType.RJO))
+
     private val errorsMatrix = arrayOf(
         intArrayOf(0x01, 0x02, 0x03, 0x04, 0xFF, 0xFF, 0x05, 0x06),
         intArrayOf(0x01, 0x02, 0x03, 0x04, 0xFF, 0xFF, 0x05, 0x06),

@@ -115,6 +115,7 @@
 <string name ="lcm_l322_coding_reversing_lights_fail_warning">Ostrzeżenie o awarii świateł cofania</string>
 <string name ="lcm_l322_coding_fehler_bremslicht">Ostrzeżenie o awarii przedniego światła przeciwmgielnego</string>
 <string name ="lcm_l322_coding_break_lights_fail_warning">Ostrzeżenie o awarii lewego/prawego światła hamowania oraz CHMSL</string>
+<string name ="lcm_l322_coding_brake_light_fail_warning">Ostrzeżenie o awarii świateł hamowania</string>
 <string name ="lcm_l322_coding_number_plate_light_fail_warning">Ostrzeżenie o awarii światła tablicy rejestracyjnej</string>
 <string name ="lcm_l322_coding_trailer_light_fail_monitoring">Monitorowanie awarii świateł przyczepy</string>
 <string name ="lcm_l322_coding_break_light_switch_prescence">Obecność włącznika światła hamowania</string>
@@ -156,7 +157,7 @@
 <string name="lcm_l322_coding_follow_me_home_with_low_beam_headlights">"Follow Me Home" z włączonymi światłami mijania</string>
 <string name="lcm_l322_coding_follow_me_home_with_rear_position_lamps">"Follow Me Home" z tylnymi światłami pozycyjnymi</string>
 <string name="lcm_l322_coding_follow_me_home_with_front_position_lamps">"Follow Me Home" z przednimi światłami pozycyjnymi</string>
-<string name="lcm_l322_coding_follow_me_home_with_kl85g">"Follow Me Home" z KL.58g</string>
+<string name="lcm_l322_coding_follow_me_home_with_kl58g">"Follow Me Home" z KL.58g</string>
 <string name="lcm_l322_coding_follow_me_home_with_license_plate_light">"Follow Me Home" z podświetleniem tablicy rejestracyjnej</string>
 <string name="lcm_l322_coding_follow_me_home_with_front_fog_lamps">"Follow Me Home" z przednimi światłami przeciwmgielnymi</string>
 <string name="lcm_l322_coding_follow_me_home_with_high_beam_headlamps">"Follow Me Home" z włączonymi światłami drogowymi</string>

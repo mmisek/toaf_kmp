@@ -140,6 +140,7 @@
     <string name="bcu_coding_lamp_no_map_with_perm_off">Lamps - no map lamp with perm off</string>
     <string name="bcu_coding_lamp_ramp_up_increment">Lamps - ramp up increment</string>
     <string name="bcu_coding_lamp_ramp_dn_increment">Lamps - ramp down increment</string>
+    <string name="bcu_coding_lamp_max_on_level">Lamps - maximum brightness level</string>
     <string name="bcu_coding_dwa_equiped">Theft warning system</string>
     <string name="bcu_coding_dwa_max_alarm_events">Theft warning system - max events</string>
     <string name="bcu_coding_dwa_sounder_option">Theft warning system - sounder option</string>

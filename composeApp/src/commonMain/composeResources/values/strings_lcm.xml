@@ -90,6 +90,7 @@
     <string name="lcm_coding_right_rear_fog_error">Error reporting - rear fog - right</string>
     <string name="lcm_coding_break_light_error">Error reporting - brake lamps</string>
     <string name="lcm_coding_third_break_lamp_error">Error reporting - third brake lamp</string>
+    <string name="lcm_coding_brake_switch_gnd_check">Error reporting - brake switch ground check</string>
     <string name="lcm_coding_license_plate_error">Error reporting - licence plate lamps</string>
     <string name="lcm_coding_trailer_light_errors">Error reporting - trailer lights</string>
     <string name="lcm_coding_dipped_beam_time_out">Follow me home - low beam</string>

@@ -49,6 +49,19 @@
     <string name="scu_coding_cool_warn_fmt">Формат предупреждения ОЖ</string>
     <string name="scu_coding_crank_disable_delay">Задержка блокировки стартера</string>
     <string name="scu_coding_auto_lock_scale_factor">Коэфф. масштабирования автоблокировки</string>
+    <string name="scu_coding_auto_relock_time">Время автоматического повторного запирания</string>
+    <string name="scu_coding_passive_immob_delay">Задержка пассивного иммобилайзера</string>
+    <string name="scu_coding_trans_coil_act_time">Время активации катушки транспондера</string>
+    <string name="scu_coding_drv_win_timeout">Время работы стекла водителя</string>
+    <string name="scu_coding_crank_disable_rpm">Обороты блокировки стартера</string>
+    <string name="scu_coding_crank_re_enable_rpm">Обороты разблокировки стартера</string>
+    <string name="scu_coding_crank_re_enable_delay">Задержка разблокировки стартера</string>
+    <string name="scu_coding_screen_wash_ratio">Коэффициент омывания стекла</string>
+    <string name="scu_coding_win_stall_current">Ток остановки стеклоподъёмника</string>
+    <string name="scu_coding_di_bulb_blow_trig">Порог неисправности лампы указателя поворота</string>
+    <string name="scu_coding_trailer_telltale_di_lev">Уровень контрольной лампы поворотов прицепа</string>
+    <string name="scu_coding_haz_trailer_trig_lev">Порог аварийной сигнализации прицепа</string>
+    <string name="scu_coding_microwave_gain">Усиление микроволнового датчика</string>
     <string name="scu_coding_no_of_wipes_aft_wash">Кол-во взмахов после омывания</string>
 
     <string name="scu_control_cdl_lock">Центральный замок - закрыть</string>

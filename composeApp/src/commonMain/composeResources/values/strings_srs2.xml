@@ -66,11 +66,11 @@
     <string name="srs2_coding_bp_rear_right">Belt pretensioner - rear right</string>
     <string name="srs2_coding_bp_rear_middle">Belt pretensioner - rear center</string>
     <string name="srs2_coding_ubat_disconnect">Battery disconnect</string>
-    <string name="srs2_coding_belt_buckle_driver">Belt sensor - driver</string>
-    <string name="srs2_coding_belt_buckle_passenger">Belt sensor - passenger</string>
+    <string name="srs2_coding_rs_right">RS - right side</string>
+    <string name="srs2_coding_rs_left">RS - left side</string>
     <string name="srs2_coding_ods">ODS</string>
     <string name="srs2_coding_mrsa_front">MRSA - front</string>
-    <string name="srs2_coding_indication_lapm">Indication lamp</string>
+    <string name="srs2_coding_indication_lamp">Indication lamp</string>
     <string name="srs2_coding_trigger_switch">Trigger switch</string>
 
 </resources>

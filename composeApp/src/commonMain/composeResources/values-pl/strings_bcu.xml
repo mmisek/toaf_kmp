@@ -65,6 +65,7 @@
 	<string name="bcu_coding_lamp_no_map_with_perm_off">Lampki — brak lampek mapy przy perm off</string>
 	<string name="bcu_coding_lamp_ramp_up_increment">Lampki — zwiększanie jasności</string>
 	<string name="bcu_coding_lamp_ramp_dn_increment">Lampki — zmniejszanie jasności</string>
+	<string name="bcu_coding_lamp_max_on_level">Lampki — maksymalny poziom jasności</string>
 	<string name="bcu_coding_dwa_equiped">System ostrzegania przed kradzieżą</string>
 	<string name="bcu_coding_dwa_max_alarm_events">System ostrzegania przed kradzieżą — maksymalna liczba zdarzeń</string>
 	<string name="bcu_coding_dwa_sounder_option">System ostrzegania przed kradzieżą — opcja sygnalizatora</string>

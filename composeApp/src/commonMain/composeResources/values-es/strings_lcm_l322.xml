@@ -115,6 +115,7 @@
 <string name ="lcm_l322_coding_reversing_lights_fail_warning">Advertencia de falla de luces de reversa</string>
 <string name ="lcm_l322_coding_fehler_bremslicht">Advertencia de falla de lámpara antiniebla delantera</string>
 <string name ="lcm_l322_coding_break_lights_fail_warning">Advertencia de falla de luz de freno izquierda/derecha y CHMSL</string>
+<string name ="lcm_l322_coding_brake_light_fail_warning">Advertencia de falla de luces de freno</string>
 <string name ="lcm_l322_coding_number_plate_light_fail_warning">Advertencia de falla de luz de matrícula</string>
 <string name ="lcm_l322_coding_trailer_light_fail_monitoring">Monitoreo de falla de luces de remolque</string>
 <string name ="lcm_l322_coding_break_light_switch_prescence">Presencia de interruptor de luz de freno</string>
@@ -155,7 +156,7 @@
 <string name ="lcm_l322_coding_follow_me_home_with_low_beam_headlights">Seguirme a casa con luces de cruce</string>
 <string name ="lcm_l322_coding_follow_me_home_with_rear_position_lamps">Seguirme a casa con luces de posición traseras</string>
 <string name ="lcm_l322_coding_follow_me_home_with_front_position_lamps">Seguirme a casa con luces de posición delanteras</string>
-<string name ="lcm_l322_coding_follow_me_home_with_kl85g">Seguirme a casa con KL.58g</string>
+<string name ="lcm_l322_coding_follow_me_home_with_kl58g">Seguirme a casa con KL.58g</string>
 <string name ="lcm_l322_coding_follow_me_home_with_license_plate_light">Seguirme a casa con luces de matrícula</string>
 <string name ="lcm_l322_coding_follow_me_home_with_front_fog_lamps">Seguirme a casa con luces antiniebla delanteras</string>
 <string name ="lcm_l322_coding_follow_me_home_with_high_beam_headlamps">Seguirme a casa con luces altas</string>

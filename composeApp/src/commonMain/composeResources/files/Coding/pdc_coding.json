@@ -295,11 +295,11 @@
         ],
         "coding_values": [
             {
-              "data": "0x01",
+              "data": "0x00",
               "text": "active"
             },
             {
-              "data": "0x00",
+              "data": "0x01",
               "text": "not_active"
             }
           ]
@@ -368,7 +368,7 @@
         ],
         "coding_values": [
           {
-            "data": "0x03",
+            "data": "0x00",
             "text": "default"
           }
         ],
@@ -377,14 +377,14 @@
       {
         "name": "front_spacing_center_sensors",
         "block": "0x00",
-        "byte": "0x04",
+        "byte": "0x05",
         "mask": "0xFF",
         "coding_index": [
           "01"
         ],
         "coding_values": [
           {
-            "data": "0x03",
+            "data": "0x00",
             "text": "default"
           }
         ],
@@ -427,19 +427,19 @@
         ],
         "coding_values": [
             {
-              "data": "0x3C",
+              "data": "0x96",
               "text": "r40"
             },
             {
-              "data": "0x3C",
+              "data": "0x96",
               "text": "r41"
             },
             {
-              "data": "0x3C",
+              "data": "0x91",
               "text": "rdx20"
             },
             {
-              "data": "0x3C",
+              "data": "0x91",
               "text": "rdx30"
             }
           ]
@@ -689,7 +689,7 @@
         ],
         "coding_values": [
           {
-            "data": "0x88",
+            "data": "0x00",
             "text": "default"
           }
         ],
@@ -724,11 +724,11 @@
         ],
         "coding_values": [
             {
-              "data": "0x00",
+              "data": "0x01",
               "text": "not_active"
             },
             {
-              "data": "0x01",
+              "data": "0x00",
               "text": "active"
             }
           ]
@@ -800,11 +800,11 @@
         ],
         "coding_values": [
             {
-              "data": "0x00",
+              "data": "0x01",
               "text": "not_active"
             },
             {
-              "data": "0x01",
+              "data": "0x00",
               "text": "active"
             }
           ]
@@ -971,11 +971,11 @@
         ],
         "coding_values": [
             {
-              "data": "0x00",
+              "data": "0x01",
               "text": "not_active"
             },
             {
-              "data": "0x01",
+              "data": "0x00",
               "text": "active"
             }
           ]
@@ -984,7 +984,7 @@
         "name": "DISTANCE_INSTALLATION_CONVERTER",
         "block": "0x00",
         "byte": "0x02",
-        "mask": "0xFFFFFF",
+        "mask": "0xFFFFFFFF",
         "coding_index": [
           "03"
         ],
@@ -1031,45 +1031,45 @@
         "name": "measuring_range_converter",
         "block": "0x00",
         "byte": "0x06",
-        "mask": "0xFFFFFF",
+        "mask": "0xFFFFFFFF",
         "coding_index": [
           "03"
         ],
         "coding_values": [
             {
-              "data": "0x27320000",
+              "data": "0x3C960000",
               "text": "r40"
             },
             {
-              "data": "0x29320000",
+              "data": "0x3C960000",
               "text": "r41"
             },
             {
-              "data": "0x292D0000",
+              "data": "0x3C910000",
               "text": "rdx20"
             },
             {
-              "data": "0x292D0000",
+              "data": "0x3C910000",
               "text": "rdx30"
             },
             {
-              "data": "0x2B2D0000",
+              "data": "0x3C910000",
               "text": "strwse"
             },
             {
-              "data": "0x25320000",
+              "data": "0x3CA00000",
               "text": "rdx14"
             },
             {
-              "data": "0x28320000",
+              "data": "0x3CA00000",
               "text": "rdx15"
             },
             {
-              "data": "0x1F420000",
+              "data": "0x3CA00000",
               "text": "rdx21"
             },
             {
-              "data": "0x1F430000",
+              "data": "0x3CA00000",
               "text": "rdx31"
             }
           ]
@@ -1078,7 +1078,7 @@
         "name": "OFFSET_MEASURING_RANGE",
         "block": "0x00",
         "byte": "0x0A",
-        "mask": "0xFFFFFF",
+        "mask": "0xFFFFFFFF",
         "coding_index": [
           "03"
         ],

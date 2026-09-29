@@ -264,8 +264,15 @@ class ModuleSRS(protocolDS2: ProtocolDS2?) :
     }
 
     override suspend fun writeCoding(dataToSave: List<ByteArray>): Boolean {
-        for (i in dataToSave.indices) {
-            val message = interfaceWrite(arrayOf(byteArrayOf(0x09,i.toByte()), dataToSave[i]))
+        if (!login()) return false
+        val data = dataToSave.map { it.copyOf() }
+        // MRS4: blok 1 zawiera dwie identyczne kopie kodowania - bajty 00-07 (*_1) oraz 08-0F (*_2)
+        data.firstOrNull()?.let { block ->
+            if (block.size >= 0x10) block.copyInto(block, destinationOffset = 0x08, startIndex = 0x00, endIndex = 0x08)
+        }
+        // readCoding czyta od bloku 1, wiec element listy i odpowiada blokowi i + 1
+        for (i in data.indices) {
+            val message = interfaceWrite(arrayOf(byteArrayOf(0x09, (i + 1).toByte()), data[i]))
             if (!message.isValid) return false
         }
         return true

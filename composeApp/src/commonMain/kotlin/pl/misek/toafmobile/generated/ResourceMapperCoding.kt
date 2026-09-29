@@ -24,6 +24,7 @@ object ResourceMapperCoding {
             "coding_12_kmh" -> Res.string.coding_12_kmh
             "coding_130_deg_c" -> Res.string.coding_130_deg_c
             "coding_150s" -> Res.string.coding_150s
+            "coding_15_minutes" -> Res.string.coding_15_minutes
             "coding_15s" -> Res.string.coding_15s
             "coding_16_kmh" -> Res.string.coding_16_kmh
             "coding_1_0s" -> Res.string.coding_1_0s
@@ -65,6 +66,7 @@ object ResourceMapperCoding {
             "coding_2_5l_manual" -> Res.string.coding_2_5l_manual
             "coding_2s" -> Res.string.coding_2s
             "coding_2years" -> Res.string.coding_2years
+            "coding_30_minutes" -> Res.string.coding_30_minutes
             "coding_30s" -> Res.string.coding_30s
             "coding_3s" -> Res.string.coding_3s
             "coding_3sec" -> Res.string.coding_3sec
@@ -184,6 +186,7 @@ object ResourceMapperCoding {
             "coding_klroff" -> Res.string.coding_klroff
             "coding_km_per_l" -> Res.string.coding_km_per_l
             "coding_l30" -> Res.string.coding_l30
+            "coding_l30_06my" -> Res.string.coding_l30_06my
             "coding_l_per_100km" -> Res.string.coding_l_per_100km
             "coding_lautsprecher" -> Res.string.coding_lautsprecher
             "coding_left" -> Res.string.coding_left
@@ -284,8 +287,25 @@ object ResourceMapperCoding {
             "coding_transit" -> Res.string.coding_transit
             "coding_two" -> Res.string.coding_two
             "coding_type_0" -> Res.string.coding_type_0
+            "coding_type_00" -> Res.string.coding_type_00
             "coding_type_01" -> Res.string.coding_type_01
+            "coding_type_01_b" -> Res.string.coding_type_01_b
             "coding_type_02" -> Res.string.coding_type_02
+            "coding_type_02_b" -> Res.string.coding_type_02_b
+            "coding_type_03" -> Res.string.coding_type_03
+            "coding_type_03_b" -> Res.string.coding_type_03_b
+            "coding_type_04" -> Res.string.coding_type_04
+            "coding_type_04_b" -> Res.string.coding_type_04_b
+            "coding_type_05" -> Res.string.coding_type_05
+            "coding_type_05_b" -> Res.string.coding_type_05_b
+            "coding_type_06" -> Res.string.coding_type_06
+            "coding_type_06_b" -> Res.string.coding_type_06_b
+            "coding_type_07" -> Res.string.coding_type_07
+            "coding_type_07_b" -> Res.string.coding_type_07_b
+            "coding_type_08" -> Res.string.coding_type_08
+            "coding_type_08_b" -> Res.string.coding_type_08_b
+            "coding_type_09" -> Res.string.coding_type_09
+            "coding_type_09_b" -> Res.string.coding_type_09_b
             "coding_type_1" -> Res.string.coding_type_1
             "coding_type_2" -> Res.string.coding_type_2
             "coding_type_3" -> Res.string.coding_type_3

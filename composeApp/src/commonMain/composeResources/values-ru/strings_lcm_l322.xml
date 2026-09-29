@@ -115,6 +115,7 @@
     <string name ="lcm_l322_coding_reversing_lights_fail_warning">Пред. о неисправности фонарей заднего хода</string>
     <string name ="lcm_l322_coding_fehler_bremslicht">Пред. о неисправности передних ПТФ</string>
     <string name ="lcm_l322_coding_break_lights_fail_warning">Пред. о неисправности стоп-сигналов (Лев/Прав/Центр)</string>
+    <string name ="lcm_l322_coding_brake_light_fail_warning">Пред. о неисправности стоп-сигналов</string>
     <string name ="lcm_l322_coding_number_plate_light_fail_warning">Пред. о неисправности подсветки номера</string>
     <string name ="lcm_l322_coding_trailer_light_fail_monitoring">Мониторинг неисправности ламп прицепа</string>
     <string name ="lcm_l322_coding_break_light_switch_prescence">Наличие выключателя стоп-сигнала</string>
@@ -156,7 +157,7 @@
     <string name ="lcm_l322_coding_follow_me_home_with_low_beam_headlights">FMH: с ближним светом</string>
     <string name ="lcm_l322_coding_follow_me_home_with_rear_position_lamps">FMH: с задними габаритами</string>
     <string name ="lcm_l322_coding_follow_me_home_with_front_position_lamps">FMH: с передними габаритами</string>
-    <string name ="lcm_l322_coding_follow_me_home_with_kl85g">FMH: с клеммой 58g</string>
+    <string name ="lcm_l322_coding_follow_me_home_with_kl58g">FMH: с клеммой 58g</string>
     <string name ="lcm_l322_coding_follow_me_home_with_license_plate_light">FMH: с подсветкой номера</string>
     <string name ="lcm_l322_coding_follow_me_home_with_front_fog_lamps">FMH: с передними ПТФ</string>
     <string name ="lcm_l322_coding_follow_me_home_with_high_beam_headlamps">FMH: с дальним светом</string>

@@ -48,6 +48,7 @@ object ResourceMapperBcu {
             "bcu_coding_enable_wiper_auto_parking" -> Res.string.bcu_coding_enable_wiper_auto_parking
             "bcu_coding_lamp_no_lamp_on_term_r" -> Res.string.bcu_coding_lamp_no_lamp_on_term_r
             "bcu_coding_lamp_no_map_with_perm_off" -> Res.string.bcu_coding_lamp_no_map_with_perm_off
+            "bcu_coding_lamp_max_on_level" -> Res.string.bcu_coding_lamp_max_on_level
             "bcu_coding_lamp_ramp_dn_increment" -> Res.string.bcu_coding_lamp_ramp_dn_increment
             "bcu_coding_lamp_ramp_up_increment" -> Res.string.bcu_coding_lamp_ramp_up_increment
             "bcu_coding_lamp_with_boot_lid_open" -> Res.string.bcu_coding_lamp_with_boot_lid_open

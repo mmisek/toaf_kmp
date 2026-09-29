@@ -49,6 +49,19 @@
     <string name="scu_coding_cool_warn_fmt">Coolant warning</string>
     <string name="scu_coding_crank_disable_delay">Crank disable delay</string>
     <string name="scu_coding_auto_lock_scale_factor">Autolock scale factor</string>
+    <string name="scu_coding_auto_relock_time">Auto relock time</string>
+    <string name="scu_coding_passive_immob_delay">Passive immobilisation delay</string>
+    <string name="scu_coding_trans_coil_act_time">Transponder coil activation time</string>
+    <string name="scu_coding_drv_win_timeout">Driver window timeout</string>
+    <string name="scu_coding_crank_disable_rpm">Crank disable RPM</string>
+    <string name="scu_coding_crank_re_enable_rpm">Crank re-enable RPM</string>
+    <string name="scu_coding_crank_re_enable_delay">Crank re-enable delay</string>
+    <string name="scu_coding_screen_wash_ratio">Screen wash ratio</string>
+    <string name="scu_coding_win_stall_current">Window stall current</string>
+    <string name="scu_coding_di_bulb_blow_trig">Indicator bulb failure threshold</string>
+    <string name="scu_coding_trailer_telltale_di_lev">Trailer indicator telltale level</string>
+    <string name="scu_coding_haz_trailer_trig_lev">Trailer hazard trigger level</string>
+    <string name="scu_coding_microwave_gain">Microwave sensor gain</string>
     <string name="scu_coding_no_of_wipes_aft_wash">Number of wipes after wash</string>
 
     <string name="scu_control_cdl_lock">Central door lock - lock</string>

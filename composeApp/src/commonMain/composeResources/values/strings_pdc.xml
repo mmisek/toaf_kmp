@@ -96,7 +96,7 @@
     <string name="pdc_coding_front_center_scaling">Front center scaling</string>
     <string name="pdc_coding_only_ignition_operated">Operated only when ignition</string>
     <string name="pdc_coding_one_tone_generator">One tone generator</string>
-    <string name="pdc_coding_pdc_counter">PDC counter</string>
+    <string name="pdc_coding_pdc_counter">PDC switch</string>
     <string name="pdc_coding_reverse_chime">Reverse chime</string>
     <string name="pdc_coding_switch_on_delay_returning_chime">Switch on delay returning chime</string>
     <string name="pdc_coding_pdc_on_when_ignition">Turn on PDC when ignition</string>

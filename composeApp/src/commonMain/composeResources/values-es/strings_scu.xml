@@ -49,6 +49,19 @@
     <string name="scu_coding_cool_warn_fmt">Advertencia de refrigerante</string>
     <string name="scu_coding_crank_disable_delay">Retraso de desactivación de arranque</string>
     <string name="scu_coding_auto_lock_scale_factor">Factor de escala de bloqueo automático</string>
+    <string name="scu_coding_auto_relock_time">Tiempo de rebloqueo automático</string>
+    <string name="scu_coding_passive_immob_delay">Retardo del inmovilizador pasivo</string>
+    <string name="scu_coding_trans_coil_act_time">Tiempo de activación de bobina del transpondedor</string>
+    <string name="scu_coding_drv_win_timeout">Tiempo de funcionamiento de la ventanilla del conductor</string>
+    <string name="scu_coding_crank_disable_rpm">RPM de desactivación de arranque</string>
+    <string name="scu_coding_crank_re_enable_rpm">RPM de reactivación de arranque</string>
+    <string name="scu_coding_crank_re_enable_delay">Retraso de reactivación de arranque</string>
+    <string name="scu_coding_screen_wash_ratio">Relación de lavado del parabrisas</string>
+    <string name="scu_coding_win_stall_current">Corriente de bloqueo de ventanilla</string>
+    <string name="scu_coding_di_bulb_blow_trig">Umbral de fallo de bombilla del intermitente</string>
+    <string name="scu_coding_trailer_telltale_di_lev">Nivel del testigo de intermitentes del remolque</string>
+    <string name="scu_coding_haz_trailer_trig_lev">Umbral de luces de emergencia del remolque</string>
+    <string name="scu_coding_microwave_gain">Ganancia del sensor de microondas</string>
     <string name="scu_coding_no_of_wipes_aft_wash">Número de limpiezas después del lavado</string>
 
     <string name="scu_control_cdl_lock">Cierre centralizado - bloquear</string>

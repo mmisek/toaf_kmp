@@ -66,11 +66,11 @@
     <string name="srs2_coding_bp_rear_right">Pretensionatore cintura - posteriore destro</string>
     <string name="srs2_coding_bp_rear_middle">Pretensionatore cintura - posteriore centrale</string>
     <string name="srs2_coding_ubat_disconnect">Disconnessione batteria</string>
-    <string name="srs2_coding_belt_buckle_driver">Sensore cintura - conducente</string>
-    <string name="srs2_coding_belt_buckle_passenger">Sensore cintura - passeggero</string>
+    <string name="srs2_coding_rs_right">RS - lato destro</string>
+    <string name="srs2_coding_rs_left">RS - lato sinistro</string>
     <string name="srs2_coding_ods">ODS</string>
     <string name="srs2_coding_mrsa_front">MRSA - anteriore</string>
-    <string name="srs2_coding_indication_lapm">Spia di indicazione</string>
+    <string name="srs2_coding_indication_lamp">Spia di indicazione</string>
     <string name="srs2_coding_trigger_switch">Interruttore di attivazione</string>
 
 </resources>

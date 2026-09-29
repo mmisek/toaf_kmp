@@ -26,7 +26,7 @@ def generate_kotlin_mapper():
             raw_name = match.group(1)
             parts = raw_name.split("_")
             pascal = "".join(word.capitalize() for word in parts)
-            modules.append(pascal)
+            modules.append((pascal, len(parts)))
 
             try:
                 tree = ET.parse(file_path)
@@ -81,10 +81,17 @@ def generate_kotlin_mapper():
             f.write("""            Logger.i {"NO RESOURCE for : $resourceName"}\n""")
             f.write("""            return null\n""")
             f.write("""         }\n""")
+            # moduly z dwuczlonowym prefiksem kluczy (np. lcm_l322_...) musza byc rozpoznane przed jednoczlonowymi (lcm_...)
+            f.write("""        val twoPartPrefix = if (prefix.size > 1) (prefix[0] + prefix[1]).lowercase() else ""\n""")
+            f.write("        when (twoPartPrefix) {\n")
+            for module, partsCount in modules:
+                if partsCount == 2:
+                    f.write(f'           "{module.lower()}" -> return ResourceMapper{module}.stringResource(resourceName)\n')
+            f.write("        }\n")
             f.write("        return when (prefix[0].lowercase()) {\n")
-            for module in modules:
-                m = module.lower()
-                f.write(f'           "{m}" -> ResourceMapper{module}.stringResource(resourceName)\n')
+            for module, partsCount in modules:
+                if partsCount != 2:
+                    f.write(f'           "{module.lower()}" -> ResourceMapper{module}.stringResource(resourceName)\n')
                 
             f.write("                else -> {\n")
             f.write("""                  Logger.i {"NO RESOURCE for : $resourceName" }\n""")

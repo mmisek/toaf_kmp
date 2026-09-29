@@ -43,6 +43,7 @@
     <string name="lcm_coding_tail_error_reported">Raportowanie błędów — tylne światła</string>
     <string name="lcm_coding_test_mode">Tryb testowy</string>
     <string name="lcm_coding_third_break_lamp_error">Raportowanie błędów — trzecie światło stop</string>
+    <string name="lcm_coding_brake_switch_gnd_check">Raportowanie błędów — kontrola masy włącznika hamulca</string>
     <string name="lcm_coding_trailer_light_errors">Raportowanie błędów — światła przyczepki</string>
     <string name="lcm_control_blink_light_front_left">Kierunkowskaz — przedni, lewy</string>
     <string name="lcm_control_blink_light_front_right">Kierunkowskaz — przedni, prawy</string>

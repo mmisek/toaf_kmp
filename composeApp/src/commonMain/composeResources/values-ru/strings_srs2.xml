@@ -73,11 +73,11 @@
     <string name="srs2_coding_bp_rear_right">Преднатяжитель ремня - задний правый</string>
     <string name="srs2_coding_bp_rear_middle">Преднатяжитель ремня - задний центр</string>
     <string name="srs2_coding_ubat_disconnect">Отключение АКБ (пиропатрон)</string>
-    <string name="srs2_coding_belt_buckle_driver">Датчик замка ремня - водитель</string>
-    <string name="srs2_coding_belt_buckle_passenger">Датчик замка ремня - пассажир</string>
+    <string name="srs2_coding_rs_right">RS - правая сторона</string>
+    <string name="srs2_coding_rs_left">RS - левая сторона</string>
     <string name="srs2_coding_ods">Датчик присутствия пассажира (ODS)</string>
     <string name="srs2_coding_mrsa_front">MRSA - спереди</string>
-    <string name="srs2_coding_indication_lapm">Индикаторная лампа</string>
+    <string name="srs2_coding_indication_lamp">Индикаторная лампа</string>
     <string name="srs2_coding_trigger_switch">Триггерный переключатель</string>
 
 </resources>

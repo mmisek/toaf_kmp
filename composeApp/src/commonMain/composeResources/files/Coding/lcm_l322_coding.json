@@ -66,7 +66,8 @@
         "byte": "0x00",
         "mask": "0x08",
         "coding_index": [
-          "11"
+          "11",
+          "12"
         ],
         "coding_values": [
           {
@@ -361,7 +362,7 @@
       }
     ,
       {
-        "name": "front_fog_lights_fail_warning",
+        "name": "brake_light_fail_warning",
         "block": "0x00",
         "byte": "0x02",
         "mask": "0x04",
@@ -527,18 +528,18 @@
         "name": "external_lwr_fitted",
         "block": "0x00",
         "byte": "0x05",
-        "mask": "0x04",
+        "mask": "0x08",
         "coding_index": [
           "12"
         ],
         "coding_values": [
           {
             "data": "0x00",
-            "text": "active"
+            "text": "not_fitted"
           },
           {
             "data": "0x01",
-            "text": "inactive"
+            "text": "fitted"
           }
         ]
       }
@@ -613,11 +614,11 @@
         ],
         "coding_values": [
           {
-            "data": "0x00",
+            "data": "0x01",
             "text": "active"
           },
           {
-            "data": "0x01",
+            "data": "0x00",
             "text": "inactive"
           }
         ]
@@ -659,7 +660,7 @@
             "text": "inactive"
           },
           {
-            "data": "0xD0",
+            "data": "0x01",
             "text": "active"
           }
         ]
@@ -1288,7 +1289,7 @@
       }
     ,
       {
-        "name": "follow_me_home_with_kl85g",
+        "name": "follow_me_home_with_kl58g",
         "block": "0x00",
         "byte": "0x1B",
         "mask": "0x08",
@@ -1466,11 +1467,11 @@
         ],
         "coding_values": [
           {
-            "data": "0x00",
+            "data": "0x01",
             "text": "inactive"
           },
           {
-            "data": "0x01",
+            "data": "0x00",
             "text": "active"
           }
         ]
@@ -1545,7 +1546,8 @@
         "byte": "0x1D",
         "mask": "0x08",
         "coding_index": [
-          "11"
+          "11",
+          "12"
         ],
         "coding_values": [
           {
@@ -1565,7 +1567,8 @@
         "byte": "0x1D",
         "mask": "0x10",
         "coding_index": [
-          "11"
+          "11",
+          "12"
         ],
         "coding_values": [
           {
@@ -2536,7 +2539,7 @@
           }
         ,
           {
-            "data": "0x10",
+            "data": "0x02",
             "text": "waschwasser_pwm"
           }
         ]
@@ -2561,7 +2564,7 @@
           }
         ,
           {
-            "data": "0x10",
+            "data": "0x02",
             "text": "waschwasser_pwm"
           }
         ]
@@ -2745,11 +2748,11 @@
         "coding_values": [
           {
             "data": "0x00",
-            "text": "25s"
+            "text": "15_minutes"
           },
           {
             "data": "0x01",
-            "text": "60s"
+            "text": "30_minutes"
           }
         ]
       },
@@ -2764,18 +2767,18 @@
         "coding_values": [
           {
             "data": "0x00",
-            "text": "25s"
+            "text": "15_minutes"
           },
           {
             "data": "0x01",
-            "text": "60s"
+            "text": "30_minutes"
           }
         ]
       },
       {
         "name": "market",
         "block": "0x01",
-        "byte": "0x02",
+        "byte": "0x01",
         "mask": "0xFF",
         "coding_index": [
           "11"

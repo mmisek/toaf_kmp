@@ -145,21 +145,37 @@ class ModuleDSC(protocolDS2: ProtocolDS2?) :
 
     override suspend fun writeCoding(dataToSave: List<ByteArray>): Boolean {
         interfaceWrite(byteArrayOf(0x00))
+        if (dataToSave.isEmpty() || dataToSave[0].size < 4) {
+            Logger.e { "$tag [writeCoding]: invalid coding data" }
+            return false
+        }
         if (interfaceWrite(byteArrayOf(0x90.toByte())).isValid) {
-            val dataToSaveWithChecksum = calculateCodingChecksum(dataToSave.toMutableList())
-            for (i in dataToSaveWithChecksum.indices)
-                interfaceWrite(arrayOf(byteArrayOf(0x09, i.toByte()),dataToSaveWithChecksum[i]))
+            val dataToSaveWithChecksum = calculateCodingChecksum(dataToSave)
+            for (i in dataToSaveWithChecksum.indices) {
+                if (!interfaceWrite(arrayOf(byteArrayOf(0x09, i.toByte()), dataToSaveWithChecksum[i])).isValid) {
+                    Logger.e { "$tag [writeCoding]: write block $i failed" }
+                    reset()
+                    return false
+                }
+            }
             val checkData = readCoding()
             reset()
-            return checkData!![0].copyOfRange( 0, 4).contentEquals(dataToSaveWithChecksum[0])
+            val written = checkData?.firstOrNull()
+            return written != null && written.size >= 4 &&
+                    written.copyOfRange(0, 4).contentEquals(dataToSaveWithChecksum[0])
         } else return false
     }
 
-    private fun calculateCodingChecksum(data: MutableList<ByteArray>): List<ByteArray> {
-        val cs = (0xFF.toByte() - data[0][2] - data[0][3]).toByte()
-        data[0][1] = cs
-        data[0] = data[0].copyOfRange(0, 4)
-        return data
+    /**
+     * DSC57: kodowanie to bajty 00-03, CHECKSUM (bajt 01) = 0xFF - [02] - [03] (modulo 256).
+     * Zwraca kopie danych przycieta do 4 bajtow z przeliczona suma.
+     */
+    private fun calculateCodingChecksum(data: List<ByteArray>): List<ByteArray> {
+        val result = data.map { it.copyOf() }.toMutableList()
+        val block = result[0]
+        block[1] = ((0xFF - (block[2].toInt() and 0xFF) - (block[3].toInt() and 0xFF)) and 0xFF).toByte()
+        result[0] = block.copyOfRange(0, 4)
+        return result
     }
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean = interfaceWrite(byteArrayOf(0x00)).isValid

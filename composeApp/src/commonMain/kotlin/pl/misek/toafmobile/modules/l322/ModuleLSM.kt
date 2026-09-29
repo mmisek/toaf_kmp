@@ -227,16 +227,21 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
     }
 
     override suspend fun writeCoding(dataToSave: List<ByteArray>): Boolean {
-        val data = dataToSave.toMutableList()
-        val info = getIdentification()
-        if (info!!.ci == "11") {
+        val data = dataToSave.map { it.copyOf() }.toMutableList()
+        val ci = getIdentification()?.ci
+        if (ci == null) {
+            Logger.e { "$tag [writeCoding]: identification read failed" }
+            return false
+        }
+        if (ci == "11") {
+            // LCM.C11: bloki 01-0D to PROGRAMMBLOCK zalezny od rynku, wybierany bajtem 01'01 (5E - ECE, 82 - US)
             val marketData =
                 if (data[1][0x01] == marketEce[0x00][0x01]) marketEce else marketUs
             for (i in marketData.indices)
-                data[i + 1] = marketData[i]
+                if (i + 1 < data.size) data[i + 1] = marketData[i].copyOf()
         }
 
-        val dataToSaveWithCRC = calculateChecksum(dataToSave)
+        val dataToSaveWithCRC = calculateChecksum(data, ci)
         for (i in dataToSaveWithCRC.indices) {
             val message = interfaceWrite(
                 arrayOf(
@@ -277,23 +282,28 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
         return interfaceWrite(byteArrayOf(0x07, 0x01, 0x33, 0x10)).isValid
     }
 
-    private fun calculateChecksum(data: List<ByteArray>): List<ByteArray> {
-        if (data.size == 0x14) {
-            var checksum: Byte = 0x00
-            for (i in data[0x0E].indices) checksum =
-                (checksum.toInt() xor data[0x0E][i].toInt()).toByte()
-            data[0x0E][data[0x0E].size - 1] = checksum
-            checksum = 0x00
-            for (i in 0x01..0xe) checksum = (checksum.toInt() xor data[0x0F][i].toInt()).toByte()
-            data[0x0F][0x0F] = checksum
-        } else if (data.size == 0x1D) {
-            var checksum: Byte = 0x00
-            for (i in data[0x05].indices) checksum =
-                (checksum.toInt() xor data[0x05][i].toInt()).toByte()
-            data[0x05][data[0x05].size - 1] = checksum
-            checksum = 0x00
-            for (i in 0x01..0x6) checksum = (checksum.toInt() xor data[0x07][i].toInt()).toByte()
-            //data.get(0x07)[0x0F] = checksum;
+    // CHECKSUM_1: XOR bajtow 00-1D bloku LWR zapisany w ostatnim bajcie (1E)
+    // CHECKSUM_2: XOR bajtow 01-0E bloku ustawien pojazdu zapisany w bajcie 0F
+    // LCM.C11: LWR = blok 0E, ustawienia = blok 0F; LCM.C12: LWR = blok 05, ustawienia = blok 07
+    private fun calculateChecksum(data: List<ByteArray>, ci: String): List<ByteArray> {
+        val (lwrBlock, vehicleBlock) = when (ci) {
+            "11" -> 0x0E to 0x0F
+            "12" -> 0x05 to 0x07
+            else -> return data
+        }
+        data.getOrNull(lwrBlock)?.let { block ->
+            if (block.isNotEmpty()) {
+                var checksum = 0
+                for (i in 0 until block.size - 1) checksum = checksum xor block[i].toInt()
+                block[block.size - 1] = checksum.toByte()
+            }
+        }
+        data.getOrNull(vehicleBlock)?.let { block ->
+            if (block.size > 0x0F) {
+                var checksum = 0
+                for (i in 0x01..0x0E) checksum = checksum xor block[i].toInt()
+                block[0x0F] = checksum.toByte()
+            }
         }
         return data
     } /*

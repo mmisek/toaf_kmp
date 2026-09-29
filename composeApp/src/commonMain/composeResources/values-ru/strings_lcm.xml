@@ -89,6 +89,7 @@
     <string name="lcm_coding_right_rear_fog_error">Сообщение об ошибке - задняя ПТФ правая</string>
     <string name="lcm_coding_break_light_error">Сообщение об ошибке - стоп-сигналы</string>
     <string name="lcm_coding_third_break_lamp_error">Сообщение об ошибке - третий стоп-сигнал</string>
+    <string name="lcm_coding_brake_switch_gnd_check">Сообщение об ошибке - проверка массы выключателя тормоза</string>
     <string name="lcm_coding_license_plate_error">Сообщение об ошибке - подсветка номера</string>
     <string name="lcm_coding_trailer_light_errors">Сообщение об ошибке - огни прицепа</string>
     <string name="lcm_coding_dipped_beam_time_out">Проводи меня домой - ближний свет</string>

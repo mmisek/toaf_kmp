@@ -48,6 +48,7 @@ object ResourceMapperIpk {
             "ipk_coding_sls_warning" -> Res.string.ipk_coding_sls_warning
             "ipk_coding_speedo_display" -> Res.string.ipk_coding_speedo_display
             "ipk_coding_tc_on_k_bus" -> Res.string.ipk_coding_tc_on_k_bus
+            "ipk_coding_tc_range_until_mt_value" -> Res.string.ipk_coding_tc_range_until_mt_value
             "ipk_coding_temperature_units" -> Res.string.ipk_coding_temperature_units
             "ipk_coding_trip2" -> Res.string.ipk_coding_trip2
             "ipk_coding_vehicle_type" -> Res.string.ipk_coding_vehicle_type

@@ -12,6 +12,9 @@ object ResourceMapperRadio {
             "radio_coding_key_memory_radio" -> Res.string.radio_coding_key_memory_radio
             "radio_coding_pty_table" -> Res.string.radio_coding_pty_table
             "radio_coding_rds_af_mode" -> Res.string.radio_coding_rds_af_mode
+            "radio_coding_rds_region" -> Res.string.radio_coding_rds_region
+            "radio_coding_tp_function" -> Res.string.radio_coding_tp_function
+            "radio_coding_tp_minimal_volume" -> Res.string.radio_coding_tp_minimal_volume
             "radio_control_audio_key" -> Res.string.radio_control_audio_key
             "radio_control_default_volume" -> Res.string.radio_control_default_volume
             "radio_control_frequency" -> Res.string.radio_control_frequency

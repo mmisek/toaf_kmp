@@ -115,6 +115,7 @@
     <string name ="lcm_l322_coding_reversing_lights_fail_warning">Avviso guasto luci di retromarcia</string>
     <string name ="lcm_l322_coding_fehler_bremslicht">Avviso guasto fendinebbia anteriore</string>
     <string name ="lcm_l322_coding_break_lights_fail_warning">Avviso guasto luce stop sinistra/destra e terzo stop (CHMSL)</string>
+    <string name ="lcm_l322_coding_brake_light_fail_warning">Avviso guasto luci stop</string>
     <string name ="lcm_l322_coding_number_plate_light_fail_warning">Avviso guasto luce targa</string>
     <string name ="lcm_l322_coding_trailer_light_fail_monitoring">Monitoraggio guasto luci rimorchio</string>
     <string name ="lcm_l322_coding_break_light_switch_prescence">Presenza interruttore luci stop</string>
@@ -156,7 +157,7 @@
     <string name ="lcm_l322_coding_follow_me_home_with_low_beam_headlights">Follow Me Home con anabbaglianti</string>
     <string name ="lcm_l322_coding_follow_me_home_with_rear_position_lamps">Follow Me Home con luci di posizione posteriori</string>
     <string name ="lcm_l322_coding_follow_me_home_with_front_position_lamps">Follow Me Home con luci di posizione anteriori</string>
-    <string name ="lcm_l322_coding_follow_me_home_with_kl85g">Follow Me Home con KL.58g</string>
+    <string name ="lcm_l322_coding_follow_me_home_with_kl58g">Follow Me Home con KL.58g</string>
     <string name ="lcm_l322_coding_follow_me_home_with_license_plate_light">Follow Me Home con luce targa</string>
     <string name ="lcm_l322_coding_follow_me_home_with_front_fog_lamps">Follow Me Home con fendinebbia anteriori</string>
     <string name ="lcm_l322_coding_follow_me_home_with_high_beam_headlamps">Follow Me Home con abbaglianti</string>

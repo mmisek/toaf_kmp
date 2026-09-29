@@ -93,7 +93,7 @@
 <string name="pdc_coding_front_center_scaling">Skalowanie przedniego środka</string>
 <string name="pdc_coding_only_ignition_operated">Działa tylko przy zapłonie</string>
 <string name="pdc_coding_one_tone_generator">Generator jednolity dźwięku</string>
-<string name="pdc_coding_pdc_counter">Licznik PDC</string>
+<string name="pdc_coding_pdc_counter">Przełącznik PDC</string>
 <string name="pdc_coding_reverse_chime">Dzwonek cofania</string>
 <string name="pdc_coding_switch_on_delay_returning_chime">Opóźnienie włączenia powrotnego dzwonka</string>
 <string name="pdc_coding_pdc_on_when_ignition">Włącz PDC przy zapłonie</string>

@@ -15,6 +15,7 @@ enum class KoinNames {
     ModuleL322Srs,
     ModuleL322Bcu,
     ModuleL322Radio,
+    ModuleL322Pdc,
     ModuleL322Lws,
     ModuleL322Txu,
     ModuleMe72,

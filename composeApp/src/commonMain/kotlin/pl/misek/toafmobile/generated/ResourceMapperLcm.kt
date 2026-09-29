@@ -8,6 +8,7 @@ object ResourceMapperLcm {
     fun stringResource(resourceName: String): StringResource? {
         return when (resourceName) {
             "lcm_coding_break_lamps_time_out" -> Res.string.lcm_coding_break_lamps_time_out
+            "lcm_coding_brake_switch_gnd_check" -> Res.string.lcm_coding_brake_switch_gnd_check
             "lcm_coding_break_light_error" -> Res.string.lcm_coding_break_light_error
             "lcm_coding_cold_mon_breaks" -> Res.string.lcm_coding_cold_mon_breaks
             "lcm_coding_cold_mon_dipped" -> Res.string.lcm_coding_cold_mon_dipped

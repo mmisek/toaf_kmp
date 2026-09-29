@@ -50,6 +50,7 @@
 <string name="ipk_coding_sia_interval_distance">Indicador de intervalo de servicio - distancia</string>
 <string name="ipk_coding_sia_time_limit">Indicador de intervalo de servicio - límite de tiempo [días]</string>
 <string name="ipk_coding_consumption_cal_factor">Factor de calibración del consumo de combustible</string>
+<string name="ipk_coding_tc_range_until_mt_value">Ordenador de a bordo - autonomía hasta el valor (cambio manual)</string>
 <string name="ipk_coding_last_service_type">Último tipo de servicio</string>
 <string name="ipk_coding_tc_on_k_bus">Control de tracción en K-BUS</string>
 <string name="ipk_coding_sls_warning">Sistema de aire secundario</string>

@@ -14,6 +14,7 @@ enum class ModuleAddress(val address: Byte, val moduleName: String, val showName
     MODULE_BCU_ALARM(0x01.toByte(), "bcu_alarm", "BCU"),
     MODULE_ABS(0x56.toByte(), "abs", "ABS"),
     MODULE_PDC(0x60.toByte(), "pdc", "PDC"),
+    MODULE_PDC_L322(0x60.toByte(), "pdc_l322", "PDC"),
     MODULE_JATCO(0x19.toByte(), "jatco", "JATCO"),
     MODULE_LCM(0xD0.toByte(), "lcm", "LCM"),
     MODULE_LCM_L322(0xD0.toByte(), "lcm_l322", "LCM"),

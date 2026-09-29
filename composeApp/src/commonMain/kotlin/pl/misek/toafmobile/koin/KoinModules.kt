@@ -89,6 +89,7 @@ val commonModules = module {
     single(named(KoinNames.ModuleL322Srs.name)) { pl.misek.toafmobile.modules.l322.ModuleSRS(protocolDS2 = get())}
     single(named(KoinNames.ModuleL322Bcu.name)) { pl.misek.toafmobile.modules.l322.ModuleBCU(protocolDS2 = get())}
     single(named(KoinNames.ModuleL322Radio.name)) { pl.misek.toafmobile.modules.l322.ModuleRadio(protocolDS2 = get())}
+    single(named(KoinNames.ModuleL322Pdc.name)) { pl.misek.toafmobile.modules.l322.ModulePDC(protocolDS2 = get())}
     single(named(KoinNames.ModuleL322Txu.name)) { ModuleTXU(protocolKWP = get()) }
     single(named(KoinNames.ModuleMe72.name)) { ModuleME72(kwp = get()) }
 

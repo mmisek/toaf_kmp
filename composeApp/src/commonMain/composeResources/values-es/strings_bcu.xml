@@ -143,6 +143,7 @@
     <string name="bcu_coding_lamp_no_map_with_perm_off">Lámparas - sin lámpara de mapa con perm off</string>
     <string name="bcu_coding_lamp_ramp_up_increment">Lámparas - incremento de rampa ascendente</string>
     <string name="bcu_coding_lamp_ramp_dn_increment">Lámparas - incremento de rampa descendente</string>
+    <string name="bcu_coding_lamp_max_on_level">Lámparas - nivel máximo de brillo</string>
     <string name="bcu_coding_dwa_equiped">Sistema de advertencia de robo</string>
     <string name="bcu_coding_dwa_max_alarm_events">Sistema de advertencia de robo - eventos máximos</string>
     <string name="bcu_coding_dwa_sounder_option">Sistema de advertencia de robo - opción de sirena</string>

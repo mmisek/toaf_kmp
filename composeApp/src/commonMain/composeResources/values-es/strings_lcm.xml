@@ -91,6 +91,7 @@
 <string name="lcm_coding_right_rear_fog_error">Reporte de errores - antiniebla trasera - derecha</string>
 <string name="lcm_coding_break_light_error">Reporte de errores - luces de freno</string>
 <string name="lcm_coding_third_break_lamp_error">Reporte de errores - tercera luz de freno</string>
+<string name="lcm_coding_brake_switch_gnd_check">Reporte de errores - comprobación de masa del interruptor de freno</string>
 <string name="lcm_coding_license_plate_error">Reporte de errores - lámparas de matrícula</string>
 <string name="lcm_coding_trailer_light_errors">Reporte de errores - luces de remolque</string>
 <string name="lcm_coding_dipped_beam_time_out">Seguirme a casa - luz baja</string>

@@ -59,8 +59,8 @@
       {
         "name": "hill_descent",
         "block": "0x00",
-        "byte": "0x20",
-        "mask": "0xFF",
+        "byte": "0x03",
+        "mask": "0x20",
         "coding_index": [
           "12"
         ],

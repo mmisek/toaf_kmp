@@ -375,7 +375,7 @@
         "name": "LAZY_ENTRY_DOORS_CANCEL",
         "block": "0x00",
         "byte": "0x02",
-        "mask": "0x08",
+        "mask": "0x10",
         "coding_index": [
           "1"
         ],

@@ -9,21 +9,28 @@ object ResourceMapperScu {
         return when (resourceName) {
             "scu_coding_alarm_disable" -> Res.string.scu_coding_alarm_disable
             "scu_coding_auto_lock_scale_factor" -> Res.string.scu_coding_auto_lock_scale_factor
+            "scu_coding_auto_relock_time" -> Res.string.scu_coding_auto_relock_time
             "scu_coding_auto_relocking" -> Res.string.scu_coding_auto_relocking
             "scu_coding_auto_speed_locking" -> Res.string.scu_coding_auto_speed_locking
             "scu_coding_bonnet_swt_act" -> Res.string.scu_coding_bonnet_swt_act
             "scu_coding_cdl_fitted" -> Res.string.scu_coding_cdl_fitted
             "scu_coding_cool_warn_fmt" -> Res.string.scu_coding_cool_warn_fmt
             "scu_coding_crank_disable_delay" -> Res.string.scu_coding_crank_disable_delay
+            "scu_coding_crank_disable_rpm" -> Res.string.scu_coding_crank_disable_rpm
+            "scu_coding_crank_re_enable_delay" -> Res.string.scu_coding_crank_re_enable_delay
+            "scu_coding_crank_re_enable_rpm" -> Res.string.scu_coding_crank_re_enable_rpm
+            "scu_coding_di_bulb_blow_trig" -> Res.string.scu_coding_di_bulb_blow_trig
             "scu_coding_disable_cdl_on_arm" -> Res.string.scu_coding_disable_cdl_on_arm
             "scu_coding_disable_vol_on_plip_arm" -> Res.string.scu_coding_disable_vol_on_plip_arm
             "scu_coding_dribble_wipe" -> Res.string.scu_coding_dribble_wipe
             "scu_coding_drv_win_delay" -> Res.string.scu_coding_drv_win_delay
             "scu_coding_drv_win_oneshot_mode" -> Res.string.scu_coding_drv_win_oneshot_mode
+            "scu_coding_drv_win_timeout" -> Res.string.scu_coding_drv_win_timeout
             "scu_coding_elec_boot_release" -> Res.string.scu_coding_elec_boot_release
             "scu_coding_front_elec_windows" -> Res.string.scu_coding_front_elec_windows
             "scu_coding_front_fogs" -> Res.string.scu_coding_front_fogs
             "scu_coding_haz_on_inertia" -> Res.string.scu_coding_haz_on_inertia
+            "scu_coding_haz_trailer_trig_lev" -> Res.string.scu_coding_haz_trailer_trig_lev
             "scu_coding_hazard_arm_disarm" -> Res.string.scu_coding_hazard_arm_disarm
             "scu_coding_hazard_on_alarm" -> Res.string.scu_coding_hazard_on_alarm
             "scu_coding_heated_rear_win" -> Res.string.scu_coding_heated_rear_win
@@ -33,6 +40,7 @@ object ResourceMapperScu {
             "scu_coding_key_mobilise" -> Res.string.scu_coding_key_mobilise
             "scu_coding_low_cool_warn" -> Res.string.scu_coding_low_cool_warn
             "scu_coding_market_set_indicator" -> Res.string.scu_coding_market_set_indicator
+            "scu_coding_microwave_gain" -> Res.string.scu_coding_microwave_gain
             "scu_coding_microwave_sensor" -> Res.string.scu_coding_microwave_sensor
             "scu_coding_mislock_sounder" -> Res.string.scu_coding_mislock_sounder
             "scu_coding_momentary_switches" -> Res.string.scu_coding_momentary_switches
@@ -40,21 +48,26 @@ object ResourceMapperScu {
             "scu_coding_no_of_wipes_aft_wash" -> Res.string.scu_coding_no_of_wipes_aft_wash
             "scu_coding_nvsa4" -> Res.string.scu_coding_nvsa4
             "scu_coding_passive_immob" -> Res.string.scu_coding_passive_immob
+            "scu_coding_passive_immob_delay" -> Res.string.scu_coding_passive_immob_delay
             "scu_coding_passive_repeat" -> Res.string.scu_coding_passive_repeat
             "scu_coding_pdc" -> Res.string.scu_coding_pdc
             "scu_coding_power_wash" -> Res.string.scu_coding_power_wash
             "scu_coding_program_wash_wipe" -> Res.string.scu_coding_program_wash_wipe
             "scu_coding_rear_wash" -> Res.string.scu_coding_rear_wash
             "scu_coding_reverse_win_ip" -> Res.string.scu_coding_reverse_win_ip
+            "scu_coding_screen_wash_ratio" -> Res.string.scu_coding_screen_wash_ratio
             "scu_coding_seat_belt_warning" -> Res.string.scu_coding_seat_belt_warning
             "scu_coding_separate_alarm_sounder" -> Res.string.scu_coding_separate_alarm_sounder
             "scu_coding_sl_active" -> Res.string.scu_coding_sl_active
             "scu_coding_sl_on_plip_press" -> Res.string.scu_coding_sl_on_plip_press
             "scu_coding_sounder_type" -> Res.string.scu_coding_sounder_type
+            "scu_coding_trailer_telltale_di_lev" -> Res.string.scu_coding_trailer_telltale_di_lev
+            "scu_coding_trans_coil_act_time" -> Res.string.scu_coding_trans_coil_act_time
             "scu_coding_trans_drv_act" -> Res.string.scu_coding_trans_drv_act
             "scu_coding_variable_int_wipe" -> Res.string.scu_coding_variable_int_wipe
             "scu_coding_vol_trig_pulsed" -> Res.string.scu_coding_vol_trig_pulsed
             "scu_coding_volumetric_fitted" -> Res.string.scu_coding_volumetric_fitted
+            "scu_coding_win_stall_current" -> Res.string.scu_coding_win_stall_current
             "scu_control_alarm_led_off" -> Res.string.scu_control_alarm_led_off
             "scu_control_alarm_led_on" -> Res.string.scu_control_alarm_led_on
             "scu_control_cdl_lock" -> Res.string.scu_control_cdl_lock

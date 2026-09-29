@@ -40,5 +40,8 @@
     <string name="radio_coding_rds_af_mode">Режим RDS и AF</string>
     <string name="radio_coding_key_memory_radio">Память ключа (Радио)</string>
     <string name="radio_coding_pty_table">Регион PTY</string>
+    <string name="radio_coding_tp_function">Дорожные сообщения (TP)</string>
+    <string name="radio_coding_tp_minimal_volume">Минимальная громкость TP</string>
+    <string name="radio_coding_rds_region">Регион RDS</string>
 
 </resources>

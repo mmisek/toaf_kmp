@@ -9,18 +9,18 @@ object ResourceMapperSrs2 {
         return when (resourceName) {
             "srs2_coding_airbag_driver" -> Res.string.srs2_coding_airbag_driver
             "srs2_coding_airbag_passenger" -> Res.string.srs2_coding_airbag_passenger
-            "srs2_coding_belt_buckle_driver" -> Res.string.srs2_coding_belt_buckle_driver
-            "srs2_coding_belt_buckle_passenger" -> Res.string.srs2_coding_belt_buckle_passenger
             "srs2_coding_bp_driver" -> Res.string.srs2_coding_bp_driver
             "srs2_coding_bp_passenger" -> Res.string.srs2_coding_bp_passenger
             "srs2_coding_bp_rear_left" -> Res.string.srs2_coding_bp_rear_left
             "srs2_coding_bp_rear_middle" -> Res.string.srs2_coding_bp_rear_middle
             "srs2_coding_bp_rear_right" -> Res.string.srs2_coding_bp_rear_right
-            "srs2_coding_indication_lapm" -> Res.string.srs2_coding_indication_lapm
+            "srs2_coding_indication_lamp" -> Res.string.srs2_coding_indication_lamp
             "srs2_coding_its_left" -> Res.string.srs2_coding_its_left
             "srs2_coding_its_right" -> Res.string.srs2_coding_its_right
             "srs2_coding_mrsa_front" -> Res.string.srs2_coding_mrsa_front
             "srs2_coding_ods" -> Res.string.srs2_coding_ods
+            "srs2_coding_rs_left" -> Res.string.srs2_coding_rs_left
+            "srs2_coding_rs_right" -> Res.string.srs2_coding_rs_right
             "srs2_coding_seat_left_airbag" -> Res.string.srs2_coding_seat_left_airbag
             "srs2_coding_seat_right_airbag" -> Res.string.srs2_coding_seat_right_airbag
             "srs2_coding_trigger_switch" -> Res.string.srs2_coding_trigger_switch

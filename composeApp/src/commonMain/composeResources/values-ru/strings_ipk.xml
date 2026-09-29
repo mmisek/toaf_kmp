@@ -48,6 +48,7 @@
     <string name="ipk_coding_sia_interval_distance">Сервисный интервал - дистанция</string>
     <string name="ipk_coding_sia_time_limit">Сервисный интервал - ограничение по времени [дни]</string>
     <string name="ipk_coding_consumption_cal_factor">Коэффициент калибровки расхода топлива</string>
+    <string name="ipk_coding_tc_range_until_mt_value">Бортовой компьютер - запас хода до значения (механическая КПП)</string>
     <string name="ipk_coding_last_service_type">Тип последнего сервиса</string>
     <string name="ipk_coding_tc_on_k_bus">Трэкшн-контроль по шине K-BUS</string>
     <string name="ipk_coding_sls_warning">Система вторичного воздуха</string>

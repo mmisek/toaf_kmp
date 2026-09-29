@@ -48,6 +48,7 @@
     <string name="ipk_coding_sia_interval_distance">Service interval indicator - distance</string>
     <string name="ipk_coding_sia_time_limit">Service interval indicator - time limit [days]</string>
     <string name="ipk_coding_consumption_cal_factor">Fuel consumption calibration factor</string>
+    <string name="ipk_coding_tc_range_until_mt_value">Trip computer - range until value (manual transmission)</string>
     <string name="ipk_coding_last_service_type">Last service type</string>
     <string name="ipk_coding_tc_on_k_bus">Traction control on K-BUS</string>
     <string name="ipk_coding_sls_warning">Secondary air system</string>

@@ -47,8 +47,21 @@
     <string name="scu_coding_momentary_switches">Wyłączanie chwilowe</string>
     <string name="scu_coding_low_cool_warn">Ostrzeżenie o niskim poziomie płynu chłodzącego</string>
     <string name="scu_coding_cool_warn_fmt">Ostrzeżenie dotyczące płynu chłodzącego</string>
-    <string name="scu_coding_crank_disable_delay">Crank disable delay</string>
+    <string name="scu_coding_crank_disable_delay">Opóźnienie blokady rozrusznika</string>
     <string name="scu_coding_auto_lock_scale_factor">Współczynnik skali automatycznej blokady</string>
+    <string name="scu_coding_auto_relock_time">Czas automatycznego ponownego zamknięcia</string>
+    <string name="scu_coding_passive_immob_delay">Opóźnienie pasywnego immobilizera</string>
+    <string name="scu_coding_trans_coil_act_time">Czas aktywacji cewki transpondera</string>
+    <string name="scu_coding_drv_win_timeout">Czas działania szyby kierowcy</string>
+    <string name="scu_coding_crank_disable_rpm">Obroty blokady rozrusznika</string>
+    <string name="scu_coding_crank_re_enable_rpm">Obroty odblokowania rozrusznika</string>
+    <string name="scu_coding_crank_re_enable_delay">Opóźnienie odblokowania rozrusznika</string>
+    <string name="scu_coding_screen_wash_ratio">Współczynnik spryskiwania szyby</string>
+    <string name="scu_coding_win_stall_current">Prąd zatrzymania szyby</string>
+    <string name="scu_coding_di_bulb_blow_trig">Próg przepalenia żarówki kierunkowskazu</string>
+    <string name="scu_coding_trailer_telltale_di_lev">Próg kontrolki kierunkowskazów przyczepy</string>
+    <string name="scu_coding_haz_trailer_trig_lev">Próg świateł awaryjnych przyczepy</string>
+    <string name="scu_coding_microwave_gain">Czułość czujnika mikrofalowego</string>
     <string name="scu_coding_no_of_wipes_aft_wash">Ilość przetarć wycieraczek po myciu</string>
 
     <string name="scu_control_cdl_lock">Centralny zamek — zamknij</string>

@@ -34,6 +34,9 @@
     <string name="radio_coding_rds_af_mode">Tryb RDS i AF</string>
     <string name="radio_coding_key_memory_radio">Pamięć klucza dla radia</string>
     <string name="radio_coding_pty_table">PTY region</string>
+    <string name="radio_coding_tp_function">Komunikaty drogowe (TP)</string>
+    <string name="radio_coding_tp_minimal_volume">Minimalna głośność TP</string>
+    <string name="radio_coding_rds_region">Region RDS</string>
 
     <string name = "radio_live_data_value_signal_too_low">za niski</string>
     <string name = "radio_live_data_value_signal_too_high">za wysoki</string>

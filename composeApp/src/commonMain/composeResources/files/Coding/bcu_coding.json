@@ -205,8 +205,7 @@
         "byte": "0x01",
         "mask": "0x10",
         "coding_index": [
-            "2",
-            "4"
+            "2"
           ],
         "coding_values": [
             {
@@ -250,7 +249,7 @@
         "coding_values": [
             {
               "data": "0x24",
-              "text": "degrees_minus_20"
+              "text": "R40"
             }
           ]
       },
@@ -298,7 +297,8 @@
         "byte": "0x05",
         "mask": "0xFF",
         "coding_index": [
-          "2"
+          "2",
+          "4"
         ],
         "coding_values": [
           {
@@ -317,7 +317,7 @@
         ],
         "coding_values": [
            {
-            "data": "0x0A",
+            "data": "0x05",
             "text": "R40"
           }
         ]
@@ -358,12 +358,27 @@
         "byte": "0x09",
         "mask": "0xFF",
         "coding_index": [
-            "2",
-            "4"
+            "2"
           ],
         "coding_values": [
            {
             "data": "0x01",
+            "text": "R40"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "WIPER_REAR_WIPE_TABLE_1",
+        "block": "0x05",
+        "byte": "0x09",
+        "mask": "0xFF",
+        "coding_index": [
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x06",
             "text": "R40"
           }
         ],
@@ -375,12 +390,27 @@
         "byte": "0x0A",
         "mask": "0xFF",
         "coding_index": [
-            "2",
-            "4"
+            "2"
           ],
         "coding_values": [
            {
             "data": "0x04",
+            "text": "R40"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "WIPER_REAR_WIPE_TABLE_2",
+        "block": "0x05",
+        "byte": "0x0A",
+        "mask": "0xFF",
+        "coding_index": [
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x0C",
             "text": "R40"
           }
         ],
@@ -409,8 +439,7 @@
         "byte": "0x0C",
         "mask": "0xFF",
         "coding_index": [
-            "2",
-            "4"
+            "2"
           ],
         "coding_values": [
            {
@@ -421,46 +450,11 @@
         "visible": "false"
       },
       {
-        "name": "WIPER_REAR_WIPE_TABLE_5",
+        "name": "WIPER_REAR_WIPE_TABLE_4",
         "block": "0x05",
-        "byte": "0x0D",
+        "byte": "0x0C",
         "mask": "0xFF",
         "coding_index": [
-            "2",
-            "4"
-          ],
-        "coding_values": [
-           {
-            "data": "0x08",
-            "text": "R40"
-          }
-        ],
-        "visible": "false"
-      },
-      {
-        "name": "WIPER_REAR_WIPE_TABLE_6",
-        "block": "0x05",
-        "byte": "0x0E",
-        "mask": "0xFF",
-        "coding_index": [
-            "2",
-            "4"
-          ],
-        "coding_values": [
-           {
-            "data": "0x0C",
-            "text": "R40"
-          }
-        ],
-        "visible": "false"
-      },
-      {
-        "name": "WIPER_REAR_WIPE_TABLE_7",
-        "block": "0x06",
-        "byte": "0x00",
-        "mask": "0xFF",
-        "coding_index": [
-            "2",
             "4"
           ],
         "coding_values": [
@@ -472,17 +466,128 @@
         "visible": "false"
       },
       {
+        "name": "WIPER_REAR_WIPE_TABLE_5",
+        "block": "0x05",
+        "byte": "0x0D",
+        "mask": "0xFF",
+        "coding_index": [
+            "2"
+          ],
+        "coding_values": [
+           {
+            "data": "0x08",
+            "text": "R40"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "WIPER_REAR_WIPE_TABLE_5",
+        "block": "0x05",
+        "byte": "0x0D",
+        "mask": "0xFF",
+        "coding_index": [
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x03",
+            "text": "R40"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "WIPER_REAR_WIPE_TABLE_6",
+        "block": "0x05",
+        "byte": "0x0E",
+        "mask": "0xFF",
+        "coding_index": [
+            "2"
+          ],
+        "coding_values": [
+           {
+            "data": "0x0C",
+            "text": "R40"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "WIPER_REAR_WIPE_TABLE_6",
+        "block": "0x05",
+        "byte": "0x0E",
+        "mask": "0xFF",
+        "coding_index": [
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x06",
+            "text": "R40"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "WIPER_REAR_WIPE_TABLE_7",
+        "block": "0x06",
+        "byte": "0x00",
+        "mask": "0xFF",
+        "coding_index": [
+            "2"
+          ],
+        "coding_values": [
+           {
+            "data": "0x06",
+            "text": "R40"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "WIPER_REAR_WIPE_TABLE_7",
+        "block": "0x06",
+        "byte": "0x00",
+        "mask": "0xFF",
+        "coding_index": [
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x00",
+            "text": "R40"
+          }
+        ],
+        "visible": "false"
+      },
+      {
         "name": "WIPER_REAR_WIPE_TABLE_8",
         "block": "0x06",
         "byte": "0x01",
         "mask": "0xFF",
         "coding_index": [
-            "2",
-            "4"
+            "2"
           ],
         "coding_values": [
            {
             "data": "0x09",
+            "text": "R40"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "WIPER_REAR_WIPE_TABLE_8",
+        "block": "0x06",
+        "byte": "0x01",
+        "mask": "0xFF",
+        "coding_index": [
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x00",
             "text": "R40"
           }
         ],
@@ -494,12 +599,27 @@
         "byte": "0x02",
         "mask": "0xFF",
         "coding_index": [
-            "2",
-            "4"
+            "2"
           ],
         "coding_values": [
            {
             "data": "0x0D",
+            "text": "R40"
+          }
+        ],
+        "visible": "false"
+      },
+      {
+        "name": "WIPER_REAR_WIPE_TABLE_9",
+        "block": "0x06",
+        "byte": "0x02",
+        "mask": "0xFF",
+        "coding_index": [
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x00",
             "text": "R40"
           }
         ],
@@ -527,8 +647,7 @@
         "byte": "0x03",
         "mask": "0xFF",
         "coding_index": [
-            "2",
-            "4"
+            "2"
           ],
         "coding_values": [
            {
@@ -904,7 +1023,7 @@
         ],
         "coding_values": [
            {
-            "data": "0xB9",
+            "data": "0x55",
             "text": "default"
           }
         ]
@@ -964,7 +1083,7 @@
         ],
         "coding_values": [
            {
-            "data": "0x32",
+            "data": "0x38",
             "text": "default"
           }
         ]
@@ -1235,7 +1354,7 @@
         ]
       },
       {
-        "name": "LAMP_RAMP_DN_INCREMENT",
+        "name": "LAMP_MAX_ON_LEVEL",
         "block": "0x07",
         "byte": "0x0A",
         "mask": "0xFF",
@@ -1275,13 +1394,31 @@
         "byte": "0x0C",
         "mask": "0x0F",
         "coding_index": [
-            "2",
-            "4"
+            "2"
           ],
         "coding_values": [
            {
             "data": "0x03",
             "text": "default"
+          }
+        ]
+      },
+      {
+        "name": "DWA_MAX_ALARM_EVENTS",
+        "block": "0x07",
+        "byte": "0x0C",
+        "mask": "0x0F",
+        "coding_index": [
+            "4"
+          ],
+        "coding_values": [
+           {
+            "data": "0x08",
+            "text": "default"
+          },
+           {
+            "data": "0x0C",
+            "text": "option_two"
           }
         ]
       },

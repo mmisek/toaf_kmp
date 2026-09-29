@@ -6,7 +6,38 @@
         "byte": "0x00",
         "mask": "0x07",
         "coding_index": [
-          "1","2","3"
+          "1","2"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "ece"
+            },
+            {
+              "data": "0x01",
+              "text": "us"
+            },
+            {
+              "data": "0x02",
+              "text": "japan"
+            },
+            {
+              "data": "0x03",
+              "text": "oceania"
+            },
+            {
+              "data": "0x04",
+              "text": "canada"
+            }
+          ]
+      },
+      {
+        "name": "country",
+        "block": "0x00",
+        "byte": "0x00",
+        "mask": "0x07",
+        "coding_index": [
+          "3"
         ],
         "coding_values": [
             {
@@ -17,37 +48,139 @@
               "data": "0x01",
               "text": "us_canada"
             },
-          {
-            "data": "0x10",
-            "text": "japan"
-          },
-          {
-            "data": "0x03",
-            "text": "oceania"
-          },
-          {
-            "data": "0x04",
-            "text": "canada"
-          }
+            {
+              "data": "0x02",
+              "text": "japan"
+            },
+            {
+              "data": "0x03",
+              "text": "oceania"
+            }
+          ]
+      },
+      {
+        "name": "tp_function",
+        "block": "0x00",
+        "byte": "0x01",
+        "mask": "0x07",
+        "coding_index": [
+          "1","2","3"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "disable"
+            },
+            {
+              "data": "0x04",
+              "text": "enable"
+            }
+          ]
+      },
+      {
+        "name": "tp_minimal_volume",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x1F",
+        "coding_index": [
+          "1","2","3"
+        ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "type_00"
+            },
+            {
+              "data": "0x01",
+              "text": "type_01"
+            },
+            {
+              "data": "0x02",
+              "text": "type_02"
+            },
+            {
+              "data": "0x03",
+              "text": "type_03"
+            },
+            {
+              "data": "0x04",
+              "text": "type_04"
+            },
+            {
+              "data": "0x05",
+              "text": "type_05"
+            },
+            {
+              "data": "0x06",
+              "text": "type_06"
+            },
+            {
+              "data": "0x07",
+              "text": "type_07"
+            },
+            {
+              "data": "0x08",
+              "text": "type_08"
+            },
+            {
+              "data": "0x09",
+              "text": "type_09"
+            },
+            {
+              "data": "0x11",
+              "text": "type_01_b"
+            },
+            {
+              "data": "0x12",
+              "text": "type_02_b"
+            },
+            {
+              "data": "0x13",
+              "text": "type_03_b"
+            },
+            {
+              "data": "0x14",
+              "text": "type_04_b"
+            },
+            {
+              "data": "0x15",
+              "text": "type_05_b"
+            },
+            {
+              "data": "0x16",
+              "text": "type_06_b"
+            },
+            {
+              "data": "0x17",
+              "text": "type_07_b"
+            },
+            {
+              "data": "0x18",
+              "text": "type_08_b"
+            },
+            {
+              "data": "0x19",
+              "text": "type_09_b"
+            }
           ]
       },
       {
         "name": "gal",
         "block": "0x00",
-        "byte": "0x02",
+        "byte": "0x03",
         "mask": "0x0F",
         "coding_index": [
           "1","2","3"
         ],
         "coding_values": [
             {
-              "data": "0x010",
+              "data": "0x02",
               "text": "m62_petrol"
             },
-          {
-            "data": "0x011",
-            "text": "m57_diesel"
-          }
+            {
+              "data": "0x03",
+              "text": "m57_diesel"
+            }
           ]
       },
       {
@@ -60,19 +193,19 @@
         ],
         "coding_values": [
           {
-             "data": "0x000",
+            "data": "0x00",
             "text": "rds_on_af_off"
           },
           {
-            "data": "0x001",
+            "data": "0x01",
             "text": "rds_on_af_man"
           },
           {
-            "data": "0x010",
+            "data": "0x02",
             "text": "rds_on_af_auto"
           },
           {
-            "data": "0x011",
+            "data": "0x03",
             "text": "rds_off"
           }
         ]
@@ -93,6 +226,37 @@
           {
             "data": "0x01",
             "text": "us"
+          }
+        ]
+      },
+      {
+        "name": "rds_region",
+        "block": "0x00",
+        "byte": "0x04",
+        "mask": "0x70",
+        "coding_index": [
+          "1","2","3"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "type_00"
+          },
+          {
+            "data": "0x01",
+            "text": "type_01"
+          },
+          {
+            "data": "0x02",
+            "text": "type_02"
+          },
+          {
+            "data": "0x03",
+            "text": "type_03"
+          },
+          {
+            "data": "0x04",
+            "text": "type_04"
           }
         ]
       },

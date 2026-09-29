@@ -379,7 +379,25 @@
         "byte": "0x02",
         "mask": "0x08",
         "coding_index": [
-            "27",
+            "27"
+          ],
+        "coding_values": [
+            {
+              "data": "0x00",
+              "text": "active"
+            },
+            {
+              "data": "0x01",
+              "text": "not_active"
+            }
+          ]
+      },
+      {
+        "name": "BRAKE_SWITCH_GND_CHECK",
+        "block": "0x00",
+        "byte": "0x02",
+        "mask": "0x08",
+        "coding_index": [
             "28"
           ],
         "coding_values": [
@@ -544,11 +562,11 @@
           ],
         "coding_values": [
             {
-              "data": "0x00",
+              "data": "0x01",
               "text": "active"
             },
             {
-              "data": "0x01",
+              "data": "0x00",
               "text": "not_active"
             }
           ]
@@ -564,11 +582,11 @@
           ],
         "coding_values": [
             {
-              "data": "0x00",
+              "data": "0x01",
               "text": "active"
             },
             {
-              "data": "0x01",
+              "data": "0x00",
               "text": "not_active"
             }
           ]
@@ -584,11 +602,11 @@
           ],
         "coding_values": [
             {
-              "data": "0x00",
+              "data": "0x01",
               "text": "active"
             },
             {
-              "data": "0x01",
+              "data": "0x00",
               "text": "not_active"
             }
           ]
@@ -608,27 +626,27 @@
               "text": "not_active"
             },
             {
-              "data": "0x15",
+              "data": "0x0F",
               "text": "15s"
             },
             {
-              "data": "0x30",
+              "data": "0x1E",
               "text": "30s"
             },
             {
-              "data": "0x45",
+              "data": "0x2D",
               "text": "45s"
             },
             {
-              "data": "0x60",
+              "data": "0x3C",
               "text": "60s"
             },
             {
-              "data": "0x75",
+              "data": "0x4B",
               "text": "75s"
             },
             {
-              "data": "0x90",
+              "data": "0x5A",
               "text": "90s"
             }
           ]
@@ -696,8 +714,8 @@
       },
       {
         "name": "EXP_DIMMING_CONTROL",
-        "block": "0x0D",
-        "byte": "0x00",
+        "block": "0x00",
+        "byte": "0x0D",
         "mask": "0x80",
         "coding_index": [
             "27",
@@ -773,7 +791,7 @@
       {
         "name": "MAX_VOLTAGE",
         "block": "0x00",
-        "byte": "0x15",
+        "byte": "0x16",
         "mask": "0xFF",
         "coding_index": [
             "27",

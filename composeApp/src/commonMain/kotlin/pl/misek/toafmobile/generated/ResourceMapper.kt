@@ -10,6 +10,13 @@ object ResourceMapper {
             Logger.i {"NO RESOURCE for : $resourceName"}
             return null
          }
+        val twoPartPrefix = if (prefix.size > 1) (prefix[0] + prefix[1]).lowercase() else ""
+        when (twoPartPrefix) {
+           "bcul322" -> return ResourceMapperBcuL322.stringResource(resourceName)
+           "lcml322" -> return ResourceMapperLcmL322.stringResource(resourceName)
+           "pdcl322" -> return ResourceMapperPdcL322.stringResource(resourceName)
+           "srsl322" -> return ResourceMapperSrsL322.stringResource(resourceName)
+        }
         return when (prefix[0].lowercase()) {
            "abs" -> ResourceMapperAbs.stringResource(resourceName)
            "activityadvancecoding" -> ResourceMapperActivityAdvanceCoding.stringResource(resourceName)
@@ -18,7 +25,6 @@ object ResourceMapper {
            "activityflashprograming" -> ResourceMapperActivityFlashPrograming.stringResource(resourceName)
            "atc" -> ResourceMapperAtc.stringResource(resourceName)
            "bcu" -> ResourceMapperBcu.stringResource(resourceName)
-           "bcul322" -> ResourceMapperBcuL322.stringResource(resourceName)
            "bmbt" -> ResourceMapperBmbt.stringResource(resourceName)
            "cc" -> ResourceMapperCc.stringResource(resourceName)
            "ccu" -> ResourceMapperCcu.stringResource(resourceName)
@@ -36,7 +42,6 @@ object ResourceMapper {
            "ipk" -> ResourceMapperIpk.stringResource(resourceName)
            "jatco" -> ResourceMapperJatco.stringResource(resourceName)
            "lcm" -> ResourceMapperLcm.stringResource(resourceName)
-           "lcml322" -> ResourceMapperLcmL322.stringResource(resourceName)
            "lws" -> ResourceMapperLws.stringResource(resourceName)
            "me72" -> ResourceMapperMe72.stringResource(resourceName)
            "mems" -> ResourceMapperMems.stringResource(resourceName)
@@ -51,7 +56,6 @@ object ResourceMapper {
            "smac" -> ResourceMapperSmac.stringResource(resourceName)
            "srs" -> ResourceMapperSrs.stringResource(resourceName)
            "srs2" -> ResourceMapperSrs2.stringResource(resourceName)
-           "srsl322" -> ResourceMapperSrsL322.stringResource(resourceName)
            "txu" -> ResourceMapperTxu.stringResource(resourceName)
            "video" -> ResourceMapperVideo.stringResource(resourceName)
            "webasto" -> ResourceMapperWebasto.stringResource(resourceName)

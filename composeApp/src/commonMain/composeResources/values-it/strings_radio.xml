@@ -39,5 +39,8 @@
     <string name="radio_coding_rds_af_mode">Modalità RDS e AF</string>
     <string name="radio_coding_key_memory_radio">Memoria chiave radio</string>
     <string name="radio_coding_pty_table">Regione PTY</string>
+    <string name="radio_coding_tp_function">Notiziari sul traffico (TP)</string>
+    <string name="radio_coding_tp_minimal_volume">Volume minimo TP</string>
+    <string name="radio_coding_rds_region">Regione RDS</string>
 
 </resources>

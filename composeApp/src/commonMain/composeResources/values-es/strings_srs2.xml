@@ -68,10 +68,10 @@
     <string name="srs2_coding_bp_rear_right">Pretensor del cinturón - trasero derecho</string>
     <string name="srs2_coding_bp_rear_middle">Pretensor del cinturón - trasero central</string>
     <string name="srs2_coding_ubat_disconnect">Desconexión de la batería</string>
-    <string name="srs2_coding_belt_buckle_driver">Sensor del cinturón - conductor</string>
-    <string name="srs2_coding_belt_buckle_passenger">Sensor del cinturón - pasajero</string>
+    <string name="srs2_coding_rs_right">RS - lado derecho</string>
+    <string name="srs2_coding_rs_left">RS - lado izquierdo</string>
     <string name="srs2_coding_ods" >ODS</string>
     <string name="srs2_coding_mrsa_front" >MRSA - delantero</string>
-    <string name="srs2_coding_indication_lapm">Lámpara de indicación</string>
+    <string name="srs2_coding_indication_lamp">Lámpara de indicación</string>
     <string name="srs2_coding_trigger_switch" >Interruptor de disparo</string>
 </resources>

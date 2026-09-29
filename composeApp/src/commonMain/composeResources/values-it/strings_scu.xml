@@ -49,6 +49,19 @@
     <string name="scu_coding_cool_warn_fmt">Avviso refrigerante</string>
     <string name="scu_coding_crank_disable_delay">Ritardo disattivazione avviamento</string>
     <string name="scu_coding_auto_lock_scale_factor">Fattore di scala chiusura automatica</string>
+    <string name="scu_coding_auto_relock_time">Tempo di richiusura automatica</string>
+    <string name="scu_coding_passive_immob_delay">Ritardo immobilizzatore passivo</string>
+    <string name="scu_coding_trans_coil_act_time">Tempo di attivazione bobina transponder</string>
+    <string name="scu_coding_drv_win_timeout">Timeout finestrino conducente</string>
+    <string name="scu_coding_crank_disable_rpm">Giri disattivazione avviamento</string>
+    <string name="scu_coding_crank_re_enable_rpm">Giri riattivazione avviamento</string>
+    <string name="scu_coding_crank_re_enable_delay">Ritardo riattivazione avviamento</string>
+    <string name="scu_coding_screen_wash_ratio">Rapporto lavaggio parabrezza</string>
+    <string name="scu_coding_win_stall_current">Corrente di stallo finestrino</string>
+    <string name="scu_coding_di_bulb_blow_trig">Soglia guasto lampadina indicatore</string>
+    <string name="scu_coding_trailer_telltale_di_lev">Livello spia indicatori rimorchio</string>
+    <string name="scu_coding_haz_trailer_trig_lev">Soglia luci di emergenza rimorchio</string>
+    <string name="scu_coding_microwave_gain">Guadagno sensore a microonde</string>
     <string name="scu_coding_no_of_wipes_aft_wash">Numero di battute dopo il lavaggio</string>
 
     <string name="scu_control_cdl_lock">Chiusura centralizzata - chiudi</string>

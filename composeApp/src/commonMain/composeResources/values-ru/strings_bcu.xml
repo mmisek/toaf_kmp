@@ -143,6 +143,7 @@
     <string name="bcu_coding_lamp_no_map_with_perm_off">Лампы - нет лампы карты при постоянном выкл.</string>
     <string name="bcu_coding_lamp_ramp_up_increment">Лампы - шаг нарастания яркости</string>
     <string name="bcu_coding_lamp_ramp_dn_increment">Лампы - шаг убывания яркости</string>
+    <string name="bcu_coding_lamp_max_on_level">Лампы - максимальный уровень яркости</string>
     <string name="bcu_coding_dwa_equiped">Противоугонная система установлена</string>
     <string name="bcu_coding_dwa_max_alarm_events">Противоугонная система - макс. событий</string>
     <string name="bcu_coding_dwa_sounder_option">Противоугонная система - опция сирены</string>
