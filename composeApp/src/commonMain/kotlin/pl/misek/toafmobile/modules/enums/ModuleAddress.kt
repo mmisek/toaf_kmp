@@ -9,6 +9,7 @@ enum class ModuleAddress(val address: Byte, val moduleName: String, val showName
     MODULE_EDC15_ERROR(0x132.toByte(), "edc15", "EDC15"),
     MODULE_MEMS_ERROR(0x131.toByte(), "mems", "MEMS"),
     MODULE_IPK(0x80.toByte(), "ipk", "IPK"),
+    MODULE_IKE(0x80.toByte(), "ike", "IKE"),
     MODULE_BCU(0x00.toByte(), "bcu", "BCU"),
     MODULE_BCU_L322(0x00.toByte(), "bcu_l322", "BCU"),
     MODULE_BCU_ALARM(0x01.toByte(), "bcu_alarm", "BCU"),

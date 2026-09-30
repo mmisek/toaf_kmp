@@ -17,11 +17,15 @@ object ResourceMapperCoding {
             "coding_0_8s" -> Res.string.coding_0_8s
             "coding_0_9s" -> Res.string.coding_0_9s
             "coding_100_prozent" -> Res.string.coding_100_prozent
+            "coding_10_l" -> Res.string.coding_10_l
             "coding_10ms" -> Res.string.coding_10ms
             "coding_120_kmh" -> Res.string.coding_120_kmh
             "coding_120kph" -> Res.string.coding_120kph
             "coding_125_deg_c" -> Res.string.coding_125_deg_c
+            "coding_12_cylinders" -> Res.string.coding_12_cylinders
             "coding_12_kmh" -> Res.string.coding_12_kmh
+            "coding_12_l" -> Res.string.coding_12_l
+            "coding_12h" -> Res.string.coding_12h
             "coding_130_deg_c" -> Res.string.coding_130_deg_c
             "coding_150s" -> Res.string.coding_150s
             "coding_15_minutes" -> Res.string.coding_15_minutes
@@ -46,6 +50,7 @@ object ResourceMapperCoding {
             "coding_21_5dr" -> Res.string.coding_21_5dr
             "coding_240s" -> Res.string.coding_240s
             "coding_24_kmh" -> Res.string.coding_24_kmh
+            "coding_24h" -> Res.string.coding_24h
             "coding_25s" -> Res.string.coding_25s
             "coding_28_kmh" -> Res.string.coding_28_kmh
             "coding_2902" -> Res.string.coding_2902
@@ -101,6 +106,8 @@ object ResourceMapperCoding {
             "coding_asynchronous" -> Res.string.coding_asynchronous
             "coding_atc" -> Res.string.coding_atc
             "coding_australia" -> Res.string.coding_australia
+            "coding_auto_4_speed" -> Res.string.coding_auto_4_speed
+            "coding_auto_5_speed" -> Res.string.coding_auto_5_speed
             "coding_auto_before_inch" -> Res.string.coding_auto_before_inch
             "coding_automatic" -> Res.string.coding_automatic
             "coding_basic_ac" -> Res.string.coding_basic_ac
@@ -108,14 +115,23 @@ object ResourceMapperCoding {
             "coding_batteryadnwash" -> Res.string.coding_batteryadnwash
             "coding_bbus" -> Res.string.coding_bbus
             "coding_bc_gong" -> Res.string.coding_bc_gong
+            "coding_belt_switch" -> Res.string.coding_belt_switch
+            "coding_belt_timer" -> Res.string.coding_belt_timer
+            "coding_bm_after_pu96" -> Res.string.coding_bm_after_pu96
+            "coding_bm_before_pu96" -> Res.string.coding_bm_before_pu96
             "coding_bmw" -> Res.string.coding_bmw
+            "coding_bordmonitor" -> Res.string.coding_bordmonitor
             "coding_cabrio" -> Res.string.coding_cabrio
+            "coding_can_bus" -> Res.string.coding_can_bus
             "coding_canada" -> Res.string.coding_canada
+            "coding_canadian" -> Res.string.coding_canadian
             "coding_closed" -> Res.string.coding_closed
             "coding_coded" -> Res.string.coding_coded
             "coding_codierung" -> Res.string.coding_codierung
+            "coding_column_selector" -> Res.string.coding_column_selector
             "coding_compact" -> Res.string.coding_compact
             "coding_continuous" -> Res.string.coding_continuous
+            "coding_conventional" -> Res.string.coding_conventional
             "coding_coupe" -> Res.string.coding_coupe
             "coding_deadmans_handle" -> Res.string.coding_deadmans_handle
             "coding_default" -> Res.string.coding_default
@@ -161,10 +177,13 @@ object ResourceMapperCoding {
             "coding_french" -> Res.string.coding_french
             "coding_front" -> Res.string.coding_front
             "coding_front_and_rear" -> Res.string.coding_front_and_rear
+            "coding_front_mid" -> Res.string.coding_front_mid
             "coding_fullstemode" -> Res.string.coding_fullstemode
+            "coding_gas" -> Res.string.coding_gas
             "coding_german" -> Res.string.coding_german
             "coding_gong" -> Res.string.coding_gong
             "coding_great_britain" -> Res.string.coding_great_britain
+            "coding_gulf" -> Res.string.coding_gulf
             "coding_halogen_default" -> Res.string.coding_halogen_default
             "coding_halvstemode" -> Res.string.coding_halvstemode
             "coding_hardwired" -> Res.string.coding_hardwired
@@ -178,12 +197,14 @@ object ResourceMapperCoding {
             "coding_intermittent" -> Res.string.coding_intermittent
             "coding_italian" -> Res.string.coding_italian
             "coding_japan" -> Res.string.coding_japan
+            "coding_japanese" -> Res.string.coding_japanese
             "coding_jewel" -> Res.string.coding_jewel
             "coding_k_bus" -> Res.string.coding_k_bus
             "coding_key_and_remote" -> Res.string.coding_key_and_remote
             "coding_kilometers" -> Res.string.coding_kilometers
             "coding_klemme_r" -> Res.string.coding_klemme_r
             "coding_klroff" -> Res.string.coding_klroff
+            "coding_km_h" -> Res.string.coding_km_h
             "coding_km_per_l" -> Res.string.coding_km_per_l
             "coding_l30" -> Res.string.coding_l30
             "coding_l30_06my" -> Res.string.coding_l30_06my
@@ -203,6 +224,8 @@ object ResourceMapperCoding {
             "coding_m57_diesel_my06" -> Res.string.coding_m57_diesel_my06
             "coding_m62_petrol" -> Res.string.coding_m62_petrol
             "coding_manual" -> Res.string.coding_manual
+            "coding_memo_ki" -> Res.string.coding_memo_ki
+            "coding_memo_lcm" -> Res.string.coding_memo_lcm
             "coding_miles" -> Res.string.coding_miles
             "coding_minus2903" -> Res.string.coding_minus2903
             "coding_minus2924" -> Res.string.coding_minus2924
@@ -214,6 +237,7 @@ object ResourceMapperCoding {
             "coding_minus_657162" -> Res.string.coding_minus_657162
             "coding_mpg_uk" -> Res.string.coding_mpg_uk
             "coding_mpg_us" -> Res.string.coding_mpg_us
+            "coding_mph" -> Res.string.coding_mph
             "coding_nas" -> Res.string.coding_nas
             "coding_nicht_aktiv" -> Res.string.coding_nicht_aktiv
             "coding_nicht_cod" -> Res.string.coding_nicht_cod
@@ -278,6 +302,7 @@ object ResourceMapperCoding {
             "coding_speed" -> Res.string.coding_speed
             "coding_standard" -> Res.string.coding_standard
             "coding_static" -> Res.string.coding_static
+            "coding_stepper_switch" -> Res.string.coding_stepper_switch
             "coding_strwse" -> Res.string.coding_strwse
             "coding_synchronous" -> Res.string.coding_synchronous
             "coding_tel_issued" -> Res.string.coding_tel_issued
@@ -322,7 +347,9 @@ object ResourceMapperCoding {
             "coding_weg_geschw" -> Res.string.coding_weg_geschw
             "coding_wert_01" -> Res.string.coding_wert_01
             "coding_wert_07" -> Res.string.coding_wert_07
+            "coding_with_time_inspection" -> Res.string.coding_with_time_inspection
             "coding_withacoustics" -> Res.string.coding_withacoustics
+            "coding_without_time_inspection" -> Res.string.coding_without_time_inspection
             "coding_withoutacou" -> Res.string.coding_withoutacou
             "coding_x0_35" -> Res.string.coding_x0_35
             "coding_x0_5" -> Res.string.coding_x0_5

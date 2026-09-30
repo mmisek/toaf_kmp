@@ -95,6 +95,7 @@ class ModulesManager() : KoinComponent
             get<ModuleRadio>(named(KoinNames.ModuleR40Radio.name)),
             get<pl.misek.toafmobile.modules.l322.ModuleRadio>(named(KoinNames.ModuleL322Radio.name)),
             get<pl.misek.toafmobile.modules.l322.ModulePDC>(named(KoinNames.ModuleL322Pdc.name)),
+            get<pl.misek.toafmobile.modules.l322.ModuleIKE>(named(KoinNames.ModuleL322Ike.name)),
             //modules.add(new ModuleEMS(kwp_ems2k));
             get<ModuleNavMk3>(named(KoinNames.ModuleR40NavMk3.name)),
             get<ModuleSCU>(named(KoinNames.ModuleRJOScu.name)),

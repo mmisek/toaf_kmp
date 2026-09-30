@@ -38,6 +38,7 @@ object ResourceMapper {
            "ews" -> ResourceMapperEws.stringResource(resourceName)
            "gs20" -> ResourceMapperGs20.stringResource(resourceName)
            "gs8601" -> ResourceMapperGs8601.stringResource(resourceName)
+           "ike" -> ResourceMapperIke.stringResource(resourceName)
            "hevac" -> ResourceMapperHevac.stringResource(resourceName)
            "ipk" -> ResourceMapperIpk.stringResource(resourceName)
            "jatco" -> ResourceMapperJatco.stringResource(resourceName)
