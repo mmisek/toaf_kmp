@@ -1,0 +1,1189 @@
+{
+    "elements": [
+        {
+            "name": "MODEL_YEAR_BC",
+            "block": "0x00",
+            "byte": "0x05",
+            "mask": "0xFF",
+            "coding_index": [
+                "12"
+            ],
+            "custom_values": {
+                "min": "0",
+                "max": "99"
+            }
+        },
+        {
+            "name": "BC_CODE",
+            "block": "0x00",
+            "byte": "0x06",
+            "mask": "0xFFFF",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x0000",
+                    "text": "default"
+                }
+            ],
+            "visible": "false"
+        },
+        {
+            "name": "REPLACE_POINT",
+            "block": "0x00",
+            "byte": "0x08",
+            "mask": "0x80",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "default"
+                }
+            ],
+            "visible": "false"
+        },
+        {
+            "name": "BC_CODE_ACTIVE",
+            "block": "0x00",
+            "byte": "0x08",
+            "mask": "0x40",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "default"
+                }
+            ],
+            "visible": "false"
+        },
+        {
+            "name": "LOAD_CALIBRATION_FACTOR",
+            "block": "0x00",
+            "byte": "0x08",
+            "mask": "0x01FF",
+            "coding_index": [
+                "12"
+            ],
+            "custom_values": {
+                "min": "0",
+                "max": "511"
+            }
+        },
+        {
+            "name": "SIA4_DISTANCE",
+            "block": "0x00",
+            "byte": "0x26",
+            "mask": "0xFFFF",
+            "coding_index": [
+                "12"
+            ],
+            "custom_values": {
+                "min": "0",
+                "max": "65535"
+            }
+        },
+        {
+            "name": "CAN_INSTR2_SEND",
+            "block": "0x00",
+            "byte": "0x58",
+            "mask": "0x20",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "inactive"
+                }
+            ]
+        },
+        {
+            "name": "CAN_INSTR3_SEND",
+            "block": "0x00",
+            "byte": "0x58",
+            "mask": "0x10",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "inactive"
+                }
+            ]
+        },
+        {
+            "name": "CAN_SHIFT_INDICATOR",
+            "block": "0x00",
+            "byte": "0x58",
+            "mask": "0x08",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "conventional"
+                },
+                {
+                    "data": "0x01",
+                    "text": "can_bus"
+                }
+            ]
+        },
+        {
+            "name": "CAN_LOAD",
+            "block": "0x00",
+            "byte": "0x58",
+            "mask": "0x04",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "conventional"
+                },
+                {
+                    "data": "0x01",
+                    "text": "can_bus"
+                }
+            ]
+        },
+        {
+            "name": "CAN_COOLANT_TEMP",
+            "block": "0x00",
+            "byte": "0x58",
+            "mask": "0x02",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "conventional"
+                },
+                {
+                    "data": "0x01",
+                    "text": "can_bus"
+                }
+            ]
+        },
+        {
+            "name": "CAN_TACHO",
+            "block": "0x00",
+            "byte": "0x58",
+            "mask": "0x01",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "conventional"
+                },
+                {
+                    "data": "0x01",
+                    "text": "can_bus"
+                }
+            ]
+        },
+        {
+            "name": "ACC_FLAG",
+            "block": "0x00",
+            "byte": "0x5D",
+            "mask": "0x80",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "inactive"
+                }
+            ]
+        },
+        {
+            "name": "HBA",
+            "block": "0x00",
+            "byte": "0x5D",
+            "mask": "0x40",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "inactive"
+                }
+            ]
+        },
+        {
+            "name": "CAN_ASC",
+            "block": "0x00",
+            "byte": "0x5D",
+            "mask": "0x20",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "conventional"
+                },
+                {
+                    "data": "0x01",
+                    "text": "can_bus"
+                }
+            ]
+        },
+        {
+            "name": "CAN_FLAG",
+            "block": "0x00",
+            "byte": "0x5D",
+            "mask": "0x10",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "conventional"
+                },
+                {
+                    "data": "0x01",
+                    "text": "can_bus"
+                }
+            ]
+        },
+        {
+            "name": "CAN_EBV",
+            "block": "0x00",
+            "byte": "0x5D",
+            "mask": "0x08",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "inactive"
+                }
+            ]
+        },
+        {
+            "name": "CAN_KL61",
+            "block": "0x00",
+            "byte": "0x5D",
+            "mask": "0x04",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "conventional"
+                },
+                {
+                    "data": "0x01",
+                    "text": "can_bus"
+                }
+            ]
+        },
+        {
+            "name": "MEMORY_FLAG",
+            "block": "0x00",
+            "byte": "0x5D",
+            "mask": "0x03",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "coded"
+                },
+                {
+                    "data": "0x03",
+                    "text": "not_coded"
+                }
+            ]
+        },
+        {
+            "name": "ASC3_EVALUATION",
+            "block": "0x00",
+            "byte": "0x78",
+            "mask": "0x08",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "inactive"
+                }
+            ]
+        },
+        {
+            "name": "RCC_WAKE_TIME",
+            "block": "0x00",
+            "byte": "0xA3",
+            "mask": "0xFF",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0xFF",
+                    "text": "inactive"
+                },
+                {
+                    "data": "0x04",
+                    "text": "active"
+                }
+            ]
+        },
+        {
+            "name": "DISPLAYS",
+            "block": "0x00",
+            "byte": "0xA8",
+            "mask": "0xFF",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "front_mid"
+                },
+                {
+                    "data": "0x08",
+                    "text": "bordmonitor"
+                }
+            ]
+        },
+        {
+            "name": "ARRIVAL_TIME_FORMAT",
+            "block": "0x00",
+            "byte": "0xA9",
+            "mask": "0x80",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "24h"
+                },
+                {
+                    "data": "0x01",
+                    "text": "12h"
+                }
+            ]
+        },
+        {
+            "name": "DISTANCE_UNITS",
+            "block": "0x00",
+            "byte": "0xA9",
+            "mask": "0x40",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "kilometers"
+                },
+                {
+                    "data": "0x01",
+                    "text": "miles"
+                }
+            ]
+        },
+        {
+            "name": "SPEED_LIMIT_UNITS",
+            "block": "0x00",
+            "byte": "0xA9",
+            "mask": "0x20",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "km_h"
+                },
+                {
+                    "data": "0x01",
+                    "text": "mph"
+                }
+            ]
+        },
+        {
+            "name": "AVERAGE_SPEED_UNITS",
+            "block": "0x00",
+            "byte": "0xA9",
+            "mask": "0x10",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "km_h"
+                },
+                {
+                    "data": "0x01",
+                    "text": "mph"
+                }
+            ]
+        },
+        {
+            "name": "BC_SPEED_CORRECTION",
+            "block": "0x00",
+            "byte": "0xA9",
+            "mask": "0x08",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "inactive"
+                }
+            ]
+        },
+        {
+            "name": "BC_WITH_IGNITION",
+            "block": "0x00",
+            "byte": "0xA9",
+            "mask": "0x04",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "inactive"
+                }
+            ]
+        },
+        {
+            "name": "TEMPERATURE_UNITS",
+            "block": "0x00",
+            "byte": "0xA9",
+            "mask": "0x02",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "degrees_c"
+                },
+                {
+                    "data": "0x01",
+                    "text": "degrees_f"
+                }
+            ]
+        },
+        {
+            "name": "TIME_FORMAT",
+            "block": "0x00",
+            "byte": "0xA9",
+            "mask": "0x01",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "24h"
+                },
+                {
+                    "data": "0x01",
+                    "text": "12h"
+                }
+            ]
+        },
+        {
+            "name": "MEMO_FLAG",
+            "block": "0x00",
+            "byte": "0xAA",
+            "mask": "0x80",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "memo_ki"
+                },
+                {
+                    "data": "0x01",
+                    "text": "memo_lcm"
+                }
+            ]
+        },
+        {
+            "name": "TIMER2_FORMAT",
+            "block": "0x00",
+            "byte": "0xAA",
+            "mask": "0x40",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "24h"
+                },
+                {
+                    "data": "0x01",
+                    "text": "12h"
+                }
+            ]
+        },
+        {
+            "name": "TIMER1_FORMAT",
+            "block": "0x00",
+            "byte": "0xAA",
+            "mask": "0x20",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "24h"
+                },
+                {
+                    "data": "0x01",
+                    "text": "12h"
+                }
+            ]
+        },
+        {
+            "name": "RANGE_UNITS",
+            "block": "0x00",
+            "byte": "0xAA",
+            "mask": "0x10",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "kilometers"
+                },
+                {
+                    "data": "0x01",
+                    "text": "miles"
+                }
+            ]
+        },
+        {
+            "name": "CONSUMPTION_2_UNITS",
+            "block": "0x00",
+            "byte": "0xAA",
+            "mask": "0x0C",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "l_per_100km"
+                },
+                {
+                    "data": "0x01",
+                    "text": "mpg_uk"
+                },
+                {
+                    "data": "0x02",
+                    "text": "mpg_us"
+                },
+                {
+                    "data": "0x03",
+                    "text": "km_per_l"
+                }
+            ]
+        },
+        {
+            "name": "CONSUMPTION_1_UNITS",
+            "block": "0x00",
+            "byte": "0xAA",
+            "mask": "0x03",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "l_per_100km"
+                },
+                {
+                    "data": "0x01",
+                    "text": "mpg_uk"
+                },
+                {
+                    "data": "0x02",
+                    "text": "mpg_us"
+                },
+                {
+                    "data": "0x03",
+                    "text": "km_per_l"
+                }
+            ]
+        },
+        {
+            "name": "AUX_HEATING_MODE",
+            "block": "0x00",
+            "byte": "0xAB",
+            "mask": "0xC0",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "bm_before_pu96"
+                },
+                {
+                    "data": "0x01",
+                    "text": "bm_after_pu96"
+                }
+            ]
+        },
+        {
+            "name": "GPS_CLOCK",
+            "block": "0x00",
+            "byte": "0xAB",
+            "mask": "0x20",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "inactive"
+                }
+            ]
+        },
+        {
+            "name": "RCC_CLOCK",
+            "block": "0x00",
+            "byte": "0xAB",
+            "mask": "0x10",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "inactive"
+                }
+            ]
+        },
+        {
+            "name": "ODOMETER_UNITS",
+            "block": "0x00",
+            "byte": "0xAB",
+            "mask": "0x08",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "kilometers"
+                },
+                {
+                    "data": "0x01",
+                    "text": "miles"
+                }
+            ]
+        },
+        {
+            "name": "EXT_TEMP_WARN_GONG",
+            "block": "0x00",
+            "byte": "0xAB",
+            "mask": "0x04",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "active"
+                },
+                {
+                    "data": "0x01",
+                    "text": "inactive"
+                }
+            ]
+        },
+        {
+            "name": "PARK_VENTILATION",
+            "block": "0x00",
+            "byte": "0xAB",
+            "mask": "0x02",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "inactive"
+                }
+            ]
+        },
+        {
+            "name": "PARK_HEATING",
+            "block": "0x00",
+            "byte": "0xAB",
+            "mask": "0x01",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "inactive"
+                }
+            ]
+        },
+        {
+            "name": "SEATBELT_WARNING",
+            "block": "0x00",
+            "byte": "0xAD",
+            "mask": "0xC0",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "belt_timer"
+                },
+                {
+                    "data": "0x02",
+                    "text": "belt_switch"
+                }
+            ]
+        },
+        {
+            "name": "LANGUAGE",
+            "block": "0x00",
+            "byte": "0xAD",
+            "mask": "0x0F",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "german"
+                },
+                {
+                    "data": "0x01",
+                    "text": "english_uk"
+                },
+                {
+                    "data": "0x02",
+                    "text": "english_us"
+                },
+                {
+                    "data": "0x03",
+                    "text": "italian"
+                },
+                {
+                    "data": "0x04",
+                    "text": "spanish"
+                },
+                {
+                    "data": "0x05",
+                    "text": "japanese"
+                },
+                {
+                    "data": "0x06",
+                    "text": "french"
+                },
+                {
+                    "data": "0x07",
+                    "text": "canadian"
+                },
+                {
+                    "data": "0x08",
+                    "text": "gulf"
+                }
+            ]
+        },
+        {
+            "name": "K_NUMBER_TACHO_COMPL",
+            "block": "0x00",
+            "byte": "0xAE",
+            "mask": "0xFFFF",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0xEFE3",
+                    "text": "default"
+                }
+            ],
+            "visible": "false"
+        },
+        {
+            "name": "NUM_CYLINDERS",
+            "block": "0x00",
+            "byte": "0xB0",
+            "mask": "0xF0",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x06",
+                    "text": "6_cylinders"
+                },
+                {
+                    "data": "0x08",
+                    "text": "8_cylinders"
+                },
+                {
+                    "data": "0x0C",
+                    "text": "12_cylinders"
+                }
+            ]
+        },
+        {
+            "name": "GEARBOX_TYPE",
+            "block": "0x00",
+            "byte": "0xB4",
+            "mask": "0xE0",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "manual"
+                },
+                {
+                    "data": "0x02",
+                    "text": "auto_5_speed"
+                },
+                {
+                    "data": "0x04",
+                    "text": "auto_4_speed"
+                },
+                {
+                    "data": "0x06",
+                    "text": "stepper_switch"
+                },
+                {
+                    "data": "0x01",
+                    "text": "column_selector"
+                }
+            ]
+        },
+        {
+            "name": "MOTOR_FACTOR",
+            "block": "0x00",
+            "byte": "0xB4",
+            "mask": "0x1C",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x07",
+                    "text": "default"
+                }
+            ],
+            "visible": "false"
+        },
+        {
+            "name": "K_NUMBER_TACHO",
+            "block": "0x00",
+            "byte": "0xBA",
+            "mask": "0xFFFF",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x101C",
+                    "text": "default"
+                }
+            ],
+            "visible": "false"
+        },
+        {
+            "name": "K_NUMBER_DISTANCE",
+            "block": "0x00",
+            "byte": "0xBC",
+            "mask": "0x1FFF",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x0823",
+                    "text": "default"
+                }
+            ],
+            "visible": "false"
+        },
+        {
+            "name": "K_NUMBER_DISTANCE_COMPL",
+            "block": "0x00",
+            "byte": "0xBE",
+            "mask": "0x1FFF",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x17DC",
+                    "text": "default"
+                }
+            ],
+            "visible": "false"
+        },
+        {
+            "name": "TANK_RESERVE_THRESHOLD",
+            "block": "0x00",
+            "byte": "0xDD",
+            "mask": "0xFF",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x14",
+                    "text": "10_l"
+                },
+                {
+                    "data": "0x18",
+                    "text": "12_l"
+                }
+            ]
+        },
+        {
+            "name": "TANK_UP_DOWN_THRESHOLD",
+            "block": "0x00",
+            "byte": "0xDF",
+            "mask": "0xFF",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0xA0",
+                    "text": "default"
+                }
+            ],
+            "visible": "false"
+        },
+        {
+            "name": "ENGINE_TYPE",
+            "block": "0x00",
+            "byte": "0xE8",
+            "mask": "0xC0",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "petrol"
+                },
+                {
+                    "data": "0x02",
+                    "text": "diesel"
+                },
+                {
+                    "data": "0x01",
+                    "text": "gas"
+                }
+            ]
+        },
+        {
+            "name": "KL50_CAN",
+            "block": "0x00",
+            "byte": "0xE8",
+            "mask": "0x20",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "inactive"
+                }
+            ]
+        },
+        {
+            "name": "BRAKE_FORCE",
+            "block": "0x00",
+            "byte": "0xE8",
+            "mask": "0x10",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "inactive"
+                }
+            ]
+        },
+        {
+            "name": "SIA_LITER_LIMIT",
+            "block": "0x00",
+            "byte": "0xE8",
+            "mask": "0x0FFF",
+            "coding_index": [
+                "12"
+            ],
+            "custom_values": {
+                "min": "0",
+                "max": "4095"
+            }
+        },
+        {
+            "name": "SIA_DISPLAY_PARAMETER",
+            "block": "0x00",
+            "byte": "0xEA",
+            "mask": "0xE0",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "with_time_inspection"
+                },
+                {
+                    "data": "0x02",
+                    "text": "without_time_inspection"
+                }
+            ]
+        },
+        {
+            "name": "SIA4_ACTIVE",
+            "block": "0x00",
+            "byte": "0xEA",
+            "mask": "0x10",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x00",
+                    "text": "active"
+                },
+                {
+                    "data": "0x01",
+                    "text": "inactive"
+                }
+            ]
+        },
+        {
+            "name": "FUEL_FLAP_WARNING",
+            "block": "0x00",
+            "byte": "0xEA",
+            "mask": "0x08",
+            "coding_index": [
+                "12"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "inactive"
+                }
+            ]
+        },
+        {
+            "name": "SIA_TIME_LIMIT",
+            "block": "0x00",
+            "byte": "0xEA",
+            "mask": "0x07FF",
+            "coding_index": [
+                "12"
+            ],
+            "custom_values": {
+                "min": "0",
+                "max": "2047"
+            }
+        }
+    ]
+}
