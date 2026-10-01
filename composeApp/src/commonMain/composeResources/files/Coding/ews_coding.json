@@ -43,7 +43,7 @@
         "name": "NO_RELEASE_WITHOUT_QUERY",
         "block": "0x00",
         "byte": "0x00",
-        "mask": "0x04",
+        "mask": "0x40",
         "coding_index": [
           "81"
         ],
@@ -81,7 +81,7 @@
         ],
         "coding_values": [
           {
-            "data": "0x03",
+            "data": "0x01",
             "text": "default"
           }
         ],
