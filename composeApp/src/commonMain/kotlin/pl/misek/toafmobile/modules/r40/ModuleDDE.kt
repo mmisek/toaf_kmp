@@ -799,7 +799,7 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
             kwp.write(moduleAddress, 0x2C.toByte(), byteArrayOf(0x10, 0x0F, 0xD0.toByte()))
         if (message.isValid) {
             try {
-                return String.format(Locale.getDefault(), "%d", (message.answer[6].toInt() shr 8) + message.answer[7] * 10)
+                return String.format(Locale.getDefault(), "%d", ((message.answer[6].toInt() and 0xFF) shl 8) + (message.answer[7].toInt() and 0xFF))
             } catch (ex: CancellationException) {
                 throw ex
             } catch (ex : Exception)
@@ -871,14 +871,14 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
         if (data.size != 48 * 1024) {
             _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_wrong_file_size))
         } else {
-            _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_ecu_reset))
-            reset()
-            try {
-                delay(10 * 1000)
-            } catch (ex: CancellationException) {
-                throw ex
-            } catch (_ : Exception) {
-            }
+            //_programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_ecu_reset))
+            //reset()
+            //try {
+            //    delay(10 * 1000)
+            //} catch (ex: CancellationException) {
+            //    throw ex
+            //} catch (_ : Exception) {
+            //}
             val moduleInfo = getIdentification()
             val vin = getVIN()
             if (moduleInfo != null) {
@@ -1130,12 +1130,17 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
     }
 
     private suspend fun writeFlashData(data: ByteArray): Boolean {
+        // Przy 38400 8E1 echo bloku 128 B + odpowiedz ECU to ~40 ms, a budzet czasu
+        // w SerialDevice.write to 2 * timeout. 20 ms (budzet 40 ms) bywa za krotkie i
+        // uciecie odpowiedzi daje falszywe isValid=false -> przerwanie zapisu w polowie.
         return kwp.write(
             moduleAddress,
             0x36.toByte(),
-            data, 20
+            data, 150
         ).isValid
     }
+
+    override val flashProgrammingAvailable: Boolean = true
 
     private suspend fun startDiagnosticSession(): Boolean {
         return kwp.write(

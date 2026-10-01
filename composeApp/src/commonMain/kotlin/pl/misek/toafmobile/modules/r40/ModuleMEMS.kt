@@ -699,6 +699,8 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
         ).isValid
     }
 
+    override val flashProgrammingAvailable: Boolean = false
+
     override fun getSupportedCarTypes(): List<CarType> {
         return listOf(CarType.R40, CarType.RJO)
     }

@@ -494,5 +494,5 @@ class ModuleGS8601(protocolDS2: ProtocolDS2?) :
     private suspend fun writeFlashData(data: ByteArray): Boolean {
         return false
     }
-
+    override val flashProgrammingAvailable: Boolean = false
 }

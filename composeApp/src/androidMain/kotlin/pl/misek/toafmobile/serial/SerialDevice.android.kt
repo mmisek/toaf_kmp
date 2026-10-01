@@ -100,7 +100,12 @@ class AndroidSerialDevice (private val usbManager: UsbManager) : ISerialDevice
                         Logger.i { "$tag [timing] answer started after ${answerStartAtMs}ms since write start (+${sinceEcho}ms after echo)" }
                     }
                 } else {
-                    if (out.size() > 0 && System.currentTimeMillis() - lastByteAt > idleGap) break
+                    // Wczesne zakonczenie (idleGap) dopuszczamy dopiero gdy mamy juz WLASCIWA
+                    // odpowiedz, a nie samo echo. Inaczej dla dlugich operacji (np. kasowanie
+                    // flash 0x31) ECU milczy miedzy echem a odpowiedzia dluzej niz idleGap,
+                    // petla by sie poddala i odpowiedz trafialaby do okna nastepnej komendy
+                    // (desynchronizacja). Gorny limit czekania gwarantuje warunek petli (totalTimeout).
+                    if (out.size() > echoSize && System.currentTimeMillis() - lastByteAt > idleGap) break
                     delay(2)
                 }
             }

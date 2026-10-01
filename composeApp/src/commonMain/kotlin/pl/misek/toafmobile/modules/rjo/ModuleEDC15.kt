@@ -516,6 +516,8 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
         _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_close))
     }
 
+    override val flashProgrammingAvailable: Boolean = false
+
     override fun getSupportedCarTypes(): List<CarType> {
         return listOf(CarType.RJO)
     }

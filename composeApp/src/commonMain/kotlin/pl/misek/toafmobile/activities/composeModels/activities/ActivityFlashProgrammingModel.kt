@@ -210,7 +210,7 @@ fun ActivityFlashProgrammingModel(moduleKoinName: KoinNames, onBackClick : () ->
                     modifier = Modifier.padding(5.dp).fillMaxWidth(),
                     buttonText = Res.string.activity_flash_programming_write_flash,
                     onClick = {
-                        if (isDebug()) {
+                        if (flashModule.flashProgrammingAvailable) {
                             if (protocolFactory.currentDevice !is ISerialDevice) {
                                 showResult(scope, snackBarHostState, false, null, badInterfaceText)
                             } else {

@@ -7,4 +7,5 @@ interface IModuleFlashProgramming {
     val programmingState : SharedFlow<FlashProgrammingState>
     suspend fun readFlash()
     suspend fun writeFlash(data: ByteArray)
+    val flashProgrammingAvailable : Boolean
 }

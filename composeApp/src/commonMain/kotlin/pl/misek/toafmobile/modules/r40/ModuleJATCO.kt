@@ -611,6 +611,8 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
         return byteArrayOf()
     }
 
+    override val flashProgrammingAvailable: Boolean = false
+
     private suspend fun writeFlashData(data: ByteArray): Boolean {
         return kwp!!.write(
             moduleAddress,

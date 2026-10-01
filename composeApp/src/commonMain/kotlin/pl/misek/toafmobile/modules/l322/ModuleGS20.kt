@@ -511,6 +511,8 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
         return false
     }
 
+    override val flashProgrammingAvailable: Boolean = false
+
     private suspend fun setEcuBaudRate(baudRate : Long) : Boolean
     {
         if (protocolDS2 != null) {
