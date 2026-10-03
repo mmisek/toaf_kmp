@@ -10,6 +10,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.ui.Alignment
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,6 +30,7 @@ import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.BuildKonfig
 import pl.misek.toafmobile.PlatformType
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
+import pl.misek.toafmobile.activities.composeModels.menus.ToafVerticalScrollbar
 import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import pl.misek.toafmobile.getPlatformType
@@ -74,21 +78,35 @@ object DialogShowErrors {
                         .background(ToafColors.toafBackground)
                 )
                 {
-                    LazyColumn(
+                    val listState = rememberLazyListState()
+                    Box(
                         modifier = Modifier
-                            .padding(1.dp)
                             .fillMaxWidth()
                             .weight(1f,fill = false)
-                            .background(ToafColors.toafBackground)
                     ) {
-                        items(errors!!.size) { index ->
-                            ErrorItem(
-                                moduleError = errors[index],
-                                showDetails = expandId == index,
-                                id = index,
-                                onItemClick = { index ->
-                                    expandId = if (expandId == index) -1 else index
-                                })
+                        LazyColumn(
+                            state = listState,
+                            modifier = Modifier
+                                .padding(1.dp)
+                                .padding(end = 16.dp)
+                                .fillMaxWidth()
+                                .background(ToafColors.toafBackground)
+                        ) {
+                            items(errors!!.size) { index ->
+                                ErrorItem(
+                                    moduleError = errors[index],
+                                    showDetails = expandId == index,
+                                    id = index,
+                                    onItemClick = { index ->
+                                        expandId = if (expandId == index) -1 else index
+                                    })
+                            }
+                        }
+                        Box(
+                            modifier = Modifier.matchParentSize(),
+                            contentAlignment = Alignment.CenterEnd
+                        ) {
+                            ToafVerticalScrollbar(listState = listState)
                         }
                     }
                     Spacer(modifier = Modifier.fillMaxWidth().height(20.dp))

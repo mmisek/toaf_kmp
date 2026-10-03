@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.activities.composeModels.menus
 
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.ScrollbarStyle
 import androidx.compose.foundation.VerticalScrollbar
 import androidx.compose.foundation.background
@@ -51,6 +52,29 @@ actual fun ToafVerticalScrollbar(listState: LazyListState) {
         VerticalScrollbar(
             modifier = Modifier.align(Alignment.Center),
             adapter = rememberScrollbarAdapter(scrollState = listState),
+            style = ScrollbarStyle(
+                minimalHeight = 24.dp,
+                thickness = 12.dp,
+                shape = RoundedCornerShape(10.dp),
+                hoverDurationMillis = 0,
+                unhoverColor = ToafColors.toafTextColorWhite.copy(alpha = 0.5f),
+                hoverColor = ToafColors.toafTextColorWhite.copy(alpha = 0.8f)
+            )
+        )
+    }
+}
+
+@Composable
+actual fun ToafVerticalScrollbar(scrollState: ScrollState) {
+    Box(
+        modifier = Modifier
+            .fillMaxHeight()
+            .width(16.dp)
+            .background(Color.Gray.copy(alpha = 0.1f))
+    ) {
+        VerticalScrollbar(
+            modifier = Modifier.align(Alignment.Center),
+            adapter = rememberScrollbarAdapter(scrollState = scrollState),
             style = ScrollbarStyle(
                 minimalHeight = 24.dp,
                 thickness = 12.dp,

@@ -1,6 +1,9 @@
 package pl.misek.toafmobile.activities.composeModels.dialogs
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -30,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
+import pl.misek.toafmobile.activities.composeModels.menus.ToafVerticalScrollbar
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
@@ -47,6 +51,7 @@ object DialogSelectCarType {
         )
         var selectedItemIndex by remember { mutableIntStateOf(-1) }
         selectedItemIndex = currentIndex
+        val scrollState = rememberScrollState()
         AlertDialog(
             shape = toafShape,
             modifier = Modifier.border(
@@ -68,45 +73,55 @@ object DialogSelectCarType {
                 }
             },
             text = {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .selectableGroup()
-                        .padding(5.dp)
-                ) {
-                    options.forEach { (index, label) ->
+                Box(modifier = Modifier.fillMaxWidth()) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(end = 16.dp)
+                            .verticalScroll(scrollState)
+                            .selectableGroup()
+                            .padding(5.dp)
+                    ) {
+                        options.forEach { (index, label) ->
 
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(56.dp) // Standardowa wysokość elementu dotykowego
-                                .selectable(
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(56.dp) // Standardowa wysokość elementu dotykowego
+                                    .selectable(
+                                        selected = (selectedItemIndex == index),
+                                        onClick = {
+                                            selectedItemIndex = index
+                                        },
+                                        role = Role.RadioButton
+                                    )
+                                    .padding(horizontal = 16.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                RadioButton(
                                     selected = (selectedItemIndex == index),
-                                    onClick = {
-                                        selectedItemIndex = index
-                                    },
-                                    role = Role.RadioButton
+                                    onClick = null,
+                                    colors = RadioButtonDefaults.colors(
+                                        selectedColor = Color.Green,
+                                        unselectedColor = Color.Gray
+                                    )
                                 )
-                                .padding(horizontal = 16.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            RadioButton(
-                                selected = (selectedItemIndex == index),
-                                onClick = null,
-                                colors = RadioButtonDefaults.colors(
-                                    selectedColor = Color.Green,
-                                    unselectedColor = Color.Gray
+
+                                Spacer(modifier = Modifier.width(8.dp))
+
+                                Text(
+                                    text = stringResource(label),
+                                    color = Color.White,
+                                    style = MaterialTheme.typography.bodyLarge
                                 )
-                            )
-
-                            Spacer(modifier = Modifier.width(8.dp))
-
-                            Text(
-                                text = stringResource(label),
-                                color = Color.White,
-                                style = MaterialTheme.typography.bodyLarge
-                            )
+                            }
                         }
+                    }
+                    Box(
+                        modifier = Modifier.matchParentSize(),
+                        contentAlignment = Alignment.CenterEnd
+                    ) {
+                        ToafVerticalScrollbar(scrollState = scrollState)
                     }
                 }
             },

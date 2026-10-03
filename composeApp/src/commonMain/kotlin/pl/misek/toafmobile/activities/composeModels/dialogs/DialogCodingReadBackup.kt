@@ -4,6 +4,8 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.ui.Alignment
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.*
@@ -20,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
 import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
+import pl.misek.toafmobile.activities.composeModels.menus.ToafVerticalScrollbar
 import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
 import pl.misek.toafmobile.activities.composeModels.ToafComposeElements
 import pl.misek.toafmobile.activities.definitions.ToafColors
@@ -66,20 +69,31 @@ fun CodingReadBackupDialog(
                 if (busy)
                     ToafComposeElements.SmallProgressIndicator()
                 else {
-                    LazyColumn(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                    ) {
-                        items(items?.size ?: 0) { item ->
-                            BackupListItem(
-                                selected = items?.get(item)?.id == selectedBackupId,
-                                item = items?.get(item),
-                                onSelect = { id -> selectedBackupId = id })
-                            HorizontalDivider(
-                                Modifier,
-                                DividerDefaults.Thickness,
-                                DividerDefaults.color
-                            )
+                    val listState = rememberLazyListState()
+                    Box(modifier = Modifier.fillMaxWidth()) {
+                        LazyColumn(
+                            state = listState,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(end = 16.dp)
+                        ) {
+                            items(items?.size ?: 0) { item ->
+                                BackupListItem(
+                                    selected = items?.get(item)?.id == selectedBackupId,
+                                    item = items?.get(item),
+                                    onSelect = { id -> selectedBackupId = id })
+                                HorizontalDivider(
+                                    Modifier,
+                                    DividerDefaults.Thickness,
+                                    DividerDefaults.color
+                                )
+                            }
+                        }
+                        Box(
+                            modifier = Modifier.matchParentSize(),
+                            contentAlignment = Alignment.CenterEnd
+                        ) {
+                            ToafVerticalScrollbar(listState = listState)
                         }
                     }
                 }

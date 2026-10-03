@@ -4,6 +4,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -27,6 +28,7 @@ import org.koin.compose.koinInject
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
 import pl.misek.toafmobile.activities.composeModels.ToafComposeElements
+import pl.misek.toafmobile.activities.composeModels.menus.ToafVerticalScrollbar
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import pl.misek.toafmobile.interfaces.ConnectionState
 import pl.misek.toafmobile.interfaces.ToafWifiEventManager
@@ -136,52 +138,63 @@ fun DialogToafWifiConfiguration(
                     }
                 }
                 else if (devicesList?.isNotEmpty() == true){
-                    LazyColumn(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                    ) {
-                        items(devicesList.size) { index ->
-                            WifiInterfaceItem(
-                                selected = devicesList[index].deviceName == selectedSerialNumber,
-                                item = devicesList[index],
-                                onSelect = { id -> selectedSerialNumber = id })
-                            Column()
-                            {
-                                Row(
-                                    modifier = Modifier.fillMaxWidth()
-                                )
+                    val listState = rememberLazyListState()
+                    Box(modifier = Modifier.fillMaxWidth()) {
+                        LazyColumn(
+                            state = listState,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(end = 16.dp)
+                        ) {
+                            items(devicesList.size) { index ->
+                                WifiInterfaceItem(
+                                    selected = devicesList[index].deviceName == selectedSerialNumber,
+                                    item = devicesList[index],
+                                    onSelect = { id -> selectedSerialNumber = id })
+                                Column()
                                 {
-                                    ToafButtons.GreenButton(
-                                        buttonText = Res.string.alert_dialog_wifi_configuration_button_config,
-                                        onClick = { onConfigWifiDeviceClick(devicesList[index]) },
-                                        modifier =  Modifier.fillMaxWidth().weight(0.5f).padding(2.dp)
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth()
                                     )
-                                    ToafButtons.GreenButton(
-                                        buttonText = Res.string.alert_dialog_wifi_configuration_button_select,
-                                        onClick = { onSelectDeviceClick(devicesList[index]) },
-                                        modifier =  Modifier.fillMaxWidth().weight(0.5f).padding(2.dp)
+                                    {
+                                        ToafButtons.GreenButton(
+                                            buttonText = Res.string.alert_dialog_wifi_configuration_button_config,
+                                            onClick = { onConfigWifiDeviceClick(devicesList[index]) },
+                                            modifier =  Modifier.fillMaxWidth().weight(0.5f).padding(2.dp)
+                                        )
+                                        ToafButtons.GreenButton(
+                                            buttonText = Res.string.alert_dialog_wifi_configuration_button_select,
+                                            onClick = { onSelectDeviceClick(devicesList[index]) },
+                                            modifier =  Modifier.fillMaxWidth().weight(0.5f).padding(2.dp)
+                                        )
+                                    }
+                                    /*
+                                    ToafButtons.RedButton(
+                                        buttonText = R.string.alert_dialog_wifi_configuration_button_debug,
+                                        onClick = {},
+                                        modifier =  Modifier.fillMaxWidth().padding(2.dp)
                                     )
+                                    */
+                                    if (compareFirmwareVersion(devicesList[index].softwareVersion ?: "100",  updateInfo.version)) {
+                                        ToafButtons.GreenButton(
+                                            buttonText = Res.string.alert_dialog_wifi_configuration_check_update,
+                                            onClick = {onUpdateDeviceClick(devicesList[index])},
+                                            modifier = Modifier.fillMaxWidth().padding(2.dp)
+                                        )
+                                    }
                                 }
-                                /*
-                                ToafButtons.RedButton(
-                                    buttonText = R.string.alert_dialog_wifi_configuration_button_debug,
-                                    onClick = {},
-                                    modifier =  Modifier.fillMaxWidth().padding(2.dp)
+                                HorizontalDivider(
+                                    Modifier,
+                                    DividerDefaults.Thickness,
+                                    DividerDefaults.color
                                 )
-                                */
-                                if (compareFirmwareVersion(devicesList[index].softwareVersion ?: "100",  updateInfo.version)) {
-                                    ToafButtons.GreenButton(
-                                        buttonText = Res.string.alert_dialog_wifi_configuration_check_update,
-                                        onClick = {onUpdateDeviceClick(devicesList[index])},
-                                        modifier = Modifier.fillMaxWidth().padding(2.dp)
-                                    )
-                                }
                             }
-                            HorizontalDivider(
-                                Modifier,
-                                DividerDefaults.Thickness,
-                                DividerDefaults.color
-                            )
+                        }
+                        Box(
+                            modifier = Modifier.matchParentSize(),
+                            contentAlignment = Alignment.CenterEnd
+                        ) {
+                            ToafVerticalScrollbar(listState = listState)
                         }
                     }
                 }
