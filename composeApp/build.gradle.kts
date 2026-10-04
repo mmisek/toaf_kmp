@@ -155,6 +155,7 @@ compose.desktop {
                 menu = true
                 menuGroup = "Toaf"
                 shortcut = true
+                dirChooser = true
                 iconFile.set(project.file("src/commonMain/composeResources/drawable/toaf_icon_windows.ico"))
                 upgradeUuid = "68d0ed02-7125-4d98-856c-5ef07c0ad3ef"
             }
