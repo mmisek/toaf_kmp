@@ -1,8 +1,8 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
-val appVersionCode = 110
-val appVersionName = "1.0.10"
+val appVersionCode = 111
+val appVersionName = "1.0.11"
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
@@ -89,7 +89,7 @@ android {
     defaultConfig {
         applicationId = "pl.misek.toafmobile"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 36
         versionCode = appVersionCode
         versionName = appVersionName
     }
