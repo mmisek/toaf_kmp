@@ -1,11 +1,11 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
-val appVersionCode = 111
-val appVersionName = "1.0.11"
+val appVersionCode = providers.gradleProperty("toaf.versionCode").get().toInt()
+val appVersionName = providers.gradleProperty("toaf.versionName").get()
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidMultiplatformLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
@@ -17,9 +17,15 @@ plugins {
 
 kotlin {
     jvmToolchain(21)
-    androidTarget {
+    android {
+        namespace = "pl.misek.toafmobile.shared"
+        compileSdk = 37
+        minSdk = 24
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_17)
+        }
+        androidResources {
+            enable = true
         }
     }
 
@@ -82,54 +88,7 @@ kotlin {
     }
 }
 
-android {
-    namespace = "pl.misek.toafmobile"
-    compileSdk = 36
-
-    defaultConfig {
-        applicationId = "pl.misek.toafmobile"
-        minSdk = 24
-        targetSdk = 36
-        versionCode = appVersionCode
-        versionName = appVersionName
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-    // androidx.sqlite's bundled native driver (libsqliteJni.so) ships a slice per ABI.
-    // Play's automatic per-device ABI splitting of the App Bundle has been observed to
-    // omit the matching slice for some devices (e.g. x86_64 emulators), causing
-    // "dlopen failed: library libsqliteJni.so not found" at startup. Disabling the ABI
-    // split makes every install carry all ABIs, trading download size for reliability.
-    bundle {
-        abi {
-            enableSplit = false
-        }
-    }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = true
-            isShrinkResources = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-android.pro"
-            )
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    buildFeatures {
-        buildConfig = true
-    }
-}
-
 dependencies {
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.compose.ui.tooling)
     add("kspAndroid", libs.room.compiler)
     add("kspJvm", libs.room.compiler)
 }

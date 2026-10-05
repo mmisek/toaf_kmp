@@ -10,11 +10,13 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import pl.misek.toafmobile.koin.commonModules
 import pl.misek.toafmobile.koin.platformModules
+import pl.misek.toafmobile.tools.initIsDebug
 
 private const val tag = "ToafApplication"
 class ToafApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+        initIsDebug(this)
         startKoin {
             androidContext(this@ToafApplication)
             modules(commonModules,platformModules())
