@@ -1,17 +1,17 @@
 [versions]
 kotlin = "2.4.20" # Upewnij się, że masz zgodną wersję z Compose
 agp = "8.9.3"
-compose-multiplatform = "1.12.1"
+compose-multiplatform = "1.11.1"
 composeHotReload = "1.2.0"
-ktor = "3.6.0"
+ktor = "3.5.2"
 koin = "4.2.2"
 room = "2.8.5"
 ksp = "2.3.5" # KSP musi pasować do wersji Kotlina!
 sqlite = "2.7.1" # Wymagane przez Room w KMP
-lifecycle = "2.11.0"
+lifecycle = "2.10.0"
 navigation = "2.9.2"
-uiTooling = "1.12.1"
-vico = "3.3.1"
+uiTooling = "1.11.4"
+vico = "3.2.3"
 androidx-activityCompose = "1.13.0"
 kotlinx-coroutines = "1.11.0"
 kotlinx-serialization = "1.11.0"
@@ -25,7 +25,7 @@ ads = "25.5.0"
 kotlinx-datetime = "0.8.0"
 kermit = "2.2.0"
 aboutLibraries = "14.2.1"
-compose = "1.12.1"
+compose = "1.11.1"
 compose-material3 = "1.10.0-alpha05"
 compose-icons = "1.7.3"
 
