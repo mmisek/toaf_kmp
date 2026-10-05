@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_ehc_height_title">Wheel height control</string>
+    <string name="advance_control_ehc_height_front_left">Front left</string>
+    <string name="advance_control_ehc_height_front_right">Front right</string>
+    <string name="advance_control_ehc_height_rear_left">Rear left</string>
+    <string name="advance_control_ehc_height_rear_right">Rear right</string>
+    <string name="advance_control_ehc_height_pressure">Reservoir pressure</string>
+    <string name="advance_control_ehc_height_temperature">Compressor temperature</string>
+    <string name="advance_control_ehc_height_mode_auto">Mode: automatic</string>
+    <string name="advance_control_ehc_height_mode_manual">Mode: manual control</string>
+    <string name="advance_control_ehc_height_stop">STOP</string>
+    <string name="advance_control_ehc_height_stop_successful">Height control stopped</string>
+    <string name="advance_control_ehc_height_stop_failed">Failed to stop height control</string>
+    <string name="advance_control_ehc_height_manual_mode_failed">Failed to switch the module to manual control</string>
+    <string name="advance_control_ehc_height_control_failed">Height control command failed</string>
+</resources>

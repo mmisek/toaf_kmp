@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_ehc_height_title">Kontrola wysokości kół</string>
+    <string name="advance_control_ehc_height_front_left">Lewe przednie</string>
+    <string name="advance_control_ehc_height_front_right">Prawe przednie</string>
+    <string name="advance_control_ehc_height_rear_left">Lewe tylne</string>
+    <string name="advance_control_ehc_height_rear_right">Prawe tylne</string>
+    <string name="advance_control_ehc_height_pressure">Ciśnienie w zbiorniku</string>
+    <string name="advance_control_ehc_height_temperature">Temperatura sprężarki</string>
+    <string name="advance_control_ehc_height_mode_auto">Tryb: automatyczny</string>
+    <string name="advance_control_ehc_height_mode_manual">Tryb: sterowanie ręczne</string>
+    <string name="advance_control_ehc_height_stop">STOP</string>
+    <string name="advance_control_ehc_height_stop_successful">Kontrola wysokości zatrzymana</string>
+    <string name="advance_control_ehc_height_stop_failed">Nie udało się zatrzymać kontroli wysokości</string>
+    <string name="advance_control_ehc_height_manual_mode_failed">Nie udało się przełączyć modułu w tryb sterowania ręcznego</string>
+    <string name="advance_control_ehc_height_control_failed">Błąd komendy sterowania wysokością</string>
+</resources>

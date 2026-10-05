@@ -4,6 +4,7 @@ import co.touchlab.kermit.Logger
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.CancellationException
 import org.jetbrains.compose.resources.StringResource
+import pl.misek.toafmobile.activities.composeModels.activities.AdvanceControlEHCHeight
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceHelper
 import pl.misek.toafmobile.generated.ResourceMapper
@@ -12,11 +13,15 @@ import pl.misek.toafmobile.livedata.LiveDataElement
 import pl.misek.toafmobile.modules.ModuleDS2
 import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.containers.EHCAdjustmentData
+import pl.misek.toafmobile.modules.containers.EHCHeightLiveData
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.EHCControlWheel
 import pl.misek.toafmobile.modules.enums.EHCControlWheelDirection
 import pl.misek.toafmobile.modules.enums.ModuleAddress
+import pl.misek.toafmobile.modules.interfaces.AdvanceControlElement
+import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceControl
 import pl.misek.toafmobile.modules.interfaces.IModuleControl
+import pl.misek.toafmobile.modules.interfaces.IModuleEHCHeightControl
 import pl.misek.toafmobile.modules.interfaces.IModuleEepromProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.protocols.ProtocolDS2
@@ -30,7 +35,7 @@ import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.measureTime
 
 class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddress.MODULE_EHC, listOf(CarType.L322)),
-    IModuleLiveData,/* IModuleAdvanceControl,*/ IModuleControl, IModuleEepromProgramming
+    IModuleLiveData, IModuleAdvanceControl, IModuleControl, IModuleEepromProgramming, IModuleEHCHeightControl
 {
     private val tag = "ModuleEHC"
     private var controlFrontLeft: ControlElement? = null
@@ -39,6 +44,9 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
     private var controlRearRight: ControlElement? = null
     private var controlValveDrain: ControlElement? = null
     private var controlCompressorSwitch: ControlElement? = null
+    private var controlManualMode: ControlElement? = null
+    private var controlModeAllOff: ControlElement? = null
+    private var heightLiveDataElements: List<LiveDataElement>? = null
     private val errorDetailsList = byteArrayOf(0x01, 0x02,0x03,0x04,0x07,0x08,0x0A, 0x0B,0x0C, 0x0D,0xFE.toByte())
 
     private suspend fun getControlElements()
@@ -48,7 +56,9 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
             || controlRearLeft != null
             || controlRearRight != null
             || controlValveDrain != null
-            || controlCompressorSwitch != null)
+            || controlCompressorSwitch != null
+            || controlManualMode != null
+            || controlModeAllOff != null)
         {
             return
         }
@@ -81,11 +91,25 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
                 .filter { x: ControlElement -> x.name == "compressor_switch" }.findFirst().orElse(
                     ControlElement()
                 )
+            controlManualMode = controlElements.stream()
+                .filter { x: ControlElement -> x.name == "mode_hand_control" }.findFirst().orElse(
+                    ControlElement()
+                )
+            controlModeAllOff = controlElements.stream()
+                .filter { x: ControlElement -> x.name == "mode_all_off" }.findFirst().orElse(
+                    ControlElement()
+                )
         }
     }
     override fun getKoinName() = KoinNames.ModuleL322Ehc
     override fun getImageResource() =  Res.drawable.module_ehc
     override fun getModuleDescription() = Res.string.module_description_ehc
+
+    override fun getAdvanceControlElements() = listOf(
+        AdvanceControlElement(Res.string.advance_control_ehc_height_title) { userInfo, onShowResult ->
+            AdvanceControlEHCHeight(userInfo = userInfo, onShowResult = onShowResult)
+        }
+    )
 
     override suspend fun readLiveData(): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = HashMap()
@@ -323,27 +347,74 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         return interfaceWrite(data.array()).isValid
     }
 
-    suspend fun controlHeight(wheel: EHCControlWheel, direction: EHCControlWheelDirection): Boolean {
+    override suspend fun startManualControl(): Boolean {
+        getControlElements()
+        return controlManualMode?.let { control(it) } ?: false
+    }
+
+    override suspend fun controlHeight(wheel: EHCControlWheel, direction: EHCControlWheelDirection): Boolean {
+        getControlElements()
         val selectedDirection =
-            if (direction == EHCControlWheelDirection.Up) controlCompressorSwitch else controlValveDrain
+            (if (direction == EHCControlWheelDirection.Up) controlCompressorSwitch else controlValveDrain)
+                ?: return false
 
         val selectedWheel = when (wheel) {
             EHCControlWheel.FrontLeft -> controlFrontLeft
             EHCControlWheel.FrontRight -> controlFrontRight
             EHCControlWheel.RearLeft -> controlRearLeft
             EHCControlWheel.RearRight -> controlRearRight
-        }
+        } ?: return false
 
         val data = byteArrayOf(0x0C, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00)
-        data[selectedWheel!!.byteInBlock + 2] = selectedWheel.value.toByte()
-        data[selectedDirection!!.byteInBlock + 2] =
+        data[selectedWheel.byteInBlock + 2] = selectedWheel.value.toByte()
+        data[selectedDirection.byteInBlock + 2] =
             (data[selectedDirection.byteInBlock + 2] + selectedDirection.value.toByte()).toByte()
 
-        //if (Control(controlStartManualControl)) {
         return interfaceWrite(data).isValid
-//}
+    }
 
-        //return false;
+    override suspend fun closeValves(): Boolean =
+        interfaceWrite(byteArrayOf(0x0C, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00)).isValid
+
+    override suspend fun stopControl(): Boolean {
+        getControlElements()
+        val valvesClosed = closeValves()
+        val modeOff = controlModeAllOff?.let { control(it) } ?: false
+        return valvesClosed && modeOff
+    }
+
+    override suspend fun readHeightLiveData(): EHCHeightLiveData? {
+        val elements = heightLiveDataElements
+            ?: JsonSupport.getLiveDataElements(getModuleName())?.also { heightLiveDataElements = it }
+            ?: return null
+        val liveData = readLiveData() ?: return null
+        fun value(name: String): Float =
+            elements.firstOrNull { it.name == name }?.let { decodeLiveDataValue(it, liveData) } ?: Float.NaN
+        return EHCHeightLiveData(
+            frontLeft = value("height_sensor_front_left"),
+            frontRight = value("height_sensor_front_right"),
+            rearLeft = value("height_sensor_rear_left"),
+            rearRight = value("height_sensor_rear_right"),
+            pressure = value("pressure"),
+            compressorTemperature = value("compressor_temperature")
+        )
+    }
+
+    private fun decodeLiveDataValue(element: LiveDataElement, liveData: Map<Int, ByteArray>): Float {
+        val block = liveData[element.block] ?: return Float.NaN
+        val length = if (element.mask > 0xFF) 2 else 1
+        if (element.byteInBlock + length > block.size)
+            return Float.NaN
+        var bytes = block.copyOfRange(element.byteInBlock, element.byteInBlock + length)
+        if (element.swap)
+            bytes = bytes.reversedArray()
+        val buffer = ByteBuffer.wrap(bytes)
+        val rawValue = if (length == 2) {
+            if (element.u2) buffer.short.toInt() else buffer.short.toInt() and 0xFFFF
+        } else {
+            if (element.u2) buffer.get().toInt() else buffer.get().toInt() and 0xFF
+        }
+        return rawValue * element.factorA + element.factorB
     }
 
     override suspend fun readEeprom(address: Int, size: Int): ByteArray? {

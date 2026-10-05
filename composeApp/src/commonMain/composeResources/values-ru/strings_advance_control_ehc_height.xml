@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_ehc_height_title">Управление высотой колёс</string>
+    <string name="advance_control_ehc_height_front_left">Переднее левое</string>
+    <string name="advance_control_ehc_height_front_right">Переднее правое</string>
+    <string name="advance_control_ehc_height_rear_left">Заднее левое</string>
+    <string name="advance_control_ehc_height_rear_right">Заднее правое</string>
+    <string name="advance_control_ehc_height_pressure">Давление в ресивере</string>
+    <string name="advance_control_ehc_height_temperature">Температура компрессора</string>
+    <string name="advance_control_ehc_height_mode_auto">Режим: автоматический</string>
+    <string name="advance_control_ehc_height_mode_manual">Режим: ручное управление</string>
+    <string name="advance_control_ehc_height_stop">СТОП</string>
+    <string name="advance_control_ehc_height_stop_successful">Управление высотой остановлено</string>
+    <string name="advance_control_ehc_height_stop_failed">Не удалось остановить управление высотой</string>
+    <string name="advance_control_ehc_height_manual_mode_failed">Не удалось перевести модуль в ручной режим</string>
+    <string name="advance_control_ehc_height_control_failed">Ошибка команды управления высотой</string>
+</resources>

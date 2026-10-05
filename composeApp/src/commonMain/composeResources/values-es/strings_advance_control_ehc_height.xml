@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_ehc_height_title">Control de altura de ruedas</string>
+    <string name="advance_control_ehc_height_front_left">Delantera izquierda</string>
+    <string name="advance_control_ehc_height_front_right">Delantera derecha</string>
+    <string name="advance_control_ehc_height_rear_left">Trasera izquierda</string>
+    <string name="advance_control_ehc_height_rear_right">Trasera derecha</string>
+    <string name="advance_control_ehc_height_pressure">Presión del depósito</string>
+    <string name="advance_control_ehc_height_temperature">Temperatura del compresor</string>
+    <string name="advance_control_ehc_height_mode_auto">Modo: automático</string>
+    <string name="advance_control_ehc_height_mode_manual">Modo: control manual</string>
+    <string name="advance_control_ehc_height_stop">STOP</string>
+    <string name="advance_control_ehc_height_stop_successful">Control de altura detenido</string>
+    <string name="advance_control_ehc_height_stop_failed">No se pudo detener el control de altura</string>
+    <string name="advance_control_ehc_height_manual_mode_failed">No se pudo cambiar el módulo a control manual</string>
+    <string name="advance_control_ehc_height_control_failed">Error del comando de control de altura</string>
+</resources>
