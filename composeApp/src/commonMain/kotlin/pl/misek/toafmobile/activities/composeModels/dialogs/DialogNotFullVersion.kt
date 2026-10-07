@@ -37,7 +37,12 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 
 @Composable
-fun DialogNotFullVersion(onWatchAdResult: (Boolean) -> Unit, onCloseClick : () ->Unit)
+fun DialogNotFullVersion(
+    onWatchAdResult: (Boolean) -> Unit,
+    onCloseClick : () ->Unit,
+    /** false - funkcja wymaga pelnej wersji, odblokowanie reklama niedostepne */
+    allowWatchAd: Boolean = true
+)
 {
     val activity = getPlatformActivity()
     val toafBilling : IToafBilling = koinInject()
@@ -49,7 +54,7 @@ fun DialogNotFullVersion(onWatchAdResult: (Boolean) -> Unit, onCloseClick : () -
     var adReady by remember { mutableStateOf(false) }
     val fullVersionPriceText = stringResource(Res.string.dialog_full_version_get_full_version)
     LaunchedEffect(Unit) {
-        if (getPlatformType() == PlatformType.Android) {
+        if (allowWatchAd && getPlatformType() == PlatformType.Android) {
             adReady = adHelper.isAdLoaded()
             if (!adReady) {
                 adHelper.loadAd(
@@ -90,7 +95,7 @@ fun DialogNotFullVersion(onWatchAdResult: (Boolean) -> Unit, onCloseClick : () -
         },
         confirmButton = {
             Column {
-                if (getPlatformType() == PlatformType.Android) {
+                if (allowWatchAd && getPlatformType() == PlatformType.Android) {
                     ToafButtons.GreenButton(
                         modifier = Modifier
                             .fillMaxWidth()

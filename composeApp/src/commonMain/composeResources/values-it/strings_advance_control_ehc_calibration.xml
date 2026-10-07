@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_ehc_calibration_title">Calibrazione altezza sospensioni</string>
+    <string name="advance_control_ehc_calibration_info">Posizionare il veicolo su una superficie piana ad altezza normale, con le porte chiuse. Misurare lo scostamento di ogni ruota dall'altezza nominale e inserirlo in mm (+ = più alto). Calibrare un asse alla volta.</string>
+    <string name="advance_control_ehc_calibration_axle_front">Asse anteriore</string>
+    <string name="advance_control_ehc_calibration_axle_rear">Asse posteriore</string>
+    <string name="advance_control_ehc_calibration_left">Sinistra</string>
+    <string name="advance_control_ehc_calibration_right">Destra</string>
+    <string name="advance_control_ehc_calibration_ecu_height">Altezza (modulo) [mm]</string>
+    <string name="advance_control_ehc_calibration_measured">Misurata [mm]</string>
+    <string name="advance_control_ehc_calibration_measured_left">Misurata sinistra [mm]</string>
+    <string name="advance_control_ehc_calibration_measured_right">Misurata destra [mm]</string>
+    <string name="advance_control_ehc_calibration_deviation">Scostamento [mm]</string>
+    <string name="advance_control_ehc_calibration_offset_old">Offset attuale</string>
+    <string name="advance_control_ehc_calibration_offset_new">Nuovo offset</string>
+    <string name="advance_control_ehc_calibration_calculate">Calcola</string>
+    <string name="advance_control_ehc_calibration_write">Scrivi calibrazione</string>
+    <string name="advance_control_ehc_calibration_out_of_range">Nuovo offset fuori intervallo (100–900): impossibile scrivere la calibrazione. Controllare le misure.</string>
+    <string name="advance_control_ehc_calibration_store_leak">Salva altezze di riferimento</string>
+    <string name="advance_control_ehc_calibration_store_leak_info">La scrittura della calibrazione cancella il riferimento per il rilevamento perdite. Dopo aver calibrato entrambi gli assi salvare le altezze attuali (veicolo ad altezza normale).</string>
+    <string name="advance_control_ehc_calibration_leak_set">Riferimento rilevamento perdite: salvato</string>
+    <string name="advance_control_ehc_calibration_leak_not_set">Riferimento rilevamento perdite: non salvato</string>
+    <string name="advance_control_ehc_calibration_calculate_failed">Impossibile calcolare la calibrazione</string>
+    <string name="advance_control_ehc_calibration_write_successful">Calibrazione scritta</string>
+    <string name="advance_control_ehc_calibration_write_failed">Impossibile scrivere la calibrazione</string>
+    <string name="advance_control_ehc_calibration_store_successful">Altezze di riferimento salvate</string>
+    <string name="advance_control_ehc_calibration_store_failed">Impossibile salvare le altezze di riferimento</string>
+    <string name="advance_control_ehc_calibration_busy">Comunicazione in corso…</string>
+</resources>

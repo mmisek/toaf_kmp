@@ -4,6 +4,7 @@ import co.touchlab.kermit.Logger
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.CancellationException
 import org.jetbrains.compose.resources.StringResource
+import pl.misek.toafmobile.activities.composeModels.activities.AdvanceControlEHCCalibration
 import pl.misek.toafmobile.activities.composeModels.activities.AdvanceControlEHCHeight
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceHelper
@@ -13,14 +14,17 @@ import pl.misek.toafmobile.livedata.LiveDataElement
 import pl.misek.toafmobile.modules.ModuleDS2
 import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.containers.EHCAdjustmentData
+import pl.misek.toafmobile.modules.containers.EHCCalibrationData
 import pl.misek.toafmobile.modules.containers.EHCHeightLiveData
 import pl.misek.toafmobile.modules.enums.CarType
+import pl.misek.toafmobile.modules.enums.EHCAxle
 import pl.misek.toafmobile.modules.enums.EHCControlWheel
 import pl.misek.toafmobile.modules.enums.EHCControlWheelDirection
 import pl.misek.toafmobile.modules.enums.ModuleAddress
 import pl.misek.toafmobile.modules.interfaces.AdvanceControlElement
 import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceControl
 import pl.misek.toafmobile.modules.interfaces.IModuleControl
+import pl.misek.toafmobile.modules.interfaces.IModuleEHCCalibration
 import pl.misek.toafmobile.modules.interfaces.IModuleEHCHeightControl
 import pl.misek.toafmobile.modules.interfaces.IModuleEepromProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
@@ -35,7 +39,7 @@ import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.measureTime
 
 class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddress.MODULE_EHC, listOf(CarType.L322)),
-    IModuleLiveData, IModuleAdvanceControl, IModuleControl, IModuleEepromProgramming, IModuleEHCHeightControl
+    IModuleLiveData, IModuleAdvanceControl, IModuleControl, IModuleEepromProgramming, IModuleEHCHeightControl, IModuleEHCCalibration
 {
     private val tag = "ModuleEHC"
     private var controlFrontLeft: ControlElement? = null
@@ -108,6 +112,9 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
     override fun getAdvanceControlElements() = listOf(
         AdvanceControlElement(Res.string.advance_control_ehc_height_title) { userInfo, onShowResult ->
             AdvanceControlEHCHeight(userInfo = userInfo, onShowResult = onShowResult)
+        },
+        AdvanceControlElement(Res.string.advance_control_ehc_calibration_title) { userInfo, onShowResult ->
+            AdvanceControlEHCCalibration(userInfo = userInfo, onShowResult = onShowResult)
         }
     )
 
@@ -307,44 +314,151 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         return result
     }
 
-    suspend fun readAdjustmentData(): EHCAdjustmentData {
-        val message = interfaceWrite(byteArrayOf(0x40))
-        message.answer = byteArrayOf(
-            0x0a,
-            0x03,
-            0xab.toByte(),
-            0x02,
-            0x49,
-            0x01,
-            0xda.toByte(),
-            0x00,
-            0x00,
-            0x00,
-            0x00,
-            0x00,
-            0x00,
-            0x00,
-            0x00,
-            0x00
-        )
-        return EHCAdjustmentData(message.answer)
+    // ---------------------------------------------------------------------
+    // Kalibracja zawieszenia (wg SGBD EHC_2 rev. 1.09)
+    //
+    // Ramki (payload bez adresu 0xAC, dlugosci i sumy kontrolnej):
+    //  0x40                    ABGLEICHWERT_LESEN         - odczyt danych abgleichu (16 B)
+    //  0x41 + 16 B             ABGLEICHWERT_PROGRAMMIEREN - zapis danych abgleichu
+    //  0x0B 0x00               IO_STATUS_LESEN_SENSOREN   - wysokosci czujnikow [1/8 mm, signed]
+    //  0x08 0x00 0x1E 0x0C     CODE_LESEN @0x1E, 12 B     - kierunek i rozdzielczosc czujnikow
+    //  0x9E                    DIAGNOSEMODE_ERHALTEN      - podtrzymanie trybu diagnostycznego
+    // ---------------------------------------------------------------------
+
+    /** ABGLEICHWERT_LESEN */
+    override suspend fun readAdjustmentData(): EHCAdjustmentData? {
+        val message = interfaceWrite(byteArrayOf(CMD_ADJUSTMENT_READ))
+        try {
+            if (message.isValid && message.answer.size >= 3 + EHCAdjustmentData.DATA_SIZE)
+                return EHCAdjustmentData(message.answer.copyOfRange(3, 3 + EHCAdjustmentData.DATA_SIZE))
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex: Exception) {
+            Logger.e { "$tag [readAdjustmentData], $ex, $message" }
+        }
+        return null
     }
 
+    /** ABGLEICHWERT_PROGRAMMIEREN */
     suspend fun writeAdjustmentData(adjustmentData: EHCAdjustmentData): Boolean {
-        val data = ByteBuffer
-            .allocate(1 + 2 * 8)
-            .order(ByteOrder.LITTLE_ENDIAN)
-            .put(0x41.toByte())
-            .putShort(adjustmentData.offsetFrontLeft)
-            .putShort(adjustmentData.offsetFrontRight)
-            .putShort(adjustmentData.offsetRearLeft)
-            .putShort(adjustmentData.offsetRearRight)
+        val result = interfaceWrite(byteArrayOf(CMD_ADJUSTMENT_WRITE) + adjustmentData.toByteArray(), 500).isValid
+        delay(2000.milliseconds)
+        return result
+    }
 
-            .putShort(adjustmentData.offsetFrontLeftBelt)
-            .putShort(adjustmentData.offsetFrontRightBelt)
-            .putShort(adjustmentData.offsetRearLeftBelt)
-            .putShort(adjustmentData.offsetRearRightBelt)
-        return interfaceWrite(data.array()).isValid
+    /** Wysokosci wg sterownika [mm] w kolejnosci FL, FR, RL, RR (IO_STATUS_LESEN_SENSOREN) */
+    override suspend fun readSensorHeights(): IntArray? {
+        val raw = readSensorHeightsRaw() ?: return null
+        val buffer = ByteBuffer.wrap(raw).order(ByteOrder.LITTLE_ENDIAN)
+        return IntArray(4) { buffer.getShort(it * 2) / 8 }
+    }
+
+    /** Surowe wysokosci czujnikow (8 B, 1/8 mm, LE): FL, FR, RL, RR */
+    private suspend fun readSensorHeightsRaw(): ByteArray? {
+        val message = interfaceWrite(byteArrayOf(0x0B, 0x00))
+        return if (message.isValid && message.answer.size >= 11) message.answer.copyOfRange(3, 11) else null
+    }
+
+    /**
+     * Kodowanie czujnikow wysokosci dla osi: Triple(odwrocony lewy, odwrocony prawy, rozdzielczosc L/P).
+     * Bajt 0 bloku @0x1E: przod - lewy 0x08, prawy 0x04; tyl - lewy 0x02, prawy 0x01.
+     * Rozdzielczosc (u16 LE): przod @+4/@+6, tyl @+8/@+10.
+     */
+    private suspend fun readSensorCoding(axle: EHCAxle): Triple<Boolean, Boolean, Pair<Int, Int>>? {
+        val message = interfaceWrite(byteArrayOf(0x08, 0x00, 0x1E, 0x0C))
+        if (!message.isValid || message.answer.size < 15)
+            return null
+        val a = message.answer
+        fun u16(index: Int) = (a[index].toInt() and 0xFF) or ((a[index + 1].toInt() and 0xFF) shl 8)
+        val flags = a[3].toInt() and 0xFF
+        return when (axle) {
+            EHCAxle.Front -> Triple(flags and 0x08 != 0, flags and 0x04 != 0, Pair(u16(7), u16(9)))
+            EHCAxle.Rear -> Triple(flags and 0x02 != 0, flags and 0x01 != 0, Pair(u16(11), u16(13)))
+        }
+    }
+
+    /**
+     * Oblicza nowe offsety osi na podstawie zmierzonej wysokosci [mm]
+     * (STATUS_ABGLEICH / FAHRZEUG_HOEHE_ABGLEICHEN - bez zapisu do sterownika).
+     * Wysokosc zmierzona to argument DELTA_HOEHE z SGBD - w tej samej skali co odczyt sterownika
+     * (odchylka od wysokosci nominalnej, + = wyzej).
+     */
+    override suspend fun calculateCalibration(axle: EHCAxle, measuredLeft: Int, measuredRight: Int): EHCCalibrationData? {
+        try {
+            val heights = readSensorHeights() ?: return null
+            val adjustment = readAdjustmentData() ?: return null
+            val (invertLeft, invertRight, resolution) = readSensorCoding(axle) ?: return null
+
+            val ecuLeft = if (axle == EHCAxle.Front) heights[0] else heights[2]
+            val ecuRight = if (axle == EHCAxle.Front) heights[1] else heights[3]
+            val oldLeft = (if (axle == EHCAxle.Front) adjustment.offsetFrontLeft else adjustment.offsetRearLeft).toInt() and 0xFFFF
+            val oldRight = (if (axle == EHCAxle.Front) adjustment.offsetFrontRight else adjustment.offsetRearRight).toInt() and 0xFFFF
+
+            // korekta [counts] = odchylka[mm] * rozdzielczosc * 1024 / 8 / 5000
+            fun correction(deviation: Int, res: Int) = (deviation.toLong() * res * 1024 / 8 / 5000).toInt()
+            val correctionLeft = correction(ecuLeft - measuredLeft, resolution.first)
+            val correctionRight = correction(ecuRight - measuredRight, resolution.second)
+            val newLeft = if (invertLeft) oldLeft - correctionLeft else oldLeft + correctionLeft
+            val newRight = if (invertRight) oldRight - correctionRight else oldRight + correctionRight
+
+            // SGBD buduje telegram 0x41 od zera - wysokosci kontroli nieszczelnosci zostaja wyzerowane
+            // (potwierdzone logiem INPA), nalezy je potem zapisac ponownie przez storeLeakHeights
+            val newAdjustment = EHCAdjustmentData(adjustment.toByteArray().copyOfRange(0, 8) + ByteArray(8))
+            if (axle == EHCAxle.Front) {
+                newAdjustment.offsetFrontLeft = newLeft.toShort()
+                newAdjustment.offsetFrontRight = newRight.toShort()
+            } else {
+                newAdjustment.offsetRearLeft = newLeft.toShort()
+                newAdjustment.offsetRearRight = newRight.toShort()
+            }
+
+            return EHCCalibrationData(
+                axle = axle,
+                ecuHeightLeft = ecuLeft,
+                ecuHeightRight = ecuRight,
+                measuredHeightLeft = measuredLeft,
+                measuredHeightRight = measuredRight,
+                resolutionLeft = resolution.first,
+                resolutionRight = resolution.second,
+                offsetLeftOld = oldLeft,
+                offsetRightOld = oldRight,
+                offsetLeftNew = newLeft,
+                offsetRightNew = newRight,
+                adjustmentData = newAdjustment
+            )
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex: Exception) {
+            Logger.e { "$tag [calculateCalibration], $ex" }
+            return null
+        }
+    }
+
+    /** Zapisuje obliczona kalibracje (FAHRZEUG_HOEHE_ABGLEICHEN) - tylko gdy offsety w zakresie 100..900 */
+    override suspend fun writeCalibration(calibration: EHCCalibrationData): Boolean =
+        calibration.isValid && writeAdjustmentData(calibration.adjustmentData)
+
+    /** HOEHE_SPEICHERN - zapisuje aktualne wysokosci jako referencje kontroli nieszczelnosci */
+    override suspend fun storeLeakHeights(): Boolean {
+        val adjustment = readAdjustmentData() ?: return false
+        val heights = readSensorHeightsRaw() ?: return false
+        // SGBD kopiuje bajty 1:1 (kolejnosc odczytu FL, FR, RL, RR)
+        val data = adjustment.toByteArray().copyOfRange(0, 8) + heights
+        return writeAdjustmentData(EHCAdjustmentData(data))
+    }
+
+    /**
+     * HOEHE_COUNTS_VORGEBEN - ustawia offsety zera [counts] wprost.
+     * Jak w SGBD wysokosci kontroli nieszczelnosci sa zerowane.
+     */
+    suspend fun writeOffsetCounts(frontLeft: Int, frontRight: Int, rearLeft: Int, rearRight: Int): Boolean {
+        val adjustment = readAdjustmentData() ?: return false
+        interfaceWrite(byteArrayOf(0x9E.toByte()))
+        adjustment.offsetFrontLeft = frontLeft.toShort()
+        adjustment.offsetFrontRight = frontRight.toShort()
+        adjustment.offsetRearLeft = rearLeft.toShort()
+        adjustment.offsetRearRight = rearRight.toShort()
+        return writeAdjustmentData(EHCAdjustmentData(adjustment.toByteArray().copyOfRange(0, 8) + ByteArray(8)))
     }
 
     override suspend fun startManualControl(): Boolean {
@@ -464,20 +578,22 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         return (hi shl 8) + low
     }
 
+    /**
+     * Dostep zabezpieczony (KEY_SEED_NORMAL / KEY_SEED_EXPERT z SGBD EHC_2):
+     * 93 <poziom> -> seed w answer[3..4], nastepnie 94 <key_hi> <key_lo>.
+     * Poziom 1 - Zugriffsebene 1 (normal), poziom 2 - Zugriffsebene 2 (expert).
+     */
     suspend fun securityAccess(level : Int) : Boolean
     {
-        val message = interfaceWrite(byteArrayOf(0x93.toByte(),level.toByte()))
-        if (!message.isValid)
+        if (level != SECURITY_LEVEL_NORMAL && level != SECURITY_LEVEL_EXPERT)
+            return false
+        val message = interfaceWrite(byteArrayOf(0x93.toByte(), level.toByte()))
+        if (!message.isValid || message.answer.size < 5)
             return false
         try {
             val seed = ((message.answer[3].toInt() and 0xFF) shl 8) or (message.answer[4].toInt() and 0xFF)
-            val key = when (level) {
-                0 -> calculateKeyNormal(seed)
-                1 -> calculateKeyExpert(seed)
-                else -> return false
-            }
-            return interfaceWrite(byteArrayOf(0x94.toByte(), 0x00, (key shr 8).toByte(), (key and 0xFF).toByte())).isValid
-
+            val key = if (level == SECURITY_LEVEL_NORMAL) calculateKeyNormal(seed) else calculateKeyExpert(seed)
+            return interfaceWrite(byteArrayOf(0x94.toByte(), (key shr 8).toByte(), (key and 0xFF).toByte())).isValid
         } catch (ex: CancellationException) {
             throw ex
         } catch ( ex : Exception)
@@ -487,10 +603,17 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         }
     }
 
+    private companion object {
+        const val CMD_ADJUSTMENT_READ: Byte = 0x40
+        const val CMD_ADJUSTMENT_WRITE: Byte = 0x41
+        const val SECURITY_LEVEL_NORMAL = 1
+        const val SECURITY_LEVEL_EXPERT = 2
+    }
+
     override  suspend fun  beforeRead(){
-        securityAccess(1)
+        securityAccess(SECURITY_LEVEL_EXPERT)
     }
     override suspend fun beforeWrite() {
-        securityAccess(1)
+        securityAccess(SECURITY_LEVEL_EXPERT)
     }
 }

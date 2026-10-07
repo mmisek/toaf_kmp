@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_ehc_calibration_title">Suspension height calibration</string>
+    <string name="advance_control_ehc_calibration_info">Park the vehicle on level ground at normal height, doors closed. Measure each wheel's deviation from the nominal height and enter it in mm (+ = higher). Calibrate one axle at a time.</string>
+    <string name="advance_control_ehc_calibration_axle_front">Front axle</string>
+    <string name="advance_control_ehc_calibration_axle_rear">Rear axle</string>
+    <string name="advance_control_ehc_calibration_left">Left</string>
+    <string name="advance_control_ehc_calibration_right">Right</string>
+    <string name="advance_control_ehc_calibration_ecu_height">Height (module) [mm]</string>
+    <string name="advance_control_ehc_calibration_measured">Measured [mm]</string>
+    <string name="advance_control_ehc_calibration_measured_left">Measured left [mm]</string>
+    <string name="advance_control_ehc_calibration_measured_right">Measured right [mm]</string>
+    <string name="advance_control_ehc_calibration_deviation">Deviation [mm]</string>
+    <string name="advance_control_ehc_calibration_offset_old">Current offset</string>
+    <string name="advance_control_ehc_calibration_offset_new">New offset</string>
+    <string name="advance_control_ehc_calibration_calculate">Calculate</string>
+    <string name="advance_control_ehc_calibration_write">Write calibration</string>
+    <string name="advance_control_ehc_calibration_out_of_range">New offset out of range (100–900) – calibration cannot be written. Check the measurements.</string>
+    <string name="advance_control_ehc_calibration_store_leak">Store reference heights</string>
+    <string name="advance_control_ehc_calibration_store_leak_info">Writing the calibration clears the leak detection reference. After calibrating both axles store the current heights (vehicle at normal height).</string>
+    <string name="advance_control_ehc_calibration_leak_set">Leak detection reference: stored</string>
+    <string name="advance_control_ehc_calibration_leak_not_set">Leak detection reference: not stored</string>
+    <string name="advance_control_ehc_calibration_calculate_failed">Failed to calculate the calibration</string>
+    <string name="advance_control_ehc_calibration_write_successful">Calibration written</string>
+    <string name="advance_control_ehc_calibration_write_failed">Failed to write the calibration</string>
+    <string name="advance_control_ehc_calibration_store_successful">Reference heights stored</string>
+    <string name="advance_control_ehc_calibration_store_failed">Failed to store reference heights</string>
+    <string name="advance_control_ehc_calibration_busy">Communication in progress…</string>
+</resources>

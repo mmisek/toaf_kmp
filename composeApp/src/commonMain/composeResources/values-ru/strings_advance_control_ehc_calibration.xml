@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_ehc_calibration_title">Калибровка высоты подвески</string>
+    <string name="advance_control_ehc_calibration_info">Установите автомобиль на ровную поверхность в нормальной высоте, двери закрыты. Измерьте отклонение каждого колеса от номинальной высоты и введите его в мм (+ = выше). Калибруйте по одной оси.</string>
+    <string name="advance_control_ehc_calibration_axle_front">Передняя ось</string>
+    <string name="advance_control_ehc_calibration_axle_rear">Задняя ось</string>
+    <string name="advance_control_ehc_calibration_left">Левое</string>
+    <string name="advance_control_ehc_calibration_right">Правое</string>
+    <string name="advance_control_ehc_calibration_ecu_height">Высота (модуль) [мм]</string>
+    <string name="advance_control_ehc_calibration_measured">Измерено [мм]</string>
+    <string name="advance_control_ehc_calibration_measured_left">Измерено слева [мм]</string>
+    <string name="advance_control_ehc_calibration_measured_right">Измерено справа [мм]</string>
+    <string name="advance_control_ehc_calibration_deviation">Отклонение [мм]</string>
+    <string name="advance_control_ehc_calibration_offset_old">Текущий офсет</string>
+    <string name="advance_control_ehc_calibration_offset_new">Новый офсет</string>
+    <string name="advance_control_ehc_calibration_calculate">Рассчитать</string>
+    <string name="advance_control_ehc_calibration_write">Записать калибровку</string>
+    <string name="advance_control_ehc_calibration_out_of_range">Новый офсет вне диапазона (100–900) – калибровку записать нельзя. Проверьте измерения.</string>
+    <string name="advance_control_ehc_calibration_store_leak">Сохранить опорные высоты</string>
+    <string name="advance_control_ehc_calibration_store_leak_info">Запись калибровки стирает опорные значения контроля утечек. После калибровки обеих осей сохраните текущие высоты (автомобиль в нормальной высоте).</string>
+    <string name="advance_control_ehc_calibration_leak_set">Опорные значения контроля утечек: сохранены</string>
+    <string name="advance_control_ehc_calibration_leak_not_set">Опорные значения контроля утечек: отсутствуют</string>
+    <string name="advance_control_ehc_calibration_calculate_failed">Не удалось рассчитать калибровку</string>
+    <string name="advance_control_ehc_calibration_write_successful">Калибровка записана</string>
+    <string name="advance_control_ehc_calibration_write_failed">Не удалось записать калибровку</string>
+    <string name="advance_control_ehc_calibration_store_successful">Опорные высоты сохранены</string>
+    <string name="advance_control_ehc_calibration_store_failed">Не удалось сохранить опорные высоты</string>
+    <string name="advance_control_ehc_calibration_busy">Идёт обмен данными…</string>
+</resources>

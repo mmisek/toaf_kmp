@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_ehc_calibration_title">Kalibracja wysokości zawieszenia</string>
+    <string name="advance_control_ehc_calibration_info">Ustaw pojazd na równym podłożu w wysokości normalnej, z zamkniętymi drzwiami. Zmierz odchyłkę każdego koła od wysokości nominalnej i wpisz ją w mm (+ = wyżej). Kalibruj jedną oś naraz.</string>
+    <string name="advance_control_ehc_calibration_axle_front">Oś przednia</string>
+    <string name="advance_control_ehc_calibration_axle_rear">Oś tylna</string>
+    <string name="advance_control_ehc_calibration_left">Lewe</string>
+    <string name="advance_control_ehc_calibration_right">Prawe</string>
+    <string name="advance_control_ehc_calibration_ecu_height">Wysokość (moduł) [mm]</string>
+    <string name="advance_control_ehc_calibration_measured">Zmierzona [mm]</string>
+    <string name="advance_control_ehc_calibration_measured_left">Zmierzona lewa [mm]</string>
+    <string name="advance_control_ehc_calibration_measured_right">Zmierzona prawa [mm]</string>
+    <string name="advance_control_ehc_calibration_deviation">Odchyłka [mm]</string>
+    <string name="advance_control_ehc_calibration_offset_old">Obecny offset</string>
+    <string name="advance_control_ehc_calibration_offset_new">Nowy offset</string>
+    <string name="advance_control_ehc_calibration_calculate">Oblicz</string>
+    <string name="advance_control_ehc_calibration_write">Zapisz kalibrację</string>
+    <string name="advance_control_ehc_calibration_out_of_range">Nowy offset poza zakresem (100–900) – nie można zapisać kalibracji. Sprawdź pomiary.</string>
+    <string name="advance_control_ehc_calibration_store_leak">Zapisz wysokości referencyjne</string>
+    <string name="advance_control_ehc_calibration_store_leak_info">Zapis kalibracji kasuje referencję kontroli nieszczelności. Po skalibrowaniu obu osi zapisz bieżące wysokości (pojazd w wysokości normalnej).</string>
+    <string name="advance_control_ehc_calibration_leak_set">Referencja kontroli nieszczelności: zapisana</string>
+    <string name="advance_control_ehc_calibration_leak_not_set">Referencja kontroli nieszczelności: brak</string>
+    <string name="advance_control_ehc_calibration_calculate_failed">Nie udało się obliczyć kalibracji</string>
+    <string name="advance_control_ehc_calibration_write_successful">Kalibracja zapisana</string>
+    <string name="advance_control_ehc_calibration_write_failed">Nie udało się zapisać kalibracji</string>
+    <string name="advance_control_ehc_calibration_store_successful">Wysokości referencyjne zapisane</string>
+    <string name="advance_control_ehc_calibration_store_failed">Nie udało się zapisać wysokości referencyjnych</string>
+    <string name="advance_control_ehc_calibration_busy">Trwa komunikacja…</string>
+</resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_ehc_calibration_title">Calibración de altura de la suspensión</string>
+    <string name="advance_control_ehc_calibration_info">Coloque el vehículo sobre suelo nivelado a altura normal, con las puertas cerradas. Mida la desviación de cada rueda respecto a la altura nominal e introdúzcala en mm (+ = más alto). Calibre un eje cada vez.</string>
+    <string name="advance_control_ehc_calibration_axle_front">Eje delantero</string>
+    <string name="advance_control_ehc_calibration_axle_rear">Eje trasero</string>
+    <string name="advance_control_ehc_calibration_left">Izquierda</string>
+    <string name="advance_control_ehc_calibration_right">Derecha</string>
+    <string name="advance_control_ehc_calibration_ecu_height">Altura (módulo) [mm]</string>
+    <string name="advance_control_ehc_calibration_measured">Medida [mm]</string>
+    <string name="advance_control_ehc_calibration_measured_left">Medida izquierda [mm]</string>
+    <string name="advance_control_ehc_calibration_measured_right">Medida derecha [mm]</string>
+    <string name="advance_control_ehc_calibration_deviation">Desviación [mm]</string>
+    <string name="advance_control_ehc_calibration_offset_old">Offset actual</string>
+    <string name="advance_control_ehc_calibration_offset_new">Nuevo offset</string>
+    <string name="advance_control_ehc_calibration_calculate">Calcular</string>
+    <string name="advance_control_ehc_calibration_write">Escribir calibración</string>
+    <string name="advance_control_ehc_calibration_out_of_range">Nuevo offset fuera de rango (100–900): no se puede escribir la calibración. Compruebe las mediciones.</string>
+    <string name="advance_control_ehc_calibration_store_leak">Guardar alturas de referencia</string>
+    <string name="advance_control_ehc_calibration_store_leak_info">Escribir la calibración borra la referencia de detección de fugas. Tras calibrar ambos ejes guarde las alturas actuales (vehículo a altura normal).</string>
+    <string name="advance_control_ehc_calibration_leak_set">Referencia de detección de fugas: guardada</string>
+    <string name="advance_control_ehc_calibration_leak_not_set">Referencia de detección de fugas: no guardada</string>
+    <string name="advance_control_ehc_calibration_calculate_failed">No se pudo calcular la calibración</string>
+    <string name="advance_control_ehc_calibration_write_successful">Calibración escrita</string>
+    <string name="advance_control_ehc_calibration_write_failed">No se pudo escribir la calibración</string>
+    <string name="advance_control_ehc_calibration_store_successful">Alturas de referencia guardadas</string>
+    <string name="advance_control_ehc_calibration_store_failed">No se pudieron guardar las alturas de referencia</string>
+    <string name="advance_control_ehc_calibration_busy">Comunicación en curso…</string>
+</resources>
