@@ -8,4 +8,6 @@ interface IModuleEepromProgramming {
     fun getEepromSize(): Int
     fun getEepromReadSize(): Int
     fun getEepromWriteSize(): Int
+    val eepromWriteAvailable: Boolean
+        get() = true
 }

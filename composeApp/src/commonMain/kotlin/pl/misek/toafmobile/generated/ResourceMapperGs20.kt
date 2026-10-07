@@ -7,6 +7,18 @@ import toafmobile.composeapp.generated.resources.*
 object ResourceMapperGs20 {
     fun stringResource(resourceName: String): StringResource? {
         return when (resourceName) {
+            "gs20_control_eds_solenoid_1" -> Res.string.gs20_control_eds_solenoid_1
+            "gs20_control_eds_solenoid_4" -> Res.string.gs20_control_eds_solenoid_4
+            "gs20_control_engine_torque_intervention" -> Res.string.gs20_control_engine_torque_intervention
+            "gs20_control_fault_indicator_lamp" -> Res.string.gs20_control_fault_indicator_lamp
+            "gs20_control_programme_display" -> Res.string.gs20_control_programme_display
+            "gs20_control_reset_adaptation" -> Res.string.gs20_control_reset_adaptation
+            "gs20_control_reverse_light" -> Res.string.gs20_control_reverse_light
+            "gs20_control_selector_lever_display" -> Res.string.gs20_control_selector_lever_display
+            "gs20_control_shift_lock_solenoid" -> Res.string.gs20_control_shift_lock_solenoid
+            "gs20_control_shift_solenoid_1" -> Res.string.gs20_control_shift_solenoid_1
+            "gs20_control_shift_solenoid_2" -> Res.string.gs20_control_shift_solenoid_2
+            "gs20_control_shift_solenoid_3" -> Res.string.gs20_control_shift_solenoid_3
             "gs20_error_01" -> Res.string.gs20_error_01
             "gs20_error_04" -> Res.string.gs20_error_04
             "gs20_error_10" -> Res.string.gs20_error_10
@@ -102,12 +114,17 @@ object ResourceMapperGs20 {
             "gs20_live_data_asc_control" -> Res.string.gs20_live_data_asc_control
             "gs20_live_data_battery_voltage" -> Res.string.gs20_live_data_battery_voltage
             "gs20_live_data_break_signal" -> Res.string.gs20_live_data_break_signal
+            "gs20_live_data_converter_clutch_active" -> Res.string.gs20_live_data_converter_clutch_active
+            "gs20_live_data_converter_clutch_eds4" -> Res.string.gs20_live_data_converter_clutch_eds4
+            "gs20_live_data_cruise_control" -> Res.string.gs20_live_data_cruise_control
             "gs20_live_data_dkg" -> Res.string.gs20_live_data_dkg
+            "gs20_live_data_downshift" -> Res.string.gs20_live_data_downshift
             "gs20_live_data_driving_in_a_curve" -> Res.string.gs20_live_data_driving_in_a_curve
+            "gs20_live_data_emergency_program" -> Res.string.gs20_live_data_emergency_program
             "gs20_live_data_engine_speed" -> Res.string.gs20_live_data_engine_speed
             "gs20_live_data_engine_temperature" -> Res.string.gs20_live_data_engine_temperature
-            "gs20_live_data_error_lamp" -> Res.string.gs20_live_data_error_lamp
             "gs20_live_data_gear" -> Res.string.gs20_live_data_gear
+            "gs20_live_data_gear_engaging" -> Res.string.gs20_live_data_gear_engaging
             "gs20_live_data_gearbox_shift_l1" -> Res.string.gs20_live_data_gearbox_shift_l1
             "gs20_live_data_gearbox_shift_l3" -> Res.string.gs20_live_data_gearbox_shift_l3
             "gs20_live_data_gearbox_shift_l4" -> Res.string.gs20_live_data_gearbox_shift_l4
@@ -117,16 +134,22 @@ object ResourceMapperGs20 {
             "gs20_live_data_last_change" -> Res.string.gs20_live_data_last_change
             "gs20_live_data_oil_aging" -> Res.string.gs20_live_data_oil_aging
             "gs20_live_data_output_speed" -> Res.string.gs20_live_data_output_speed
+            "gs20_live_data_pressure_regulator_eds1" -> Res.string.gs20_live_data_pressure_regulator_eds1
             "gs20_live_data_program_automatic" -> Res.string.gs20_live_data_program_automatic
             "gs20_live_data_program_sport_manual" -> Res.string.gs20_live_data_program_sport_manual
+            "gs20_live_data_selector_lever_position" -> Res.string.gs20_live_data_selector_lever_position
+            "gs20_live_data_shift_in_progress" -> Res.string.gs20_live_data_shift_in_progress
+            "gs20_live_data_shift_program" -> Res.string.gs20_live_data_shift_program
             "gs20_live_data_solenoid_valve_1" -> Res.string.gs20_live_data_solenoid_valve_1
             "gs20_live_data_solenoid_valve_2" -> Res.string.gs20_live_data_solenoid_valve_2
             "gs20_live_data_solenoid_valve_3" -> Res.string.gs20_live_data_solenoid_valve_3
             "gs20_live_data_solenoid_valve_shift_lock" -> Res.string.gs20_live_data_solenoid_valve_shift_lock
+            "gs20_live_data_steptronic_detected" -> Res.string.gs20_live_data_steptronic_detected
             "gs20_live_data_steptronic_slot" -> Res.string.gs20_live_data_steptronic_slot
             "gs20_live_data_tip_down" -> Res.string.gs20_live_data_tip_down
             "gs20_live_data_tip_up" -> Res.string.gs20_live_data_tip_up
             "gs20_live_data_torque_converter_turbine_speed" -> Res.string.gs20_live_data_torque_converter_turbine_speed
+            "gs20_live_data_upshift" -> Res.string.gs20_live_data_upshift
             "gs20_live_data_value_1_gear" -> Res.string.gs20_live_data_value_1_gear
             "gs20_live_data_value_1_to_2" -> Res.string.gs20_live_data_value_1_to_2
             "gs20_live_data_value_2_gear" -> Res.string.gs20_live_data_value_2_gear
@@ -140,13 +163,41 @@ object ResourceMapperGs20 {
             "gs20_live_data_value_4_to_5" -> Res.string.gs20_live_data_value_4_to_5
             "gs20_live_data_value_5_gear" -> Res.string.gs20_live_data_value_5_gear
             "gs20_live_data_value_5_to_4" -> Res.string.gs20_live_data_value_5_to_4
+            "gs20_live_data_value_cruise_constant_speed" -> Res.string.gs20_live_data_value_cruise_constant_speed
+            "gs20_live_data_value_cruise_passive" -> Res.string.gs20_live_data_value_cruise_passive
+            "gs20_live_data_value_cruise_resume" -> Res.string.gs20_live_data_value_cruise_resume
+            "gs20_live_data_value_cruise_set_accelerate" -> Res.string.gs20_live_data_value_cruise_set_accelerate
+            "gs20_live_data_value_cruise_set_decelerate" -> Res.string.gs20_live_data_value_cruise_set_decelerate
             "gs20_live_data_value_d_to_r" -> Res.string.gs20_live_data_value_d_to_r
             "gs20_live_data_value_data" -> Res.string.gs20_live_data_value_data
+            "gs20_live_data_value_pn" -> Res.string.gs20_live_data_value_pn
             "gs20_live_data_value_pn_to_d" -> Res.string.gs20_live_data_value_pn_to_d
             "gs20_live_data_value_pn_to_r" -> Res.string.gs20_live_data_value_pn_to_r
             "gs20_live_data_value_program" -> Res.string.gs20_live_data_value_program
+            "gs20_live_data_value_program_a1" -> Res.string.gs20_live_data_value_program_a1
+            "gs20_live_data_value_program_a2" -> Res.string.gs20_live_data_value_program_a2
+            "gs20_live_data_value_program_a3" -> Res.string.gs20_live_data_value_program_a3
+            "gs20_live_data_value_program_b0" -> Res.string.gs20_live_data_value_program_b0
+            "gs20_live_data_value_program_e" -> Res.string.gs20_live_data_value_program_e
+            "gs20_live_data_value_program_hm" -> Res.string.gs20_live_data_value_program_hm
+            "gs20_live_data_value_program_ld" -> Res.string.gs20_live_data_value_program_ld
+            "gs20_live_data_value_program_m_lm" -> Res.string.gs20_live_data_value_program_m_lm
+            "gs20_live_data_value_program_s" -> Res.string.gs20_live_data_value_program_s
+            "gs20_live_data_value_program_so" -> Res.string.gs20_live_data_value_program_so
+            "gs20_live_data_value_program_step" -> Res.string.gs20_live_data_value_program_step
+            "gs20_live_data_value_program_wi" -> Res.string.gs20_live_data_value_program_wi
+            "gs20_live_data_value_program_wl" -> Res.string.gs20_live_data_value_program_wl
+            "gs20_live_data_value_program_xe" -> Res.string.gs20_live_data_value_program_xe
+            "gs20_live_data_value_program_xs" -> Res.string.gs20_live_data_value_program_xs
             "gs20_live_data_value_r_to_d" -> Res.string.gs20_live_data_value_r_to_d
             "gs20_live_data_value_rom" -> Res.string.gs20_live_data_value_rom
+            "gs20_live_data_value_selector_2" -> Res.string.gs20_live_data_value_selector_2
+            "gs20_live_data_value_selector_3" -> Res.string.gs20_live_data_value_selector_3
+            "gs20_live_data_value_selector_4" -> Res.string.gs20_live_data_value_selector_4
+            "gs20_live_data_value_selector_d" -> Res.string.gs20_live_data_value_selector_d
+            "gs20_live_data_value_selector_n" -> Res.string.gs20_live_data_value_selector_n
+            "gs20_live_data_value_selector_p" -> Res.string.gs20_live_data_value_selector_p
+            "gs20_live_data_value_selector_r" -> Res.string.gs20_live_data_value_selector_r
             "gs20_live_data_wheel_speed_front_left" -> Res.string.gs20_live_data_wheel_speed_front_left
             "gs20_live_data_wheel_speed_front_right" -> Res.string.gs20_live_data_wheel_speed_front_right
             "gs20_live_data_wheel_speed_rear_left" -> Res.string.gs20_live_data_wheel_speed_rear_left

@@ -32,7 +32,7 @@
       "block": "0x00",
       "byte": "0x03",
       "mask": "0xFF",
-      "factor_a": "0.392156862745098",
+      "factor_a": "0.395669291338583",
       "factor_b": "0",
       "unit": "%"
     },
@@ -88,7 +88,7 @@
       "mask": "0xFF",
       "factor_a": "2",
       "factor_b": "0",
-      "unit": "hm/h"
+      "unit": "km/h"
     },
     {
       "name": "wheel_speed_rear_left",
@@ -106,16 +106,34 @@
       "mask": "0xFF",
       "factor_a": "2",
       "factor_b": "0",
-      "unit": "hm/h"
+      "unit": "km/h"
     },
     {
-      "name": "wheel_speed_rear_right",
+      "name": "pressure_regulator_eds1",
       "block": "0x00",
       "byte": "0x0C",
       "mask": "0xFF",
-      "factor_a": "2",
+      "factor_a": "19.53125",
       "factor_b": "0",
-      "unit": "hm/h"
+      "unit": "mA"
+    },
+    {
+      "name": "converter_clutch_eds4",
+      "block": "0x00",
+      "byte": "0x0F",
+      "mask": "0xFF",
+      "factor_a": "0.392156862745098",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "converter_clutch_active",
+      "block": "0x00",
+      "byte": "0x11",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
     },
     {
       "name": "break_signal",
@@ -202,7 +220,7 @@
       "name": "program_sport_manual",
       "block": "0x00",
       "byte": "0x12",
-      "mask": "0x08",
+      "mask": "0x04",
       "factor_a": "1",
       "factor_b": "0",
       "unit": " "
@@ -211,7 +229,7 @@
       "name": "program_automatic",
       "block": "0x00",
       "byte": "0x12",
-      "mask": "0x04",
+      "mask": "0x08",
       "factor_a": "1",
       "factor_b": "0",
       "unit": " "
@@ -226,13 +244,52 @@
       "unit": " "
     },
     {
-      "name": "error_lamp",
+      "name": "emergency_program",
       "block": "0x00",
       "byte": "0x12",
       "mask": "0x01",
       "factor_a": "1",
       "factor_b": "0",
       "unit": " "
+    },
+    {
+      "name": "selector_lever_position",
+      "block": "0x00",
+      "byte": "0x12",
+      "mask": "0xF0",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x0C",
+          "text": "selector_p"
+        },
+        {
+          "data": "0x06",
+          "text": "selector_r"
+        },
+        {
+          "data": "0x0A",
+          "text": "selector_n"
+        },
+        {
+          "data": "0x03",
+          "text": "selector_d"
+        },
+        {
+          "data": "0x0F",
+          "text": "selector_4"
+        },
+        {
+          "data": "0x05",
+          "text": "selector_3"
+        },
+        {
+          "data": "0x09",
+          "text": "selector_2"
+        }
+      ]
     },
     {
       "name": "asc_button",
@@ -251,6 +308,37 @@
       "factor_a": "1",
       "factor_b": "0",
       "unit": " "
+    },
+    {
+      "name": "cruise_control",
+      "block": "0x00",
+      "byte": "0x13",
+      "mask": "0xE0",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "cruise_passive"
+        },
+        {
+          "data": "0x01",
+          "text": "cruise_constant_speed"
+        },
+        {
+          "data": "0x03",
+          "text": "cruise_resume"
+        },
+        {
+          "data": "0x05",
+          "text": "cruise_set_accelerate"
+        },
+        {
+          "data": "0x07",
+          "text": "cruise_set_decelerate"
+        }
+      ]
     },
     {
       "name": "kick_down",
@@ -323,59 +411,180 @@
       "name": "last_change",
       "block": "0x00",
       "byte": "0x15",
-      "mask": "0xFF",
+      "mask": "0x0F",
       "factor_a": "1",
       "factor_b": "0",
       "unit": " ",
       "values": [
         {
-          "data": "0x14",
-          "text": "5_to_4"
-        },
-        {
-          "data": "0x15",
-          "text": "4_to_3"
-        },
-        {
-          "data": "0x16",
-          "text": "3_to_2"
-        },
-        {
-          "data": "0x17",
-          "text": "2_to_1"
-        },
-        {
-          "data": "0x20",
+          "data": "0x00",
           "text": "1_to_2"
         },
         {
-          "data": "0x21",
+          "data": "0x01",
           "text": "2_to_3"
         },
         {
-          "data": "0x22",
+          "data": "0x02",
           "text": "3_to_4"
         },
         {
-          "data": "0x24",
+          "data": "0x03",
           "text": "4_to_5"
-        },        {
-          "data": "0x48",
+        },
+        {
+          "data": "0x04",
+          "text": "5_to_4"
+        },
+        {
+          "data": "0x05",
+          "text": "4_to_3"
+        },
+        {
+          "data": "0x06",
+          "text": "3_to_2"
+        },
+        {
+          "data": "0x07",
+          "text": "2_to_1"
+        },
+        {
+          "data": "0x08",
           "text": "pn_to_d"
         },
         {
-          "data": "0x49",
+          "data": "0x09",
           "text": "r_to_d"
         },
         {
-          "data": "0xCA",
+          "data": "0x0A",
           "text": "pn_to_r"
         },
         {
-          "data": "0x4B",
+          "data": "0x0B",
           "text": "d_to_r"
+        },
+        {
+          "data": "0x0C",
+          "text": "pn"
         }
       ]
+    },
+    {
+      "name": "shift_in_progress",
+      "block": "0x00",
+      "byte": "0x15",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "gear_engaging",
+      "block": "0x00",
+      "byte": "0x15",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "upshift",
+      "block": "0x00",
+      "byte": "0x15",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "downshift",
+      "block": "0x00",
+      "byte": "0x15",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "shift_program",
+      "block": "0x00",
+      "byte": "0x16",
+      "mask": "0xF0",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "program_xe"
+        },
+        {
+          "data": "0x01",
+          "text": "program_e"
+        },
+        {
+          "data": "0x02",
+          "text": "program_s"
+        },
+        {
+          "data": "0x03",
+          "text": "program_xs"
+        },
+        {
+          "data": "0x04",
+          "text": "program_a1"
+        },
+        {
+          "data": "0x05",
+          "text": "program_a2"
+        },
+        {
+          "data": "0x06",
+          "text": "program_a3"
+        },
+        {
+          "data": "0x07",
+          "text": "program_wi"
+        },
+        {
+          "data": "0x08",
+          "text": "program_m_lm"
+        },
+        {
+          "data": "0x09",
+          "text": "program_so"
+        },
+        {
+          "data": "0x0A",
+          "text": "program_b0"
+        },
+        {
+          "data": "0x0B",
+          "text": "program_step"
+        },
+        {
+          "data": "0x0C",
+          "text": "program_wl"
+        },
+        {
+          "data": "0x0D",
+          "text": "program_ld"
+        },
+        {
+          "data": "0x0F",
+          "text": "program_hm"
+        }
+      ]
+    },
+    {
+      "name": "steptronic_detected",
+      "block": "0x00",
+      "byte": "0x16",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
     }
   ]
 }

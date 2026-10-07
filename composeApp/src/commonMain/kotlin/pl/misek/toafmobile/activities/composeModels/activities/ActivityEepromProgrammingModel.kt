@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -36,6 +37,7 @@ import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.TopBarModel
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogNotFullVersion
 import pl.misek.toafmobile.activities.definitions.ToafColors
+import pl.misek.toafmobile.activities.snackbar.ToafSnackBarHost
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.modules.ModuleInfo
 import pl.misek.toafmobile.modules.ModulesManager
@@ -59,6 +61,8 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
     val userInfo by userInfoViewModel.userInfo.collectAsState()
     var showFullVersionDialog by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
+    val snackBarHostState = remember { SnackbarHostState() }
+    val notSupportedText = stringResource(Res.string.activity_main_function_not_supported_yet)
     var eepromReadData  by remember {mutableStateOf(ByteArray(0))}
     var moduleIdentification by remember {mutableStateOf<ModuleInfo?>(null)}
     var statusText by remember { mutableStateOf("") }
@@ -155,6 +159,7 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
             .padding(all = 0.dp)
             .fillMaxWidth()
             .fillMaxHeight(),
+        snackbarHost = { ToafSnackBarHost(hostState = snackBarHostState) },
         containerColor = ToafColors.toafBackground,
         topBar = {
             TopBarModel(
@@ -254,7 +259,9 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
                     modifier = Modifier.padding(5.dp).fillMaxWidth(),
                     buttonText = Res.string.activity_eeprom_programming_write_eeprom,
                     onClick = {
-                        if (userInfo.isFullVersion())
+                        if (!(currentModule as IModuleEepromProgramming).eepromWriteAvailable)
+                            showResult(scope, snackBarHostState, false, null, notSupportedText)
+                        else if (userInfo.isFullVersion())
                             readFileAndProgram()
                         else
                             showFullVersionDialog = true
