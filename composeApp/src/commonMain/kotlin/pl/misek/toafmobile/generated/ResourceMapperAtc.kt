@@ -43,13 +43,16 @@ object ResourceMapperAtc {
             "atc_live_data_car_speed" -> Res.string.atc_live_data_car_speed
             "atc_live_data_driver_required_blend" -> Res.string.atc_live_data_driver_required_blend
             "atc_live_data_driver_required_temp" -> Res.string.atc_live_data_driver_required_temp
+            "atc_live_data_driver_target_blend" -> Res.string.atc_live_data_driver_target_blend
             "atc_live_data_driver_target_temp" -> Res.string.atc_live_data_driver_target_temp
             "atc_live_data_evaporator_temp" -> Res.string.atc_live_data_evaporator_temp
+            "atc_live_data_fresh_air" -> Res.string.atc_live_data_fresh_air
             "atc_live_data_hand_drive" -> Res.string.atc_live_data_hand_drive
             "atc_live_data_in_car_temp" -> Res.string.atc_live_data_in_car_temp
             "atc_live_data_left_air_blend_pot" -> Res.string.atc_live_data_left_air_blend_pot
             "atc_live_data_left_side_temp" -> Res.string.atc_live_data_left_side_temp
             "atc_live_data_left_solar" -> Res.string.atc_live_data_left_solar
+            "atc_live_data_normal_function" -> Res.string.atc_live_data_normal_function
             "atc_live_data_passenger_required_blend" -> Res.string.atc_live_data_passenger_required_blend
             "atc_live_data_passenger_required_temp" -> Res.string.atc_live_data_passenger_required_temp
             "atc_live_data_passenger_target_blend" -> Res.string.atc_live_data_passenger_target_blend

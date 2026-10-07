@@ -32,7 +32,8 @@ class ModuleATC( protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddre
         val message = interfaceWrite(byteArrayOf(0x0B, 0x00))
         if (message.isValid) {
             try {
-                result[0x00] = message.answer.copyOfRange(3, message.answer.size)
+                // dane od answer[3] bez sumy kontrolnej (indeks SGBD - 3)
+                result[0x00] = message.answer.copyOfRange(3, message.answer.size - 1)
                 return result
             } catch (ex: CancellationException) {
                 throw ex

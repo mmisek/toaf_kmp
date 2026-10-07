@@ -37,7 +37,10 @@
     <string name="atc_live_data_hand_drive">Mano de conducción</string>
     <string name="atc_live_data_recirculation">Recirculación</string>
     <string name="atc_live_data_ac_compressor">Compresor de AC</string>
-    <string name="atc_live_data_atc_system">Sistema ATC</string>
+    <string name="atc_live_data_atc_system">Función A/C</string>
+    <string name="atc_live_data_driver_target_blend">Mezcla objetivo del conductor</string>
+    <string name="atc_live_data_fresh_air">Aire fresco</string>
+    <string name="atc_live_data_normal_function">Funcionamiento normal</string>
     <string name="atc_live_data_value_invalid">inválido</string>
     <string name="atc_live_data_value_left_hand">mano izquierda</string>
     <string name="atc_live_data_value_right_hand">mano derecha</string>

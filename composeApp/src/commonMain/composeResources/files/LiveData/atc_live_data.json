@@ -32,8 +32,8 @@
       "block": "0x00",
       "byte": "0x18",
       "mask": "0xFF",
-      "factor_a": "0.6569",
-      "factor_b": "-32.84",
+      "factor_a": "0.657895",
+      "factor_b": "-32.894737",
       "unit": "%"
     },
     {
@@ -41,8 +41,8 @@
       "block": "0x00",
       "byte": "0x17",
       "mask": "0xFF",
-      "factor_a": "0.6569",
-      "factor_b": "-32.84",
+      "factor_a": "0.657895",
+      "factor_b": "-32.894737",
       "unit": "%"
     },
     {
@@ -50,8 +50,8 @@
       "block": "0x00",
       "byte": "0x16",
       "mask": "0xFF",
-      "factor_a": "0.6569",
-      "factor_b": "-32.84",
+      "factor_a": "0.657895",
+      "factor_b": "-32.894737",
       "unit": "%"
     },
     {
@@ -77,8 +77,8 @@
       "block": "0x00",
       "byte": "0x13",
       "mask": "0xFF",
-      "factor_a": "0.403",
-      "factor_b": "-19.79",
+      "factor_a": "0.403529",
+      "factor_b": "-19.840157",
       "unit": "°C"
     },
     {
@@ -86,8 +86,8 @@
       "block": "0x00",
       "byte": "0x12",
       "mask": "0xFF",
-      "factor_a": "0.3641",
-      "factor_b": "-30.84",
+      "factor_a": "0.364157",
+      "factor_b": "-30.839608",
       "unit": "°C"
     },
     {
@@ -105,8 +105,8 @@
       "block": "0x00",
       "byte": "0x10",
       "mask": "0xFF",
-      "factor_a": "0.3749",
-      "factor_b": "-20.89",
+      "factor_a": "0.375020",
+      "factor_b": "-20.900000",
       "unit": "°C"
     },
     {
@@ -150,8 +150,8 @@
       "block": "0x00",
       "byte": "0x07",
       "mask": "0xFF",
-      "factor_a": "0.6569",
-      "factor_b": "-32.84",
+      "factor_a": "0.657895",
+      "factor_b": "-32.894737",
       "unit": "%"
     },
     {
@@ -159,8 +159,8 @@
       "block": "0x00",
       "byte": "0x06",
       "mask": "0xFF",
-      "factor_a": "0.6569",
-      "factor_b": "-32.84",
+      "factor_a": "0.657895",
+      "factor_b": "-32.894737",
       "unit": "%"
     },
     {
@@ -168,17 +168,17 @@
       "block": "0x00",
       "byte": "0x05",
       "mask": "0xFF",
-      "factor_a": "0.6569",
-      "factor_b": "-32.84",
+      "factor_a": "0.657895",
+      "factor_b": "-32.894737",
       "unit": "%"
     },
     {
-      "name": "passenger_target_blend",
+      "name": "driver_target_blend",
       "block": "0x00",
       "byte": "0x04",
       "mask": "0xFF",
-      "factor_a": "0.6569",
-      "factor_b": "-32.84",
+      "factor_a": "0.657895",
+      "factor_b": "-32.894737",
       "unit": "%"
     },
     {
@@ -186,8 +186,8 @@
       "block": "0x00",
       "byte": "0x03",
       "mask": "0xFF",
-      "factor_a": "0.6569",
-      "factor_b": "-32.84",
+      "factor_a": "0.657895",
+      "factor_b": "-32.894737",
       "unit": "%"
     },
     {
@@ -195,7 +195,7 @@
       "block": "0x00",
       "byte": "0x02",
       "mask": "0xFF",
-      "factor_a": "3",
+      "factor_a": "3.225806",
       "factor_b": "0",
       "unit": "%"
     },
@@ -208,38 +208,72 @@
       "factor_b": "0",
       "unit": " ",
       "values": [
-          {
-            "data": "0x00",
-            "text": "right_hand"
-          },
-          {
-            "data": "0x01",
-            "text": "left_hand"
-          }
-        ]
+        {
+          "data": "0x00",
+          "text": "right_hand"
+        },
+        {
+          "data": "0x01",
+          "text": "left_hand"
+        }
+      ]
+    },
+    {
+      "name": "normal_function",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "fresh_air",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "recirculation",
       "block": "0x00",
       "byte": "0x00",
-      "mask": "0x03",
+      "mask": "0x02",
       "factor_a": "1",
       "factor_b": "0",
       "unit": " ",
       "values": [
-          {
-            "data": "0x00",
-            "text": "invalid"
-          },
-          {
-            "data": "0x01",
-            "text": "fresh"
-          },
-          {
-            "data": "0x03",
-            "text": "recirculation"
-          }
-        ]
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "ac_compressor",
@@ -250,15 +284,15 @@
       "factor_b": "0",
       "unit": " ",
       "values": [
-          {
-            "data": "0x00",
-            "text": "off"
-          },
-          {
-            "data": "0x01",
-            "text": "on"
-          }
-        ]
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "atc_system",
@@ -269,15 +303,15 @@
       "factor_b": "0",
       "unit": " ",
       "values": [
-          {
-            "data": "0x00",
-            "text": "off"
-          },
-          {
-            "data": "0x01",
-            "text": "on"
-          }
-        ]
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     }
   ]
 }

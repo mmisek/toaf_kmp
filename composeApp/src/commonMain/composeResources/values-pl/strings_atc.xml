@@ -49,7 +49,10 @@
     <string name="atc_live_data_hand_drive">Układ kierowniczy</string>
     <string name="atc_live_data_recirculation">Recyrkulacja</string>
     <string name="atc_live_data_ac_compressor">Kompresor klimatyzacji</string>
-    <string name="atc_live_data_atc_system">System ATC</string>
+    <string name="atc_live_data_atc_system">Funkcja A/C</string>
+    <string name="atc_live_data_driver_target_blend">Docelowe mieszanie dla kierowcy</string>
+    <string name="atc_live_data_fresh_air">Świeże powietrze</string>
+    <string name="atc_live_data_normal_function">Normalna praca</string>
     <string name="atc_live_data_value_invalid">Nieprawidłowy</string>
     <string name="atc_live_data_value_left_hand">Lewostronny</string>
     <string name="atc_live_data_value_right_hand">Prawostronny</string>

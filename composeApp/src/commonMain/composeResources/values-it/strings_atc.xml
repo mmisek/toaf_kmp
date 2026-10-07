@@ -35,7 +35,10 @@
     <string name="atc_live_data_hand_drive">Guida (DX/SX)</string>
     <string name="atc_live_data_recirculation">Ricircolo</string>
     <string name="atc_live_data_ac_compressor">Compressore AC</string>
-    <string name="atc_live_data_atc_system">Sistema ATC</string>
+    <string name="atc_live_data_atc_system">Funzione A/C</string>
+    <string name="atc_live_data_driver_target_blend">Miscelazione obiettivo conducente</string>
+    <string name="atc_live_data_fresh_air">Aria esterna</string>
+    <string name="atc_live_data_normal_function">Funzionamento normale</string>
     <string name="atc_live_data_value_invalid">non valido</string>
     <string name="atc_live_data_value_left_hand">guida a sinistra</string>
     <string name="atc_live_data_value_right_hand">guida a destra</string>

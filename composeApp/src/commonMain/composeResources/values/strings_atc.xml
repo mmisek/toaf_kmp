@@ -37,7 +37,10 @@
     <string name="atc_live_data_hand_drive">Hand drive</string>
     <string name="atc_live_data_recirculation">Recirculation</string>
     <string name="atc_live_data_ac_compressor">AC compressor</string>
-    <string name="atc_live_data_atc_system">ATC system</string>
+    <string name="atc_live_data_atc_system">A/C function</string>
+    <string name="atc_live_data_driver_target_blend">Driver target blend</string>
+    <string name="atc_live_data_fresh_air">Fresh air</string>
+    <string name="atc_live_data_normal_function">Normal function</string>
     <string name="atc_live_data_value_invalid">invalid</string>
     <string name="atc_live_data_value_left_hand">left hand</string>
     <string name="atc_live_data_value_right_hand">right hand</string>

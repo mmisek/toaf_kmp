@@ -35,7 +35,10 @@
     <string name="atc_live_data_hand_drive">Расположение руля</string>
     <string name="atc_live_data_recirculation">Рециркуляция</string>
     <string name="atc_live_data_ac_compressor">Компрессор кондиционера</string>
-    <string name="atc_live_data_atc_system">Система ATC</string>
+    <string name="atc_live_data_atc_system">Функция A/C</string>
+    <string name="atc_live_data_driver_target_blend">Целевое смешивание (вод.)</string>
+    <string name="atc_live_data_fresh_air">Свежий воздух</string>
+    <string name="atc_live_data_normal_function">Нормальный режим</string>
     <string name="atc_live_data_value_invalid">неверно</string>
     <string name="atc_live_data_value_left_hand">левый руль</string>
     <string name="atc_live_data_value_right_hand">правый руль</string>
