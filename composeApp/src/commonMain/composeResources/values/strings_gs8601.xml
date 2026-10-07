@@ -45,7 +45,7 @@
     <string name="gs8601_live_data_upshift">Shift direction</string>
     <string name="gs8601_live_data_low_range">Low range active</string>
     <string name="gs8601_live_data_shift_lock_variant">Shift lock variant fitted</string>
-    <string name="gs8601_live_data_gearbox_selector">Gear selector position</string>
+    <string name="gs8601_live_data_gearbox_selector">Gearbox switch mounting</string>
     <string name="gs8601_live_data_selector_lever_position">Selector lever position</string>
  
     <string name="gs8601_live_data_value_M">Manual</string>
@@ -66,17 +66,34 @@
     <string name="gs8601_live_data_value_upshift_active">Upshift</string>
     <string name="gs8601_live_data_value_downshift_active">Downshift</string>
     <string name="gs8601_live_data_value_no_shift">No shift</string>
-    <string name="gs8601_live_data_value_unknown">Unknown</string>
     <string name="gs8601_live_data_value_bottom_E38_E39">Bottom (E38/E39/E31/E46)</string>
     <string name="gs8601_live_data_value_top_E34">Top (E34)</string>
-    <string name="gs8601_live_data_value_middle">Middle</string>
-    <string name="gs8601_live_data_value_P_or_N">P / N</string>
     <string name="gs8601_live_data_value_R">R — Reverse</string>
     <string name="gs8601_live_data_value_N">N — Neutral</string>
     <string name="gs8601_live_data_value_D">D — Drive</string>
     <string name="gs8601_live_data_value_3">3 — Third</string>
     <string name="gs8601_live_data_value_2">2 — Second</string>
-    <string name="gs8601_live_data_value_1">1 — First</string>
+    <string name="gs8601_live_data_shift_program">Shift program</string>
+    <string name="gs8601_live_data_program_mode">Program mode</string>
+    <string name="gs8601_live_data_steptronic_detected">Steptronic detected</string>
+    <string name="gs8601_live_data_kombi_interface">Instrument cluster interface</string>
+    <string name="gs8601_live_data_value_P">P — Park</string>
+    <string name="gs8601_live_data_value_4">4 — Fourth</string>
+    <string name="gs8601_live_data_value_S">Sport</string>
+    <string name="gs8601_live_data_value_serial_1_4_bd">Serial 1.4 Bd</string>
+    <string name="gs8601_live_data_value_serial_150_bd">Serial 150 Bd</string>
+    <string name="gs8601_live_data_value_program_xe">XE</string>
+    <string name="gs8601_live_data_value_program_e">E</string>
+    <string name="gs8601_live_data_value_program_s">S</string>
+    <string name="gs8601_live_data_value_program_xs">XS</string>
+    <string name="gs8601_live_data_value_program_a1">A1</string>
+    <string name="gs8601_live_data_value_program_a2">A2</string>
+    <string name="gs8601_live_data_value_program_a3">A3</string>
+    <string name="gs8601_live_data_value_program_w1">W1</string>
+    <string name="gs8601_live_data_value_program_m">M</string>
+    <string name="gs8601_live_data_value_program_so">So</string>
+    <string name="gs8601_live_data_value_program_b0">B0</string>
+    <string name="gs8601_live_data_value_program_m1">M1</string>
 
 
 	<string name="gs8601_error_01">Pressure controller EDS 1</string>

@@ -24,12 +24,13 @@ import pl.misek.toafmobile.modules.interfaces.IModuleControl
 import pl.misek.toafmobile.modules.interfaces.IModuleEepromProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleFlashProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
+import pl.misek.toafmobile.protocols.OBDMessage
 import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.*
 import java.util.Calendar
 import java.util.Locale
 
-class ModuleGS8601(protocolDS2: ProtocolDS2?) :
+class ModuleGS8601(val protocolDS2: ProtocolDS2?) :
     ModuleDS2( protocolDS2, ModuleAddress.MODULE_GS8601, listOf(CarType.L322)),
     IModuleLiveData,
     IModuleEepromProgramming,
@@ -38,11 +39,6 @@ class ModuleGS8601(protocolDS2: ProtocolDS2?) :
     private var tag = "ModuleGS8601"
     private val _programmingState =  MutableSharedFlow<FlashProgrammingState>(replay = 10, extraBufferCapacity = 64, onBufferOverflow = BufferOverflow.DROP_OLDEST)
     override val programmingState = _programmingState.asSharedFlow()
-    private val booleanMap: Map<Int, StringResource> = mapOf(
-        0x00 to Res.string.coding_not_active,
-        0x01 to Res.string.coding_active
-    )
-
     private val gearMap: Map<Int, StringResource> = mapOf(
         0x20 to Res.string.gs20_live_data_value_1_gear,
         0x40 to Res.string.gs20_live_data_value_2_gear,
@@ -82,13 +78,13 @@ class ModuleGS8601(protocolDS2: ProtocolDS2?) :
         0x07 to GS20FreezeFrameData("ºC", 0.toByte(), 1f, 1f, -48f, null),
         0x08 to GS20FreezeFrameData("ºC", 0.toByte(), 1f, 1f, -40f, null),
         0x09 to GS20FreezeFrameData("V", 0.toByte(), 16f, 198f, 0f, null),
-        0x0A to GS20FreezeFrameData("km", 0.toByte(), 10f, 1f, 0f, null),
-        0x0B to GS20FreezeFrameData("", 0.toByte(), 1f, 1f, 0f, booleanMap),
-        0x0C to GS20FreezeFrameData("", 0.toByte(), 1f, 1f, 0f, booleanMap),
-        0x0D to GS20FreezeFrameData("", 0.toByte(), 1f, 1f, 0f, booleanMap),
-        0x0E to GS20FreezeFrameData("", 0.toByte(), 1f, 1f, 0f, booleanMap),
-        0x0F to GS20FreezeFrameData("", 0.toByte(), 1f, 1f, 0f, booleanMap),
-        0x10 to GS20FreezeFrameData("", 0.toByte(), 1f, 1f, 0f, booleanMap),
+        0x0A to GS20FreezeFrameData("", 0.toByte(), 1f, 1f, 0f, null),
+        0x0B to GS20FreezeFrameData("", 0.toByte(), 1f, 1f, 0f, null),
+        0x0C to GS20FreezeFrameData("", 0.toByte(), 1f, 1f, 0f, null),
+        0x0D to GS20FreezeFrameData("", 0.toByte(), 1f, 1f, 0f, null),
+        0x0E to GS20FreezeFrameData("", 0.toByte(), 1f, 1f, 0f, null),
+        0x0F to GS20FreezeFrameData("", 0.toByte(), 1f, 1f, 0f, null),
+        0x10 to GS20FreezeFrameData("", 0.toByte(), 1f, 1f, 0f, null),
         0x11 to GS20FreezeFrameData("rpm", 0.toByte(), 32f, 1f, 0f, null),
     )
 
@@ -147,10 +143,8 @@ class ModuleGS8601(protocolDS2: ProtocolDS2?) :
         0xFF to arrayOf(0xFF, 0xFF, 0xFF),
     )
 
-    private val errorDetails = byteArrayOf(
-        0x01,0x02,0x03,0x04,0x05,0x06,0x0A,0x0B,
-        0x0C,0x0D,0x10,0x20,0x40,0x80.toByte(),0xFE.toByte()
-    )
+    /** Flagi rodzaju bledu (gorny polbajt), dolny polbajt to wartosc z tabeli FARTTEXTE */
+    private val errorTypeFlags = intArrayOf(0x10, 0x20, 0x40, 0x80)
 
     override fun getKoinName() = KoinNames.ModuleL322Gs8601
 
@@ -206,212 +200,169 @@ class ModuleGS8601(protocolDS2: ProtocolDS2?) :
         return null
     }
 
+    /**
+     * FS_LESEN (SGBD GS 8.60.1): 04 01, answer[3] - liczba bledow (max 5), rekordy po 0x13 bajtow od answer[4]:
+     * +0 kod bledu, +1 rodzaj (dolny polbajt - wartosc z FARTTEXTE, bity 0x10..0x80 - flagi),
+     * +2 licznik wystapien, +3 licznik CARB, +4.. 3 zestawy danych zamrozonych po 5 bajtow
+     * (3 warunki + km 16 bit big endian), wazne tylko min(licznik wystapien, 3) zestawow.
+     */
     override suspend fun getAllErrors(): List<ModuleError>? {
-        val nextErrorOffset = 0x13
         var result: MutableList<ModuleError>? = null
-        val message = interfaceWrite(byteArrayOf(0x04,0x01))
-        if (message.isValid) {
-            try {
-                val errorCount = message.answer[3].toInt() and 0xFF
+        val message = interfaceWrite(byteArrayOf(0x04, 0x01))
+        try {
+            if (message.isValid) {
                 result = ArrayList()
-                for( n in 0..<errorCount)
-                {
-                    val error = message.answer[4 + n * nextErrorOffset].toInt() and 0xFF
-                    val errorCode = String.format("%02X", error)
+                val answer = message.answer
+                val errorCount = minOf(answer[3].toInt() and 0xFF, MAX_ERRORS)
+                for (n in 0 until errorCount) {
+                    val start = 4 + n * ERROR_RECORD_SIZE
+                    if (start + ERROR_RECORD_SIZE > answer.size)
+                        break
+                    val error = answer[start].toInt() and 0xFF
+                    val errorType = answer[start + 1].toInt() and 0xFF
+                    val frequency = answer[start + 2].toInt() and 0xFF
                     val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
 
-                    for (j in errorDetails.indices) {
-                        if ((message.answer[5 + n * nextErrorOffset].toInt() and errorDetails[j].toInt()) == errorDetails[j].toInt()) {
-                            val errorDetailName = String.format("gs8601_error_detail_%02X", errorDetails[j])
-                            ResourceMapper.stringResource(errorDetailName)?.let { errorDescription.add(Pair(it, null)) }
-                        }
+                    // Wartosc 0x00 to "allg. Fehler" - tekst trzymany pod kluczem FE
+                    val errorTypeValue = errorType and 0x0F
+                    ResourceMapper
+                        .stringResource(String.format("gs8601_error_detail_%02X", if (errorTypeValue == 0) 0xFE else errorTypeValue))
+                        ?.let { errorDescription.add(Pair(it, null)) }
+                    for (flag in errorTypeFlags) {
+                        if ((errorType and flag) == flag)
+                            ResourceMapper
+                                .stringResource(String.format("gs8601_error_detail_%02X", flag))
+                                ?.let { errorDescription.add(Pair(it, null)) }
                     }
-
+                    errorDescription.add(ResourceHelper.getErrorDescriptionCount(frequency))
                     errorDescription.add(
-                        ResourceHelper.getErrorDescriptionCount(
-                            (message.answer[7 + n * nextErrorOffset].toInt() and 0xFF)
-                        )
+                        ResourceHelper.getErrorDescriptionLogisticCounter(answer[start + 3].toInt() and 0xFF)
                     )
 
-                    val freezeFrameCount = message.answer[6 + n * nextErrorOffset].toInt() and 0xFF
-                    var freezeFrameNumber = 0
-                    repeat(freezeFrameCount)
-                    {
+                    val localErrorMatrix = errorMatrix[error]
+                    for (m in 0 until minOf(frequency, FREEZE_FRAME_SETS)) {
+                        val setStart = start + 4 + 5 * m
                         errorDescription.add(
                             Pair(
                                 Res.string.dde_error_freeze_frame_number,
-                                (freezeFrameNumber + 1).toString()
+                                (m + 1).toString()
                             )
                         )
-                        val localErrorMatrix = errorMatrix[error]
-                        if (localErrorMatrix != null) {
-                            for (i in 0..<localErrorMatrix.size) {
-                                val eff = errorFreezeFrame[localErrorMatrix[i]]
-                                if (eff != null) {
-                                    val rawValue = (message.answer[(i + 8) + 5 * freezeFrameNumber + n * nextErrorOffset].toInt() and 0xFF)
-                                    val value = rawValue.toFloat() * eff.multiplier / eff.divider + eff.adder
-                                    val detailName =
-                                        String.format("gs8601_error_detail_freeze_frame_%02X", localErrorMatrix[i]).lowercase()
-                                    if (eff.unit.isEmpty()) {
-                                        ResourceMapperGs8601.stringResource(detailName)?.let {
-                                            errorDescription.add(
-                                                Pair(
-                                                    it,
-                                                    String.format(
-                                                        Locale.getDefault(),
-                                                        "%.2f",
-                                                        value
-                                                    )
-                                                )
-                                            )
-                                        }
-                                    } else {
-                                        ResourceMapperGs8601.stringResource(detailName)?.let {
-                                            errorDescription.add(
-                                                Pair(
-                                                    it,
-                                                    String.format(
-                                                        Locale.getDefault(),
-                                                        "%.2f %s",
-                                                        value,
-                                                        eff.unit
-                                                    )
-                                                )
-                                            )
-                                        }
-                                    }
-                                }
-                            }
-                            val odometer =
-                                ((message.answer[11 + 5 * freezeFrameNumber + n * nextErrorOffset].toInt() and 0xFF) shl 8) + (message.answer[12 + 5 * freezeFrameNumber + n * nextErrorOffset].toInt() and 0xFF)
+                        localErrorMatrix?.forEachIndexed { i, frameId ->
+                            val eff = errorFreezeFrame[frameId] ?: return@forEachIndexed
+                            val detailName = String.format("gs8601_error_detail_freeze_frame_%02X", frameId).lowercase()
+                            val name = ResourceMapperGs8601.stringResource(detailName) ?: return@forEachIndexed
+                            val rawValue = answer[setStart + i].toInt() and 0xFF
+                            val value = rawValue.toFloat() * eff.multiplier / eff.divider + eff.adder
                             errorDescription.add(
                                 Pair(
-                                    Res.string.dde_error_ff_odometer,
-                                    String.format(Locale.getDefault(), "%d km", odometer)
+                                    name,
+                                    if (eff.unit.isEmpty())
+                                        rawValue.toString()
+                                    else
+                                        String.format(Locale.getDefault(), "%.2f %s", value, eff.unit)
                                 )
                             )
                         }
-                        freezeFrameNumber++
+                        val odometer = ((answer[setStart + 3].toInt() and 0xFF) shl 8) +
+                                (answer[setStart + 4].toInt() and 0xFF)
+                        errorDescription.add(
+                            Pair(
+                                Res.string.dde_error_ff_odometer,
+                                String.format(Locale.getDefault(), "%d km", odometer)
+                            )
+                        )
                     }
-                    result.add(ModuleError(ModuleAddress.MODULE_GS8601, errorCode, errorDescription))
+                    result.add(ModuleError(ModuleAddress.MODULE_GS8601, String.format("%02X", error), errorDescription))
                 }
-            } catch (ex: CancellationException) {
-                throw ex
-            } catch (ex: Exception) {
-                Logger.e { "$tag [getIdentification], $ex, $message" }
             }
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex: Exception) {
+            Logger.e { "$tag [getAllErrors], $ex, $message" }
         }
         return result
     }
+
     override fun getEepromSize(): Int  = 256
 
     override fun getEepromReadSize(): Int  = 0x10
 
     override fun getEepromWriteSize(): Int  = 0x10
 
-    override suspend fun readEeprom(address: Int, size: Int): ByteArray? {
-        val message = interfaceWrite(
-            byteArrayOf(
-                0x06,
-                0x03,
-                0x00,
-                0x00,
-                (address and 0xFF).toByte(),
-                size.toByte()))
-        try {
-            return if (message.isValid) message.answer.copyOfRange(0x03, 3 + size) else null
-        } catch (ex: CancellationException) {
-            throw ex
-        } catch (ex : Exception) {
-            Logger.e {"$tag [readEeprom], $ex, $message"}
-            return null
-        }
-    }
+    override suspend fun readEeprom(address: Int, size: Int): ByteArray? =
+        readMemory(MEMORY_EEPROM, address.toLong(), size)
 
+    /**
+     * SPEICHER_SCHREIBEN: 07 03 A2 A1 A0 N dane, N - liczba bajtow.
+     * Odpowiedz: [7] liczba zapisanych bajtow, [8] weryfikacja (1 - OK, 2 - blad, 3 - komorka nie skasowana).
+     */
     override suspend fun writeEeprom(address: Int, data: ByteArray): Boolean {
-        val size = data.size
         val dataToWrite =
             byteArrayOf(
                 0x07,
-                0x03,
-                0x00,
-                0x00,
+                MEMORY_EEPROM.toByte(),
+                ((address shr 16) and 0xFF).toByte(),
+                ((address shr 8) and 0xFF).toByte(),
                 (address and 0xFF).toByte(),
-                (size / 2).toByte()) + data
-        return interfaceWrite(dataToWrite).isValid
+                data.size.toByte()) + data
+        val message = interfaceWrite(dataToWrite)
+        if (!message.isValid)
+            return false
+        val answer = message.answer
+        if (answer.size < 10) {
+            Logger.e { "$tag [writeEeprom], short answer, $message" }
+            return false
+        }
+        return (answer[7].toInt() and 0xFF) == data.size && answer[8].toInt() == 0x01
     }
 
-    override suspend fun control(controlElement: ControlElement): Boolean {
-        when (controlElement.block) {
-            0x00 -> {
-                if ( controlElement.controlSetValue != null) {
-                    val data = byteArrayOf(0x0C, controlElement.byteInBlock.toByte(), controlElement.controlSetValue!!.value.toByte(), 0x00)
-                    val message = interfaceWrite(data)
-                    return message.isValid && message.answer.size == 5 && message.answer[0x04].toInt() == 0x00
-                }
-            }
+    /** Zapis EEPROM zablokowany do czasu weryfikacji w aucie */
+    override val eepromWriteAvailable: Boolean = false
 
-            0x01 -> return interfaceWrite(byteArrayOf(0x43.toByte(), 0x00.toByte())).isValid
-            else -> {}
+    /**
+     * Blok 0x00 - STEUERN_STELLGLIED: 0C PIN WARTOSC 00, PIN z tabeli STELLGLIEDER,
+     * wartosc: 0x00 - nie steruj, 0x01-0xFE - takt sekundowy, 0xFF - sterowanie ciagle.
+     * Odpowiedz [4] - STAT_ANSTEUERUNG (0 - sterowanie poprawne).
+     * Blok 0x01 - RESET_ADAPTION: 43 00.
+     */
+    override suspend fun control(controlElement: ControlElement): Boolean {
+        try {
+            when (controlElement.block) {
+                0x00 -> {
+                    val setValue = controlElement.controlSetValue ?: return false
+                    val message = interfaceWrite(
+                        byteArrayOf(0x0C, controlElement.byteInBlock.toByte(), setValue.value.coerceIn(0, 0xFF).toByte(), 0x00)
+                    )
+                    if (!message.isValid)
+                        return false
+                    // [0] adres, [1] dlugosc, [2] status, [3] PIN, [4] STAT_ANSTEUERUNG, [5] suma kontrolna
+                    return message.answer.size < 6 || message.answer[4].toInt() == 0x00
+                }
+
+                0x01 -> return interfaceWrite(byteArrayOf(0x43, 0x00)).isValid
+                else -> {}
+            }
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex: Exception) {
+            Logger.e { "$tag [control], $ex" }
         }
         return false
     }
+
+    /**
+     * SGBD GS 8.60.1 nie zawiera programowania flash - SPEICHER_SCHREIBEN pozwala zapisywac tylko
+     * EEPROM / RAM, brak kasowania i trybu bootloadera (procedura jest w plikach WinKFP).
+     */
     override suspend fun writeFlash(data: ByteArray) {
-        var blockSize = 0xF8
-        val steps = 0x3B
-        val startTime = Calendar.getInstance().time
-
-        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_start))
-        _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-            Res.string.activity_flash_programming_file_size,
-            data.size.toString()))
-        if (data.size != 0x3FFE) {
-            _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_wrong_file_size))
-        } else {
-            _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_read_identification))
-            val moduleInfo = getIdentification()
-            val vin = getVIN()
-            if (moduleInfo != null) {
-                _programmingState.tryEmit(FlashProgrammingState.Message("ID1 : " + moduleInfo.id1))
-                _programmingState.tryEmit(FlashProgrammingState.Message("ID2 : " + moduleInfo.id2))
-            }
-            _programmingState.tryEmit(FlashProgrammingState.Message("VIN : $vin"))
-
-            var progress = 0
-            _programmingState.tryEmit(FlashProgrammingState.Progress(progress))
-            var x = 0xf8
-            while (x < 0x3928) {
-/*
-                    dataToWrite = data.copyOfRange(0x00, 0xF8)
-                    if (writeFlashData(dataToWrite)) {
-                        _programmingState.tryEmit(FlashProgrammingState.Progress(progress++ * 100 / steps))
-                    } else {
-                        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_write_error))
-                    }
-                }
-*/
-            }
-
-            val endTime = Calendar.getInstance().time
-            val totalMillis = endTime.time - startTime.time
-            val seconds = (totalMillis / 1000).toInt() % 60
-            val minutes = ((totalMillis / 1000).toInt() / 60) % 60
-            val hours = (totalMillis / 1000).toInt() / 3600
-            _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-                Res.string.activity_flash_programming_write_time,
-                String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds)
-            ))
-            _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_ecu_reset))
-        }
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_main_function_not_supported_yet))
     }
 
     override suspend fun readFlash() {
         val startAddress: Long = 0x000000
-        val size: Long = 0x03FFFF
+        val size: Long = 0x040000
         var result = ByteArray(0)
-        var blockSize = 0x80
-        val endAddress = startAddress + size
-        val steps = size.toInt() / blockSize
         val startTime = Calendar.getInstance().time
         _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_start))
         _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_read_identification))
@@ -423,22 +374,38 @@ class ModuleGS8601(protocolDS2: ProtocolDS2?) :
             _programmingState.tryEmit(FlashProgrammingState.Message("ID : " + moduleInfo.id1))
         }
         _programmingState.tryEmit(FlashProgrammingState.Message("VIN : $vin"))
+
+        val pointers = interfaceWrite(byteArrayOf(0x0D))
+        val blockSize = readMaxDataBlockLength(pointers)
+        val baudRates = readSupportedBaudRates(pointers)
+        _programmingState.tryEmit(FlashProgrammingState.Message(String.format("Block: 0x%02X", blockSize)))
+        if (baudRates != null)
+            _programmingState.tryEmit(FlashProgrammingState.Message("Baud: " + baudRates.joinToString(", ")))
+
+        val endAddress = startAddress + size
+        val steps = (size.toInt() + blockSize - 1) / blockSize
         var x = 0f
         _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_flash_reading))
+        // Szybsza transmisja tylko gdy sterownik podal 125000 na liscie predkosci
+        val fastBaudRate = baudRates != null && baudRates.contains(FAST_BAUD_RATE) && setEcuBaudRate(FAST_BAUD_RATE)
 
         var i = startAddress
         while (i < endAddress) {
             _programmingState.tryEmit(FlashProgrammingState.Progress(((x++ * 100) / steps).toInt()))
-            if (i == 0x13FF80L) blockSize = 0x7E
-            val data = readFlashData(i, blockSize)
-            if (data.size == blockSize) {
+            val currentBlockSize = minOf(blockSize.toLong(), endAddress - i).toInt()
+            val data = readMemory(MEMORY_FLASH, i, currentBlockSize)
+            if (data != null) {
                 result += data
             } else {
                 _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_read_error))
+                if (fastBaudRate)
+                    setEcuBaudRate(DEFAULT_BAUD_RATE)
                 return
             }
-            i += blockSize.toLong()
+            i += currentBlockSize.toLong()
         }
+        if (fastBaudRate)
+            setEcuBaudRate(DEFAULT_BAUD_RATE)
 
         val endTime = Calendar.getInstance().time
         val totalMillis = endTime.time - startTime.time
@@ -455,7 +422,6 @@ class ModuleGS8601(protocolDS2: ProtocolDS2?) :
         _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_close))
         if (result.size.toLong() == size) {
             try {
-                result = result.copyOfRange(0, (endAddress - startAddress).toInt())
                 _programmingState.tryEmit(FlashProgrammingState.FlashData(result.toList(), moduleInfo, vin))
             } catch (ex: CancellationException) {
                 throw ex
@@ -465,34 +431,101 @@ class ModuleGS8601(protocolDS2: ProtocolDS2?) :
         }
     }
 
-    private suspend fun readFlashData(address: Long, size: Int): ByteArray {
+    /**
+     * SPEICHER_LESEN: 06 TYP A2 A1 A0 N, dane od answer[3] bez sumy kontrolnej.
+     * Typy z tabeli SPEICHER: 00 DEFAULT, 03 EEPROM, 06 FLASH_EPROM, 07 LOG_ADR_RAM.
+     */
+    private suspend fun readMemory(memoryType: Int, address: Long, size: Int): ByteArray? {
         val message = interfaceWrite(
             byteArrayOf(
                 0x06,
-                0x06,
+                memoryType.toByte(),
                 ((address and 0xFF0000L) shr 16).toByte(),
                 ((address and 0x00FF00L) shr 8).toByte(),
                 ((address and 0x0000FFL)).toByte(),
                 ((size and 0xFF)).toByte()
-            ),
-            50
+            )
         )
-        var result = ByteArray(0)
         if (message.isValid) {
             try {
-                result = message.answer.copyOfRange(3, message.length - 1)
+                val data = message.answer.copyOfRange(3, message.answer.size - 1)
+                if (data.size == size)
+                    return data
+                Logger.e { "$tag [readMemory]: size ${data.size} != $size, $message" }
             } catch (ex: CancellationException) {
                 throw ex
             } catch (ex: Exception) {
-                Logger.e { "$tag [readFlashData]: ${ex.toString()}, $message" }
-                return result
+                Logger.e { "$tag [readMemory]: ${ex.toString()}, $message" }
             }
         }
-        return result
+        return null
     }
 
-    private suspend fun writeFlashData(data: ByteArray): Boolean {
+    /** Wskaznik 24 bit z odpowiedzi na 0D (tablica wskaznikow, indeksy jak w SGBD - od bajtu adresu) */
+    private fun getPointer(pointers: OBDMessage, offset: Int): Long? {
+        if (!pointers.isValid || pointers.answer.size < offset + 4)
+            return null
+        val answer = pointers.answer
+        return ((answer[offset].toLong() and 0xFF) shl 16) or
+                ((answer[offset + 1].toLong() and 0xFF) shl 8) or
+                (answer[offset + 2].toLong() and 0xFF)
+    }
+
+    /**
+     * MAX_BLOCKLAENGE: wskaznik 0D[0x42..0x44], 1 bajt - maksymalna dlugosc telegramu.
+     * Dane w odpowiedzi = MBL - 4 (adres, dlugosc, status, suma kontrolna), max FLASH_BLOCK_SIZE.
+     */
+    private suspend fun readMaxDataBlockLength(pointers: OBDMessage): Int {
+        val pointer = getPointer(pointers, 0x42) ?: return FLASH_BLOCK_SIZE
+        val mbl = readMemory(MEMORY_DEFAULT, pointer, 1)?.get(0)?.toInt()?.and(0xFF) ?: return FLASH_BLOCK_SIZE
+        return if (mbl > 0x14) minOf(mbl - 4, FLASH_BLOCK_SIZE) else FLASH_BLOCK_SIZE
+    }
+
+    /** BAUDRATE_LESEN: wskaznik 0D[0x48..0x4A], wpisy po 3 bajty (big endian) do FF FF FF */
+    private suspend fun readSupportedBaudRates(pointers: OBDMessage): List<Long>? {
+        val pointer = getPointer(pointers, 0x48) ?: return null
+        val result = ArrayList<Long>()
+        for (n in 0 until MAX_BAUD_RATES) {
+            val entry = readMemory(MEMORY_DEFAULT, pointer + 3 * n, 3) ?: return null
+            val baudRate = ((entry[0].toLong() and 0xFF) shl 16) or
+                    ((entry[1].toLong() and 0xFF) shl 8) or
+                    (entry[2].toLong() and 0xFF)
+            if (baudRate == 0xFFFFFFL)
+                break
+            result.add(baudRate)
+        }
+        return result.ifEmpty { null }
+    }
+
+    /** BAUDRATE_UMSCHALTEN: 91 B2 B1 B0 czas_bloku */
+    private suspend fun setEcuBaudRate(baudRate : Long) : Boolean
+    {
+        if (protocolDS2 != null) {
+            val message = interfaceWrite(byteArrayOf(0x91.toByte(),
+                ((baudRate and 0xFF0000L) shr 16).toByte(),
+                ((baudRate and 0x00FF00L) shr 8).toByte(),
+                ((baudRate and 0x0000FFL)).toByte(),
+                0x01))
+            if (message.isValid) {
+                protocolDS2.setSpeed(baudRate.toInt())
+                return true
+            }
+        }
         return false
     }
+
     override val flashProgrammingAvailable: Boolean = false
+
+    private companion object {
+        const val MAX_ERRORS = 5
+        const val ERROR_RECORD_SIZE = 0x13
+        const val FREEZE_FRAME_SETS = 3
+        const val MEMORY_DEFAULT = 0x00
+        const val MEMORY_EEPROM = 0x03
+        const val MEMORY_FLASH = 0x06
+        const val FLASH_BLOCK_SIZE = 0x80
+        const val MAX_BAUD_RATES = 8
+        const val DEFAULT_BAUD_RATE = 9600L
+        const val FAST_BAUD_RATE = 125000L
+    }
 }

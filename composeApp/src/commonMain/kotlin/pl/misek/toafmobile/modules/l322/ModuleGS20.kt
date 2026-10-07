@@ -200,9 +200,9 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean  = true
 
     /**
-     * Blok 0x00 - STEUERN_STELLGLIED (SGBD GS20): 0C PIN TASTVERHAELTNIS 00,
-     * PIN z tabeli STELLGLIEDER, wypelnienie 0x00 - wylaczenie, 0xFF - pelne wysterowanie.
-     * Suwak w procentach, odpowiedz [4] - STAT_ANSTEUERUNG (0 - sterowanie poprawne).
+     * Blok 0x00 - STEUERN_STELLGLIED (SGBD GS20): 0C PIN TASTVERHAELTNIS 00, PIN z tabeli STELLGLIEDER,
+     * wartosc (jak w SGBD GS 8.60.1): 0x00 - nie steruj, 0x01-0xFE - takt sekundowy, 0xFF - sterowanie ciagle.
+     * Odpowiedz [4] - STAT_ANSTEUERUNG (0 - sterowanie poprawne).
      * Blok 0x01 - RESET_ADAPTION: 43 00.
      */
     override suspend fun control(controlElement: ControlElement): Boolean {
@@ -210,9 +210,8 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
             when (controlElement.block) {
                 0x00 -> {
                     val setValue = controlElement.controlSetValue ?: return false
-                    val dutyCycle = (setValue.value.coerceIn(0, 100) * 0xFF / 100)
                     val message = interfaceWrite(
-                        byteArrayOf(0x0C, controlElement.byteInBlock.toByte(), dutyCycle.toByte(), 0x00)
+                        byteArrayOf(0x0C, controlElement.byteInBlock.toByte(), setValue.value.coerceIn(0, 0xFF).toByte(), 0x00)
                     )
                     if (!message.isValid)
                         return false

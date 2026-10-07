@@ -1,6 +1,5 @@
 {
   "livedata": [
-
     {
       "name": "engine_speed",
       "block": "0x00",
@@ -154,7 +153,6 @@
       "factor_b": "780",
       "unit": "mA"
     },
-
     {
       "name": "solenoid_valve_1",
       "block": "0x00",
@@ -200,7 +198,6 @@
       "factor_b": "0",
       "unit": " "
     },
-
     {
       "name": "gearbox_switch_l1",
       "block": "0x00",
@@ -246,9 +243,18 @@
       "factor_b": "0",
       "unit": " ",
       "values": [
-        { "data": "0x02", "text": "M" },
-        { "data": "0x04", "text": "S_M" },
-        { "data": "0x08", "text": "A" }
+        {
+          "data": "0x01",
+          "text": "M"
+        },
+        {
+          "data": "0x02",
+          "text": "S_M"
+        },
+        {
+          "data": "0x04",
+          "text": "A"
+        }
       ]
     },
     {
@@ -260,7 +266,45 @@
       "factor_b": "0",
       "unit": " "
     },
-
+    {
+      "name": "selector_lever_position",
+      "block": "0x00",
+      "byte": "0x12",
+      "mask": "0xF0",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x0D",
+          "text": "P"
+        },
+        {
+          "data": "0x08",
+          "text": "R"
+        },
+        {
+          "data": "0x0E",
+          "text": "N"
+        },
+        {
+          "data": "0x02",
+          "text": "D"
+        },
+        {
+          "data": "0x01",
+          "text": "4"
+        },
+        {
+          "data": "0x03",
+          "text": "3"
+        },
+        {
+          "data": "0x0B",
+          "text": "2"
+        }
+      ]
+    },
     {
       "name": "fgr_system",
       "block": "0x00",
@@ -270,11 +314,26 @@
       "factor_b": "0",
       "unit": " ",
       "values": [
-        { "data": "0x00", "text": "passive" },
-        { "data": "0x20", "text": "constant_speed" },
-        { "data": "0x40", "text": "resume" },
-        { "data": "0x60", "text": "set_accelerate" },
-        { "data": "0x80", "text": "set_decelerate" }
+        {
+          "data": "0x00",
+          "text": "passive"
+        },
+        {
+          "data": "0x01",
+          "text": "constant_speed"
+        },
+        {
+          "data": "0x02",
+          "text": "resume"
+        },
+        {
+          "data": "0x03",
+          "text": "set_accelerate"
+        },
+        {
+          "data": "0x04",
+          "text": "set_decelerate"
+        }
       ]
     },
     {
@@ -304,7 +363,6 @@
       "factor_b": "0",
       "unit": " "
     },
-
     {
       "name": "gear",
       "block": "0x00",
@@ -314,13 +372,34 @@
       "factor_b": "0",
       "unit": " ",
       "values": [
-        { "data": "0x20", "text": "1_gear" },
-        { "data": "0x40", "text": "2_gear" },
-        { "data": "0x60", "text": "3_gear" },
-        { "data": "0x80", "text": "4_gear" },
-        { "data": "0xA0", "text": "5_gear" },
-        { "data": "0xC0", "text": "1m_gear" },
-        { "data": "0xE0", "text": "R_gear" }
+        {
+          "data": "0x01",
+          "text": "1_gear"
+        },
+        {
+          "data": "0x02",
+          "text": "2_gear"
+        },
+        {
+          "data": "0x03",
+          "text": "3_gear"
+        },
+        {
+          "data": "0x04",
+          "text": "4_gear"
+        },
+        {
+          "data": "0x05",
+          "text": "5_gear"
+        },
+        {
+          "data": "0x06",
+          "text": "1m_gear"
+        },
+        {
+          "data": "0x07",
+          "text": "R_gear"
+        }
       ]
     },
     {
@@ -359,7 +438,6 @@
       "factor_b": "0",
       "unit": " "
     },
-
     {
       "name": "manual_gate",
       "block": "0x00",
@@ -369,7 +447,6 @@
       "factor_b": "0",
       "unit": " "
     },
-
     {
       "name": "shift_in_progress",
       "block": "0x00",
@@ -397,9 +474,18 @@
       "factor_b": "0",
       "unit": " ",
       "values": [
-        { "data": "0x00", "text": "upshift_active" },
-        { "data": "0x20", "text": "downshift_active" },
-        { "data": "0x40", "text": "no_shift" }
+        {
+          "data": "0x00",
+          "text": "upshift_active"
+        },
+        {
+          "data": "0x01",
+          "text": "downshift_active"
+        },
+        {
+          "data": "0x02",
+          "text": "no_shift"
+        }
       ]
     },
     {
@@ -411,33 +497,67 @@
       "factor_b": "0",
       "unit": " "
     },
-
     {
-      "name": "shift_lock_variant",
+      "name": "shift_program",
       "block": "0x00",
       "byte": "0x16",
-      "mask": "0x80",
-      "factor_a": "1",
-      "factor_b": "0",
-      "unit": " "
-    },
-    {
-      "name": "gearbox_selector",
-      "block": "0x00",
-      "byte": "0x16",
-      "mask": "0x70",
+      "mask": "0xF0",
       "factor_a": "1",
       "factor_b": "0",
       "unit": " ",
       "values": [
-        { "data": "0x00", "text": "unknown" },
-        { "data": "0x10", "text": "bottom_E38_E39" },
-        { "data": "0x20", "text": "top_E34" },
-        { "data": "0x30", "text": "middle" }
+        {
+          "data": "0x00",
+          "text": "program_xe"
+        },
+        {
+          "data": "0x01",
+          "text": "program_e"
+        },
+        {
+          "data": "0x02",
+          "text": "program_s"
+        },
+        {
+          "data": "0x03",
+          "text": "program_xs"
+        },
+        {
+          "data": "0x04",
+          "text": "program_a1"
+        },
+        {
+          "data": "0x05",
+          "text": "program_a2"
+        },
+        {
+          "data": "0x06",
+          "text": "program_a3"
+        },
+        {
+          "data": "0x07",
+          "text": "program_w1"
+        },
+        {
+          "data": "0x08",
+          "text": "program_m"
+        },
+        {
+          "data": "0x09",
+          "text": "program_so"
+        },
+        {
+          "data": "0x0A",
+          "text": "program_b0"
+        },
+        {
+          "data": "0x0B",
+          "text": "program_m1"
+        }
       ]
     },
-	{
-      "name": "selector_lever_position",
+    {
+      "name": "program_mode",
       "block": "0x00",
       "byte": "0x16",
       "mask": "0x0F",
@@ -445,13 +565,74 @@
       "factor_b": "0",
       "unit": " ",
       "values": [
-        { "data": "0x00", "text": "P_or_N" },
-        { "data": "0x01", "text": "R" },
-        { "data": "0x02", "text": "N" },
-        { "data": "0x03", "text": "D" },
-        { "data": "0x04", "text": "3" },
-        { "data": "0x05", "text": "2" },
-        { "data": "0x06", "text": "1" }
+        {
+          "data": "0x00",
+          "text": "A"
+        },
+        {
+          "data": "0x01",
+          "text": "S"
+        },
+        {
+          "data": "0x02",
+          "text": "M"
+        }
+      ]
+    },
+    {
+      "name": "steptronic_detected",
+      "block": "0x00",
+      "byte": "0x17",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "kombi_interface",
+      "block": "0x00",
+      "byte": "0x17",
+      "mask": "0x30",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "serial_1_4_bd"
+        },
+        {
+          "data": "0x01",
+          "text": "serial_150_bd"
+        }
+      ]
+    },
+    {
+      "name": "shift_lock_variant",
+      "block": "0x00",
+      "byte": "0x17",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "gearbox_selector",
+      "block": "0x00",
+      "byte": "0x17",
+      "mask": "0x07",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "top_E34"
+        },
+        {
+          "data": "0x01",
+          "text": "bottom_E38_E39"
+        }
       ]
     }
   ]

@@ -45,7 +45,7 @@
     <string name="gs8601_live_data_upshift">Dirección del cambio</string>
     <string name="gs8601_live_data_low_range">Reductora (Low range) activa</string>
     <string name="gs8601_live_data_shift_lock_variant">Variante de bloqueo del cambio montada</string>
-    <string name="gs8601_live_data_gearbox_selector">Posición del selector de marchas</string>
+    <string name="gs8601_live_data_gearbox_selector">Montaje del interruptor de la caja</string>
     <string name="gs8601_live_data_selector_lever_position">Posición de la palanca selectora</string>
 
     <string name="gs8601_live_data_value_M">Manual</string>
@@ -66,17 +66,34 @@
     <string name="gs8601_live_data_value_upshift_active">Marcha superior</string>
     <string name="gs8601_live_data_value_downshift_active">Reducción</string>
     <string name="gs8601_live_data_value_no_shift">Sin cambio de marcha</string>
-    <string name="gs8601_live_data_value_unknown">Desconocido</string>
     <string name="gs8601_live_data_value_bottom_E38_E39">Abajo (E38/E39/E31/E46)</string>
     <string name="gs8601_live_data_value_top_E34">Arriba (E34)</string>
-    <string name="gs8601_live_data_value_middle">Centro</string>
-    <string name="gs8601_live_data_value_P_or_N">P / N</string>
     <string name="gs8601_live_data_value_R">R — Marcha atrás</string>
     <string name="gs8601_live_data_value_N">N — Punto muerto</string>
     <string name="gs8601_live_data_value_D">D — Directa</string>
     <string name="gs8601_live_data_value_3">3 — Tercera</string>
     <string name="gs8601_live_data_value_2">2 — Segunda</string>
-    <string name="gs8601_live_data_value_1">1 — Primera</string>
+    <string name="gs8601_live_data_shift_program">Programa de cambio</string>
+    <string name="gs8601_live_data_program_mode">Modo de programa</string>
+    <string name="gs8601_live_data_steptronic_detected">Steptronic detectado</string>
+    <string name="gs8601_live_data_kombi_interface">Interfaz del cuadro de instrumentos</string>
+    <string name="gs8601_live_data_value_P">P — Estacionamiento</string>
+    <string name="gs8601_live_data_value_4">4 — Cuarta</string>
+    <string name="gs8601_live_data_value_S">Deportivo</string>
+    <string name="gs8601_live_data_value_serial_1_4_bd">Serie 1,4 Bd</string>
+    <string name="gs8601_live_data_value_serial_150_bd">Serie 150 Bd</string>
+    <string name="gs8601_live_data_value_program_xe">XE</string>
+    <string name="gs8601_live_data_value_program_e">E</string>
+    <string name="gs8601_live_data_value_program_s">S</string>
+    <string name="gs8601_live_data_value_program_xs">XS</string>
+    <string name="gs8601_live_data_value_program_a1">A1</string>
+    <string name="gs8601_live_data_value_program_a2">A2</string>
+    <string name="gs8601_live_data_value_program_a3">A3</string>
+    <string name="gs8601_live_data_value_program_w1">W1</string>
+    <string name="gs8601_live_data_value_program_m">M</string>
+    <string name="gs8601_live_data_value_program_so">So</string>
+    <string name="gs8601_live_data_value_program_b0">B0</string>
+    <string name="gs8601_live_data_value_program_m1">M1</string>
 
 	<string name="gs8601_error_01">Regulador de presión EDS 1</string>
 	<string name="gs8601_error_02">Regulador de presión EDS 2</string>
