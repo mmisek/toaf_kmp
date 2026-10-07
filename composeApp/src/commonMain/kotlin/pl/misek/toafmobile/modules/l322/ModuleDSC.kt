@@ -28,6 +28,11 @@ class ModuleDSC(protocolDS2: ProtocolDS2?) :
         const val MAX_BUSY_RETRIES = 10
         const val BUSY_RETRY_DELAY_MS = 200L
         const val ERROR_RECORD_SIZE = 5
+        const val CODING_FLAG = 0xA5
+        const val CODING_BUSY_RETRIES = 10
+        const val LWS_BUSY_RETRIES = 40
+        /** TEST_LENKWINKEL: LFD_NR - numer kolejny wpisu w LWS i DSC57, SGBD wymaga 1..254 */
+        const val LWS_SEQUENCE_NUMBER = 0x01
     }
 
     override fun getKoinName() = KoinNames.ModuleL322Dsc
@@ -92,25 +97,17 @@ class ModuleDSC(protocolDS2: ProtocolDS2?) :
         return result
     }
 
+    /**
+     * STATUS_IO_LESEN_GESCHW / _ANALOG / _DIGITAL / _CAN: 0B 00..03, dane od answer[3] bez sumy kontrolnej.
+     * Wartosci 16 bit sa little endian - kolejnosc bajtow odwraca pole "swap" w dsc_live_data.json.
+     */
     override suspend fun readLiveData(): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = HashMap()
         for (j in 0..3) {
             val message = interfaceWrite(byteArrayOf(0x0B, j.toByte()))
             try {
                 if (message.isValid) {
-                    val res = message.answer.copyOfRange(3, message.answer.size - 1)
-                    if (j == 0 || j == 1 || j == 3) {
-                        var i = 0
-                        while (i < res.size) {
-                            val a = res[i]
-                            val b = res[i + 1]
-                            res[i] = b
-                            res[i + 1] = a
-                            i += 2
-                        }
-                    }
-
-                    result[j] = res
+                    result[j] = message.answer.copyOfRange(3, message.answer.size - 1)
                 } else {
                     return null
                 }
@@ -152,7 +149,7 @@ class ModuleDSC(protocolDS2: ProtocolDS2?) :
         if (interfaceWrite(byteArrayOf(0x90.toByte())).isValid) {
             val dataToSaveWithChecksum = calculateCodingChecksum(dataToSave)
             for (i in dataToSaveWithChecksum.indices) {
-                if (!interfaceWrite(arrayOf(byteArrayOf(0x09, i.toByte()), dataToSaveWithChecksum[i])).isValid) {
+                if (!writeCodingBlock(i, dataToSaveWithChecksum[i])) {
                     Logger.e { "$tag [writeCoding]: write block $i failed" }
                     reset()
                     return false
@@ -166,13 +163,27 @@ class ModuleDSC(protocolDS2: ProtocolDS2?) :
         } else return false
     }
 
+    /** COD_SCHREIBEN: SGBD ponawia zapis przy BUSY (A1) do 10 razy */
+    private suspend fun writeCodingBlock(address: Int, data: ByteArray): Boolean {
+        var message = interfaceWrite(arrayOf(byteArrayOf(0x09, address.toByte()), data))
+        var busyRetries = 0
+        while (message.answerCode == ANSWER_BUSY && busyRetries < CODING_BUSY_RETRIES) {
+            delay(BUSY_RETRY_DELAY_MS)
+            message = interfaceWrite(arrayOf(byteArrayOf(0x09, address.toByte()), data))
+            busyRetries++
+        }
+        return message.isValid
+    }
+
     /**
-     * DSC57: kodowanie to bajty 00-03, CHECKSUM (bajt 01) = 0xFF - [02] - [03] (modulo 256).
+     * DSC57 (COD_SCHREIBEN): kodowanie to bajty 00-03, bajt 00 = 0xA5 (zakodowany),
+     * CHECKSUM (bajt 01) = 0xFF - [02] - [03] (modulo 256).
      * Zwraca kopie danych przycieta do 4 bajtow z przeliczona suma.
      */
     private fun calculateCodingChecksum(data: List<ByteArray>): List<ByteArray> {
         val result = data.map { it.copyOf() }.toMutableList()
         val block = result[0]
+        block[0] = CODING_FLAG.toByte()
         block[1] = ((0xFF - (block[2].toInt() and 0xFF) - (block[3].toInt() and 0xFF)) and 0xFF).toByte()
         result[0] = block.copyOfRange(0, 4)
         return result
@@ -183,17 +194,27 @@ class ModuleDSC(protocolDS2: ProtocolDS2?) :
     suspend fun initLwsCalibration() : Boolean { 
         return interfaceWrite(initBlock).isValid
     }
+    /** TEST_LENKWINKEL: 32 LFD_NR 86 FF 88 00.., SGBD ponawia przy BUSY (A1) do 40 razy */
     suspend fun writeLwsCalibration() : Boolean
     {
-        return interfaceWrite(byteArrayOf(0x32,0x00,0x86.toByte(),0xFF.toByte(),0x88.toByte(),0x00,0x00,0x00,0x00,0x00,0x00)).isValid
+        val data = byteArrayOf(0x32, LWS_SEQUENCE_NUMBER.toByte(), 0x86.toByte(), 0xFF.toByte(), 0x88.toByte(), 0x00, 0x00, 0x00, 0x00, 0x00, 0x00)
+        var message = interfaceWrite(data)
+        var busyRetries = 0
+        while (message.answerCode == ANSWER_BUSY && busyRetries < LWS_BUSY_RETRIES) {
+            delay(BUSY_RETRY_DELAY_MS)
+            message = interfaceWrite(data)
+            busyRetries++
+        }
+        return message.isValid
     }
     
     //override fun getAdvanceControlActivity(context: Context): Intent = Intent(context, ActivityControlDSC::class.java)
 
     //override fun getAdvanceControlTitle(): String = resources.getString(R.string.activity_control_dsc_brake_bleeding)
 
+    /** DOWNLOAD_STELLGLIED - bez adresu, dlugosci i sumy kontrolnej (dodaje je interfaceWrite) */
     val initBlock = byteArrayOf(
-        0x56.toByte(), 0x9D.toByte(), 0x31.toByte(), 0x05.toByte(), 0x00.toByte(), 0x00.toByte(), 0xBB.toByte(), 0x07.toByte(), 0x07.toByte(), 0x89.toByte(), 0x07.toByte(), 0x00.toByte(), 0xB1.toByte(),
+        0x31.toByte(), 0x05.toByte(), 0x00.toByte(), 0x00.toByte(), 0xBB.toByte(), 0x07.toByte(), 0x07.toByte(), 0x89.toByte(), 0x07.toByte(), 0x00.toByte(), 0xB1.toByte(),
         0x02.toByte(), 0x24.toByte(), 0xA1.toByte(), 0xA4.toByte(), 0x20.toByte(), 0x2C.toByte(), 0xA1.toByte(), 0xFF.toByte(), 0x00.toByte(), 0x2E.toByte(), 0xE8.toByte(), 0x2C.toByte(), 0x28.toByte(),
         0xE9.toByte(), 0x2C.toByte(), 0x02.toByte(), 0x00.toByte(), 0x00.toByte(), 0x2A.toByte(), 0xA2.toByte(), 0x79.toByte(), 0x22.toByte(), 0xE8.toByte(), 0x28.toByte(), 0x1E.toByte(), 0x65.toByte(),
         0x02.toByte(), 0x00.toByte(), 0x28.toByte(), 0xA4.toByte(), 0x00.toByte(), 0x2A.toByte(), 0x88.toByte(), 0x00.toByte(), 0x1E.toByte(), 0xDF.toByte(), 0x46.toByte(), 0x51.toByte(), 0xFE.toByte(),
@@ -204,7 +225,6 @@ class ModuleDSC(protocolDS2: ProtocolDS2?) :
         0x20.toByte(), 0x92.toByte(), 0x1C.toByte(), 0x20.toByte(), 0x3A.toByte(), 0x22.toByte(), 0x03.toByte(), 0x94.toByte(), 0x21.toByte(), 0x20.toByte(), 0xB0.toByte(), 0x20.toByte(), 0x22.toByte(),
         0xC6.toByte(), 0x1C.toByte(), 0x22.toByte(), 0xE0.toByte(), 0x24.toByte(), 0x94.toByte(), 0x07.toByte(), 0x40.toByte(), 0x9A.toByte(), 0x40.toByte(), 0x00.toByte(), 0xDF.toByte(), 0x19.toByte(),
         0xA2.toByte(), 0x79.toByte(), 0x60.toByte(), 0x88.toByte(), 0x00.toByte(), 0x60.toByte(), 0xD7.toByte(), 0x04.toByte(), 0x07.toByte(), 0x40.toByte(), 0x27.toByte(), 0x7E.toByte(), 0xE9.toByte(),
-        0x00.toByte(), 0xAA.toByte(), 0x20.toByte(), 0xFF.toByte(), 0x62.toByte(), 0x68.toByte(), 0x62.toByte(), 0x60.toByte(), 0xD9.toByte(), 0x02.toByte(), 0x07.toByte(), 0x40.toByte(), 0xF0.toByte(),
-        0x26.toByte()
+        0x00.toByte(), 0xAA.toByte(), 0x20.toByte(), 0xFF.toByte(), 0x62.toByte(), 0x68.toByte(), 0x62.toByte(), 0x60.toByte(), 0xD9.toByte(), 0x02.toByte(), 0x07.toByte(), 0x40.toByte(), 0xF0.toByte()
     )
 }

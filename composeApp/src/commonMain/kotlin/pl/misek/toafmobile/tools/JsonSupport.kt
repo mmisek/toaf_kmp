@@ -118,6 +118,8 @@ object JsonSupport {
                 format = json.format
                 service = json.service
                 swap = json.swap
+                signOffset = json.signOffset
+                signFrom = json.signFrom
             }
         }
         return try {
@@ -154,6 +156,8 @@ object JsonSupport {
                     else
                         LiveDataFormat.valueOf(elementJson.format!!)
                     swap = elementJson.swap.toBoolean()
+                    signOffset = elementJson.signOffset.toBoolean()
+                    signFrom = if (elementJson.signFrom.isNullOrEmpty()) -1L else decodeHexToLong(elementJson.signFrom)
                 }
             }
         } catch (ex : Exception)

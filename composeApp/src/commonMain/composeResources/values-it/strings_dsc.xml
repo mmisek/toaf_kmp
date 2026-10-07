@@ -101,7 +101,6 @@
     <string name="dsc_live_data_rear_left_wheel_speed">Velocità ruota - posteriore sinistra</string>
     <string name="dsc_live_data_rear_right_wheel_speed">Velocità ruota - posteriore destra</string>
     <string name="dsc_live_data_steering_wheel_angle">Angolo volante</string>
-    <string name="dsc_live_data_steering_wheel_angle_speed">Velocità variazione angolo volante</string>
     <string name="dsc_live_data_pressure">Pressione</string>
     <string name="dsc_live_data_lateral_acceleration">Accelerazione laterale</string>
     <string name="dsc_live_data_hand_brake_switch">Interruttore freno a mano</string>
@@ -113,11 +112,31 @@
     <string name="dsc_live_data_engine_speed">Regime motore</string>
     <string name="dsc_live_data_filling_target">Riempimento - obiettivo</string>
     <string name="dsc_live_data_filling_driver_wish">Riempimento - desiderio conducente</string>
+    <string name="dsc_live_data_yaw_rate">Velocità di imbardata</string>
+    <string name="dsc_live_data_passive_button_voltage">Tensione pulsante DSC</string>
+    <string name="dsc_live_data_brake_light_switch_voltage">Tensione interruttore luci stop</string>
+    <string name="dsc_live_data_ignition_voltage">Tensione accensione (morsetto 15)</string>
+    <string name="dsc_live_data_wheel_sensor_voltage">Tensione alimentazione sensori ruota</string>
+    <string name="dsc_live_data_inlet_valve_front_left">Valvola di ingresso - anteriore sinistra</string>
+    <string name="dsc_live_data_outlet_valve_front_left">Valvola di uscita - anteriore sinistra</string>
+    <string name="dsc_live_data_inlet_valve_rear_right">Valvola di ingresso - posteriore destra</string>
+    <string name="dsc_live_data_outlet_valve_rear_right">Valvola di uscita - posteriore destra</string>
+    <string name="dsc_live_data_inlet_valve_front_right">Valvola di ingresso - anteriore destra</string>
+    <string name="dsc_live_data_outlet_valve_front_right">Valvola di uscita - anteriore destra</string>
+    <string name="dsc_live_data_inlet_valve_rear_left">Valvola di ingresso - posteriore sinistra</string>
+    <string name="dsc_live_data_outlet_valve_rear_left">Valvola di uscita - posteriore sinistra</string>
+    <string name="dsc_live_data_switch_valve_front_axle">Valvola di commutazione - asse anteriore</string>
+    <string name="dsc_live_data_switch_valve_rear_axle">Valvola di commutazione - asse posteriore</string>
+    <string name="dsc_live_data_precharge_valve_front_axle">Valvola di precarica - asse anteriore</string>
+    <string name="dsc_live_data_precharge_valve_rear_axle">Valvola di precarica - asse posteriore</string>
+    <string name="dsc_live_data_pump_motor">Motore pompa di ritorno</string>
+    <string name="dsc_live_data_precharge_pump">Pompa di precarica</string>
 
     <string name="dsc_coding_coded_flag">Flag codificato</string>
     <string name="dsc_coding_engine_type">Tipo motore</string>
     <string name="dsc_coding_dynamic_brakes">Freni dinamici</string>
     <string name="dsc_coding_hill_descent">Controllo discesa (HDC)</string>
+    <string name="dsc_coding_acc">ACC (cruise control attivo)</string>
 
     <string name="activity_control_dsc_tittle">Controllo avanzato</string>
     <string name="activity_control_dsc_brake_bleeding">Spurgo freni</string>

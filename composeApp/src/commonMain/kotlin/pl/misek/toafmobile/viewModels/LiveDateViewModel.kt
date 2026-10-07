@@ -135,6 +135,21 @@ class LiveDateViewModel(
                     mask = mask shr 0x01
                     tempValue = tempValue shr 0x01
                 }
+                // Wartosci ze znakiem - szerokosc pola wg maski
+                if (liveDataElement.signFrom >= 0) {
+                    val bits = 64 - mask.countLeadingZeroBits()
+                    if (bits in 1..63 && tempValue >= liveDataElement.signFrom)
+                        tempValue -= (1L shl bits)
+                }
+                else if (liveDataElement.u2 || liveDataElement.signOffset) {
+                    val bits = 64 - mask.countLeadingZeroBits()
+                    if (bits in 1..63 && ((tempValue shr (bits - 1)) and 0x01L) == 0x01L) {
+                        tempValue = if (liveDataElement.signOffset)
+                            ((1L shl (bits - 1)) - 1) - tempValue
+                        else
+                            tempValue - (1L shl bits)
+                    }
+                }
                 if (liveDataElement.values == null) {
                     rawValue = liveDataElement.factorA * (if (liveDataElement.invertA) 1 / tempValue.toFloat() else tempValue.toFloat()) + liveDataElement.factorB
                     valueWithoutUnit  = String.format(if (liveDataElement.unit != " ") "%.2f" else "%.0f", rawValue)

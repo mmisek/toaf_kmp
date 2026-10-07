@@ -102,7 +102,6 @@
     <string name="dsc_live_data_rear_left_wheel_speed">Prędkość koła — lewy tył</string>
     <string name="dsc_live_data_rear_right_wheel_speed">Prędkość koła — prawy tył</string>
     <string name="dsc_live_data_steering_wheel_angle">Czujnik kąta skrętu kierownicy</string>
-    <string name="dsc_live_data_steering_wheel_angle_speed">Zmiana kąta skrętu kierownicy</string>
     <string name="dsc_live_data_pressure">Ciśnienie</string>
     <string name="dsc_live_data_lateral_acceleration">Przyspieszenie boczne</string>
     <string name="dsc_live_data_hand_brake_switch">Przełącznik hamulca ręcznego</string>
@@ -114,11 +113,31 @@
     <string name="dsc_live_data_engine_speed">Prędkość silnika</string>
     <string name="dsc_live_data_filling_target">Wypełnienie — cel</string>
     <string name="dsc_live_data_filling_driver_wish">Wypełnienie — żądanie kierowcy</string>
+    <string name="dsc_live_data_yaw_rate">Prędkość odchylenia (yaw)</string>
+    <string name="dsc_live_data_passive_button_voltage">Napięcie przycisku DSC</string>
+    <string name="dsc_live_data_brake_light_switch_voltage">Napięcie włącznika świateł stopu</string>
+    <string name="dsc_live_data_ignition_voltage">Napięcie zapłonu (kl. 15)</string>
+    <string name="dsc_live_data_wheel_sensor_voltage">Napięcie zasilania czujników prędkości kół</string>
+    <string name="dsc_live_data_inlet_valve_front_left">Zawór wlotowy — lewy przód</string>
+    <string name="dsc_live_data_outlet_valve_front_left">Zawór wylotowy — lewy przód</string>
+    <string name="dsc_live_data_inlet_valve_rear_right">Zawór wlotowy — prawy tył</string>
+    <string name="dsc_live_data_outlet_valve_rear_right">Zawór wylotowy — prawy tył</string>
+    <string name="dsc_live_data_inlet_valve_front_right">Zawór wlotowy — prawy przód</string>
+    <string name="dsc_live_data_outlet_valve_front_right">Zawór wylotowy — prawy przód</string>
+    <string name="dsc_live_data_inlet_valve_rear_left">Zawór wlotowy — lewy tył</string>
+    <string name="dsc_live_data_outlet_valve_rear_left">Zawór wylotowy — lewy tył</string>
+    <string name="dsc_live_data_switch_valve_front_axle">Zawór przełączający — oś przednia</string>
+    <string name="dsc_live_data_switch_valve_rear_axle">Zawór przełączający — oś tylna</string>
+    <string name="dsc_live_data_precharge_valve_front_axle">Zawór ładujący — oś przednia</string>
+    <string name="dsc_live_data_precharge_valve_rear_axle">Zawór ładujący — oś tylna</string>
+    <string name="dsc_live_data_pump_motor">Silnik pompy powrotnej</string>
+    <string name="dsc_live_data_precharge_pump">Pompa ładująca</string>
 
     <string name="dsc_coding_coded_flag">Flaga kodowa</string>
     <string name="dsc_coding_engine_type">Typ silnika</string>
     <string name="dsc_coding_dynamic_brakes">Dynamic brakes</string>
     <string name="dsc_coding_hill_descent">Hill Descent Control</string>
+    <string name="dsc_coding_acc">ACC (aktywny tempomat)</string>
 
     <string name="activity_control_dsc_tittle">Zaawansowana kontrola</string>
     <string name="activity_control_dsc_brake_bleeding">Odpowietrzanie</string>

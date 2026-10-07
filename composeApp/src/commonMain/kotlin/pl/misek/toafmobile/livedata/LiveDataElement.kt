@@ -31,7 +31,9 @@ data class LiveDataElementJson (
     var carType: MutableList<String>? = null,
     var format: String? = "",
     var service : String? = "",
-    var swap : String? = ""
+    var swap : String? = "",
+    @SerialName("sign_offset") var signOffset : String? = "",
+    @SerialName("sign_from") var signFrom : String? = ""
 )
 
 data class LiveDataElement(
@@ -53,7 +55,11 @@ data class LiveDataElement(
     var formatedValue : String = "",
     var liveDataFormat: LiveDataFormat = LiveDataFormat.Standard,
     var service: Int = 0,
-    var swap : Boolean = false
+    var swap : Boolean = false,
+    /** Ujemne wartosci kodowane jako (2^(n-1) - 1) - wartosc (np. 0x7FFF - x), gdy najstarszy bit ustawiony */
+    var signOffset : Boolean = false,
+    /** Wartosc (po masce i przesunieciu) od ktorej liczba jest ujemna: x - 2^n, gdy x >= signFrom (-1 = brak) */
+    var signFrom : Long = -1
 )
 enum class LiveDataFormat {
     Standard,

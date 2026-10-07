@@ -1,7 +1,9 @@
 package pl.misek.toafmobile.modules.l322
 
 import co.touchlab.kermit.Logger
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.CancellationException
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.activities.composeModels.activities.AdvanceControlEHCCalibration
@@ -28,6 +30,7 @@ import pl.misek.toafmobile.modules.interfaces.IModuleEHCCalibration
 import pl.misek.toafmobile.modules.interfaces.IModuleEHCHeightControl
 import pl.misek.toafmobile.modules.interfaces.IModuleEepromProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
+import pl.misek.toafmobile.protocols.OBDMessage
 import pl.misek.toafmobile.protocols.ProtocolDS2
 import pl.misek.toafmobile.tools.JsonSupport
 
@@ -48,10 +51,34 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
     private var controlRearRight: ControlElement? = null
     private var controlValveDrain: ControlElement? = null
     private var controlCompressorSwitch: ControlElement? = null
-    private var controlManualMode: ControlElement? = null
-    private var controlModeAllOff: ControlElement? = null
     private var heightLiveDataElements: List<LiveDataElement>? = null
-    private val errorDetailsList = byteArrayOf(0x01, 0x02,0x03,0x04,0x07,0x08,0x0A, 0x0B,0x0C, 0x0D,0xFE.toByte())
+    /** Tryby sterownika (1B 00) sprzed wlaczenia sterowania recznego - przywracane po zakonczeniu */
+    private var savedModes: ByteArray? = null
+
+    /**
+     * FARTMATRIX z SGBD: kod typu bledu dla bitow ERROR_TYPE_BITS bajtu typu (answer[6]),
+     * 0xFF - brak opisu, wartosci odpowiadaja tekstom ehc_error_detail_XX (FARTTEXTE).
+     */
+    private fun errorTypeMatrix(location: Int): IntArray = when (location) {
+        in 0x01..0x0A, in 0x14..0x18, 0x23, 0x24 -> intArrayOf(0x01, 0x02, 0x03, 0xFF, 0x07)
+        in 0x1E..0x21 -> intArrayOf(0x0A, 0x0B, 0x0C, 0xFF, 0x07)
+        0x22 -> intArrayOf(0x0A, 0xFF, 0xFF, 0xFF, 0x07)
+        in 0x31..0x37 -> intArrayOf(0xFE, 0xFF, 0xFF, 0xFF, 0x07)
+        0x25, in 0x64..0x82 -> intArrayOf(0xFF, 0xFF, 0xFF, 0x04, 0x07)
+        else -> intArrayOf(0xFF, 0xFF, 0xFF, 0xFF, 0xFF)
+    }
+
+    /** Ponawia telegram, gdy sterownik odpowiada BUSY (A1) - jak petle w FS_LESEN / C_C_LESEN */
+    private suspend fun writeWithBusyRetry(data: ByteArray, timeout: Long = 250): OBDMessage {
+        var message = interfaceWrite(data, timeout)
+        var retries = 0
+        while (message.answerCode == ANSWER_BUSY && retries < MAX_BUSY_RETRIES) {
+            delay(BUSY_RETRY_DELAY_MS.milliseconds)
+            message = interfaceWrite(data, timeout)
+            retries++
+        }
+        return message
+    }
 
     private suspend fun getControlElements()
     {
@@ -60,9 +87,7 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
             || controlRearLeft != null
             || controlRearRight != null
             || controlValveDrain != null
-            || controlCompressorSwitch != null
-            || controlManualMode != null
-            || controlModeAllOff != null)
+            || controlCompressorSwitch != null)
         {
             return
         }
@@ -95,14 +120,6 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
                 .filter { x: ControlElement -> x.name == "compressor_switch" }.findFirst().orElse(
                     ControlElement()
                 )
-            controlManualMode = controlElements.stream()
-                .filter { x: ControlElement -> x.name == "mode_hand_control" }.findFirst().orElse(
-                    ControlElement()
-                )
-            controlModeAllOff = controlElements.stream()
-                .filter { x: ControlElement -> x.name == "mode_all_off" }.findFirst().orElse(
-                    ControlElement()
-                )
         }
     }
     override fun getKoinName() = KoinNames.ModuleL322Ehc
@@ -118,14 +135,19 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         }
     )
 
-    override suspend fun readLiveData(): Map<Int, ByteArray>? {
+    /**
+     * Bloki 0B: 00 IO_STATUS_LESEN_SENSOREN, 01 IO_STATUS_LESEN_AKTOREN, 02 IO_STATUS_LESEN_SPANNUNGEN.
+     * Dane od answer[3] bez sumy kontrolnej, wartosci 16 bit little endian.
+     */
+    override suspend fun readLiveData(): Map<Int, ByteArray>? = readLiveDataBlocks(LIVE_DATA_BLOCKS)
+
+    private suspend fun readLiveDataBlocks(blocks: ByteArray): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = HashMap()
-        val blocks = byteArrayOf(0x00)
         for (block in blocks) {
             val message =  interfaceWrite(byteArrayOf(0x0B, block))
             try {
                 if (message.isValid) {
-                    result[block.toInt()] = message.answer.copyOfRange(3, message.answer.size)
+                    result[block.toInt()] = message.answer.copyOfRange(3, message.answer.size - 1)
                 } else return null
             } catch (ex: CancellationException) {
                 throw ex
@@ -145,7 +167,7 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
             0xAC.toByte(), 0x05.toByte(), 0x04.toByte(), 0x00.toByte(), 0xAD.toByte(), 0xAC.toByte(), 0x07.toByte(), 0xA0.toByte(),
             0x02.toByte(), 0x24.toByte(), 0x26.toByte(), 0x0B.toByte())
         var result: MutableList<ModuleError>? = null
-        var message = interfaceWrite(byteArrayOf(0x04, 0x00),250)
+        var message = writeWithBusyRetry(byteArrayOf(0x04, 0x00))
         try {
             //message.answer = fakeAnswer
             if (message.isValid)
@@ -153,15 +175,17 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
                 var index = 1
                 result = ArrayList()
                 repeat (message.answer[3].toInt() and 0xFF) {
-                    message = interfaceWrite(byteArrayOf(0x04, index.toByte()),250)
+                    message = writeWithBusyRetry(byteArrayOf(0x04, index.toByte()))
                     index++
                     if (message.isValid) {
-                        val errorCode = String.format("%02X", message.answer[4])
+                        val location = message.answer[4].toInt() and 0xFF
+                        val errorCode = String.format("%02X", location)
                         val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
-                        for (b in errorDetailsList) {
-                            if ((message.answer[6].toInt() and b.toInt()) == b.toInt()) {
+                        val errorTypes = errorTypeMatrix(location)
+                        for (i in ERROR_TYPE_BITS.indices) {
+                            if ((message.answer[6].toInt() and ERROR_TYPE_BITS[i]) != 0 && errorTypes[i] != 0xFF) {
                                 ResourceMapper
-                                    .stringResource(String.format("ehc_error_detail_%02X", b))
+                                    .stringResource(String.format("ehc_error_detail_%02X", errorTypes[i]))
                                     ?.let { errorDescription.add(Pair(it, null)) }
                             }
                         }
@@ -259,7 +283,8 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
                         errorDescription.add(
                             Pair(
                                 Res.string.ehc_error_detail_average_height_of_car,
-                                (message.answer[16].toInt() and 0xFF)
+                                // SGBD: wartosc ze znakiem (> 0x7F -> ujemna)
+                                message.answer[16].toInt()
                             )
                         )
                         result.add(
@@ -286,33 +311,63 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
 
     //override fun getAdvanceControlTitle(): String =  resources.getString(R.string.activity_control_ehc_calibration_tittle)
 
+    /**
+     * Blok 0x02 - wyjscia (STEUERN_LUFTFEDER): wlaczenie HANDSTEUERMODUS przez odczyt i OR trybow,
+     * 0C 01 b0..b5 co 1 s przez CONTROL_TIME_S, wylaczenie wyjsc i przywrocenie trybow.
+     * Blok 0x1C, bajt 0 - tryby (SG_STATUS_SCHREIBEN_MODI): wartosc != 0 dopisywana do aktualnych trybow,
+     * 0 - wszystkie tryby wylaczone. Bajt 1 - poziom (SG_STATUS_SCHREIBEN_REGLER): 1C 01 poziom 00.
+     */
     override suspend fun control(controlElement: ControlElement): Boolean{
-        val data: ByteArray
         getControlElements()
         var result = false
         when (controlElement.block) {
             0x02 -> {
-                data = byteArrayOf(0x0C, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00)
-                data[controlElement.byteInBlock + 2] = controlElement.value.toByte()
-                interfaceWrite(byteArrayOf(0x1C, 0x00, 0x20, 0x00),500)
-                result = interfaceWrite(data,500).isValid;
-                if (result)
-                {
-                    repeat(5)
-                    {
-                        interfaceWrite(byteArrayOf(0x9E.toByte()))
-                        delay(500.milliseconds)
+                val modes = readModes() ?: return false
+                if (!writeModes(withHandControl(modes)))
+                    return false
+                try {
+                    val data = byteArrayOf(0x0C, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00)
+                    data[controlElement.byteInBlock + 2] = controlElement.value.toByte()
+                    if (controlElement.value != 0) {
+                        for (second in 0 until CONTROL_TIME_S) {
+                            result = writeWithBusyRetry(data, 500).isValid
+                            if (!result)
+                                break
+                            delay(1000.milliseconds)
+                        }
+                    }
+                } finally {
+                    withContext(NonCancellable) {
+                        val closed = closeValves()
+                        result = writeModes(modes) && closed && (result || controlElement.value == 0)
                     }
                 }
             }
             0x1C -> {
-                data = byteArrayOf(0x1C, controlElement.byteInBlock.toByte(), controlElement.value.toByte(), 0x00)
-                result =  interfaceWrite(data,500).isValid
+                val data = if (controlElement.byteInBlock == 0x00 && controlElement.value != 0) {
+                    val modes = readModes() ?: return false
+                    byteArrayOf(0x1C, 0x00, ((modes[0].toInt() and 0xFF) or controlElement.value).toByte(), modes[1])
+                } else
+                    byteArrayOf(0x1C, controlElement.byteInBlock.toByte(), controlElement.value.toByte(), 0x00)
+                result = writeWithBusyRetry(data, 500).isValid
             }
         }
 
         return result
     }
+
+    /** SG_STATUS_LESEN_MODI (1B 00): 2 bajty trybow z answer[3..4] */
+    private suspend fun readModes(): ByteArray? {
+        val message = writeWithBusyRetry(byteArrayOf(0x1B, 0x00))
+        return if (message.isValid && message.answer.size >= 6) message.answer.copyOfRange(3, 5) else null
+    }
+
+    private fun withHandControl(modes: ByteArray) =
+        byteArrayOf(((modes[0].toInt() and 0xFF) or MODE_HAND_CONTROL).toByte(), modes[1])
+
+    /** SG_STATUS_SCHREIBEN_MODI (1C 00 m0 m1) */
+    private suspend fun writeModes(modes: ByteArray): Boolean =
+        writeWithBusyRetry(byteArrayOf(0x1C, 0x00, modes[0], modes[1]), 500).isValid
 
     // ---------------------------------------------------------------------
     // Kalibracja zawieszenia (wg SGBD EHC_2 rev. 1.09)
@@ -461,9 +516,12 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         return writeAdjustmentData(EHCAdjustmentData(adjustment.toByteArray().copyOfRange(0, 8) + ByteArray(8)))
     }
 
+    /** Dopisuje HANDSTEUERMODUS do aktualnych trybow, tryby sprzed sterowania zapamietywane dla stopControl */
     override suspend fun startManualControl(): Boolean {
-        getControlElements()
-        return controlManualMode?.let { control(it) } ?: false
+        val modes = readModes() ?: return false
+        if (savedModes == null)
+            savedModes = modes
+        return writeModes(withHandControl(modes))
     }
 
     override suspend fun controlHeight(wheel: EHCControlWheel, direction: EHCControlWheelDirection): Boolean {
@@ -490,18 +548,23 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
     override suspend fun closeValves(): Boolean =
         interfaceWrite(byteArrayOf(0x0C, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00)).isValid
 
+    /** Zamyka zawory i przywraca tryby sprzed startManualControl (gdy brak - zdejmuje tylko HANDSTEUERMODUS) */
     override suspend fun stopControl(): Boolean {
-        getControlElements()
         val valvesClosed = closeValves()
-        val modeOff = controlModeAllOff?.let { control(it) } ?: false
-        return valvesClosed && modeOff
+        val modes = savedModes
+            ?: readModes()?.let { byteArrayOf((it[0].toInt() and MODE_HAND_CONTROL.inv()).toByte(), it[1]) }
+            ?: return false
+        val modesRestored = writeModes(modes)
+        if (modesRestored)
+            savedModes = null
+        return valvesClosed && modesRestored
     }
 
     override suspend fun readHeightLiveData(): EHCHeightLiveData? {
         val elements = heightLiveDataElements
             ?: JsonSupport.getLiveDataElements(getModuleName())?.also { heightLiveDataElements = it }
             ?: return null
-        val liveData = readLiveData() ?: return null
+        val liveData = readLiveDataBlocks(byteArrayOf(0x00)) ?: return null
         fun value(name: String): Float =
             elements.firstOrNull { it.name == name }?.let { decodeLiveDataValue(it, liveData) } ?: Float.NaN
         return EHCHeightLiveData(
@@ -523,40 +586,57 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         if (element.swap)
             bytes = bytes.reversedArray()
         val buffer = ByteBuffer.wrap(bytes)
-        val rawValue = if (length == 2) {
+        var rawValue = if (length == 2) {
             if (element.u2) buffer.short.toInt() else buffer.short.toInt() and 0xFFFF
         } else {
             if (element.u2) buffer.get().toInt() else buffer.get().toInt() and 0xFF
         }
+        // jak w LiveDateViewModel - ujemne od progu sign_from (np. temperatura kompresora > 0xCE)
+        if (element.signFrom >= 0 && rawValue >= element.signFrom)
+            rawValue -= 1 shl (8 * length)
         return rawValue * element.factorA + element.factorB
     }
 
+    /**
+     * SPEICHER_LESEN / EEPROM_LOEHNERT_LESEN: 06 SEGMENT LOW MIDDLE HIGH N (adres od mlodszego bajtu),
+     * segment 0 - EEPROM, N max 28.
+     */
     override suspend fun readEeprom(address: Int, size: Int): ByteArray? {
-        val message = interfaceWrite(
+        val message = writeWithBusyRetry(
             byteArrayOf(
                 0x06,
                 0x00,
-                ((address and 0xFF0000) shr 16).toByte(),
-                ((address and 0x00FF00) shr 8).toByte(),
                 ((address and 0x0000FF)).toByte(),
+                ((address and 0x00FF00) shr 8).toByte(),
+                ((address and 0xFF0000) shr 16).toByte(),
                 size.toByte()
-            ),
-            250
+            )
         )
-        return if (message.isValid) message.answer.copyOfRange(0x03, message.answer.size - 1) else null
+        if (!message.isValid)
+            return null
+        val data = message.answer.copyOfRange(0x03, message.answer.size - 1)
+        if (data.size != size) {
+            Logger.e { "$tag [readEeprom], size ${data.size} != $size, $message" }
+            return null
+        }
+        return data
     }
 
+    /** SPEICHER_SCHREIBEN: 07 SEGMENT LOW MIDDLE HIGH 01 WERT */
     override suspend fun writeEeprom(address: Int, data: ByteArray): Boolean {
         val dataToWrite =
             byteArrayOf(
                 0x07,
                 0x00,
-                ((address and 0xFF0000) shr 16).toByte(),
-                ((address and 0x00FF00) shr 8).toByte(),
                 ((address and 0x0000FF)).toByte(),
+                ((address and 0x00FF00) shr 8).toByte(),
+                ((address and 0xFF0000) shr 16).toByte(),
                 0x01) + data
-        return interfaceWrite(dataToWrite).isValid
+        return writeWithBusyRetry(dataToWrite, 500).isValid
     }
+
+    /** Zapis EEPROM zablokowany do czasu weryfikacji w aucie (wczesniej adres wysylany w odwrotnej kolejnosci) */
+    override val eepromWriteAvailable: Boolean = false
 
     override fun getEepromSize(): Int = 512
 
@@ -608,6 +688,16 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         const val CMD_ADJUSTMENT_WRITE: Byte = 0x41
         const val SECURITY_LEVEL_NORMAL = 1
         const val SECURITY_LEVEL_EXPERT = 2
+        val LIVE_DATA_BLOCKS = byteArrayOf(0x00, 0x01, 0x02)
+        /** Bity bajtu typu bledu odpowiadajace kolumnom A1..A5 FARTMATRIX */
+        val ERROR_TYPE_BITS = intArrayOf(0x01, 0x02, 0x04, 0x08, 0x40)
+        const val ANSWER_BUSY: Byte = 0xA1.toByte()
+        const val MAX_BUSY_RETRIES = 50
+        const val BUSY_RETRY_DELAY_MS = 100L
+        /** MODI: HANDSTEUERMODUS - bajt 0, bit 0x20 */
+        const val MODE_HAND_CONTROL = 0x20
+        /** Czas sterowania wyjsciem z ekranu sterowania [s] (STEUERN_LUFTFEDER: ZEIT) */
+        const val CONTROL_TIME_S = 5
     }
 
     override  suspend fun  beforeRead(){

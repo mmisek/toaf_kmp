@@ -7,7 +7,8 @@
       "mask": "0xFFFF",
       "factor_a": "0.0625",
       "factor_b": "0",
-      "unit": "km/h"
+      "unit": "km/h",
+      "swap": "true"
     },
     {
       "name": "front_right_wheel_speed",
@@ -16,7 +17,8 @@
       "mask": "0xFFFF",
       "factor_a": "0.0625",
       "factor_b": "0",
-      "unit": "km/h"
+      "unit": "km/h",
+      "swap": "true"
     },
     {
       "name": "rear_left_wheel_speed",
@@ -25,7 +27,8 @@
       "mask": "0xFFFF",
       "factor_a": "0.0625",
       "factor_b": "0",
-      "unit": "km/h"
+      "unit": "km/h",
+      "swap": "true"
     },
     {
       "name": "rear_right_wheel_speed",
@@ -34,7 +37,8 @@
       "mask": "0xFFFF",
       "factor_a": "0.0625",
       "factor_b": "0",
-      "unit": "km/h"
+      "unit": "km/h",
+      "swap": "true"
     },
     {
       "name": "steering_wheel_angle",
@@ -44,27 +48,30 @@
       "factor_a": "0.04375",
       "factor_b": "0",
       "unit": "°",
-      "u2": "true"
+      "swap": "true",
+      "sign_offset": "true"
     },
     {
-      "name": "steering_wheel_angle_speed",
+      "name": "yaw_rate",
       "block": "0x01",
       "byte": "0x04",
       "mask": "0xFFFF",
-      "factor_a": "0.01358",
+      "factor_a": "0.1358",
       "factor_b": "0",
       "unit": "°/s",
-      "u2": "true"
+      "u2": "true",
+      "swap": "true"
     },
     {
       "name": "pressure",
       "block": "0x01",
       "byte": "0x06",
       "mask": "0xFFFF",
-      "factor_a": "0.05208",
+      "factor_a": "0.3255",
       "factor_b": "0",
       "unit": "bar",
-      "u2": "true"
+      "u2": "true",
+      "swap": "true"
     },
     {
       "name": "lateral_acceleration",
@@ -75,6 +82,42 @@
       "factor_b": "0",
       "unit": "m/s²",
       "u2": "true"
+    },
+    {
+      "name": "passive_button_voltage",
+      "block": "0x01",
+      "byte": "0x09",
+      "mask": "0xFF",
+      "factor_a": "0.0196",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "brake_light_switch_voltage",
+      "block": "0x01",
+      "byte": "0x0A",
+      "mask": "0xFF",
+      "factor_a": "0.071",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "ignition_voltage",
+      "block": "0x01",
+      "byte": "0x0B",
+      "mask": "0xFF",
+      "factor_a": "0.071",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "wheel_sensor_voltage",
+      "block": "0x01",
+      "byte": "0x0C",
+      "mask": "0xFF",
+      "factor_a": "0.0196",
+      "factor_b": "0",
+      "unit": "V"
     },
     {
       "name": "hand_brake_switch",
@@ -131,16 +174,143 @@
       "unit": " "
     },
     {
+      "name": "inlet_valve_front_left",
+      "block": "0x02",
+      "byte": "0x06",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "outlet_valve_front_left",
+      "block": "0x02",
+      "byte": "0x06",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "inlet_valve_rear_right",
+      "block": "0x02",
+      "byte": "0x06",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "outlet_valve_rear_right",
+      "block": "0x02",
+      "byte": "0x06",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "inlet_valve_front_right",
+      "block": "0x02",
+      "byte": "0x06",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "outlet_valve_front_right",
+      "block": "0x02",
+      "byte": "0x06",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "inlet_valve_rear_left",
+      "block": "0x02",
+      "byte": "0x06",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "outlet_valve_rear_left",
+      "block": "0x02",
+      "byte": "0x06",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_valve_front_axle",
+      "block": "0x02",
+      "byte": "0x07",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "switch_valve_rear_axle",
+      "block": "0x02",
+      "byte": "0x07",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "precharge_valve_front_axle",
+      "block": "0x02",
+      "byte": "0x07",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "precharge_valve_rear_axle",
+      "block": "0x02",
+      "byte": "0x07",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "pump_motor",
+      "block": "0x02",
+      "byte": "0x07",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "precharge_pump",
+      "block": "0x02",
+      "byte": "0x07",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
       "name": "engine_speed",
       "block": "0x03",
       "byte": "0x02",
       "mask": "0xFFFF",
       "factor_a": "0.15625",
       "factor_b": "0",
-      "unit": "1/min"
+      "unit": "1/min",
+      "swap": "true"
     },
     {
-      "name": "filling_target",
+      "name": "filling_driver_wish",
       "block": "0x03",
       "byte": "0x08",
       "mask": "0xFF",
@@ -149,9 +319,9 @@
       "unit": "%"
     },
     {
-      "name": "filling_driver_wish",
+      "name": "filling_target",
       "block": "0x03",
-      "byte": "0x08",
+      "byte": "0x09",
       "mask": "0xFF",
       "factor_a": "0.39",
       "factor_b": "0",

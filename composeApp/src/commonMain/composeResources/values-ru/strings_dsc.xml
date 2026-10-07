@@ -102,7 +102,6 @@
     <string name="dsc_live_data_rear_left_wheel_speed">Скорость колеса - заднее левое</string>
     <string name="dsc_live_data_rear_right_wheel_speed">Скорость колеса - заднее правое</string>
     <string name="dsc_live_data_steering_wheel_angle">Угол поворота руля</string>
-    <string name="dsc_live_data_steering_wheel_angle_speed">Скорость вращения руля</string>
     <string name="dsc_live_data_pressure">Давление</string>
     <string name="dsc_live_data_lateral_acceleration">Поперечное ускорение</string>
     <string name="dsc_live_data_hand_brake_switch">Выключатель ручного тормоза</string>
@@ -114,11 +113,31 @@
     <string name="dsc_live_data_engine_speed">Обороты двигателя</string>
     <string name="dsc_live_data_filling_target">Наполнение - цель</string>
     <string name="dsc_live_data_filling_driver_wish">Наполнение - запрос водителя</string>
+    <string name="dsc_live_data_yaw_rate">Скорость рыскания</string>
+    <string name="dsc_live_data_passive_button_voltage">Напряжение кнопки DSC</string>
+    <string name="dsc_live_data_brake_light_switch_voltage">Напряжение выключателя стоп-сигнала</string>
+    <string name="dsc_live_data_ignition_voltage">Напряжение зажигания (кл. 15)</string>
+    <string name="dsc_live_data_wheel_sensor_voltage">Напряжение питания датчиков скорости колёс</string>
+    <string name="dsc_live_data_inlet_valve_front_left">Впускной клапан - передний левый</string>
+    <string name="dsc_live_data_outlet_valve_front_left">Выпускной клапан - передний левый</string>
+    <string name="dsc_live_data_inlet_valve_rear_right">Впускной клапан - задний правый</string>
+    <string name="dsc_live_data_outlet_valve_rear_right">Выпускной клапан - задний правый</string>
+    <string name="dsc_live_data_inlet_valve_front_right">Впускной клапан - передний правый</string>
+    <string name="dsc_live_data_outlet_valve_front_right">Выпускной клапан - передний правый</string>
+    <string name="dsc_live_data_inlet_valve_rear_left">Впускной клапан - задний левый</string>
+    <string name="dsc_live_data_outlet_valve_rear_left">Выпускной клапан - задний левый</string>
+    <string name="dsc_live_data_switch_valve_front_axle">Переключающий клапан - передняя ось</string>
+    <string name="dsc_live_data_switch_valve_rear_axle">Переключающий клапан - задняя ось</string>
+    <string name="dsc_live_data_precharge_valve_front_axle">Клапан предварительной подкачки - передняя ось</string>
+    <string name="dsc_live_data_precharge_valve_rear_axle">Клапан предварительной подкачки - задняя ось</string>
+    <string name="dsc_live_data_pump_motor">Двигатель возвратного насоса</string>
+    <string name="dsc_live_data_precharge_pump">Насос предварительной подкачки</string>
 
     <string name="dsc_coding_coded_flag">Флаг кодирования</string>
     <string name="dsc_coding_engine_type">Тип двигателя</string>
     <string name="dsc_coding_dynamic_brakes">Динамические тормоза (DBC)</string>
     <string name="dsc_coding_hill_descent">Помощь при спуске (HDC)</string>
+    <string name="dsc_coding_acc">ACC (активный круиз-контроль)</string>
 
     <string name="activity_control_dsc_tittle">Расширенное управление</string>
     <string name="activity_control_dsc_brake_bleeding">Прокачка тормозов</string>

@@ -1,76 +1,94 @@
 {
-    "elements":
-    [
-      {
-        "name": "coded_flag",
-        "block": "0x00",
-        "byte": "0x00",
-        "mask": "0xFF",
-        "coding_index": [
-          "12"
-        ],
-        "coding_values": [
-          {
-            "data": "0xA5",
-            "text": "L30"
-          }
-        ],
-        "visible" : "false"
-      },
-      {
+  "elements": [
+    {
+      "name": "coded_flag",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0xFF",
+      "coding_index": [
+        "12"
+      ],
+      "coding_values": [
+        {
+          "data": "0xA5",
+          "text": "L30"
+        }
+      ],
+      "visible": "false"
+    },
+    {
       "name": "engine_type",
       "block": "0x00",
       "byte": "0x02",
       "mask": "0xFF",
       "coding_index": [
-          "12"
-        ],
+        "12"
+      ],
       "coding_values": [
-          {
-            "data": "0x03",
-            "text": "M62_Petrol"
-          },
-          {
-            "data": "0x07",
-            "text": "M57_Diesel"
-          },
-          {
-            "data": "0x08",
-            "text": "M57_Diesel_MY06"
-          }
-        ]
-      },
-      {
-        "name": "dynamic_brakes",
-        "block": "0x00",
-        "byte": "0x03",
-        "mask": "0xC0",
-        "coding_index": [
-          "12"
-        ],
-        "coding_values": [
-          {
-            "data": "0x03",
-            "text": "L30"
-          }
-        ],
-        "visible" : "false"
-      },
-      {
-        "name": "hill_descent",
-        "block": "0x00",
-        "byte": "0x03",
-        "mask": "0x20",
-        "coding_index": [
-          "12"
-        ],
-        "coding_values": [
-          {
-            "data": "0x01",
-            "text": "L30"
-          }
-        ],
-        "visible" : "false"
-      }
-    ]
+        {
+          "data": "0x03",
+          "text": "M62_Petrol"
+        },
+        {
+          "data": "0x07",
+          "text": "M57_Diesel"
+        },
+        {
+          "data": "0x08",
+          "text": "M57_Diesel_MY06"
+        }
+      ]
+    },
+    {
+      "name": "dynamic_brakes",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0xC0",
+      "coding_index": [
+        "12"
+      ],
+      "coding_values": [
+        {
+          "data": "0x03",
+          "text": "L30"
+        }
+      ],
+      "visible": "false"
+    },
+    {
+      "name": "hill_descent",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x20",
+      "coding_index": [
+        "12"
+      ],
+      "coding_values": [
+        {
+          "data": "0x01",
+          "text": "L30"
+        }
+      ],
+      "visible": "false"
+    },
+    {
+      "name": "acc",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x02",
+      "coding_index": [
+        "12"
+      ],
+      "coding_values": [
+        {
+          "data": "0x01",
+          "text": "active"
+        },
+        {
+          "data": "0x00",
+          "text": "inactive"
+        }
+      ]
+    }
+  ]
 }

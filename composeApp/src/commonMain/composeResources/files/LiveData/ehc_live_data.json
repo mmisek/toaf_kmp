@@ -8,7 +8,8 @@
       "factor_a": "0.125",
       "factor_b": "0",
       "unit": "mm",
-      "u2": "true"
+      "u2": "true",
+      "swap": "true"
     },
     {
       "name": "height_sensor_front_right",
@@ -18,7 +19,8 @@
       "factor_a": "0.125",
       "factor_b": "0",
       "unit": "mm",
-      "u2": "true"
+      "u2": "true",
+      "swap": "true"
     },
     {
       "name": "height_sensor_rear_left",
@@ -28,7 +30,8 @@
       "factor_a": "0.125",
       "factor_b": "0",
       "unit": "mm",
-      "u2": "true"
+      "u2": "true",
+      "swap": "true"
     },
     {
       "name": "height_sensor_rear_right",
@@ -38,34 +41,38 @@
       "factor_a": "0.125",
       "factor_b": "0",
       "unit": "mm",
-      "u2": "true"
+      "u2": "true",
+      "swap": "true"
     },
     {
       "name": "pressure",
       "block": "0x00",
       "byte": "0x08",
       "mask": "0xFFFF",
-      "factor_a": "0.00781",
+      "factor_a": "0.0078125",
       "factor_b": "0",
-      "unit": "bar"
+      "unit": "bar",
+      "swap": "true"
     },
     {
       "name": "pressure_of_transverse_lock_pressure_sensor_va",
       "block": "0x00",
       "byte": "0x0A",
       "mask": "0xFFFF",
-      "factor_a": "0.00781",
+      "factor_a": "0.0078125",
       "factor_b": "0",
-      "unit": "bar"
+      "unit": "bar",
+      "swap": "true"
     },
     {
       "name": "pressure_of_transverse_lock_pressure_sensor_ha",
       "block": "0x00",
       "byte": "0x0C",
       "mask": "0xFFFF",
-      "factor_a": "0.00781",
+      "factor_a": "0.0078125",
       "factor_b": "0",
-      "unit": "bar"
+      "unit": "bar",
+      "swap": "true"
     },
     {
       "name": "compressor_temperature",
@@ -75,14 +82,14 @@
       "factor_a": "1",
       "factor_b": "0",
       "unit": "°C",
-      "u2": "true"
+      "sign_from": "0xCF"
     },
     {
       "name": "supply_voltage",
       "block": "0x00",
       "byte": "0x0F",
       "mask": "0xFF",
-      "factor_a": "0.12421875",
+      "factor_a": "0.125",
       "factor_b": "0",
       "unit": "V"
     },
@@ -93,7 +100,7 @@
       "mask": "0x01",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": "0"
+      "unit": " "
     },
     {
       "name": "switch_up",
@@ -102,7 +109,7 @@
       "mask": "0x02",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": "0"
+      "unit": " "
     },
     {
       "name": "switch_down",
@@ -111,7 +118,7 @@
       "mask": "0x04",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": "0"
+      "unit": " "
     },
     {
       "name": "switch_hold",
@@ -120,7 +127,326 @@
       "mask": "0x08",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": "0"
+      "unit": " "
+    },
+    {
+      "name": "status_valve_front_right",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "status_valve_front_left",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "status_valve_rear_right",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "status_valve_rear_left",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "status_valve_reservoir",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "status_valve_exhaust",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "status_compressor_relay",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "status_valve_high_pressure_exhaust",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "status_crosslink_valve_rear",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "status_crosslink_valve_front",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "status_led_access",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "status_led_motorway",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "status_led_standard",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "status_led_offroad",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "status_led_hold",
+      "block": "0x01",
+      "byte": "0x03",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "status_high_side_switch_front",
+      "block": "0x01",
+      "byte": "0x04",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "status_high_side_switch_rear",
+      "block": "0x01",
+      "byte": "0x04",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "status_high_side_switch_reservoir",
+      "block": "0x01",
+      "byte": "0x04",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "status_sensor_supply_1",
+      "block": "0x01",
+      "byte": "0x04",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "status_sensor_supply_2",
+      "block": "0x01",
+      "byte": "0x04",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "status_sensor_supply_3",
+      "block": "0x01",
+      "byte": "0x04",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "voltage_kl30",
+      "block": "0x02",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "V",
+      "swap": "true"
+    },
+    {
+      "name": "voltage_va",
+      "block": "0x02",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "V",
+      "swap": "true"
+    },
+    {
+      "name": "voltage_12v",
+      "block": "0x02",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "V",
+      "swap": "true"
+    },
+    {
+      "name": "voltage_front_left",
+      "block": "0x02",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "V",
+      "swap": "true"
+    },
+    {
+      "name": "voltage_front_right",
+      "block": "0x02",
+      "byte": "0x08",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "V",
+      "swap": "true"
+    },
+    {
+      "name": "voltage_rear_left",
+      "block": "0x02",
+      "byte": "0x0A",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "V",
+      "swap": "true"
+    },
+    {
+      "name": "voltage_rear_right",
+      "block": "0x02",
+      "byte": "0x0C",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "V",
+      "swap": "true"
+    },
+    {
+      "name": "voltage_reservoir",
+      "block": "0x02",
+      "byte": "0x0E",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "V",
+      "swap": "true"
+    },
+    {
+      "name": "voltage_compressor",
+      "block": "0x02",
+      "byte": "0x10",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "V",
+      "swap": "true"
+    },
+    {
+      "name": "voltage_stabilized",
+      "block": "0x02",
+      "byte": "0x12",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "V",
+      "swap": "true"
+    },
+    {
+      "name": "voltage_sensor_supply_1",
+      "block": "0x02",
+      "byte": "0x14",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "V",
+      "swap": "true"
+    },
+    {
+      "name": "voltage_sensor_supply_2",
+      "block": "0x02",
+      "byte": "0x16",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "V",
+      "swap": "true"
+    },
+    {
+      "name": "voltage_sensor_supply_3",
+      "block": "0x02",
+      "byte": "0x18",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "V",
+      "swap": "true"
     }
   ]
 }

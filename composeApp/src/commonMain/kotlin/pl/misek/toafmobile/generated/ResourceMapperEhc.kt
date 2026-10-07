@@ -118,12 +118,12 @@ object ResourceMapperEhc {
             "ehc_error_detail_0b" -> Res.string.ehc_error_detail_0B
             "ehc_error_detail_0c" -> Res.string.ehc_error_detail_0C
             "ehc_error_detail_0d" -> Res.string.ehc_error_detail_0D
-            "ehc_error_detail_fe" -> Res.string.ehc_error_detail_FE
             "ehc_error_detail_average_height_of_car" -> Res.string.ehc_error_detail_average_height_of_car
             "ehc_error_detail_compressor_relay" -> Res.string.ehc_error_detail_compressor_relay
             "ehc_error_detail_compressor_temperature" -> Res.string.ehc_error_detail_compressor_temperature
             "ehc_error_detail_crosslink_valve_left" -> Res.string.ehc_error_detail_crosslink_valve_left
             "ehc_error_detail_crosslink_valve_rear" -> Res.string.ehc_error_detail_crosslink_valve_rear
+            "ehc_error_detail_fe" -> Res.string.ehc_error_detail_FE
             "ehc_error_detail_height_pressure_exhaust_valve" -> Res.string.ehc_error_detail_height_pressure_exhaust_valve
             "ehc_error_detail_mileage" -> Res.string.ehc_error_detail_mileage
             "ehc_error_detail_pressure" -> Res.string.ehc_error_detail_pressure
@@ -143,11 +143,45 @@ object ResourceMapperEhc {
             "ehc_live_data_pressure" -> Res.string.ehc_live_data_pressure
             "ehc_live_data_pressure_of_transverse_lock_pressure_sensor_ha" -> Res.string.ehc_live_data_pressure_of_transverse_lock_pressure_sensor_ha
             "ehc_live_data_pressure_of_transverse_lock_pressure_sensor_va" -> Res.string.ehc_live_data_pressure_of_transverse_lock_pressure_sensor_va
+            "ehc_live_data_status_compressor_relay" -> Res.string.ehc_live_data_status_compressor_relay
+            "ehc_live_data_status_crosslink_valve_front" -> Res.string.ehc_live_data_status_crosslink_valve_front
+            "ehc_live_data_status_crosslink_valve_rear" -> Res.string.ehc_live_data_status_crosslink_valve_rear
+            "ehc_live_data_status_high_side_switch_front" -> Res.string.ehc_live_data_status_high_side_switch_front
+            "ehc_live_data_status_high_side_switch_rear" -> Res.string.ehc_live_data_status_high_side_switch_rear
+            "ehc_live_data_status_high_side_switch_reservoir" -> Res.string.ehc_live_data_status_high_side_switch_reservoir
+            "ehc_live_data_status_led_access" -> Res.string.ehc_live_data_status_led_access
+            "ehc_live_data_status_led_hold" -> Res.string.ehc_live_data_status_led_hold
+            "ehc_live_data_status_led_motorway" -> Res.string.ehc_live_data_status_led_motorway
+            "ehc_live_data_status_led_offroad" -> Res.string.ehc_live_data_status_led_offroad
+            "ehc_live_data_status_led_standard" -> Res.string.ehc_live_data_status_led_standard
+            "ehc_live_data_status_sensor_supply_1" -> Res.string.ehc_live_data_status_sensor_supply_1
+            "ehc_live_data_status_sensor_supply_2" -> Res.string.ehc_live_data_status_sensor_supply_2
+            "ehc_live_data_status_sensor_supply_3" -> Res.string.ehc_live_data_status_sensor_supply_3
+            "ehc_live_data_status_valve_exhaust" -> Res.string.ehc_live_data_status_valve_exhaust
+            "ehc_live_data_status_valve_front_left" -> Res.string.ehc_live_data_status_valve_front_left
+            "ehc_live_data_status_valve_front_right" -> Res.string.ehc_live_data_status_valve_front_right
+            "ehc_live_data_status_valve_high_pressure_exhaust" -> Res.string.ehc_live_data_status_valve_high_pressure_exhaust
+            "ehc_live_data_status_valve_rear_left" -> Res.string.ehc_live_data_status_valve_rear_left
+            "ehc_live_data_status_valve_rear_right" -> Res.string.ehc_live_data_status_valve_rear_right
+            "ehc_live_data_status_valve_reservoir" -> Res.string.ehc_live_data_status_valve_reservoir
             "ehc_live_data_supply_voltage" -> Res.string.ehc_live_data_supply_voltage
             "ehc_live_data_switch_access" -> Res.string.ehc_live_data_switch_access
             "ehc_live_data_switch_down" -> Res.string.ehc_live_data_switch_down
             "ehc_live_data_switch_hold" -> Res.string.ehc_live_data_switch_hold
             "ehc_live_data_switch_up" -> Res.string.ehc_live_data_switch_up
+            "ehc_live_data_voltage_12v" -> Res.string.ehc_live_data_voltage_12v
+            "ehc_live_data_voltage_compressor" -> Res.string.ehc_live_data_voltage_compressor
+            "ehc_live_data_voltage_front_left" -> Res.string.ehc_live_data_voltage_front_left
+            "ehc_live_data_voltage_front_right" -> Res.string.ehc_live_data_voltage_front_right
+            "ehc_live_data_voltage_kl30" -> Res.string.ehc_live_data_voltage_kl30
+            "ehc_live_data_voltage_rear_left" -> Res.string.ehc_live_data_voltage_rear_left
+            "ehc_live_data_voltage_rear_right" -> Res.string.ehc_live_data_voltage_rear_right
+            "ehc_live_data_voltage_reservoir" -> Res.string.ehc_live_data_voltage_reservoir
+            "ehc_live_data_voltage_sensor_supply_1" -> Res.string.ehc_live_data_voltage_sensor_supply_1
+            "ehc_live_data_voltage_sensor_supply_2" -> Res.string.ehc_live_data_voltage_sensor_supply_2
+            "ehc_live_data_voltage_sensor_supply_3" -> Res.string.ehc_live_data_voltage_sensor_supply_3
+            "ehc_live_data_voltage_stabilized" -> Res.string.ehc_live_data_voltage_stabilized
+            "ehc_live_data_voltage_va" -> Res.string.ehc_live_data_voltage_va
         else -> {
           Logger.i {"NO RESOURCE for : $resourceName" }
             null

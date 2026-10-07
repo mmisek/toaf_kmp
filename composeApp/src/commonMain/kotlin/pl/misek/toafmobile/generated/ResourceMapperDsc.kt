@@ -7,6 +7,7 @@ import toafmobile.composeapp.generated.resources.*
 object ResourceMapperDsc {
     fun stringResource(resourceName: String): StringResource? {
         return when (resourceName) {
+            "dsc_coding_acc" -> Res.string.dsc_coding_acc
             "dsc_coding_coded_flag" -> Res.string.dsc_coding_coded_flag
             "dsc_coding_dynamic_brakes" -> Res.string.dsc_coding_dynamic_brakes
             "dsc_coding_engine_type" -> Res.string.dsc_coding_engine_type
@@ -105,6 +106,7 @@ object ResourceMapperDsc {
             "dsc_error_detail_0e" -> Res.string.dsc_error_detail_0E
             "dsc_error_detail_0f" -> Res.string.dsc_error_detail_0F
             "dsc_live_data_brake_light_switch" -> Res.string.dsc_live_data_brake_light_switch
+            "dsc_live_data_brake_light_switch_voltage" -> Res.string.dsc_live_data_brake_light_switch_voltage
             "dsc_live_data_brake_switch" -> Res.string.dsc_live_data_brake_switch
             "dsc_live_data_engine_speed" -> Res.string.dsc_live_data_engine_speed
             "dsc_live_data_filling_driver_wish" -> Res.string.dsc_live_data_filling_driver_wish
@@ -113,14 +115,31 @@ object ResourceMapperDsc {
             "dsc_live_data_front_right_wheel_speed" -> Res.string.dsc_live_data_front_right_wheel_speed
             "dsc_live_data_hand_brake_switch" -> Res.string.dsc_live_data_hand_brake_switch
             "dsc_live_data_hill_descent_active" -> Res.string.dsc_live_data_hill_descent_active
+            "dsc_live_data_ignition_voltage" -> Res.string.dsc_live_data_ignition_voltage
+            "dsc_live_data_inlet_valve_front_left" -> Res.string.dsc_live_data_inlet_valve_front_left
+            "dsc_live_data_inlet_valve_front_right" -> Res.string.dsc_live_data_inlet_valve_front_right
+            "dsc_live_data_inlet_valve_rear_left" -> Res.string.dsc_live_data_inlet_valve_rear_left
+            "dsc_live_data_inlet_valve_rear_right" -> Res.string.dsc_live_data_inlet_valve_rear_right
             "dsc_live_data_lateral_acceleration" -> Res.string.dsc_live_data_lateral_acceleration
+            "dsc_live_data_outlet_valve_front_left" -> Res.string.dsc_live_data_outlet_valve_front_left
+            "dsc_live_data_outlet_valve_front_right" -> Res.string.dsc_live_data_outlet_valve_front_right
+            "dsc_live_data_outlet_valve_rear_left" -> Res.string.dsc_live_data_outlet_valve_rear_left
+            "dsc_live_data_outlet_valve_rear_right" -> Res.string.dsc_live_data_outlet_valve_rear_right
             "dsc_live_data_passive_button" -> Res.string.dsc_live_data_passive_button
+            "dsc_live_data_passive_button_voltage" -> Res.string.dsc_live_data_passive_button_voltage
+            "dsc_live_data_precharge_pump" -> Res.string.dsc_live_data_precharge_pump
+            "dsc_live_data_precharge_valve_front_axle" -> Res.string.dsc_live_data_precharge_valve_front_axle
+            "dsc_live_data_precharge_valve_rear_axle" -> Res.string.dsc_live_data_precharge_valve_rear_axle
             "dsc_live_data_pressure" -> Res.string.dsc_live_data_pressure
+            "dsc_live_data_pump_motor" -> Res.string.dsc_live_data_pump_motor
             "dsc_live_data_rear_left_wheel_speed" -> Res.string.dsc_live_data_rear_left_wheel_speed
             "dsc_live_data_rear_right_wheel_speed" -> Res.string.dsc_live_data_rear_right_wheel_speed
             "dsc_live_data_steering_wheel_angle" -> Res.string.dsc_live_data_steering_wheel_angle
-            "dsc_live_data_steering_wheel_angle_speed" -> Res.string.dsc_live_data_steering_wheel_angle_speed
+            "dsc_live_data_switch_valve_front_axle" -> Res.string.dsc_live_data_switch_valve_front_axle
+            "dsc_live_data_switch_valve_rear_axle" -> Res.string.dsc_live_data_switch_valve_rear_axle
             "dsc_live_data_valve_relay" -> Res.string.dsc_live_data_valve_relay
+            "dsc_live_data_wheel_sensor_voltage" -> Res.string.dsc_live_data_wheel_sensor_voltage
+            "dsc_live_data_yaw_rate" -> Res.string.dsc_live_data_yaw_rate
         else -> {
           Logger.i {"NO RESOURCE for : $resourceName" }
             null
