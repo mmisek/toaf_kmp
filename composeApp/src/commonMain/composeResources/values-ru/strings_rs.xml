@@ -8,8 +8,10 @@
     <string name="rs_error_05">Датчик очистки неисправен (нет обнаружения)</string>
     <string name="rs_error_06">Неисправен контакт парковки мотора стеклоочистителя</string>
     <string name="rs_control_init">Инициализация датчика дождя</string>
-    <string name="rs_live_data_park_position">Дворники в парковочном положении</string>
+    <string name="rs_live_data_park_position">Положение дворников</string>
     <string name="rs_live_data_reinforcement">Усиление сигнала</string>
     <string name="rs_live_data_time_point_1">Временная точка 1</string>
     <string name="rs_live_data_time_point_2">Временная точка 2</string>
+    <string name="rs_live_data_value_parked">положение парковки</string>
+    <string name="rs_live_data_value_not_parked">вне положения парковки</string>
 </resources>

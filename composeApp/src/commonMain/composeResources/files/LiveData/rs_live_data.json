@@ -7,16 +7,26 @@
       "mask": "0x01",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "parked"
+        },
+        {
+          "data": "0x01",
+          "text": "not_parked"
+        }
+      ]
     },
     {
       "name": "reinforcement",
       "block": "0x00",
-      "byte": "0x00",
-      "mask": "0x9F",
+      "byte": "0x01",
+      "mask": "0xFF",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": "db"
+      "unit": "dB"
     },
     {
       "name": "time_point_1",

@@ -18,6 +18,8 @@ object ResourceMapperRs {
             "rs_live_data_reinforcement" -> Res.string.rs_live_data_reinforcement
             "rs_live_data_time_point_1" -> Res.string.rs_live_data_time_point_1
             "rs_live_data_time_point_2" -> Res.string.rs_live_data_time_point_2
+            "rs_live_data_value_parked" -> Res.string.rs_live_data_value_parked
+            "rs_live_data_value_not_parked" -> Res.string.rs_live_data_value_not_parked
         else -> {
           Logger.i {"NO RESOURCE for : $resourceName" }
             null

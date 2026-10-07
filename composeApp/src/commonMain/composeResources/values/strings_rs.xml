@@ -11,8 +11,10 @@
     <!-- RS control -->
     <string name="rs_control_init">Init rain sensor</string>
     <!-- RS Live data -->
-    <string name="rs_live_data_park_position">Wipers in park position</string>
+    <string name="rs_live_data_park_position">Wiper position</string>
     <string name="rs_live_data_reinforcement">Signal reinforcement</string>
     <string name="rs_live_data_time_point_1">Time point 1</string>
     <string name="rs_live_data_time_point_2">Time point 2</string>
+    <string name="rs_live_data_value_parked">park position</string>
+    <string name="rs_live_data_value_not_parked">out of park position</string>
 </resources>

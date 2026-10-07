@@ -8,8 +8,10 @@
     <string name="rs_error_05">Sensore tergicristallo difettoso (nessun rilevamento)</string>
     <string name="rs_error_06">Contatto di reset motorino tergicristallo difettoso</string>
     <string name="rs_control_init">Inizializzazione sensore pioggia</string>
-    <string name="rs_live_data_park_position">Tergicristalli in posizione di riposo</string>
+    <string name="rs_live_data_park_position">Posizione tergicristalli</string>
     <string name="rs_live_data_reinforcement">Amplificazione segnale</string>
     <string name="rs_live_data_time_point_1">Punto temporale 1</string>
     <string name="rs_live_data_time_point_2">Punto temporale 2</string>
+    <string name="rs_live_data_value_parked">posizione di riposo</string>
+    <string name="rs_live_data_value_not_parked">fuori dalla posizione di riposo</string>
 </resources>

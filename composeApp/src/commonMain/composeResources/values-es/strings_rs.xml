@@ -11,8 +11,10 @@
     <!-- RS control -->
     <string name="rs_control_init">Iniciar sensor de lluvia</string>
     <!-- RS Live data -->
-    <string name="rs_live_data_park_position">Limpiaparabrisas en posición de aparcamiento</string>
+    <string name="rs_live_data_park_position">Posición del limpiaparabrisas</string>
     <string name="rs_live_data_reinforcement">Reforzamiento de señal</string>
     <string name="rs_live_data_time_point_1">Punto de tiempo 1</string>
     <string name="rs_live_data_time_point_2">Punto de tiempo 2</string>
+    <string name="rs_live_data_value_parked">posición de reposo</string>
+    <string name="rs_live_data_value_not_parked">fuera de la posición de reposo</string>
 </resources>
