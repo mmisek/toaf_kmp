@@ -60,11 +60,10 @@
     <string name="ews_coding_immobilizer_activation">Activación del inmovilizador</string>
     <string name="ews_coding_interface_stepping_crit">Criterios de paso de interfaz</string>
 <string name="ews_live_data_STAT_ANLASSER_FREIGESCHALTET">Motor de arranque desbloqueado</string>
-<string name="ews_live_data_STAT_ANLASSER_AUS_DREHZAH">Motor de arranque bloqueado por RPM</string>
+<string name="ews_live_data_STAT_ANLASSER_AUS_DREHZAHL">Motor de arranque bloqueado por RPM</string>
 <string name="ews_live_data_STAT_ANLASSER_AUS_P_N">Motor de arranque bloqueado por posición P/N</string>
 <string name="ews_live_data_STAT_ANLASSER_AUS_ZV">Motor de arranque bloqueado por cierre centralizado/alarma</string>
 <string name="ews_live_data_STAT_ANLASSER_AUS_BC">Motor de arranque bloqueado por ordenador de a bordo</string>
-<string name="ews_live_data_STAT_STAT_WEITERE_SELBSTINIT_KEYS">Puede inicializar llaves nuevas</string>
 <string name="ews_live_data_STAT_DME_LEITUNG_FREI">El arranque es posible</string>
 <string name="ews_live_data_STAT_EWS_JUNGFRAEULICH">EWS es nuevo (virgen)</string>
 <string name="ews_live_data_STAT_P_N_EINGANG">Señal P/N disponible</string>
@@ -86,6 +85,7 @@
 <string name="ews_live_data_STAT_STAT_VORGABE_DME_AUSFUEHREN">ECU desbloqueada</string>
 <string name="ews_live_data_STAT_VORGABE_ANLASSERRELAIS_AUSFUEHREN">Relé de arranque desbloqueado</string>
 <string name="ews_live_data_STAT_AKTUELLE_SCHLUESSEL_ID">ID de la llave</string>
+<string name="ews_live_data_STAT_AKTUELLE_SCHLUESSELNUMMER">Numero de llave actual</string>
 <string name="ews_live_data_STAT_AKTUELLER_WC">Código variable (Rolling Code)</string>
 <string name="ews_live_data_STAT_WEITERE_SELBSTINIT_KEYS">Algunas llaves esperan inicialización</string>
 <string name="ews_live_data_value_true">verdadero</string>

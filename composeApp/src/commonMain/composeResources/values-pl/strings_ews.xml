@@ -59,11 +59,10 @@
     <string name="ews_error_sporadic">Błąd sporadyczny</string>
     <string name="ews_error_static">Błąd statyczny</string>
 <string name="ews_live_data_STAT_ANLASSER_FREIGESCHALTET">Rozrusznik odblokowany</string>
-<string name="ews_live_data_STAT_ANLASSER_AUS_DREHZAH">Rozrusznik zablokowany przez obroty (RPM)</string>
+<string name="ews_live_data_STAT_ANLASSER_AUS_DREHZAHL">Rozrusznik zablokowany przez obroty (RPM)</string>
 <string name="ews_live_data_STAT_ANLASSER_AUS_P_N">Rozrusznik zablokowany przez pozycję P/N</string>
 <string name="ews_live_data_STAT_ANLASSER_AUS_ZV">Rozrusznik zablokowany przez centralny zamek/alarm</string>
 <string name="ews_live_data_STAT_ANLASSER_AUS_BC">Rozrusznik zablokowany przez komputer pokładowy</string>
-<string name="ews_live_data_STAT_STAT_WEITERE_SELBSTINIT_KEYS">Można zainicjalizować nowe kluczyki</string>
 <string name="ews_live_data_STAT_DME_LEITUNG_FREI">Rozruch jest możliwy</string>
 <string name="ews_live_data_STAT_EWS_JUNGFRAEULICH">EWS jest fabrycznie nowy (czysty)</string>
 <string name="ews_live_data_STAT_P_N_EINGANG">Sygnał P/N jest dostępny</string>
@@ -85,6 +84,7 @@
 <string name="ews_live_data_STAT_STAT_VORGABE_DME_AUSFUEHREN">Sterownik silnika (ECU) odblokowany</string>
 <string name="ews_live_data_STAT_VORGABE_ANLASSERRELAIS_AUSFUEHREN">Przekaźnik rozrusznika odblokowany</string>
 <string name="ews_live_data_STAT_AKTUELLE_SCHLUESSEL_ID">ID kluczyka</string>
+<string name="ews_live_data_STAT_AKTUELLE_SCHLUESSELNUMMER">Numer aktualnego kluczyka</string>
 <string name="ews_live_data_STAT_AKTUELLER_WC">Kod zmienny (Rolling Code)</string>
 <string name="ews_live_data_STAT_WEITERE_SELBSTINIT_KEYS">Niektóre kluczyki oczekują na inicjalizację</string>
 <string name="ews_live_data_value_true">tak</string>

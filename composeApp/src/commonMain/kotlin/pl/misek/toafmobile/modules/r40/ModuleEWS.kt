@@ -2,6 +2,7 @@ package pl.misek.toafmobile.modules.r40
 
 import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
+import pl.misek.toafmobile.activities.composeModels.activities.AdvanceControlEwsKeys
 import pl.misek.toafmobile.coding.ZcsCoding
 import pl.misek.toafmobile.generated.ResourceHelper
 import pl.misek.toafmobile.koin.KoinNames
@@ -9,13 +10,18 @@ import pl.misek.toafmobile.livedata.LiveDataElement
 import pl.misek.toafmobile.modules.ModuleDS2
 import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.ModulesFunction
+import pl.misek.toafmobile.modules.containers.EwsKey
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.ModuleAddress
+import pl.misek.toafmobile.modules.interfaces.AdvanceControlElement
+import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceControl
 import pl.misek.toafmobile.modules.interfaces.IModuleCoding
+import pl.misek.toafmobile.modules.interfaces.IModuleEwsKeys
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.modules.interfaces.IModuleZCS
 import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
+import toafmobile.composeapp.generated.resources.advance_control_ews_keys_title
 import toafmobile.composeapp.generated.resources.module_description_ews
 import toafmobile.composeapp.generated.resources.module_ews
 import kotlinx.coroutines.CancellationException
@@ -27,7 +33,7 @@ class ModuleEWS(protocolDS2: ProtocolDS2?) :
         ModuleAddress.MODULE_EWS,
         listOf(CarType.R40, CarType.L322)
     ),
-    IModuleZCS, IModuleCoding, IModuleLiveData {
+    IModuleZCS, IModuleCoding, IModuleLiveData, IModuleAdvanceControl, IModuleEwsKeys {
     override fun getKoinName() = KoinNames.ModuleR40Ews
 
     override fun getImageResource() = Res.drawable.module_ews
@@ -196,4 +202,77 @@ class ModuleEWS(protocolDS2: ProtocolDS2?) :
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean {
         return interfaceWrite(byteArrayOf(0x00)).isValid
     }
+
+    /**
+     * Odczyt danych kluczykow (job SCHL_DATEN_LESEN, cmd 0x65 + numer).
+     * Odpowiedz: answer[3]=numer, answer[4..11]=ID (8 bajtow),
+     * answer[12]=bajt freigabe: bity 0-1 status, bit 6 selbstinit wykonany, bit 7 selbstinit.
+     * EWS3 ma 10 slotow kluczykow (0..9).
+     */
+    override suspend fun readKeys(): List<EwsKey>? {
+        val result: MutableList<EwsKey> = ArrayList()
+        for (i in 0..9) {
+            val message = interfaceWrite(byteArrayOf(0x65, i.toByte()))
+            if (message.isValid && message.answer.size > 13) {
+                try {
+                    val id = message.answer.copyOfRange(4, 12).joinToString("") { "%02X".format(it) }
+                    val freigabe = message.answer[12].toInt() and 0xFF
+                    result.add(
+                        EwsKey(
+                            number = i,
+                            id = id,
+                            status = freigabe and 0x03,
+                            selfInitDone = (freigabe and 0x40) == 0x40,
+                            selfInit = (freigabe and 0x80) == 0x80
+                        )
+                    )
+                } catch (ex: CancellationException) {
+                    throw ex
+                } catch (ex: Exception) {
+                    Logger.e { "$tag [readKeys], $ex, $message" }
+                }
+            }
+        }
+        return if (result.isEmpty()) null else result
+    }
+
+    /**
+     * Odczyt numeru ISN (job ISN_LESEN, cmd 0x60). ISN = answer[3]<<8 | answer[4], 16 bit.
+     */
+    override suspend fun readIsn(): String? {
+        val message = interfaceWrite(byteArrayOf(0x60))
+        return try {
+            if (message.isValid && message.answer.size > 5)
+                String.format("%02X%02X", message.answer[3], message.answer[4])
+            else null
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex: Exception) {
+            Logger.e { "$tag [readIsn], $ex, $message" }
+            null
+        }
+    }
+
+    /**
+     * Odczyt hasla EWS (job PASSWORT_LESEN, cmd 0x63). Haslo = answer[3..8], 6 bajtow.
+     */
+    override suspend fun readPassword(): String? {
+        val message = interfaceWrite(byteArrayOf(0x63))
+        return try {
+            if (message.isValid && message.answer.size > 9)
+                message.answer.copyOfRange(3, 9).joinToString("") { "%02X".format(it) }
+            else null
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex: Exception) {
+            Logger.e { "$tag [readPassword], $ex, $message" }
+            null
+        }
+    }
+
+    override fun getAdvanceControlElements() = listOf(
+        AdvanceControlElement(Res.string.advance_control_ews_keys_title) { userInfo, onShowResult ->
+            AdvanceControlEwsKeys(userInfo = userInfo, onShowResult = onShowResult)
+        }
+    )
 }

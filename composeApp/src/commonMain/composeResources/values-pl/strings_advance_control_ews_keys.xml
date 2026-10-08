@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_ews_keys_title">Kluczyki</string>
+    <string name="advance_control_ews_keys_isn">ISN</string>
+    <string name="advance_control_ews_keys_password">Hasło</string>
+    <string name="advance_control_ews_keys_read">Odczytaj kluczyki</string>
+    <string name="advance_control_ews_keys_col_number">Nr</string>
+    <string name="advance_control_ews_keys_col_id">ID kluczyka</string>
+    <string name="advance_control_ews_keys_col_status">Status</string>
+    <string name="advance_control_ews_keys_col_selfinit">Auto-inicjalizacja</string>
+    <string name="advance_control_ews_keys_status_locked_unused">Zablokowany, nieużywany</string>
+    <string name="advance_control_ews_keys_status_locked_used">Zablokowany, używany</string>
+    <string name="advance_control_ews_keys_status_free_unused">Wolny, nieużywany</string>
+    <string name="advance_control_ews_keys_status_free_used">Wolny, używany</string>
+    <string name="advance_control_ews_keys_yes">Tak</string>
+    <string name="advance_control_ews_keys_no">Nie</string>
+    <string name="advance_control_ews_keys_no_data">Brak danych - naciśnij \"Odczytaj kluczyki\"</string>
+    <string name="advance_control_ews_keys_read_successful">Kluczyki odczytane</string>
+    <string name="advance_control_ews_keys_read_failed">Nie udało się odczytać kluczyków</string>
+</resources>

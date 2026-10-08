@@ -66,8 +66,9 @@ object ResourceMapperEws {
             "ews_error_static" -> Res.string.ews_error_static
             "ews_live_data_stat_aktueller_wc" -> Res.string.ews_live_data_STAT_AKTUELLER_WC
             "ews_live_data_stat_aktuelle_schluessel_id" -> Res.string.ews_live_data_STAT_AKTUELLE_SCHLUESSEL_ID
+            "ews_live_data_stat_aktuelle_schluesselnummer" -> Res.string.ews_live_data_STAT_AKTUELLE_SCHLUESSELNUMMER
             "ews_live_data_stat_anlasser_aus_bc" -> Res.string.ews_live_data_STAT_ANLASSER_AUS_BC
-            "ews_live_data_stat_anlasser_aus_drehzah" -> Res.string.ews_live_data_STAT_ANLASSER_AUS_DREHZAH
+            "ews_live_data_stat_anlasser_aus_drehzahl" -> Res.string.ews_live_data_STAT_ANLASSER_AUS_DREHZAHL
             "ews_live_data_stat_anlasser_aus_p_n" -> Res.string.ews_live_data_STAT_ANLASSER_AUS_P_N
             "ews_live_data_stat_anlasser_aus_zv" -> Res.string.ews_live_data_STAT_ANLASSER_AUS_ZV
             "ews_live_data_stat_anlasser_freigeschaltet" -> Res.string.ews_live_data_STAT_ANLASSER_FREIGESCHALTET
@@ -86,7 +87,6 @@ object ResourceMapperEws {
             "ews_live_data_stat_schluessel_nio_pw" -> Res.string.ews_live_data_STAT_SCHLUESSEL_NIO_PW
             "ews_live_data_stat_schluessel_nio_wc" -> Res.string.ews_live_data_STAT_SCHLUESSEL_NIO_WC
             "ews_live_data_stat_schluessel_sendet" -> Res.string.ews_live_data_STAT_SCHLUESSEL_SENDET
-            "ews_live_data_stat_stat_weitere_selbstinit_keys" -> Res.string.ews_live_data_STAT_STAT_WEITERE_SELBSTINIT_KEYS
             "ews_live_data_stat_vorgabe_anlasserrelais" -> Res.string.ews_live_data_STAT_VORGABE_ANLASSERRELAIS
             "ews_live_data_stat_vorgabe_anlasserrelais_ausfuehren" -> Res.string.ews_live_data_STAT_VORGABE_ANLASSERRELAIS_AUSFUEHREN
             "ews_live_data_stat_vorgabe_dme" -> Res.string.ews_live_data_STAT_VORGABE_DME

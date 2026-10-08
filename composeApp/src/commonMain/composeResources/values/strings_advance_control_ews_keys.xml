@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_ews_keys_title">Keys</string>
+    <string name="advance_control_ews_keys_isn">ISN</string>
+    <string name="advance_control_ews_keys_password">Password</string>
+    <string name="advance_control_ews_keys_read">Read keys</string>
+    <string name="advance_control_ews_keys_col_number">No.</string>
+    <string name="advance_control_ews_keys_col_id">Key ID</string>
+    <string name="advance_control_ews_keys_col_status">Status</string>
+    <string name="advance_control_ews_keys_col_selfinit">Self-init</string>
+    <string name="advance_control_ews_keys_status_locked_unused">Locked, unused</string>
+    <string name="advance_control_ews_keys_status_locked_used">Locked, used</string>
+    <string name="advance_control_ews_keys_status_free_unused">Free, unused</string>
+    <string name="advance_control_ews_keys_status_free_used">Free, used</string>
+    <string name="advance_control_ews_keys_yes">Yes</string>
+    <string name="advance_control_ews_keys_no">No</string>
+    <string name="advance_control_ews_keys_no_data">No data - press \"Read keys\"</string>
+    <string name="advance_control_ews_keys_read_successful">Keys read successfully</string>
+    <string name="advance_control_ews_keys_read_failed">Failed to read keys</string>
+</resources>

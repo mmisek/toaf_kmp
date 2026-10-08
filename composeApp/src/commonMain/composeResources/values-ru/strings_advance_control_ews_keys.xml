@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_ews_keys_title">Ключи</string>
+    <string name="advance_control_ews_keys_isn">ISN</string>
+    <string name="advance_control_ews_keys_password">Пароль</string>
+    <string name="advance_control_ews_keys_read">Считать ключи</string>
+    <string name="advance_control_ews_keys_col_number">№</string>
+    <string name="advance_control_ews_keys_col_id">ID ключа</string>
+    <string name="advance_control_ews_keys_col_status">Статус</string>
+    <string name="advance_control_ews_keys_col_selfinit">Самоинициализация</string>
+    <string name="advance_control_ews_keys_status_locked_unused">Заблокирован, не используется</string>
+    <string name="advance_control_ews_keys_status_locked_used">Заблокирован, используется</string>
+    <string name="advance_control_ews_keys_status_free_unused">Свободен, не используется</string>
+    <string name="advance_control_ews_keys_status_free_used">Свободен, используется</string>
+    <string name="advance_control_ews_keys_yes">Да</string>
+    <string name="advance_control_ews_keys_no">Нет</string>
+    <string name="advance_control_ews_keys_no_data">Нет данных - нажмите \"Считать ключи\"</string>
+    <string name="advance_control_ews_keys_read_successful">Ключи успешно считаны</string>
+    <string name="advance_control_ews_keys_read_failed">Не удалось считать ключи</string>
+</resources>

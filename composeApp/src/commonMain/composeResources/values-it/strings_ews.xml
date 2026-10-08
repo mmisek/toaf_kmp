@@ -60,11 +60,10 @@
     <string name="ews_coding_interface_stepping_crit">Criteri incrementali interfaccia</string>
 
     <string name="ews_live_data_STAT_ANLASSER_FREIGESCHALTET">Motorino avviamento sbloccato</string>
-    <string name="ews_live_data_STAT_ANLASSER_AUS_DREHZAH">Avviamento bloccato per regime giri</string>
+    <string name="ews_live_data_STAT_ANLASSER_AUS_DREHZAHL">Avviamento bloccato per regime giri</string>
     <string name="ews_live_data_STAT_ANLASSER_AUS_P_N">Avviamento bloccato per selettore marce P/N</string>
     <string name="ews_live_data_STAT_ANLASSER_AUS_ZV">Avviamento bloccato da chiusura centr./allarme</string>
     <string name="ews_live_data_STAT_ANLASSER_AUS_BC">Avviamento bloccato da computer di bordo</string>
-    <string name="ews_live_data_STAT_STAT_WEITERE_SELBSTINIT_KEYS">Possibile inizializzare nuove chiavi</string>
     <string name="ews_live_data_STAT_DME_LEITUNG_FREI">Avviamento possibile</string>
     <string name="ews_live_data_STAT_EWS_JUNGFRAEULICH">EWS è nuovo di fabbrica</string>
     <string name="ews_live_data_STAT_P_N_EINGANG">Segnale P/N disponibile</string>
@@ -86,6 +85,7 @@
     <string name="ews_live_data_STAT_VORGABE_DME_AUSFUEHREN">ECU sbloccata</string>
     <string name="ews_live_data_STAT_VORGABE_ANLASSERRELAIS_AUSFUEHREN">Relè avviamento sbloccato</string>
     <string name="ews_live_data_STAT_AKTUELLE_SCHLUESSEL_ID">ID Chiave</string>
+    <string name="ews_live_data_STAT_AKTUELLE_SCHLUESSELNUMMER">Numero chiave attuale</string>
     <string name="ews_live_data_STAT_AKTUELLER_WC">Codice variabile (Rolling Code)</string>
     <string name="ews_live_data_STAT_WEITERE_SELBSTINIT_KEYS">Alcune chiavi in attesa di inizializzazione</string>
     <string name="ews_live_data_value_true">vero</string>

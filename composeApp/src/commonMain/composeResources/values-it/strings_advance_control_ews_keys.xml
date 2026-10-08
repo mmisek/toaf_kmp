@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_ews_keys_title">Chiavi</string>
+    <string name="advance_control_ews_keys_isn">ISN</string>
+    <string name="advance_control_ews_keys_password">Password</string>
+    <string name="advance_control_ews_keys_read">Leggi chiavi</string>
+    <string name="advance_control_ews_keys_col_number">N.</string>
+    <string name="advance_control_ews_keys_col_id">ID chiave</string>
+    <string name="advance_control_ews_keys_col_status">Stato</string>
+    <string name="advance_control_ews_keys_col_selfinit">Auto-inizializzazione</string>
+    <string name="advance_control_ews_keys_status_locked_unused">Bloccata, non usata</string>
+    <string name="advance_control_ews_keys_status_locked_used">Bloccata, usata</string>
+    <string name="advance_control_ews_keys_status_free_unused">Libera, non usata</string>
+    <string name="advance_control_ews_keys_status_free_used">Libera, usata</string>
+    <string name="advance_control_ews_keys_yes">Sì</string>
+    <string name="advance_control_ews_keys_no">No</string>
+    <string name="advance_control_ews_keys_no_data">Nessun dato - premi \"Leggi chiavi\"</string>
+    <string name="advance_control_ews_keys_read_successful">Chiavi lette correttamente</string>
+    <string name="advance_control_ews_keys_read_failed">Impossibile leggere le chiavi</string>
+</resources>

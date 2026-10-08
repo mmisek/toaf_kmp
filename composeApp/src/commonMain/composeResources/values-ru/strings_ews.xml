@@ -65,11 +65,10 @@
     <string name="ews_coding_immobilizer_activation">Активация иммобилайзера</string>
     <string name="ews_coding_interface_stepping_crit">Критерии пошагового интерфейса</string>
 <string name="ews_live_data_STAT_ANLASSER_FREIGESCHALTET">Стартер разблокирован</string>
-<string name="ews_live_data_STAT_ANLASSER_AUS_DREHZAH">Стартер заблокирован по оборотам (RPM)</string>
+<string name="ews_live_data_STAT_ANLASSER_AUS_DREHZAHL">Стартер заблокирован по оборотам (RPM)</string>
 <string name="ews_live_data_STAT_ANLASSER_AUS_P_N">Стартер заблокирован положением АКПП (P/N)</string>
 <string name="ews_live_data_STAT_ANLASSER_AUS_ZV">Стартер заблокирован центральным замком/сигнализацией</string>
 <string name="ews_live_data_STAT_ANLASSER_AUS_BC">Стартер заблокирован бортовым компьютером</string>
-<string name="ews_live_data_STAT_STAT_WEITERE_SELBSTINIT_KEYS">Можно инициализировать новые ключи</string>
 <string name="ews_live_data_STAT_DME_LEITUNG_FREI">Запуск возможен</string>
 <string name="ews_live_data_STAT_EWS_JUNGFRAEULICH">EWS абсолютно новый (чистый)</string>
 <string name="ews_live_data_STAT_P_N_EINGANG">Сигнал P/N доступен</string>
@@ -91,6 +90,7 @@
 <string name="ews_live_data_STAT_STAT_VORGABE_DME_AUSFUEHREN">ЭБУ (ECU) разблокирован</string>
 <string name="ews_live_data_STAT_VORGABE_ANLASSERRELAIS_AUSFUEHREN">Реле стартера разблокировано</string>
 <string name="ews_live_data_STAT_AKTUELLE_SCHLUESSEL_ID">ID ключа</string>
+<string name="ews_live_data_STAT_AKTUELLE_SCHLUESSELNUMMER">Номер текущего ключа</string>
 <string name="ews_live_data_STAT_AKTUELLER_WC">Плавающий код (Rolling Code)</string>
 <string name="ews_live_data_STAT_WEITERE_SELBSTINIT_KEYS">Некоторые ключи ожидают инициализации</string>
 <string name="ews_live_data_value_true">истина</string>

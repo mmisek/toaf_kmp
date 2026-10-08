@@ -61,11 +61,10 @@
     <string name="ews_coding_interface_stepping_crit">Interface stepping criteria</string>
 
     <string name="ews_live_data_STAT_ANLASSER_FREIGESCHALTET">Starter unlocked</string>
-    <string name="ews_live_data_STAT_ANLASSER_AUS_DREHZAH">Starter locked by RPM</string>
+    <string name="ews_live_data_STAT_ANLASSER_AUS_DREHZAHL">Starter locked by RPM</string>
     <string name="ews_live_data_STAT_ANLASSER_AUS_P_N">Starter locked by P/N gear select</string>
     <string name="ews_live_data_STAT_ANLASSER_AUS_ZV">Starter locked by central door lock/alarm</string>
     <string name="ews_live_data_STAT_ANLASSER_AUS_BC">Starter locked by board computer</string>
-    <string name="ews_live_data_STAT_STAT_WEITERE_SELBSTINIT_KEYS">Can init new keys</string>
     <string name="ews_live_data_STAT_DME_LEITUNG_FREI">Start is possible</string>
     <string name="ews_live_data_STAT_EWS_JUNGFRAEULICH">EWS is brand new</string>
     <string name="ews_live_data_STAT_P_N_EINGANG">P/N signal is available</string>
@@ -87,6 +86,7 @@
     <string name="ews_live_data_STAT_VORGABE_DME_AUSFUEHREN">ECU unlocked</string>
     <string name="ews_live_data_STAT_VORGABE_ANLASSERRELAIS_AUSFUEHREN">Starter relay unlocked</string>
     <string name="ews_live_data_STAT_AKTUELLE_SCHLUESSEL_ID">Key ID</string>
+    <string name="ews_live_data_STAT_AKTUELLE_SCHLUESSELNUMMER">Current key number</string>
     <string name="ews_live_data_STAT_AKTUELLER_WC">Rolling Code</string>
     <string name="ews_live_data_STAT_WEITERE_SELBSTINIT_KEYS">Some keys waiting for init</string>
     <string name="ews_live_data_value_true">true</string>
