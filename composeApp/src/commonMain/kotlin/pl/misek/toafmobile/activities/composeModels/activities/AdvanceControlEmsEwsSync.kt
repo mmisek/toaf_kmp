@@ -46,11 +46,9 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 
 @Composable
-fun AdvanceControlEmsEwsSync(userInfo : UserInfo, onShowResult : AdvanceControlShowResult) {
+fun AdvanceControlEmsEwsSync(engineModule : IModuleEwsSync, userInfo : UserInfo, onShowResult : AdvanceControlShowResult) {
     val modulesManager : ModulesManager = koinInject()
     val modules = modulesManager.getCurrentModules()
-    // Strona silnika: dowolny modul implementujacy IModuleEwsSync (DDE lub EMS).
-    val engineModule = modules.firstOrNull { it is IModuleEwsSync } as? IModuleEwsSync
     val moduleEws = modules.firstOrNull { it.getKoinName() == KoinNames.ModuleR40Ews } as? ModuleEWS
 
     var showProgressDialog by remember { mutableStateOf(false) }
@@ -72,10 +70,8 @@ fun AdvanceControlEmsEwsSync(userInfo : UserInfo, onShowResult : AdvanceControlS
     if (showProgressDialog) {
         ToafProgressDialog(
             action = {
-                // Cala sekwencja wykonywana po stronie sterownika silnika (DDE/EMS),
-                // modul EWS przekazywany do handshake'u; statusy kolejnych krokow na biezaco.
                 stepResults.clear()
-                engineModule?.syncEws(moduleEws) { step -> stepResults.add(step) } == true
+                engineModule.syncEws(moduleEws) { step -> stepResults.add(step) }
             },
             onSuccess = { actionResult ->
                 onShowResult(actionResult, successful, failed)

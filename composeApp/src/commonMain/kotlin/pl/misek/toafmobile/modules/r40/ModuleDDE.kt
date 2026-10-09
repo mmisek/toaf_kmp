@@ -40,6 +40,7 @@ import java.util.Arrays
 import java.util.Calendar
 import java.util.Locale
 import java.util.concurrent.ThreadLocalRandom
+import kotlin.time.Duration.Companion.milliseconds
 
 class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramming, IModule,
     IModuleControl,
@@ -490,7 +491,7 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                 )
                 if (message.isValid)
                     break
-                delay(300)
+                delay(300.milliseconds)
                 if (i == 3 ) return false
             }
             for (i in 0..3)
@@ -820,12 +821,6 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
         return kwp.write(moduleAddress, 0x31.toByte(), byteArrayOf(0x40, 0x00)).isValid
     }
 
-    /**
-     * Synchronizacja EWS - DDE4 (wg logu rzeczywistej sesji).
-     * Kolejnosc: 1) IDENT DDE, 2) IDENT EWS (DS2 0x00 -> A0), 3) handshake EWS (DS2 0x67 -> A0),
-     * 4) wejscie w tryb sync (KWP 0x31 {0x83,0x01} -> 0x71), 5) odczyt statusu (KWP 0x21 {0x06} -> 0x61).
-     * Wymaga podlaczonego modulu EWS.
-     */
     override suspend fun syncEws(ews: ModuleEWS?, onStep: (EwsSyncStep) -> Unit): Boolean {
         if (ews == null) return false
         val ecuIdent = getIdentification()
@@ -851,7 +846,7 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
 
     override fun getAdvanceControlElements() = listOf(
         AdvanceControlElement(Res.string.advance_control_ews_sync_title) { userInfo, onShowResult ->
-            AdvanceControlEmsEwsSync(userInfo = userInfo, onShowResult = onShowResult)
+            AdvanceControlEmsEwsSync(engineModule = this, userInfo = userInfo, onShowResult = onShowResult)
         }
     )
 
