@@ -122,4 +122,7 @@
     <string name="webasto_control_start">Włączenie podgrzewacza</string>
     <string name="webasto_control_stop">Wyłączenie podgrzewacza</string>
     <string name="webasto_control_reset_fault_lock">Reset blokady spowodowanej błędem</string>
+    <string name="webasto_live_data_operating_state">Stan pracy</string>
+    <string name="webasto_live_data_start_counter_copy">Kopia licznika startów</string>
+    <string name="webasto_live_data_start_counter_difference">Starty od zapisania kopii licznika</string>
 </resources>

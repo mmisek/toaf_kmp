@@ -120,4 +120,7 @@
     <string name="webasto_control_start">Turn on heater</string>
     <string name="webasto_control_stop">Turn off heater</string>
     <string name="webasto_control_reset_fault_lock">Reset fault lock</string>
+    <string name="webasto_live_data_operating_state">Operating state</string>
+    <string name="webasto_live_data_start_counter_copy">Start counter copy</string>
+    <string name="webasto_live_data_start_counter_difference">Starts since counter copy</string>
 </resources>

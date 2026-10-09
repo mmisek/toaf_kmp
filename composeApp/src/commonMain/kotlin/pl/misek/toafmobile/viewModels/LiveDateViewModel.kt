@@ -167,7 +167,9 @@ class LiveDateViewModel(
                     }
                 }
                 if (liveDataElement.values == null) {
-                    rawValue = liveDataElement.factorA * (if (liveDataElement.invertA) 1 / tempValue.toFloat() else tempValue.toFloat()) + liveDataElement.factorB
+                    // invert_a: factorA / x; dla x = 0 wartosc 0 (np. Webasto dosierpumpe wylaczona, jak w SGBD)
+                    rawValue = if (liveDataElement.invertA && tempValue == 0L) 0f
+                    else liveDataElement.factorA * (if (liveDataElement.invertA) 1 / tempValue.toFloat() else tempValue.toFloat()) + liveDataElement.factorB
                     valueWithoutUnit  = String.format(if (liveDataElement.unit != " ") "%.2f" else "%.0f", rawValue)
                     formatedValue = if (liveDataElement.unit != " ") valueWithoutUnit + " ${liveDataElement.unit}" else valueWithoutUnit
                 } else {

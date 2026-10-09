@@ -117,4 +117,7 @@
     <string name="webasto_control_start">Encender calefacción</string>
     <string name="webasto_control_stop">Apagar calefacción</string>
     <string name="webasto_control_reset_fault_lock">Restablecer bloqueo de fallos</string>
+    <string name="webasto_live_data_operating_state">Estado de funcionamiento</string>
+    <string name="webasto_live_data_start_counter_copy">Copia del contador de inicios</string>
+    <string name="webasto_live_data_start_counter_difference">Inicios desde la copia del contador</string>
 </resources>

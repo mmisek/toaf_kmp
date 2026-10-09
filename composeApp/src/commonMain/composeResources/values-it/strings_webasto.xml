@@ -120,4 +120,7 @@
     <string name="webasto_control_start">Accendi riscaldatore</string>
     <string name="webasto_control_stop">Spegni riscaldatore</string>
     <string name="webasto_control_reset_fault_lock">Ripristina blocco per guasto</string>
+    <string name="webasto_live_data_operating_state">Stato di funzionamento</string>
+    <string name="webasto_live_data_start_counter_copy">Copia contatore avvii</string>
+    <string name="webasto_live_data_start_counter_difference">Avvii dalla copia del contatore</string>
 </resources>

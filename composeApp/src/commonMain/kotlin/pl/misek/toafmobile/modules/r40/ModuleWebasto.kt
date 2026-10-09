@@ -46,9 +46,22 @@ class ModuleWebasto( protocolDS2: ProtocolDS2?) :
             if (message.isValid) {
                 result[0x01] = message.answer.copyOfRange(3, message.answer.size)
             }
-            message = interfaceWrite(byteArrayOf(0x06, 0x04, 0x02, 0xAC.toByte(), 0x03))
+            // Licznik startow (STARTZAEHLER_LESEN): 2 bajty spod 02 AC
+            message = interfaceWrite(byteArrayOf(0x06, 0x04, 0x02, 0xAC.toByte(), 0x02))
             if (message.isValid) {
                 result[0x02] = message.answer.copyOfRange(3, message.answer.size)
+            }
+            // Kopia licznika startow: 2 bajty spod 01 FC
+            message = interfaceWrite(byteArrayOf(0x06, 0x03, 0x01, 0xFC.toByte(), 0x02))
+            if (message.isValid) {
+                result[0x03] = message.answer.copyOfRange(3, message.answer.size)
+            }
+            // Roznica licznik - kopia (STARTZAEHLER_DIFFERENZ), liczona lokalnie jako blok 0x04
+            val counter = result[0x02]?.let { readWord(it) }
+            val copy = result[0x03]?.let { readWord(it) }
+            if (counter != null && copy != null) {
+                val difference = counter - copy
+                result[0x04] = byteArrayOf((difference shr 8).toByte(), difference.toByte())
             }
         } catch (ex: CancellationException) {
             throw ex
@@ -69,7 +82,11 @@ class ModuleWebasto( protocolDS2: ProtocolDS2?) :
                 )
             ).isValid
 
-            0x0C -> return interfaceWrite(byteArrayOf(0x0C.toByte(), 0x00)).isValid
+            // Wg SGBD STEUERN_ZUHEIZER: 9E przed poleceniem 0C (rowniez przy wylaczaniu)
+            0x0C -> {
+                interfaceWrite(byteArrayOf(0x9E.toByte()))
+                return interfaceWrite(byteArrayOf(0x0C.toByte(), 0x00)).isValid
+            }
             0x9E -> {
                 if (interfaceWrite(byteArrayOf(0x9E.toByte())).isValid) return interfaceWrite(
                     byteArrayOf(0x0C.toByte(), 0xE0.toByte())
@@ -83,75 +100,71 @@ class ModuleWebasto( protocolDS2: ProtocolDS2?) :
         return false
     }
 
+    private fun readWord(data: ByteArray): Int? =
+        if (data.size >= 2) ((data[0].toInt() and 0xFF) shl 8) or (data[1].toInt() and 0xFF) else null
+
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>)= true
 
+    // Wg SGBD FS_LESEN: 04 i (i = 1..n), n = answer[3] (max 3);
+    // rekord: [4] miejsce, [5] typ (bity), [6] czestosc, [7] stan pracy, [8] temperatura plynu
     override suspend fun getAllErrors(): List<ModuleError>? {
         val errorDescriptionCodes = byteArrayOf(0x01, 0x02, 0x04, 0x08, 0x40, 0x80.toByte())
-
-        var result: MutableList<ModuleError>? = null
-        for (i in 1..3) {
-            val message = interfaceWrite(byteArrayOf(0x04, i.toByte()))
-            if (message.isValid) {
-                try {
-                    if (result == null) result = ArrayList()
-                    if (message.answer[3].toInt() != 0x00 && message.answer.size > 5) {
-                        val errorCode = String.format("%02X", message.answer[4])
-                        val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
-                        errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[6].toInt() and 0xFF)))
-                        errorDescription.add(
-                            Pair(
-                                Res.string.webasto_error_detail_cooling_temperature,
-                                (message.answer[8].toInt() and 0xFF)
-                            )
-                        )
-                        val statusByte = message.answer[7].toInt() and 0xFF
-                        val webastoFreezeFrameData = WebastoFreezeFrameData().FreezeFrameData[0x00]
-                        if (webastoFreezeFrameData != null && webastoFreezeFrameData.containsKey(
-                                statusByte
-                            )
-                        ) {
-                            val status = webastoFreezeFrameData[statusByte]
-                            ResourceMapper.stringResource("webasto_error_status_$status")
-                                ?.let {
-                                    errorDescription.add(
-                                        Pair(
-                                            Res.string.webasto_error_detail_status,
-                                            it
-                                        )
-                                    )
-                                }
-                        }
-
-                        for (errorDescriptionCode in errorDescriptionCodes) {
-                            if ((message.answer[5].toInt() and errorDescriptionCode.toInt()) == errorDescriptionCode.toInt()) {
-                                ResourceMapper
-                                    .stringResource(
-                                        String.format(
-                                            "webasto_error_detail_%02X",
-                                            errorDescriptionCode
-                                        )
-                                    )
-                                    ?.let { errorDescription.add(Pair(it, null)) }
-                            }
-                        }
-
-                        result.add(
-                            ModuleError(
-                                ModuleAddress.MODULE_WEBASTO,
-                                errorCode,
-                                errorDescription
-                            )
-                        )
-                    }
-                } catch (ex: CancellationException) {
-                    throw ex
-                } catch (ex : Exception)
-                {
-                    Logger.e {"$tag [getAllErrors], $ex, $message"}
+        val first = interfaceWrite(byteArrayOf(0x04, 0x01))
+        if (!first.isValid) return null
+        val result: MutableList<ModuleError> = ArrayList()
+        val count = (first.answer.getOrNull(3)?.toInt() ?: 0) and 0xFF
+        for (i in 1..count.coerceAtMost(3)) {
+            val message = if (i == 1) first else interfaceWrite(byteArrayOf(0x04, i.toByte()))
+            if (!message.isValid || message.answer.size <= 8) continue
+            try {
+                val errorCode = String.format("%02X", message.answer[4])
+                val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
+                errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[6].toInt() and 0xFF)))
+                errorDescription.add(
+                    Pair(
+                        Res.string.webasto_error_detail_cooling_temperature,
+                        (message.answer[8].toInt() and 0xFF)
+                    )
+                )
+                operatingStateResource(message.answer[7].toInt() and 0xFF)?.let {
+                    errorDescription.add(Pair(Res.string.webasto_error_detail_status, it))
                 }
+
+                for (errorDescriptionCode in errorDescriptionCodes) {
+                    if ((message.answer[5].toInt() and errorDescriptionCode.toInt()) == errorDescriptionCode.toInt()) {
+                        ResourceMapper
+                            .stringResource(
+                                String.format(
+                                    "webasto_error_detail_%02X",
+                                    errorDescriptionCode
+                                )
+                            )
+                            ?.let { errorDescription.add(Pair(it, null)) }
+                    }
+                }
+
+                result.add(
+                    ModuleError(
+                        ModuleAddress.MODULE_WEBASTO,
+                        errorCode,
+                        errorDescription
+                    )
+                )
+            } catch (ex: CancellationException) {
+                throw ex
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [getAllErrors], $ex, $message"}
             }
         }
         return result
+    }
+
+    // Stan pracy wg ZUSTANDTEXTE: najpierw kolumna diesel, potem benzyna (jak w SGBD)
+    private fun operatingStateResource(state: Int): StringResource? {
+        val data = WebastoFreezeFrameData().FreezeFrameData
+        val name = data[0x00]?.get(state) ?: data[0x01]?.get(state) ?: return null
+        return ResourceMapper.stringResource("webasto_error_status_${name.lowercase()}")
     }
 
     private suspend fun moduleInit(): Boolean {

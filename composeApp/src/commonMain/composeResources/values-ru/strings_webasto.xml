@@ -119,4 +119,7 @@
     <string name="webasto_control_start">Включить обогреватель</string>
     <string name="webasto_control_stop">Выключить обогреватель</string>
     <string name="webasto_control_reset_fault_lock">Сброс блокировки неисправности</string>
+    <string name="webasto_live_data_operating_state">Рабочее состояние</string>
+    <string name="webasto_live_data_start_counter_copy">Копия счётчика стартов</string>
+    <string name="webasto_live_data_start_counter_difference">Стартов с момента копии счётчика</string>
 </resources>

@@ -17,7 +17,7 @@
       "factor_a": "1",
       "factor_b": "0",
       "unit": " ",
-      "visible" : "false"
+      "visible": "false"
     },
     {
       "name": "battery_voltage",
@@ -27,6 +27,477 @@
       "factor_a": "0.06826",
       "factor_b": "0.005",
       "unit": "V"
+    },
+    {
+      "name": "operating_state",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "aus"
+        },
+        {
+          "data": "0x01",
+          "text": "fla1"
+        },
+        {
+          "data": "0x02",
+          "text": "vgl1"
+        },
+        {
+          "data": "0x03",
+          "text": "vgl11"
+        },
+        {
+          "data": "0x04",
+          "text": "vfoe1"
+        },
+        {
+          "data": "0x05",
+          "text": "bfoe11"
+        },
+        {
+          "data": "0x06",
+          "text": "bfoe12"
+        },
+        {
+          "data": "0x07",
+          "text": "bfoe13"
+        },
+        {
+          "data": "0x08",
+          "text": "bfoe15"
+        },
+        {
+          "data": "0x09",
+          "text": "stz"
+        },
+        {
+          "data": "0x0A",
+          "text": "bfoe14"
+        },
+        {
+          "data": "0x0B",
+          "text": "flm1"
+        },
+        {
+          "data": "0x0C",
+          "text": "gsr1"
+        },
+        {
+          "data": "0x10",
+          "text": "fla2"
+        },
+        {
+          "data": "0x11",
+          "text": "gsr2"
+        },
+        {
+          "data": "0x12",
+          "text": "gsr3"
+        },
+        {
+          "data": "0x15",
+          "text": "bbvl"
+        },
+        {
+          "data": "0x16",
+          "text": "lvt1"
+        },
+        {
+          "data": "0x17",
+          "text": "lvt2"
+        },
+        {
+          "data": "0x18",
+          "text": "bbtl"
+        },
+        {
+          "data": "0x19",
+          "text": "ltv1"
+        },
+        {
+          "data": "0x1A",
+          "text": "ltv2"
+        },
+        {
+          "data": "0x1B",
+          "text": "abr31"
+        },
+        {
+          "data": "0x1C",
+          "text": "abr32"
+        },
+        {
+          "data": "0x1D",
+          "text": "vgl21"
+        },
+        {
+          "data": "0x1E",
+          "text": "bfoe25"
+        },
+        {
+          "data": "0x20",
+          "text": "abr22"
+        },
+        {
+          "data": "0x21",
+          "text": "abr23"
+        },
+        {
+          "data": "0x22",
+          "text": "abr24"
+        },
+        {
+          "data": "0x23",
+          "text": "rp1"
+        },
+        {
+          "data": "0x24",
+          "text": "rp2"
+        },
+        {
+          "data": "0x25",
+          "text": "vgl4"
+        },
+        {
+          "data": "0x26",
+          "text": "vgl5"
+        },
+        {
+          "data": "0x27",
+          "text": "vgl6"
+        },
+        {
+          "data": "0x28",
+          "text": "vfoe2"
+        },
+        {
+          "data": "0x29",
+          "text": "bfoe42"
+        },
+        {
+          "data": "0x2A",
+          "text": "bfoe33"
+        },
+        {
+          "data": "0x2B",
+          "text": "flm2"
+        },
+        {
+          "data": "0x2C",
+          "text": "bfoe34"
+        },
+        {
+          "data": "0x2D",
+          "text": "flm3"
+        },
+        {
+          "data": "0x30",
+          "text": "wpe"
+        },
+        {
+          "data": "0x31",
+          "text": "gbu"
+        },
+        {
+          "data": "0x32",
+          "text": "kueg2"
+        },
+        {
+          "data": "0x33",
+          "text": "stv"
+        },
+        {
+          "data": "0x34",
+          "text": "hgv"
+        },
+        {
+          "data": "0x35",
+          "text": "abr11"
+        },
+        {
+          "data": "0x36",
+          "text": "abr12"
+        },
+        {
+          "data": "0x37",
+          "text": "abr13"
+        },
+        {
+          "data": "0x38",
+          "text": "abr14"
+        },
+        {
+          "data": "0x39",
+          "text": "abr41"
+        },
+        {
+          "data": "0x3A",
+          "text": "abr42"
+        },
+        {
+          "data": "0x3B",
+          "text": "abr51"
+        },
+        {
+          "data": "0x3C",
+          "text": "abr61"
+        },
+        {
+          "data": "0x3D",
+          "text": "abr71"
+        },
+        {
+          "data": "0x3F",
+          "text": "kueg1"
+        },
+        {
+          "data": "0x40",
+          "text": "absch"
+        },
+        {
+          "data": "0x43",
+          "text": "fla3"
+        },
+        {
+          "data": "0x44",
+          "text": "kueg3"
+        },
+        {
+          "data": "0x45",
+          "text": "kueg4"
+        },
+        {
+          "data": "0x46",
+          "text": "vgl10"
+        },
+        {
+          "data": "0x47",
+          "text": "rua"
+        },
+        {
+          "data": "0x48",
+          "text": "abr25"
+        },
+        {
+          "data": "0x49",
+          "text": "abr15"
+        },
+        {
+          "data": "0x4A",
+          "text": "abr16"
+        },
+        {
+          "data": "0x4B",
+          "text": "fla4"
+        },
+        {
+          "data": "0x50",
+          "text": "aus"
+        },
+        {
+          "data": "0x51",
+          "text": "fla1"
+        },
+        {
+          "data": "0x52",
+          "text": "vgl1"
+        },
+        {
+          "data": "0x53",
+          "text": "vfoe1"
+        },
+        {
+          "data": "0x54",
+          "text": "bfoe11"
+        },
+        {
+          "data": "0x55",
+          "text": "flm1"
+        },
+        {
+          "data": "0x56",
+          "text": "vgl2"
+        },
+        {
+          "data": "0x57",
+          "text": "vgl3"
+        },
+        {
+          "data": "0x58",
+          "text": "bfoe21"
+        },
+        {
+          "data": "0x59",
+          "text": "vgl10"
+        },
+        {
+          "data": "0x5A",
+          "text": "vgl11"
+        },
+        {
+          "data": "0x5B",
+          "text": "fla2"
+        },
+        {
+          "data": "0x5C",
+          "text": "gsr1"
+        },
+        {
+          "data": "0x60",
+          "text": "flm2"
+        },
+        {
+          "data": "0x61",
+          "text": "bbvl"
+        },
+        {
+          "data": "0x62",
+          "text": "lvt1"
+        },
+        {
+          "data": "0x63",
+          "text": "lvt2"
+        },
+        {
+          "data": "0x64",
+          "text": "bbtl"
+        },
+        {
+          "data": "0x65",
+          "text": "ltv1"
+        },
+        {
+          "data": "0x66",
+          "text": "ltv2"
+        },
+        {
+          "data": "0x67",
+          "text": "abr32"
+        },
+        {
+          "data": "0x68",
+          "text": "abr22"
+        },
+        {
+          "data": "0x69",
+          "text": "abr23"
+        },
+        {
+          "data": "0x6D",
+          "text": "gsr2"
+        },
+        {
+          "data": "0x70",
+          "text": "abr24"
+        },
+        {
+          "data": "0x71",
+          "text": "kueg3"
+        },
+        {
+          "data": "0x72",
+          "text": "rp2"
+        },
+        {
+          "data": "0x73",
+          "text": "kueg4"
+        },
+        {
+          "data": "0x74",
+          "text": "vgl4"
+        },
+        {
+          "data": "0x75",
+          "text": "bfoe33"
+        },
+        {
+          "data": "0x76",
+          "text": "flm3"
+        },
+        {
+          "data": "0x77",
+          "text": "wpe"
+        },
+        {
+          "data": "0x78",
+          "text": "kueg2"
+        },
+        {
+          "data": "0x79",
+          "text": "stv"
+        },
+        {
+          "data": "0x7A",
+          "text": "gsr3"
+        },
+        {
+          "data": "0x7B",
+          "text": "gsr4"
+        },
+        {
+          "data": "0x80",
+          "text": "hgv"
+        },
+        {
+          "data": "0x81",
+          "text": "abr11"
+        },
+        {
+          "data": "0x82",
+          "text": "abr12"
+        },
+        {
+          "data": "0x83",
+          "text": "abr13"
+        },
+        {
+          "data": "0x84",
+          "text": "kueg1"
+        },
+        {
+          "data": "0x85",
+          "text": "absch"
+        },
+        {
+          "data": "0x88",
+          "text": "rua"
+        },
+        {
+          "data": "0x89",
+          "text": "abr25"
+        },
+        {
+          "data": "0x8A",
+          "text": "abr15"
+        },
+        {
+          "data": "0x8B",
+          "text": "fla3"
+        },
+        {
+          "data": "0x8C",
+          "text": "fla4"
+        },
+        {
+          "data": "0x8D",
+          "text": "vgl5"
+        },
+        {
+          "data": "0x8E",
+          "text": "bfoe42"
+        },
+        {
+          "data": "0x8F",
+          "text": "flm4"
+        }
+      ]
     },
     {
       "name": "combustion_air_blower_performance",
@@ -54,7 +525,7 @@
       "factor_a": "1900",
       "factor_b": "0",
       "unit": "%",
-      "invert_a" : "true"
+      "invert_a": "true"
     },
     {
       "name": "combustion_air_fan",
@@ -153,13 +624,32 @@
       "mask": "0xFF",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": "h"
+      "unit": "min"
     },
     {
       "name": "start_counter",
       "block": "0x02",
       "byte": "0x00",
       "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "start_counter_copy",
+      "block": "0x03",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "start_counter_difference",
+      "block": "0x04",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "u2": "true",
       "factor_a": "1",
       "factor_b": "0",
       "unit": " "
