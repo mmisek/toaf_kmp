@@ -1,346 +1,384 @@
 {
     "elements": [
-      {
-        "name": "AIRBAG_DRIVER",
-        "block": "0x00",
-        "byte": "0x00",
-        "mask": "0x01",
-        "coding_index": [
-          "2"
-        ],
-        "coding_values": [
-            {
-              "data": "0x01",
-              "text": "active"
-            },
-            {
-              "data": "0x00",
-              "text": "not_active"
-            }
-          ]
-      },
-      {
-        "name": "ITS_LEFT",
-        "block": "0x00",
-        "byte": "0x00",
-        "mask": "0x02",
-        "coding_index": [
-          "2"
-        ],
-        "coding_values": [
-            {
-              "data": "0x01",
-              "text": "active"
-            },
-            {
-              "data": "0x00",
-              "text": "not_active"
-            }
-          ]
-      },
-      {
-        "name": "ITS_RIGHT",
-        "block": "0x00",
-        "byte": "0x00",
-        "mask": "0x04",
-        "coding_index": [
-          "2"
-        ],
-        "coding_values": [
-            {
-              "data": "0x01",
-              "text": "active"
-            },
-            {
-              "data": "0x00",
-              "text": "not_active"
-            }
-          ]
-      },
-      {
-        "name": "AIRBAG_PASSENGER",
-        "block": "0x00",
-        "byte": "0x00",
-        "mask": "0x08",
-        "coding_index": [
-          "2"
-        ],
-        "coding_values": [
-            {
-              "data": "0x01",
-              "text": "active"
-            },
-            {
-              "data": "0x00",
-              "text": "not_active"
-            }
-          ]
-      },
-      {
-        "name": "seat_left_airbag",
-        "block": "0x00",
-        "byte": "0x00",
-        "mask": "0x10",
-        "coding_index": [
-          "2"
-        ],
-        "coding_values": [
-            {
-              "data": "0x01",
-              "text": "active"
-            },
-            {
-              "data": "0x00",
-              "text": "not_active"
-            }
-          ]
-      },
-      {
-        "name": "seat_right_airbag",
-        "block": "0x00",
-        "byte": "0x00",
-        "mask": "0x20",
-        "coding_index": [
-          "2"
-        ],
-        "coding_values": [
-            {
-              "data": "0x01",
-              "text": "active"
-            },
-            {
-              "data": "0x00",
-              "text": "not_active"
-            }
-          ]
-      },
-      {
-        "name": "BP_DRIVER",
-        "block": "0x00",
-        "byte": "0x00",
-        "mask": "0x40",
-        "coding_index": [
-          "2"
-        ],
-        "coding_values": [
-            {
-              "data": "0x01",
-              "text": "active"
-            },
-            {
-              "data": "0x00",
-              "text": "not_active"
-            }
-          ]
-      },
-      {
-        "name": "BP_PASSENGER",
-        "block": "0x00",
-        "byte": "0x00",
-        "mask": "0x80",
-        "coding_index": [
-          "2"
-        ],
-        "coding_values": [
-            {
-              "data": "0x01",
-              "text": "active"
-            },
-            {
-              "data": "0x00",
-              "text": "not_active"
-            }
-          ]
-      },
-      {
-        "name": "BP_REAR_LEFT",
-        "block": "0x00",
-        "byte": "0x01",
-        "mask": "0x01",
-        "coding_index": [
-          "2"
-        ],
-        "coding_values": [
-            {
-              "data": "0x01",
-              "text": "active"
-            },
-            {
-              "data": "0x00",
-              "text": "not_active"
-            }
-          ]
-      },
-      {
-        "name": "BP_REAR_RIGHT",
-        "block": "0x00",
-        "byte": "0x01",
-        "mask": "0x02",
-        "coding_index": [
-          "2"
-        ],
-        "coding_values": [
-            {
-              "data": "0x01",
-              "text": "active"
-            },
-            {
-              "data": "0x00",
-              "text": "not_active"
-            }
-          ]
-      },
-      {
-        "name": "BP_REAR_MIDDLE",
-        "block": "0x00",
-        "byte": "0x01",
-        "mask": "0x04",
-        "coding_index": [
-          "2"
-        ],
-        "coding_values": [
-            {
-              "data": "0x01",
-              "text": "active"
-            },
-            {
-              "data": "0x00",
-              "text": "not_active"
-            }
-          ]
-      },
-      {
-        "name": "UBAT_DISCONNECT",
-        "block": "0x00",
-        "byte": "0x01",
-        "mask": "0x08",
-        "coding_index": [
-          "2"
-        ],
-        "coding_values": [
-            {
-              "data": "0x01",
-              "text": "active"
-            },
-            {
-              "data": "0x00",
-              "text": "not_active"
-            }
-          ]
-      },
-      {
-        "name": "BELT_BUCKLE_DRIVER",
-        "block": "0x00",
-        "byte": "0x02",
-        "mask": "0x01",
-        "coding_index": [
-          "2"
-        ],
-        "coding_values": [
-            {
-              "data": "0x01",
-              "text": "active"
-            },
-            {
-              "data": "0x00",
-              "text": "not_active"
-            }
-          ]
-      },
-      {
-        "name": "BELT_BUCKLE_PASSENGER",
-        "block": "0x00",
-        "byte": "0x02",
-        "mask": "0x02",
-        "coding_index": [
-          "2"
-        ],
-        "coding_values": [
-            {
-              "data": "0x01",
-              "text": "active"
-            },
-            {
-              "data": "0x00",
-              "text": "not_active"
-            }
-          ]
-      },
-      {
-        "name": "ODS",
-        "block": "0x00",
-        "byte": "0x02",
-        "mask": "0x20",
-        "coding_index": [
-          "2"
-        ],
-        "coding_values": [
-            {
-              "data": "0x01",
-              "text": "active"
-            },
-            {
-              "data": "0x00",
-              "text": "not_active"
-            }
-          ]
-      },
-      {
-        "name": "MRSA_FRONT",
-        "block": "0x00",
-        "byte": "0x03",
-        "mask": "0x01",
-        "coding_index": [
-          "2"
-        ],
-        "coding_values": [
-            {
-              "data": "0x01",
-              "text": "active"
-            },
-            {
-              "data": "0x00",
-              "text": "not_active"
-            }
-          ]
-      },
-      {
-        "name": "INDICATION_LAMP",
-        "block": "0x00",
-        "byte": "0x03",
-        "mask": "0x08",
-        "coding_index": [
-          "2"
-        ],
-        "coding_values": [
-            {
-              "data": "0x01",
-              "text": "active"
-            },
-            {
-              "data": "0x00",
-              "text": "not_active"
-            }
-          ]
-      },
-      {
-        "name": "TRIGGER_SWITCH",
-        "block": "0x00",
-        "byte": "0x03",
-        "mask": "0x40",
-        "coding_index": [
-          "2"
-        ],
-        "coding_values": [
-            {
-              "data": "0x01",
-              "text": "active"
-            },
-            {
-              "data": "0x00",
-              "text": "not_active"
-            }
-          ]
-      }
+        {
+            "name": "AIRBAG_DRIVER",
+            "block": "0x00",
+            "byte": "0x00",
+            "mask": "0x01",
+            "coding_index": [
+                "2"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "BP_DRIVER",
+            "block": "0x00",
+            "byte": "0x00",
+            "mask": "0x02",
+            "coding_index": [
+                "2"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "BP_PASSENGER",
+            "block": "0x00",
+            "byte": "0x00",
+            "mask": "0x04",
+            "coding_index": [
+                "2"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "AIRBAG_PASSENGER",
+            "block": "0x00",
+            "byte": "0x00",
+            "mask": "0x08",
+            "coding_index": [
+                "2"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "seat_left_airbag",
+            "block": "0x00",
+            "byte": "0x00",
+            "mask": "0x10",
+            "coding_index": [
+                "2"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "seat_right_airbag",
+            "block": "0x00",
+            "byte": "0x00",
+            "mask": "0x20",
+            "coding_index": [
+                "2"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "BP_REAR_LEFT",
+            "block": "0x00",
+            "byte": "0x00",
+            "mask": "0x40",
+            "coding_index": [
+                "2"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "BP_REAR_RIGHT",
+            "block": "0x00",
+            "byte": "0x00",
+            "mask": "0x80",
+            "coding_index": [
+                "2"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "ITS_LEFT",
+            "block": "0x00",
+            "byte": "0x01",
+            "mask": "0x01",
+            "coding_index": [
+                "2"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "ITS_RIGHT",
+            "block": "0x00",
+            "byte": "0x01",
+            "mask": "0x02",
+            "coding_index": [
+                "2"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "AIRBAG_DRIVER_STAGE2",
+            "block": "0x00",
+            "byte": "0x01",
+            "mask": "0x04",
+            "coding_index": [
+                "2"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "AIRBAG_PASSENGER_STAGE2",
+            "block": "0x00",
+            "byte": "0x01",
+            "mask": "0x08",
+            "coding_index": [
+                "2"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "BELT_BUCKLE_DRIVER",
+            "block": "0x00",
+            "byte": "0x02",
+            "mask": "0x01",
+            "coding_index": [
+                "2"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "BELT_BUCKLE_PASSENGER",
+            "block": "0x00",
+            "byte": "0x02",
+            "mask": "0x02",
+            "coding_index": [
+                "2"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "OC_SENSOR",
+            "block": "0x00",
+            "byte": "0x02",
+            "mask": "0x10",
+            "coding_index": [
+                "2"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "RFIS",
+            "block": "0x00",
+            "byte": "0x02",
+            "mask": "0x20",
+            "coding_index": [
+                "2"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "MRSA_FRONT",
+            "block": "0x00",
+            "byte": "0x03",
+            "mask": "0x01",
+            "coding_index": [
+                "2"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "MRSA_REAR",
+            "block": "0x00",
+            "byte": "0x03",
+            "mask": "0x02",
+            "coding_index": [
+                "2"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "RFIS_LAMP",
+            "block": "0x00",
+            "byte": "0x03",
+            "mask": "0x08",
+            "coding_index": [
+                "2"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        },
+        {
+            "name": "US_VERSION",
+            "block": "0x00",
+            "byte": "0x03",
+            "mask": "0x80",
+            "coding_index": [
+                "2"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "not_active"
+                }
+            ]
+        }
     ]
 }

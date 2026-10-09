@@ -97,9 +97,9 @@
     <string name="srs_error_detail_04">Open Circuit</string>
     <string name="srs_error_detail_08">Leakage / Short to Ground</string>
     <string name="srs_error_detail_10">Leakage / Short to Ubat</string>
-    <string name="srs_error_detail_20">No DTC present</string>
-    <string name="srs_error_detail_40">DTC is Sporadic</string>
-    <string name="srs_error_detail_80">DTC is Present</string>
+    <string name="srs_error_detail_20">DTC is Sporadic</string>
+    <string name="srs_error_detail_40">DTC is Present</string>
+    <string name="srs_error_detail_80">Error Present</string>
     <string name="srs_error_detail_0A">No Error present</string>
     <string name="srs_error_detail_0B">Error Present</string>
     <!-- SRS coding-->
@@ -113,13 +113,46 @@
     <string name="srs_coding_bp_passenger">Belt pretensioner - passenger</string>
     <string name="srs_coding_bp_rear_left">Belt pretensioner - rear left</string>
     <string name="srs_coding_bp_rear_right">Belt pretensioner - rear right</string>
-    <string name="srs_coding_bp_rear_middle">Belt pretensioner - rear center</string>
-    <string name="srs_coding_ubat_disconnect">Battery disconnect</string>
     <string name="srs_coding_belt_buckle_driver">Belt sensor - driver</string>
     <string name="srs_coding_belt_buckle_passenger">Belt sensor - passenger</string>
-    <string name="srs_coding_ods">ODS</string>
     <string name="srs_coding_mrsa_front">MRSA - front</string>
-    <string name="srs_coding_indication_lamp">Indication lamp</string>
-    <string name="srs_coding_trigger_switch">Trigger switch</string>
+    <string name="srs_coding_airbag_driver_stage2">Driver airbag - stage 2</string>
+    <string name="srs_coding_airbag_passenger_stage2">Passenger airbag - stage 2</string>
+    <string name="srs_coding_oc_sensor">Passenger seat occupancy sensor (OC)</string>
+    <string name="srs_coding_rfis">Rear facing child seat sensor (RFIS)</string>
+    <string name="srs_coding_mrsa_rear">MRSA - rear</string>
+    <string name="srs_coding_rfis_lamp">RFIS status lamp</string>
+    <string name="srs_coding_us_version">US version</string>
 
+    <!-- Live data -->
+    <string name="srs_live_data_airbag_drv_1_enabled">Driver airbag stage 1 enabled</string>
+    <string name="srs_live_data_belt_pre_drv_enabled">Belt pretensioner driver enabled</string>
+    <string name="srs_live_data_belt_pre_psngr_enabled">Belt pretensioner passenger enabled</string>
+    <string name="srs_live_data_airbag_psngr_1_enabled">Passenger airbag stage 1 enabled</string>
+    <string name="srs_live_data_sidebag_front_left_enabled">Side airbag front left enabled</string>
+    <string name="srs_live_data_sidebag_front_right_enabled">Side airbag front right enabled</string>
+    <string name="srs_live_data_belt_pre_rear_left_enabled">Belt pretensioner rear left enabled</string>
+    <string name="srs_live_data_belt_pre_rear_right_enabled">Belt pretensioner rear right enabled</string>
+    <string name="srs_live_data_its_front_left_enabled">Head airbag (ITS) left enabled</string>
+    <string name="srs_live_data_its_front_right_enabled">Head airbag (ITS) right enabled</string>
+    <string name="srs_live_data_airbag_drv_2_enabled">Driver airbag stage 2 enabled</string>
+    <string name="srs_live_data_airbag_psngr_2_enabled">Passenger airbag stage 2 enabled</string>
+    <string name="srs_live_data_belt_buckle_driver_enabled">Driver seat belt buckle switch enabled</string>
+    <string name="srs_live_data_belt_buckle_psngr_enabled">Passenger seat belt buckle switch enabled</string>
+    <string name="srs_live_data_oc_sensor_active">Seat occupancy sensor (OC) enabled</string>
+    <string name="srs_live_data_rfis_active">Rear facing child seat sensor (RFIS) enabled</string>
+    <string name="srs_live_data_mrsa_front_selected">MRSA front selected</string>
+    <string name="srs_live_data_mrsa_rear_selected">MRSA rear selected</string>
+    <string name="srs_live_data_rfis_lamp_enabled">RFIS status lamp enabled</string>
+    <string name="srs_live_data_us_version_enabled">US version enabled</string>
+    <string name="srs_live_data_psngr_seat_occupied_detected">Passenger seat occupied</string>
+    <string name="srs_live_data_rear_facing_child_seat_detected">Rear facing child seat detected</string>
+    <string name="srs_live_data_oc_sensor_status0_active">Seat occupancy sensor (OC) status 0</string>
+    <string name="srs_live_data_oc_sensor_status1_active">Seat occupancy sensor (OC) status 1</string>
+    <string name="srs_live_data_oc_sensor_status2_active">Seat occupancy sensor (OC) status 2</string>
+    <string name="srs_live_data_oc_sensor_status3_active">Seat occupancy sensor (OC) status 3</string>
+    <string name="srs_live_data_oc_sensor_status4_active">Seat occupancy sensor (OC) status 4</string>
+    <string name="srs_live_data_lock_byte">Lock byte</string>
+    <string name="srs_live_data_value_yes">yes</string>
+    <string name="srs_live_data_value_no">no</string>
 </resources>

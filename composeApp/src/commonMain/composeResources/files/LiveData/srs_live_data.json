@@ -1,0 +1,554 @@
+{
+  "livedata": [
+    {
+      "name": "AIRBAG_DRV_1_ENABLED",
+      "service": "0x21",
+      "block": "0x04",
+      "byte": "0x06",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "BELT_PRE_DRV_ENABLED",
+      "service": "0x21",
+      "block": "0x04",
+      "byte": "0x06",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "BELT_PRE_PSNGR_ENABLED",
+      "service": "0x21",
+      "block": "0x04",
+      "byte": "0x06",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "AIRBAG_PSNGR_1_ENABLED",
+      "service": "0x21",
+      "block": "0x04",
+      "byte": "0x06",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "SIDEBAG_FRONT_LEFT_ENABLED",
+      "service": "0x21",
+      "block": "0x04",
+      "byte": "0x06",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "SIDEBAG_FRONT_RIGHT_ENABLED",
+      "service": "0x21",
+      "block": "0x04",
+      "byte": "0x06",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "BELT_PRE_REAR_LEFT_ENABLED",
+      "service": "0x21",
+      "block": "0x04",
+      "byte": "0x06",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "BELT_PRE_REAR_RIGHT_ENABLED",
+      "service": "0x21",
+      "block": "0x04",
+      "byte": "0x06",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "ITS_FRONT_LEFT_ENABLED",
+      "service": "0x21",
+      "block": "0x04",
+      "byte": "0x07",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "ITS_FRONT_RIGHT_ENABLED",
+      "service": "0x21",
+      "block": "0x04",
+      "byte": "0x07",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "AIRBAG_DRV_2_ENABLED",
+      "service": "0x21",
+      "block": "0x04",
+      "byte": "0x07",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "AIRBAG_PSNGR_2_ENABLED",
+      "service": "0x21",
+      "block": "0x04",
+      "byte": "0x07",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "BELT_BUCKLE_DRIVER_ENABLED",
+      "service": "0x21",
+      "block": "0x04",
+      "byte": "0x08",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "BELT_BUCKLE_PSNGR_ENABLED",
+      "service": "0x21",
+      "block": "0x04",
+      "byte": "0x08",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "OC_SENSOR_ACTIVE",
+      "service": "0x21",
+      "block": "0x04",
+      "byte": "0x08",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "RFIS_ACTIVE",
+      "service": "0x21",
+      "block": "0x04",
+      "byte": "0x08",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "MRSA_FRONT_SELECTED",
+      "service": "0x21",
+      "block": "0x04",
+      "byte": "0x09",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "MRSA_REAR_SELECTED",
+      "service": "0x21",
+      "block": "0x04",
+      "byte": "0x09",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "RFIS_LAMP_ENABLED",
+      "service": "0x21",
+      "block": "0x04",
+      "byte": "0x09",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "US_VERSION_ENABLED",
+      "service": "0x21",
+      "block": "0x04",
+      "byte": "0x09",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "PSNGR_SEAT_OCCUPIED_DETECTED",
+      "service": "0x21",
+      "block": "0x10",
+      "byte": "0x06",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "REAR_FACING_CHILD_SEAT_DETECTED",
+      "service": "0x21",
+      "block": "0x10",
+      "byte": "0x06",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "OC_SENSOR_STATUS0_ACTIVE",
+      "service": "0x21",
+      "block": "0x10",
+      "byte": "0x06",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "OC_SENSOR_STATUS1_ACTIVE",
+      "service": "0x21",
+      "block": "0x10",
+      "byte": "0x06",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "OC_SENSOR_STATUS2_ACTIVE",
+      "service": "0x21",
+      "block": "0x10",
+      "byte": "0x06",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "OC_SENSOR_STATUS3_ACTIVE",
+      "service": "0x21",
+      "block": "0x10",
+      "byte": "0x06",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "OC_SENSOR_STATUS4_ACTIVE",
+      "service": "0x21",
+      "block": "0x10",
+      "byte": "0x06",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "LOCK_BYTE",
+      "service": "0x21",
+      "block": "0x0F",
+      "byte": "0x06",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    }
+  ]
+}

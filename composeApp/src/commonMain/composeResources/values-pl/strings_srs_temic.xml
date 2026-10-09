@@ -97,9 +97,9 @@
 <string name="srs_error_detail_04">Otwarty obwód</string>
 <string name="srs_error_detail_08">Wycieki / zwarcie do masy</string>
 <string name="srs_error_detail_10">Wycieki / zwarcie do Ubat</string>
-<string name="srs_error_detail_20">Brak obecności DTC</string>
-<string name="srs_error_detail_40">DTC jest sporadyczny</string>
-<string name="srs_error_detail_80">DTC jest obecny</string>
+<string name="srs_error_detail_20">DTC jest sporadyczny</string>
+<string name="srs_error_detail_40">DTC jest obecny</string>
+<string name="srs_error_detail_80">Błąd obecny</string>
 <string name="srs_error_detail_0A">Brak błędu</string>
 <string name="srs_error_detail_0B">Błąd obecny</string>
     <!-- SRS coding-->
@@ -113,13 +113,46 @@
 <string name="srs_coding_bp_passenger">Napinacz pasa — pasażer</string>
 <string name="srs_coding_bp_rear_left">Napinacz pasa — tylny lewy</string>
 <string name="srs_coding_bp_rear_right">Napinacz pasa — tylny prawy</string>
-<string name="srs_coding_bp_rear_middle">Napinacz pasa — tylny środkowy</string>
-<string name="srs_coding_ubat_disconnect">Odłączenie baterii</string>
 <string name="srs_coding_belt_buckle_driver">Czujnik pasa — kierowca</string>
 <string name="srs_coding_belt_buckle_passenger">Czujnik pasa — pasażer</string>
-<string name="srs_coding_ods">ODS</string>
 <string name="srs_coding_mrsa_front">MRSA — przód</string>
-<string name="srs_coding_indication_lamp">Lampka wskaźnikowa</string>
-<string name="srs_coding_trigger_switch">Przełącznik wyzwalający</string>
+<string name="srs_coding_airbag_driver_stage2">Poduszka kierowcy - 2. stopień</string>
+<string name="srs_coding_airbag_passenger_stage2">Poduszka pasażera - 2. stopień</string>
+<string name="srs_coding_oc_sensor">Czujnik zajętości fotela pasażera (OC)</string>
+<string name="srs_coding_rfis">Czujnik fotelika tyłem do kierunku jazdy (RFIS)</string>
+<string name="srs_coding_mrsa_rear">MRSA - tył</string>
+<string name="srs_coding_rfis_lamp">Lampka statusu RFIS</string>
+<string name="srs_coding_us_version">Wersja USA</string>
 
+<!-- Live data -->
+<string name="srs_live_data_airbag_drv_1_enabled">Poduszka kierowcy (1. stopień) aktywna</string>
+<string name="srs_live_data_belt_pre_drv_enabled">Napinacz pasa kierowcy aktywny</string>
+<string name="srs_live_data_belt_pre_psngr_enabled">Napinacz pasa pasażera aktywny</string>
+<string name="srs_live_data_airbag_psngr_1_enabled">Poduszka pasażera (1. stopień) aktywna</string>
+<string name="srs_live_data_sidebag_front_left_enabled">Poduszka boczna przednia lewa aktywna</string>
+<string name="srs_live_data_sidebag_front_right_enabled">Poduszka boczna przednia prawa aktywna</string>
+<string name="srs_live_data_belt_pre_rear_left_enabled">Napinacz pasa tylny lewy aktywny</string>
+<string name="srs_live_data_belt_pre_rear_right_enabled">Napinacz pasa tylny prawy aktywny</string>
+<string name="srs_live_data_its_front_left_enabled">Kurtyna (ITS) lewa aktywna</string>
+<string name="srs_live_data_its_front_right_enabled">Kurtyna (ITS) prawa aktywna</string>
+<string name="srs_live_data_airbag_drv_2_enabled">Poduszka kierowcy (2. stopień) aktywna</string>
+<string name="srs_live_data_airbag_psngr_2_enabled">Poduszka pasażera (2. stopień) aktywna</string>
+<string name="srs_live_data_belt_buckle_driver_enabled">Czujnik zapięcia pasa kierowcy aktywny</string>
+<string name="srs_live_data_belt_buckle_psngr_enabled">Czujnik zapięcia pasa pasażera aktywny</string>
+<string name="srs_live_data_oc_sensor_active">Czujnik zajętości fotela (OC) aktywny</string>
+<string name="srs_live_data_rfis_active">Czujnik fotelika tyłem (RFIS) aktywny</string>
+<string name="srs_live_data_mrsa_front_selected">MRSA przód wybrane</string>
+<string name="srs_live_data_mrsa_rear_selected">MRSA tył wybrane</string>
+<string name="srs_live_data_rfis_lamp_enabled">Lampka statusu RFIS aktywna</string>
+<string name="srs_live_data_us_version_enabled">Wersja USA aktywna</string>
+<string name="srs_live_data_psngr_seat_occupied_detected">Fotel pasażera zajęty</string>
+<string name="srs_live_data_rear_facing_child_seat_detected">Wykryto fotelik tyłem do kierunku jazdy</string>
+<string name="srs_live_data_oc_sensor_status0_active">Czujnik zajętości fotela (OC) - status 0</string>
+<string name="srs_live_data_oc_sensor_status1_active">Czujnik zajętości fotela (OC) - status 1</string>
+<string name="srs_live_data_oc_sensor_status2_active">Czujnik zajętości fotela (OC) - status 2</string>
+<string name="srs_live_data_oc_sensor_status3_active">Czujnik zajętości fotela (OC) - status 3</string>
+<string name="srs_live_data_oc_sensor_status4_active">Czujnik zajętości fotela (OC) - status 4</string>
+<string name="srs_live_data_lock_byte">Bajt blokady</string>
+<string name="srs_live_data_value_yes">tak</string>
+<string name="srs_live_data_value_no">nie</string>
 </resources>

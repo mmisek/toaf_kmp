@@ -97,9 +97,9 @@
 <string name="srs_error_detail_04">Circuito abierto</string>
 <string name="srs_error_detail_08">Fuga / Cortocircuito a tierra</string>
 <string name="srs_error_detail_10">Fuga / Cortocircuito a Ubat</string>
-<string name="srs_error_detail_20">No hay DTC presente</string>
-<string name="srs_error_detail_40">DTC es esporádico</string>
-<string name="srs_error_detail_80">DTC está presente</string>
+<string name="srs_error_detail_20">DTC es esporádico</string>
+<string name="srs_error_detail_40">DTC está presente</string>
+<string name="srs_error_detail_80">Error presente</string>
 <string name="srs_error_detail_0A">No hay error presente</string>
 <string name="srs_error_detail_0B">Error presente</string>
 
@@ -114,14 +114,47 @@
 <string name="srs_coding_bp_passenger">Pretensor del cinturón - pasajero</string>
 <string name="srs_coding_bp_rear_left">Pretensor del cinturón - trasero izquierdo</string>
 <string name="srs_coding_bp_rear_right">Pretensor del cinturón - trasero derecho</string>
-<string name="srs_coding_bp_rear_middle">Pretensor del cinturón - trasero central</string>
-<string name="srs_coding_ubat_disconnect">Desconexión de la batería</string>
 <string name="srs_coding_belt_buckle_driver">Sensor del cinturón - conductor</string>
 <string name="srs_coding_belt_buckle_passenger">Sensor del cinturón - pasajero</string>
-<string name="srs_coding_ods">ODS</string>
 <string name="srs_coding_mrsa_front">MRSA - frontal</string>
-<string name="srs_coding_indication_lamp">Lámpara de indicación</string>
-<string name="srs_coding_trigger_switch">Interruptor de activación</string>
+<string name="srs_coding_airbag_driver_stage2">Airbag del conductor - 2ª etapa</string>
+<string name="srs_coding_airbag_passenger_stage2">Airbag del pasajero - 2ª etapa</string>
+<string name="srs_coding_oc_sensor">Sensor de ocupación del asiento del pasajero (OC)</string>
+<string name="srs_coding_rfis">Sensor de silla infantil a contramarcha (RFIS)</string>
+<string name="srs_coding_mrsa_rear">MRSA - trasero</string>
+<string name="srs_coding_rfis_lamp">Lámpara de estado RFIS</string>
+<string name="srs_coding_us_version">Versión EE. UU.</string>
 
 
+<!-- Live data -->
+<string name="srs_live_data_airbag_drv_1_enabled">Airbag del conductor (1ª etapa) activo</string>
+<string name="srs_live_data_belt_pre_drv_enabled">Pretensor del cinturón del conductor activo</string>
+<string name="srs_live_data_belt_pre_psngr_enabled">Pretensor del cinturón del pasajero activo</string>
+<string name="srs_live_data_airbag_psngr_1_enabled">Airbag del pasajero (1ª etapa) activo</string>
+<string name="srs_live_data_sidebag_front_left_enabled">Airbag lateral delantero izquierdo activo</string>
+<string name="srs_live_data_sidebag_front_right_enabled">Airbag lateral delantero derecho activo</string>
+<string name="srs_live_data_belt_pre_rear_left_enabled">Pretensor del cinturón trasero izquierdo activo</string>
+<string name="srs_live_data_belt_pre_rear_right_enabled">Pretensor del cinturón trasero derecho activo</string>
+<string name="srs_live_data_its_front_left_enabled">Airbag de cortina (ITS) izquierdo activo</string>
+<string name="srs_live_data_its_front_right_enabled">Airbag de cortina (ITS) derecho activo</string>
+<string name="srs_live_data_airbag_drv_2_enabled">Airbag del conductor (2ª etapa) activo</string>
+<string name="srs_live_data_airbag_psngr_2_enabled">Airbag del pasajero (2ª etapa) activo</string>
+<string name="srs_live_data_belt_buckle_driver_enabled">Sensor de hebilla del conductor activo</string>
+<string name="srs_live_data_belt_buckle_psngr_enabled">Sensor de hebilla del pasajero activo</string>
+<string name="srs_live_data_oc_sensor_active">Sensor de ocupación (OC) activo</string>
+<string name="srs_live_data_rfis_active">Sensor de silla a contramarcha (RFIS) activo</string>
+<string name="srs_live_data_mrsa_front_selected">MRSA delantero seleccionado</string>
+<string name="srs_live_data_mrsa_rear_selected">MRSA trasero seleccionado</string>
+<string name="srs_live_data_rfis_lamp_enabled">Lámpara de estado RFIS activa</string>
+<string name="srs_live_data_us_version_enabled">Versión EE. UU. activa</string>
+<string name="srs_live_data_psngr_seat_occupied_detected">Asiento del pasajero ocupado</string>
+<string name="srs_live_data_rear_facing_child_seat_detected">Silla infantil a contramarcha detectada</string>
+<string name="srs_live_data_oc_sensor_status0_active">Sensor de ocupación (OC) - estado 0</string>
+<string name="srs_live_data_oc_sensor_status1_active">Sensor de ocupación (OC) - estado 1</string>
+<string name="srs_live_data_oc_sensor_status2_active">Sensor de ocupación (OC) - estado 2</string>
+<string name="srs_live_data_oc_sensor_status3_active">Sensor de ocupación (OC) - estado 3</string>
+<string name="srs_live_data_oc_sensor_status4_active">Sensor de ocupación (OC) - estado 4</string>
+<string name="srs_live_data_lock_byte">Byte de bloqueo</string>
+<string name="srs_live_data_value_yes">sí</string>
+<string name="srs_live_data_value_no">no</string>
 </resources>

@@ -7,6 +7,13 @@ import toafmobile.composeapp.generated.resources.*
 object ResourceMapperSrs {
     fun stringResource(resourceName: String): StringResource? {
         return when (resourceName) {
+            "srs_coding_airbag_driver_stage2" -> Res.string.srs_coding_airbag_driver_stage2
+            "srs_coding_airbag_passenger_stage2" -> Res.string.srs_coding_airbag_passenger_stage2
+            "srs_coding_oc_sensor" -> Res.string.srs_coding_oc_sensor
+            "srs_coding_rfis" -> Res.string.srs_coding_rfis
+            "srs_coding_mrsa_rear" -> Res.string.srs_coding_mrsa_rear
+            "srs_coding_rfis_lamp" -> Res.string.srs_coding_rfis_lamp
+            "srs_coding_us_version" -> Res.string.srs_coding_us_version
             "srs_coding_airbag_driver" -> Res.string.srs_coding_airbag_driver
             "srs_coding_airbag_passenger" -> Res.string.srs_coding_airbag_passenger
             "srs_coding_belt_buckle_driver" -> Res.string.srs_coding_belt_buckle_driver
@@ -14,17 +21,12 @@ object ResourceMapperSrs {
             "srs_coding_bp_driver" -> Res.string.srs_coding_bp_driver
             "srs_coding_bp_passenger" -> Res.string.srs_coding_bp_passenger
             "srs_coding_bp_rear_left" -> Res.string.srs_coding_bp_rear_left
-            "srs_coding_bp_rear_middle" -> Res.string.srs_coding_bp_rear_middle
             "srs_coding_bp_rear_right" -> Res.string.srs_coding_bp_rear_right
-            "srs_coding_indication_lamp" -> Res.string.srs_coding_indication_lamp
             "srs_coding_its_left" -> Res.string.srs_coding_its_left
             "srs_coding_its_right" -> Res.string.srs_coding_its_right
             "srs_coding_mrsa_front" -> Res.string.srs_coding_mrsa_front
-            "srs_coding_ods" -> Res.string.srs_coding_ods
             "srs_coding_seat_left_airbag" -> Res.string.srs_coding_seat_left_airbag
             "srs_coding_seat_right_airbag" -> Res.string.srs_coding_seat_right_airbag
-            "srs_coding_trigger_switch" -> Res.string.srs_coding_trigger_switch
-            "srs_coding_ubat_disconnect" -> Res.string.srs_coding_ubat_disconnect
             "srs_error_9000" -> Res.string.srs_error_9000
             "srs_error_9001" -> Res.string.srs_error_9001
             "srs_error_9003" -> Res.string.srs_error_9003
@@ -126,6 +128,36 @@ object ResourceMapperSrs {
             "srs_error_detail_20" -> Res.string.srs_error_detail_20
             "srs_error_detail_40" -> Res.string.srs_error_detail_40
             "srs_error_detail_80" -> Res.string.srs_error_detail_80
+            "srs_live_data_airbag_drv_1_enabled" -> Res.string.srs_live_data_airbag_drv_1_enabled
+            "srs_live_data_belt_pre_drv_enabled" -> Res.string.srs_live_data_belt_pre_drv_enabled
+            "srs_live_data_belt_pre_psngr_enabled" -> Res.string.srs_live_data_belt_pre_psngr_enabled
+            "srs_live_data_airbag_psngr_1_enabled" -> Res.string.srs_live_data_airbag_psngr_1_enabled
+            "srs_live_data_sidebag_front_left_enabled" -> Res.string.srs_live_data_sidebag_front_left_enabled
+            "srs_live_data_sidebag_front_right_enabled" -> Res.string.srs_live_data_sidebag_front_right_enabled
+            "srs_live_data_belt_pre_rear_left_enabled" -> Res.string.srs_live_data_belt_pre_rear_left_enabled
+            "srs_live_data_belt_pre_rear_right_enabled" -> Res.string.srs_live_data_belt_pre_rear_right_enabled
+            "srs_live_data_its_front_left_enabled" -> Res.string.srs_live_data_its_front_left_enabled
+            "srs_live_data_its_front_right_enabled" -> Res.string.srs_live_data_its_front_right_enabled
+            "srs_live_data_airbag_drv_2_enabled" -> Res.string.srs_live_data_airbag_drv_2_enabled
+            "srs_live_data_airbag_psngr_2_enabled" -> Res.string.srs_live_data_airbag_psngr_2_enabled
+            "srs_live_data_belt_buckle_driver_enabled" -> Res.string.srs_live_data_belt_buckle_driver_enabled
+            "srs_live_data_belt_buckle_psngr_enabled" -> Res.string.srs_live_data_belt_buckle_psngr_enabled
+            "srs_live_data_oc_sensor_active" -> Res.string.srs_live_data_oc_sensor_active
+            "srs_live_data_rfis_active" -> Res.string.srs_live_data_rfis_active
+            "srs_live_data_mrsa_front_selected" -> Res.string.srs_live_data_mrsa_front_selected
+            "srs_live_data_mrsa_rear_selected" -> Res.string.srs_live_data_mrsa_rear_selected
+            "srs_live_data_rfis_lamp_enabled" -> Res.string.srs_live_data_rfis_lamp_enabled
+            "srs_live_data_us_version_enabled" -> Res.string.srs_live_data_us_version_enabled
+            "srs_live_data_psngr_seat_occupied_detected" -> Res.string.srs_live_data_psngr_seat_occupied_detected
+            "srs_live_data_rear_facing_child_seat_detected" -> Res.string.srs_live_data_rear_facing_child_seat_detected
+            "srs_live_data_oc_sensor_status0_active" -> Res.string.srs_live_data_oc_sensor_status0_active
+            "srs_live_data_oc_sensor_status1_active" -> Res.string.srs_live_data_oc_sensor_status1_active
+            "srs_live_data_oc_sensor_status2_active" -> Res.string.srs_live_data_oc_sensor_status2_active
+            "srs_live_data_oc_sensor_status3_active" -> Res.string.srs_live_data_oc_sensor_status3_active
+            "srs_live_data_oc_sensor_status4_active" -> Res.string.srs_live_data_oc_sensor_status4_active
+            "srs_live_data_lock_byte" -> Res.string.srs_live_data_lock_byte
+            "srs_live_data_value_yes" -> Res.string.srs_live_data_value_yes
+            "srs_live_data_value_no" -> Res.string.srs_live_data_value_no
         else -> {
           Logger.i {"NO RESOURCE for : $resourceName" }
             null

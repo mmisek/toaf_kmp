@@ -4,6 +4,7 @@ import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.generated.ResourceMapper
 import pl.misek.toafmobile.koin.KoinNames
+import pl.misek.toafmobile.livedata.LiveDataElement
 import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.ModuleInfo
 import pl.misek.toafmobile.modules.ModulesFunction
@@ -12,6 +13,7 @@ import pl.misek.toafmobile.modules.enums.ModuleAddress
 import pl.misek.toafmobile.modules.interfaces.IModule
 import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceCoding
 import pl.misek.toafmobile.modules.interfaces.IModuleCoding
+import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.modules.interfaces.IModuleVIN
 import pl.misek.toafmobile.protocols.IProtocol
 import pl.misek.toafmobile.protocols.ProtocolKWP
@@ -23,11 +25,12 @@ import kotlinx.datetime.todayIn
 import java.util.Locale
 import kotlinx.coroutines.CancellationException
 
-class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdvanceCoding, IModuleVIN
+class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdvanceCoding, IModuleVIN, IModuleLiveData
 {
     private val tag = "ModuleSRS"
     private var kwp: IProtocol? = null
     private val moduleAddress = ModuleAddress.MODULE_SRS.address
+    private var liveDataElements: List<LiveDataElement> = emptyList()
 
     init {
         if (protocolKWP != null) kwp = protocolKWP
@@ -154,42 +157,39 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
         return null
     }
 
+    // Wg SGBD FS_LESEN: 18 00 00, liczba wpisow w [5], rekordy 3-bajtowe od [6]: kod (2 bajty) + status.
+    // Status: 01 powyzej progu, 02 ponizej progu, 04 przerwa, 08 zwarcie do masy, 10 zwarcie do Ubat,
+    // 20 sporadyczny, 40 obecny, 80 blad aktywny. Wpisy ze statusem 00 SGBD tez pokazuje.
     override suspend fun getAllErrors(): List<ModuleError>? {
         var result: MutableList<ModuleError>? = null
         if (securityAccess(0x05)) {
             val message = kwp!!.write(moduleAddress, 0x18.toByte(), byteArrayOf(0x00, 0x00), 250)
             try {
                 if (message.isValid) {
+                    val errors = ArrayList<ModuleError>()
+                    result = errors
                     for (i in 0 until (message.answer[5].toInt() and 0xFF)) {
                         val errorCode =
                             ((message.answer[6 + 3 * i].toInt() and 0xFF) shl 8) + (message.answer[7 + 3 * i].toInt() and 0xFF)
+                        val status = message.answer[8 + 3 * i].toInt() and 0xFF
                         val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
-                        if ((message.answer[8 + 3 * i].toInt() and 0xFF) == 0x00)
-                            errorDescription.add(
-                                Pair(Res.string.srs_error_detail_00, null)
-                            )
+                        if (status == 0x00)
+                            errorDescription.add(Pair(Res.string.srs_error_detail_00, null))
                         else {
                             for (k in 0..7) {
-                                val number = message.answer[8 + 3 * i].toInt() and (0x01 shl k)
-                                if (number == (0x01 shl k)) {
-                                    ResourceMapper.stringResource(
-                                        String.format(
-                                            "srs_error_detail_%02X",
-                                            number
-                                        )
-                                    )
+                                val number = status and (0x01 shl k)
+                                if (number != 0)
+                                    ResourceMapper.stringResource("srs_error_detail_%02X".format(number))
                                         ?.let { errorDescription.add(Pair(it, null)) }
-                                }
                             }
-                            if (result == null) result = ArrayList()
-                            result.add(
-                                ModuleError(
-                                    ModuleAddress.MODULE_SRS,
-                                    String.format("%04X", errorCode),
-                                    errorDescription
-                                )
-                            )
                         }
+                        errors.add(
+                            ModuleError(
+                                ModuleAddress.MODULE_SRS,
+                                String.format("%04X", errorCode),
+                                errorDescription
+                            )
+                        )
                     }
                 }
             } catch (ex: CancellationException) {
@@ -199,7 +199,6 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
                 Logger.e {"$tag [getAllErros], $ex, $message"}
             }
         }
-        reset()
         return result
     }
 
@@ -222,8 +221,11 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
             val message = kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x04), 250)
             try {
                 if (message.isValid) {
-                    result.add(message.answer.copyOfRange(6, 10))
-                    reset()
+                    // 21 04: 4 bajty kodowania [6..9] + kopia DUP [10..13] (SGBD, tabela DIGITAL)
+                    val coding = message.answer.copyOfRange(6, 10)
+                    if (message.answer.size >= 14 && !coding.contentEquals(message.answer.copyOfRange(10, 14)))
+                        Logger.w { "$tag [readCoding], DUP copy differs from coding: ${message.answer.copyOfRange(10, 14).toHexString()} / ${coding.toHexString()}" }
+                    result.add(coding)
                     return result
                 }
             } catch (ex: CancellationException) {
@@ -240,7 +242,8 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
         if (securityAccess(0x05)) {
             val data = byteArrayOf(0x17)+ dataToSave[0]+ dataToSave[0]
             val message = kwp!!.write(moduleAddress, 0x3B.toByte(), data, 250)
-            setProgrammingDate()
+            if (message.isValid)
+                setProgrammingDate()
             reset()
             return message.isValid
         }
@@ -308,6 +311,8 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
     }
     override fun getVinLength(): Int = 17
     override suspend fun writeVIN(newVin: String): Boolean {
+        // SGBD VIN_SCHREIBEN akceptuje tylko 17 znakow
+        if (newVin.length != getVinLength()) return false
         try {
             if (securityAccess(0x05)) {
                 return kwp!!.write(
@@ -323,6 +328,29 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
             Logger.e{"$tag [writeVin]: ${ex.toString()}"}
         }
         return false
+    }
+
+    // Live data wg SGBD: 21 04 (konfiguracja), 21 10 (status OC/RFIS), 21 0F (lock byte)
+    override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean {
+        this.liveDataElements = liveDataElements
+        securityAccess(0x05)
+        return true
+    }
+
+    override suspend fun readLiveData(): Map<Int, ByteArray>? {
+        val result: MutableMap<Int, ByteArray> = HashMap()
+        for (block in liveDataElements.map { it.block }.distinct()) {
+            val message = kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(block.toByte()), 250)
+            try {
+                if (message.isValid)
+                    result[block] = message.answer.copyOfRange(0, message.length - 1)
+            } catch (ex: CancellationException) {
+                throw ex
+            } catch (ex: Exception) {
+                Logger.e { "$tag [readLiveData], $ex, $message" }
+            }
+        }
+        return result.ifEmpty { null }
     }
 
     override fun getSupportedCarTypes(): List<CarType> {

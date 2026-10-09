@@ -102,9 +102,9 @@
     <string name="srs_error_detail_04">Обрыв цепи</string>
     <string name="srs_error_detail_08">Утечка / Замыкание на массу</string>
     <string name="srs_error_detail_10">Утечка / Замыкание на Ubat (батарею)</string>
-    <string name="srs_error_detail_20">Нет присутствующего DTC</string>
-    <string name="srs_error_detail_40">DTC спорадический</string>
-    <string name="srs_error_detail_80">DTC присутствует</string>
+    <string name="srs_error_detail_20">DTC спорадический</string>
+    <string name="srs_error_detail_40">DTC присутствует</string>
+    <string name="srs_error_detail_80">Ошибка присутствует</string>
     <string name="srs_error_detail_0A">Нет ошибки</string>
     <string name="srs_error_detail_0B">Ошибка присутствует</string>
 
@@ -118,13 +118,46 @@
     <string name="srs_coding_bp_passenger">Преднатяжитель ремня - пассажир</string>
     <string name="srs_coding_bp_rear_left">Преднатяжитель ремня - задний левый</string>
     <string name="srs_coding_bp_rear_right">Преднатяжитель ремня - задний правый</string>
-    <string name="srs_coding_bp_rear_middle">Преднатяжитель ремня - задний центр</string>
-    <string name="srs_coding_ubat_disconnect">Отключение АКБ (пиропатрон)</string>
     <string name="srs_coding_belt_buckle_driver">Датчик замка ремня - водитель</string>
     <string name="srs_coding_belt_buckle_passenger">Датчик замка ремня - пассажир</string>
-    <string name="srs_coding_ods">Датчик присутствия пассажира (ODS)</string>
     <string name="srs_coding_mrsa_front">MRSA - спереди</string>
-    <string name="srs_coding_indication_lamp">Индикаторная лампа</string>
-    <string name="srs_coding_trigger_switch">Триггерный переключатель</string>
+    <string name="srs_coding_airbag_driver_stage2">Подушка водителя - 2-я ступень</string>
+    <string name="srs_coding_airbag_passenger_stage2">Подушка пассажира - 2-я ступень</string>
+    <string name="srs_coding_oc_sensor">Датчик занятости сиденья пассажира (OC)</string>
+    <string name="srs_coding_rfis">Датчик детского кресла против хода (RFIS)</string>
+    <string name="srs_coding_mrsa_rear">MRSA - задний</string>
+    <string name="srs_coding_rfis_lamp">Лампа статуса RFIS</string>
+    <string name="srs_coding_us_version">Версия для США</string>
 
+    <!-- Live data -->
+    <string name="srs_live_data_airbag_drv_1_enabled">Подушка водителя (1-я ступень) активна</string>
+    <string name="srs_live_data_belt_pre_drv_enabled">Преднатяжитель ремня водителя активен</string>
+    <string name="srs_live_data_belt_pre_psngr_enabled">Преднатяжитель ремня пассажира активен</string>
+    <string name="srs_live_data_airbag_psngr_1_enabled">Подушка пассажира (1-я ступень) активна</string>
+    <string name="srs_live_data_sidebag_front_left_enabled">Боковая подушка передняя левая активна</string>
+    <string name="srs_live_data_sidebag_front_right_enabled">Боковая подушка передняя правая активна</string>
+    <string name="srs_live_data_belt_pre_rear_left_enabled">Преднатяжитель ремня задний левый активен</string>
+    <string name="srs_live_data_belt_pre_rear_right_enabled">Преднатяжитель ремня задний правый активен</string>
+    <string name="srs_live_data_its_front_left_enabled">Шторка (ITS) левая активна</string>
+    <string name="srs_live_data_its_front_right_enabled">Шторка (ITS) правая активна</string>
+    <string name="srs_live_data_airbag_drv_2_enabled">Подушка водителя (2-я ступень) активна</string>
+    <string name="srs_live_data_airbag_psngr_2_enabled">Подушка пассажира (2-я ступень) активна</string>
+    <string name="srs_live_data_belt_buckle_driver_enabled">Датчик замка ремня водителя активен</string>
+    <string name="srs_live_data_belt_buckle_psngr_enabled">Датчик замка ремня пассажира активен</string>
+    <string name="srs_live_data_oc_sensor_active">Датчик занятости сиденья (OC) активен</string>
+    <string name="srs_live_data_rfis_active">Датчик детского кресла против хода (RFIS) активен</string>
+    <string name="srs_live_data_mrsa_front_selected">MRSA передний выбран</string>
+    <string name="srs_live_data_mrsa_rear_selected">MRSA задний выбран</string>
+    <string name="srs_live_data_rfis_lamp_enabled">Лампа статуса RFIS активна</string>
+    <string name="srs_live_data_us_version_enabled">Версия для США активна</string>
+    <string name="srs_live_data_psngr_seat_occupied_detected">Сиденье пассажира занято</string>
+    <string name="srs_live_data_rear_facing_child_seat_detected">Обнаружено детское кресло против хода</string>
+    <string name="srs_live_data_oc_sensor_status0_active">Датчик занятости (OC) - статус 0</string>
+    <string name="srs_live_data_oc_sensor_status1_active">Датчик занятости (OC) - статус 1</string>
+    <string name="srs_live_data_oc_sensor_status2_active">Датчик занятости (OC) - статус 2</string>
+    <string name="srs_live_data_oc_sensor_status3_active">Датчик занятости (OC) - статус 3</string>
+    <string name="srs_live_data_oc_sensor_status4_active">Датчик занятости (OC) - статус 4</string>
+    <string name="srs_live_data_lock_byte">Байт блокировки</string>
+    <string name="srs_live_data_value_yes">да</string>
+    <string name="srs_live_data_value_no">нет</string>
 </resources>
