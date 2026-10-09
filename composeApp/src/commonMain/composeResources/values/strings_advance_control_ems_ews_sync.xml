@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_ews_sync_title">EWS synchronisation</string>
+    <string name="advance_control_ews_sync_info">Synchronises the immobiliser (EWS) with the engine ECU: the ECU enters sync mode, the EWS triggers the changing-code handshake, then the status is checked. Ignition must be ON and both modules connected.</string>
+    <string name="advance_control_ews_sync_ews_connected">EWS module: connected</string>
+    <string name="advance_control_ews_sync_ews_missing">EWS module: not connected (engine-side only)</string>
+    <string name="advance_control_ews_sync_button">Synchronize EWS</string>
+    <string name="advance_control_ews_sync_successful">EWS synchronisation done</string>
+    <string name="advance_control_ews_sync_failed">EWS synchronisation failed</string>
+    <string name="advance_control_ews_sync_step_ews_ping">EWS response (0x00)</string>
+    <string name="advance_control_ews_sync_step_ews_handshake">EWS handshake (0x67)</string>
+    <string name="advance_control_ews_sync_step_reset">Reset sync mode</string>
+    <string name="advance_control_ews_sync_step_enter">Enter sync mode</string>
+    <string name="advance_control_ews_sync_step_status">Read sync status</string>
+    <string name="advance_control_ews_sync_step_ews_missing">EWS module not connected</string>
+    <string name="advance_control_ews_sync_step_session">Diagnostic session</string>
+    <string name="advance_control_ews_sync_step_security">Security access</string>
+    <string name="advance_control_ews_sync_step_resync">Immobiliser resync</string>
+    <string name="advance_control_ews_sync_step_ews_ident">EWS identification</string>
+    <string name="advance_control_ews_sync_step_ecu_ident">Engine ECU identification</string>
+    <string name="advance_control_ews_sync_step_exit">Exit sync mode</string>
+</resources>

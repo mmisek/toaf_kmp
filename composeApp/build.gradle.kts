@@ -152,3 +152,22 @@ tasks.matching {
 }.configureEach {
     dependsOn("exportLibraryDefinitions")
 }
+
+// Podgląd stringów w edytorze IDE pokazuje pierwszy ResourceItem z wygenerowanych akcesorów,
+// a generator układa warianty alfabetycznie (values-es przed values). Przesuwamy wariant
+// domyślny (angielski) na początek - wybór zasobu w runtime nie zależy od kolejności.
+tasks.matching { it.name.startsWith("generateResourceAccessorsFor") }.configureEach {
+    doLast {
+        val itemsBlock = Regex("""(?:\r?\n[ \t]*ResourceItem\(.*\),)+""")
+        outputs.files.asFileTree.matching { include("**/*.kt") }.forEach { file ->
+            val text = file.readText()
+            val fixed = itemsBlock.replace(text) { match ->
+                val nl = if (match.value.startsWith("\r\n")) "\r\n" else "\n"
+                val (default, localized) = match.value.lines().drop(1)
+                    .partition { it.trimStart().startsWith("ResourceItem(setOf(),") }
+                (default + localized).joinToString("") { nl + it }
+            }
+            if (fixed != text) file.writeText(fixed)
+        }
+    }
+}

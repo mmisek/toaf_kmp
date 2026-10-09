@@ -19,8 +19,14 @@ import pl.misek.toafmobile.modules.ModulesFunction
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.FlashProgrammingState
 import pl.misek.toafmobile.modules.enums.ModuleAddress
+import pl.misek.toafmobile.activities.composeModels.activities.AdvanceControlEmsEwsSync
+import pl.misek.toafmobile.modules.interfaces.AdvanceControlElement
+import pl.misek.toafmobile.modules.interfaces.EwsSyncStep
 import pl.misek.toafmobile.modules.interfaces.IModule
+import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceControl
+import pl.misek.toafmobile.modules.interfaces.IModuleAif
 import pl.misek.toafmobile.modules.interfaces.IModuleControl
+import pl.misek.toafmobile.modules.interfaces.IModuleEwsSync
 import pl.misek.toafmobile.modules.interfaces.IModuleFlashProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.modules.interfaces.IModuleZCS
@@ -35,7 +41,7 @@ import java.util.Locale
 private const val tag = "ModuleEMS"
 class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramming, IModule,
     IModuleControl,
-    IModuleLiveData {
+    IModuleLiveData, IModuleEwsSync, IModuleAif, IModuleAdvanceControl {
     private val moduleAddress = ModuleAddress.MODULE_EMS.address
     private val _programmingState =  MutableSharedFlow<FlashProgrammingState>(replay = 10, extraBufferCapacity = 64, onBufferOverflow = BufferOverflow.DROP_OLDEST)
     override val programmingState = _programmingState.asSharedFlow()
@@ -126,7 +132,8 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                         )
                         val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
                         if (message1.isValid) {
-                            errorDescription.add(ResourceHelper.getErrorDescriptionCount(message1.answer[8].toInt() and 0xFF))
+                            // F_HFK (Haeufigkeit) w EMS2K jest w answer[0x0E]; answer[8] to bajt statusu (Fehlerart)
+                            errorDescription.add(ResourceHelper.getErrorDescriptionCount(message1.answer[14].toInt() and 0xFF))
                             for (k in 0..7) {
                                 val number = message1.answer[8].toInt() and (0x01 shl k)
                                 if (number == (0x01 shl k)) {
@@ -460,6 +467,45 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
         return false
     }
 
+    override suspend fun syncEws(ews: ModuleEWS?, onStep: (EwsSyncStep) -> Unit): Boolean {
+        if (ews == null) return false
+        val ecuIdent = getIdentification()
+        onStep(EwsSyncStep(Res.string.advance_control_ews_sync_step_ecu_ident, ecuIdent != null, ecuIdent?.id1))
+        if (ecuIdent?.id1.isNullOrEmpty()) return false
+        val ewsIdent = ews.getIdentification()
+        onStep(EwsSyncStep(Res.string.advance_control_ews_sync_step_ews_ident, ewsIdent != null, ewsIdent?.id1))
+        if (ewsIdent?.id1.isNullOrEmpty()) return false
+        val session = startDiagnosticSession(0x85)
+        onStep(EwsSyncStep(Res.string.advance_control_ews_sync_step_session, session))
+        if (!session) return false
+        val security = securityAccess(7)
+        onStep(EwsSyncStep(Res.string.advance_control_ews_sync_step_security, security))
+        if (!security) return false
+        val resync = kwp.write(moduleAddress, 0x31.toByte(), byteArrayOf(0xFF.toByte()), 1000).isValid
+        onStep(EwsSyncStep(Res.string.advance_control_ews_sync_step_resync, resync))
+        return resync
+    }
+
+    override suspend fun readAif(): ByteArray? {
+        // AIF_LESEN: readEcuIdentification (0x1A), rekord 0x80
+        val message = kwp.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x80.toByte()), 300)
+        return try {
+            if (message.isValid) message.answer.copyOfRange(6, message.length - 1) else null
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex: Exception) {
+            Logger.e { "$tag [readAif], $ex, $message" }
+            null
+        }
+    }
+
+    override suspend fun writeAif(data: ByteArray): Boolean {
+        // AIF_SCHREIBEN: writeDataByLocalId (0x3B), rekord 0x80 (symetria z odczytem 0x1A/0x80).
+        if (!startDiagnosticSession(0x85)) return false
+        if (!securityAccess(7)) return false
+        return kwp.write(moduleAddress, 0x3B.toByte(), byteArrayOf(0x80.toByte()) + data).isValid
+    }
+
     override suspend fun writeFlash(data: ByteArray)  {
         //var inData = data
         val blockSize = 0x5C
@@ -677,4 +723,10 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
     override fun getSupportedCarTypes(): List<CarType> {
         return listOf(CarType.R40, CarType.RJO)
     }
+
+    override fun getAdvanceControlElements() = listOf(
+        AdvanceControlElement(Res.string.advance_control_ews_sync_title) { userInfo, onShowResult ->
+            AdvanceControlEmsEwsSync(userInfo = userInfo, onShowResult = onShowResult)
+        }
+    )
 }

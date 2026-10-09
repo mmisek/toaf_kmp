@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_ews_sync_title">Sincronización EWS</string>
+    <string name="advance_control_ews_sync_info">Sincroniza el inmovilizador (EWS) con la ECU del motor: la ECU entra en modo sync, el EWS activa el handshake de código variable y luego se comprueba el estado. El encendido debe estar activado y ambos módulos conectados.</string>
+    <string name="advance_control_ews_sync_ews_connected">Módulo EWS: conectado</string>
+    <string name="advance_control_ews_sync_ews_missing">Módulo EWS: no conectado (solo lado motor)</string>
+    <string name="advance_control_ews_sync_button">Sincronizar EWS</string>
+    <string name="advance_control_ews_sync_successful">Sincronización EWS realizada</string>
+    <string name="advance_control_ews_sync_failed">Fallo en la sincronización EWS</string>
+    <string name="advance_control_ews_sync_step_ews_ping">Respuesta EWS (0x00)</string>
+    <string name="advance_control_ews_sync_step_ews_handshake">Handshake EWS (0x67)</string>
+    <string name="advance_control_ews_sync_step_reset">Reiniciar modo sync</string>
+    <string name="advance_control_ews_sync_step_enter">Entrar modo sync</string>
+    <string name="advance_control_ews_sync_step_status">Leer estado sync</string>
+    <string name="advance_control_ews_sync_step_ews_missing">Módulo EWS no conectado</string>
+    <string name="advance_control_ews_sync_step_session">Sesión de diagnóstico</string>
+    <string name="advance_control_ews_sync_step_security">Acceso de seguridad</string>
+    <string name="advance_control_ews_sync_step_resync">Resincronizar inmovilizador</string>
+    <string name="advance_control_ews_sync_step_ews_ident">Identificación EWS</string>
+    <string name="advance_control_ews_sync_step_ecu_ident">Identificación ECU motor</string>
+    <string name="advance_control_ews_sync_step_exit">Salir del modo sync</string>
+</resources>

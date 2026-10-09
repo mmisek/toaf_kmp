@@ -105,14 +105,6 @@
         "mask": "0xFFFF"
       },
       {
-        "name": "armM_Lsoll",
-        "block": "0x0F32",
-        "factor_a": "0.1",
-        "factor_b": "0",
-        "unit": "mg/stroke",
-        "mask": "0xFFFF"
-      },
-      {
         "name": "admLTF",
         "block": "0x2001",
         "factor_a": "0.1",
@@ -238,7 +230,7 @@
       },
       {
         "name": "dzmzN5",
-        "block": "0x0F15",
+        "block": "0x0F17",
         "factor_a": "1",
         "factor_b": "0",
         "unit": "1/min",
@@ -249,7 +241,7 @@
       },
       {
         "name": "dzmzN6",
-        "block": "0x0F16",
+        "block": "0x0F18",
         "factor_a": "1",
         "factor_b": "0",
         "unit": "1/min",

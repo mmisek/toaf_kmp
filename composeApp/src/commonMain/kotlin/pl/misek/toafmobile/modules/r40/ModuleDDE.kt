@@ -20,9 +20,14 @@ import pl.misek.toafmobile.modules.ModuleInfo
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.FlashProgrammingState
 import pl.misek.toafmobile.modules.enums.ModuleAddress
+import pl.misek.toafmobile.activities.composeModels.activities.AdvanceControlEmsEwsSync
+import pl.misek.toafmobile.modules.interfaces.AdvanceControlElement
+import pl.misek.toafmobile.modules.interfaces.EwsSyncStep
 import pl.misek.toafmobile.modules.interfaces.IModule
+import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceControl
 import pl.misek.toafmobile.modules.interfaces.IModuleCoding
 import pl.misek.toafmobile.modules.interfaces.IModuleControl
+import pl.misek.toafmobile.modules.interfaces.IModuleEwsSync
 import pl.misek.toafmobile.modules.interfaces.IModuleFlashProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.modules.interfaces.IModuleZCS
@@ -38,7 +43,7 @@ import java.util.concurrent.ThreadLocalRandom
 
 class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramming, IModule,
     IModuleControl,
-    IModuleCoding, IModuleLiveData
+    IModuleCoding, IModuleLiveData, IModuleEwsSync, IModuleAdvanceControl
 {
     private val tag = "ModuleDDE"
     private val moduleAddress = ModuleAddress.MODULE_DDE.address
@@ -815,6 +820,41 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
         return kwp.write(moduleAddress, 0x31.toByte(), byteArrayOf(0x40, 0x00)).isValid
     }
 
+    /**
+     * Synchronizacja EWS - DDE4 (wg logu rzeczywistej sesji).
+     * Kolejnosc: 1) IDENT DDE, 2) IDENT EWS (DS2 0x00 -> A0), 3) handshake EWS (DS2 0x67 -> A0),
+     * 4) wejscie w tryb sync (KWP 0x31 {0x83,0x01} -> 0x71), 5) odczyt statusu (KWP 0x21 {0x06} -> 0x61).
+     * Wymaga podlaczonego modulu EWS.
+     */
+    override suspend fun syncEws(ews: ModuleEWS?, onStep: (EwsSyncStep) -> Unit): Boolean {
+        if (ews == null) return false
+        val ecuIdent = getIdentification()
+        onStep(EwsSyncStep(Res.string.advance_control_ews_sync_step_ecu_ident, !ecuIdent?.id1.isNullOrEmpty(), ecuIdent?.id1))
+        if (ecuIdent?.id1.isNullOrEmpty()) return false
+        val ewsId = ews.getIdentification()
+        onStep(EwsSyncStep(Res.string.advance_control_ews_sync_step_ews_ident, !ewsId?.id1.isNullOrEmpty(), ewsId?.id1))
+        if (ewsId?.id1.isNullOrEmpty()) return false
+        val handshake = ews.triggerDmeSync()
+        onStep(EwsSyncStep(Res.string.advance_control_ews_sync_step_ews_handshake, handshake))
+        if (!handshake) return false
+        val enter = kwp.write(moduleAddress, 0x31.toByte(), byteArrayOf(0x83.toByte(), 0x01)).isValid
+        onStep(EwsSyncStep(Res.string.advance_control_ews_sync_step_enter, enter))
+        if (!enter) return false
+        val statusMsg = kwp.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x06))
+        val status = statusMsg.isValid
+        val statusDetail = try {
+            if (status && statusMsg.answer.size > 6) "0x%02X".format(statusMsg.answer[6]) else null
+        } catch (ex: Exception) { null }
+        onStep(EwsSyncStep(Res.string.advance_control_ews_sync_step_status, status, statusDetail))
+        return status
+    }
+
+    override fun getAdvanceControlElements() = listOf(
+        AdvanceControlElement(Res.string.advance_control_ews_sync_title) { userInfo, onShowResult ->
+            AdvanceControlEmsEwsSync(userInfo = userInfo, onShowResult = onShowResult)
+        }
+    )
+
     private suspend fun securityAccess(): Boolean {
         var result = false
         val level = ThreadLocalRandom.current().nextInt(3, 20)
@@ -1099,7 +1139,7 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
         } catch (ex: CancellationException) {
             throw ex
         } catch (ex: Exception) {
-            Logger.e {"$tag [readFlash]: ${ex.toString()}, Result Size : ${result.size}"}
+            Logger.e {"$tag [readFlash]: ${ex}, Result Size : ${result.size}"}
         }
     }
 

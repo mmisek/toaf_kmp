@@ -270,6 +270,9 @@ class ModuleEWS(protocolDS2: ProtocolDS2?) :
         }
     }
 
+    suspend fun triggerDmeSync(): Boolean =
+        interfaceWrite(byteArrayOf(0x67)).isValid
+
     override fun getAdvanceControlElements() = listOf(
         AdvanceControlElement(Res.string.advance_control_ews_keys_title) { userInfo, onShowResult ->
             AdvanceControlEwsKeys(userInfo = userInfo, onShowResult = onShowResult)

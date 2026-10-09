@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_ews_sync_title">Синхронизация EWS</string>
+    <string name="advance_control_ews_sync_info">Синхронизирует иммобилайзер (EWS) с ЭБУ двигателя: ЭБУ входит в режим синхронизации, EWS запускает handshake переменного кода, затем проверяется статус. Зажигание включено, оба модуля подключены.</string>
+    <string name="advance_control_ews_sync_ews_connected">Модуль EWS: подключён</string>
+    <string name="advance_control_ews_sync_ews_missing">Модуль EWS: не подключён (только сторона двигателя)</string>
+    <string name="advance_control_ews_sync_button">Синхронизировать EWS</string>
+    <string name="advance_control_ews_sync_successful">Синхронизация EWS выполнена</string>
+    <string name="advance_control_ews_sync_failed">Ошибка синхронизации EWS</string>
+    <string name="advance_control_ews_sync_step_ews_ping">Ответ EWS (0x00)</string>
+    <string name="advance_control_ews_sync_step_ews_handshake">Handshake EWS (0x67)</string>
+    <string name="advance_control_ews_sync_step_reset">Сброс режима синхр.</string>
+    <string name="advance_control_ews_sync_step_enter">Вход в режим синхр.</string>
+    <string name="advance_control_ews_sync_step_status">Чтение статуса синхр.</string>
+    <string name="advance_control_ews_sync_step_ews_missing">Модуль EWS не подключён</string>
+    <string name="advance_control_ews_sync_step_session">Диагностическая сессия</string>
+    <string name="advance_control_ews_sync_step_security">Доступ security</string>
+    <string name="advance_control_ews_sync_step_resync">Ресинхр. иммобилайзера</string>
+    <string name="advance_control_ews_sync_step_ews_ident">Идентификация EWS</string>
+    <string name="advance_control_ews_sync_step_ecu_ident">Идентификация ЭБУ двигателя</string>
+    <string name="advance_control_ews_sync_step_exit">Выход из режима синхр.</string>
+</resources>
