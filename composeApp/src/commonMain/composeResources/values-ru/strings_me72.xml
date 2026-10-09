@@ -430,7 +430,7 @@
     <string name="me72_live_data_B_NFTEV">Повышение ХХ для усиленной продувки бака</string>
     <string name="me72_live_data_B_DKPU">Недостоверное положение дросселя (контроль безопасности)</string>
     <string name="me72_live_data_B_NSUB">Повышение ХХ при низком напряжении АКБ</string>
-    <string name="me72_live_data_B_KO">Регулировка детонации активна</string>
+    <string name="me72_live_data_B_KO">Компрессор кондиционера</string>
     <string name="me72_live_data_S_BRS">Сигнал выключателя тормоза (резервный)</string>
     <string name="me72_live_data_S_BLS">Выключатель стоп-сигнала</string>
     <string name="me72_live_data_B_KUPPL">Педаль сцепления нажата</string>
@@ -449,7 +449,7 @@
     <string name="me72_live_data_B_SBBHK2">Лямбда-зонд готов, после кат., Bank 2</string>
     <string name="me72_live_data_B_VL">Полная нагрузка</string>
     <string name="me72_live_data_B_LL">Холостой ход</string>
-    <string name="me72_live_data_B_UMAERF">Условие переключения выполнено</string>
+    <string name="me72_live_data_B_UMAERF">Нижний механический упор дросселя обучен</string>
     <string name="me72_live_data_B_SA">Отсечка топлива при торможении двигателем</string>
     <string name="me72_live_data_B_TEHB">Вентиляция бака, горячий режим</string>
     <string name="me72_live_data_B_EWS_OK">Иммобилайзер (EWS) OK</string>
@@ -477,11 +477,11 @@
     <string name="me72_live_data_B_LDPEIN">Насос диагностики утечек включён</string>
     <string name="me72_live_data_B_SLP">Насос вторичного воздуха активен</string>
     <string name="me72_live_data_B_STA">Стартер активен</string>
-    <string name="me72_live_data_B_EBL">Электрическая нагрузка активна</string>
-    <string name="me72_live_data_B_KOE">Регулировка детонации разрешена</string>
+    <string name="me72_live_data_B_EBL">Вентилятор E-Box</string>
+    <string name="me72_live_data_B_KOE">Запрос включения компрессора кондиционера</string>
     <string name="me72_live_data_B_EKP">Электробензонасос активен</string>
     <string name="me72_live_data_B_SLV">Клапан вторичного воздуха активен</string>
-    <string name="me72_live_data_B_ETR">Электронная дроссельная заслонка активна</string>
+    <string name="me72_live_data_B_ETR">Рециркуляция ОГ (EGR)</string>
     <string name="me72_live_data_B_AKR">Активная регулировка детонации</string>
     <string name="me72_live_data_B_ASC_PKW">Антипробуксовка (ASC)</string>
     <string name="me72_live_data_B_ACC">Адаптивный круиз-контроль (ACC)</string>
@@ -496,9 +496,33 @@
     <string name="me72_live_data_TNWSFI2">Время опережения распредвала, Bank 2</string>
     <string name="me72_live_data_TNWSSI">Время запаздывания распредвала, Bank 1</string>
     <string name="me72_live_data_TNWSSI2">Время запаздывания распредвала, Bank 2</string>
-    <string name="me72_live_data_DNSLBV">Внутреннее значение регулятора ХХ</string>
-    <string name="me72_live_data_DNLLMV">Внутреннее значение регулятора ХХ</string>
-    <string name="me72_live_data_DNFSACMV">Внутреннее значение регулятора ХХ</string>
-    <string name="me72_live_data_DNSACMV">Внутреннее значение регулятора ХХ</string>
-    <string name="me72_live_data_DNFSMV">Внутреннее значение регулятора ХХ</string>
+    <string name="me72_live_data_DNSLBV">Значение корректировки оборотов ХХ (DNSLBV)</string>
+    <string name="me72_live_data_DNLLMV">Значение корректировки оборотов ХХ (DNLLMV)</string>
+    <string name="me72_live_data_DNFSACMV">Значение корректировки оборотов ХХ (DNFSACMV)</string>
+    <string name="me72_live_data_DNSACMV">Значение корректировки оборотов ХХ (DNSACMV)</string>
+    <string name="me72_live_data_DNFSMV">Значение корректировки оборотов ХХ (DNFSMV)</string>
+    <!-- Control -->
+    <string name="me72_control_fuel_pump_on">Топливный насос - вкл</string>
+    <string name="me72_control_injector_1">Форсунка 1</string>
+    <string name="me72_control_injector_2">Форсунка 2</string>
+    <string name="me72_control_injector_3">Форсунка 3</string>
+    <string name="me72_control_injector_4">Форсунка 4</string>
+    <string name="me72_control_injector_5">Форсунка 5</string>
+    <string name="me72_control_injector_6">Форсунка 6</string>
+    <string name="me72_control_injector_7">Форсунка 7</string>
+    <string name="me72_control_injector_8">Форсунка 8</string>
+    <string name="me72_control_electric_fan">Электровентилятор</string>
+    <string name="me72_control_ebox_fan_off">Вентилятор E-Box - выкл</string>
+    <string name="me72_control_ebox_fan_on">Вентилятор E-Box - вкл</string>
+    <string name="me72_control_purge_valve_on">Клапан продувки адсорбера (TEV) - вкл</string>
+    <string name="me72_control_purge_valve_off">Клапан продувки адсорбера (TEV) - выкл</string>
+    <!-- Error environment -->
+    <string name="me72_error_occurrence_first">Первое появление</string>
+    <string name="me72_error_occurrence_second">Второе появление</string>
+    <string name="me72_error_occurrence_last">Текущее появление</string>
+    <string name="me72_lambda_status_21">Регулирование ВЫКЛ, условия включения ещё не выполнены</string>
+    <string name="me72_lambda_status_22">Регулирование ВКЛ</string>
+    <string name="me72_lambda_status_23">Регулирование ВЫКЛ из-за условий движения</string>
+    <string name="me72_lambda_status_24">Регулирование ВЫКЛ из-за обнаруженной ошибки</string>
+    <string name="me72_lambda_status_25">Регулирование ВКЛ с ограничением</string>
 </resources>

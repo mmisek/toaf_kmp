@@ -1,0 +1,93 @@
+{
+  "elements": [
+    {
+      "name": "fuel_pump_on",
+      "block": "0xC6",
+      "byte": "0x07",
+      "value": "0xFF"
+    },
+    {
+      "name": "injector_1",
+      "block": "0xCB",
+      "byte": "0x07",
+      "value": "0x7F"
+    },
+    {
+      "name": "injector_2",
+      "block": "0xCC",
+      "byte": "0x07",
+      "value": "0x7F"
+    },
+    {
+      "name": "injector_3",
+      "block": "0xCD",
+      "byte": "0x07",
+      "value": "0x7F"
+    },
+    {
+      "name": "injector_4",
+      "block": "0xCE",
+      "byte": "0x07",
+      "value": "0x7F"
+    },
+    {
+      "name": "injector_5",
+      "block": "0xCF",
+      "byte": "0x07",
+      "value": "0x7F"
+    },
+    {
+      "name": "injector_6",
+      "block": "0xD1",
+      "byte": "0x07",
+      "value": "0x7F"
+    },
+    {
+      "name": "injector_7",
+      "block": "0xD2",
+      "byte": "0x07",
+      "value": "0x7F"
+    },
+    {
+      "name": "injector_8",
+      "block": "0xD3",
+      "byte": "0x07",
+      "value": "0x7F"
+    },
+    {
+      "name": "electric_fan",
+      "block": "0xC1",
+      "byte": "0x07",
+      "value": "0x50",
+      "set_value": {
+        "min": "0",
+        "max": "100",
+        "unit": "%"
+      }
+    },
+    {
+      "name": "ebox_fan_off",
+      "block": "0xD8",
+      "byte": "0x07",
+      "value": "0x00"
+    },
+    {
+      "name": "ebox_fan_on",
+      "block": "0xD8",
+      "byte": "0x07",
+      "value": "0x01"
+    },
+    {
+      "name": "purge_valve_on",
+      "block": "0xC5",
+      "byte": "0x07",
+      "value": "0x04"
+    },
+    {
+      "name": "purge_valve_off",
+      "block": "0xC5",
+      "byte": "0x00",
+      "value": "0x00"
+    }
+  ]
+}

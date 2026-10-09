@@ -431,7 +431,7 @@
     <string name="me72_live_data_B_NFTEV">Idle raise for increased tank-vent purge</string>
     <string name="me72_live_data_B_DKPU">Throttle position implausible (safety check)</string>
     <string name="me72_live_data_B_NSUB">Idle raise at low battery voltage</string>
-    <string name="me72_live_data_B_KO">Knock control active</string>
+    <string name="me72_live_data_B_KO">A/C compressor</string>
     <string name="me72_live_data_S_BRS">Brake switch signal (redundant)</string>
     <string name="me72_live_data_S_BLS">Brake light switch</string>
     <string name="me72_live_data_B_KUPPL">Clutch pedal pressed</string>
@@ -450,7 +450,7 @@
     <string name="me72_live_data_B_SBBHK2">O2 sensor ready, after cat, Bank 2</string>
     <string name="me72_live_data_B_VL">Full load</string>
     <string name="me72_live_data_B_LL">Idle</string>
-    <string name="me72_live_data_B_UMAERF">Switchover condition fulfilled</string>
+    <string name="me72_live_data_B_UMAERF">Lower mechanical throttle stop learned</string>
     <string name="me72_live_data_B_SA">Overrun fuel cut-off</string>
     <string name="me72_live_data_B_TEHB">Tank ventilation, hot operation</string>
     <string name="me72_live_data_B_EWS_OK">Immobilizer (EWS) OK</string>
@@ -478,11 +478,11 @@
     <string name="me72_live_data_B_LDPEIN">Leak diagnosis pump on</string>
     <string name="me72_live_data_B_SLP">Secondary air pump active</string>
     <string name="me72_live_data_B_STA">Starter active</string>
-    <string name="me72_live_data_B_EBL">Electric load active</string>
-    <string name="me72_live_data_B_KOE">Knock control enabled</string>
+    <string name="me72_live_data_B_EBL">E-Box fan</string>
+    <string name="me72_live_data_B_KOE">A/C compressor switch-on request</string>
     <string name="me72_live_data_B_EKP">Electric fuel pump active</string>
     <string name="me72_live_data_B_SLV">Secondary air valve active</string>
-    <string name="me72_live_data_B_ETR">Electronic throttle active</string>
+    <string name="me72_live_data_B_ETR">Exhaust gas recirculation (EGR)</string>
     <string name="me72_live_data_B_AKR">Active knock control</string>
     <string name="me72_live_data_B_ASC_PKW">Traction control (ASC)</string>
     <string name="me72_live_data_B_ACC">Adaptive cruise control (ACC)</string>
@@ -497,9 +497,33 @@
     <string name="me72_live_data_TNWSFI2">Camshaft advance time, Bank 2</string>
     <string name="me72_live_data_TNWSSI">Camshaft retard time, Bank 1</string>
     <string name="me72_live_data_TNWSSI2">Camshaft retard time, Bank 2</string>
-    <string name="me72_live_data_DNSLBV">Idle speed control internal value</string>
-    <string name="me72_live_data_DNLLMV">Idle speed control internal value</string>
-    <string name="me72_live_data_DNFSACMV">Idle speed control internal value</string>
-    <string name="me72_live_data_DNSACMV">Idle speed control internal value</string>
-    <string name="me72_live_data_DNFSMV">Idle speed control internal value</string>
+    <string name="me72_live_data_DNSLBV">Idle speed adjustment value (DNSLBV)</string>
+    <string name="me72_live_data_DNLLMV">Idle speed adjustment value (DNLLMV)</string>
+    <string name="me72_live_data_DNFSACMV">Idle speed adjustment value (DNFSACMV)</string>
+    <string name="me72_live_data_DNSACMV">Idle speed adjustment value (DNSACMV)</string>
+    <string name="me72_live_data_DNFSMV">Idle speed adjustment value (DNFSMV)</string>
+    <!-- Control -->
+    <string name="me72_control_fuel_pump_on">Fuel pump - on</string>
+    <string name="me72_control_injector_1">Injector 1</string>
+    <string name="me72_control_injector_2">Injector 2</string>
+    <string name="me72_control_injector_3">Injector 3</string>
+    <string name="me72_control_injector_4">Injector 4</string>
+    <string name="me72_control_injector_5">Injector 5</string>
+    <string name="me72_control_injector_6">Injector 6</string>
+    <string name="me72_control_injector_7">Injector 7</string>
+    <string name="me72_control_injector_8">Injector 8</string>
+    <string name="me72_control_electric_fan">Electric fan</string>
+    <string name="me72_control_ebox_fan_off">E-Box fan - off</string>
+    <string name="me72_control_ebox_fan_on">E-Box fan - on</string>
+    <string name="me72_control_purge_valve_on">Purge valve (TEV) - on</string>
+    <string name="me72_control_purge_valve_off">Purge valve (TEV) - off</string>
+    <!-- Error environment -->
+    <string name="me72_error_occurrence_first">First occurrence</string>
+    <string name="me72_error_occurrence_second">Second occurrence</string>
+    <string name="me72_error_occurrence_last">Current occurrence</string>
+    <string name="me72_lambda_status_21">Control OFF, activation conditions not yet met</string>
+    <string name="me72_lambda_status_22">Control ON</string>
+    <string name="me72_lambda_status_23">Control OFF due to driving conditions</string>
+    <string name="me72_lambda_status_24">Control OFF due to detected fault</string>
+    <string name="me72_lambda_status_25">Control ON with limitation</string>
 </resources>

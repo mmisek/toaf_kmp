@@ -270,6 +270,7 @@
       "block": "0x4000",
       "byte": "0x17",
       "mask": "0xFF",
+      "u2": "true",
       "factor_a": "0.75",
       "factor_b": "0",
       "unit": "°"
@@ -1615,7 +1616,7 @@
       "service": "0x22",
       "block": "0x4005",
       "byte": "0x0D",
-      "mask": "0x04",
+      "mask": "0x08",
       "factor_a": "1",
       "factor_b": "0",
       "unit": "",
@@ -1878,9 +1879,10 @@
       "block": "0xA1",
       "byte": "0x09",
       "mask": "0xFF",
+      "u2": "true",
       "factor_a": "10",
       "factor_b": "0",
-      "unit": ""
+      "unit": "min-1"
     },
     {
       "name": "DNLLMV",
@@ -1888,9 +1890,10 @@
       "block": "0xA1",
       "byte": "0x07",
       "mask": "0xFF",
+      "u2": "true",
       "factor_a": "10",
       "factor_b": "0",
-      "unit": ""
+      "unit": "min-1"
     },
     {
       "name": "DNFSACMV",
@@ -1898,9 +1901,10 @@
       "block": "0xA1",
       "byte": "0x0A",
       "mask": "0xFF",
+      "u2": "true",
       "factor_a": "10",
       "factor_b": "0",
-      "unit": ""
+      "unit": "min-1"
     },
     {
       "name": "DNSACMV",
@@ -1908,9 +1912,10 @@
       "block": "0xA1",
       "byte": "0x08",
       "mask": "0xFF",
+      "u2": "true",
       "factor_a": "10",
       "factor_b": "0",
-      "unit": ""
+      "unit": "min-1"
     },
     {
       "name": "DNFSMV",
@@ -1918,9 +1923,10 @@
       "block": "0xA1",
       "byte": "0x0B",
       "mask": "0xFF",
+      "u2": "true",
       "factor_a": "10",
       "factor_b": "0",
-      "unit": ""
+      "unit": "min-1"
     }
   ]
 }

@@ -2,12 +2,10 @@ package pl.misek.toafmobile.modules.l322
 
 import co.touchlab.kermit.Logger
 import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.CancellationException
 import org.jetbrains.compose.resources.StringResource
-import pl.misek.toafmobile.coding.ZcsCoding
+import pl.misek.toafmobile.activities.composeModels.activities.AdvanceControlEmsEwsSync
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceHelper
 import pl.misek.toafmobile.generated.ResourceMapper
@@ -15,33 +13,32 @@ import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.livedata.LiveDataElement
 import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.ModuleInfo
-import pl.misek.toafmobile.modules.ModulesFunction
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.FlashProgrammingState
 import pl.misek.toafmobile.modules.enums.ModuleAddress
+import pl.misek.toafmobile.modules.interfaces.AdvanceControlElement
+import pl.misek.toafmobile.modules.interfaces.EwsSyncStep
 import pl.misek.toafmobile.modules.interfaces.IModule
+import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceControl
 import pl.misek.toafmobile.modules.interfaces.IModuleControl
-import pl.misek.toafmobile.modules.interfaces.IModuleFlashProgramming
+import pl.misek.toafmobile.modules.interfaces.IModuleEwsSync
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
-import pl.misek.toafmobile.modules.interfaces.IModuleZCS
+import pl.misek.toafmobile.modules.r40.ModuleEWS
 import pl.misek.toafmobile.protocols.IProtocol
-import pl.misek.toafmobile.protocols.OBDMessage
 import pl.misek.toafmobile.protocols.ProtocolKWP
-import pl.misek.toafmobile.tools.JsonSupport
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
-import java.util.Calendar
 import java.util.Locale
 
 private const val tag = "ModuleME72"
 class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
-    //IModuleControl,
-    IModuleLiveData
-    //IModuleFlashProgramming
+    IModuleControl,
+    IModuleLiveData,
+    IModuleEwsSync,
+    IModuleAdvanceControl
 {
     private val moduleAddress = ModuleAddress.MODULE_ME72.address
     private val _programmingState =  MutableSharedFlow<FlashProgrammingState>(replay = 10, extraBufferCapacity = 64, onBufferOverflow = BufferOverflow.DROP_OLDEST)
-    //override val programmingState = _programmingState.asSharedFlow()
     private val liveDataBlocksToRead: MutableList<Byte> = ArrayList()
     private var _liveDataElements : List<LiveDataElement> = ArrayList()
 
@@ -69,40 +66,70 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
 
     override suspend fun readLiveData(): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = HashMap()
-        for (b in _liveDataElements) {
-            var message = OBDMessage()
-            if (b.service == 0x23)
-                message = kwp.write(moduleAddress, b.service.toByte(), byteArrayOf((b.block shr 16).toByte(), (b.block shr 8).toByte(), b.block.toByte(), 0x05,0x02), 150)
-            else if (b.service == 0x22 || b.service == 0x30)
-                message = kwp.write(moduleAddress, b.service.toByte(), byteArrayOf((b.block shr 8).toByte(), b.block.toByte()), 150)
-            else if (b.service == 0x21)
-                message = kwp.write(moduleAddress, b.service.toByte(), byteArrayOf(b.block.toByte()), 150)
+        // Jedno zapytanie na (usluga, blok) - wiele parametrow dzieli te sama odpowiedz (np. 22 40 00)
+        val requests = _liveDataElements.map { it.service to it.block }.distinct()
+        for ((service, block) in requests) {
+            val message = when (service) {
+                0x23 -> kwp.write(moduleAddress, service.toByte(), byteArrayOf((block shr 16).toByte(), (block shr 8).toByte(), block.toByte(), 0x05, 0x02), 150)
+                0x22 -> kwp.write(moduleAddress, service.toByte(), byteArrayOf((block shr 8).toByte(), block.toByte()), 150)
+                // 0x30 inputOutputControlByLocalId: LocalId + 0x01 (reportCurrentState), wg SGBD np. 30 46 01
+                0x30 -> kwp.write(moduleAddress, service.toByte(), byteArrayOf(block.toByte(), 0x01), 150)
+                0x21 -> kwp.write(moduleAddress, service.toByte(), byteArrayOf(block.toByte()), 150)
+                else -> continue
+            }
             try {
-                if (message.isValid) {
-                    result[b.block] =
-                        message.answer.copyOfRange(0, message.length - 1)
-                } else return null
-            }catch (ex: CancellationException) {
+                if (message.isValid)
+                    result[block] = message.answer.copyOfRange(0, message.length - 1)
+            } catch (ex: CancellationException) {
                 throw ex
-            } catch (ex : Exception)
-            {
+            } catch (ex : Exception) {
                 Logger.e {"$tag [readLiveData], $ex, $message"}
-                return null
             }
         }
-        return result
+        return if (result.isEmpty() && requests.isNotEmpty()) null else result
     }
-/*
+
     override suspend fun control(controlElement: ControlElement): Boolean {
-        return if (securityAccess(3)) {
-            kwp.write(
-                moduleAddress,
-                0x30.toByte(),
-                byteArrayOf(controlElement.block.toByte(), controlElement.value.toByte())
-            ).isValid
-        } else false
+        kwp.write(moduleAddress, 0x83.toByte(), byteArrayOf(0x03, 0x32, 0x02, 0x6E, 0x83.toByte(), 0x0A))
+        val data = if (controlElement.byteInBlock == 0x00)
+            byteArrayOf(controlElement.block.toByte(), 0x00)
+        else
+            byteArrayOf(
+                controlElement.block.toByte(),
+                controlElement.byteInBlock.toByte(),
+                (controlElement.controlSetValue?.value ?: controlElement.value).toByte()
+            )
+        return kwp.write(moduleAddress, 0x30.toByte(), data).isValid
     }
-*/
+
+
+    override suspend fun syncEws(ews: ModuleEWS?, onStep: (EwsSyncStep) -> Unit): Boolean {
+        if (ews == null) return false
+        val ecuIdent = getIdentification()
+        onStep(EwsSyncStep(Res.string.advance_control_ews_sync_step_ecu_ident, !ecuIdent?.id1.isNullOrEmpty(), ecuIdent?.id1))
+        if (ecuIdent?.id1.isNullOrEmpty()) return false
+        val ewsId = ews.getIdentification()
+        onStep(EwsSyncStep(Res.string.advance_control_ews_sync_step_ews_ident, !ewsId?.id1.isNullOrEmpty(), ewsId?.id1))
+        if (ewsId?.id1.isNullOrEmpty()) return false
+        val handshake = ews.triggerDmeSync()
+        onStep(EwsSyncStep(Res.string.advance_control_ews_sync_step_ews_handshake, handshake))
+        if (!handshake) return false
+        val enter = kwp.write(moduleAddress, 0x31.toByte(), byteArrayOf(0x83.toByte(), 0x01)).isValid
+        onStep(EwsSyncStep(Res.string.advance_control_ews_sync_step_enter, enter))
+        if (!enter) return false
+        val statusMsg = kwp.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x06))
+        val statusByte = if (statusMsg.isValid) statusMsg.answer.getOrNull(6)?.toInt()?.and(0xFF) else null
+        val success = statusByte == 0x00
+        onStep(EwsSyncStep(Res.string.advance_control_ews_sync_step_status, success, statusByte?.let { "0x%02X".format(it) }))
+        return success
+    }
+
+    override fun getAdvanceControlElements() = listOf(
+        AdvanceControlElement(Res.string.advance_control_ews_sync_title) { userInfo, onShowResult ->
+            AdvanceControlEmsEwsSync(engineModule = this, userInfo = userInfo, onShowResult = onShowResult)
+        }
+    )
+
     override fun getImageResource() = Res.drawable.module_engine
 
     override fun getModuleDescription() = Res.string.module_description_me72
@@ -120,72 +147,101 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
     }
 
     override suspend fun getAllErrors(): List<ModuleError>? {
-        val locale = Locale.getDefault()
         var result: MutableList<ModuleError>? = null
-        var message = kwp.write(moduleAddress, 0xA0.toByte(), byteArrayOf(0x00))
+        val message = kwp.write(moduleAddress, 0xA0.toByte(), byteArrayOf(0x00))
         if (message.isValid) {
             try {
-                val n = message.answer[5];
-                result = ArrayList()
+                val n = message.answer[5].toInt() and 0xFF
+                val errors = ArrayList<ModuleError>()
+                result = errors
                 for (i in 1..n) {
-                    message = kwp.write(moduleAddress, 0xA0.toByte(), byteArrayOf(i.toByte()))
-                    if (message.isValid) {
-                        val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
-                        val errorCode = message.answer[0x07].toInt() and 0xFF
-                        val errorCodeString = String.format("%02X", errorCode)
-                        errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[16].toInt() and 0xFF)))
-                        errorDescription.add(ResourceHelper.getErrorDescriptionLogisticCounter(message.answer[15].toInt() and 0xFF))
-                        //9,10,11
-                        for (j in 0..2) {
-                            val x = message.answer[9 + j]
-                            val matrix = ErrorDetailMatrix.firstOrNull { x -> x.errorCode == errorCode }
-                            if (matrix != null) {
-                                for (k in 0..7) {
-                                    val number = x.toInt() and (0x01 shl k)
-                                    if (number == (0x01 shl k) && matrix.details[k + j * 8] != 0x00.toByte()) {
-                                        val number = String.format("%02x", matrix.details[k + j * 8])
-                                        ResourceMapper.stringResource(
-                                            String.format(
-                                                "me72_error_detail_%s",
-                                                number
-                                            )
-                                        )?.let { errorDescription.add(Pair(it, null)) }
-                                    }
-                                }
-                            }
-                        }
-                        val matrix = ErrorMatrix.firstOrNull {x->x.errorCode == errorCode}
-                        if (matrix != null) {
-                            for (j in 0..3) {
-                                val freezeFrameMatrix = FreezeFrameMatrix.firstOrNull { x -> x.code == (matrix.details[j].toInt() and 0xFF) }
-                                if (freezeFrameMatrix != null) {
-                                    val x = message.answer[29+j].toInt() and 0xFF
-                                    val value = freezeFrameMatrix.factorA * x + freezeFrameMatrix.factorB
-                                    val valueString = if (freezeFrameMatrix.unit == "") String.format(locale, "%.2f", value) else String.format(locale, "%.2f %s", value, freezeFrameMatrix.unit)
-                                    if (0x8C.toByte() == matrix.details[j])
-                                        Logger.i {"tag"}
-                                    ResourceMapper.stringResource(
-                                        String.format(
-                                            "me72_freeze_frame_detail_%02x",
-                                            matrix.details[j].toInt()
-                                        )
-                                    )?.let { errorDescription.add(Pair(it, valueString)) }
-                                }
-
-                            }
-                        }
-                        val moduleError = ModuleError(ModuleAddress.MODULE_ME72, errorCodeString, errorDescription)
-                        result.add(moduleError)
+                    try {
+                        readError(i)?.let { errors.add(it) }
+                    } catch (ex: CancellationException) {
+                        throw ex
+                    } catch (ex: Exception) {
+                        Logger.e { "$tag [getAllErrors] error $i, $ex" }
                     }
-
                 }
             } catch (ex: CancellationException) {
                 throw ex
             } catch (ex: Exception) {
-                Logger.e { "$tag [getAllErros], $ex ,$message" }
+                Logger.e { "$tag [getAllErrors], $ex ,$message" }
             }
         }
         return result
+    }
+
+    // Uklad odpowiedzi wg SGBD FS_LESEN (indeksy w answer):
+    // 7 - kod, 9..11 - bity typu bledu, 15 - licznik kasowan, 45 - czestosc (F_HFK),
+    // zestawy UW (1 - pierwsze, 2 - drugie, 3 - aktualne wykrycie): km w 27+6*s (x10), wartosci w 29+6*s..32+6*s
+    private suspend fun readError(index: Int): ModuleError? {
+        val message = kwp.write(moduleAddress, 0xA0.toByte(), byteArrayOf(index.toByte()))
+        if (!message.isValid) return null
+        val answer = message.answer
+        val locale = Locale.getDefault()
+        val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
+        val errorCode = answer[7].toInt() and 0xFF
+        val count = answer.getOrNull(45)?.let { it.toInt() and 0xFF }
+        count?.let { errorDescription.add(ResourceHelper.getErrorDescriptionCount(it)) }
+        errorDescription.add(ResourceHelper.getErrorDescriptionLogisticCounter(answer[15].toInt() and 0xFF))
+
+        val detailMatrix = ErrorDetailMatrix.firstOrNull { it.errorCode == errorCode }
+        if (detailMatrix != null) {
+            for (j in 0..2) {
+                val bits = answer[9 + j].toInt() and 0xFF
+                for (k in 0..7) {
+                    val detail = detailMatrix.details[k + j * 8].toInt() and 0xFF
+                    if ((bits and (0x01 shl k)) != 0 && detail != 0x00)
+                        ResourceMapper.stringResource("me72_error_detail_%02x".format(detail))
+                            ?.let { errorDescription.add(Pair(it, null)) }
+                }
+            }
+        }
+
+        val matrix = ErrorMatrix.firstOrNull { it.errorCode == errorCode }
+        if (matrix != null) {
+            // SGBD pokazuje tyle zestawow UW, ile wynosi czestosc (max 3)
+            val sets = (count ?: 1).coerceIn(1, 3)
+            for (set in 0 until sets) {
+                val base = 27 + 6 * set
+                if (answer.size <= base + 5) break
+                val km = (((answer[base].toInt() and 0xFF) shl 8) or (answer[base + 1].toInt() and 0xFF)) * 10
+                errorDescription.add(Pair(occurrenceResources[set], "$km km"))
+                for (j in 0..3) {
+                    val uwCode = matrix.details[j].toInt() and 0xFF
+                    val freezeFrame = FreezeFrameMatrix.firstOrNull { it.code == uwCode } ?: continue
+                    val label = ResourceMapper.stringResource("me72_freeze_frame_detail_%02x".format(uwCode)) ?: continue
+                    val raw = answer[base + 2 + j].toInt() and 0xFF
+                    if (uwCode == 0x01 || uwCode == 0x02) {
+                        // Status regulatora lambda - tekst wg FTYPTEXTE zamiast wartosci liczbowej
+                        errorDescription.add(Pair(label, lambdaStatusResource(raw) ?: "0x%02X".format(raw)))
+                        continue
+                    }
+                    // UWF_C = 1 - wartosc ze znakiem
+                    val x = if (freezeFrame.factorC == 1f && raw >= 0x80) raw - 0x100 else raw
+                    val value = freezeFrame.factorA * x + freezeFrame.factorB
+                    val valueString = if (freezeFrame.unit == "") String.format(locale, "%.2f", value) else String.format(locale, "%.2f %s", value, freezeFrame.unit)
+                    errorDescription.add(Pair(label, valueString))
+                }
+            }
+        }
+        return ModuleError(ModuleAddress.MODULE_ME72, "%02X".format(errorCode), errorDescription)
+    }
+
+    private val occurrenceResources = listOf(
+        Res.string.me72_error_occurrence_first,
+        Res.string.me72_error_occurrence_second,
+        Res.string.me72_error_occurrence_last
+    )
+
+    private fun lambdaStatusResource(value: Int): StringResource? = when (value) {
+        0x01 -> Res.string.me72_lambda_status_21
+        0x02 -> Res.string.me72_lambda_status_22
+        0x04 -> Res.string.me72_lambda_status_23
+        0x08 -> Res.string.me72_lambda_status_24
+        0x10 -> Res.string.me72_lambda_status_25
+        else -> null
     }
 
     override suspend fun getIdentification(): ModuleInfo? {
@@ -342,220 +398,6 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
     private suspend fun bootMode(): Boolean {
         return kwp.write(moduleAddress, 0x31.toByte(), byteArrayOf(0xFB.toByte())).isValid
     }
-
-    /*
-    override suspend fun writeFlash(data: ByteArray)  {
-        //var inData = data
-        val blockSize = 0x5C
-        val steps = data.size / blockSize
-        val startTime = Calendar.getInstance().time
-
-        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_start))
-        _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-                Res.string.activity_flash_programming_file_size,
-                data.size.toString()))
-        if (data.size != 0x8000) {
-            _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_wrong_file_size))
-        } else {
-            //inData = data.copyOfRange(0, (data.size / blockSize) * blockSize)
-            _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_read_identification))
-            val moduleInfo = getIdentification()
-            val vin = getVIN()
-            _programmingState.tryEmit(FlashProgrammingState.Message("ID1 : " + moduleInfo?.id1))
-            _programmingState.tryEmit(FlashProgrammingState.Message("ID2 : " + moduleInfo?.id2))
-            _programmingState.tryEmit(FlashProgrammingState.Message("VIN : $vin"))
-            endDiagnosticSession()
-            try {
-                delay(1000)
-            } catch (ex: CancellationException) {
-                throw ex
-            } catch (_ : Exception) {
-            }
-            if (startDiagnosticSession(0x85) && securityAccess(7)) {
-                _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-                        Res.string.activity_flash_programming_security_access,
-                        Res.string.activity_flash_programming_ok))
-                val eraseFlash = kwp.write(moduleAddress, 0x31.toByte(), byteArrayOf(0x01), 500)
-                if (eraseFlash.wholeMessage!= null && eraseFlash.wholeMessage!!.size == 22 && eraseFlash.wholeMessage!![19].toInt() == 0x71)  //if (kwp.Write(MODULE_ADDRESS, (byte) 0x31, new byte[]{0x01},500).isValid())
-                {
-                    if (kwp.write(
-                            moduleAddress,
-                            0x34.toByte(),
-                            byteArrayOf(0x10, 0x80.toByte(), 0x00, 0x00, 0x00, 0x7F, 0xF0.toByte())
-                        ).isValid
-                    ) {
-                        _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-                                Res.string.activity_flash_programming_flash_erasing,Res.string.activity_flash_programming_ok)
-                            )
-
-                        var progress = 0
-
-                        _programmingState.tryEmit(FlashProgrammingState.Progress(progress))
-                        try {
-                            var x = 0
-                            while (x < data.size) {
-                                val dataToWrite = data.copyOfRange(x, if (((x + blockSize) < data.size)) x + blockSize else data.size)
-                                if (dataToWrite.size == blockSize) {
-                                    if (writeFlashData(dataToWrite)) {
-                                        _programmingState.tryEmit(FlashProgrammingState.Progress(progress++ * 100 / steps))
-                                    } else {
-                                        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_write_error))
-                                        break
-                                    }
-                                }
-                                x += blockSize
-                            }
-                            val m1 = kwp.write(moduleAddress, 0x37.toByte(), byteArrayOf(), 2000)
-                            val m2 = kwp.write(moduleAddress, 0x31.toByte(), byteArrayOf(0x02), 2000)
-                            val m3 = kwp.write(moduleAddress, 0x31.toByte(), byteArrayOf(0x03), 2000)
-                            val m4 = kwp.write(
-                                moduleAddress,
-                                0x11.toByte(),
-                                byteArrayOf(0x01.toByte()),
-                                2000
-                            )
-                            if (m1.isValid && (m2.wholeMessage != null && m2.wholeMessage!!.size == 22) and (m2.wholeMessage!![19].toInt() == 0x71) && m3.isValid && m4.isValid) _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-                                    Res.string.activity_flash_programming_flash_writing_end,
-                                    Res.string.activity_flash_programming_ok))
-                            else _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-                                    Res.string.activity_flash_programming_flash_writing_end,
-                                    Res.string.activity_flash_programming_failed))
-                            val endTime = Calendar.getInstance().time
-                            val totalMillis = endTime.time - startTime.time
-                            val seconds = (totalMillis / 1000).toInt() % 60
-                            val minutes = ((totalMillis / 1000).toInt() / 60) % 60
-                            val hours = (totalMillis / 1000).toInt() / 3600
-                            _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-                                    Res.string.activity_flash_programming_write_time,
-                                    String.format("%02i:%02i:%02i", hours, minutes, seconds)))
-                            _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_ecu_reset))
-                        } catch (ex: CancellationException) {
-                            throw ex
-                        } catch (ex: Exception) {
-                            Logger.e{"$tag [WriteFlash]: ${ex.toString()}"}
-                        }
-                    } else {
-                        _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-                                Res.string.activity_flash_programming_flash_erasing,
-                                Res.string.activity_flash_programming_failed)
-                            )
-                    }
-                } else _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-                        Res.string.activity_flash_programming_diagnostic_session,
-                        Res.string.activity_flash_programming_failed))
-            } else _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-                    Res.string.activity_flash_programming_security_access,
-                    Res.string.activity_flash_programming_failed))
-        }
-        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_end))
-        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_close))
-    }
-
-    override suspend fun readFlash()  {
-        val startAddress: Long = 0x108000
-        val size: Long = 0x8000
-        var result = ByteArray(0)
-        val blockSize = 0x80
-        val endAddress = startAddress + size
-        val steps = size.toInt() / blockSize
-        val startTime = Calendar.getInstance().time
-        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_start))
-        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_read_identification))
-        val moduleInfo = getIdentification()
-        val vin = getVIN()
-        _programmingState.tryEmit(FlashProgrammingState.Message("ID1 : " + moduleInfo?.id1))
-        _programmingState.tryEmit(FlashProgrammingState.Message("ID2 : " + moduleInfo?.id2))
-        _programmingState.tryEmit(FlashProgrammingState.Message("VIN : $vin"))
-
-        val startDiagnosticSessionResult = startDiagnosticSession(0x86)
-        _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-            Res.string.activity_flash_programming_diagnostic_session,
-            if (startDiagnosticSessionResult) Res.string.activity_flash_programming_ok else Res.string.activity_flash_programming_failed))
-        if (!startDiagnosticSessionResult)
-            return
-        val securityAccessResult =securityAccess(0x09)
-        _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-            Res.string.activity_flash_programming_security_access,
-            if (securityAccessResult) Res.string.activity_flash_programming_ok else Res.string.activity_flash_programming_failed))
-        if (!securityAccessResult)
-            return
-        var x = 0f
-        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_flash_reading))
-
-        var i = startAddress
-        while (i < endAddress) {
-            _programmingState.tryEmit(FlashProgrammingState.Progress(((x++ * 100) / steps).toInt()))
-            val data = readFlashData(i)
-            if (data.size == blockSize) {
-                result += data
-            } else {
-                _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_read_error))
-                return
-            }
-            i += blockSize.toLong()
-        }
-
-        val endTime = Calendar.getInstance().time
-        val totalMillis = endTime.time - startTime.time
-        val seconds = (totalMillis / 1000).toInt() % 60
-        val minutes = ((totalMillis / 1000).toInt() / 60) % 60
-        val hours = (totalMillis / 1000).toInt() / 3600
-
-        _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
-                Res.string.activity_flash_programming_read_time,
-                String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds)))
-
-        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_end))
-        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_close))
-
-        try {
-            result = result.copyOfRange(0, (endAddress - startAddress).toInt())
-            _programmingState.tryEmit(FlashProgrammingState.FlashData(result.toList(),moduleInfo,vin))
-        } catch (ex: CancellationException) {
-            throw ex
-        } catch (ex: Exception) {
-            Logger.e{"$tag [readFlash] : ${ex.toString()}"}
-        }
-    }
-
-    private suspend fun readFlashData(address: Long): ByteArray {
-        val size = 128
-        val start = System.currentTimeMillis()
-        val message = kwp.write(
-            moduleAddress, 0x23.toByte(),
-            byteArrayOf(
-                ((address and 0xFF0000L) shr 16).toByte(),
-                ((address and 0x00FF00L) shr 8).toByte(),
-                ((address and 0x0000FFL)).toByte(),
-                ((size and 0xFF)).toByte()
-            ),
-            250
-        )
-        Logger.i{"$tag: ${(System.currentTimeMillis() - start)}"}
-        try {
-            if (message.isValid) {
-                return message.answer.copyOfRange(5, message.length - 1)
-            }
-        } catch (ex: CancellationException) {
-            throw ex
-        } catch (ex : Exception)
-        {
-            Logger.e {"$tag [readFlashData], $ex, $message"}
-        }
-        return byteArrayOf()
-    }
-
-    private suspend fun writeFlashData(data: ByteArray): Boolean {
-        kwp.write(
-            moduleAddress,
-            0x36.toByte(),
-            data,
-            100
-        )
-        return true
-        //return  message.isValid();
-    }
-    */
 
     override fun getSupportedCarTypes(): List<CarType> {
         return listOf(CarType.L322)

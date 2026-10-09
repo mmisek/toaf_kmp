@@ -430,7 +430,7 @@
     <string name="me72_live_data_B_NFTEV">Aumento de ralentí para mayor purga del depósito</string>
     <string name="me72_live_data_B_DKPU">Posición de mariposa no plausible (control de seguridad)</string>
     <string name="me72_live_data_B_NSUB">Aumento de ralentí por baja tensión de batería</string>
-    <string name="me72_live_data_B_KO">Control de picado activo</string>
+    <string name="me72_live_data_B_KO">Compresor de A/C</string>
     <string name="me72_live_data_S_BRS">Señal interruptor de freno (redundante)</string>
     <string name="me72_live_data_S_BLS">Interruptor de luz de freno</string>
     <string name="me72_live_data_B_KUPPL">Pedal de embrague pisado</string>
@@ -449,7 +449,7 @@
     <string name="me72_live_data_B_SBBHK2">Sonda lambda lista, después del cat., Bank 2</string>
     <string name="me72_live_data_B_VL">Plena carga</string>
     <string name="me72_live_data_B_LL">Ralentí</string>
-    <string name="me72_live_data_B_UMAERF">Condición de conmutación cumplida</string>
+    <string name="me72_live_data_B_UMAERF">Tope mecánico inferior de la mariposa aprendido</string>
     <string name="me72_live_data_B_SA">Corte de combustible en deceleración</string>
     <string name="me72_live_data_B_TEHB">Ventilación del depósito, operación en caliente</string>
     <string name="me72_live_data_B_EWS_OK">Inmovilizador (EWS) OK</string>
@@ -477,11 +477,11 @@
     <string name="me72_live_data_B_LDPEIN">Bomba de diagnosis de fugas activada</string>
     <string name="me72_live_data_B_SLP">Bomba de aire secundario activa</string>
     <string name="me72_live_data_B_STA">Motor de arranque activo</string>
-    <string name="me72_live_data_B_EBL">Carga eléctrica activa</string>
-    <string name="me72_live_data_B_KOE">Control de picado habilitado</string>
+    <string name="me72_live_data_B_EBL">Ventilador E-Box</string>
+    <string name="me72_live_data_B_KOE">Solicitud de activación del compresor de A/C</string>
     <string name="me72_live_data_B_EKP">Bomba de combustible eléctrica activa</string>
     <string name="me72_live_data_B_SLV">Válvula de aire secundario activa</string>
-    <string name="me72_live_data_B_ETR">Acelerador electrónico activo</string>
+    <string name="me72_live_data_B_ETR">Recirculación de gases de escape (EGR)</string>
     <string name="me72_live_data_B_AKR">Control de picado activo</string>
     <string name="me72_live_data_B_ASC_PKW">Control de tracción (ASC)</string>
     <string name="me72_live_data_B_ACC">Control de crucero adaptativo (ACC)</string>
@@ -496,9 +496,33 @@
     <string name="me72_live_data_TNWSFI2">Tiempo de avance árbol de levas, Bank 2</string>
     <string name="me72_live_data_TNWSSI">Tiempo de retardo árbol de levas, Bank 1</string>
     <string name="me72_live_data_TNWSSI2">Tiempo de retardo árbol de levas, Bank 2</string>
-    <string name="me72_live_data_DNSLBV">Valor interno de control de ralentí</string>
-    <string name="me72_live_data_DNLLMV">Valor interno de control de ralentí</string>
-    <string name="me72_live_data_DNFSACMV">Valor interno de control de ralentí</string>
-    <string name="me72_live_data_DNSACMV">Valor interno de control de ralentí</string>
-    <string name="me72_live_data_DNFSMV">Valor interno de control de ralentí</string>
+    <string name="me72_live_data_DNSLBV">Valor de ajuste del régimen de ralentí (DNSLBV)</string>
+    <string name="me72_live_data_DNLLMV">Valor de ajuste del régimen de ralentí (DNLLMV)</string>
+    <string name="me72_live_data_DNFSACMV">Valor de ajuste del régimen de ralentí (DNFSACMV)</string>
+    <string name="me72_live_data_DNSACMV">Valor de ajuste del régimen de ralentí (DNSACMV)</string>
+    <string name="me72_live_data_DNFSMV">Valor de ajuste del régimen de ralentí (DNFSMV)</string>
+    <!-- Control -->
+    <string name="me72_control_fuel_pump_on">Bomba de combustible - encendida</string>
+    <string name="me72_control_injector_1">Inyector 1</string>
+    <string name="me72_control_injector_2">Inyector 2</string>
+    <string name="me72_control_injector_3">Inyector 3</string>
+    <string name="me72_control_injector_4">Inyector 4</string>
+    <string name="me72_control_injector_5">Inyector 5</string>
+    <string name="me72_control_injector_6">Inyector 6</string>
+    <string name="me72_control_injector_7">Inyector 7</string>
+    <string name="me72_control_injector_8">Inyector 8</string>
+    <string name="me72_control_electric_fan">Ventilador eléctrico</string>
+    <string name="me72_control_ebox_fan_off">Ventilador E-Box - apagado</string>
+    <string name="me72_control_ebox_fan_on">Ventilador E-Box - encendido</string>
+    <string name="me72_control_purge_valve_on">Válvula de purga (TEV) - encendida</string>
+    <string name="me72_control_purge_valve_off">Válvula de purga (TEV) - apagada</string>
+    <!-- Error environment -->
+    <string name="me72_error_occurrence_first">Primera aparición</string>
+    <string name="me72_error_occurrence_second">Segunda aparición</string>
+    <string name="me72_error_occurrence_last">Aparición actual</string>
+    <string name="me72_lambda_status_21">Regulación OFF, condiciones de activación aún no cumplidas</string>
+    <string name="me72_lambda_status_22">Regulación ON</string>
+    <string name="me72_lambda_status_23">Regulación OFF por condiciones de conducción</string>
+    <string name="me72_lambda_status_24">Regulación OFF por fallo detectado</string>
+    <string name="me72_lambda_status_25">Regulación ON con limitación</string>
 </resources>

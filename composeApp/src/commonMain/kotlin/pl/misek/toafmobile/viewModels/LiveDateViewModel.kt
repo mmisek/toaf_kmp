@@ -111,8 +111,24 @@ class LiveDateViewModel(
             var formatedValue = ""
             var rawValue  = 0f
             var mask = liveDataElement.mask
-            val block = liveData?.get(liveDataElement.block) ?: break
+            if (liveData == null) break
+            val block = liveData[liveDataElement.block]
             val byteInBlock = liveDataElement.byteInBlock
+            val bytes = block as? ByteArray
+            val tooShort = liveDataElement.liveDataFormat == LiveDataFormat.Standard &&
+                    (bytes == null || bytes.size < byteInBlock + calculateLengthFromMask(mask))
+            // Brak bloku (blad odczytu) lub za krotka odpowiedz - pusta pozycja,
+            // kolejne elementy nadal liczone, indeksy wynikow/wykresu bez przesuniec
+            if (block == null || tooShort) {
+                result.add(LiveDataResultElement(
+                    name = liveDataElement.name,
+                    rawValue = 0f,
+                    valueWithoutUnit = "",
+                    valueWithUnit = "",
+                    description = liveDataElement.descriptionResKey,
+                    staticValue = null))
+                continue
+            }
             if (liveDataElement.liveDataFormat == LiveDataFormat.Standard)
             {
                 var tempByteValue = (block as ByteArray).copyOfRange(

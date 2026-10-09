@@ -168,7 +168,7 @@ object JsonSupport {
     }
 
     suspend fun getControlElements(moduleName: String): List<ControlElement>? {
-        val path = "files/Control/${moduleName.lowercase(Locale.getDefault())}_control.json"
+        val path = "files/Control/${moduleName.replace(".","").lowercase(Locale.getDefault())}_control.json"
         val bytes = Res.readBytes(path)
         val jsonString = bytes.decodeToString()
         val container = Json.decodeFromString<ControlElementContainerJson>(jsonString)

@@ -507,6 +507,20 @@ object ResourceMapperMe72 {
             "me72_live_data_wnwi_w0" -> Res.string.me72_live_data_WNWI_W0
             "me72_live_data_wnwi_w1" -> Res.string.me72_live_data_WNWI_W1
             "me72_live_data_zwout" -> Res.string.me72_live_data_ZWOUT
+            "me72_control_fuel_pump_on" -> Res.string.me72_control_fuel_pump_on
+            "me72_control_injector_1" -> Res.string.me72_control_injector_1
+            "me72_control_injector_2" -> Res.string.me72_control_injector_2
+            "me72_control_injector_3" -> Res.string.me72_control_injector_3
+            "me72_control_injector_4" -> Res.string.me72_control_injector_4
+            "me72_control_injector_5" -> Res.string.me72_control_injector_5
+            "me72_control_injector_6" -> Res.string.me72_control_injector_6
+            "me72_control_injector_7" -> Res.string.me72_control_injector_7
+            "me72_control_injector_8" -> Res.string.me72_control_injector_8
+            "me72_control_electric_fan" -> Res.string.me72_control_electric_fan
+            "me72_control_ebox_fan_off" -> Res.string.me72_control_ebox_fan_off
+            "me72_control_ebox_fan_on" -> Res.string.me72_control_ebox_fan_on
+            "me72_control_purge_valve_on" -> Res.string.me72_control_purge_valve_on
+            "me72_control_purge_valve_off" -> Res.string.me72_control_purge_valve_off
         else -> {
           Logger.i {"NO RESOURCE for : $resourceName" }
             null

@@ -26,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import co.touchlab.kermit.Logger
+import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.BuildKonfig
 import pl.misek.toafmobile.PlatformType
@@ -178,6 +179,7 @@ fun detailsToString(error : ModuleError) : String{
         val param = when (val v = detail.second) {
             null -> ""
             is String -> v
+            is StringResource -> stringResource(v)
             is Int, is Long, is Byte -> v.toString()
             is Float, is Double -> "%.2f".format(Locale.US, v)
             else -> {
