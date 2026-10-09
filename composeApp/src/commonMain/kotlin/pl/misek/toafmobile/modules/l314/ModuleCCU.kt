@@ -68,7 +68,6 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
 
     override suspend fun getIdentification(): ModuleInfo? {
 
-        securityAccessCalculator(0x1B1B)
         var info: ModuleInfo? = null
         try {
             if (moduleInit()) {
@@ -79,11 +78,8 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
                         val answer = message.answer
                         info.id1 = String(answer.copyOfRange(5, 7))
                         info.ci = String.format("%02X", answer[7].toInt() and 0xFF)
-                        info.sw = String.format(
-                            "%02X.%02X",
-                            answer[9].toInt() and 0xFF,
-                            answer[10].toInt() and 0xFF
-                        )
+                        // SW_VER wg SGBD: bajt1 * 100 + bajt2
+                        info.sw = ((answer[9].toInt() and 0xFF) * 100 + (answer[10].toInt() and 0xFF)).toString()
                         info.hw = String(answer.copyOfRange(11, 12))
                         info.serial = String.format(
                             "%02X%02X%02X",
@@ -139,9 +135,12 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
 
     override suspend fun writeVIN(newVin: String): Boolean {
         var result = false
+        // Wg SGBD C_FG_AUFTRAG: pelny 17-znakowy VIN, zapisywane 6 ostatnich cyfr
+        // + 0x500000 gdy 7. znak (indeks 6) to 'B', w przeciwnym razie 0x300000
+        if (newVin.length != getVinLength()) return false
+        val serial = newVin.substring(11).toIntOrNull() ?: return false
         if (moduleInit() && securityAccess(0x01)) {
-            var vinData = if (newVin[7] == 'B') 0x500000 else 0x300000
-            vinData += newVin.substring(11,newVin.length).toInt()
+            val vinData = (if (newVin[6] == 'B') 0x500000 else 0x300000) + serial
             val data = byteArrayOf(0x15, ((vinData shr 16) and 0xFF).toByte(), ((vinData shr 8) and 0xFF).toByte(),(vinData and 0xFF).toByte())
             result = kwp.write(MODULE_ADDRESS, 0x3B.toByte(), data, 50).isValid
         }
@@ -213,6 +212,8 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
         if (message.isValid) {
             val code =
                 ((message.answer[6].toInt() and 0xFF) shl 8) + (message.answer[7].toInt() and 0xFF)
+            // Seed 0000 - modul juz odblokowany, SGBD nie wysyla klucza
+            if (code == 0x0000) return true
             val seed = securityAccessCalculator(code)
             val data = byteArrayOf(
                 (mode + 1).toByte(),
@@ -270,12 +271,16 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
     override suspend fun writeCoding(dataToSave: List<ByteArray>): Boolean {
         if (moduleInit()) {
             if (securityAccess(0x01)) {
-                return kwp.write(
+                if (!kwp.write(
                     MODULE_ADDRESS,
                     0x3B.toByte(),
                     byteArrayOf(0x05) + dataToSave[0],
                     50
-                ).isValid
+                ).isValid) return false
+                // Weryfikacja jak w SGBD C_C_AUFTRAG: ponowny odczyt i porownanie
+                val verify = kwp.write(MODULE_ADDRESS, 0x21.toByte(), byteArrayOf(0x05), 50)
+                return verify.isValid &&
+                        verify.answer.copyOfRange(6, verify.answer.size - 1).contentEquals(dataToSave[0])
             }
         }
         return false
@@ -283,19 +288,13 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
 
     override suspend fun readLiveData(): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = HashMap()
-        for (element in localLiveDataElements)
+        // Jedno zapytanie 21 xx na blok
+        for (block in localLiveDataElements.map { it.block }.distinct())
         {
-            val message = kwp.write(MODULE_ADDRESS, 0x21.toByte(), byteArrayOf(element.block.toByte()), 50)
+            val message = kwp.write(MODULE_ADDRESS, 0x21.toByte(), byteArrayOf(block.toByte()), 50)
             if (message.isValid) {
                 try {
-                    val response = message.answer.copyOfRange(3, message.answer.size - 1)
-                    result[element.block] = message.answer.copyOfRange(3, message.answer.size - 1)
-                    if (element.block == 0x13) {
-                        val x = response[2]
-                        response[2] = response[3]
-                        response[2] = x
-                    }
-                    result[element.block] = response
+                    result[block] = message.answer.copyOfRange(3, message.answer.size - 1)
                 }
                 catch (ex: CancellationException) {
                     throw ex
