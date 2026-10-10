@@ -1,7 +1,6 @@
 package pl.misek.toafmobile.modules.l322
 
 import co.touchlab.kermit.Logger
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.CancellationException
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.generated.ResourceHelper
@@ -25,7 +24,6 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.advance_control_lws_calibration
 import toafmobile.composeapp.generated.resources.module_description_lws
 import toafmobile.composeapp.generated.resources.module_lws
-import kotlin.time.Duration.Companion.milliseconds
 
 class ModuleLWS( protocolDS2: ProtocolDS2?) :
     ModuleDS2(protocolDS2, ModuleAddress.MODULE_LWS, listOf(CarType.L322)),
@@ -54,9 +52,15 @@ class ModuleLWS( protocolDS2: ProtocolDS2?) :
 
     override suspend fun getVIN(): String? = readAdjustmentData()?.Vin
 
-    override fun getVinLength(): Int = 17
+    // LWS przechowuje skrocony VIN: 2 litery + 6 cyfr (zapis hex), wg SGBD ABGLEICH_LESEN/VORGEBEN
+    override fun getVinLength(): Int = 8
 
     override suspend fun writeVIN(newVin: String): Boolean {
+        val newVin = newVin.uppercase()
+        if (newVin.length != getVinLength() ||
+            !newVin.take(2).all { it in 'A'..'Z' } ||
+            !newVin.drop(2).all { it in '0'..'9' || it in 'A'..'F' })
+            return false
         val data = readAdjustmentData()
         if (data != null) {
             data.Vin = newVin
@@ -89,29 +93,57 @@ class ModuleLWS( protocolDS2: ProtocolDS2?) :
         return result
     }
 
+    private var liveDataElements: List<LiveDataElement> = emptyList()
+
+    // Zapytania wg SGBD: 1B 00/01/02 (STATUS_SG_DIGITAL/ONLINE/VIRTUELL), 0B 00/01 (STATUS_DIGITAL/ANALOG),
+    // 06 03 01 FD 01 (STATUS_KL30 - licznik zanikow kl.30); klucz bloku zgodny z lws_live_data.json
+    private val liveDataRequests = mapOf(
+        0x00 to byteArrayOf(0x1B, 0x00),
+        0x01 to byteArrayOf(0x1B, 0x01),
+        0x02 to byteArrayOf(0x1B, 0x02),
+        0x10 to byteArrayOf(0x0B, 0x00),
+        0x11 to byteArrayOf(0x0B, 0x01),
+        0x20 to byteArrayOf(0x06, 0x03, 0x01, 0xFD.toByte(), 0x01)
+    )
+
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean {
+        this.liveDataElements = liveDataElements
         getIdentification()
         return true
     }
 
     override suspend fun readLiveData(): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = HashMap()
-        getIdentification()
-        for (i in 0..2) {
-            val message = interfaceWrite(byteArrayOf(0x1B, i.toByte()))
+        for (block in liveDataElements.map { it.block }.distinct()) {
+            val request = liveDataRequests[block] ?: continue
+            val message = interfaceWrite(request)
             try {
-                if (message.isValid)
-                    result[i] = message.answer.copyOfRange(3, message.answer.size)
-                else
-                    return null
+                // Blad jednego bloku nie uniewaznia pozostalych
+                if (message.isValid) {
+                    val data = message.answer.copyOfRange(3, message.answer.size)
+                    if (block == 0x02 && data.size >= 14)
+                        signMagnitudeToU2(data, 12)
+                    result[block] = data
+                }
             } catch (ex: CancellationException) {
                 throw ex
             } catch ( ex : Exception)
             {
-                Logger.e {"$tag [readLiveDAta], $ex, $message"}
+                Logger.e {"$tag [readLiveData], $ex, $message"}
             }
         }
-        return result
+        return result.ifEmpty { null }
+    }
+
+    // Syntetyczny kat kierownicy (STAT_ULRWSYN) w SGBD: wartosc > 0x7FFF oznacza -(x - 0x8000) (znak + modul);
+    // zamiana na U2, aby wspolne liczenie live data (u2) dawalo poprawny wynik
+    private fun signMagnitudeToU2(data: ByteArray, index: Int) {
+        val raw = ((data[index].toInt() and 0xFF) shl 8) or (data[index + 1].toInt() and 0xFF)
+        if (raw > 0x7FFF) {
+            val value = (-(raw - 0x8000)) and 0xFFFF
+            data[index] = (value shr 8).toByte()
+            data[index + 1] = value.toByte()
+        }
     }
 
     suspend fun readCoding(): List<ByteArray>? {
@@ -120,8 +152,9 @@ class ModuleLWS( protocolDS2: ProtocolDS2?) :
         for (i in 0..0x6) {
             val message = interfaceWrite(byteArrayOf(0x08, i.toByte()))
             try {
+                // Wg SGBD CODIERUNG_LESEN: 16 bajtow od [3]
                 if (message.isValid)
-                    result.add(message.answer.copyOfRange(4, message.answer.size - 1))
+                    result.add(message.answer.copyOfRange(3, 3 + 0x10))
                 else
                     return null
             } catch (ex: CancellationException) {
@@ -142,6 +175,10 @@ class ModuleLWS( protocolDS2: ProtocolDS2?) :
             if (!message.isValid)
                 return false
         }
+        // Wg SGBD CODIERUNG_CHECK: 0A - suma kontrolna ze wszystkich 112 bajtow kodowania
+        val check = interfaceWrite(byteArrayOf(0x0A))
+        if (!check.isValid) return false
+        Logger.i { "$tag [writeCoding], coding checksum: ${String.format("%02X%02X", check.answer[3], check.answer[4])}" }
         return true
     }
 
@@ -252,7 +289,7 @@ class ModuleLWS( protocolDS2: ProtocolDS2?) :
         val data = readAdjustmentData()
         if (data != null) {
             data.Adjustment = adjustment
-            return writeAdjustmentData(data) && interfaceWrite(byteArrayOf(0x42)).isValid
+            return writeAdjustmentData(data)
         }
         return false
     }

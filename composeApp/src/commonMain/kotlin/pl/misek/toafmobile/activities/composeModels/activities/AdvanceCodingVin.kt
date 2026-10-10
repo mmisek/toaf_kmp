@@ -174,6 +174,8 @@ private fun validateVin(vin : String, module : IModule?) : Boolean
     val regex = when ((module as IModuleVIN).getVinLength())
     {
         7 ->"[a-zA-Z0-9][a-zA-Z][0-9]{6}".toRegex()
+        // LWS: 2 litery + 6 cyfr hex
+        8 -> "[a-zA-Z]{2}[0-9a-fA-F]{6}".toRegex()
         17 -> "[a-zA-Z0-9]{10}[a-zA-Z][0-9]{6}".toRegex()
         else -> "".toRegex()
     }

@@ -1,6 +1,736 @@
 {
   "livedata": [
     {
+      "name": "lws_new",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "power_on_reset",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "watchdog_reset",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "relative_angle_only",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "filter_not_initialised",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "calibration_mode",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "can_init",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "asc2_received",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "asc3_calibration_received",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "asc3_angle_speed_received",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "can_version_received",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "can_version_ok",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "can_tx_off",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "can_off",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "err_asc2",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "err_can_version",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "err_id",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "err_program",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "err_angle_gradient",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "err_angle_max",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "err_stack",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "err_watchdog",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "err_kl30",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "err_sensor_current",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "err_90deg_calibration",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "err_90deg",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "err_eeprom",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "err_ad",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "err_rom",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "err_ram",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "scheduler_state",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x1F",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x01",
+          "text": "sdl_zykl_syc"
+        },
+        {
+          "data": "0x02",
+          "text": "sdl_zykl_start"
+        },
+        {
+          "data": "0x03",
+          "text": "sdl_lrw"
+        },
+        {
+          "data": "0x04",
+          "text": "sdl_asc2"
+        },
+        {
+          "data": "0x05",
+          "text": "sdl_psi_pkt"
+        },
+        {
+          "data": "0x06",
+          "text": "sdl_vir_sens"
+        },
+        {
+          "data": "0x07",
+          "text": "sdl_klass"
+        },
+        {
+          "data": "0x08",
+          "text": "sdl_stat_err"
+        },
+        {
+          "data": "0x09",
+          "text": "sdl_lws1_tr"
+        }
+      ]
+    },
+    {
+      "name": "scheduler_mode",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0xE0",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "sdl_init_mod"
+        },
+        {
+          "data": "0x01",
+          "text": "asc2_syc1_mod"
+        },
+        {
+          "data": "0x03",
+          "text": "asc2_syc2_mod"
+        },
+        {
+          "data": "0x04",
+          "text": "asc2_asyc_mod"
+        },
+        {
+          "data": "0x05",
+          "text": "sdl_slow_mod"
+        },
+        {
+          "data": "0x06",
+          "text": "sdl_nachlf_mod"
+        },
+        {
+          "data": "0x07",
+          "text": "sdl_can_err_mod"
+        }
+      ]
+    },
+    {
+      "name": "can_driver_supply",
+      "block": "0x10",
+      "byte": "0x00",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "base_sensor_supply",
+      "block": "0x10",
+      "byte": "0x00",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
+    },
+    {
+      "name": "sensor_slider_1",
+      "block": "0x11",
+      "byte": "0x00",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "sensor_slider_2",
+      "block": "0x11",
+      "byte": "0x01",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "terminal_87_voltage",
+      "block": "0x11",
+      "byte": "0x03",
+      "mask": "0xFF",
+      "factor_a": "0.068384",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "terminal_30_counter",
+      "block": "0x20",
+      "byte": "0x00",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
       "name": "steering_angle",
       "block": "0x01",
       "byte": "0x00",
@@ -25,7 +755,7 @@
       "block": "0x01",
       "byte": "0x04",
       "mask": "0xFFFF",
-      "factor_a": "0.00625",
+      "factor_a": "0.0625",
       "factor_b": "0",
       "unit": "km/h"
     },
@@ -43,7 +773,7 @@
       "block": "0x02",
       "byte": "0x00",
       "mask": "0xFFFF",
-      "factor_a": "0.00625",
+      "factor_a": "0.0625",
       "factor_b": "0",
       "unit": "km/h"
     },
@@ -52,7 +782,7 @@
       "block": "0x02",
       "byte": "0x02",
       "mask": "0xFFFF",
-      "factor_a": "0.00625",
+      "factor_a": "0.0625",
       "factor_b": "0",
       "unit": "km/h"
     },
@@ -61,7 +791,7 @@
       "block": "0x02",
       "byte": "0x04",
       "mask": "0xFFFF",
-      "factor_a": "0.00625",
+      "factor_a": "0.0625",
       "factor_b": "0",
       "unit": "km/h"
     },
@@ -70,7 +800,7 @@
       "block": "0x02",
       "byte": "0x06",
       "mask": "0xFFFF",
-      "factor_a": "0.00625",
+      "factor_a": "0.0625",
       "factor_b": "0",
       "unit": "km/h"
     },
