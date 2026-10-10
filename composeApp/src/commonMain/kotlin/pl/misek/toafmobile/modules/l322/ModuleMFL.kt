@@ -10,8 +10,11 @@ import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.ModuleAddress
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
+import pl.misek.toafmobile.protocols.OBDMessage
 import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
+import toafmobile.composeapp.generated.resources.mfl_error_active
+import toafmobile.composeapp.generated.resources.mfl_error_not_active
 import toafmobile.composeapp.generated.resources.module_description_mfl
 import toafmobile.composeapp.generated.resources.module_mfl
 import kotlinx.coroutines.CancellationException
@@ -28,44 +31,49 @@ class ModuleMFL( protocolDS2: ProtocolDS2?) :
 
     override fun getModuleDescription() = Res.string.module_description_mfl
 
+    // Wg SGBD FS_LESEN: 04 01 -> [3] liczba bledow, rekordy 2-bajtowe od [4] (max 7 w bloku):
+    // kod + (czestosc & 0x1F, bit 0x20 = blad aktywny); 04 02 tylko gdy bledow wiecej niz 7.
     override suspend fun getAllErrors(): List<ModuleError>? {
-        //[50] [05] [04] [02] [53] : [50] [05] [04] [02] [53] [50] [04] [FF] [AB]
         getIdentification()
-        var result: MutableList<ModuleError>? = null
-        for (x in 1..2) {
-            val message = interfaceWrite(byteArrayOf(0x04, x.toByte()))
-            try {
-                if (message.isValid && message.length > 5) {
-                    result = ArrayList()
-                    for (i in 0 until (message.answer[3].toInt() and 0xFF)) {
-                        val errorCode = String.format("%02X", message.answer[4 + 2 * i])
-                        val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
-                        errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5 + 2 * i].toInt() and 0xFF) and 0x1F))
-                        errorDescription.add(ResourceHelper.getErrorDescriptionIsPresent((message.answer[5 + 2 * i].toInt() and 0x20) == 0x20))
-                        result.add(
-                            ModuleError(
-                                ModuleAddress.MODULE_MFL,
-                                errorCode,
-                                errorDescription
-                            )
-                        )
-                    }
-                }
-            } catch (ex: CancellationException) {
-                throw ex
-            } catch ( ex : Exception)
-            {
-                Logger.e {"$tag [getAllErrors], $ex, $message"}
-            }
+        val first = interfaceWrite(byteArrayOf(0x04, 0x01))
+        if (!first.isValid) return null
+        val result: MutableList<ModuleError> = ArrayList()
+        val count = first.answer[3].toInt() and 0xFF
+        parseErrors(first, minOf(count, 7), result)
+        if (count > 7) {
+            val second = interfaceWrite(byteArrayOf(0x04, 0x02))
+            if (second.isValid)
+                parseErrors(second, count - 7, result)
         }
         return result
+    }
+
+    private fun parseErrors(message: OBDMessage, count: Int, result: MutableList<ModuleError>) {
+        try {
+            for (i in 0 until count) {
+                if (message.answer.size <= 5 + 2 * i) break
+                val errorCode = String.format("%02X", message.answer[4 + 2 * i])
+                val status = message.answer[5 + 2 * i].toInt() and 0xFF
+                val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
+                errorDescription.add(ResourceHelper.getErrorDescriptionCount(status and 0x1F))
+                errorDescription.add(
+                    Pair(if ((status and 0x20) == 0x20) Res.string.mfl_error_active else Res.string.mfl_error_not_active, null)
+                )
+                result.add(ModuleError(ModuleAddress.MODULE_MFL, errorCode, errorDescription))
+            }
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex: Exception) {
+            Logger.e { "$tag [getAllErrors], $ex, $message" }
+        }
     }
 
     override suspend fun readLiveData(): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = HashMap()
         val message = interfaceWrite(byteArrayOf(0x0B), 500)
         try {
-            if (message.isValid) result[0] =
+            // klucz 0x01 zgodnie z "block" w mfl_live_data.json
+            if (message.isValid) result[0x01] =
                 message.answer.copyOfRange(3, message.answer.size)
             else
                 return null

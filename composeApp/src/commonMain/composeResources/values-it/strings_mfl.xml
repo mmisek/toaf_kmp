@@ -25,4 +25,8 @@
     <string name="mfl_live_data_button_vol_down_pressed">Tasto VOL- premuto</string>
     <string name="mfl_live_data_operating_voltage">Tensione di esercizio</string>
     <string name="mfl_live_data_operating_voltage_at_the_switch">Tensione di esercizio sull\'interruttore</string>
+    <string name="mfl_live_data_value_pressed">premuto</string>
+    <string name="mfl_live_data_value_not_pressed">non premuto</string>
+    <string name="mfl_live_data_value_yes">sì</string>
+    <string name="mfl_live_data_value_no">no</string>
 </resources>

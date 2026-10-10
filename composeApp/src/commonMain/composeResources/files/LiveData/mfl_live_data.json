@@ -7,7 +7,17 @@
       "mask": "0x01",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
     },
     {
       "name": "telephone_control_present",
@@ -16,7 +26,17 @@
       "mask": "0x02",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
     },
     {
       "name": "air_circulating_control_present",
@@ -25,7 +45,17 @@
       "mask": "0x04",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
     },
     {
       "name": "cruise_control_present",
@@ -34,7 +64,17 @@
       "mask": "0x08",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "no"
+        },
+        {
+          "data": "0x01",
+          "text": "yes"
+        }
+      ]
     },
     {
       "name": "button_resume_pressed",
@@ -43,7 +83,25 @@
       "mask": "0x09",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x01",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x08",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x09",
+          "text": "pressed"
+        }
+      ]
     },
     {
       "name": "button_set_plus_pressed",
@@ -52,7 +110,25 @@
       "mask": "0x12",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x01",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x08",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x09",
+          "text": "pressed"
+        }
+      ]
     },
     {
       "name": "button_set_minus_pressed",
@@ -61,7 +137,17 @@
       "mask": "0x40",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x01",
+          "text": "pressed"
+        }
+      ]
     },
     {
       "name": "button_cruise_control_off_pressed",
@@ -70,7 +156,25 @@
       "mask": "0x24",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x01",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x08",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x09",
+          "text": "pressed"
+        }
+      ]
     },
     {
       "name": "button_air_recirculation_pressed",
@@ -79,7 +183,17 @@
       "mask": "0x80",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x01",
+          "text": "pressed"
+        }
+      ]
     },
     {
       "name": "button_telephone_pressed",
@@ -88,7 +202,41 @@
       "mask": "0x07",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x01",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x02",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x03",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x04",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x05",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x06",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x07",
+          "text": "pressed"
+        }
+      ]
     },
     {
       "name": "button_radio_telephone_pressed",
@@ -97,7 +245,41 @@
       "mask": "0x0B",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x01",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x02",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x03",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x08",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x09",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x0A",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x0B",
+          "text": "pressed"
+        }
+      ]
     },
     {
       "name": "button_seek_down_pressed",
@@ -106,7 +288,41 @@
       "mask": "0x13",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x01",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x02",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x03",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x10",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x11",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x12",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x13",
+          "text": "pressed"
+        }
+      ]
     },
     {
       "name": "button_seek_up_pressed",
@@ -115,16 +331,84 @@
       "mask": "0x83",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x01",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x02",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x03",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x80",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x81",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x82",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x83",
+          "text": "pressed"
+        }
+      ]
     },
     {
       "name": "button_vol_down_pressed",
       "block": "0x01",
       "byte": "0x02",
-      "mask": "0x13",
+      "mask": "0x23",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x01",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x02",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x03",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x20",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x21",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x22",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x23",
+          "text": "pressed"
+        }
+      ]
     },
     {
       "name": "button_vol_up_pressed",
@@ -133,7 +417,41 @@
       "mask": "0x43",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x01",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x02",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x03",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x40",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x41",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x42",
+          "text": "not_pressed"
+        },
+        {
+          "data": "0x43",
+          "text": "pressed"
+        }
+      ]
     },
     {
       "name": "operating_voltage",

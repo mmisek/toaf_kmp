@@ -31,6 +31,10 @@ object ResourceMapperMfl {
             "mfl_live_data_operating_voltage_at_the_switch" -> Res.string.mfl_live_data_operating_voltage_at_the_switch
             "mfl_live_data_radio_control_present" -> Res.string.mfl_live_data_radio_control_present
             "mfl_live_data_telephone_control_present" -> Res.string.mfl_live_data_telephone_control_present
+            "mfl_live_data_value_pressed" -> Res.string.mfl_live_data_value_pressed
+            "mfl_live_data_value_not_pressed" -> Res.string.mfl_live_data_value_not_pressed
+            "mfl_live_data_value_yes" -> Res.string.mfl_live_data_value_yes
+            "mfl_live_data_value_no" -> Res.string.mfl_live_data_value_no
         else -> {
           Logger.i {"NO RESOURCE for : $resourceName" }
             null

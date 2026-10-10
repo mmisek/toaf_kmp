@@ -29,4 +29,8 @@
     
     <string name="mfl_live_data_operating_voltage">Рабочее напряжение</string>
     <string name="mfl_live_data_operating_voltage_at_the_switch">Рабочее напряжение на переключателе</string>
+    <string name="mfl_live_data_value_pressed">нажата</string>
+    <string name="mfl_live_data_value_not_pressed">не нажата</string>
+    <string name="mfl_live_data_value_yes">да</string>
+    <string name="mfl_live_data_value_no">нет</string>
 </resources>

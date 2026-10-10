@@ -26,4 +26,8 @@
     <string name="mfl_live_data_radio_control_present">Naciśnięty - radio</string>
     <string name="mfl_live_data_telephone_control_present">Naciśnięty - telefon</string>
 
+    <string name="mfl_live_data_value_pressed">wciśnięty</string>
+    <string name="mfl_live_data_value_not_pressed">niewciśnięty</string>
+    <string name="mfl_live_data_value_yes">tak</string>
+    <string name="mfl_live_data_value_no">nie</string>
 </resources>

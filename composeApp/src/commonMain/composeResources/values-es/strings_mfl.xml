@@ -25,4 +25,8 @@
     <string name="mfl_live_data_button_vol_down_pressed">VOL- presionado</string>
     <string name="mfl_live_data_operating_voltage">Voltaje de operación</string>
     <string name="mfl_live_data_operating_voltage_at_the_switch">Voltaje de operación en el interruptor</string>
+    <string name="mfl_live_data_value_pressed">pulsado</string>
+    <string name="mfl_live_data_value_not_pressed">no pulsado</string>
+    <string name="mfl_live_data_value_yes">sí</string>
+    <string name="mfl_live_data_value_no">no</string>
 </resources>

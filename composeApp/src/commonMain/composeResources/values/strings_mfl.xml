@@ -25,4 +25,8 @@
     <string name="mfl_live_data_button_vol_down_pressed">VOL- pressed</string>
     <string name="mfl_live_data_operating_voltage">Operating voltage</string>
     <string name="mfl_live_data_operating_voltage_at_the_switch">Operating voltage at the switch</string>
+    <string name="mfl_live_data_value_pressed">pressed</string>
+    <string name="mfl_live_data_value_not_pressed">not pressed</string>
+    <string name="mfl_live_data_value_yes">yes</string>
+    <string name="mfl_live_data_value_no">no</string>
 </resources>
