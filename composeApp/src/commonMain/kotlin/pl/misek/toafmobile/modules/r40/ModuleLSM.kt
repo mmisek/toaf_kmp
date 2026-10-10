@@ -18,6 +18,7 @@ import pl.misek.toafmobile.modules.interfaces.IModuleOdometer
 import pl.misek.toafmobile.modules.interfaces.IModuleVIN
 import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
+import toafmobile.composeapp.generated.resources.lcm_error_shadow
 import toafmobile.composeapp.generated.resources.module_description_lcm
 import toafmobile.composeapp.generated.resources.module_lsm
 import java.util.Locale
@@ -215,53 +216,40 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
 
     override suspend fun readLiveData(): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = HashMap()
-        //Live data
-        var message = interfaceWrite(byteArrayOf(0x0B))
-        try {
-            if (message.isValid) result[0x00] =
-                message.answer.copyOfRange(3, message.answer.size)
-            else return null
-            //Live data - working time
-            message = interfaceWrite(byteArrayOf(0x1B))
-            if (message.isValid) result[0x01] =
-                message.answer.copyOfRange(3, message.answer.size)
-            else return null
-            return result
-        } catch (ex: CancellationException) {
-            throw ex
-        } catch (ex : Exception)
-        {
-            Logger.e {"$tag [readLiveData], $ex, $message"}
-            return result
+        // 0x00: 0B (STATUS_LESEN), 0x01: 1B (BETRIEBSSTUNDENZAEHLER_LESEN); blad jednego bloku nie kasuje drugiego
+        for ((block, request) in listOf(0x00 to 0x0B, 0x01 to 0x1B)) {
+            val message = interfaceWrite(byteArrayOf(request.toByte()))
+            try {
+                if (message.isValid)
+                    result[block] = message.answer.copyOfRange(3, message.answer.size - 1)
+            } catch (ex: CancellationException) {
+                throw ex
+            } catch (ex : Exception)
+            {
+                Logger.e {"$tag [readLiveData], $ex, $message"}
+            }
         }
+        return result.ifEmpty { null }
     }
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean {
         return true
     }
 
+    // Wg SGBD STEUERN_IO: 0C + 15 bajtow k0..k14. Szablon bazowy z SGBD (k2=k3=F0, k7=k10=0x80),
+    // a wartosci analogowe k7 (czujnik obciazenia), k9 (sciemniacz), k10 (potencjometr LWR)
+    // przepisywane z biezacego odczytu 0B, aby sterowanie nie przestawialo reflektorow ani czujnika.
     override suspend fun control(controlElement: ControlElement): Boolean {
         when (controlElement.block) {
             0x00 -> {
-                //clear all
-                val data = byteArrayOf(
-                    0x0C.toByte(),
-                    0x00.toByte(),
-                    0x00.toByte(),
-                    0xFF.toByte(),
-                    0xFF.toByte(),
-                    0x00.toByte(),
-                    0x00.toByte(),
-                    0x00.toByte(),
-                    0x00.toByte(),
-                    0x00.toByte(),
-                    0xFF.toByte(),
-                    0x00.toByte(),
-                    0x00.toByte(),
-                    0x00.toByte(),
-                    0x00.toByte(),
-                    0x00.toByte()
-                )
+                val data = byteArrayOf(0x0C, 0x00, 0x00, 0xF0.toByte(), 0xF0.toByte(), 0x00, 0x00, 0x00,
+                    0x80.toByte(), 0x00, 0x00, 0x80.toByte(), 0x00, 0x00, 0x00, 0x00)
+                val status = interfaceWrite(byteArrayOf(0x0B))
+                if (status.isValid && status.answer.size > 0x13) {
+                    data[1 + 7] = status.answer[0x0A]
+                    data[1 + 9] = status.answer[0x12]
+                    data[1 + 10] = status.answer[0x13]
+                }
                 if (interfaceWrite(data).isValid) {
                     //control selected element
                     if (controlElement.controlSetValue != null) data[controlElement.byteInBlock + 1] =
@@ -317,35 +305,35 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
         return null
     }
 
+    // Wg SGBD FS_LESEN / IS_LESEN: bloki 04 01..03 - pamiec bledow, 04 04..08 - pamiec informacyjna
+    // (m.in. defekty zarowek). [3] liczba wpisow, rekordy 2-bajtowe od [4]: kod + (czestosc & 0x1F,
+    // bit 0x20 = blad obecny); wpisy z czestoscia 0 SGBD pomija. Kasowanie: 05 01..08.
     override suspend fun getAllErrors(): List<ModuleError>? {
         var result: MutableList<ModuleError>? = null
-        for (n in 0x01..0x9) {
+        for (n in 0x01..0x08) {
             val message = interfaceWrite(byteArrayOf(0x04, n.toByte()))
             try {
                 if (message.isValid) {
-                    if (message.answer[3].toInt() != 0x00) {
-                        for (i in 0 until (message.answer[3].toInt() and 0xFF)) {
-                            val errorCode = String.format("%02X", message.answer[4 + 2 * i])
-                            val errorDescription: MutableList<Pair<StringResource, Any?>> =
-                                ArrayList()
-                            errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5 + 2 * i].toInt() and 0xFF) and 0x1F))
-                            errorDescription.add(ResourceHelper.getErrorDescriptionIsPresent((message.answer[5 + 2 * i].toInt() and 0x20) == 0x20))
-                            if (result == null) result = ArrayList()
-                            result.add(
-                                ModuleError(
-                                    ModuleAddress.MODULE_LCM,
-                                    errorCode,
-                                    errorDescription
-                                )
-                            )
-                        }
+                    val count = message.answer[3].toInt() and 0xFF
+                    for (i in 0 until count) {
+                        if (message.answer.size <= 5 + 2 * i) break
+                        val status = message.answer[5 + 2 * i].toInt() and 0xFF
+                        if ((status and 0x1F) == 0) continue
+                        val errorCode = String.format("%02X", message.answer[4 + 2 * i].toInt() and 0xFF)
+                        val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
+                        errorDescription.add(ResourceHelper.getErrorDescriptionCount(status and 0x1F))
+                        errorDescription.add(ResourceHelper.getErrorDescriptionIsPresent((status and 0x20) == 0x20))
+                        if (n >= 0x04)
+                            errorDescription.add(Pair(Res.string.lcm_error_shadow, null))
+                        if (result == null) result = ArrayList()
+                        result.add(ModuleError(ModuleAddress.MODULE_LCM, errorCode, errorDescription))
                     }
                 }
             } catch (ex: CancellationException) {
                 throw ex
             } catch (ex : Exception)
             {
-                Logger.e {"$tag [getaAllErrors], $ex, $message"}
+                Logger.e {"$tag [getAllErrors], $ex, $message"}
             }
         }
         return result
@@ -353,7 +341,7 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
 
     override suspend fun clearAllErrors(): Boolean {
         var result = true
-        for (i in 1..7) {
+        for (i in 1..8) {
             result = result and interfaceWrite(byteArrayOf(0x05, i.toByte())).isValid
         }
         return result
@@ -362,27 +350,48 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
     override suspend fun readCoding(): List<ByteArray>? {
         val result: MutableList<ByteArray> = ArrayList()
         for (i in 0..0xf) {
-            val message = interfaceWrite(byteArrayOf(0x08, i.toByte()), 150)
-            try {
-                if (message.isValid) result.add(
-                    message.answer.copyOfRange(4, message.answer.size - 1)
-                )
-                else return null
-            } catch (ex: CancellationException) {
-                throw ex
-            } catch (ex : Exception)
-            {
-                Logger.e {"$tag [readCoding], $ex, $message"}
-            }
+            val block = readCodingBlock(i) ?: return null
+            result.add(block)
         }
         return result
     }
 
+    // Wg SGBD C_C_LESEN: 08 <blok>, dane od [4] ([3] = echo bloku)
+    private suspend fun readCodingBlock(block: Int): ByteArray? {
+        val message = interfaceWrite(byteArrayOf(0x08, block.toByte()), 150)
+        try {
+            if (message.isValid)
+                return message.answer.copyOfRange(4, message.answer.size - 1)
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [readCoding], $ex, $message"}
+        }
+        return null
+    }
+
+    // Wg SGBD C_C_AUFTRAG: 09 <blok> <dane>; dla bloku 0x0F doklejana suma XOR wszystkich bajtow danych.
+    // Ponowienie przy bledzie i weryfikacja ponownym odczytem (jak w SGBD).
     override suspend fun writeCoding(dataToSave: List<ByteArray>): Boolean {
         if (dataToSave.size != 0x10) return false
         for (i in dataToSave.indices) {
-            val message = interfaceWrite( byteArrayOf(0x09,i.toByte()) + dataToSave[i],200)
-            if (!message.isValid) return false
+            val block = dataToSave[i]
+            val payload = if (i == 0x0F)
+                block + block.fold(0) { acc, b -> acc xor (b.toInt() and 0xFF) }.toByte()
+            else block
+            var written = false
+            for (attempt in 0..2) {
+                if (interfaceWrite(byteArrayOf(0x09, i.toByte()) + payload, 200).isValid &&
+                    readCodingBlock(i)?.contentEquals(block) == true) {
+                    written = true
+                    break
+                }
+            }
+            if (!written) {
+                Logger.e { "$tag [writeCoding], block $i write/verify failed" }
+                return false
+            }
         }
         return true
     }
@@ -414,6 +423,8 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
     }
 
     override suspend fun writeOdometer(odometer: Long): Boolean {
+        // licznik w EEPROM: 16 bitow w jednostkach 100 km
+        if (odometer < 0 || odometer / 100 > 0xFFFF) return false
         val newOdo = odometer/100
         if (!interfaceWrite(byteArrayOf(0x07, 0x01, 0x5F, 0x00)).isValid) return false
         if (!interfaceWrite(byteArrayOf(0x07, 0x01, 0x60, 0x11)).isValid) return false
@@ -462,29 +473,26 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
     }
 
     override fun setAutoLightMode(coding: List<ByteArray>, mode: Int): List<ByteArray> {
-        val newCoding = coding.toMutableList()
+        // kopie blokow - bez modyfikacji danych wywolujacego i tablic statycznych
+        val newCoding = coding.map { it.copyOf() }.toMutableList()
+        // te same bity ustawiane dla trybu DRL i kasowane dla pozostalych (wczesniej kasowano 0x08 zamiast 0x80)
         if (mode == 1) {
-            newCoding[0][0x04] = (newCoding[0][0x04].toInt() or 0x80.toByte().toInt()).toByte()
-            newCoding[0][0x04] = (newCoding[0][0x04].toInt() or 0x02).toByte()
+            newCoding[0][0x04] = (newCoding[0][0x04].toInt() or 0x80 or 0x02).toByte()
             newCoding[0][0x12] = (newCoding[0][0x12].toInt() or 0x2A).toByte()
         } else {
-            newCoding[0][0x04] = (newCoding[0][0x04].toInt() and 0x08.inv()).toByte()
-            newCoding[0][0x04] = (newCoding[0][0x04].toInt() and 0x02.inv()).toByte()
+            newCoding[0][0x04] = (newCoding[0][0x04].toInt() and (0x80 or 0x02).inv()).toByte()
             newCoding[0][0x12] = (newCoding[0][0x12].toInt() and 0x2A.inv()).toByte()
         }
         val autoLights = autoLightsModes[mode]
-        for (i in autoLights.indices) newCoding[i + 1] = autoLights[i]
+        for (i in autoLights.indices) newCoding[i + 1] = autoLights[i].copyOf()
         return newCoding
     }
 
     private suspend fun policeLightsSwitch(): Boolean {
-        val message = interfaceWrite(byteArrayOf(0x08, 0x00), 150)
-        if (message.isValid) {
-            val coding = message.answer.copyOfRange(4, message.answer.size - 1)
-            coding[0x03] = (coding[0x03].toInt() xor (0x01)).toByte()
-            return interfaceWrite(arrayOf(byteArrayOf(0x09, 0x00), coding)).isValid
-        }
-
-        return false
+        val coding = readCodingBlock(0x00) ?: return false
+        if (coding.size <= 0x03) return false
+        coding[0x03] = (coding[0x03].toInt() xor (0x01)).toByte()
+        return interfaceWrite(byteArrayOf(0x09, 0x00) + coding).isValid &&
+                readCodingBlock(0x00)?.contentEquals(coding) == true
     }
 }

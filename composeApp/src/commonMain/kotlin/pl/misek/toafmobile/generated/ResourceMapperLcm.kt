@@ -229,6 +229,47 @@ object ResourceMapperLcm {
             "lcm_live_data_wt_stop_left" -> Res.string.lcm_live_data_wt_stop_left
             "lcm_live_data_wt_stop_right" -> Res.string.lcm_live_data_wt_stop_right
             "lcm_live_data_wt_total_time" -> Res.string.lcm_live_data_wt_total_time
+            "lcm_live_data_front_fog_button" -> Res.string.lcm_live_data_front_fog_button
+            "lcm_live_data_rear_fog_button" -> Res.string.lcm_live_data_rear_fog_button
+            "lcm_live_data_light_switch_position" -> Res.string.lcm_live_data_light_switch_position
+            "lcm_live_data_photocell_voltage" -> Res.string.lcm_live_data_photocell_voltage
+            "lcm_live_data_headlamp_leveling_poti_voltage" -> Res.string.lcm_live_data_headlamp_leveling_poti_voltage
+            "lcm_live_data_emergency_mode" -> Res.string.lcm_live_data_emergency_mode
+            "lcm_live_data_kl58g_dimming" -> Res.string.lcm_live_data_kl58g_dimming
+            "lcm_live_data_hazard_switch_search_dimming" -> Res.string.lcm_live_data_hazard_switch_search_dimming
+            "lcm_live_data_light_switch_search_dimming" -> Res.string.lcm_live_data_light_switch_search_dimming
+            "lcm_live_data_trailer_rear_fog" -> Res.string.lcm_live_data_trailer_rear_fog
+            "lcm_live_data_hazard_flashing_active" -> Res.string.lcm_live_data_hazard_flashing_active
+            "lcm_live_data_crash_hazard_flashing" -> Res.string.lcm_live_data_crash_hazard_flashing
+            "lcm_live_data_alarm_hazard_flashing" -> Res.string.lcm_live_data_alarm_hazard_flashing
+            "lcm_live_data_alarm_low_beam_flashing" -> Res.string.lcm_live_data_alarm_low_beam_flashing
+            "lcm_live_data_alarm_high_beam_flashing" -> Res.string.lcm_live_data_alarm_high_beam_flashing
+            "lcm_live_data_crash_sensor_active" -> Res.string.lcm_live_data_crash_sensor_active
+            "lcm_live_data_alarm_triggered" -> Res.string.lcm_live_data_alarm_triggered
+            "lcm_live_data_test_position_switch" -> Res.string.lcm_live_data_test_position_switch
+            "lcm_live_data_test_low_beam_switch" -> Res.string.lcm_live_data_test_low_beam_switch
+            "lcm_live_data_test_front_fog_button" -> Res.string.lcm_live_data_test_front_fog_button
+            "lcm_live_data_test_rear_fog_button" -> Res.string.lcm_live_data_test_rear_fog_button
+            "lcm_live_data_test_dimmer_poti" -> Res.string.lcm_live_data_test_dimmer_poti
+            "lcm_live_data_test_leveling_poti" -> Res.string.lcm_live_data_test_leveling_poti
+            "lcm_live_data_test_high_beam_switch" -> Res.string.lcm_live_data_test_high_beam_switch
+            "lcm_live_data_test_flasher_switch" -> Res.string.lcm_live_data_test_flasher_switch
+            "lcm_live_data_test_blinker_left" -> Res.string.lcm_live_data_test_blinker_left
+            "lcm_live_data_test_blinker_right" -> Res.string.lcm_live_data_test_blinker_right
+            "lcm_live_data_test_brake_switch" -> Res.string.lcm_live_data_test_brake_switch
+            "lcm_live_data_test_hazard_switch" -> Res.string.lcm_live_data_test_hazard_switch
+            "lcm_live_data_value_on" -> Res.string.lcm_live_data_value_on
+            "lcm_live_data_value_off" -> Res.string.lcm_live_data_value_off
+            "lcm_live_data_value_ok" -> Res.string.lcm_live_data_value_ok
+            "lcm_live_data_value_defect" -> Res.string.lcm_live_data_value_defect
+            "lcm_live_data_value_position" -> Res.string.lcm_live_data_value_position
+            "lcm_live_data_value_low_beam" -> Res.string.lcm_live_data_value_low_beam
+            "lcm_live_data_value_position_low_beam" -> Res.string.lcm_live_data_value_position_low_beam
+            "lcm_control_kl58_on" -> Res.string.lcm_control_kl58_on
+            "lcm_control_terminal_15" -> Res.string.lcm_control_terminal_15
+            "lcm_control_terminal_r" -> Res.string.lcm_control_terminal_r
+            "lcm_control_hazard_switch_search_light" -> Res.string.lcm_control_hazard_switch_search_light
+            "lcm_control_light_switch_search_light" -> Res.string.lcm_control_light_switch_search_light
         else -> {
           Logger.i {"NO RESOURCE for : $resourceName" }
             null

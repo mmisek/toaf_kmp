@@ -16,7 +16,17 @@
       "mask": "0x10",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "emergency_light",
@@ -25,7 +35,17 @@
       "mask": "0x20",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "break_light",
@@ -34,7 +54,17 @@
       "mask": "0x40",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "dimmer_switch",
@@ -43,7 +73,17 @@
       "mask": "0x80",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "position_light",
@@ -52,7 +92,17 @@
       "mask": "0x01",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "dipped_beam",
@@ -61,25 +111,55 @@
       "mask": "0x02",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
-      "name": "front_fog",
+      "name": "front_fog_button",
       "block": "0x00",
       "byte": "0x01",
       "mask": "0x04",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
-      "name": "rear_fog",
+      "name": "rear_fog_button",
       "block": "0x00",
       "byte": "0x01",
       "mask": "0x08",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "break_light_switch",
@@ -88,7 +168,17 @@
       "mask": "0x10",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "ignition_2",
@@ -97,7 +187,17 @@
       "mask": "0x40",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "high_beam",
@@ -124,7 +224,17 @@
       "mask": "0x01",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "stop_light_left",
@@ -133,7 +243,17 @@
       "mask": "0x08",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "stop_light_right",
@@ -142,7 +262,17 @@
       "mask": "0x10",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "position_front_right",
@@ -151,7 +281,17 @@
       "mask": "0x02",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "position_rear_right",
@@ -160,7 +300,17 @@
       "mask": "0x08",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "position_front_left",
@@ -169,7 +319,17 @@
       "mask": "0x08",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "position_rear_left",
@@ -178,7 +338,17 @@
       "mask": "0x40",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "blinker_front_right",
@@ -187,7 +357,17 @@
       "mask": "0x40",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "blinker_rear_right",
@@ -196,7 +376,17 @@
       "mask": "0x80",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "blinker_front_left",
@@ -205,7 +395,17 @@
       "mask": "0x20",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "blinker_rear_left",
@@ -214,7 +414,17 @@
       "mask": "0x20",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "dipped_beam_right",
@@ -223,7 +433,17 @@
       "mask": "0x20",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "dipped_beam_left",
@@ -232,7 +452,17 @@
       "mask": "0x10",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "high_beam_right",
@@ -241,7 +471,17 @@
       "mask": "0x02",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "high_beam_left",
@@ -250,7 +490,17 @@
       "mask": "0x04",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "front_fog",
@@ -259,7 +509,17 @@
       "mask": "0x01",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "rear_fog",
@@ -268,7 +528,17 @@
       "mask": "0x10",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "licence_plate",
@@ -277,7 +547,17 @@
       "mask": "0x02",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "load_sensor",
@@ -295,7 +575,17 @@
       "mask": "0x02",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "on"
+        },
+        {
+          "data": "0x01",
+          "text": "off"
+        }
+      ]
     },
     {
       "name": "trailer_blinker_left",
@@ -304,7 +594,17 @@
       "mask": "0x01",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "on"
+        },
+        {
+          "data": "0x01",
+          "text": "off"
+        }
+      ]
     },
     {
       "name": "trailer_stop_light",
@@ -313,7 +613,17 @@
       "mask": "0x04",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "on"
+        },
+        {
+          "data": "0x01",
+          "text": "off"
+        }
+      ]
     },
     {
       "name": "trailer_position_right",
@@ -322,7 +632,17 @@
       "mask": "0x10",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "on"
+        },
+        {
+          "data": "0x01",
+          "text": "off"
+        }
+      ]
     },
     {
       "name": "trailer_position_left",
@@ -331,7 +651,17 @@
       "mask": "0x08",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "on"
+        },
+        {
+          "data": "0x01",
+          "text": "off"
+        }
+      ]
     },
     {
       "name": "trailer_fog_reverse_light",
@@ -340,7 +670,17 @@
       "mask": "0x20",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "defect_stop_center",
@@ -349,7 +689,17 @@
       "mask": "0x01",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "ok"
+        },
+        {
+          "data": "0x01",
+          "text": "defect"
+        }
+      ]
     },
     {
       "name": "defect_stop_left",
@@ -358,7 +708,17 @@
       "mask": "0x08",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "ok"
+        },
+        {
+          "data": "0x01",
+          "text": "defect"
+        }
+      ]
     },
     {
       "name": "defect_stop_right",
@@ -367,7 +727,17 @@
       "mask": "0x10",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "ok"
+        },
+        {
+          "data": "0x01",
+          "text": "defect"
+        }
+      ]
     },
     {
       "name": "defect_position_front_right",
@@ -376,7 +746,17 @@
       "mask": "0x02",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "ok"
+        },
+        {
+          "data": "0x01",
+          "text": "defect"
+        }
+      ]
     },
     {
       "name": "defect_position_rear_right",
@@ -385,7 +765,17 @@
       "mask": "0x08",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "ok"
+        },
+        {
+          "data": "0x01",
+          "text": "defect"
+        }
+      ]
     },
     {
       "name": "defect_position_front_left",
@@ -394,7 +784,17 @@
       "mask": "0x08",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "ok"
+        },
+        {
+          "data": "0x01",
+          "text": "defect"
+        }
+      ]
     },
     {
       "name": "defect_position_rear_left",
@@ -403,7 +803,17 @@
       "mask": "0x40",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "ok"
+        },
+        {
+          "data": "0x01",
+          "text": "defect"
+        }
+      ]
     },
     {
       "name": "defect_blinker_front_right",
@@ -412,7 +822,17 @@
       "mask": "0x40",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "ok"
+        },
+        {
+          "data": "0x01",
+          "text": "defect"
+        }
+      ]
     },
     {
       "name": "defect_blinker_rear_right",
@@ -421,7 +841,17 @@
       "mask": "0x80",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "ok"
+        },
+        {
+          "data": "0x01",
+          "text": "defect"
+        }
+      ]
     },
     {
       "name": "defect_blinker_front_left",
@@ -430,7 +860,17 @@
       "mask": "0x20",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "ok"
+        },
+        {
+          "data": "0x01",
+          "text": "defect"
+        }
+      ]
     },
     {
       "name": "defect_blinker_rear_left",
@@ -439,7 +879,17 @@
       "mask": "0x20",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "ok"
+        },
+        {
+          "data": "0x01",
+          "text": "defect"
+        }
+      ]
     },
     {
       "name": "defect_blinker_right_extra",
@@ -448,7 +898,17 @@
       "mask": "0x04",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "ok"
+        },
+        {
+          "data": "0x01",
+          "text": "defect"
+        }
+      ]
     },
     {
       "name": "defect_blinker_left_extra",
@@ -457,7 +917,17 @@
       "mask": "0x01",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "ok"
+        },
+        {
+          "data": "0x01",
+          "text": "defect"
+        }
+      ]
     },
     {
       "name": "defect_dipped_beam_right",
@@ -466,7 +936,17 @@
       "mask": "0x02",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "ok"
+        },
+        {
+          "data": "0x01",
+          "text": "defect"
+        }
+      ]
     },
     {
       "name": "defect_dipped_beam_left",
@@ -475,7 +955,17 @@
       "mask": "0x04",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "ok"
+        },
+        {
+          "data": "0x01",
+          "text": "defect"
+        }
+      ]
     },
     {
       "name": "defect_high_beam_right",
@@ -484,7 +974,17 @@
       "mask": "0x20",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "ok"
+        },
+        {
+          "data": "0x01",
+          "text": "defect"
+        }
+      ]
     },
     {
       "name": "defect_high_beam_left",
@@ -493,7 +993,17 @@
       "mask": "0x10",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "ok"
+        },
+        {
+          "data": "0x01",
+          "text": "defect"
+        }
+      ]
     },
     {
       "name": "defect_rear_fog",
@@ -502,7 +1012,17 @@
       "mask": "0x10",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "ok"
+        },
+        {
+          "data": "0x01",
+          "text": "defect"
+        }
+      ]
     },
     {
       "name": "defect_licence_plate",
@@ -511,7 +1031,17 @@
       "mask": "0x02",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "ok"
+        },
+        {
+          "data": "0x01",
+          "text": "defect"
+        }
+      ]
     },
     {
       "name": "dimmer_input_voltage",
@@ -529,7 +1059,518 @@
       "mask": "0x80",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "light_switch_position",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x03",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "position"
+        },
+        {
+          "data": "0x02",
+          "text": "low_beam"
+        },
+        {
+          "data": "0x03",
+          "text": "position_low_beam"
+        }
+      ]
+    },
+    {
+      "name": "photocell_voltage",
+      "block": "0x00",
+      "byte": "0x12",
+      "mask": "0xFF",
+      "factor_a": "0.01960784",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "headlamp_leveling_poti_voltage",
+      "block": "0x00",
+      "byte": "0x10",
+      "mask": "0xFF",
+      "factor_a": "0.01960784",
+      "factor_b": "0",
+      "unit": "V"
+    },
+    {
+      "name": "emergency_mode",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "kl58g_dimming",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "hazard_switch_search_dimming",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "light_switch_search_dimming",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "trailer_rear_fog",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "hazard_flashing_active",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "crash_hazard_flashing",
+      "block": "0x00",
+      "byte": "0x11",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "alarm_hazard_flashing",
+      "block": "0x00",
+      "byte": "0x11",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "alarm_low_beam_flashing",
+      "block": "0x00",
+      "byte": "0x11",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "alarm_high_beam_flashing",
+      "block": "0x00",
+      "byte": "0x11",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "crash_sensor_active",
+      "block": "0x00",
+      "byte": "0x11",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "alarm_triggered",
+      "block": "0x00",
+      "byte": "0x11",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "test_position_switch",
+      "block": "0x00",
+      "byte": "0x13",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "test_low_beam_switch",
+      "block": "0x00",
+      "byte": "0x13",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "test_front_fog_button",
+      "block": "0x00",
+      "byte": "0x13",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "test_rear_fog_button",
+      "block": "0x00",
+      "byte": "0x13",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "test_dimmer_poti",
+      "block": "0x00",
+      "byte": "0x13",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "test_leveling_poti",
+      "block": "0x00",
+      "byte": "0x13",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "test_high_beam_switch",
+      "block": "0x00",
+      "byte": "0x14",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "test_flasher_switch",
+      "block": "0x00",
+      "byte": "0x14",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "test_blinker_left",
+      "block": "0x00",
+      "byte": "0x14",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "test_blinker_right",
+      "block": "0x00",
+      "byte": "0x14",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "test_brake_switch",
+      "block": "0x00",
+      "byte": "0x14",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "test_hazard_switch",
+      "block": "0x00",
+      "byte": "0x14",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "wt_total_time",
@@ -637,7 +1678,7 @@
       "mask": "0xFFFF",
       "factor_a": "100",
       "factor_b": "0",
-      "unit": "h"
+      "unit": " "
     }
   ]
 }
