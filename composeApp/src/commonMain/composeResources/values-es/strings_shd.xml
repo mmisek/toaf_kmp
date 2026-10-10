@@ -49,4 +49,9 @@
     <string name="shd_coding_optimised_close_function">Función de cierre optimizada</string>
     <string name="shd_coding_anti_pinch_functionality">Funcionalidad antipinzamiento</string>
     <string name="shd_coding_data_sets">Ubicación de los conjuntos de datos</string>
+    <string name="shd_live_data_power_on">Estado tras encendido (reset)</string>
+    <string name="shd_control_tip_lift">Pulso - elevar</string>
+    <string name="shd_control_tip_close">Pulso - cerrar</string>
+    <string name="shd_control_tip_open">Pulso - abrir</string>
+    <string name="shd_control_normalization_reset">Borrar normalización (reaprender posiciones)</string>
 </resources>

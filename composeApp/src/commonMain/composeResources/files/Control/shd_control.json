@@ -1,0 +1,28 @@
+{
+    "elements": [
+        {
+            "name": "tip_lift",
+            "block": "0x19",
+            "byte": "0x00",
+            "value": "0x01"
+        },
+        {
+            "name": "tip_close",
+            "block": "0x1B",
+            "byte": "0x00",
+            "value": "0x01"
+        },
+        {
+            "name": "tip_open",
+            "block": "0x1D",
+            "byte": "0x00",
+            "value": "0x01"
+        },
+        {
+            "name": "normalization_reset",
+            "block": "0x17",
+            "byte": "0x00",
+            "value": "0x00"
+        }
+    ]
+}

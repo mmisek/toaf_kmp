@@ -51,6 +51,11 @@ object ResourceMapperShd {
             "shd_live_data_tip_push_on" -> Res.string.shd_live_data_tip_push_on
             "shd_live_data_under_voltage_detection" -> Res.string.shd_live_data_under_voltage_detection
             "shd_live_data_watchdog_trigger_signal" -> Res.string.shd_live_data_watchdog_trigger_signal
+            "shd_live_data_power_on" -> Res.string.shd_live_data_power_on
+            "shd_control_tip_lift" -> Res.string.shd_control_tip_lift
+            "shd_control_tip_close" -> Res.string.shd_control_tip_close
+            "shd_control_tip_open" -> Res.string.shd_control_tip_open
+            "shd_control_normalization_reset" -> Res.string.shd_control_normalization_reset
         else -> {
           Logger.i {"NO RESOURCE for : $resourceName" }
             null

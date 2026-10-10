@@ -47,4 +47,9 @@
 <string name="shd_live_data_sunroof_position">Pozycja szyberdachu</string>
 
 
+    <string name="shd_live_data_power_on">Stan po włączeniu zasilania (reset)</string>
+    <string name="shd_control_tip_lift">Impuls - uchyl</string>
+    <string name="shd_control_tip_close">Impuls - zamknij</string>
+    <string name="shd_control_tip_open">Impuls - otwórz</string>
+    <string name="shd_control_normalization_reset">Kasuj normalizację (ponowne uczenie położeń)</string>
 </resources>

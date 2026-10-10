@@ -48,4 +48,9 @@
     <string name="shd_coding_anti_pinch_functionality">Функциональность защиты от защемления</string>
     <string name="shd_coding_data_sets">Расположение наборов данных</string>
 
+    <string name="shd_live_data_power_on">Состояние после включения (сброс)</string>
+    <string name="shd_control_tip_lift">Импульс - приподнять</string>
+    <string name="shd_control_tip_close">Импульс - закрыть</string>
+    <string name="shd_control_tip_open">Импульс - открыть</string>
+    <string name="shd_control_normalization_reset">Сброс нормализации (переобучение положений)</string>
 </resources>

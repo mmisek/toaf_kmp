@@ -50,4 +50,9 @@
     <string name="shd_coding_anti_pinch_functionality">Anti pinch functionality</string>
     <string name="shd_coding_data_sets">Data sets location</string>
 
+    <string name="shd_live_data_power_on">Power-on (reset) state</string>
+    <string name="shd_control_tip_lift">Tip - lift (tilt)</string>
+    <string name="shd_control_tip_close">Tip - slide close</string>
+    <string name="shd_control_tip_open">Tip - slide open</string>
+    <string name="shd_control_normalization_reset">Reset normalisation (re-learn end positions)</string>
 </resources>

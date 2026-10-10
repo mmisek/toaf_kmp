@@ -37,7 +37,7 @@
       "unit": " "
     },
     {
-      "name": "relay_motor_close",
+      "name": "relay_motor_open",
       "block": "0x00",
       "byte": "0x00",
       "mask": "0x20",
@@ -113,6 +113,15 @@
       "block": "0x00",
       "byte": "0x02",
       "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "power_on",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x40",
       "factor_a": "1",
       "factor_b": "0",
       "unit": " "
@@ -259,7 +268,7 @@
       "mask": "0xFFFF",
       "factor_a": "0.25",
       "factor_b": "0",
-      "unit": " "
+      "unit": "rev"
     }
   ]
 }

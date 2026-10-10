@@ -47,4 +47,9 @@
     <string name="shd_coding_anti_pinch_functionality">Funzionalità antischiacciamento</string>
     <string name="shd_coding_data_sets">Posizione set di dati</string>
 
+    <string name="shd_live_data_power_on">Stato dopo accensione (reset)</string>
+    <string name="shd_control_tip_lift">Impulso - sollevare</string>
+    <string name="shd_control_tip_close">Impulso - chiudere</string>
+    <string name="shd_control_tip_open">Impulso - aprire</string>
+    <string name="shd_control_normalization_reset">Cancella normalizzazione (riapprendere posizioni)</string>
 </resources>
