@@ -359,6 +359,8 @@ object ResourceMapperCoding {
             "coding_xenon_default_mg" -> Res.string.coding_xenon_default_mg
             "coding_xenon_default_rover" -> Res.string.coding_xenon_default_rover
             "coding_zero" -> Res.string.coding_zero
+            "coding_incomplete" -> Res.string.coding_incomplete
+            "coding_completed" -> Res.string.coding_completed
         else -> {
           Logger.i {"NO RESOURCE for : $resourceName" }
             null

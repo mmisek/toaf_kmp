@@ -25,7 +25,9 @@ import toafmobile.composeapp.generated.resources.dialog_wifi_interface_hardware
 import toafmobile.composeapp.generated.resources.dialog_wifi_interface_software
 import toafmobile.composeapp.generated.resources.module_bcu
 import toafmobile.composeapp.generated.resources.module_description_scu
-import java.util.Locale
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.todayIn
+import kotlin.time.Clock
 
 private const val tag = "ModuleSCU"
 private const val CODING_BLOCKS = 2 // 0x51, 0x52
@@ -72,8 +74,7 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
                         info = ModuleInfo()
                         val answer = message.answer
                         info.id1 = String(answer.copyOfRange(5, 8)) + String.format(
-                            Locale.getDefault(),
-                            "%02d%02d%02d",
+                            "%02X%02X%02X",
                             answer[8].toInt() and 0xFF,
                             answer[9].toInt() and 0xFF,
                             answer[10].toInt() and 0xFF
@@ -156,7 +157,7 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
             if (message.isValid) {
                 try {
                     return String(message.answer.copyOfRange(5, 7)) + String.format(
-                        "%02x%02X%02X",
+                        "%02X%02X%02X",
                         message.answer[7].toInt() and 0xFF,
                         message.answer[8].toInt() and 0xFF,
                         message.answer[9].toInt() and 0xFF
@@ -177,7 +178,8 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
 
     override suspend fun getVIN(): String? {
         if (moduleInit()) {
-            val message = kwp.write(MODULE_ADDRESS, 0x1A.toByte(), byteArrayOf(0x90.toByte()), 50)
+            // Wg SGBD C_FG_LESEN: 21 90, VIN (17 znakow) od [5]
+            val message = kwp.write(MODULE_ADDRESS, 0x21.toByte(), byteArrayOf(0x90.toByte()), 50)
             if (message.isValid) {
                 try {
                     return String(message.answer.copyOfRange(5, 22))
@@ -195,10 +197,16 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
     override fun getVinLength(): Int = 17
 
     override suspend fun writeVIN(newVin: String): Boolean {
+        // Wg SGBD C_FG_AUFTRAG: 17 znakow 0-9 / A-Z, po zapisie weryfikacja odczytem 21 90
+        if (newVin.length != getVinLength() || !newVin.all { it in '0'..'9' || it in 'A'..'Z' }) return false
         var result = false
         if (moduleInit() && startDiagnosticSession(0x86.toByte()) && securityAccess(0x05.toByte())) {
             val data = byteArrayOf(0x90.toByte()) + newVin.toByteArray()
-            result = kwp.write(MODULE_ADDRESS, 0x3B.toByte(), data, 50).isValid
+            if (kwp.write(MODULE_ADDRESS, 0x3B.toByte(), data, 50).isValid) {
+                val verify = kwp.write(MODULE_ADDRESS, 0x21.toByte(), byteArrayOf(0x90.toByte()), 50)
+                result = verify.isValid && verify.answer.size >= 22 &&
+                        String(verify.answer.copyOfRange(5, 22)) == newVin
+            }
             stopDiagnosticSession()
         }
         return result
@@ -214,18 +222,18 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
             val message = kwp.write(MODULE_ADDRESS, 0x21.toByte(), byteArrayOf(0x62.toByte()), 50)
             if (message.isValid) {
                 try {
+                    // 21 62: kazdy bajt danych to kod przyczyny wyzwolenia alarmu (01..0A, scu_error_XX)
                     result = ArrayList()
                     for (i in 5 until message.length - 1) {
-                        for (j in 1..0xa) {
-                            if ((message.answer[i].toInt() and j) == j) {
-                                val error = ModuleError(
+                        val code = message.answer[i].toInt() and 0xFF
+                        if (code in 0x01..0x0A)
+                            result.add(
+                                ModuleError(
                                     ModuleAddress.MODULE_SCU,
-                                    String.format("%02X", j),
+                                    String.format("%02X", code),
                                     ArrayList()
                                 )
-                                result.add(error)
-                            }
-                        }
+                            )
                     }
                     return result
                 } catch (ex: CancellationException) {
@@ -278,6 +286,8 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
             try {
                 val code =
                     ((message.answer[5].toInt() and 0xFF) shl 8) + (message.answer[6].toInt() and 0xFF)
+                // Seed 0000 - modul juz odblokowany (SGBD nie wysyla klucza)
+                if (code == 0x0000) return true
                 val seed = securityAccessCalculator(code)
                 val data = byteArrayOf(
                     (mode + 1).toByte(),
@@ -327,9 +337,9 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
     override suspend fun readEKACode(): String? {
         if (moduleInit() && startDiagnosticSession(0x86.toByte()) && securityAccess(0x05.toByte())) {
             val message = kwp.write(MODULE_ADDRESS, 0x21.toByte(), byteArrayOf(0x60), 50)
+            stopDiagnosticSession()
             if (message.isValid) {
                 try {
-                    stopDiagnosticSession()
                     return String.format(
                         "%02X%02X",
                         message.answer[5].toInt() and 0xFF,
@@ -391,19 +401,34 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
     }
 
     override suspend fun writeCoding(dataToSave: List<ByteArray>): Boolean {
+        if (!(moduleInit() && startDiagnosticSession(0x86.toByte()) && securityAccess(0x05.toByte())))
+            return false
         var result = true
-        if (moduleInit() && startDiagnosticSession(0x86.toByte()) && securityAccess(0x05.toByte())) {
-            for (i in dataToSave.indices) {
-                result = result and kwp.write(
-                    MODULE_ADDRESS,
-                    0x3B.toByte(),
-                    byteArrayOf((i + 0x51).toByte()) + dataToSave[i],
-                    50
-                ).isValid
-            }
+        for (i in dataToSave.indices) {
+            result = result and kwp.write(
+                MODULE_ADDRESS,
+                0x3B.toByte(),
+                byteArrayOf((i + 0x51).toByte()) + dataToSave[i],
+                50
+            ).isValid
         }
+        if (result)
+            writeCodingDate()
         return result
     }
+
+    // Wg SGBD C_CODINGDATE_WRITE: 3B 99 DD MM CC YY (BCD)
+    private suspend fun writeCodingDate(): Boolean {
+        val currentDate = Clock.System.todayIn(TimeZone.currentSystemDefault())
+        val data = byteArrayOf(
+            0x99.toByte(),
+            currentDate.day.toBcd(), (currentDate.month.ordinal + 1).toBcd(),
+            (currentDate.year / 100).toBcd(), (currentDate.year % 100).toBcd()
+        )
+        return kwp.write(MODULE_ADDRESS, 0x3B.toByte(), data, 50).isValid
+    }
+
+    private fun Int.toBcd(): Byte = (((this / 10) shl 4) or (this % 10)).toByte()
 
     override suspend fun addKey(barCode: String): Boolean {
         var result = false

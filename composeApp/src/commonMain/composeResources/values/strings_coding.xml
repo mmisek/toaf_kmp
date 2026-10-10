@@ -353,4 +353,6 @@
     <string name="coding_without_time_inspection">Without time inspection</string>
     <string name="coding_bm_before_pu96">On-board monitor up to PU96</string>
     <string name="coding_bm_after_pu96">From PU96</string>
+    <string name="coding_incomplete">incomplete</string>
+    <string name="coding_completed">completed</string>
 </resources>

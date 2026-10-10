@@ -135,4 +135,5 @@
     <string name="scu_error_08">Датчик объема</string>
     <string name="scu_error_09">Вскрытие BBUS (сирены)</string>
     <string name="scu_error_0A">Скачок напряжения</string>
+    <string name="scu_live_data_plip_signal">Код сигнала брелока (PLIP) (10 = принят)</string>
 </resources>

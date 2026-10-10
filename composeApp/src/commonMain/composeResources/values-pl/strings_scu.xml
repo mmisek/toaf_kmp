@@ -110,7 +110,7 @@
     <string name="scu_live_data_crank_relay">Przekaźnik rozruchu</string>
     <string name="scu_live_data_immobilisation_code">Kod immobilizera</string>
     <string name="scu_live_data_ignition">Zapłon</string>
-    <string name="scu_live_data_engine_speed">Prędkość pojazdu</string>
+    <string name="scu_live_data_engine_speed">Prędkość obrotowa silnika</string>
 
     <string name="scu_live_data_value_closed">zamknięty</string>
     <string name="scu_live_data_value_open">otwarty</string>
@@ -135,4 +135,5 @@
     <string name="scu_error_08">Czujnik wolumetryczny</string>
     <string name="scu_error_09">BBUS tamper</string>
     <string name="scu_error_0A">Wahania napięcia akumulatora</string>
+    <string name="scu_live_data_plip_signal">Kod sygnału pilota (PLIP) (10 = odebrany)</string>
 </resources>

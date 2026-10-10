@@ -90,6 +90,27 @@ object ResourceMapperElv {
             "elv_live_data_stat_vr_mov" -> Res.string.elv_live_data_stat_vr_mov
             "elv_live_data_value_disturbed" -> Res.string.elv_live_data_value_disturbed
             "elv_live_data_value_non_disturbed" -> Res.string.elv_live_data_value_non_disturbed
+            "elv_error_80" -> Res.string.elv_error_80
+            "elv_error_81" -> Res.string.elv_error_81
+            "elv_error_83" -> Res.string.elv_error_83
+            "elv_error_85" -> Res.string.elv_error_85
+            "elv_error_86" -> Res.string.elv_error_86
+            "elv_error_87" -> Res.string.elv_error_87
+            "elv_error_88" -> Res.string.elv_error_88
+            "elv_error_info_memory" -> Res.string.elv_error_info_memory
+            "elv_error_clear_date" -> Res.string.elv_error_clear_date
+            "elv_live_data_value_excited" -> Res.string.elv_live_data_value_excited
+            "elv_live_data_value_not_excited" -> Res.string.elv_live_data_value_not_excited
+            "elv_live_data_stat_iein_endlage_ver_gest" -> Res.string.elv_live_data_stat_iein_endlage_ver_gest
+            "elv_live_data_stat_iein_endlage_ent_gest" -> Res.string.elv_live_data_stat_iein_endlage_ent_gest
+            "elv_live_data_stat_iein_sperrp_ges_gest" -> Res.string.elv_live_data_stat_iein_sperrp_ges_gest
+            "elv_live_data_stat_iein_sperrp_pn_gest" -> Res.string.elv_live_data_stat_iein_sperrp_pn_gest
+            "elv_control_armed" -> Res.string.elv_control_armed
+            "elv_control_not_armed" -> Res.string.elv_control_not_armed
+            "elv_coding_park_neutral_interlock" -> Res.string.elv_coding_park_neutral_interlock
+            "elv_coding_max_velocity" -> Res.string.elv_coding_max_velocity
+            "elv_coding_keynumber_sharp" -> Res.string.elv_coding_keynumber_sharp
+            "elv_coding_coding_flag" -> Res.string.elv_coding_coding_flag
         else -> {
           Logger.i {"NO RESOURCE for : $resourceName" }
             null

@@ -347,4 +347,6 @@
     <string name="coding_without_time_inspection">Bez przeglądu czasowego</string>
     <string name="coding_bm_before_pu96">Monitor pokładowy do PU96</string>
     <string name="coding_bm_after_pu96">Od PU96</string>
+    <string name="coding_incomplete">niekompletne</string>
+    <string name="coding_completed">zakończone</string>
 </resources>

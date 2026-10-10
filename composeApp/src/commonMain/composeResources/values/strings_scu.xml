@@ -135,4 +135,5 @@
     <string name="scu_error_08">volumetric trigger</string>
     <string name="scu_error_09">BBUS tamper</string>
     <string name="scu_error_0A">supply fluctuation</string>
+    <string name="scu_live_data_plip_signal">Remote (PLIP) signal code (10 = received)</string>
 </resources>

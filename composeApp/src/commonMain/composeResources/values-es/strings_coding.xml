@@ -359,4 +359,6 @@
     <string name="coding_without_time_inspection">Sin inspección por tiempo</string>
     <string name="coding_bm_before_pu96">Monitor de a bordo hasta PU96</string>
     <string name="coding_bm_after_pu96">Desde PU96</string>
+<string name="coding_incomplete">incompleta</string>
+<string name="coding_completed">completada</string>
 </resources>

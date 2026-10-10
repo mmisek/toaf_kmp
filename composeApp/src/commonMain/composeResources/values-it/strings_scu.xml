@@ -135,4 +135,5 @@
     <string name="scu_error_08">attivazione volumetrico</string>
     <string name="scu_error_09">manomissione BBUS</string>
     <string name="scu_error_0A">fluttuazione alimentazione</string>
+    <string name="scu_live_data_plip_signal">Codice segnale telecomando (PLIP) (10 = ricevuto)</string>
 </resources>

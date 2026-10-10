@@ -142,34 +142,34 @@
       "factor_b": "0",
       "unit": " ",
       "values": [
-          {
-            "data": "0x00",
-            "text": "off"
-          },
-          {
-            "data": "0x01",
-            "text": "on"
-          }
-        ]
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
-    "name": "front_wiper_switch",
-    "block": "0x50",
-    "byte": "0x01",
-    "mask": "0x20",
-    "factor_a": "1",
-    "factor_b": "0",
-    "unit": " ",
-    "values": [
-      {
-        "data": "0x00",
-        "text": "off"
-      },
-      {
-        "data": "0x01",
-        "text": "on"
-      }
-    ]
+      "name": "front_wiper_switch",
+      "block": "0x50",
+      "byte": "0x01",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
     },
     {
       "name": "front_wiper_intermittent",
@@ -331,6 +331,15 @@
       "factor_a": "100",
       "factor_b": "0",
       "unit": "rpm"
+    },
+    {
+      "name": "plip_signal",
+      "block": "0x50",
+      "byte": "0x05",
+      "mask": "0x0F",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
     }
   ]
 }

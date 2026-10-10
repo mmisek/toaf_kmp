@@ -19,13 +19,13 @@
 <string name="elv_error_17">Error durante la secuencia de bloqueo, número de intentos excedido</string>
 <string name="elv_error_18">Relé de seguridad defectuoso</string>
 <string name="elv_error_19">Defecto en la supervisión de voltaje</string>
-<string name="elv_error_1A">Controlador del motor abierto/cortocircuitado/sobrecalentado en dirección \'bloqueo\'</string>
+<string name="elv_error_1A">Controlador del motor abierto/cortocircuitado/sobrecalentado en dirección \'desbloqueo\'</string>
 <string name="elv_error_1B">Solenoide de seguridad defectuoso</string>
 <string name="elv_error_1C">Error durante la secuencia de desbloqueo</string>
 <string name="elv_error_1D">Controlador del solenoide de seguridad cortocircuitado</string>
 <string name="elv_error_1E">Error durante la secuencia de bloqueo, posición final \'desbloqueado\' no alcanzada</string>
 <string name="elv_error_1F">Defecto en el suministro interno del sensor</string>
-<string name="elv_error_2A">Controlador del motor abierto/cortocircuitado/sobrecalentado en dirección \'desbloqueo\'</string>
+<string name="elv_error_2A">Controlador del motor abierto/cortocircuitado/sobrecalentado en dirección \'bloqueo\'</string>
 <string name="elv_error_2B">Bloqueo del \'controlador del solenoide de seguridad\' vía terminal 15 defectuoso</string>
 <string name="elv_error_40">K-Line o unidad de inmovilización (EWS)</string>
 <string name="elv_error_41">Defecto del controlador \'bloqueo de llave\' debido a cortocircuito a batt+</string>
@@ -86,4 +86,25 @@
 <string name="elv_live_data_value_disturbed">perturbado</string>
 <string name="elv_live_data_value_non_disturbed">no perturbado</string>
 
+<string name="elv_error_80">Info: error durante el bloqueo</string>
+<string name="elv_error_81">Info: error durante el desbloqueo</string>
+<string name="elv_error_83">Info: protección contra sobrecarga activada</string>
+<string name="elv_error_85">Info: subtensión durante el desbloqueo</string>
+<string name="elv_error_86">Info: colisión detectada</string>
+<string name="elv_error_87">Info: bloqueo inhibido por subtensión activo</string>
+<string name="elv_error_88">Info: desconexión de borne R / 15 no confirmada por K-Bus</string>
+<string name="elv_error_info_memory">Entrada de la memoria de información</string>
+<string name="elv_error_clear_date">Memoria de fallos borrada (semana/año)</string>
+<string name="elv_live_data_value_excited">excitado</string>
+<string name="elv_live_data_value_not_excited">no excitado</string>
+<string name="elv_live_data_stat_iein_endlage_ver_gest">Sensor Hall \'posición final bloqueada\' - avería</string>
+<string name="elv_live_data_stat_iein_endlage_ent_gest">Sensor Hall \'posición final desbloqueada\' - avería</string>
+<string name="elv_live_data_stat_iein_sperrp_ges_gest">Sensor Hall \'solenoide de seguridad\' - avería</string>
+<string name="elv_live_data_stat_iein_sperrp_pn_gest">Sensor Hall \'liberación P/N\' - avería</string>
+<string name="elv_control_armed">Estado ELV - armado</string>
+<string name="elv_control_not_armed">Estado ELV - no armado</string>
+<string name="elv_coding_park_neutral_interlock">Bloqueo P/N (Park/Neutral)</string>
+<string name="elv_coding_max_velocity">Evaluación de la señal de velocidad</string>
+<string name="elv_coding_keynumber_sharp">Número de llave para armar ELV (desde 0)</string>
+<string name="elv_coding_coding_flag">Indicador de codificación</string>
 </resources>

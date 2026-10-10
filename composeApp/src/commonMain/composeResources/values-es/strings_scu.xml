@@ -135,4 +135,5 @@
     <string name="scu_error_08">trigger volumétrico</string>
     <string name="scu_error_09">manipulación de BBUS</string>
     <string name="scu_error_0A">fluctuación de suministro</string>
+    <string name="scu_live_data_plip_signal">Código de señal del mando (PLIP) (10 = recibida)</string>
 </resources>

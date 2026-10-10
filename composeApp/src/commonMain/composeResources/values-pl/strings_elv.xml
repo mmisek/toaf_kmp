@@ -18,13 +18,13 @@
 <string name="elv_error_17">Błąd podczas sekwencji blokowania, przekroczona liczba prób</string>
 <string name="elv_error_18">Uszkodzenie przekaźnika zabezpieczenia</string>
 <string name="elv_error_19">Uszkodzenie nadzoru napięcia</string>
-<string name="elv_error_1A">Sterownik silnika otwarty/zwarty/przegrzany w kierunku \'blokowania\'</string>
+<string name="elv_error_1A">Sterownik silnika otwarty/zwarty/przegrzany w kierunku \'odblokowywania\'</string>
 <string name="elv_error_1B">Uszkodzenie elektromagnesu zabezpieczenia</string>
 <string name="elv_error_1C">Błąd podczas sekwencji odblokowywania</string>
 <string name="elv_error_1D">Sterownik elektromagnesu zabezpieczenia zwarty</string>
 <string name="elv_error_1E">Błąd podczas sekwencji blokowania, nie opuścił pozycji \'odblokowanej\'</string>
 <string name="elv_error_1F">Wewnętrzna usterka zasilania czujnika</string>
-<string name="elv_error_2A">Sterownik silnika otwarty/zwarty/przegrzany w kierunku \'odblokowywania\'</string>
+<string name="elv_error_2A">Sterownik silnika otwarty/zwarty/przegrzany w kierunku \'blokowania\'</string>
 <string name="elv_error_2B">Blokada \'sterownika elektromagnesu zabezpieczenia\' za pośrednictwem term.15 uszkodzona</string>
 <string name="elv_error_40">K-Line lub jednostka immobilizacji (EWS)</string>
 <string name="elv_error_41">Uszkodzenie sterownika \'blokady kluczyka\' z powodu zwarcia do batt+</string>
@@ -85,4 +85,25 @@
 <string name="elv_live_data_value_disturbed">zakłócony</string>
 <string name="elv_live_data_value_non_disturbed">niezakłócony</string>
 
+    <string name="elv_error_80">Info: błąd podczas blokowania</string>
+    <string name="elv_error_81">Info: błąd podczas odblokowywania</string>
+    <string name="elv_error_83">Info: zadziałało zabezpieczenie przed przeciążeniem</string>
+    <string name="elv_error_85">Info: podnapięcie podczas odblokowywania</string>
+    <string name="elv_error_86">Info: wykryto zderzenie (crash)</string>
+    <string name="elv_error_87">Info: aktywna blokada ryglowania z powodu podnapięcia</string>
+    <string name="elv_error_88">Info: wyłączenie zacisku R / 15 niepotwierdzone przez K-Bus</string>
+    <string name="elv_error_info_memory">Wpis pamięci zdarzeń</string>
+    <string name="elv_error_clear_date">Pamięć błędów skasowana (tydzień/rok)</string>
+    <string name="elv_live_data_value_excited">pobudzony</string>
+    <string name="elv_live_data_value_not_excited">niepobudzony</string>
+    <string name="elv_live_data_stat_iein_endlage_ver_gest">Czujnik Halla \'położenie końcowe zablokowane\' - usterka</string>
+    <string name="elv_live_data_stat_iein_endlage_ent_gest">Czujnik Halla \'położenie końcowe odblokowane\' - usterka</string>
+    <string name="elv_live_data_stat_iein_sperrp_ges_gest">Czujnik Halla \'magnes zabezpieczający\' - usterka</string>
+    <string name="elv_live_data_stat_iein_sperrp_pn_gest">Czujnik Halla \'zwolnienie P/N\' - usterka</string>
+    <string name="elv_control_armed">Stan ELV - uzbrojona</string>
+    <string name="elv_control_not_armed">Stan ELV - nieuzbrojona</string>
+    <string name="elv_coding_park_neutral_interlock">Blokada P/N (Park/Neutral)</string>
+    <string name="elv_coding_max_velocity">Analiza sygnału prędkości pojazdu</string>
+    <string name="elv_coding_keynumber_sharp">Numer kluczyka do uzbrojenia ELV (od 0)</string>
+    <string name="elv_coding_coding_flag">Znacznik kodowania</string>
 </resources>

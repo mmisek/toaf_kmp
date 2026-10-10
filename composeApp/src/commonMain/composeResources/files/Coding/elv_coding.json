@@ -1,0 +1,78 @@
+{
+    "elements": [
+        {
+            "name": "PARK_NEUTRAL_INTERLOCK",
+            "block": "0x00",
+            "byte": "0x00",
+            "mask": "0x01",
+            "coding_index": [
+                "01",
+                "06"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "enable"
+                },
+                {
+                    "data": "0x00",
+                    "text": "disable"
+                }
+            ]
+        },
+        {
+            "name": "MAX_VELOCITY",
+            "block": "0x00",
+            "byte": "0x00",
+            "mask": "0x02",
+            "coding_index": [
+                "01",
+                "06"
+            ],
+            "coding_values": [
+                {
+                    "data": "0x01",
+                    "text": "active"
+                },
+                {
+                    "data": "0x00",
+                    "text": "inactive"
+                }
+            ]
+        },
+        {
+            "name": "KEYNUMBER_SHARP",
+            "block": "0x00",
+            "byte": "0x01",
+            "mask": "0xFF",
+            "coding_index": [
+                "01",
+                "06"
+            ],
+            "custom_values": {
+                "min": "0",
+                "max": "3"
+            }
+        },
+        {
+            "name": "CODING_FLAG",
+            "block": "0x00",
+            "byte": "0x02",
+            "mask": "0xFF",
+            "coding_index": [
+                "01",
+                "06"
+            ],
+            "coding_values": [
+                {
+                    "data": "0xAA",
+                    "text": "completed"
+                },
+                {
+                    "data": "0x00",
+                    "text": "incomplete"
+                }
+            ]
+        }
+    ]
+}

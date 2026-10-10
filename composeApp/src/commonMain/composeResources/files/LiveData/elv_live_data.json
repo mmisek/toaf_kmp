@@ -11,13 +11,13 @@
       "values": [
         {
           "data": "0x00",
-          "text": "non_disturbed"
+          "text": "not_excited"
         },
         {
           "data": "0x01",
-          "text": "disturbed"
+          "text": "excited"
         }
-        ]
+      ]
     },
     {
       "name": "STAT_EEIN_DREK_GEST",
@@ -26,7 +26,17 @@
       "mask": "0x02",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "non_disturbed"
+        },
+        {
+          "data": "0x01",
+          "text": "disturbed"
+        }
+      ]
     },
     {
       "name": "STAT_EEIN_P_N",
@@ -84,6 +94,25 @@
       "values": [
         {
           "data": "0x00",
+          "text": "not_excited"
+        },
+        {
+          "data": "0x01",
+          "text": "excited"
+        }
+      ]
+    },
+    {
+      "name": "STAT_IEIN_ENDLAGE_VER_GEST",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
           "text": "non_disturbed"
         },
         {
@@ -103,6 +132,25 @@
       "values": [
         {
           "data": "0x00",
+          "text": "not_excited"
+        },
+        {
+          "data": "0x01",
+          "text": "excited"
+        }
+      ]
+    },
+    {
+      "name": "STAT_IEIN_ENDLAGE_ENT_GEST",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
           "text": "non_disturbed"
         },
         {
@@ -113,6 +161,25 @@
     },
     {
       "name": "STAT_IEIN_SPERRP_GES",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "not_excited"
+        },
+        {
+          "data": "0x01",
+          "text": "excited"
+        }
+      ]
+    },
+    {
+      "name": "STAT_IEIN_SPERRP_GES_GEST",
       "block": "0x00",
       "byte": "0x01",
       "mask": "0x20",
@@ -132,6 +199,25 @@
     },
     {
       "name": "STAT_IEIN_SPERRP_PN",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "not_excited"
+        },
+        {
+          "data": "0x01",
+          "text": "excited"
+        }
+      ]
+    },
+    {
+      "name": "STAT_IEIN_SPERRP_PN_GEST",
       "block": "0x00",
       "byte": "0x01",
       "mask": "0x80",
@@ -393,6 +479,15 @@
       "unit": " "
     },
     {
+      "name": "STAT_ER",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
       "name": "STAT_GESCH",
       "block": "0x00",
       "byte": "0x07",
@@ -449,7 +544,7 @@
     {
       "name": "ALOG_I_ELEK_VER",
       "block": "0x00",
-      "byte": "0x20",
+      "byte": "0x11",
       "mask": "0xFF",
       "factor_a": "1",
       "factor_b": "0",

@@ -2,6 +2,7 @@ package pl.misek.toafmobile.modules.l322
 
 import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
+import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceHelper
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.livedata.LiveDataElement
@@ -9,16 +10,20 @@ import pl.misek.toafmobile.modules.ModuleDS2
 import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.ModuleAddress
+import pl.misek.toafmobile.modules.interfaces.IModuleCoding
+import pl.misek.toafmobile.modules.interfaces.IModuleControl
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
+import toafmobile.composeapp.generated.resources.elv_error_clear_date
+import toafmobile.composeapp.generated.resources.elv_error_info_memory
 import toafmobile.composeapp.generated.resources.module_description_elv
 import toafmobile.composeapp.generated.resources.module_elv
 import kotlinx.coroutines.CancellationException
 
 class ModuleELV( protocolDS2: ProtocolDS2?) :
     ModuleDS2(protocolDS2, ModuleAddress.MODULE_ELV, listOf(CarType.L322)),
-    IModuleLiveData {
+    IModuleLiveData, IModuleControl, IModuleCoding {
     private val tag = "ModuleELV"
 
     override fun getKoinName() = KoinNames.ModuleL322Elv
@@ -27,36 +32,80 @@ class ModuleELV( protocolDS2: ProtocolDS2?) :
 
     override fun getModuleDescription() = Res.string.module_description_elv
 
+    // Wg SGBD FS_LESEN: 04 00 -> [3] liczba bledow, [4] tydzien, [5] rok skasowania pamieci;
+    // 04 01 (bledy 1-10) i 04 02 (bledy 11-20, tylko gdy wiecej niz 10): [3] liczba wpisow,
+    // od [4] rekordy 2-bajtowe: kod + (czestosc & 0x1F, bit 0x20 = blad aktywny).
+    // IS_LESEN: 14 00 - pamiec zdarzen w tym samym formacie.
     override suspend fun getAllErrors(): List<ModuleError>? {
-        var result: MutableList<ModuleError>? = null
-        for (index in 1..2) {
-            val message = interfaceWrite(byteArrayOf(0x04, index.toByte()))
-            try {
-                if (message.isValid && message.answer.size > 4) {
-                    if (result == null)
-                        result = ArrayList()
-                    for (i in 0 until (message.answer[3].toInt() and 0xFF)) {
-                        val errorCode = String.format("%02X", message.answer[4 + 2 * i])
-                        val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
-                        errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5 + 2 * i].toInt() and 0xFF) and 0x1F))
-                        errorDescription.add(ResourceHelper.getErrorDescriptionIsStatic((message.answer[5 + 2 * i].toInt() and 0x20) == 0x20))
-                        result.add(
-                            ModuleError(
-                                ModuleAddress.MODULE_ELV,
-                                errorCode,
-                                errorDescription
-                            )
-                        )
-                    }
-                }
-            } catch (ex: CancellationException) {
-                throw ex
-            } catch (ex : Exception)
-            {
-                Logger.e {"$tag [getAllErrors], $ex, $message"}
-            }
+        val header = interfaceWrite(byteArrayOf(0x04, 0x00))
+        if (!header.isValid || header.answer.size < 6) return null
+        val result: MutableList<ModuleError> = ArrayList()
+        val count = header.answer[3].toInt() and 0xFF
+        val clearDate = String.format("%02d/%02d", header.answer[4].toInt() and 0xFF, header.answer[5].toInt() and 0xFF)
+        val blocks = when {
+            count == 0 -> emptyList()
+            count <= 10 -> listOf(0x01)
+            else -> listOf(0x01, 0x02)
         }
+        for (block in blocks)
+            readErrorBlock(byteArrayOf(0x04, block.toByte()), result, Pair(Res.string.elv_error_clear_date, clearDate))
+        readErrorBlock(byteArrayOf(0x14, 0x00), result, Pair(Res.string.elv_error_info_memory, null))
         return result
+    }
+
+    private suspend fun readErrorBlock(request: ByteArray, result: MutableList<ModuleError>, extraDetail: Pair<StringResource, Any?>) {
+        val message = interfaceWrite(request)
+        try {
+            if (message.isValid && message.answer.size > 4) {
+                for (i in 0 until (message.answer[3].toInt() and 0xFF)) {
+                    val errorCode = String.format("%02X", message.answer[4 + 2 * i])
+                    val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
+                    errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5 + 2 * i].toInt() and 0xFF) and 0x1F))
+                    errorDescription.add(ResourceHelper.getErrorDescriptionIsStatic((message.answer[5 + 2 * i].toInt() and 0x20) == 0x20))
+                    errorDescription.add(extraDetail)
+                    result.add(
+                        ModuleError(
+                            ModuleAddress.MODULE_ELV,
+                            errorCode,
+                            errorDescription
+                        )
+                    )
+                }
+            }
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [readErrorBlock], $ex, $message"}
+        }
+    }
+
+    // Wg SGBD STEUERN: 0C <nr bitu z tabeli BITS> <00/01>; elv_control.json: 0x38 = STAT_GESCH (uzbrojona)
+    override suspend fun control(controlElement: ControlElement): Boolean =
+        interfaceWrite(byteArrayOf(0x0C, controlElement.block.toByte(), controlElement.value.toByte())).isValid
+
+    // Kodowanie wg ELV.C01 / ELV.C06: 3 bajty (P/N + predkosc, nr kluczyka, znacznik AAh).
+    // Odczyt wg SGBD CODIERDATEN_LESEN: 08 -> dane od [3].
+    override suspend fun readCoding(): List<ByteArray>? {
+        val message = interfaceWrite(byteArrayOf(0x08))
+        try {
+            if (message.isValid && message.answer.size >= 6)
+                return listOf(message.answer.copyOfRange(3, 6))
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex: Exception) {
+            Logger.e { "$tag [readCoding], $ex, $message" }
+        }
+        return null
+    }
+
+    // Zapis: 09 <adres 00> <3 bajty> (ADDRESS_MODE FREE), weryfikacja ponownym odczytem
+    override suspend fun writeCoding(dataToSave: List<ByteArray>): Boolean {
+        val data = dataToSave.firstOrNull() ?: return false
+        if (data.size != 3) return false
+        if (!interfaceWrite(byteArrayOf(0x09, 0x00) + data).isValid) return false
+        val verify = readCoding()?.firstOrNull()
+        return verify != null && verify.contentEquals(data)
     }
 
     override suspend fun readLiveData(): Map<Int, ByteArray>? {

@@ -21,7 +21,7 @@
       {
         "name": "interior_sounder_on",
         "block": "0x00",
-        "byte": "0x07",
+        "byte": "0x15",
         "value": "0xFF"
       },
       {
@@ -124,13 +124,13 @@
         "name": "hazard_flash_on",
         "block": "0x00",
         "byte": "0x01",
-        "value": "0x00"
+        "value": "0xFF"
       },
       {
         "name": "hazard_flash_off",
         "block": "0x00",
         "byte": "0x01",
-        "value": "0xFF"
+        "value": "0x00"
       },
       {
         "name": "alarm_led_off",
