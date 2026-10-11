@@ -1,0 +1,97 @@
+{
+  "livedata": [
+    {
+      "name": "wheel_speed_fl",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0xFFFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "wheel_speed_fr",
+      "block": "0x01",
+      "byte": "0x03",
+      "mask": "0xFFFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "wheel_speed_rl",
+      "block": "0x01",
+      "byte": "0x06",
+      "mask": "0xFFFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "wheel_speed_rr",
+      "block": "0x01",
+      "byte": "0x09",
+      "mask": "0xFFFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "brake_pedal",
+      "block": "0x02",
+      "byte": "0x00",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "open"
+        },
+        {
+          "data": "0x01",
+          "text": "closed"
+        }
+      ]
+    },
+    {
+      "name": "pump_ground_relay",
+      "block": "0x02",
+      "byte": "0x01",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "main_supply_relay",
+      "block": "0x02",
+      "byte": "0x02",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    }
+  ]
+}

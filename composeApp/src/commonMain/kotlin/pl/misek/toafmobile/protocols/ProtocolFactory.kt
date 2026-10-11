@@ -13,6 +13,7 @@ class ProtocolFactory
     val protocolKwpStar = ProtocolKWPStar(null,false)
     val protocolDde = ProtocolDDE(null)
     val protocolEdc15 = ProtocolEDC15(null)
+    val protocolKw1281 = ProtocolKW1281(null)
 
     fun updateProtocolFactory(newDevice : IInterfaceDevice?)
     {
@@ -23,5 +24,6 @@ class ProtocolFactory
         protocolKwpStar.setDevice(newDevice)
         protocolDde.setDevice(newDevice)
         protocolEdc15.setDevice(newDevice)
+        protocolKw1281.setDevice(newDevice)
     }
 }

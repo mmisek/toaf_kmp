@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_abs53">ABS Bosch 5.3</string>
+    <string name="abs53_live_data_wheel_speed_fl">Скорость колеса: переднее левое</string>
+    <string name="abs53_live_data_wheel_speed_fr">Скорость колеса: переднее правое</string>
+    <string name="abs53_live_data_wheel_speed_rl">Скорость колеса: заднее левое</string>
+    <string name="abs53_live_data_wheel_speed_rr">Скорость колеса: заднее правое</string>
+    <string name="abs53_live_data_brake_pedal">Выключатель педали тормоза</string>
+    <string name="abs53_live_data_pump_ground_relay">Реле массы двигателя насоса</string>
+    <string name="abs53_live_data_main_supply_relay">Главное реле питания</string>
+    <string name="abs53_live_data_value_open">разомкнут</string>
+    <string name="abs53_live_data_value_closed">замкнут</string>
+    <string name="abs53_live_data_value_on">включено</string>
+    <string name="abs53_live_data_value_off">выключено</string>
+    <string name="abs53_control_pump_start">Насос возврата - запуск</string>
+    <string name="abs53_control_pump_stop">Насос возврата - остановка</string>
+    <string name="abs53_control_valve_fl_open">Клапан передний левый - открытие</string>
+    <string name="abs53_control_valve_fl_close">Клапан передний левый - закрытие</string>
+    <string name="abs53_control_valve_fr_open">Клапан передний правый - открытие</string>
+    <string name="abs53_control_valve_fr_close">Клапан передний правый - закрытие</string>
+    <string name="abs53_control_valve_rl_open">Клапан задний левый - открытие</string>
+    <string name="abs53_control_valve_rl_close">Клапан задний левый - закрытие</string>
+    <string name="abs53_control_valve_rr_open">Клапан задний правый - открытие</string>
+    <string name="abs53_control_valve_rr_close">Клапан задний правый - закрытие</string>
+    <string name="abs53_control_abs_lamp_test">Тест контрольной лампы ABS</string>
+    <string name="abs53_control_brake_lamp_test">Тест контрольной лампы тормозной системы</string>
+    <string name="abs53_error_15">Датчик скорости переднего колеса - цепь</string>
+    <string name="abs53_error_11">Выключатель стоп-сигнала - цепь</string>
+</resources>

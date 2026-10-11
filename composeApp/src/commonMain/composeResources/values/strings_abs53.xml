@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_abs53">ABS Bosch 5.3</string>
+    <string name="abs53_live_data_wheel_speed_fl">Wheel speed front left</string>
+    <string name="abs53_live_data_wheel_speed_fr">Wheel speed front right</string>
+    <string name="abs53_live_data_wheel_speed_rl">Wheel speed rear left</string>
+    <string name="abs53_live_data_wheel_speed_rr">Wheel speed rear right</string>
+    <string name="abs53_live_data_brake_pedal">Brake pedal switch</string>
+    <string name="abs53_live_data_pump_ground_relay">Pump motor ground relay</string>
+    <string name="abs53_live_data_main_supply_relay">Main supply relay</string>
+    <string name="abs53_live_data_value_open">open</string>
+    <string name="abs53_live_data_value_closed">closed</string>
+    <string name="abs53_live_data_value_on">on</string>
+    <string name="abs53_live_data_value_off">off</string>
+    <string name="abs53_control_pump_start">Return pump - start</string>
+    <string name="abs53_control_pump_stop">Return pump - stop</string>
+    <string name="abs53_control_valve_fl_open">Valve front left - open</string>
+    <string name="abs53_control_valve_fl_close">Valve front left - close</string>
+    <string name="abs53_control_valve_fr_open">Valve front right - open</string>
+    <string name="abs53_control_valve_fr_close">Valve front right - close</string>
+    <string name="abs53_control_valve_rl_open">Valve rear left - open</string>
+    <string name="abs53_control_valve_rl_close">Valve rear left - close</string>
+    <string name="abs53_control_valve_rr_open">Valve rear right - open</string>
+    <string name="abs53_control_valve_rr_close">Valve rear right - close</string>
+    <string name="abs53_control_abs_lamp_test">ABS warning lamp test</string>
+    <string name="abs53_control_brake_lamp_test">Brake system warning lamp test</string>
+    <string name="abs53_error_15">Front wheel speed sensor - circuit</string>
+    <string name="abs53_error_11">Brake light switch - circuit</string>
+</resources>

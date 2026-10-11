@@ -45,6 +45,7 @@ enum class KoinNames {
     ModuleR40Srs2,
 
     ModuleRJOScu,
+    ModuleRJOAbs,
     ModuleRJOEdc15,
 
     ModuleL20Ccu,

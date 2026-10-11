@@ -1,0 +1,76 @@
+{
+  "elements": [
+    {
+      "name": "pump_start",
+      "block": "0x01",
+      "byte": "0x00",
+      "value": "0x00"
+    },
+    {
+      "name": "pump_stop",
+      "block": "0x01",
+      "byte": "0x01",
+      "value": "0x00"
+    },
+    {
+      "name": "valve_fl_open",
+      "block": "0x01",
+      "byte": "0x02",
+      "value": "0x00"
+    },
+    {
+      "name": "valve_fl_close",
+      "block": "0x01",
+      "byte": "0x03",
+      "value": "0x00"
+    },
+    {
+      "name": "valve_fr_open",
+      "block": "0x01",
+      "byte": "0x04",
+      "value": "0x00"
+    },
+    {
+      "name": "valve_fr_close",
+      "block": "0x01",
+      "byte": "0x05",
+      "value": "0x00"
+    },
+    {
+      "name": "valve_rl_open",
+      "block": "0x01",
+      "byte": "0x06",
+      "value": "0x00"
+    },
+    {
+      "name": "valve_rl_close",
+      "block": "0x01",
+      "byte": "0x07",
+      "value": "0x00"
+    },
+    {
+      "name": "valve_rr_open",
+      "block": "0x01",
+      "byte": "0x08",
+      "value": "0x00"
+    },
+    {
+      "name": "valve_rr_close",
+      "block": "0x01",
+      "byte": "0x09",
+      "value": "0x00"
+    },
+    {
+      "name": "abs_lamp_test",
+      "block": "0x01",
+      "byte": "0x0A",
+      "value": "0x00"
+    },
+    {
+      "name": "brake_lamp_test",
+      "block": "0x01",
+      "byte": "0x0B",
+      "value": "0x00"
+    }
+  ]
+}

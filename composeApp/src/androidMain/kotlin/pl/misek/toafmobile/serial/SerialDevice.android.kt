@@ -253,6 +253,45 @@ class AndroidSerialDevice (private val usbManager: UsbManager) : ISerialDevice
         }
     }
 
+    override fun kw1281SlowInit(address: Int, baudrate: Int): Boolean {
+        try {
+            if (_serialPort == null) connect("")
+            val port = _serialPort?.takeIf { it.isOpen } ?: return false
+            port.setParameters(baudrate, 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE)
+            port.setBreak(false)
+            preciseDelay(300)
+            // bit startu (0), 8 bitow adresu od LSB (0 - break, 1 - linia wolna), bit stopu (1)
+            port.setBreak(true)
+            preciseDelay(200)
+            for (bit in 0..7) {
+                port.setBreak(((address shr bit) and 0x01) == 0)
+                preciseDelay(200)
+            }
+            port.setBreak(false)
+            rxBuffer.clear()
+            return true
+        } catch (ex: Exception) {
+            Logger.e { "$tag [kw1281SlowInit] : $ex" }
+            return false
+        }
+    }
+
+    override fun kw1281WriteByte(value: Int): Boolean {
+        return try {
+            _serialPort?.takeIf { it.isOpen }?.write(byteArrayOf(value.toByte()), 50) != null
+        } catch (ex: Exception) {
+            Logger.e { "$tag [kw1281WriteByte] : $ex" }
+            false
+        }
+    }
+
+    override fun kw1281ReadByte(timeoutMs: Long): Int =
+        rxBuffer.poll(timeoutMs, TimeUnit.MILLISECONDS)?.let { it.toInt() and 0xFF } ?: -1
+
+    override fun kw1281ClearInput() {
+        rxBuffer.clear()
+    }
+
     fun setFastInitSleep(newFastInitSleep: Int) {
         fastInitSleep = newFastInitSleep
     }

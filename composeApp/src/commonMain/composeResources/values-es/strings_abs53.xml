@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_abs53">ABS Bosch 5.3</string>
+    <string name="abs53_live_data_wheel_speed_fl">Velocidad rueda delantera izquierda</string>
+    <string name="abs53_live_data_wheel_speed_fr">Velocidad rueda delantera derecha</string>
+    <string name="abs53_live_data_wheel_speed_rl">Velocidad rueda trasera izquierda</string>
+    <string name="abs53_live_data_wheel_speed_rr">Velocidad rueda trasera derecha</string>
+    <string name="abs53_live_data_brake_pedal">Interruptor del pedal de freno</string>
+    <string name="abs53_live_data_pump_ground_relay">Relé de masa del motor de la bomba</string>
+    <string name="abs53_live_data_main_supply_relay">Relé de alimentación principal</string>
+    <string name="abs53_live_data_value_open">abierto</string>
+    <string name="abs53_live_data_value_closed">cerrado</string>
+    <string name="abs53_live_data_value_on">activado</string>
+    <string name="abs53_live_data_value_off">desactivado</string>
+    <string name="abs53_control_pump_start">Bomba de retorno - arranque</string>
+    <string name="abs53_control_pump_stop">Bomba de retorno - parada</string>
+    <string name="abs53_control_valve_fl_open">Válvula delantera izquierda - apertura</string>
+    <string name="abs53_control_valve_fl_close">Válvula delantera izquierda - cierre</string>
+    <string name="abs53_control_valve_fr_open">Válvula delantera derecha - apertura</string>
+    <string name="abs53_control_valve_fr_close">Válvula delantera derecha - cierre</string>
+    <string name="abs53_control_valve_rl_open">Válvula trasera izquierda - apertura</string>
+    <string name="abs53_control_valve_rl_close">Válvula trasera izquierda - cierre</string>
+    <string name="abs53_control_valve_rr_open">Válvula trasera derecha - apertura</string>
+    <string name="abs53_control_valve_rr_close">Válvula trasera derecha - cierre</string>
+    <string name="abs53_control_abs_lamp_test">Prueba del testigo ABS</string>
+    <string name="abs53_control_brake_lamp_test">Prueba del testigo del sistema de frenos</string>
+    <string name="abs53_error_15">Sensor de velocidad de rueda delantera - circuito</string>
+    <string name="abs53_error_11">Interruptor de luz de freno - circuito</string>
+</resources>

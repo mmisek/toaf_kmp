@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_abs53">ABS Bosch 5.3</string>
+    <string name="abs53_live_data_wheel_speed_fl">Prędkość koła przedniego lewego</string>
+    <string name="abs53_live_data_wheel_speed_fr">Prędkość koła przedniego prawego</string>
+    <string name="abs53_live_data_wheel_speed_rl">Prędkość koła tylnego lewego</string>
+    <string name="abs53_live_data_wheel_speed_rr">Prędkość koła tylnego prawego</string>
+    <string name="abs53_live_data_brake_pedal">Włącznik pedału hamulca</string>
+    <string name="abs53_live_data_pump_ground_relay">Przekaźnik masy silnika pompy</string>
+    <string name="abs53_live_data_main_supply_relay">Przekaźnik zasilania głównego</string>
+    <string name="abs53_live_data_value_open">otwarty</string>
+    <string name="abs53_live_data_value_closed">zamknięty</string>
+    <string name="abs53_live_data_value_on">włączony</string>
+    <string name="abs53_live_data_value_off">wyłączony</string>
+    <string name="abs53_control_pump_start">Pompa powrotna - start</string>
+    <string name="abs53_control_pump_stop">Pompa powrotna - stop</string>
+    <string name="abs53_control_valve_fl_open">Zawór przedni lewy - otwarcie</string>
+    <string name="abs53_control_valve_fl_close">Zawór przedni lewy - zamknięcie</string>
+    <string name="abs53_control_valve_fr_open">Zawór przedni prawy - otwarcie</string>
+    <string name="abs53_control_valve_fr_close">Zawór przedni prawy - zamknięcie</string>
+    <string name="abs53_control_valve_rl_open">Zawór tylny lewy - otwarcie</string>
+    <string name="abs53_control_valve_rl_close">Zawór tylny lewy - zamknięcie</string>
+    <string name="abs53_control_valve_rr_open">Zawór tylny prawy - otwarcie</string>
+    <string name="abs53_control_valve_rr_close">Zawór tylny prawy - zamknięcie</string>
+    <string name="abs53_control_abs_lamp_test">Test lampki ABS</string>
+    <string name="abs53_control_brake_lamp_test">Test lampki układu hamulcowego</string>
+    <string name="abs53_error_15">Czujnik prędkości przedniego koła - obwód</string>
+    <string name="abs53_error_11">Włącznik świateł stop - obwód</string>
+</resources>

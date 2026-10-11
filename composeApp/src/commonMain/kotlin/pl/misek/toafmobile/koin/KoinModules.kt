@@ -28,6 +28,7 @@ import pl.misek.toafmobile.modules.interfaces.IModule
 import pl.misek.toafmobile.modules.l314.ModuleCCU
 import pl.misek.toafmobile.modules.l314.ModuleKOMBI
 import pl.misek.toafmobile.modules.l314.ModuleASC
+import pl.misek.toafmobile.modules.rjo.ModuleABS53
 import pl.misek.toafmobile.modules.l322.ModuleDSC
 import pl.misek.toafmobile.modules.l322.ModuleEHC
 import pl.misek.toafmobile.modules.l322.ModuleELV
@@ -78,6 +79,7 @@ val commonModules = module {
     single { get<ProtocolFactory>().protocolKwpStar }
     single { get<ProtocolFactory>().protocolDde }
     single { get<ProtocolFactory>().protocolEdc15 }
+    single { get<ProtocolFactory>().protocolKw1281 }
     //L322
     single(named(KoinNames.ModuleL322Lsm.name)) { ModuleLSM(protocolDS2 = get())}
     single(named(KoinNames.ModuleL322Dsc.name)) { ModuleDSC(protocolDS2 = get())}
@@ -121,6 +123,7 @@ val commonModules = module {
     single(named(KoinNames.ModuleR40Srs2.name)) { ModuleSRS2(protocolKWPStar = get()) }
     //RJ0
     single(named(KoinNames.ModuleRJOScu.name)) { ModuleSCU(kwp = get())}
+    single(named(KoinNames.ModuleRJOAbs.name)) { ModuleABS53(kw1281 = get())}
     single(named(KoinNames.ModuleRJOEdc15.name)) { ModuleEDC15(protocol = get())}
     //L20
     single(named(KoinNames.ModuleL20Ccu.name)) { ModuleCCU(kwp = get())}

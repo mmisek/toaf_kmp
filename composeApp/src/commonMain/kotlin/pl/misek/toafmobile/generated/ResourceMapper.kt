@@ -19,6 +19,7 @@ object ResourceMapper {
         }
         return when (prefix[0].lowercase()) {
            "abs" -> ResourceMapperAbs.stringResource(resourceName)
+           "abs53" -> ResourceMapperAbs53.stringResource(resourceName)
            "asc" -> ResourceMapperAsc.stringResource(resourceName)
            "activityadvancecoding" -> ResourceMapperActivityAdvanceCoding.stringResource(resourceName)
            "activitycodingbcu" -> ResourceMapperActivityCodingBcu.stringResource(resourceName)

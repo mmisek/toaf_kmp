@@ -254,6 +254,63 @@ class DesktopSerialDevice : ISerialDevice
         setBaudrate(9600)
     }
 
+    override fun kw1281SlowInit(address: Int, baudrate: Int): Boolean {
+        try {
+            if (_serialPort == null) connect(_serialPortName)
+            val port = _serialPort?.takeIf { it.isOpen } ?: return false
+            port.baudRate = baudrate
+            port.numDataBits = 8
+            port.numStopBits = SerialPort.ONE_STOP_BIT
+            port.parity = SerialPort.NO_PARITY
+            port.clearBreak()
+            preciseDelay(300)
+            // bit startu (0), 8 bitow adresu od LSB (0 - break, 1 - linia wolna), bit stopu (1)
+            port.setBreak()
+            preciseDelay(200)
+            for (bit in 0..7) {
+                if (((address shr bit) and 0x01) == 0) port.setBreak() else port.clearBreak()
+                preciseDelay(200)
+            }
+            port.clearBreak()
+            port.flushIOBuffers()
+            return true
+        } catch (ex: Exception) {
+            Logger.e { "$tag [kw1281SlowInit] : $ex" }
+            return false
+        }
+    }
+
+    override fun kw1281WriteByte(value: Int): Boolean {
+        return try {
+            (_serialPort?.takeIf { it.isOpen }?.writeBytes(byteArrayOf(value.toByte()), 1) ?: 0) == 1
+        } catch (ex: Exception) {
+            Logger.e { "$tag [kw1281WriteByte] : $ex" }
+            false
+        }
+    }
+
+    override fun kw1281ReadByte(timeoutMs: Long): Int {
+        val port = _serialPort?.takeIf { it.isOpen } ?: return -1
+        return try {
+            port.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, timeoutMs.toInt().coerceAtLeast(1), 0)
+            val buffer = ByteArray(1)
+            if (port.readBytes(buffer, 1) == 1) buffer[0].toInt() and 0xFF else -1
+        } catch (ex: Exception) {
+            Logger.e { "$tag [kw1281ReadByte] : $ex" }
+            -1
+        } finally {
+            port.setComPortTimeouts(SerialPort.TIMEOUT_READ_BLOCKING, 25, 0)
+        }
+    }
+
+    override fun kw1281ClearInput() {
+        try {
+            _serialPort?.flushIOBuffers()
+        } catch (ex: Exception) {
+            Logger.e { "$tag [kw1281ClearInput] : $ex" }
+        }
+    }
+
     fun setFastInitSleep(newFastInitSleep: Int) {
         fastInitSleep = newFastInitSleep
     }

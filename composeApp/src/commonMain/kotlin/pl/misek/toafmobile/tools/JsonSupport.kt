@@ -98,9 +98,13 @@ object JsonSupport {
 
     suspend fun getLiveDataElements(moduleName: String): List<LiveDataElement>? {
         val path = "files/LiveData/${moduleName.replace(".","").lowercase(Locale.getDefault())}_live_data.json"
-        val bytes = Res.readBytes(path)
-        val jsonString = bytes.decodeToString()
-        val container = Json.decodeFromString<LivaDataElementContainerJson>(jsonString)
+        // brak pliku (modul bez live data) lub bledny JSON nie moze przerwac aplikacji
+        val container = try {
+            Json.decodeFromString<LivaDataElementContainerJson>(Res.readBytes(path).decodeToString())
+        } catch (ex: Exception) {
+            Logger.e { "$tag : getLiveDataElements($path), $ex" }
+            return null
+        }
         val result = container.livedata.map { json ->
             LiveDataElementJson().apply {
                 name = json.name
@@ -169,9 +173,13 @@ object JsonSupport {
 
     suspend fun getControlElements(moduleName: String): List<ControlElement>? {
         val path = "files/Control/${moduleName.replace(".","").lowercase(Locale.getDefault())}_control.json"
-        val bytes = Res.readBytes(path)
-        val jsonString = bytes.decodeToString()
-        val container = Json.decodeFromString<ControlElementContainerJson>(jsonString)
+        // brak pliku (modul bez sterowania) lub bledny JSON nie moze przerwac aplikacji
+        val container = try {
+            Json.decodeFromString<ControlElementContainerJson>(Res.readBytes(path).decodeToString())
+        } catch (ex: Exception) {
+            Logger.e { "$tag : getControlElements($path), $ex" }
+            return null
+        }
         val result = container.elements.map { json ->
             ControlElementJson().apply {
                 name = json.name

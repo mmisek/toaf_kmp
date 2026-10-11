@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_abs53">ABS Bosch 5.3</string>
+    <string name="abs53_live_data_wheel_speed_fl">Velocità ruota anteriore sinistra</string>
+    <string name="abs53_live_data_wheel_speed_fr">Velocità ruota anteriore destra</string>
+    <string name="abs53_live_data_wheel_speed_rl">Velocità ruota posteriore sinistra</string>
+    <string name="abs53_live_data_wheel_speed_rr">Velocità ruota posteriore destra</string>
+    <string name="abs53_live_data_brake_pedal">Interruttore pedale freno</string>
+    <string name="abs53_live_data_pump_ground_relay">Relè massa motore pompa</string>
+    <string name="abs53_live_data_main_supply_relay">Relè alimentazione principale</string>
+    <string name="abs53_live_data_value_open">aperto</string>
+    <string name="abs53_live_data_value_closed">chiuso</string>
+    <string name="abs53_live_data_value_on">acceso</string>
+    <string name="abs53_live_data_value_off">spento</string>
+    <string name="abs53_control_pump_start">Pompa di ritorno - avvio</string>
+    <string name="abs53_control_pump_stop">Pompa di ritorno - arresto</string>
+    <string name="abs53_control_valve_fl_open">Valvola anteriore sinistra - apertura</string>
+    <string name="abs53_control_valve_fl_close">Valvola anteriore sinistra - chiusura</string>
+    <string name="abs53_control_valve_fr_open">Valvola anteriore destra - apertura</string>
+    <string name="abs53_control_valve_fr_close">Valvola anteriore destra - chiusura</string>
+    <string name="abs53_control_valve_rl_open">Valvola posteriore sinistra - apertura</string>
+    <string name="abs53_control_valve_rl_close">Valvola posteriore sinistra - chiusura</string>
+    <string name="abs53_control_valve_rr_open">Valvola posteriore destra - apertura</string>
+    <string name="abs53_control_valve_rr_close">Valvola posteriore destra - chiusura</string>
+    <string name="abs53_control_abs_lamp_test">Test spia ABS</string>
+    <string name="abs53_control_brake_lamp_test">Test spia impianto frenante</string>
+    <string name="abs53_error_15">Sensore velocità ruota anteriore - circuito</string>
+    <string name="abs53_error_11">Interruttore luci stop - circuito</string>
+</resources>
