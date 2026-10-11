@@ -1,0 +1,128 @@
+{
+  "livedata": [
+    {
+      "name": "radio_on",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "key_pressed",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "phone_mute",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "gal_curve",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x30",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "seek_threshold",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "1",
+      "unit": " "
+    },
+    {
+      "name": "dsp",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "aux_adapter",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0x06",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "aux_none"
+        },
+        {
+          "data": "0x01",
+          "text": "aux_internal"
+        },
+        {
+          "data": "0x02",
+          "text": "aux_external"
+        }
+      ]
+    },
+    {
+      "name": "antenna_diversity",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "antenna_diversity_absent"
+        },
+        {
+          "data": "0x01",
+          "text": "antenna_diversity_present"
+        }
+      ]
+    },
+    {
+      "name": "vf_volume",
+      "block": "0x02",
+      "byte": "0x00",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "sign_from": "0x80"
+    },
+    {
+      "name": "gal_speed",
+      "block": "0x02",
+      "byte": "0x01",
+      "mask": "0xFFFF",
+      "factor_a": "0.1",
+      "factor_b": "0",
+      "unit": "Hz"
+    },
+    {
+      "name": "field_strength",
+      "block": "0x02",
+      "byte": "0x03",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    }
+  ]
+}
