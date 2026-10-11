@@ -203,12 +203,6 @@ class ModuleEWS(protocolDS2: ProtocolDS2?) :
         return interfaceWrite(byteArrayOf(0x00)).isValid
     }
 
-    /**
-     * Odczyt danych kluczykow (job SCHL_DATEN_LESEN, cmd 0x65 + numer).
-     * Odpowiedz: answer[3]=numer, answer[4..11]=ID (8 bajtow),
-     * answer[12]=bajt freigabe: bity 0-1 status, bit 6 selbstinit wykonany, bit 7 selbstinit.
-     * EWS3 ma 10 slotow kluczykow (0..9).
-     */
     override suspend fun readKeys(): List<EwsKey>? {
         val result: MutableList<EwsKey> = ArrayList()
         for (i in 0..9) {
@@ -216,14 +210,14 @@ class ModuleEWS(protocolDS2: ProtocolDS2?) :
             if (message.isValid && message.answer.size > 13) {
                 try {
                     val id = message.answer.copyOfRange(4, 12).joinToString("") { "%02X".format(it) }
-                    val freigabe = message.answer[12].toInt() and 0xFF
+                    val ewsKeyData = message.answer[12].toInt() and 0xFF
                     result.add(
                         EwsKey(
                             number = i,
                             id = id,
-                            status = freigabe and 0x03,
-                            selfInitDone = (freigabe and 0x40) == 0x40,
-                            selfInit = (freigabe and 0x80) == 0x80
+                            status = ewsKeyData and 0x03,
+                            selfInitDone = (ewsKeyData and 0x40) == 0x40,
+                            selfInit = (ewsKeyData and 0x80) == 0x80
                         )
                     )
                 } catch (ex: CancellationException) {
@@ -236,9 +230,6 @@ class ModuleEWS(protocolDS2: ProtocolDS2?) :
         return if (result.isEmpty()) null else result
     }
 
-    /**
-     * Odczyt numeru ISN (job ISN_LESEN, cmd 0x60). ISN = answer[3]<<8 | answer[4], 16 bit.
-     */
     override suspend fun readIsn(): String? {
         val message = interfaceWrite(byteArrayOf(0x60))
         return try {
@@ -253,9 +244,6 @@ class ModuleEWS(protocolDS2: ProtocolDS2?) :
         }
     }
 
-    /**
-     * Odczyt hasla EWS (job PASSWORT_LESEN, cmd 0x63). Haslo = answer[3..8], 6 bajtow.
-     */
     override suspend fun readPassword(): String? {
         val message = interfaceWrite(byteArrayOf(0x63))
         return try {

@@ -34,7 +34,7 @@
         "name": "cassette_mss_rw",
         "block": "0x00",
         "byte": "0x00",
-        "value": "0x40"
+        "value": "0x45"
       },
       {
         "name": "cassette_standby",
@@ -99,13 +99,13 @@
       {
         "name": "monitor_off",
         "block": "0x01",
-        "byte": "0x02",
+        "byte": "0x08",
         "value": "0x00"
       },
       {
         "name": "monitor_on",
         "block": "0x01",
-        "byte": "0x02",
+        "byte": "0x08",
         "value": "0x01"
       },
       {
@@ -114,7 +114,7 @@
         "byte": "0x00",
         "value": "0x00",
         "set_value": {
-          "min": "0",
+          "min": "1",
           "max": "20",
           "unit": "s"
         }
@@ -141,7 +141,7 @@
         "name": "workshop_mode_on",
         "block": "0x0F",
         "byte": "0x00",
-        "value": "0x01"
+        "value": "0x04"
       }
 
     ]

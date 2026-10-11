@@ -30,11 +30,6 @@ class ModuleRS( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddre
 
     override fun getModuleDescription() = Res.string.module_description_rs
 
-    /**
-     * STATUS_LESEN (1B), dane od answer[3] bez sumy kontrolnej:
-     * [0] STAT_RSK (0 - wycieraczka w pozycji spoczynkowej), [1] STAT_VERSTAERKUNG [dB] w BCD,
-     * [2] / [3] STAT_UEBERWISCHZEITPUNKT_1 / _2. Wzmocnienie przeliczane z BCD na liczbe.
-     */
     override suspend fun readLiveData(): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = mutableMapOf()
         val message = writeWithBusyRetry(byteArrayOf(0x1B))
@@ -72,7 +67,7 @@ class ModuleRS( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddre
                 if (location != 0x00) {
                     val errorCode = String.format("%02X", location)
                     val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
-                    // FS_LESEN: licznik dla bledu 03 - answer[4], dla 04 - answer[5], pozostale zawsze 1
+
                     val count = when (location) {
                         0x03 -> message.answer[4].toInt() and 0xFF
                         0x04 -> message.answer[5].toInt() and 0xFF
@@ -91,7 +86,6 @@ class ModuleRS( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddre
         return result
     }
 
-    /** Ponawia telegram, gdy sterownik odpowiada BUSY (A1) - jak STATUS_LESEN (max 5 prob) */
     private suspend fun writeWithBusyRetry(data: ByteArray): OBDMessage {
         var message = interfaceWrite(data)
         var attempts = 1

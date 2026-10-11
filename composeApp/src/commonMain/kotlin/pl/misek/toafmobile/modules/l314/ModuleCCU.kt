@@ -20,6 +20,7 @@ import pl.misek.toafmobile.protocols.ProtocolKWPStar
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_bcu
 import toafmobile.composeapp.generated.resources.module_description_ccu
+import kotlin.time.Duration.Companion.milliseconds
 
 class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IModuleVIN,
     IModuleCoding, IModuleLiveData {
@@ -45,7 +46,7 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
             if (result)
                 return true
             else
-                delay(1000)
+                delay(1000.milliseconds)
         }
         return false
     }
@@ -100,7 +101,7 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
         } catch (ex: CancellationException) {
             throw ex
         } catch (ex: Exception) {
-            Logger.e{"$tag : ${ex.toString()}"}
+            Logger.e{"$tag : $ex"}
         }
 
         return info
@@ -135,8 +136,6 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
 
     override suspend fun writeVIN(newVin: String): Boolean {
         var result = false
-        // Wg SGBD C_FG_AUFTRAG: pelny 17-znakowy VIN, zapisywane 6 ostatnich cyfr
-        // + 0x500000 gdy 7. znak (indeks 6) to 'B', w przeciwnym razie 0x300000
         if (newVin.length != getVinLength()) return false
         val serial = newVin.substring(11).toIntOrNull() ?: return false
         if (moduleInit() && securityAccess(0x01)) {
@@ -212,7 +211,6 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
         if (message.isValid) {
             val code =
                 ((message.answer[6].toInt() and 0xFF) shl 8) + (message.answer[7].toInt() and 0xFF)
-            // Seed 0000 - modul juz odblokowany, SGBD nie wysyla klucza
             if (code == 0x0000) return true
             val seed = securityAccessCalculator(code)
             val data = byteArrayOf(
@@ -225,7 +223,6 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
         }
         return false
     }
-
 
     private suspend fun startDiagnosticSession(mode: Byte): Boolean {
         return kwp.write(MODULE_ADDRESS, 0x10.toByte(), byteArrayOf(mode), 50).isValid
@@ -277,7 +274,7 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
                     byteArrayOf(0x05) + dataToSave[0],
                     50
                 ).isValid) return false
-                // Weryfikacja jak w SGBD C_C_AUFTRAG: ponowny odczyt i porownanie
+
                 val verify = kwp.write(MODULE_ADDRESS, 0x21.toByte(), byteArrayOf(0x05), 50)
                 return verify.isValid &&
                         verify.answer.copyOfRange(6, verify.answer.size - 1).contentEquals(dataToSave[0])
@@ -310,8 +307,6 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean {
         localLiveDataElements = liveDataElements
-        if (moduleInit())
-            return securityAccess(0x01)
-        return false
+        return moduleInit() && securityAccess(0x01)
     }
 }

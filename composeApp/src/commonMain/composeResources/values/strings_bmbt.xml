@@ -34,7 +34,7 @@
     <string name = "bmbt_control_cassette_ffw">Cassette : FFW</string>
     <string name = "bmbt_control_cassette_frw">Cassette : FRW</string>
     <string name = "bmbt_control_cassette_mss_fw">Cassette : MSS FW</string>
-    <string name = "bmbt_control_cassette_mss_rw">Cassette : MSS FW</string>
+    <string name = "bmbt_control_cassette_mss_rw">Cassette : MSS RW</string>
     <string name = "bmbt_control_cassette_standby">Cassette : standby</string>
     <string name = "bmbt_control_cassette_pause_on">Cassette : pause on</string>
     <string name = "bmbt_control_cassette_pause_off">Cassette : pause off</string>
@@ -65,6 +65,8 @@
     <string name = "bmbt_live_data_nft3">NFT 3</string>
     <string name = "bmbt_live_data_nft4">NFT 4</string>
     <string name = "bmbt_live_data_lcd_temperature">LCD Temperature</string>
+    <string name = "bmbt_live_data_photosensor">Photosensor</string>
+    <string name = "bmbt_live_data_lamp_heating">Lamp heating</string>
 
     <string name = "bmbt_live_data_value_button_no_button">No button</string>
     <string name = "bmbt_live_data_value_several_buttons">Several buttons</string>

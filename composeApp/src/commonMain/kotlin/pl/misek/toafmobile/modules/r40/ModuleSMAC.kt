@@ -46,6 +46,7 @@ class ModuleSMAC( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAdd
             } catch (ex : Exception)
             {
                 Logger.e {"$tag [readCoding], $ex, $message"}
+                return null
             }
         }
         return result
@@ -70,26 +71,28 @@ class ModuleSMAC( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAdd
 
     override suspend fun getAllErrors(): List<ModuleError>? {
         var result: MutableList<ModuleError>? = null
-        for (j in 0..2) {
+        for (j in 0..5) {
             val message = interfaceWrite(byteArrayOf(0x04, j.toByte()))
+            var blockFull = false
             try {
                 if (message.isValid) {
-                    for (i in 0..6) {
-                        if ((message.answer[3 + 2 * i].toInt() and 0xFF) != 0xFF) {
-                            val errorCode = String.format("%02X", message.answer[3 + 2 * i])
-                            val errorDescription: MutableList<Pair<StringResource, Any?>> =
-                                ArrayList()
-                            errorDescription.add(ResourceHelper.getErrorDescriptionCount(message.answer[4 + 2 * i].toInt() and 0x1F))
-                            errorDescription.add(ResourceHelper.getErrorDescriptionIsStatic((message.answer[4 + 2 * i].toInt() and 0x20) == 0x20))
-                            if (result == null) result = ArrayList()
-                            result.add(
-                                ModuleError(
-                                    ModuleAddress.MODULE_SHD,
-                                    errorCode,
-                                    errorDescription
-                                )
+                    for (i in 0..7) {
+                        val code = message.answer[3 + 2 * i].toInt() and 0xFF
+                        if (code == 0xFF) break
+                        val errorCode = String.format("%02X", code and 0x7F)
+                        val errorDescription: MutableList<Pair<StringResource, Any?>> =
+                            ArrayList()
+                        errorDescription.add(ResourceHelper.getErrorDescriptionCount(message.answer[4 + 2 * i].toInt() and 0xFF))
+                        errorDescription.add(ResourceHelper.getErrorDescriptionIsStatic((code and 0x80) == 0))
+                        if (result == null) result = ArrayList()
+                        result.add(
+                            ModuleError(
+                                ModuleAddress.MODULE_SMAC,
+                                errorCode,
+                                errorDescription
                             )
-                        }
+                        )
+                        if (i == 7) blockFull = true
                     }
                 }
             } catch (ex: CancellationException) {
@@ -98,6 +101,7 @@ class ModuleSMAC( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAdd
             {
                 Logger.e {"$tag [getAllErrors], $ex, $message"}
             }
+            if (!blockFull) break
         }
         return result
     }

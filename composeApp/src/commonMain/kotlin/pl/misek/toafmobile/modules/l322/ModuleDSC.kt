@@ -17,6 +17,7 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.milliseconds
 
 class ModuleDSC(protocolDS2: ProtocolDS2?) :
     ModuleDS2(protocolDS2, ModuleAddress.MODULE_DSC, listOf(CarType.L322)),
@@ -31,7 +32,6 @@ class ModuleDSC(protocolDS2: ProtocolDS2?) :
         const val CODING_FLAG = 0xA5
         const val CODING_BUSY_RETRIES = 10
         const val LWS_BUSY_RETRIES = 40
-        /** TEST_LENKWINKEL: LFD_NR - numer kolejny wpisu w LWS i DSC57, SGBD wymaga 1..254 */
         const val LWS_SEQUENCE_NUMBER = 0x01
     }
 
@@ -48,7 +48,7 @@ class ModuleDSC(protocolDS2: ProtocolDS2?) :
         var message = interfaceWrite(byteArrayOf(0x04, 0x01))
         var busyRetries = 0
         while (message.answerCode == ANSWER_BUSY && busyRetries < MAX_BUSY_RETRIES) {
-            delay(BUSY_RETRY_DELAY_MS)
+            delay(BUSY_RETRY_DELAY_MS.milliseconds)
             message = interfaceWrite(byteArrayOf(0x04, 0x01))
             busyRetries++
         }
@@ -97,10 +97,6 @@ class ModuleDSC(protocolDS2: ProtocolDS2?) :
         return result
     }
 
-    /**
-     * STATUS_IO_LESEN_GESCHW / _ANALOG / _DIGITAL / _CAN: 0B 00..03, dane od answer[3] bez sumy kontrolnej.
-     * Wartosci 16 bit sa little endian - kolejnosc bajtow odwraca pole "swap" w dsc_live_data.json.
-     */
     override suspend fun readLiveData(): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = HashMap()
         for (j in 0..3) {
@@ -163,23 +159,17 @@ class ModuleDSC(protocolDS2: ProtocolDS2?) :
         } else return false
     }
 
-    /** COD_SCHREIBEN: SGBD ponawia zapis przy BUSY (A1) do 10 razy */
     private suspend fun writeCodingBlock(address: Int, data: ByteArray): Boolean {
         var message = interfaceWrite(arrayOf(byteArrayOf(0x09, address.toByte()), data))
         var busyRetries = 0
         while (message.answerCode == ANSWER_BUSY && busyRetries < CODING_BUSY_RETRIES) {
-            delay(BUSY_RETRY_DELAY_MS)
+            delay(BUSY_RETRY_DELAY_MS.milliseconds)
             message = interfaceWrite(arrayOf(byteArrayOf(0x09, address.toByte()), data))
             busyRetries++
         }
         return message.isValid
     }
 
-    /**
-     * DSC57 (COD_SCHREIBEN): kodowanie to bajty 00-03, bajt 00 = 0xA5 (zakodowany),
-     * CHECKSUM (bajt 01) = 0xFF - [02] - [03] (modulo 256).
-     * Zwraca kopie danych przycieta do 4 bajtow z przeliczona suma.
-     */
     private fun calculateCodingChecksum(data: List<ByteArray>): List<ByteArray> {
         val result = data.map { it.copyOf() }.toMutableList()
         val block = result[0]
@@ -194,25 +184,20 @@ class ModuleDSC(protocolDS2: ProtocolDS2?) :
     suspend fun initLwsCalibration() : Boolean { 
         return interfaceWrite(initBlock).isValid
     }
-    /** TEST_LENKWINKEL: 32 LFD_NR 86 FF 88 00.., SGBD ponawia przy BUSY (A1) do 40 razy */
+
     suspend fun writeLwsCalibration() : Boolean
     {
         val data = byteArrayOf(0x32, LWS_SEQUENCE_NUMBER.toByte(), 0x86.toByte(), 0xFF.toByte(), 0x88.toByte(), 0x00, 0x00, 0x00, 0x00, 0x00, 0x00)
         var message = interfaceWrite(data)
         var busyRetries = 0
         while (message.answerCode == ANSWER_BUSY && busyRetries < LWS_BUSY_RETRIES) {
-            delay(BUSY_RETRY_DELAY_MS)
+            delay(BUSY_RETRY_DELAY_MS.milliseconds)
             message = interfaceWrite(data)
             busyRetries++
         }
         return message.isValid
     }
     
-    //override fun getAdvanceControlActivity(context: Context): Intent = Intent(context, ActivityControlDSC::class.java)
-
-    //override fun getAdvanceControlTitle(): String = resources.getString(R.string.activity_control_dsc_brake_bleeding)
-
-    /** DOWNLOAD_STELLGLIED - bez adresu, dlugosci i sumy kontrolnej (dodaje je interfaceWrite) */
     val initBlock = byteArrayOf(
         0x31.toByte(), 0x05.toByte(), 0x00.toByte(), 0x00.toByte(), 0xBB.toByte(), 0x07.toByte(), 0x07.toByte(), 0x89.toByte(), 0x07.toByte(), 0x00.toByte(), 0xB1.toByte(),
         0x02.toByte(), 0x24.toByte(), 0xA1.toByte(), 0xA4.toByte(), 0x20.toByte(), 0x2C.toByte(), 0xA1.toByte(), 0xFF.toByte(), 0x00.toByte(), 0x2E.toByte(), 0xE8.toByte(), 0x2C.toByte(), 0x28.toByte(),

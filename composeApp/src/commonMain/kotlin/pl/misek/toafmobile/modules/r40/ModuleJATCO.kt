@@ -1,7 +1,6 @@
 package pl.misek.toafmobile.modules.r40
 
 import co.touchlab.kermit.Logger
-import co.touchlab.kermit.Message
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -49,6 +48,7 @@ import toafmobile.composeapp.generated.resources.module_gearbox
 import java.util.Calendar
 import java.util.Locale
 import kotlin.collections.plus
+import kotlin.time.Duration.Companion.milliseconds
 
 private const val tag = "ModuleJATCO"
 class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IModuleLiveData, IModuleVIN, IModuleFlashProgramming {
@@ -186,14 +186,6 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
     }
 
     override suspend fun getOdometer(): String? {
-        //val message = kwp!!.write(moduleAddress, 0xA2.toByte(), byteArrayOf())
-        //if (message.isValid)
-
-        /*
-        for (x in 0x00.. 0xFF) {
-            val message = kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(x.toByte()))
-            if (message.isValid)
-        }*/
         return null
     }
 
@@ -295,13 +287,10 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean {
         liveDataBlocksToRead.clear()
-        for (el in liveDataElements) liveDataBlocksToRead.add(el.block.toByte())
+        for ((_, _, _, block) in liveDataElements) liveDataBlocksToRead.add(block.toByte())
         return securityAccess(0x81,0x03)
     }
-    private suspend fun switchToBoot() : Boolean
-    {
-        return kwp!!.write(moduleAddress,0x31.toByte(), byteArrayOf(0xFB.toByte())).isValid
-    }
+
     private suspend fun securityAccess(diagnosticSession : Int, level : Int, useTesterPresent : Boolean = true): Boolean {
         if (useTesterPresent)
             if (!testerPresent())
@@ -438,7 +427,7 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
             _programmingState.tryEmit(FlashProgrammingState.Message("VIN : $vin"))
             //endDiagnosticSession()
             try {
-                delay(1000)
+                delay(1000.milliseconds)
             } catch (ex: CancellationException) {
                 throw ex
             } catch (_ : Exception) {
@@ -456,7 +445,7 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
                         kwp!!.write(moduleAddress, 0x31.toByte(), byteArrayOf(0x07), 10000)
                     requestErase =  eraseFlash.answer[eraseFlash.answer.size - 3] == 0x71.toByte() &&eraseFlash.answer[eraseFlash.answer.size - 2] == 0x02.toByte()
                     requestNumber++
-                    delay(1000)
+                    delay(1000.milliseconds)
                 }
                 if (!requestErase)
                 {

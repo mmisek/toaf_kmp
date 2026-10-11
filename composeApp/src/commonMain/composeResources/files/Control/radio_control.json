@@ -98,8 +98,32 @@
         "set_value": {
           "min": "875",
           "max": "1080",
-          "unit": "kHz"
+          "unit": "x0.1 MHz"
         }
+      },
+      {
+        "name": "normal_mode_on",
+        "block": "0x0F",
+        "byte": "0x00",
+        "value": "0x00"
+      },
+      {
+        "name": "production_mode_on",
+        "block": "0x0F",
+        "byte": "0x00",
+        "value": "0x01"
+      },
+      {
+        "name": "transport_mode_on",
+        "block": "0x0F",
+        "byte": "0x00",
+        "value": "0x02"
+      },
+      {
+        "name": "workshop_mode_on",
+        "block": "0x0F",
+        "byte": "0x00",
+        "value": "0x04"
       }
     ]
 }

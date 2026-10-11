@@ -216,7 +216,6 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
 
     override suspend fun readLiveData(): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = HashMap()
-        // 0x00: 0B (STATUS_LESEN), 0x01: 1B (BETRIEBSSTUNDENZAEHLER_LESEN); blad jednego bloku nie kasuje drugiego
         for ((block, request) in listOf(0x00 to 0x0B, 0x01 to 0x1B)) {
             val message = interfaceWrite(byteArrayOf(request.toByte()))
             try {
@@ -236,9 +235,6 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
         return true
     }
 
-    // Wg SGBD STEUERN_IO: 0C + 15 bajtow k0..k14. Szablon bazowy z SGBD (k2=k3=F0, k7=k10=0x80),
-    // a wartosci analogowe k7 (czujnik obciazenia), k9 (sciemniacz), k10 (potencjometr LWR)
-    // przepisywane z biezacego odczytu 0B, aby sterowanie nie przestawialo reflektorow ani czujnika.
     override suspend fun control(controlElement: ControlElement): Boolean {
         when (controlElement.block) {
             0x00 -> {
@@ -305,9 +301,6 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
         return null
     }
 
-    // Wg SGBD FS_LESEN / IS_LESEN: bloki 04 01..03 - pamiec bledow, 04 04..08 - pamiec informacyjna
-    // (m.in. defekty zarowek). [3] liczba wpisow, rekordy 2-bajtowe od [4]: kod + (czestosc & 0x1F,
-    // bit 0x20 = blad obecny); wpisy z czestoscia 0 SGBD pomija. Kasowanie: 05 01..08.
     override suspend fun getAllErrors(): List<ModuleError>? {
         var result: MutableList<ModuleError>? = null
         for (n in 0x01..0x08) {
@@ -371,8 +364,6 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
         return null
     }
 
-    // Wg SGBD C_C_AUFTRAG: 09 <blok> <dane>; dla bloku 0x0F doklejana suma XOR wszystkich bajtow danych.
-    // Ponowienie przy bledzie i weryfikacja ponownym odczytem (jak w SGBD).
     override suspend fun writeCoding(dataToSave: List<ByteArray>): Boolean {
         if (dataToSave.size != 0x10) return false
         for (i in dataToSave.indices) {
@@ -423,7 +414,6 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
     }
 
     override suspend fun writeOdometer(odometer: Long): Boolean {
-        // licznik w EEPROM: 16 bitow w jednostkach 100 km
         if (odometer < 0 || odometer / 100 > 0xFFFF) return false
         val newOdo = odometer/100
         if (!interfaceWrite(byteArrayOf(0x07, 0x01, 0x5F, 0x00)).isValid) return false
@@ -473,9 +463,7 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
     }
 
     override fun setAutoLightMode(coding: List<ByteArray>, mode: Int): List<ByteArray> {
-        // kopie blokow - bez modyfikacji danych wywolujacego i tablic statycznych
         val newCoding = coding.map { it.copyOf() }.toMutableList()
-        // te same bity ustawiane dla trybu DRL i kasowane dla pozostalych (wczesniej kasowano 0x08 zamiast 0x80)
         if (mode == 1) {
             newCoding[0][0x04] = (newCoding[0][0x04].toInt() or 0x80 or 0x02).toByte()
             newCoding[0][0x12] = (newCoding[0][0x12].toInt() or 0x2A).toByte()

@@ -32,11 +32,8 @@ class ModuleWebasto( protocolDS2: ProtocolDS2?) :
     override fun getModuleDescription()  = Res.string.module_description_webasto
 
     override suspend fun readLiveData(): Map<Int, ByteArray>? {
-        //byte[] fakeAnswer = new byte[] {(byte)0x6B,(byte)0x0D,(byte)0xA0,(byte)0x12,(byte)0x44,(byte)0xAA,(byte)0xC4,(byte)0x64,(byte)0x65,(byte)0xAB,(byte)0xBC,(byte)0x40};
         val result: MutableMap<Int, ByteArray> = HashMap()
         var message = interfaceWrite(byteArrayOf(0x0B))
-        //message.isValid() = true;
-        //message.answer = fakeAnswer;
         try {
             if (message.isValid) {
                 result[0x00] = message.answer.copyOfRange(3, message.answer.size)
@@ -46,17 +43,14 @@ class ModuleWebasto( protocolDS2: ProtocolDS2?) :
             if (message.isValid) {
                 result[0x01] = message.answer.copyOfRange(3, message.answer.size)
             }
-            // Licznik startow (STARTZAEHLER_LESEN): 2 bajty spod 02 AC
             message = interfaceWrite(byteArrayOf(0x06, 0x04, 0x02, 0xAC.toByte(), 0x02))
             if (message.isValid) {
                 result[0x02] = message.answer.copyOfRange(3, message.answer.size)
             }
-            // Kopia licznika startow: 2 bajty spod 01 FC
             message = interfaceWrite(byteArrayOf(0x06, 0x03, 0x01, 0xFC.toByte(), 0x02))
             if (message.isValid) {
                 result[0x03] = message.answer.copyOfRange(3, message.answer.size)
             }
-            // Roznica licznik - kopia (STARTZAEHLER_DIFFERENZ), liczona lokalnie jako blok 0x04
             val counter = result[0x02]?.let { readWord(it) }
             val copy = result[0x03]?.let { readWord(it) }
             if (counter != null && copy != null) {
@@ -82,16 +76,13 @@ class ModuleWebasto( protocolDS2: ProtocolDS2?) :
                 )
             ).isValid
 
-            // Wg SGBD STEUERN_ZUHEIZER: 9E przed poleceniem 0C (rowniez przy wylaczaniu)
             0x0C -> {
                 interfaceWrite(byteArrayOf(0x9E.toByte()))
                 return interfaceWrite(byteArrayOf(0x0C.toByte(), 0x00)).isValid
             }
             0x9E -> {
-                if (interfaceWrite(byteArrayOf(0x9E.toByte())).isValid) return interfaceWrite(
-                    byteArrayOf(0x0C.toByte(), 0xE0.toByte())
-                ).isValid
-                return false
+                return interfaceWrite(byteArrayOf(0x9E.toByte())).isValid &&
+                    interfaceWrite(byteArrayOf(0x0C.toByte(), 0xE0.toByte())).isValid
             }
 
             0x94 -> return interfaceWrite(byteArrayOf(0x94.toByte(), 0x02)).isValid
@@ -105,8 +96,6 @@ class ModuleWebasto( protocolDS2: ProtocolDS2?) :
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>)= true
 
-    // Wg SGBD FS_LESEN: 04 i (i = 1..n), n = answer[3] (max 3);
-    // rekord: [4] miejsce, [5] typ (bity), [6] czestosc, [7] stan pracy, [8] temperatura plynu
     override suspend fun getAllErrors(): List<ModuleError>? {
         val errorDescriptionCodes = byteArrayOf(0x01, 0x02, 0x04, 0x08, 0x40, 0x80.toByte())
         val first = interfaceWrite(byteArrayOf(0x04, 0x01))
@@ -160,7 +149,6 @@ class ModuleWebasto( protocolDS2: ProtocolDS2?) :
         return result
     }
 
-    // Stan pracy wg ZUSTANDTEXTE: najpierw kolumna diesel, potem benzyna (jak w SGBD)
     private fun operatingStateResource(state: Int): StringResource? {
         val data = WebastoFreezeFrameData().FreezeFrameData
         val name = data[0x00]?.get(state) ?: data[0x01]?.get(state) ?: return null

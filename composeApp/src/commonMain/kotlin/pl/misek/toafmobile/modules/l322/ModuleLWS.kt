@@ -135,8 +135,6 @@ class ModuleLWS( protocolDS2: ProtocolDS2?) :
         return result.ifEmpty { null }
     }
 
-    // Syntetyczny kat kierownicy (STAT_ULRWSYN) w SGBD: wartosc > 0x7FFF oznacza -(x - 0x8000) (znak + modul);
-    // zamiana na U2, aby wspolne liczenie live data (u2) dawalo poprawny wynik
     private fun signMagnitudeToU2(data: ByteArray, index: Int) {
         val raw = ((data[index].toInt() and 0xFF) shl 8) or (data[index + 1].toInt() and 0xFF)
         if (raw > 0x7FFF) {

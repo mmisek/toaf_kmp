@@ -26,9 +26,9 @@ import pl.misek.toafmobile.protocols.OBDMessage
 import pl.misek.toafmobile.protocols.ProtocolKWP
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
-import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import kotlin.time.Duration.Companion.milliseconds
 
 private const val tag = "ModuleMEMS"
 class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramming, IModule,
@@ -54,7 +54,7 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean {
         liveDataBlocksToRead.clear()
-        for (el in liveDataElements) liveDataBlocksToRead.add(el.block.toByte())
+        for ((_, _, _, block) in liveDataElements) liveDataBlocksToRead.add(block.toByte())
 
         for (i in 0..2) if (securityAccess(0xA0)) return true
         return false
@@ -227,7 +227,7 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
                 } catch (ex: CancellationException) {
                     throw ex
                 } catch (ex: Exception) {
-                    Logger.e{"$tag : ${ex.toString()}"}
+                    Logger.e{"$tag : $ex"}
                 }
             }
             message = kwp.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x32.toByte()), 1000)
@@ -392,7 +392,7 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
                     } catch (ex: CancellationException) {
                         throw ex
                     } catch (ex: Exception) {
-                        Logger.e { "$tag : ${ex.toString()}" }
+                        Logger.e { "$tag : $ex" }
                     }
                 }
             } catch (ex: CancellationException) {
@@ -482,7 +482,7 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
                                         Res.string.activity_flash_programming_flash_erasing,
                                         Res.string.activity_flash_programming_ok)
                                     )
-                                delay(200)
+                                delay(200.milliseconds)
 
                                 var progress = 0
                                 _programmingState.tryEmit(FlashProgrammingState.Progress(progress))
@@ -583,7 +583,7 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
                         throw ex
                     }
                     catch (ex: Exception) {
-                        Logger.e{"$tag [writaFlash]: ${ex.toString()}"}
+                        Logger.e{"$tag [writaFlash]: $ex"}
                     }
                 } else _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                         Res.string.activity_flash_programming_diagnostic_session,
@@ -663,7 +663,7 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
         } catch (ex: CancellationException) {
             throw ex
         } catch (ex: Exception) {
-            Logger.e{"$tag [readFlash]: ${ex.toString()}"}
+            Logger.e{"$tag [readFlash]: $ex"}
         }
     }
 
@@ -684,7 +684,7 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
         } catch (ex: CancellationException) {
             throw ex
         } catch (ex : Exception) {
-            Logger.e{"$tag [readFlash]: ${ex.toString()}, $message"}
+            Logger.e{"$tag [readFlash]: $ex, $message"}
             return result
         }
         return result

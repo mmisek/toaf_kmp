@@ -24,8 +24,8 @@
     <string name = "radio_control_gal_inc">Gal — zwiększ</string>
     <string name = "radio_control_gal_dec">Gal — zmniejszy</string>
     <string name = "radio_control_switch_seek">Wyszukaj — przełącz</string>
-    <string name = "radio_control_vf_dec">VF — zwiększ</string>
-    <string name = "radio_control_vf_inc">VF — zmniejsz</string>
+    <string name = "radio_control_vf_dec">VF — zmniejsz</string>
+    <string name = "radio_control_vf_inc">VF — zwiększ</string>
     <string name = "radio_control_frequency">Częstotliwość</string>
     <string name = "radio_control_audio_key">Audio</string>
 
@@ -42,5 +42,27 @@
     <string name = "radio_live_data_value_signal_too_high">za wysoki</string>
     <string name = "radio_live_data_value_short">zwarcie</string>
     <string name = "radio_live_data_value_line_is_open">przerwa</string>
+
+    <string name="radio_module_info_serial_dom">Numer seryjny (DOM)</string>
+    <string name="radio_control_normal_mode_on">Tryb normalny</string>
+    <string name="radio_control_production_mode_on">Tryb produkcyjny</string>
+    <string name="radio_control_transport_mode_on">Tryb transportowy</string>
+    <string name="radio_control_workshop_mode_on">Tryb warsztatowy</string>
+    <string name="radio_live_data_radio_on">Radio włączone</string>
+    <string name="radio_live_data_key_pressed">Naciśnięty przycisk radia</string>
+    <string name="radio_live_data_phone_mute">Wyciszenie przez telefon</string>
+    <string name="radio_live_data_gal_curve">Krzywa GAL</string>
+    <string name="radio_live_data_seek_threshold">Próg wyszukiwania</string>
+    <string name="radio_live_data_dsp">DSP obecny</string>
+    <string name="radio_live_data_aux_adapter">Adapter AUX</string>
+    <string name="radio_live_data_antenna_diversity">Antena diversity</string>
+    <string name="radio_live_data_vf_volume">Minimalna głośność VF</string>
+    <string name="radio_live_data_gal_speed">Sygnał prędkości GAL</string>
+    <string name="radio_live_data_field_strength">Natężenie pola</string>
+    <string name="radio_live_data_value_aux_none">brak</string>
+    <string name="radio_live_data_value_aux_internal">wewnętrzny</string>
+    <string name="radio_live_data_value_aux_external">zewnętrzny</string>
+    <string name="radio_live_data_value_antenna_diversity_absent">brak</string>
+    <string name="radio_live_data_value_antenna_diversity_present">obecna</string>
 
 </resources>

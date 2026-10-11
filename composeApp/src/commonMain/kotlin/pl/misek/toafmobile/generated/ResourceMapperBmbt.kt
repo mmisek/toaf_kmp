@@ -61,6 +61,8 @@ object ResourceMapperBmbt {
             "bmbt_live_data_cleme_r" -> Res.string.bmbt_live_data_cleme_r
             "bmbt_live_data_key_pressed" -> Res.string.bmbt_live_data_key_pressed
             "bmbt_live_data_lcd_temperature" -> Res.string.bmbt_live_data_lcd_temperature
+            "bmbt_live_data_photosensor" -> Res.string.bmbt_live_data_photosensor
+            "bmbt_live_data_lamp_heating" -> Res.string.bmbt_live_data_lamp_heating
             "bmbt_live_data_monitor_encoder_steps" -> Res.string.bmbt_live_data_monitor_encoder_steps
             "bmbt_live_data_nft1" -> Res.string.bmbt_live_data_nft1
             "bmbt_live_data_nft2" -> Res.string.bmbt_live_data_nft2

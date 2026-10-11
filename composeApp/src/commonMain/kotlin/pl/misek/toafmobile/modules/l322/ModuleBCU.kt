@@ -36,16 +36,6 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
         }
     )
 
-    /*
-     * Mapy Servotronic (GM3). Modul adresuje kodowanie blokami, kazdy blok konczy sie bajtem
-     * CODING_OK (AAh) i suma kontrolna XOR. Uklad blokow 1 i 2 jest taki sam dla obu CI:
-     * bajty 0-15 mapa, bajt 16 CODING_OK, bajt 17 suma kontrolna.
-     *
-     * CI=04 (NNV500222): blok 0 = 00-11, SERVO_SPEED_MAP 12-21, SERVO_CURRENT_MAP 24-33
-     * CI=10 (NNV500227): blok 0 = 00-19, SERVO_SPEED_MAP 1A-29, SERVO_CURRENT_MAP 2C-3B
-     *
-     * Prad [mA] = raw * SERVOTRONIC_CURRENT_SCALING (3.533).
-     */
     private val speedMap05Tune = listOf(0, 2, 10, 20, 30, 40, 50, 60, 70, 80, 90, 110, 130, 150, 160, 250)
     private val currentMap05Tune = listOf(243, 191, 172, 163, 154, 146, 139, 131, 122, 116, 110, 95, 76, 56, 45, 29)
 
@@ -83,13 +73,10 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
 
     override suspend fun readCodingIndex(): String? = getIdentification()?.ci?.takeIf { it.isNotEmpty() }
 
-    /** Polozenie map Servotronic w blokach kodowania dla danego CI */
     private data class ServotronicLayout(val speedBlock: Int, val currentBlock: Int, val offset: Int, val size: Int)
 
     private val servotronicLayouts = mapOf(
-        // CI=04: blok 1 = 12-23 (SERVO_SPEED_MAP 12-21), blok 2 = 24-35 (SERVO_CURRENT_MAP 24-33)
         "04" to ServotronicLayout(speedBlock = 1, currentBlock = 2, offset = 0, size = 16),
-        // CI=10: blok 1 = 1A-2B (SERVO_SPEED_MAP 1A-29), blok 2 = 2C-3D (SERVO_CURRENT_MAP 2C-3B)
         "10" to ServotronicLayout(speedBlock = 1, currentBlock = 2, offset = 0, size = 16)
     )
 
@@ -101,7 +88,6 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
         return layout
     }
 
-    /** Blok musi zawierac cala mape oraz bajt sumy kontrolnej na koncu */
     private fun ServotronicLayout.isBlockValid(block: ByteArray?) = block != null && block.size > offset + size
 
     override suspend fun readServotronicPoints(): List<ServotronicPoint>? {
@@ -142,47 +128,9 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
             speedBlock!![layout.offset + i] = point.speed.toByte()
             currentBlock!![layout.offset + i] = point.rawDec.toByte()
         }
-        // writeCoding przelicza sume kontrolna kazdego bloku przed zapisem, poprawiajac takze bledne CS
         return writeCoding(coding)
     }
-    /*
-    @Override
-    public boolean Control(ControlElement controlElement)
-    {
-        byte[] data = new byte[]{0x0C,0x00,0x00,0x00,0x00,0x00,0x00};
-        data[controlElement.byteInBlock + 2] = (byte)controlElement.value;
-        OBDMessage message = InterfaceWrite(data);
-        return  message.valid;
-    }
-     */
-    /*
-    @Override
-    public Map<Integer,byte[]> ReadLiveData() {
-        Map<Integer,byte[]> result = new HashMap<>();
-        OBDMessage message = InterfaceWrite(new byte[] {0x0B,0x00});
-        if (message.valid)
-        {
-            result.put(0x00,message.answer.copyOfRange(3,message.answer.length));
-            return result;
-        }
-        return null;
-    }
 
-    @Override
-    public Intent GetLiveDataActivity(Context context) {
-        return new Intent(context, ActivityLiveData.class);
-    }
-
-    @Override
-    public boolean StartLiveDataRead(List<LiveDataElement> liveDataElements) {
-        return true;
-    }
-*/
-    /**
-     * Odczyt wszystkich blokow kodowania. Zwraca null, jezeli ktorykolwiek blok nie zostal odczytany
-     * poprawnie - odczyt jest zawsze kompletny (bloki 0-2). Suma kontrolna nie jest tu sprawdzana,
-     * zeby mozna bylo odczytac i poprawic kodowanie z blednym CS.
-     */
     override suspend fun readCoding(): List<ByteArray>? {
         val result: MutableList<ByteArray> = ArrayList()
         for (i in 0..0x2) {
@@ -269,7 +217,6 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
         return result
     }
 
-    /** Suma kontrolna bloku: XOR wszystkich bajtow poza ostatnim == ostatni bajt */
     private fun isCodingChecksumValid(block: ByteArray): Boolean {
         if (block.size < 2) return false
         var cs = 0x00

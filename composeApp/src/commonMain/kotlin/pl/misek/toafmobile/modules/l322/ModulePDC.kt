@@ -10,10 +10,6 @@ import pl.misek.toafmobile.modules.r40.ModulePDC
 
 private const val tag = "ModulePDC_L322"
 
-/**
- * PDC dla L322 - ten sam sterownik co w R40, rozni sie tylko kodowaniem (PDC.C03 L30):
- * bloki kodowania 00, 01, 02, 04 i 08. Element listy kodowania i odpowiada blokowi codingBlocks[i].
- */
 class ModulePDC(protocolDS2: ProtocolDS2?) :
     ModulePDC(protocolDS2, ModuleAddress.MODULE_PDC_L322, listOf(CarType.L322)) {
 

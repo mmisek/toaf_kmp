@@ -170,7 +170,7 @@
     {
       "name": "calculated_brightness",
       "block": "0x02",
-      "byte": "0x02",
+      "byte": "0x03",
       "mask": "0xFF",
       "factor_a": "1",
       "factor_b": "0",
@@ -179,7 +179,7 @@
     {
       "name": "battery_voltage",
       "block": "0x02",
-      "byte": "0x03",
+      "byte": "0x04",
       "mask": "0xFF",
       "factor_a": "0.1085",
       "factor_b": "0.7",
@@ -188,7 +188,7 @@
     {
       "name": "nft1",
       "block": "0x02",
-      "byte": "0x04",
+      "byte": "0x05",
       "mask": "0xFF",
       "factor_a": "1",
       "factor_b": "0",
@@ -197,7 +197,7 @@
     {
       "name": "nft2",
       "block": "0x02",
-      "byte": "0x05",
+      "byte": "0x06",
       "mask": "0xFF",
       "factor_a": "1",
       "factor_b": "0",
@@ -206,7 +206,7 @@
     {
       "name": "nft3",
       "block": "0x02",
-      "byte": "0x06",
+      "byte": "0x07",
       "mask": "0xFF",
       "factor_a": "1",
       "factor_b": "0",
@@ -215,7 +215,7 @@
     {
       "name": "nft4",
       "block": "0x02",
-      "byte": "0x07",
+      "byte": "0x08",
       "mask": "0xFF",
       "factor_a": "1",
       "factor_b": "0",
@@ -224,11 +224,29 @@
     {
       "name": "lcd_temperature",
       "block": "0x02",
-      "byte": "0x08",
+      "byte": "0x09",
       "mask": "0xFF",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": ""
+      "unit": " "
+    },
+    {
+      "name": "photosensor",
+      "block": "0x02",
+      "byte": "0x0B",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "lamp_heating",
+      "block": "0x02",
+      "byte": "0x0C",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
     }
   ]
 }

@@ -30,6 +30,7 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 import java.util.Calendar
 import java.util.Locale
+import kotlin.time.Duration.Companion.milliseconds
 
 class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleAddress.MODULE_GS20, listOf(CarType.L322))
     , IModuleLiveData
@@ -163,7 +164,6 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
         0x97 to arrayOf(byteArrayOf(0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17),byteArrayOf(0x05),byteArrayOf(0x09),byteArrayOf(0x0A))
     )
 
-    /** Flagi rodzaju bledu (gorny polbajt), dolny polbajt to wartosc z tabeli FARTTEXTE */
     private val errorTypeFlags = intArrayOf(0x10, 0x20, 0x40, 0x80)
 
     override fun getKoinName() = KoinNames.ModuleL322Gs20
@@ -199,12 +199,6 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean  = true
 
-    /**
-     * Blok 0x00 - STEUERN_STELLGLIED (SGBD GS20): 0C PIN TASTVERHAELTNIS 00, PIN z tabeli STELLGLIEDER,
-     * wartosc (jak w SGBD GS 8.60.1): 0x00 - nie steruj, 0x01-0xFE - takt sekundowy, 0xFF - sterowanie ciagle.
-     * Odpowiedz [4] - STAT_ANSTEUERUNG (0 - sterowanie poprawne).
-     * Blok 0x01 - RESET_ADAPTION: 43 00.
-     */
     override suspend fun control(controlElement: ControlElement): Boolean {
         try {
             when (controlElement.block) {
@@ -213,10 +207,7 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
                     val message = interfaceWrite(
                         byteArrayOf(0x0C, controlElement.byteInBlock.toByte(), setValue.value.coerceIn(0, 0xFF).toByte(), 0x00)
                     )
-                    if (!message.isValid)
-                        return false
-                    // [0] adres, [1] dlugosc, [2] status, [3] PIN, [4] STAT_ANSTEUERUNG, [5] suma kontrolna
-                    return message.answer.size < 6 || message.answer[4].toInt() == 0x00
+                    return message.isValid && message.answer.size < 6 || message.answer[4].toInt() == 0x00
                 }
 
                 0x01 -> return interfaceWrite(byteArrayOf(0x43, 0x00)).isValid
@@ -264,7 +255,7 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
             }
             if (mi.ci.isEmpty()) {
                 reset()
-                delay(1000)
+                delay(1000.milliseconds)
                 return ModulesFunction.getModuleInfo(interfaceWrite(byteArrayOf(0x00)))
             }
         }catch (ex: CancellationException) {
@@ -276,12 +267,6 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
         return mi
     }
 
-    /**
-     * FS_LESEN (SGBD GS20): 04 01, answer[3] - liczba bledow (max 5), rekordy po 0x13 bajtow od answer[4]:
-     * +0 kod bledu, +1 rodzaj (dolny polbajt - wartosc z FARTTEXTE, bity 0x10..0x80 - flagi),
-     * +2 licznik wystapien, +3 licznik CARB, +4.. 3 zestawy danych zamrozonych po 5 bajtow
-     * (3 warunki + km 16 bit big endian), wazne tylko min(licznik wystapien, 3) zestawow.
-     */
     override suspend fun getAllErrors(): List<ModuleError>? {
         var result: MutableList<ModuleError>? = null
         val message = interfaceWrite(byteArrayOf(0x04, 0x01))
@@ -299,7 +284,6 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
                     val frequency = answer[start + 2].toInt() and 0xFF
                     val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
 
-                    // Wartosc 0x00 to "allg. Fehler" - tekst trzymany pod kluczem FE
                     val errorTypeValue = errorType and 0x0F
                     ResourceMapper
                         .stringResource(String.format("gs20_error_detail_%02X", if (errorTypeValue == 0) 0xFE else errorTypeValue))
@@ -382,15 +366,10 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
         const val MAX_BAUD_RATES = 8
         const val DEFAULT_BAUD_RATE = 9600L
         const val FAST_BAUD_RATE = 125000L
-        // Rozmiar nie jest podany w SGBD - do potwierdzenia odczytem w aucie
         const val EEPROM_SIZE = 0x100
         const val EEPROM_BLOCK_SIZE = 0x10
     }
 
-    /**
-     * SGBD GS20 nie zawiera programowania flash - SPEICHER_SCHREIBEN pozwala zapisywac tylko
-     * EEPROM / RAM, brak kasowania i trybu bootloadera (procedura jest w plikach WinKFP).
-     */
     override suspend fun writeFlash(data: ByteArray) {
         _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_main_function_not_supported_yet))
     }
@@ -419,7 +398,6 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
         val steps = (size.toInt() + blockSize - 1) / blockSize
         var x = 0f
         _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_flash_reading))
-        // Gdy sterownik nie podal tablicy predkosci - proba jak dotychczas, gdy podal - tylko jesli 125000 jest na liscie
         val fastBaudRate = baudRates == null || baudRates.contains(FAST_BAUD_RATE)
         if (!fastBaudRate || setEcuBaudRate(FAST_BAUD_RATE)) {
             var i = startAddress
@@ -466,7 +444,7 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
             } catch (ex: CancellationException) {
                 throw ex
             } catch (ex: Exception) {
-                Logger.e { "$tag [readFlash]: ${ex.toString()}" }
+                Logger.e { "$tag [readFlash]: $ex" }
             }
             if (fastBaudRate)
                 setEcuBaudRate(DEFAULT_BAUD_RATE)
@@ -482,10 +460,6 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
     private suspend fun readFlashData(address: Long, size: Int): ByteArray =
         readMemory(MEMORY_DEFAULT, address, size) ?: ByteArray(0)
 
-    /**
-     * SPEICHER_LESEN: 06 TYP A2 A1 A0 N, dane od answer[3] bez sumy kontrolnej.
-     * Typy z tabeli SPEICHER: 00 DEFAULT, 03 EEPROM, 06 FLASH_EPROM, 07 LOG_ADR_RAM.
-     */
     private suspend fun readMemory(memoryType: Int, address: Long, size: Int): ByteArray? {
         val message = interfaceWrite(
             byteArrayOf(
@@ -506,13 +480,12 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
             } catch (ex: CancellationException) {
                 throw ex
             } catch (ex: Exception) {
-                Logger.e { "$tag [readMemory]: ${ex.toString()}, $message" }
+                Logger.e { "$tag [readMemory]: $ex, $message" }
             }
         }
         return null
     }
 
-    /** Wskaznik 24 bit z odpowiedzi na 0D (tablica wskaznikow, indeksy jak w SGBD - od bajtu adresu) */
     private fun getPointer(pointers: OBDMessage, offset: Int): Long? {
         if (!pointers.isValid || pointers.answer.size < offset + 4)
             return null
@@ -522,17 +495,12 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
                 (answer[offset + 2].toLong() and 0xFF)
     }
 
-    /**
-     * MAX_BLOCKLAENGE: wskaznik 0D[0x42..0x44], 1 bajt - maksymalna dlugosc telegramu.
-     * Dane w odpowiedzi = MBL - 4 (adres, dlugosc, status, suma kontrolna), max FLASH_BLOCK_SIZE.
-     */
     private suspend fun readMaxDataBlockLength(pointers: OBDMessage): Int {
         val pointer = getPointer(pointers, 0x42) ?: return FLASH_BLOCK_SIZE
         val mbl = readMemory(MEMORY_DEFAULT, pointer, 1)?.get(0)?.toInt()?.and(0xFF) ?: return FLASH_BLOCK_SIZE
         return if (mbl > 0x14) minOf(mbl - 4, FLASH_BLOCK_SIZE) else FLASH_BLOCK_SIZE
     }
 
-    /** BAUDRATE_LESEN: wskaznik 0D[0x48..0x4A], wpisy po 3 bajty (big endian) do FF FF FF */
     private suspend fun readSupportedBaudRates(pointers: OBDMessage): List<Long>? {
         val pointer = getPointer(pointers, 0x48) ?: return null
         val result = ArrayList<Long>()
@@ -557,10 +525,6 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
     override suspend fun readEeprom(address: Int, size: Int): ByteArray? =
         readMemory(MEMORY_EEPROM, address.toLong(), size)
 
-    /**
-     * Zapis EEPROM (SPEICHER_SCHREIBEN 07 03 A2 A1 A0 N dane, N w bajtach) celowo wylaczony
-     * do czasu weryfikacji w aucie - po zapisie wymagana kontrola CODIER_CS_PRUEFEN (0A).
-     */
     override suspend fun writeEeprom(address: Int, data: ByteArray): Boolean = false
 
     override val eepromWriteAvailable: Boolean = false

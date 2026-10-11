@@ -37,6 +37,7 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 import java.util.Calendar
 import java.util.Locale
+import kotlin.time.Duration.Companion.milliseconds
 
 private const val tag = "ModuleEMS"
 class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramming, IModule,
@@ -65,7 +66,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean {
         liveDataBlocksToRead.clear()
-        for (el in liveDataElements) liveDataBlocksToRead.add(el.block.toByte())
+        for ((_, _, _, block) in liveDataElements) liveDataBlocksToRead.add(block.toByte())
         return securityAccess(0x03.toByte().toInt())
     }
 
@@ -132,7 +133,6 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                         )
                         val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
                         if (message1.isValid) {
-                            // F_HFK (Haeufigkeit) w EMS2K jest w answer[0x0E]; answer[8] to bajt statusu (Fehlerart)
                             errorDescription.add(ResourceHelper.getErrorDescriptionCount(message1.answer[14].toInt() and 0xFF))
                             for (k in 0..7) {
                                 val number = message1.answer[8].toInt() and (0x01 shl k)
@@ -297,7 +297,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                 } catch (ex: CancellationException) {
                     throw ex
                 } catch (ex: Exception) {
-                    Logger.e { "$tag : ${ex.toString()}" }
+                    Logger.e { "$tag : $ex" }
                 }
             }
         } catch (ex: CancellationException) {
@@ -500,7 +500,6 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
     }
 
     override suspend fun writeAif(data: ByteArray): Boolean {
-        // AIF_SCHREIBEN: writeDataByLocalId (0x3B), rekord 0x80 (symetria z odczytem 0x1A/0x80).
         if (!startDiagnosticSession(0x85)) return false
         if (!securityAccess(7)) return false
         return kwp.write(moduleAddress, 0x3B.toByte(), byteArrayOf(0x80.toByte()) + data).isValid
@@ -528,7 +527,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
             _programmingState.tryEmit(FlashProgrammingState.Message("VIN : $vin"))
             endDiagnosticSession()
             try {
-                delay(1000)
+                delay(1000.milliseconds)
             } catch (ex: CancellationException) {
                 throw ex
             } catch (_ : Exception) {
@@ -594,7 +593,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                         } catch (ex: CancellationException) {
                             throw ex
                         } catch (ex: Exception) {
-                            Logger.e{"$tag [WriteFlash]: ${ex.toString()}"}
+                            Logger.e{"$tag [WriteFlash]: $ex"}
                         }
                     } else {
                         _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
@@ -676,7 +675,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
         } catch (ex: CancellationException) {
             throw ex
         } catch (ex: Exception) {
-            Logger.e{"$tag [readFlash] : ${ex.toString()}"}
+            Logger.e{"$tag [readFlash] : $ex"}
         }
     }
 

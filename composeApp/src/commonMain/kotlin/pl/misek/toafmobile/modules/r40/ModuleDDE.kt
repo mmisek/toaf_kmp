@@ -391,7 +391,7 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean {
         liveDataBlocksToRead.clear()
-        for (el in liveDataElements) liveDataBlocksToRead.add(el.block)
+        for ((_, _, _, block) in liveDataElements) liveDataBlocksToRead.add(block)
         getIdentification()
         return true
     }
@@ -479,15 +479,15 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
 
     override suspend fun writeCoding(dataToSave: List<ByteArray>): Boolean {
         val codingElements = JsonSupport.getCodingList(getModuleAddress(), 0)
-        for (codingElement in codingElements) {
+        for ((_, _, block) in codingElements) {
             for ( i in 0..3)
             {
                 val message = kwp.write(
                     moduleAddress, 0x30.toByte(),
                     byteArrayOf(
-                        ddeCodingCells[codingElement.block],
+                        ddeCodingCells[block],
                         0x07
-                    ) + dataToSave[codingElement.block]
+                    ) + dataToSave[block]
                 )
                 if (message.isValid)
                     break
@@ -499,11 +499,11 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                 val message =  kwp.write(
                     moduleAddress,
                     0x30.toByte(),
-                    byteArrayOf(ddeCodingCells[codingElement.block], 0x08)
+                    byteArrayOf(ddeCodingCells[block], 0x08)
                 )
                 if (message.isValid)
                     break
-                delay(300)
+                delay(300.milliseconds)
                 if (i == 3) return false
             }
         }
@@ -945,7 +945,7 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                                 0x31.toByte(),
                                 byteArrayOf(0x02, 0x0F, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00), 2000
                             )
-                            delay(500)
+                            delay(500.milliseconds)
                             val m3 = kwp.write(
                                 moduleAddress,
                                 0x34.toByte(),
@@ -965,7 +965,7 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                                 _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                                         Res.string.activity_flash_programming_flash_erasing,
                                         Res.string.activity_flash_programming_ok))
-                                delay(200)
+                                delay(200.milliseconds)
 
                                 var i = 0
                                 _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
@@ -1076,7 +1076,7 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                     _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_failed))
                     return
                 }
-                delay(1000)
+                delay(1000.milliseconds)
 
                 var x = 0f
                 _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_flash_reading))
@@ -1165,9 +1165,6 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
     }
 
     private suspend fun writeFlashData(data: ByteArray): Boolean {
-        // Przy 38400 8E1 echo bloku 128 B + odpowiedz ECU to ~40 ms, a budzet czasu
-        // w SerialDevice.write to 2 * timeout. 20 ms (budzet 40 ms) bywa za krotkie i
-        // uciecie odpowiedzi daje falszywe isValid=false -> przerwanie zapisu w polowie.
         return kwp.write(
             moduleAddress,
             0x36.toByte(),

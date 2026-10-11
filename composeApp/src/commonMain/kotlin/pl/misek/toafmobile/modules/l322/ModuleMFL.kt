@@ -31,8 +31,6 @@ class ModuleMFL( protocolDS2: ProtocolDS2?) :
 
     override fun getModuleDescription() = Res.string.module_description_mfl
 
-    // Wg SGBD FS_LESEN: 04 01 -> [3] liczba bledow, rekordy 2-bajtowe od [4] (max 7 w bloku):
-    // kod + (czestosc & 0x1F, bit 0x20 = blad aktywny); 04 02 tylko gdy bledow wiecej niz 7.
     override suspend fun getAllErrors(): List<ModuleError>? {
         getIdentification()
         val first = interfaceWrite(byteArrayOf(0x04, 0x01))
@@ -72,7 +70,6 @@ class ModuleMFL( protocolDS2: ProtocolDS2?) :
         val result: MutableMap<Int, ByteArray> = HashMap()
         val message = interfaceWrite(byteArrayOf(0x0B), 500)
         try {
-            // klucz 0x01 zgodnie z "block" w mfl_live_data.json
             if (message.isValid) result[0x01] =
                 message.answer.copyOfRange(3, message.answer.size)
             else

@@ -157,9 +157,6 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
         return null
     }
 
-    // Wg SGBD FS_LESEN: 18 00 00, liczba wpisow w [5], rekordy 3-bajtowe od [6]: kod (2 bajty) + status.
-    // Status: 01 powyzej progu, 02 ponizej progu, 04 przerwa, 08 zwarcie do masy, 10 zwarcie do Ubat,
-    // 20 sporadyczny, 40 obecny, 80 blad aktywny. Wpisy ze statusem 00 SGBD tez pokazuje.
     override suspend fun getAllErrors(): List<ModuleError>? {
         var result: MutableList<ModuleError>? = null
         if (securityAccess(0x05)) {
@@ -311,7 +308,6 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
     }
     override fun getVinLength(): Int = 17
     override suspend fun writeVIN(newVin: String): Boolean {
-        // SGBD VIN_SCHREIBEN akceptuje tylko 17 znakow
         if (newVin.length != getVinLength()) return false
         try {
             if (securityAccess(0x05)) {
@@ -330,7 +326,6 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
         return false
     }
 
-    // Live data wg SGBD: 21 04 (konfiguracja), 21 10 (status OC/RFIS), 21 0F (lock byte)
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean {
         this.liveDataElements = liveDataElements
         securityAccess(0x05)

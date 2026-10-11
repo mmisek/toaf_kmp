@@ -64,6 +64,8 @@
     <string name = "bmbt_live_data_nft3">NFT 3</string>
     <string name = "bmbt_live_data_nft4">NFT 4</string>
     <string name = "bmbt_live_data_lcd_temperature">Температура ЖК-дисплея</string>
+    <string name = "bmbt_live_data_photosensor">Фотодатчик</string>
+    <string name = "bmbt_live_data_lamp_heating">Подогрев лампы</string>
 
     <string name = "bmbt_live_data_value_button_no_button">Нет нажатия</string>
     <string name = "bmbt_live_data_value_several_buttons">Несколько кнопок</string>

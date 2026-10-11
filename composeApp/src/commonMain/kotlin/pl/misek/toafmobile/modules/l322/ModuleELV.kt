@@ -1,5 +1,6 @@
 package pl.misek.toafmobile.modules.l322
 
+import androidx.compose.ui.text.intl.Locale
 import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.control.ControlElement
@@ -32,10 +33,6 @@ class ModuleELV( protocolDS2: ProtocolDS2?) :
 
     override fun getModuleDescription() = Res.string.module_description_elv
 
-    // Wg SGBD FS_LESEN: 04 00 -> [3] liczba bledow, [4] tydzien, [5] rok skasowania pamieci;
-    // 04 01 (bledy 1-10) i 04 02 (bledy 11-20, tylko gdy wiecej niz 10): [3] liczba wpisow,
-    // od [4] rekordy 2-bajtowe: kod + (czestosc & 0x1F, bit 0x20 = blad aktywny).
-    // IS_LESEN: 14 00 - pamiec zdarzen w tym samym formacie.
     override suspend fun getAllErrors(): List<ModuleError>? {
         val header = interfaceWrite(byteArrayOf(0x04, 0x00))
         if (!header.isValid || header.answer.size < 6) return null
@@ -80,12 +77,9 @@ class ModuleELV( protocolDS2: ProtocolDS2?) :
         }
     }
 
-    // Wg SGBD STEUERN: 0C <nr bitu z tabeli BITS> <00/01>; elv_control.json: 0x38 = STAT_GESCH (uzbrojona)
     override suspend fun control(controlElement: ControlElement): Boolean =
         interfaceWrite(byteArrayOf(0x0C, controlElement.block.toByte(), controlElement.value.toByte())).isValid
 
-    // Kodowanie wg ELV.C01 / ELV.C06: 3 bajty (P/N + predkosc, nr kluczyka, znacznik AAh).
-    // Odczyt wg SGBD CODIERDATEN_LESEN: 08 -> dane od [3].
     override suspend fun readCoding(): List<ByteArray>? {
         val message = interfaceWrite(byteArrayOf(0x08))
         try {

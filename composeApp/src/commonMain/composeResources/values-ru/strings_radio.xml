@@ -44,4 +44,26 @@
     <string name="radio_coding_tp_minimal_volume">Минимальная громкость TP</string>
     <string name="radio_coding_rds_region">Регион RDS</string>
 
+    <string name="radio_module_info_serial_dom">Серийный номер (DOM)</string>
+    <string name="radio_control_normal_mode_on">Обычный режим</string>
+    <string name="radio_control_production_mode_on">Производственный режим</string>
+    <string name="radio_control_transport_mode_on">Транспортный режим</string>
+    <string name="radio_control_workshop_mode_on">Режим мастерской</string>
+    <string name="radio_live_data_radio_on">Радио включено</string>
+    <string name="radio_live_data_key_pressed">Нажата кнопка радио</string>
+    <string name="radio_live_data_phone_mute">Отключение звука телефоном</string>
+    <string name="radio_live_data_gal_curve">Кривая GAL</string>
+    <string name="radio_live_data_seek_threshold">Порог поиска</string>
+    <string name="radio_live_data_dsp">DSP установлен</string>
+    <string name="radio_live_data_aux_adapter">Адаптер AUX</string>
+    <string name="radio_live_data_antenna_diversity">Антенна diversity</string>
+    <string name="radio_live_data_vf_volume">Минимальная громкость VF</string>
+    <string name="radio_live_data_gal_speed">Сигнал скорости GAL</string>
+    <string name="radio_live_data_field_strength">Напряжённость поля</string>
+    <string name="radio_live_data_value_aux_none">нет</string>
+    <string name="radio_live_data_value_aux_internal">внутренний</string>
+    <string name="radio_live_data_value_aux_external">внешний</string>
+    <string name="radio_live_data_value_antenna_diversity_absent">нет</string>
+    <string name="radio_live_data_value_antenna_diversity_present">есть</string>
+
 </resources>

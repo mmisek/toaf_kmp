@@ -44,4 +44,26 @@
     <string name="radio_coding_tp_minimal_volume">TP minimum volume</string>
     <string name="radio_coding_rds_region">RDS region</string>
 
+    <string name="radio_module_info_serial_dom">Serial number (DOM)</string>
+    <string name="radio_control_normal_mode_on">Normal mode on</string>
+    <string name="radio_control_production_mode_on">Production mode on</string>
+    <string name="radio_control_transport_mode_on">Transport mode on</string>
+    <string name="radio_control_workshop_mode_on">Workshop mode on</string>
+    <string name="radio_live_data_radio_on">Radio on</string>
+    <string name="radio_live_data_key_pressed">Radio key pressed</string>
+    <string name="radio_live_data_phone_mute">Telephone mute active</string>
+    <string name="radio_live_data_gal_curve">GAL curve</string>
+    <string name="radio_live_data_seek_threshold">Seek threshold</string>
+    <string name="radio_live_data_dsp">DSP present</string>
+    <string name="radio_live_data_aux_adapter">AUX adapter</string>
+    <string name="radio_live_data_antenna_diversity">Antenna diversity</string>
+    <string name="radio_live_data_vf_volume">VF minimum volume</string>
+    <string name="radio_live_data_gal_speed">GAL speed signal</string>
+    <string name="radio_live_data_field_strength">Field strength</string>
+    <string name="radio_live_data_value_aux_none">none</string>
+    <string name="radio_live_data_value_aux_internal">internal</string>
+    <string name="radio_live_data_value_aux_external">external</string>
+    <string name="radio_live_data_value_antenna_diversity_absent">not present</string>
+    <string name="radio_live_data_value_antenna_diversity_present">present</string>
+
 </resources>

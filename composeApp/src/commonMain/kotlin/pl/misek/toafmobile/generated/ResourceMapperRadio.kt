@@ -44,6 +44,27 @@ object ResourceMapperRadio {
             "radio_live_data_value_signal_too_high" -> Res.string.radio_live_data_value_signal_too_high
             "radio_live_data_value_signal_too_low" -> Res.string.radio_live_data_value_signal_too_low
             "radio_module_info_name" -> Res.string.radio_module_info_name
+            "radio_module_info_serial_dom" -> Res.string.radio_module_info_serial_dom
+            "radio_control_normal_mode_on" -> Res.string.radio_control_normal_mode_on
+            "radio_control_production_mode_on" -> Res.string.radio_control_production_mode_on
+            "radio_control_transport_mode_on" -> Res.string.radio_control_transport_mode_on
+            "radio_control_workshop_mode_on" -> Res.string.radio_control_workshop_mode_on
+            "radio_live_data_radio_on" -> Res.string.radio_live_data_radio_on
+            "radio_live_data_key_pressed" -> Res.string.radio_live_data_key_pressed
+            "radio_live_data_phone_mute" -> Res.string.radio_live_data_phone_mute
+            "radio_live_data_gal_curve" -> Res.string.radio_live_data_gal_curve
+            "radio_live_data_seek_threshold" -> Res.string.radio_live_data_seek_threshold
+            "radio_live_data_dsp" -> Res.string.radio_live_data_dsp
+            "radio_live_data_aux_adapter" -> Res.string.radio_live_data_aux_adapter
+            "radio_live_data_antenna_diversity" -> Res.string.radio_live_data_antenna_diversity
+            "radio_live_data_vf_volume" -> Res.string.radio_live_data_vf_volume
+            "radio_live_data_gal_speed" -> Res.string.radio_live_data_gal_speed
+            "radio_live_data_field_strength" -> Res.string.radio_live_data_field_strength
+            "radio_live_data_value_aux_none" -> Res.string.radio_live_data_value_aux_none
+            "radio_live_data_value_aux_internal" -> Res.string.radio_live_data_value_aux_internal
+            "radio_live_data_value_aux_external" -> Res.string.radio_live_data_value_aux_external
+            "radio_live_data_value_antenna_diversity_absent" -> Res.string.radio_live_data_value_antenna_diversity_absent
+            "radio_live_data_value_antenna_diversity_present" -> Res.string.radio_live_data_value_antenna_diversity_present
         else -> {
           Logger.i {"NO RESOURCE for : $resourceName" }
             null

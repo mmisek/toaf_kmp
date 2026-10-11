@@ -6,7 +6,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.CancellationException
 import pl.misek.toafmobile.interfaces.IKWPInterfaceDevice
@@ -23,6 +22,7 @@ import pl.misek.toafmobile.protocols.IProtocol
 import pl.misek.toafmobile.protocols.ProtocolKWPStar
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
+import kotlin.time.Duration.Companion.milliseconds
 
 class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IModuleCoding, IModuleVIN,
     IModuleAdvanceCoding {
@@ -59,7 +59,7 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
             testerPresentJob?.cancel()
             testerPresentJob = scope.launch {
                 while (System.currentTimeMillis() - lastMessageTime < 30_000) {
-                    delay(3000)
+                    delay(3000.milliseconds)
                     if (!testerPresentJobSuspend) {
                         kwp!!.write(moduleAddress, 0x81.toByte(), byteArrayOf(), 300)
                     }
@@ -230,12 +230,12 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
         var result: MutableList<ByteArray>? = null
         testerPresentJobSuspend = true
         if (!testerPresent()) return null
-        delay(200)
+        delay(200.milliseconds)
         if (securityAccess()) {
             testerPresentJobSuspend = false
             return null
         }
-        delay(200)
+        delay(200.milliseconds)
         val message =
             kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(0xD0.toByte()), 200)
         try {
@@ -320,7 +320,7 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
             testerPresentJobSuspend = false
             return false
         }
-        delay(200)
+        delay(200.milliseconds)
         val result = kwp!!.write(
             moduleAddress,
             0x3B.toByte(),

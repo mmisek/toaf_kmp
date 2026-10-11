@@ -19,6 +19,7 @@ import toafmobile.composeapp.generated.resources.module_description_shd
 import toafmobile.composeapp.generated.resources.module_sunroof
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.milliseconds
 
 private const val tag = "ModuleSHD"
 class ModuleSHD(protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddress.MODULE_SHD, listOf(CarType.R40)), IModuleCoding, IModuleLiveData, IModuleControl
@@ -83,7 +84,6 @@ class ModuleSHD(protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddre
                     val errorCode = String.format("%02X", message.answer[4 + 2 * i])
                     val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
                     errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5 + 2 * i].toInt() and 0x1F)))
-                    // wg SGBD FS_LESEN: bit 0x20 (statyczny) w bajcie statusu, razem z czestoscia
                     errorDescription.add(ResourceHelper.getErrorDescriptionIsStatic((message.answer[5 + 2 * i].toInt() and 0x20) == 0x20))
                     if (result == null) result = ArrayList()
                     result.add(ModuleError(ModuleAddress.MODULE_SHD, errorCode, errorDescription))
@@ -98,12 +98,10 @@ class ModuleSHD(protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddre
         return result
     }
 
-    // Wg SGBD STEUERN_DIGITAL: 0C <nr bitu z tabeli BITS> <00/01>.
-    // TIPP_H/Z/A (0x19/0x1B/0x1D) to impuls przycisku - po krotkiej chwili sygnal jest zwalniany.
     override suspend fun control(controlElement: ControlElement): Boolean {
         val result = interfaceWrite(byteArrayOf(0x0C, controlElement.block.toByte(), controlElement.value.toByte())).isValid
         if (result && controlElement.block in listOf(0x19, 0x1B, 0x1D) && controlElement.value != 0) {
-            delay(300)
+            delay(300.milliseconds)
             interfaceWrite(byteArrayOf(0x0C, controlElement.block.toByte(), 0x00))
         }
         return result

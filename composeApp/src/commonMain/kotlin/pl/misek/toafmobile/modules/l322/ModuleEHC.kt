@@ -39,7 +39,6 @@ import toafmobile.composeapp.generated.resources.*
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import kotlin.time.Duration.Companion.milliseconds
-import kotlin.time.measureTime
 
 class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddress.MODULE_EHC, listOf(CarType.L322)),
     IModuleLiveData, IModuleAdvanceControl, IModuleControl, IModuleEepromProgramming, IModuleEHCHeightControl, IModuleEHCCalibration
@@ -52,13 +51,8 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
     private var controlValveDrain: ControlElement? = null
     private var controlCompressorSwitch: ControlElement? = null
     private var heightLiveDataElements: List<LiveDataElement>? = null
-    /** Tryby sterownika (1B 00) sprzed wlaczenia sterowania recznego - przywracane po zakonczeniu */
     private var savedModes: ByteArray? = null
 
-    /**
-     * FARTMATRIX z SGBD: kod typu bledu dla bitow ERROR_TYPE_BITS bajtu typu (answer[6]),
-     * 0xFF - brak opisu, wartosci odpowiadaja tekstom ehc_error_detail_XX (FARTTEXTE).
-     */
     private fun errorTypeMatrix(location: Int): IntArray = when (location) {
         in 0x01..0x0A, in 0x14..0x18, 0x23, 0x24 -> intArrayOf(0x01, 0x02, 0x03, 0xFF, 0x07)
         in 0x1E..0x21 -> intArrayOf(0x0A, 0x0B, 0x0C, 0xFF, 0x07)
@@ -68,7 +62,6 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         else -> intArrayOf(0xFF, 0xFF, 0xFF, 0xFF, 0xFF)
     }
 
-    /** Ponawia telegram, gdy sterownik odpowiada BUSY (A1) - jak petle w FS_LESEN / C_C_LESEN */
     private suspend fun writeWithBusyRetry(data: ByteArray, timeout: Long = 250): OBDMessage {
         var message = interfaceWrite(data, timeout)
         var retries = 0
@@ -135,10 +128,6 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         }
     )
 
-    /**
-     * Bloki 0B: 00 IO_STATUS_LESEN_SENSOREN, 01 IO_STATUS_LESEN_AKTOREN, 02 IO_STATUS_LESEN_SPANNUNGEN.
-     * Dane od answer[3] bez sumy kontrolnej, wartosci 16 bit little endian.
-     */
     override suspend fun readLiveData(): Map<Int, ByteArray>? = readLiveDataBlocks(LIVE_DATA_BLOCKS)
 
     private suspend fun readLiveDataBlocks(blocks: ByteArray): Map<Int, ByteArray>? {
@@ -283,7 +272,6 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
                         errorDescription.add(
                             Pair(
                                 Res.string.ehc_error_detail_average_height_of_car,
-                                // SGBD: wartosc ze znakiem (> 0x7F -> ujemna)
                                 message.answer[16].toInt()
                             )
                         )
@@ -307,16 +295,6 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         return result
     }
 
-    //override fun getAdvanceControlActivity(context: Context): Intent = Intent(context, ActivityCalibrationEHC::class.java)
-
-    //override fun getAdvanceControlTitle(): String =  resources.getString(R.string.activity_control_ehc_calibration_tittle)
-
-    /**
-     * Blok 0x02 - wyjscia (STEUERN_LUFTFEDER): wlaczenie HANDSTEUERMODUS przez odczyt i OR trybow,
-     * 0C 01 b0..b5 co 1 s przez CONTROL_TIME_S, wylaczenie wyjsc i przywrocenie trybow.
-     * Blok 0x1C, bajt 0 - tryby (SG_STATUS_SCHREIBEN_MODI): wartosc != 0 dopisywana do aktualnych trybow,
-     * 0 - wszystkie tryby wylaczone. Bajt 1 - poziom (SG_STATUS_SCHREIBEN_REGLER): 1C 01 poziom 00.
-     */
     override suspend fun control(controlElement: ControlElement): Boolean{
         getControlElements()
         var result = false
@@ -356,7 +334,6 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         return result
     }
 
-    /** SG_STATUS_LESEN_MODI (1B 00): 2 bajty trybow z answer[3..4] */
     private suspend fun readModes(): ByteArray? {
         val message = writeWithBusyRetry(byteArrayOf(0x1B, 0x00))
         return if (message.isValid && message.answer.size >= 6) message.answer.copyOfRange(3, 5) else null
@@ -365,7 +342,6 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
     private fun withHandControl(modes: ByteArray) =
         byteArrayOf(((modes[0].toInt() and 0xFF) or MODE_HAND_CONTROL).toByte(), modes[1])
 
-    /** SG_STATUS_SCHREIBEN_MODI (1C 00 m0 m1) */
     private suspend fun writeModes(modes: ByteArray): Boolean =
         writeWithBusyRetry(byteArrayOf(0x1C, 0x00, modes[0], modes[1]), 500).isValid
 
@@ -380,7 +356,6 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
     //  0x9E                    DIAGNOSEMODE_ERHALTEN      - podtrzymanie trybu diagnostycznego
     // ---------------------------------------------------------------------
 
-    /** ABGLEICHWERT_LESEN */
     override suspend fun readAdjustmentData(): EHCAdjustmentData? {
         val message = interfaceWrite(byteArrayOf(CMD_ADJUSTMENT_READ))
         try {
@@ -394,31 +369,23 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         return null
     }
 
-    /** ABGLEICHWERT_PROGRAMMIEREN */
     suspend fun writeAdjustmentData(adjustmentData: EHCAdjustmentData): Boolean {
         val result = interfaceWrite(byteArrayOf(CMD_ADJUSTMENT_WRITE) + adjustmentData.toByteArray(), 500).isValid
         delay(2000.milliseconds)
         return result
     }
 
-    /** Wysokosci wg sterownika [mm] w kolejnosci FL, FR, RL, RR (IO_STATUS_LESEN_SENSOREN) */
     override suspend fun readSensorHeights(): IntArray? {
         val raw = readSensorHeightsRaw() ?: return null
         val buffer = ByteBuffer.wrap(raw).order(ByteOrder.LITTLE_ENDIAN)
         return IntArray(4) { buffer.getShort(it * 2) / 8 }
     }
 
-    /** Surowe wysokosci czujnikow (8 B, 1/8 mm, LE): FL, FR, RL, RR */
     private suspend fun readSensorHeightsRaw(): ByteArray? {
         val message = interfaceWrite(byteArrayOf(0x0B, 0x00))
         return if (message.isValid && message.answer.size >= 11) message.answer.copyOfRange(3, 11) else null
     }
 
-    /**
-     * Kodowanie czujnikow wysokosci dla osi: Triple(odwrocony lewy, odwrocony prawy, rozdzielczosc L/P).
-     * Bajt 0 bloku @0x1E: przod - lewy 0x08, prawy 0x04; tyl - lewy 0x02, prawy 0x01.
-     * Rozdzielczosc (u16 LE): przod @+4/@+6, tyl @+8/@+10.
-     */
     private suspend fun readSensorCoding(axle: EHCAxle): Triple<Boolean, Boolean, Pair<Int, Int>>? {
         val message = interfaceWrite(byteArrayOf(0x08, 0x00, 0x1E, 0x0C))
         if (!message.isValid || message.answer.size < 15)
@@ -432,12 +399,6 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         }
     }
 
-    /**
-     * Oblicza nowe offsety osi na podstawie zmierzonej wysokosci [mm]
-     * (STATUS_ABGLEICH / FAHRZEUG_HOEHE_ABGLEICHEN - bez zapisu do sterownika).
-     * Wysokosc zmierzona to argument DELTA_HOEHE z SGBD - w tej samej skali co odczyt sterownika
-     * (odchylka od wysokosci nominalnej, + = wyzej).
-     */
     override suspend fun calculateCalibration(axle: EHCAxle, measuredLeft: Int, measuredRight: Int): EHCCalibrationData? {
         try {
             val heights = readSensorHeights() ?: return null
@@ -449,15 +410,12 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
             val oldLeft = (if (axle == EHCAxle.Front) adjustment.offsetFrontLeft else adjustment.offsetRearLeft).toInt() and 0xFFFF
             val oldRight = (if (axle == EHCAxle.Front) adjustment.offsetFrontRight else adjustment.offsetRearRight).toInt() and 0xFFFF
 
-            // korekta [counts] = odchylka[mm] * rozdzielczosc * 1024 / 8 / 5000
             fun correction(deviation: Int, res: Int) = (deviation.toLong() * res * 1024 / 8 / 5000).toInt()
             val correctionLeft = correction(ecuLeft - measuredLeft, resolution.first)
             val correctionRight = correction(ecuRight - measuredRight, resolution.second)
             val newLeft = if (invertLeft) oldLeft - correctionLeft else oldLeft + correctionLeft
             val newRight = if (invertRight) oldRight - correctionRight else oldRight + correctionRight
 
-            // SGBD buduje telegram 0x41 od zera - wysokosci kontroli nieszczelnosci zostaja wyzerowane
-            // (potwierdzone logiem INPA), nalezy je potem zapisac ponownie przez storeLeakHeights
             val newAdjustment = EHCAdjustmentData(adjustment.toByteArray().copyOfRange(0, 8) + ByteArray(8))
             if (axle == EHCAxle.Front) {
                 newAdjustment.offsetFrontLeft = newLeft.toShort()
@@ -489,23 +447,16 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         }
     }
 
-    /** Zapisuje obliczona kalibracje (FAHRZEUG_HOEHE_ABGLEICHEN) - tylko gdy offsety w zakresie 100..900 */
     override suspend fun writeCalibration(calibration: EHCCalibrationData): Boolean =
         calibration.isValid && writeAdjustmentData(calibration.adjustmentData)
 
-    /** HOEHE_SPEICHERN - zapisuje aktualne wysokosci jako referencje kontroli nieszczelnosci */
     override suspend fun storeLeakHeights(): Boolean {
         val adjustment = readAdjustmentData() ?: return false
         val heights = readSensorHeightsRaw() ?: return false
-        // SGBD kopiuje bajty 1:1 (kolejnosc odczytu FL, FR, RL, RR)
         val data = adjustment.toByteArray().copyOfRange(0, 8) + heights
         return writeAdjustmentData(EHCAdjustmentData(data))
     }
 
-    /**
-     * HOEHE_COUNTS_VORGEBEN - ustawia offsety zera [counts] wprost.
-     * Jak w SGBD wysokosci kontroli nieszczelnosci sa zerowane.
-     */
     suspend fun writeOffsetCounts(frontLeft: Int, frontRight: Int, rearLeft: Int, rearRight: Int): Boolean {
         val adjustment = readAdjustmentData() ?: return false
         interfaceWrite(byteArrayOf(0x9E.toByte()))
@@ -516,7 +467,6 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         return writeAdjustmentData(EHCAdjustmentData(adjustment.toByteArray().copyOfRange(0, 8) + ByteArray(8)))
     }
 
-    /** Dopisuje HANDSTEUERMODUS do aktualnych trybow, tryby sprzed sterowania zapamietywane dla stopControl */
     override suspend fun startManualControl(): Boolean {
         val modes = readModes() ?: return false
         if (savedModes == null)
@@ -548,7 +498,6 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
     override suspend fun closeValves(): Boolean =
         interfaceWrite(byteArrayOf(0x0C, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00)).isValid
 
-    /** Zamyka zawory i przywraca tryby sprzed startManualControl (gdy brak - zdejmuje tylko HANDSTEUERMODUS) */
     override suspend fun stopControl(): Boolean {
         val valvesClosed = closeValves()
         val modes = savedModes
@@ -591,16 +540,11 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         } else {
             if (element.u2) buffer.get().toInt() else buffer.get().toInt() and 0xFF
         }
-        // jak w LiveDateViewModel - ujemne od progu sign_from (np. temperatura kompresora > 0xCE)
-        if (element.signFrom >= 0 && rawValue >= element.signFrom)
+        if (element.signFrom in 0..rawValue)
             rawValue -= 1 shl (8 * length)
         return rawValue * element.factorA + element.factorB
     }
 
-    /**
-     * SPEICHER_LESEN / EEPROM_LOEHNERT_LESEN: 06 SEGMENT LOW MIDDLE HIGH N (adres od mlodszego bajtu),
-     * segment 0 - EEPROM, N max 28.
-     */
     override suspend fun readEeprom(address: Int, size: Int): ByteArray? {
         val message = writeWithBusyRetry(
             byteArrayOf(
@@ -622,7 +566,6 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         return data
     }
 
-    /** SPEICHER_SCHREIBEN: 07 SEGMENT LOW MIDDLE HIGH 01 WERT */
     override suspend fun writeEeprom(address: Int, data: ByteArray): Boolean {
         val dataToWrite =
             byteArrayOf(
@@ -635,7 +578,6 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         return writeWithBusyRetry(dataToWrite, 500).isValid
     }
 
-    /** Zapis EEPROM zablokowany do czasu weryfikacji w aucie (wczesniej adres wysylany w odwrotnej kolejnosci) */
     override val eepromWriteAvailable: Boolean = false
 
     override fun getEepromSize(): Int = 512
@@ -658,11 +600,6 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         return (hi shl 8) + low
     }
 
-    /**
-     * Dostep zabezpieczony (KEY_SEED_NORMAL / KEY_SEED_EXPERT z SGBD EHC_2):
-     * 93 <poziom> -> seed w answer[3..4], nastepnie 94 <key_hi> <key_lo>.
-     * Poziom 1 - Zugriffsebene 1 (normal), poziom 2 - Zugriffsebene 2 (expert).
-     */
     suspend fun securityAccess(level : Int) : Boolean
     {
         if (level != SECURITY_LEVEL_NORMAL && level != SECURITY_LEVEL_EXPERT)
@@ -689,14 +626,11 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         const val SECURITY_LEVEL_NORMAL = 1
         const val SECURITY_LEVEL_EXPERT = 2
         val LIVE_DATA_BLOCKS = byteArrayOf(0x00, 0x01, 0x02)
-        /** Bity bajtu typu bledu odpowiadajace kolumnom A1..A5 FARTMATRIX */
         val ERROR_TYPE_BITS = intArrayOf(0x01, 0x02, 0x04, 0x08, 0x40)
         const val ANSWER_BUSY: Byte = 0xA1.toByte()
         const val MAX_BUSY_RETRIES = 50
         const val BUSY_RETRY_DELAY_MS = 100L
-        /** MODI: HANDSTEUERMODUS - bajt 0, bit 0x20 */
         const val MODE_HAND_CONTROL = 0x20
-        /** Czas sterowania wyjsciem z ekranu sterowania [s] (STEUERN_LUFTFEDER: ZEIT) */
         const val CONTROL_TIME_S = 5
     }
 

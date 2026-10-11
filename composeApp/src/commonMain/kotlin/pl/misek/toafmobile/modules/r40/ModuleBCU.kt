@@ -170,7 +170,7 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
             throw ex
         } catch (ex :Exception)
             {
-            Logger.e {"$tag [getAllErrors() -alarm mislock], $ex , $message"}
+            Logger.e {"$tag [getAllErrors() -alarm misslock], $ex , $message"}
         }
         }
         if (!securityAccess()) return null

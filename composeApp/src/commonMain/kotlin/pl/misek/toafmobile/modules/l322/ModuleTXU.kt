@@ -2,7 +2,6 @@ package pl.misek.toafmobile.modules.l322
 
 import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
-import pl.misek.toafmobile.generated.ResourceMapper
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.ModuleInfo
@@ -10,16 +9,10 @@ import pl.misek.toafmobile.modules.ModulesFunction
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.ModuleAddress
 import pl.misek.toafmobile.modules.interfaces.IModule
-import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceCoding
-import pl.misek.toafmobile.modules.interfaces.IModuleCoding
-import pl.misek.toafmobile.modules.interfaces.IModuleVIN
 import pl.misek.toafmobile.protocols.IProtocol
 import pl.misek.toafmobile.protocols.ProtocolKWP
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
-import kotlin.time.Clock
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.todayIn
 import java.util.Locale
 import kotlinx.coroutines.CancellationException
 

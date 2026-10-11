@@ -5,21 +5,24 @@ import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceHelper
 import pl.misek.toafmobile.koin.KoinNames
+import pl.misek.toafmobile.livedata.LiveDataElement
 import pl.misek.toafmobile.modules.ModuleDS2
 import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.ModuleInfo
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.ModuleAddress
 import pl.misek.toafmobile.modules.interfaces.IModuleControl
+import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_description_radio
 import toafmobile.composeapp.generated.resources.module_radio
 import toafmobile.composeapp.generated.resources.radio_module_info_name
+import toafmobile.composeapp.generated.resources.radio_module_info_serial_dom
 import kotlinx.coroutines.CancellationException
 
 private const val tag = "ModuleRadio"
-open class ModuleRadio : ModuleDS2, IModuleControl {
+open class ModuleRadio : ModuleDS2, IModuleControl, IModuleLiveData {
     private val radioType: Map<Int, String> = mapOf(
         0x00 to "C23 MID ECE",
         0x01 to "C23 BM ECE",
@@ -122,18 +125,12 @@ open class ModuleRadio : ModuleDS2, IModuleControl {
                 )
             )
         }
+
         val message = interfaceWrite(byteArrayOf(0x53))
         try {
             if (message.isValid) {
                 val answer = message.answer
-                moduleInfo.serial = String.format(
-                    "%02X%02X%02X%02X%02X",
-                    (answer[3].toInt() and 0xFF),
-                    (answer[4].toInt() and 0xFF),
-                    (answer[5].toInt() and 0xFF),
-                    (answer[6].toInt() and 0xFF),
-                    (answer[7].toInt() and 0xFF)
-                )
+                moduleInfo.serial = (4..7).joinToString("") { String.format("%02X", answer[it].toInt() and 0xFF) }.substring(1)
             }
         } catch (ex: CancellationException) {
             throw ex
@@ -141,36 +138,72 @@ open class ModuleRadio : ModuleDS2, IModuleControl {
         {
             Logger.e {"$tag [getIdentification], $ex, $message"}
         }
+        readSerialNumberDom()?.let { moduleInfo.additionalInfo.add(Pair(Res.string.radio_module_info_serial_dom, it)) }
         return moduleInfo
     }
 
-    /*
-    @Override
-    public Map<Integer,byte[]> ReadLiveData() {
-        Map<Integer,byte[]> result = new HashMap<>();
-        OBDMessage message = InterfaceWrite(new byte[]{0x1B, (byte)0x90});
-        if (message.valid) {
-            result.put(0x00, message.answer.copyOfRange(3, message.answer.length));
+    private suspend fun readSerialNumberDom(): String? {
+        val message = interfaceWrite(byteArrayOf(0x63))
+        try {
+            if (message.isValid) {
+                val answer = message.answer
+                return String.format("%c%c", answer[3].toInt() and 0xFF, answer[4].toInt() and 0xFF) +
+                        (5..10).joinToString("") { String.format("%02X", answer[it].toInt() and 0xFF) }
+            }
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [readSerialNumberDom], $ex, $message"}
         }
-        return  result.size() > 0 ? result : null;
+        return null
     }
 
-    @Override
-    public Intent GetLiveDataActivity(Context context) {
-        return new Intent(context, ActivityLiveData.class);
+    override suspend fun readLiveData(): Map<Int, Any>? {
+        val message = interfaceWrite(byteArrayOf(0x0B))
+        if (!message.isValid) return null
+        try {
+            val answer = message.answer
+            val result: MutableMap<Int, Any> = HashMap()
+            result[1] = answer.copyOfRange(3, 5)
+            val status2 = answer[4].toInt() and 0xFF
+            val vfMagnitude = (status2 shr 4) and 0x0F
+            val vf = if ((status2 and 0x08) == 0x08) vfMagnitude else -vfMagnitude
+            val galDigits = asciiNumber(answer, 6, 3)
+            val fieldStrength = asciiNumber(answer, 9, 2)
+            if (galDigits != null && fieldStrength != null) {
+                val galMode = answer[5].toInt() and 0xFF
+                val galDeciHz = if (galMode == 0x56 || galMode == 0x76) galDigits * 10 else galDigits * 100 * 10 / 125
+                result[2] = byteArrayOf(
+                    vf.toByte(),
+                    ((galDeciHz shr 8) and 0xFF).toByte(),
+                    (galDeciHz and 0xFF).toByte(),
+                    fieldStrength.toByte()
+                )
+            }
+            return result
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex : Exception)
+        {
+            Logger.e {"$tag [readLiveData], $ex, $message"}
+            return null
+        }
     }
 
-    @Override
-    public boolean StartLiveDataRead(List<LiveDataElement> liveDataElements) {
-        return true;
-    }
-*/
+    private fun asciiNumber(data: ByteArray, start: Int, length: Int): Int? =
+        String(CharArray(length) { (data[start + it].toInt() and 0xFF).toChar() }).toIntOrNull()
+
+    override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>) = true
+
     override suspend fun getAllErrors(): List<ModuleError>? {
         val result: MutableList<ModuleError> = ArrayList()
         val message = interfaceWrite(byteArrayOf(0x04, 0x01))
         try {
             if (message.isValid) {
-                for (i in 0 until message.answer[3]) {
+                val count = (message.answer[3].toInt() and 0xFF).let { if (it == 0xFF) 0x0F else it }
+                for (i in 0 until count) {
+                    if (5 + 2 * i >= message.answer.size) break
                     val errorCode = String.format("%02X", message.answer[4 + 2 * i])
                     val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
                     errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5 + 2 * i].toInt() and 0x1F)))
@@ -182,7 +215,7 @@ open class ModuleRadio : ModuleDS2, IModuleControl {
             throw ex
         } catch (ex : Exception)
         {
-            Logger.e {"$ex [getAllErrors], $ex, $message"}
+            Logger.e {"$tag [getAllErrors], $ex, $message"}
         }
         return result
     }
@@ -191,15 +224,10 @@ open class ModuleRadio : ModuleDS2, IModuleControl {
         super.getIdentification()
         when (controlElement.block) {
             0x0C -> if (controlElement.byteInBlock == 0x0A) {
-                val frequency = controlElement.controlSetValue!!.value
+                // STEUERN_FREQUENZ: czestotliwosc w kHz jako 6 cyfr BCD, wartosc w JSON w 0.1 MHz (875 = 87.5 MHz)
+                val digits = String.format("%06d", controlElement.controlSetValue!!.value * 100)
                 return interfaceWrite(
-                    byteArrayOf(
-                        0x0C,
-                        0x0A,
-                        ((frequency shr 16) and 0xFF).toByte(),
-                        ((frequency shr 8) and 0xFF).toByte(),
-                        (frequency and 0xFF).toByte()
-                    )
+                    byteArrayOf(0x0C, 0x0A) + ByteArray(3) { digits.substring(2 * it, 2 * it + 2).toInt(16).toByte() }
                 ).isValid
             } else {
                 return  interfaceWrite(
@@ -209,6 +237,11 @@ open class ModuleRadio : ModuleDS2, IModuleControl {
                     )
                 ).isValid
             }
+
+            0x0F -> return interfaceWrite(
+                byteArrayOf(0x9C.toByte(), controlElement.value.toByte()),
+                1000
+            ).isValid
 
             else -> return false
         }

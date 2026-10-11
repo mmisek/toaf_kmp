@@ -16,12 +16,6 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_description_ike
 import toafmobile.composeapp.generated.resources.module_ipk
 
-/**
- * Zestaw wskaznikow IKE (KMBI) dla L322: identyfikacja i odczyt bledow (jak IPK w R40) oraz kodowanie
- * jako obraz pamieci slow 00-FF. ike_coding.json adresuje ten obraz bajtowo.
- *
- * Pamiec KMBI jest slowowa (WORDMSB): slowo N zajmuje bajty 2*N (:1, starszy) i 2*N+1 (:0, mlodszy).
- */
 class ModuleIKE(protocolDS2: ProtocolDS2?) :
     ModuleDS2(protocolDS2, ModuleAddress.MODULE_IKE, listOf(CarType.L322)),
     IModuleCoding {
@@ -32,11 +26,6 @@ class ModuleIKE(protocolDS2: ProtocolDS2?) :
 
     override fun getModuleDescription() = Res.string.module_description_ike
 
-    /**
-     * Odczyt bledow jak w IPK R40: 04 01, odpowiedz [adr][dl][A0][liczba][kod][rodzaj][licznik]...
-     * (ten sam uklad co pamiec bledow KMBI - kod, Fehlerart, Haeufigkeit). Opisy kodow: ike_error_XX
-     * (brak - "nieznany blad"), bity rodzaju opisywane tekstami ipk_error_desc_XX.
-     */
     override suspend fun getAllErrors(): List<ModuleError>? {
         val message = interfaceWrite(byteArrayOf(0x04, 0x01))
         try {
@@ -68,10 +57,6 @@ class ModuleIKE(protocolDS2: ProtocolDS2?) :
         }
     }
 
-    /**
-     * Skrocony VIN (7 znakow) ze slow 42-44: 42:1/42:0 - litery ASCII, 43:1..43:0 - cyfry 10E4..10E1,
-     * 44:0 (starszy polbajt) - cyfra 10E0. 44:1 to indeks kodowania, mlodszy polbajt 44:0 - cyfra kontrolna.
-     */
     override suspend fun getVIN(): String? {
         val message = interfaceWrite(byteArrayOf(0x06, 0x03, 0x00, 0x00, VIN_WORD.toByte(), 0x03))
         try {
@@ -92,7 +77,6 @@ class ModuleIKE(protocolDS2: ProtocolDS2?) :
         }
     }
 
-    /** Przebieg jak w IPK R40: dedykowana komenda 02 01, odpowiedz od bajtu 4 - 3 bajty BCD */
     override suspend fun getOdometer(): String? {
         val message = interfaceWrite(byteArrayOf(0x02, 0x01))
         try {
@@ -107,7 +91,6 @@ class ModuleIKE(protocolDS2: ProtocolDS2?) :
         }
     }
 
-    /** Odczyt obrazu pamieci kodowania (slowa 00-FF, 512 bajtow) - jak w R40: 06 03 00 00 <slowo> <liczba slow> */
     private suspend fun readImage(): ByteArray? {
         val image = ByteArray(IMAGE_SIZE)
         for (chunk in 0 until IMAGE_SIZE / READ_CHUNK_BYTES) {
@@ -138,11 +121,6 @@ class ModuleIKE(protocolDS2: ProtocolDS2?) :
         return listOf(image)
     }
 
-    /**
-     * Zapis kodowania: przelicza sumy kontrolne i zapisuje (07 03 00 00 <slowo> 04 + 8 bajtow) tylko te
-     * paczki po 4 slowa, ktore roznia sie od aktualnej zawartosci pamieci - dane producenta, VIN, pamiec
-     * bledow i rekordy przebiegu pozostaja nietkniete. Na koniec weryfikacja ponownym odczytem.
-     */
     override suspend fun writeCoding(dataToSave: List<ByteArray>): Boolean {
         val newImage = dataToSave.firstOrNull()
         if (newImage == null || newImage.size != IMAGE_SIZE) {
@@ -172,19 +150,15 @@ class ModuleIKE(protocolDS2: ProtocolDS2?) :
 
     companion object {
         private const val tag = "ModuleIKE"
-        /** Poczatek VIN w pamieci KMBI (slowa 42-44) */
         private const val VIN_WORD = 0x42
-        /** Pamiec kodowania KMBI: slowa 00-FF */
         const val IMAGE_SIZE = 0x200
         private const val READ_CHUNK_BYTES = 16
         private const val WRITE_CHUNK_BYTES = 8
 
-        /** CHECKSUM (slowo 2C:0) - XOR bajtow slow 2D-7F */
         const val CHECKSUM_1_ADDRESS = 0x2C * 2 + 1
         private const val CHECKSUM_1_START = 0x2D * 2
         private const val CHECKSUM_1_END = 0x7F * 2 + 1
 
-        /** CHECKSUM_2 (slowo 80:0) - XOR bajtow od 80:1 do DF:0, z pominieciem samej sumy */
         const val CHECKSUM_2_ADDRESS = 0x80 * 2 + 1
         private const val CHECKSUM_2_START = 0x80 * 2
         private const val CHECKSUM_2_END = 0xDF * 2 + 1
@@ -197,18 +171,12 @@ class ModuleIKE(protocolDS2: ProtocolDS2?) :
             return cs.toByte()
         }
 
-        /** Suma CHECKSUM (2C:0) dla obrazu pamieci; null jezeli obraz jest za krotki */
         fun calculateChecksum1(image: ByteArray): Byte? =
             if (image.size > CHECKSUM_1_END) xorRange(image, CHECKSUM_1_START, CHECKSUM_1_END, CHECKSUM_1_ADDRESS) else null
 
-        /** Suma CHECKSUM_2 (80:0) dla obrazu pamieci; null jezeli obraz jest za krotki */
         fun calculateChecksum2(image: ByteArray): Byte? =
             if (image.size > CHECKSUM_2_END) xorRange(image, CHECKSUM_2_START, CHECKSUM_2_END, CHECKSUM_2_ADDRESS) else null
 
-        /**
-         * Zwraca kopie obrazu pamieci z przeliczonymi sumami kontrolnymi.
-         * Suma, dla ktorej obraz jest za krotki, pozostaje bez zmian.
-         */
         fun calculateCodingChecksums(image: ByteArray): ByteArray {
             val result = image.copyOf()
             calculateChecksum1(result)?.let { result[CHECKSUM_1_ADDRESS] = it }
@@ -216,7 +184,6 @@ class ModuleIKE(protocolDS2: ProtocolDS2?) :
             return result
         }
 
-        /** true, jezeli obie sumy (dostepne w obrazie) sa zgodne */
         fun isCodingChecksumValid(image: ByteArray): Boolean {
             val cs1 = calculateChecksum1(image)
             val cs2 = calculateChecksum2(image)

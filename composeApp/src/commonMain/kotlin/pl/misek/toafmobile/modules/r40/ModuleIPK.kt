@@ -221,6 +221,19 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
         }
     }
 
+    /*
+     * Bity rodzaju bledu wg FS_LESEN (KOMBI R40): 01 zwarcie do U-Batt, 02 zwarcie do masy,
+     * 04 przerwa w obwodzie, 08 nieprawidlowy zakres pracy, 40 blad obecny, 80 blad sporadyczny.
+     */
+    private val errorTypeDescriptions = listOf(
+        0x01 to "ipk_error_desc_01",
+        0x02 to "ipk_error_desc_02",
+        0x04 to "ipk_error_desc_03",
+        0x08 to "ipk_error_desc_04",
+        0x40 to "ipk_error_desc_40",
+        0x80 to "ipk_error_desc_80"
+    )
+
     override suspend fun getAllErrors(): List<ModuleError>? {
         var result: MutableList<ModuleError>? = null
         val message = interfaceWrite(byteArrayOf(0x04, 0x01))
@@ -230,11 +243,11 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
                     val errorCode = String.format("%02X", message.answer[4 + 3 * i])
                     val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
                     errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[6 + 3 * i].toInt() and 0xFF)))
-                    for (j in 0..6) {
-                        val x = (message.answer[5 + 3 * i].toInt() and (1 shl j))
-                        if (x == (1 shl j)) {
+                    val errorType = message.answer[5 + 3 * i].toInt() and 0xFF
+                    errorTypeDescriptions.forEach { (bit, resKey) ->
+                        if ((errorType and bit) == bit) {
                             ResourceMapper
-                                .stringResource(String.format("ipk_error_desc_%02X", x))
+                                .stringResource(resKey)
                                 ?.let { errorDescription.add(Pair(it, null)) }
                         }
                     }
@@ -306,8 +319,8 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
 
     private suspend fun serviceIntervalReset(serviceType: ServiceType): Boolean {
         if (serviceType == ServiceType.All) {
-            for (i in 0..2) {
-                if (!interfaceWrite(byteArrayOf(0x0C, 0x12, (2 * i).toByte())).isValid) return false
+            for (i in byteArrayOf(0x01,0x02,0x04)) {
+                if (!interfaceWrite(byteArrayOf(0x0C, 0x12, i)).isValid) return false
             }
             return true
         } else {

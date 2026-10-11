@@ -10,7 +10,6 @@ import pl.misek.toafmobile.modules.ModuleDS2
 import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.ModuleAddress
-import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceControl
 import pl.misek.toafmobile.modules.interfaces.IModuleCoding
 import pl.misek.toafmobile.modules.interfaces.IModuleControl
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
@@ -234,7 +233,6 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
             return false
         }
         if (ci == "11") {
-            // LCM.C11: bloki 01-0D to PROGRAMMBLOCK zalezny od rynku, wybierany bajtem 01'01 (5E - ECE, 82 - US)
             val marketData =
                 if (data[1][0x01] == marketEce[0x00][0x01]) marketEce else marketUs
             for (i in marketData.indices)
@@ -278,13 +276,10 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
                 ).isValid
             ) return false
         }
-        if (!interfaceWrite(byteArrayOf(0x07, 0x01, 0x3C, 0xFF.toByte())).isValid) return false
-        return interfaceWrite(byteArrayOf(0x07, 0x01, 0x33, 0x10)).isValid
+        return interfaceWrite(byteArrayOf(0x07, 0x01, 0x3C, 0xFF.toByte())).isValid &&
+                interfaceWrite(byteArrayOf(0x07, 0x01, 0x33, 0x10)).isValid
     }
 
-    // CHECKSUM_1: XOR bajtow 00-1D bloku LWR zapisany w ostatnim bajcie (1E)
-    // CHECKSUM_2: XOR bajtow 01-0E bloku ustawien pojazdu zapisany w bajcie 0F
-    // LCM.C11: LWR = blok 0E, ustawienia = blok 0F; LCM.C12: LWR = blok 05, ustawienia = blok 07
     private fun calculateChecksum(data: List<ByteArray>, ci: String): List<ByteArray> {
         val (lwrBlock, vehicleBlock) = when (ci) {
             "11" -> 0x0E to 0x0F

@@ -25,6 +25,7 @@ import toafmobile.composeapp.generated.resources.*
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import kotlin.time.Duration.Companion.milliseconds
 
 class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
     IModuleControl {
@@ -363,7 +364,7 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
             var continueProcess = true
             _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_ecu_reset))
             reset()
-            delay(10000)
+            delay(10000.milliseconds)
             if (!moduleInit()) {
             _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                     Res.string.activity_flash_programming_ecu_init,
@@ -382,7 +383,7 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
                     )
                 continueProcess = false
             }
-            delay(200)
+            delay(200.milliseconds)
             if (continueProcess) if (!startDiagnosticSession(0x85.toByte())) {
                 continueProcess = false
                 _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
@@ -391,23 +392,23 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
             } else _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                     Res.string.activity_flash_programming_diagnostic_session,
                     Res.string.activity_flash_programming_ok))
-            delay(200)
+            delay(200.milliseconds)
             if (continueProcess) if (!closeConnection()) continueProcess = false
-            delay(200)
+            delay(200.milliseconds)
             if (continueProcess) if (!moduleInit()) {
                 _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                         Res.string.activity_flash_programming_ecu_init,
                         Res.string.activity_flash_programming_failed))
                 continueProcess = false
             }
-            delay(200)
+            delay(200.milliseconds)
             if (continueProcess) if (!kwp!!.write(
                     moduleAddress,
                     0x10.toByte(),
                     byteArrayOf(0x85.toByte(), 0x00)
                 ).isValid
             ) continueProcess = false
-            delay(200)
+            delay(200.milliseconds)
             if (continueProcess) for (i in 0..99) if (!securityAccess(
                     0x07.toByte()
                 )
@@ -415,7 +416,7 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
                 _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                         Res.string.activity_flash_programming_security_access,
                         Res.string.activity_flash_programming_failed))
-                delay(5000)
+                delay(5000.milliseconds)
             } else {
                 _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                         Res.string.activity_flash_programming_security_access,
@@ -433,7 +434,7 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
                 else
                     _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_security_access,Res.string.activity_flash_programming_ok)));
              */
-            delay(1000)
+            delay(1000.milliseconds)
             continueProcess = true
             var x = 0
             _programmingState.tryEmit(FlashProgrammingState.Progress(0))
