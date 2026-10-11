@@ -1,0 +1,200 @@
+{
+  "elements": [
+    {
+      "name": "odometer_leading_zeros",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x01",
+      "coding_index": [
+        "01"
+      ],
+      "coding_values": [
+        {
+          "data": "0x00",
+          "text": "active"
+        },
+        {
+          "data": "0x01",
+          "text": "not_active"
+        }
+      ]
+    },
+    {
+      "name": "aircon",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x02",
+      "coding_index": [
+        "01"
+      ],
+      "coding_values": [
+        {
+          "data": "0x01",
+          "text": "active"
+        },
+        {
+          "data": "0x00",
+          "text": "not_active"
+        }
+      ]
+    },
+    {
+      "name": "brake_system_input",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x04",
+      "coding_index": [
+        "01"
+      ],
+      "coding_values": [
+        {
+          "data": "0x01",
+          "text": "active"
+        },
+        {
+          "data": "0x00",
+          "text": "not_active"
+        }
+      ]
+    },
+    {
+      "name": "overspeed_warning",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x08",
+      "coding_index": [
+        "01"
+      ],
+      "coding_values": [
+        {
+          "data": "0x01",
+          "text": "active"
+        },
+        {
+          "data": "0x00",
+          "text": "not_active"
+        }
+      ]
+    },
+    {
+      "name": "sia_distance_service",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x10",
+      "coding_index": [
+        "01"
+      ],
+      "coding_values": [
+        {
+          "data": "0x01",
+          "text": "active"
+        },
+        {
+          "data": "0x00",
+          "text": "not_active"
+        }
+      ]
+    },
+    {
+      "name": "sia_time_service",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x20",
+      "coding_index": [
+        "01"
+      ],
+      "coding_values": [
+        {
+          "data": "0x01",
+          "text": "active"
+        },
+        {
+          "data": "0x00",
+          "text": "not_active"
+        }
+      ]
+    },
+    {
+      "name": "odo_offset",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0xFF",
+      "coding_index": [
+        "01"
+      ],
+      "custom_values": {
+        "min": "0",
+        "max": "255"
+      }
+    },
+    {
+      "name": "sia_liter_limit",
+      "block": "0x04",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "coding_index": [
+        "01"
+      ],
+      "coding_values": [
+        {
+          "data": "0x05B8",
+          "text": "m47r_2liter_man"
+        },
+        {
+          "data": "0x0750",
+          "text": "1_8l_k_man"
+        },
+        {
+          "data": "0x08D0",
+          "text": "2_0l_kv6_man"
+        },
+        {
+          "data": "0x0918",
+          "text": "2_5l_kv6_man"
+        },
+        {
+          "data": "0x0648",
+          "text": "m47r_2liter_aut"
+        },
+        {
+          "data": "0x0978",
+          "text": "1_8l_k_aut"
+        },
+        {
+          "data": "0x0A68",
+          "text": "2_0l_kv6_aut"
+        },
+        {
+          "data": "0x0AE0",
+          "text": "2_5l_kv6_aut"
+        }
+      ]
+    },
+    {
+      "name": "sia_time_limit",
+      "block": "0x04",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "coding_index": [
+        "01"
+      ],
+      "custom_values": {
+        "min": "0",
+        "max": "65535"
+      }
+    },
+    {
+      "name": "sia_interval_distance",
+      "block": "0x04",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "coding_index": [
+        "01"
+      ],
+      "custom_values": {
+        "min": "0",
+        "max": "65535"
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_kombi">Cuadro de instrumentos (KOMBI)</string>
+    <string name="kombi_error_status_stored_not_present">Error no presente, memorizado</string>
+    <string name="kombi_error_status_present_not_stored">Error presente, aún no memorizado (antirrebote)</string>
+    <string name="kombi_error_status_present_stored">Error presente y memorizado</string>
+    <string name="kombi_error_status_test_not_complete">Condiciones de prueba aún no cumplidas</string>
+    <string name="kombi_error_status_warning_lamp">Requiere encender el testigo de advertencia</string>
+
+    <string name="kombi_coding_odometer_leading_zeros">Odómetro - ceros a la izquierda</string>
+    <string name="kombi_coding_aircon">Aire acondicionado (DIESEL/KV6/EE. UU./Canadá)</string>
+    <string name="kombi_coding_brake_system_input">Entrada del sistema de frenos (NAS)</string>
+    <string name="kombi_coding_overspeed_warning">Aviso de exceso de velocidad (Golfo)</string>
+    <string name="kombi_coding_sia_distance_service">Intervalo de servicio - servicio por distancia (NG)</string>
+    <string name="kombi_coding_sia_time_service">Intervalo de servicio - servicio por tiempo (NG)</string>
+    <string name="kombi_coding_odo_offset">Desplazamiento del odómetro</string>
+    <string name="kombi_coding_sia_liter_limit">Intervalo de servicio - límite de combustible</string>
+    <string name="kombi_coding_sia_time_limit">Intervalo de servicio - límite de tiempo [días]</string>
+    <string name="kombi_coding_sia_interval_distance">Intervalo de servicio - distancia</string>
+</resources>

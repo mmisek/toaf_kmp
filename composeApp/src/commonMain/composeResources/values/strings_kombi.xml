@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_kombi">Instrument pack (KOMBI)</string>
+    <string name="kombi_error_status_stored_not_present">Error not present, stored</string>
+    <string name="kombi_error_status_present_not_stored">Error present, not yet stored (debouncing)</string>
+    <string name="kombi_error_status_present_stored">Error present and stored</string>
+    <string name="kombi_error_status_test_not_complete">Test conditions not yet met</string>
+    <string name="kombi_error_status_warning_lamp">Warning lamp requested</string>
+
+    <string name="kombi_coding_odometer_leading_zeros">Odometer - leading zeros</string>
+    <string name="kombi_coding_aircon">Air conditioning (DIESEL/KV6/USA/Canada)</string>
+    <string name="kombi_coding_brake_system_input">Brake system input (NAS)</string>
+    <string name="kombi_coding_overspeed_warning">Overspeed warning (Gulf)</string>
+    <string name="kombi_coding_sia_distance_service">Service interval - distance service (NG)</string>
+    <string name="kombi_coding_sia_time_service">Service interval - time service (NG)</string>
+    <string name="kombi_coding_odo_offset">Odometer offset</string>
+    <string name="kombi_coding_sia_liter_limit">Service interval - fuel limit</string>
+    <string name="kombi_coding_sia_time_limit">Service interval - time limit [days]</string>
+    <string name="kombi_coding_sia_interval_distance">Service interval - distance</string>
+</resources>

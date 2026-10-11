@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_kombi">Комбинация приборов (KOMBI)</string>
+    <string name="kombi_error_status_stored_not_present">Ошибка отсутствует, сохранена</string>
+    <string name="kombi_error_status_present_not_stored">Ошибка присутствует, ещё не сохранена (подавление дребезга)</string>
+    <string name="kombi_error_status_present_stored">Ошибка присутствует и сохранена</string>
+    <string name="kombi_error_status_test_not_complete">Условия теста ещё не выполнены</string>
+    <string name="kombi_error_status_warning_lamp">Требуется включение контрольной лампы</string>
+
+    <string name="kombi_coding_odometer_leading_zeros">Одометр - ведущие нули</string>
+    <string name="kombi_coding_aircon">Кондиционер (DIESEL/KV6/США/Канада)</string>
+    <string name="kombi_coding_brake_system_input">Вход тормозной системы (NAS)</string>
+    <string name="kombi_coding_overspeed_warning">Предупреждение о превышении скорости (Залив)</string>
+    <string name="kombi_coding_sia_distance_service">Сервисный интервал - сервис по пробегу (NG)</string>
+    <string name="kombi_coding_sia_time_service">Сервисный интервал - сервис по времени (NG)</string>
+    <string name="kombi_coding_odo_offset">Смещение одометра</string>
+    <string name="kombi_coding_sia_liter_limit">Сервисный интервал - лимит топлива</string>
+    <string name="kombi_coding_sia_time_limit">Сервисный интервал - лимит времени [дни]</string>
+    <string name="kombi_coding_sia_interval_distance">Сервисный интервал - пробег</string>
+</resources>

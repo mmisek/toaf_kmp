@@ -33,6 +33,7 @@ object ResourceMapper {
            "dsc" -> ResourceMapperDsc.stringResource(resourceName)
            "edc15" -> ResourceMapperEdc15.stringResource(resourceName)
            "ehc" -> ResourceMapperEhc.stringResource(resourceName)
+           "kombi" -> ResourceMapperKombi.stringResource(resourceName)
            "elv" -> ResourceMapperElv.stringResource(resourceName)
            "ems" -> ResourceMapperEms.stringResource(resourceName)
            "ews" -> ResourceMapperEws.stringResource(resourceName)

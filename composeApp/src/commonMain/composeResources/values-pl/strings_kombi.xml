@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_kombi">Zestaw wskaźników (KOMBI)</string>
+    <string name="kombi_error_status_stored_not_present">Błąd nieobecny, zapisany</string>
+    <string name="kombi_error_status_present_not_stored">Błąd obecny, jeszcze niezapisany (eliminacja drgań)</string>
+    <string name="kombi_error_status_present_stored">Błąd obecny i zapisany</string>
+    <string name="kombi_error_status_test_not_complete">Warunki testu jeszcze niespełnione</string>
+    <string name="kombi_error_status_warning_lamp">Wymaga zapalenia lampki ostrzegawczej</string>
+
+    <string name="kombi_coding_odometer_leading_zeros">Licznik przebiegu - zera wiodące</string>
+    <string name="kombi_coding_aircon">Klimatyzacja (DIESEL/KV6/USA/Kanada)</string>
+    <string name="kombi_coding_brake_system_input">Wejście układu hamulcowego (NAS)</string>
+    <string name="kombi_coding_overspeed_warning">Ostrzeżenie o przekroczeniu prędkości (Zatoka)</string>
+    <string name="kombi_coding_sia_distance_service">Interwał serwisowy - serwis wg przebiegu (NG)</string>
+    <string name="kombi_coding_sia_time_service">Interwał serwisowy - serwis wg czasu (NG)</string>
+    <string name="kombi_coding_odo_offset">Przesunięcie licznika przebiegu</string>
+    <string name="kombi_coding_sia_liter_limit">Interwał serwisowy - limit paliwa</string>
+    <string name="kombi_coding_sia_time_limit">Interwał serwisowy - limit czasu [dni]</string>
+    <string name="kombi_coding_sia_interval_distance">Interwał serwisowy - przebieg</string>
+</resources>
