@@ -49,5 +49,6 @@ enum class KoinNames {
 
     ModuleL20Ccu,
     ModuleL20Kombi,
+    ModuleL20Asc,
     LiveDataLogFolder,
 }

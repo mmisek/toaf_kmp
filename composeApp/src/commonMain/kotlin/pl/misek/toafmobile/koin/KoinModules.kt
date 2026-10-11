@@ -27,6 +27,7 @@ import pl.misek.toafmobile.modules.ModulesManager
 import pl.misek.toafmobile.modules.interfaces.IModule
 import pl.misek.toafmobile.modules.l314.ModuleCCU
 import pl.misek.toafmobile.modules.l314.ModuleKOMBI
+import pl.misek.toafmobile.modules.l314.ModuleASC
 import pl.misek.toafmobile.modules.l322.ModuleDSC
 import pl.misek.toafmobile.modules.l322.ModuleEHC
 import pl.misek.toafmobile.modules.l322.ModuleELV
@@ -124,6 +125,7 @@ val commonModules = module {
     //L20
     single(named(KoinNames.ModuleL20Ccu.name)) { ModuleCCU(kwp = get())}
     single(named(KoinNames.ModuleL20Kombi.name)) { ModuleKOMBI(kwp = get())}
+    single(named(KoinNames.ModuleL20Asc.name)) { ModuleASC(kwp = get())}
 
     viewModel { (module : IModule) ->
         LiveDateViewModel(

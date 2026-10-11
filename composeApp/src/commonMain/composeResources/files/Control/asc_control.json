@@ -1,0 +1,100 @@
+{
+  "elements": [
+    {
+      "name": "evvl",
+      "block": "0x01",
+      "byte": "0x00",
+      "value": "0x01"
+    },
+    {
+      "name": "avvl",
+      "block": "0x01",
+      "byte": "0x00",
+      "value": "0x02"
+    },
+    {
+      "name": "evvr",
+      "block": "0x01",
+      "byte": "0x00",
+      "value": "0x04"
+    },
+    {
+      "name": "avvr",
+      "block": "0x01",
+      "byte": "0x00",
+      "value": "0x08"
+    },
+    {
+      "name": "evhl",
+      "block": "0x01",
+      "byte": "0x00",
+      "value": "0x10"
+    },
+    {
+      "name": "avhl",
+      "block": "0x01",
+      "byte": "0x00",
+      "value": "0x20"
+    },
+    {
+      "name": "evhr",
+      "block": "0x01",
+      "byte": "0x00",
+      "value": "0x40"
+    },
+    {
+      "name": "avhr",
+      "block": "0x01",
+      "byte": "0x00",
+      "value": "0x80"
+    },
+    {
+      "name": "sv1",
+      "block": "0x01",
+      "byte": "0x01",
+      "value": "0x01"
+    },
+    {
+      "name": "sv2",
+      "block": "0x01",
+      "byte": "0x01",
+      "value": "0x02"
+    },
+    {
+      "name": "euv1",
+      "block": "0x01",
+      "byte": "0x01",
+      "value": "0x04"
+    },
+    {
+      "name": "euv2",
+      "block": "0x01",
+      "byte": "0x01",
+      "value": "0x08"
+    },
+    {
+      "name": "pump",
+      "block": "0x01",
+      "byte": "0x01",
+      "value": "0x10"
+    },
+    {
+      "name": "bls",
+      "block": "0x01",
+      "byte": "0x01",
+      "value": "0x20"
+    },
+    {
+      "name": "bleed_left",
+      "block": "0x02",
+      "byte": "0x00",
+      "value": "0x00"
+    },
+    {
+      "name": "bleed_right",
+      "block": "0x02",
+      "byte": "0x00",
+      "value": "0x01"
+    }
+  ]
+}

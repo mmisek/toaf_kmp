@@ -1,0 +1,40 @@
+{
+  "livedata": [
+    {
+      "name": "wheel_speed_fl",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "wheel_speed_fr",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "wheel_speed_rl",
+      "block": "0x01",
+      "byte": "0x04",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "km/h"
+    },
+    {
+      "name": "wheel_speed_rr",
+      "block": "0x01",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "0.01",
+      "factor_b": "0",
+      "unit": "km/h"
+    }
+  ]
+}

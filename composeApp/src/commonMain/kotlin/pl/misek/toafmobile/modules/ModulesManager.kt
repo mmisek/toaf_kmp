@@ -45,6 +45,7 @@ import org.koin.core.component.get
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.modules.l314.ModuleCCU
 import pl.misek.toafmobile.modules.l314.ModuleKOMBI
+import pl.misek.toafmobile.modules.l314.ModuleASC
 import pl.misek.toafmobile.modules.l322.ModuleGS8601
 import pl.misek.toafmobile.modules.l322.ModuleME72
 import pl.misek.toafmobile.modules.l322.ModuleTXU
@@ -101,7 +102,8 @@ class ModulesManager() : KoinComponent
             get<ModuleNavMk3>(named(KoinNames.ModuleR40NavMk3.name)),
             get<ModuleSCU>(named(KoinNames.ModuleRJOScu.name)),
             get<ModuleCCU>(named(KoinNames.ModuleL20Ccu.name)),
-            get<ModuleKOMBI>(named(KoinNames.ModuleL20Kombi.name)))
+            get<ModuleKOMBI>(named(KoinNames.ModuleL20Kombi.name)),
+            get<ModuleASC>(named(KoinNames.ModuleL20Asc.name)))
     }
 
     @Composable

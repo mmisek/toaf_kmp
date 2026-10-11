@@ -42,16 +42,23 @@ class ProtocolKWPStar(private var device: IInterfaceDevice?, private val useDela
     override fun setSpeed(baud: Int) {
     }
 
-    private suspend fun writeKWPStar(address: Byte, command: Byte, data: ByteArray, timeout: Long?): OBDMessage {
+    /** Naglowek z osobnym bajtem dlugosci: 80 [adres] F7 [dlugosc] [SID] [dane] (np. ASC L314) */
+    suspend fun writeWithLengthByte(address: Byte, command: Byte, data: ByteArray, timeout: Long?): OBDMessage {
+        return writeKWPStar(address, command, data, timeout, true)
+    }
+
+    private suspend fun writeKWPStar(address: Byte, command: Byte, data: ByteArray, timeout: Long?, lengthByte: Boolean = false): OBDMessage {
         val message = OBDMessage()
         if (!connect()) return message
         var checksum: Byte
-        val dataToSend = ByteArray(4 + data.size + 1)
-        dataToSend[0] = (0x80 + data.size + 1).toByte()
+        val headerSize = if (lengthByte) 5 else 4
+        val dataToSend = ByteArray(headerSize + data.size + 1)
+        dataToSend[0] = if (lengthByte) 0x80.toByte() else (0x80 + data.size + 1).toByte()
         dataToSend[1] = address
         dataToSend[2] = 0xF7.toByte()
-        dataToSend[3] = command
-        System.arraycopy(data, 0, dataToSend, 4, data.size)
+        if (lengthByte) dataToSend[3] = (data.size + 1).toByte()
+        dataToSend[headerSize - 1] = command
+        System.arraycopy(data, 0, dataToSend, headerSize, data.size)
         checksum = 0x00
         for (i in 0 until dataToSend.size - 1) checksum = (checksum + dataToSend[i]).toByte()
         dataToSend[dataToSend.size - 1] = (checksum.toInt() and 0xFF).toByte()
