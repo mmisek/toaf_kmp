@@ -30,8 +30,29 @@ object ResourceMapperAbs53 {
             "abs53_live_data_wheel_speed_rl" -> Res.string.abs53_live_data_wheel_speed_rl
             "abs53_live_data_wheel_speed_rr" -> Res.string.abs53_live_data_wheel_speed_rr
             "abs53_control_brake_lamp_test" -> Res.string.abs53_control_brake_lamp_test
+            "abs53_error_1" -> Res.string.abs53_error_1
+            "abs53_error_2" -> Res.string.abs53_error_2
+            "abs53_error_3" -> Res.string.abs53_error_3
+            "abs53_error_4" -> Res.string.abs53_error_4
+            "abs53_error_5" -> Res.string.abs53_error_5
+            "abs53_error_6" -> Res.string.abs53_error_6
+            "abs53_error_7" -> Res.string.abs53_error_7
+            "abs53_error_8" -> Res.string.abs53_error_8
+            "abs53_error_9" -> Res.string.abs53_error_9
+            "abs53_error_10" -> Res.string.abs53_error_10
             "abs53_error_11" -> Res.string.abs53_error_11
+            "abs53_error_12" -> Res.string.abs53_error_12
+            "abs53_error_13" -> Res.string.abs53_error_13
+            "abs53_error_14" -> Res.string.abs53_error_14
             "abs53_error_15" -> Res.string.abs53_error_15
+            "abs53_error_16" -> Res.string.abs53_error_16
+            "abs53_error_17" -> Res.string.abs53_error_17
+            "abs53_error_18" -> Res.string.abs53_error_18
+            "abs53_error_19" -> Res.string.abs53_error_19
+            "abs53_error_20" -> Res.string.abs53_error_20
+            "abs53_error_21" -> Res.string.abs53_error_21
+            "abs53_error_22" -> Res.string.abs53_error_22
+            "abs53_error_23" -> Res.string.abs53_error_23
         else -> {
           Logger.i {"NO RESOURCE for : $resourceName" }
             null

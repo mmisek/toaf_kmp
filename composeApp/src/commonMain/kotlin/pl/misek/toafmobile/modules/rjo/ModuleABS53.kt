@@ -79,22 +79,25 @@ class ModuleABS53(private var kw1281: ProtocolKW1281) : IModule, IModuleLiveData
     override suspend fun getOdometer(): String? = null
 
     /**
-     * 07 - kazdy blad w osobnym bloku FC: [kod][..][..][..][status], status 04 - aktywny, 02 - pasywny.
-     * Numer bledu jak w Delphi: (kod - 3) / 2 (np. 21h -> 15 czujnik predkosci przedniego kola, 19h -> 11 wlacznik swiatel stop).
+     * 07 - bloki FC, w kazdym do 5 bledow po 5 bajtow: [kod][..][..][..][status], status 04 - aktywny, 02 - pasywny.
+     * Numer bledu jak w Delphi - pozycja kodu w tabeli obslugiwanych kodow [DTC_NUMBERS] (1..23).
+     * Pozostale kody zglaszane jako nieznany blad z surowym kodem (xNN).
      */
     override suspend fun getAllErrors(): List<ModuleError>? {
         val blocks = transact(TITLE_READ_DTC, multiBlock = true) ?: return null
         val result: MutableList<ModuleError> = ArrayList()
         for (block in blocks) {
-            if (block.title != TITLE_DTC || block.data.size < 5) continue
-            val code = block.data[0].toInt() and 0xFF
-            if (code == 0x00 || code == 0xFF) continue
-            val status = block.data[4].toInt() and 0xFF
-            val description: MutableList<Pair<StringResource, Any?>> = ArrayList()
-            if ((status and 0x04) == 0x04 || (status and 0x02) == 0x02)
-                description.add(ResourceHelper.getErrorDescriptionIsPresent((status and 0x04) == 0x04))
-            val errorCode = if (code >= 3 && (code - 3) % 2 == 0) ((code - 3) / 2).toString() else String.format("x%02X", code)
-            result.add(ModuleError(ModuleAddress.MODULE_ABS53, errorCode, description))
+            if (block.title != TITLE_DTC) continue
+            for (offset in 0..block.data.size - DTC_RECORD_SIZE step DTC_RECORD_SIZE) {
+                val code = block.data[offset].toInt() and 0xFF
+                if (code == 0x00 || code == 0xFF) continue
+                val status = block.data[offset + 4].toInt() and 0xFF
+                val description: MutableList<Pair<StringResource, Any?>> = ArrayList()
+                if ((status and 0x04) == 0x04 || (status and 0x02) == 0x02)
+                    description.add(ResourceHelper.getErrorDescriptionIsPresent((status and 0x04) == 0x04))
+                val errorCode = DTC_NUMBERS[code]?.toString() ?: String.format("x%02X", code)
+                result.add(ModuleError(ModuleAddress.MODULE_ABS53, errorCode, description))
+            }
         }
         return result
     }
@@ -152,6 +155,37 @@ class ModuleABS53(private var kw1281: ProtocolKW1281) : IModule, IModuleLiveData
         private const val TITLE_READ_GROUP = 0x08
         private const val TITLE_RAM = 0x27
         private const val TITLE_DTC = 0xFC
+        private const val DTC_RECORD_SIZE = 5
+
+        /**
+         * Kod bledu w bloku FC -> numer bledu w Delphi (klucz tekstu abs53_error_N), z testow symulatorem.
+         * Kody wewnetrzne Bosch pogrupowane wg elementu - brak wzoru, stad tabela.
+         */
+        private val DTC_NUMBERS = mapOf(
+            0x01 to 1,      // niskie napiecie
+            0x04 to 2,      // czujnik predkosci tylny lewy - niewiarygodny
+            0x05 to 3,      // czujnik predkosci tylny prawy - niewiarygodny
+            0x06 to 4,      // czujnik predkosci przedni lewy - niewiarygodny
+            0x07 to 5,      // czujnik predkosci przedni prawy - niewiarygodny
+            0x0E to 6,      // przekaznik zaworow
+            0x0F to 7,      // pompa powrotna
+            0x14 to 8,      // diagnoza kodem blyskowym - blad obslugi
+            0x15 to 9,      // sterownik
+            0x18 to 10,     // wieniec zebaty
+            0x19 to 11,     // wlacznik swiatel stop - obwod
+            0x1E to 12,     // czujnik predkosci tylny lewy - obwod
+            0x1F to 13,     // czujnik predkosci tylny prawy - obwod
+            0x20 to 14,     // czujnik predkosci przedni prawy - obwod
+            0x21 to 15,     // czujnik predkosci przedni lewy - obwod
+            0x2F to 16,     // zawor wylotowy tylny lewy
+            0x30 to 17,     // zawor wylotowy tylny prawy
+            0x31 to 18,     // zawor wylotowy przedni prawy
+            0x32 to 19,     // zawor wylotowy przedni lewy
+            0x33 to 20,     // zawor wlotowy tylny lewy
+            0x34 to 21,     // zawor wlotowy tylny prawy
+            0x35 to 22,     // zawor wlotowy przedni prawy
+            0x36 to 23      // zawor wlotowy przedni lewy
+        )
 
         private fun bytes(vararg values: Int) = ByteArray(values.size) { values[it].toByte() }
 
