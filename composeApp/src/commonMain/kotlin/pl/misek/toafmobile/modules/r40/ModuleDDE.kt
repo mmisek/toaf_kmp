@@ -784,7 +784,7 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
                     message.answer.copyOfRange(5, 16)
                 ) + String.format(
                     Locale.getDefault(),
-                    "%02d%02d%02d",
+                    "%02X%02X%02X",
                     message.answer[16].toInt() and 0xFF,
                     message.answer[17].toInt() and 0xFF,
                     message.answer[18].toInt() and 0xFF

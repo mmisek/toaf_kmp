@@ -318,7 +318,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                 String(message.answer.copyOfRange(7, 18)) +
                         String.format(
                             Locale.getDefault(),
-                            "%02d%02d%02d",
+                            "%02X%02X%02X",
                             message.answer[18].toInt() and 0xFF,
                             message.answer[19].toInt() and 0xFF,
                             message.answer[20].toInt() and 0xFF
