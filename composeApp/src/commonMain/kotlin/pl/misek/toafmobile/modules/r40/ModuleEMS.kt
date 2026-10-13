@@ -157,18 +157,23 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                             )
                         )
                         val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
+                        try {
                         if (message1.isValid) {
-                            errorDescription.add(ResourceHelper.getErrorDescriptionCount(message1.answer[14].toInt() and 0xFF))
-                            for (k in 0..7) {
-                                val number = message1.answer[8].toInt() and (0x01 shl k)
-                                if (number == (0x01 shl k)) {
-                                    ResourceMapper.stringResource(
-                                        String.format(
-                                            "ems_error_detail_%02X",
-                                            number
+                            // dlugosc odpowiedzi 17 bywa rozna (ten sterownik zwraca krotsza) - zabezpieczenie
+                            if (message1.answer.size > 14)
+                                errorDescription.add(ResourceHelper.getErrorDescriptionCount(message1.answer[14].toInt() and 0xFF))
+                            if (message1.answer.size > 8) {
+                                for (k in 0..7) {
+                                    val number = message1.answer[8].toInt() and (0x01 shl k)
+                                    if (number == (0x01 shl k)) {
+                                        ResourceMapper.stringResource(
+                                            String.format(
+                                                "ems_error_detail_%02X",
+                                                number
+                                            )
                                         )
-                                    )
-                                        ?.let { errorDescription.add(Pair(it, null)) }
+                                            ?.let { errorDescription.add(Pair(it, null)) }
+                                    }
                                 }
                             }
                             if (freezeFrames != null) {
@@ -225,6 +230,11 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                                         )
                                     }"
                                 }
+                        }
+                        } catch (ex: CancellationException) {
+                            throw ex
+                        } catch (ex: Exception) {
+                            Logger.e { "$tag [getAllErrors detail] $errorCode, $ex, $message1" }
                         }
                         if (result == null) result = ArrayList()
                         result.add(
@@ -385,11 +395,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
         val message = kwp.write(moduleAddress, 0x27.toByte(), byteArrayOf(level.toByte()), 500)
         try {
             if (message.isValid) {
-                val seed =
-                //if (kwp is ProtocolKWPStarEMS2K)
-                //        ((message.answer[5].toInt() and 0xFF) shl 8) + (message.answer[6].toInt() and 0xFF)
-                    //else
-                    ((message.answer[6].toInt() and 0xFF) shl 8) + (message.answer[7].toInt() and 0xFF)
+                val seed = ((message.answer[6].toInt() and 0xFF) shl 8) + (message.answer[7].toInt() and 0xFF)
                 if (seed == 0x0000) result = true
                 else {
                     val key = securityAccessCalc(seed, level)
@@ -414,6 +420,42 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
 
 
         return result
+    }
+
+    /**
+     * 4-bajtowy SecurityAccess poziomu 0xFD/0xFE (seed-key EMS2000, jak Galletto).
+     * 27 FD -> 67 FD [4 bajty seed]; klucz = Ems2kSeedKey; 27 FE [4 bajty] -> 67 FE 34.
+     * To jest "seed_key procedure" zdejmujaca bit 6 statusu programowania - warunek zapisu AIF.
+     */
+    private suspend fun securityAccessFdFe(): Boolean {
+        val message = kwp.write(moduleAddress, 0x27.toByte(), byteArrayOf(0xFD.toByte()), 500)
+        try {
+            if (!message.isValid || message.answer.size < 10) return false
+            val seed = ((message.answer[6].toInt() and 0xFF) shl 24) or
+                    ((message.answer[7].toInt() and 0xFF) shl 16) or
+                    ((message.answer[8].toInt() and 0xFF) shl 8) or
+                    (message.answer[9].toInt() and 0xFF)
+            Logger.i { "$tag [securityAccessFdFe] : seed %08X".format(seed) }
+            if (seed == 0) return true
+            val key = Ems2kSeedKey.key(seed)
+            return kwp.write(
+                moduleAddress,
+                0x27.toByte(),
+                byteArrayOf(
+                    0xFE.toByte(),
+                    ((key ushr 24) and 0xFF).toByte(),
+                    ((key ushr 16) and 0xFF).toByte(),
+                    ((key ushr 8) and 0xFF).toByte(),
+                    (key and 0xFF).toByte()
+                ),
+                500
+            ).isValid
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex: Exception) {
+            Logger.e { "$tag [securityAccessFdFe], $ex, $message" }
+            return false
+        }
     }
 
     private fun securityAccessCalc(seed: Int, level: Int): Int {
@@ -532,30 +574,22 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
      * TODO: zostawic poziom, z ktorym zapis przechodzi.
      */
     /**
-     * AIF_SCHREIBEN: 3B 87 + rekord w sesji programowania 85 / poziom 7.
-     * Sam zapis sterownik odrzuca 7F 3B 22 (conditionsNotCorrect), bo status programowania (31 03) ma bit 6
-     * "ECU locked - seed_key procedure missing". W logu Galletto bit 6 gasnie po kroku 31 02 (CHECK_REPROG_DEPENDING,
-     * BBE0 -> BBA0), dlatego przed zapisem wymuszamy 31 02 i sprawdzamy, czy blokada znikla.
-     * Na koniec powrot do sesji 81 / poziom 3 (jak identyfikacja) i weryfikacja odczytem 1A 87.
+     * AIF_SCHREIBEN: 3B 87 + rekord w sesji programowania 85.
+     * Zapis blokuje bit 6 statusu (31 03) "seed_key procedure missing"; zdejmuje go 4-bajtowy
+     * SecurityAccess 0xFD/0xFE (seed-key EMS2000, jak Galletto). Po odblokowaniu wysylamy 3B 87,
+     * na koniec powrot do sesji 81 / poziom 3 (jak identyfikacja) i weryfikacja odczytem 1A 87.
      */
     override suspend fun writeAif(data: ByteArray): Boolean {
         if (data.size != EmsAif.RECORD_SIZE) return false
         Logger.i { "$tag [writeAif] : ${data.joinToString(" ") { String.format("%02X", it) }}" }
         Logger.i { "$tag [writeAif] : ${EmsAif.parse(data)}" }
         var accepted = false
-        if (startDiagnosticSession(0x85) && securityAccess(7)) {
-            Logger.i { "$tag [writeAif] : reprog status before unlock" }
+        if (startDiagnosticSession(0x85) && securityAccessFdFe()) {
+            Logger.i { "$tag [writeAif] : reprog status after FD/FE unlock" }
             readReprogStatus()
-            // sztuczka z Galletto: 31 02 (CHECK_REPROG_DEPENDING) gasi bit 6 "seed_key procedure missing"
-            val check = kwp.writeWithPending(moduleAddress, 0x31.toByte(), byteArrayOf(0x02), 1000, FLASH_PENDING_TIMEOUT_MS)
-            Logger.i { "$tag [writeAif] : 31 02 -> ${check.answer.joinToString(" ") { String.format("%02X", it) }}" }
-            Logger.i { "$tag [writeAif] : reprog status after 31 02" }
-            val status = readReprogStatus()
-            if (status != null && (status and REPROG_STATUS_ECU_LOCKED) != 0)
-                Logger.e { "$tag [writeAif] : ECU still locked after 31 02 - write may be rejected" }
             accepted = writeAifRecord(data)
         } else {
-            Logger.e { "$tag [writeAif] : session 85 / security access level 7 rejected" }
+            Logger.e { "$tag [writeAif] : session 85 / security access FD-FE rejected" }
         }
         // powrot do stanu jak po identyfikacji - w sesji 85 sterownik odrzuca 1A 80 (7F 33)
         startDiagnosticSession(0x81)
