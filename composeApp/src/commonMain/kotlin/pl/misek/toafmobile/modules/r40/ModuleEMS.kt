@@ -29,6 +29,7 @@ import pl.misek.toafmobile.modules.interfaces.IModuleControl
 import pl.misek.toafmobile.modules.interfaces.IModuleEwsSync
 import pl.misek.toafmobile.modules.interfaces.IModuleFlashProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
+import pl.misek.toafmobile.modules.interfaces.IModuleVIN
 import pl.misek.toafmobile.modules.interfaces.IModuleZCS
 import pl.misek.toafmobile.protocols.IProtocol
 import pl.misek.toafmobile.protocols.ProtocolKWP
@@ -40,9 +41,33 @@ import java.util.Locale
 import kotlin.time.Duration.Companion.milliseconds
 
 private const val tag = "ModuleEMS"
+private const val AIF_WRITE_TIMEOUT_MS = 2000L
+private const val AIF_WRITE_SETTLE_MS = 1000L
+private const val FLASH_PENDING_TIMEOUT_MS = 10_000L
+/** Bit 6 statusu 31 03 - "ECU locked - seed_key procedure missing"; blokuje zapis AIF (7F 3B 22) */
+private const val REPROG_STATUS_ECU_LOCKED = 0x0040
+/** Flagi REPORT_REPROG_STATUS (31 03) z ems2k.b2v, bit -> opis */
+private val REPROG_STATUS_FLAGS = listOf(
+    "reference error boot software",
+    "reference error ECU software",
+    "reference error calibration data",
+    "ECU software does not fit boot software",
+    "calibration data does not fit ECU software",
+    "system references fit together (OK)",
+    "ECU locked - seed/key procedure missing",
+    "ECU configuration OK",
+    "ECU software OK",
+    "ECU software security key OK",
+    "ECU software security key not written",
+    "checksum ECU software OK",
+    "calibration data OK",
+    "calibration data security key OK",
+    "calibration data security key not written",
+    "checksum calibration data OK"
+)
 class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramming, IModule,
     IModuleControl,
-    IModuleLiveData, IModuleEwsSync, IModuleAif, IModuleAdvanceControl {
+    IModuleLiveData, IModuleEwsSync, IModuleAif, IModuleAdvanceControl, IModuleVIN {
     private val moduleAddress = ModuleAddress.MODULE_EMS.address
     private val _programmingState =  MutableSharedFlow<FlashProgrammingState>(replay = 10, extraBufferCapacity = 64, onBufferOverflow = BufferOverflow.DROP_OLDEST)
     override val programmingState = _programmingState.asSharedFlow()
@@ -266,7 +291,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                     )
                     info.ci = (answer[165].toInt() and 0xFF).toByte().toHexString()
                     info.di = (answer[166].toInt() and 0xFF).toByte().toHexString()
-                    info.sw = (answer[21 * 8 + 5].toInt() and 0xFF).toByte().toHexString()
+                    info.sw = (answer[0xAC].toInt() and 0xFF).toByte().toHexString()
                     info.date = String.format(
                         "%02X/%02X/%04X",
                         answer[167].toInt() and 0xFF,
@@ -279,19 +304,11 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                             String(answer.copyOfRange(153, 162))
                         )
                     )
-                    info.additionalInfo.add(
-                        Pair(
-                            Res.string.module_info_programing_date,
-                            String.format(
-                                "%02X/%02X/%04X",
-                                answer[22].toInt() and 0xFF,
-                                answer[23].toInt() and 0xFF,
-                                ((answer[24].toInt() and 0xFF) shl 8) + (answer[25].toInt() and 0xFF)
-                            )
-                        )
-                    )
+                    EmsAif.parse(answer.copyOfRange(7, 7 + EmsAif.RECORD_SIZE))?.let {
+                        info.additionalInfo.addAll(it.toAdditionalInfo())
+                    }
 
-                    info.serial = String(answer.copyOfRange(36, 46))
+                    info.serial = String(answer.copyOfRange(0x55, 0x5F)).trim()
 
                     info.producer = ModulesFunction.getProducer(answer[171].toInt())
                 } catch (ex: CancellationException) {
@@ -487,10 +504,15 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
     }
 
     override suspend fun readAif(): ByteArray? {
-        // AIF_LESEN: readEcuIdentification (0x1A), rekord 0x80
-        val message = kwp.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x80.toByte()), 300)
+        // AIF_LESEN: readEcuIdentification (0x1A), rekord 0x87 - 46 bajtow od bajtu 6 odpowiedzi
+        val message = kwp.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x87.toByte()), 300)
         return try {
-            if (message.isValid) message.answer.copyOfRange(6, message.length - 1) else null
+            if (message.isValid && message.length >= 6 + EmsAif.RECORD_SIZE + 1)
+                message.answer.copyOfRange(6, 6 + EmsAif.RECORD_SIZE).also { record ->
+                    Logger.i { "$tag [readAif] : ${record.joinToString(" ") { String.format("%02X", it) }}" }
+                    Logger.i { "$tag [readAif] : ${EmsAif.parse(record)}" }
+                }
+            else null
         } catch (ex: CancellationException) {
             throw ex
         } catch (ex: Exception) {
@@ -499,10 +521,93 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
         }
     }
 
+    suspend fun readAifData(): EmsAif? = readAif()?.let { EmsAif.parse(it) }
+
+    /** AIF_SCHREIBEN: 3B 87 + rekord, weryfikacja ponownym odczytem 1A 87 (jak w SGBD) */
+    /**
+     * AIF_SCHREIBEN: 3B 87 + rekord w sesji programowania 85 (sesje 86 i 83 odpowiadaja na 3B 7F 80 - usluga niedostepna).
+     * Po poziomie 7 sterownik odrzuca zapis 7F 22, status programowania (dostepny tylko po poziomie 7) ma bit 6 ECU locked.
+     * Zapis probowany po kolejnych poziomach security access, na koniec powrot do sesji 81 / poziom 3 (jak identyfikacja)
+     * i weryfikacja odczytem 1A 87 (jak w SGBD).
+     * TODO: zostawic poziom, z ktorym zapis przechodzi.
+     */
+    /**
+     * AIF_SCHREIBEN: 3B 87 + rekord w sesji programowania 85 / poziom 7.
+     * Sam zapis sterownik odrzuca 7F 3B 22 (conditionsNotCorrect), bo status programowania (31 03) ma bit 6
+     * "ECU locked - seed_key procedure missing". W logu Galletto bit 6 gasnie po kroku 31 02 (CHECK_REPROG_DEPENDING,
+     * BBE0 -> BBA0), dlatego przed zapisem wymuszamy 31 02 i sprawdzamy, czy blokada znikla.
+     * Na koniec powrot do sesji 81 / poziom 3 (jak identyfikacja) i weryfikacja odczytem 1A 87.
+     */
     override suspend fun writeAif(data: ByteArray): Boolean {
-        if (!startDiagnosticSession(0x85)) return false
-        if (!securityAccess(7)) return false
-        return kwp.write(moduleAddress, 0x3B.toByte(), byteArrayOf(0x80.toByte()) + data).isValid
+        if (data.size != EmsAif.RECORD_SIZE) return false
+        Logger.i { "$tag [writeAif] : ${data.joinToString(" ") { String.format("%02X", it) }}" }
+        Logger.i { "$tag [writeAif] : ${EmsAif.parse(data)}" }
+        var accepted = false
+        if (startDiagnosticSession(0x85) && securityAccess(7)) {
+            Logger.i { "$tag [writeAif] : reprog status before unlock" }
+            readReprogStatus()
+            // sztuczka z Galletto: 31 02 (CHECK_REPROG_DEPENDING) gasi bit 6 "seed_key procedure missing"
+            val check = kwp.writeWithPending(moduleAddress, 0x31.toByte(), byteArrayOf(0x02), 1000, FLASH_PENDING_TIMEOUT_MS)
+            Logger.i { "$tag [writeAif] : 31 02 -> ${check.answer.joinToString(" ") { String.format("%02X", it) }}" }
+            Logger.i { "$tag [writeAif] : reprog status after 31 02" }
+            val status = readReprogStatus()
+            if (status != null && (status and REPROG_STATUS_ECU_LOCKED) != 0)
+                Logger.e { "$tag [writeAif] : ECU still locked after 31 02 - write may be rejected" }
+            accepted = writeAifRecord(data)
+        } else {
+            Logger.e { "$tag [writeAif] : session 85 / security access level 7 rejected" }
+        }
+        // powrot do stanu jak po identyfikacji - w sesji 85 sterownik odrzuca 1A 80 (7F 33)
+        startDiagnosticSession(0x81)
+        securityAccess(3)
+        if (!accepted) {
+            Logger.e { "$tag [writeAif] : ********** AIF WRITE FAILED - rejected **********" }
+            return false
+        }
+        delay(AIF_WRITE_SETTLE_MS.milliseconds)
+        if (readAif()?.contentEquals(data) == true) {
+            Logger.i { "$tag [writeAif] : ********** AIF WRITE OK - session 85, security level 7 **********" }
+            return true
+        }
+        Logger.e { "$tag [writeAif] : ********** AIF WRITE FAILED - verify failed **********" }
+        return false
+    }
+
+    /** Wysyla 3B 87 + rekord (z obsluga 7F 3B 78 response pending); true, gdy sterownik przyjal zapis */
+    private suspend fun writeAifRecord(data: ByteArray): Boolean {
+        val message = kwp.writeWithPending(moduleAddress, 0x3B.toByte(), byteArrayOf(0x87.toByte()) + data, AIF_WRITE_TIMEOUT_MS, FLASH_PENDING_TIMEOUT_MS)
+        val answer = message.answer
+        if (answer.size > 6 && answer[4] == 0x7F.toByte() && answer[6] != 0x78.toByte()) {
+            Logger.e { "$tag [writeAif] : write rejected, NRC %02X".format(answer[6].toInt() and 0xFF) }
+            readReprogStatus()
+            return false
+        }
+        Logger.i { "$tag [writeAif] : ********** AIF WRITE ACCEPTED - session 85, security level 7 **********" }
+        return true
+    }
+
+    /** REPORT_REPROG_STATUS (31 03): status = bajty 6-7 odpowiedzi, kazda ustawiona flaga w osobnej linii */
+    private suspend fun readReprogStatus(): Int? {
+        val message = kwp.write(moduleAddress, 0x31.toByte(), byteArrayOf(0x03), 500)
+        val answer = message.answer
+        if (!message.isValid || answer.size < 9) {
+            Logger.e { "$tag [reprogStatus] : no answer, ${answer.joinToString(" ") { String.format("%02X", it) }}" }
+            return null
+        }
+        val status = ((answer[6].toInt() and 0xFF) shl 8) or (answer[7].toInt() and 0xFF)
+        Logger.i { "$tag [reprogStatus] : %04X".format(status) }
+        for ((bit, description) in REPROG_STATUS_FLAGS.withIndex()) {
+            if ((status shr bit) and 1 == 1) Logger.i { "$tag [reprogStatus] : bit $bit - $description" }
+        }
+        return status
+    }
+
+    override fun getVinLength(): Int = 17
+
+    override suspend fun writeVIN(newVin: String): Boolean {
+        val record = readAif() ?: return false
+        val newRecord = EmsAif.withVin(record, newVin.uppercase(), Calendar.getInstance()) ?: return false
+        return writeAif(newRecord)
     }
 
     override suspend fun writeFlash(data: ByteArray)  {
@@ -532,12 +637,14 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                 throw ex
             } catch (_ : Exception) {
             }
+            // dostep potwierdzony zapisem flash (po resecie identyfikacja OK): sesja programowania 85 + poziom 7
             if (startDiagnosticSession(0x85) && securityAccess(7)) {
                 _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                         Res.string.activity_flash_programming_security_access,
                         Res.string.activity_flash_programming_ok))
-                val eraseFlash = kwp.write(moduleAddress, 0x31.toByte(), byteArrayOf(0x01), 500)
-                if (eraseFlash.wholeMessage!= null && eraseFlash.wholeMessage!!.size == 22 && eraseFlash.wholeMessage!![19].toInt() == 0x71)  //if (kwp.Write(MODULE_ADDRESS, (byte) 0x31, new byte[]{0x01},500).isValid())
+                // kasowanie: 7F 31 78 (response pending), 71 01 po ok. 0.5 s
+                val eraseFlash = kwp.writeWithPending(moduleAddress, 0x31.toByte(), byteArrayOf(0x01), 500, FLASH_PENDING_TIMEOUT_MS)
+                if (eraseFlash.isValid)
                 {
                     if (kwp.write(
                             moduleAddress,
@@ -567,15 +674,17 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                                 x += blockSize
                             }
                             val m1 = kwp.write(moduleAddress, 0x37.toByte(), byteArrayOf(), 2000)
-                            val m2 = kwp.write(moduleAddress, 0x31.toByte(), byteArrayOf(0x02), 2000)
+                            // sprawdzenie sumy: 7F 31 78, 71 02 po ok. 0.8 s
+                            val m2 = kwp.writeWithPending(moduleAddress, 0x31.toByte(), byteArrayOf(0x02), 500, FLASH_PENDING_TIMEOUT_MS)
                             val m3 = kwp.write(moduleAddress, 0x31.toByte(), byteArrayOf(0x03), 2000)
+                            Logger.i { "$tag [writeFlash] : reprog status ${m3.answer.joinToString(" ") { String.format("%02X", it) }}" }
                             val m4 = kwp.write(
                                 moduleAddress,
                                 0x11.toByte(),
                                 byteArrayOf(0x01.toByte()),
                                 2000
                             )
-                            if (m1.isValid && (m2.wholeMessage != null && m2.wholeMessage!!.size == 22) and (m2.wholeMessage!![19].toInt() == 0x71) && m3.isValid && m4.isValid) _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
+                            if (m1.isValid && m2.isValid && m3.isValid && m4.isValid) _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                                     Res.string.activity_flash_programming_flash_writing_end,
                                     Res.string.activity_flash_programming_ok))
                             else _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
@@ -588,7 +697,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                             val hours = (totalMillis / 1000).toInt() / 3600
                             _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                                     Res.string.activity_flash_programming_write_time,
-                                    String.format("%02i:%02i:%02i", hours, minutes, seconds)))
+                                    String.format("%02d:%02d:%02d", hours, minutes, seconds)))
                             _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_ecu_reset))
                         } catch (ex: CancellationException) {
                             throw ex
@@ -706,18 +815,14 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
         return byteArrayOf()
     }
 
+    /** 36 + blok; sterownik odpowiada 7F 36 78 (response pending), potem 76 po ok. 0.2 s - nastepny blok dopiero po 76 */
     private suspend fun writeFlashData(data: ByteArray): Boolean {
-        kwp.write(
-            moduleAddress,
-            0x36.toByte(),
-            data,
-            100
-        )
-        return true
-        //return  message.isValid();
+        val message = kwp.writeWithPending(moduleAddress, 0x36.toByte(), data, 300, FLASH_PENDING_TIMEOUT_MS)
+        if (!message.isValid) Logger.e { "$tag [writeFlashData] : ${message.answer.joinToString(" ") { String.format("%02X", it) }}" }
+        return message.isValid
     }
 
-    override val flashProgrammingAvailable: Boolean = false
+    override val flashProgrammingAvailable: Boolean = true
 
     override fun getSupportedCarTypes(): List<CarType> {
         return listOf(CarType.R40, CarType.RJO)

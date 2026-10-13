@@ -33,10 +33,7 @@ class DesktopSerialDevice : ISerialDevice
     ): ByteArray? = withContext(Dispatchers.IO) {
         if (_serialPort == null) connect(_serialPortName)
         if (_serialPort != null && _serialPort!!.isOpen) {
-            // Diagnostic only (DS2 timing investigation): nanoTime reference for all
-            // [timing] log lines below, so arrival times can be compared to write start.
             val writeStartNanos = System.nanoTime()
-            Logger.i { "$tag [timing] write start data=${data?.toHex()}" }
             try {
                 if (useDelay && data != null) {
                     for (b in data) {
@@ -53,7 +50,6 @@ class DesktopSerialDevice : ISerialDevice
                 Logger.e{"$tag : ${ex.toString()}"}
                 return@withContext null
             }
-            Logger.i { "$tag [timing] write done (+${(System.nanoTime() - writeStartNanos) / 1_000_000}ms since write start)" }
             if (forceAnswer) {
                 val outputStream = ByteArrayOutputStream()
                 var result: ByteArray?
@@ -61,18 +57,8 @@ class DesktopSerialDevice : ISerialDevice
                 try {
                     val start = System.currentTimeMillis()
                     var lastByteAt = start
-                    // Start reading immediately instead of an unconditional
-                    // delay(timeout ?: 100) first, then keep the same overall time budget
-                    // as before (that delay plus the fixed read window) so a slow answer
-                    // still gets the same total time to arrive, stopping early once the
-                    // line has gone quiet for a bit (idleGap) after some data came in.
                     val totalTimeout = (timeout ?: 100) + (timeout ?: 500)
                     val idleGap = 50L
-                    // Diagnostic only: DS2/KWP both echo the request before the real
-                    // answer, so once we've received exactly `echoSize` bytes the echo is
-                    // complete; anything beyond that is the start of the real answer. If
-                    // both arrive in the same chunk (common on fast/local links) the two
-                    // timestamps below end up equal - that's expected, not a bug.
                     val echoSize = data?.size ?: 0
                     var echoAtMs = -1L
                     var answerStartAtMs = -1L
@@ -80,26 +66,17 @@ class DesktopSerialDevice : ISerialDevice
                         while (System.currentTimeMillis() - start < totalTimeout) {
                             val n = _serialPort!!.readBytes(buffer, buffer.size)
                             if (n > 0) {
-                                Logger.i { "$tag [timing] read +${(System.nanoTime() - writeStartNanos) / 1_000_000}ms since write start, ${n}B: ${buffer.copyOfRange(0, n).toHex()}" }
                                 outputStream.write(buffer, 0, n)
                                 lastByteAt = System.currentTimeMillis()
                                 val size = outputStream.size()
                                 if (echoAtMs < 0 && echoSize > 0 && size >= echoSize) {
                                     echoAtMs = (System.nanoTime() - writeStartNanos) / 1_000_000
-                                    Logger.i { "$tag [timing] echo complete after ${echoAtMs}ms since write start" }
                                 }
                                 if (answerStartAtMs < 0 && size > echoSize) {
                                     answerStartAtMs = (System.nanoTime() - writeStartNanos) / 1_000_000
                                     val sinceEcho = if (echoAtMs >= 0) answerStartAtMs - echoAtMs else -1
-                                    Logger.i { "$tag [timing] answer started after ${answerStartAtMs}ms since write start (+${sinceEcho}ms after echo)" }
                                 }
                             } else {
-                                // Wczesne zakonczenie (idleGap) dopuszczamy dopiero gdy mamy
-                                // juz WLASCIWA odpowiedz, a nie samo echo. Inaczej dla dlugich
-                                // operacji (np. kasowanie flash 0x31) ECU milczy miedzy echem a
-                                // odpowiedzia dluzej niz idleGap, petla by sie poddala i odpowiedz
-                                // trafialaby do okna nastepnej komendy (desynchronizacja).
-                                // Gorny limit czekania i tak gwarantuje warunek petli (totalTimeout).
                                 if (outputStream.size() > echoSize && System.currentTimeMillis() - lastByteAt > idleGap) break
                                 delay(2.milliseconds)
                             }
@@ -107,9 +84,8 @@ class DesktopSerialDevice : ISerialDevice
                         result = outputStream.toByteArray()
                     }
                     Logger.i{"$tag : Reading Time : $time"}
-                    Logger.i { "$tag [timing] read loop done, ${result?.size ?: 0}B total (+${(System.nanoTime() - writeStartNanos) / 1_000_000}ms since write start): ${result?.toHex()}" }
                 } catch (ex: Exception) {
-                    Logger.e{"$tag : ${ex.toString()}"}
+                    Logger.e{"$tag : $ex"}
                     result = null
                 }
                 return@withContext result
@@ -117,7 +93,7 @@ class DesktopSerialDevice : ISerialDevice
                 try {
                     _serialPort?.flushIOBuffers()
                 } catch (ex: Exception) {
-                    Logger.e{"$tag : ${ex.toString()}"}
+                    Logger.e{"$tag : $ex"}
                 }
             }
 
@@ -131,7 +107,7 @@ class DesktopSerialDevice : ISerialDevice
             try {
                 _serialPort?.closePort()
             } catch (ex: Exception) {
-                Logger.e{"$tag : ${ex.toString()}"}
+                Logger.e{"$tag : $ex"}
             }
             finally {
                 _serialPort = null

@@ -347,6 +347,13 @@
 
     <string name="module_info_siemens_software_number">Номер ПО Siemens</string>
     <string name="module_info_programing_date">Дата программирования</string>
+    <string name="module_info_aif_vin">VIN (AIF)</string>
+    <string name="module_info_aif_part_number">Номер детали (AIF)</string>
+    <string name="module_info_aif_assembly_number">Номер узла (AIF)</string>
+    <string name="module_info_aif_tester_serial">Серийный номер программатора (AIF)</string>
+    <string name="module_info_aif_dealer_code">Код дилера (AIF)</string>
+    <string name="module_info_aif_odometer">Пробег при программировании (AIF)</string>
+    <string name="module_info_aif_program_number">Номер программы (AIF)</string>
     <string name="module_info_product_number">Номер продукта</string>
     <string name="module_info_change_type">Тип изменения</string>
     <string name="module_info_calibration_ident">Идент. калибровки</string>

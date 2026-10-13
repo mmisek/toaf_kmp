@@ -376,6 +376,13 @@
     <!-- MODULE Additional module info -->
     <string name="module_info_siemens_software_number">Siemens soft. number</string>
     <string name="module_info_programing_date">Programming date</string>
+    <string name="module_info_aif_vin">VIN (AIF)</string>
+    <string name="module_info_aif_part_number">Part number (AIF)</string>
+    <string name="module_info_aif_assembly_number">Assembly number (AIF)</string>
+    <string name="module_info_aif_tester_serial">Programming device serial (AIF)</string>
+    <string name="module_info_aif_dealer_code">Dealer code (AIF)</string>
+    <string name="module_info_aif_odometer">Odometer at programming (AIF)</string>
+    <string name="module_info_aif_program_number">Program number (AIF)</string>
     <string name="module_info_product_number">Product number</string>
     <string name="module_info_change_type">Change type</string>
     <string name="module_info_calibration_ident">Calibration ident.</string>

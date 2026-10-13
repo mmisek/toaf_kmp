@@ -336,6 +336,13 @@
 
     <string name="module_info_siemens_software_number">Numero soft. Siemens</string>
     <string name="module_info_programing_date">Data programmazione</string>
+    <string name="module_info_aif_vin">VIN (AIF)</string>
+    <string name="module_info_aif_part_number">Codice ricambio (AIF)</string>
+    <string name="module_info_aif_assembly_number">Numero gruppo (AIF)</string>
+    <string name="module_info_aif_tester_serial">N. di serie programmatore (AIF)</string>
+    <string name="module_info_aif_dealer_code">Codice concessionario (AIF)</string>
+    <string name="module_info_aif_odometer">Chilometraggio alla programmazione (AIF)</string>
+    <string name="module_info_aif_program_number">Numero programma (AIF)</string>
     <string name="module_info_product_number">Numero prodotto</string>
     <string name="module_info_change_type">Tipo modifica</string>
     <string name="module_info_calibration_ident">Ident. calibrazione</string>

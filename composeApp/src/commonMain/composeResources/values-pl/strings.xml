@@ -325,6 +325,13 @@
     <string name="module_info_boot_ident">Ident. Boot</string>
     <string name="module_info_calibration_ident">Data kalibracji</string>
     <string name="module_info_programing_date">Data programowania</string>
+    <string name="module_info_aif_vin">VIN (AIF)</string>
+    <string name="module_info_aif_part_number">Numer części (AIF)</string>
+    <string name="module_info_aif_assembly_number">Numer zespołu (AIF)</string>
+    <string name="module_info_aif_tester_serial">Numer seryjny programatora (AIF)</string>
+    <string name="module_info_aif_dealer_code">Kod dealera (AIF)</string>
+    <string name="module_info_aif_odometer">Przebieg przy programowaniu (AIF)</string>
+    <string name="module_info_aif_program_number">Numer programu (AIF)</string>
     <string name="module_info_siemens_software_number">Nr oprogramowania wg Siemens</string>
     <string name="module_info_product_number">Nr. produktu</string>
     <string name="module_info_change_type">Wydanie</string>

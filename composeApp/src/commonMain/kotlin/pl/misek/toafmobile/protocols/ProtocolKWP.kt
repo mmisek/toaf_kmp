@@ -58,6 +58,57 @@ open class ProtocolKWP(private var device: IInterfaceDevice?, var useDelay: Bool
         return message
     }
 
+    /**
+     * Wysyla zapytanie i czeka na odpowiedz koncowa: dopoki ostatnia ramka to 7F [command] 78 (response pending),
+     * doczytuje kolejne ramki (zapis pustych danych - sam odczyt), lacznie do [pendingTimeout] ms.
+     * Zwraca wiadomosc z ostatnia ramka odpowiedzi (answer / answerCode / isValid jak w write).
+     */
+    suspend fun writeWithPending(address: Byte, command: Byte, data: ByteArray, timeout: Long, pendingTimeout: Long): OBDMessage {
+        val start = System.currentTimeMillis()
+        val message = write(address, command, data, timeout, true)
+        if (message.answer.isEmpty()) return message
+        var frames = splitFrames(message.answer)
+        var whole = message.wholeMessage ?: ByteArray(0)
+        while (frames.lastOrNull()?.let { isPending(it, command) } == true) {
+            if (System.currentTimeMillis() - start > pendingTimeout) {
+                Logger.e { "$tag : response pending timeout, command %02X".format(command) }
+                break
+            }
+            val more = device?.write(ByteArray(0), timeout, true, false)
+            if (more == null || more.isEmpty()) continue
+            Logger.i { "$tag : pending answer ${more.joinToString(" ") { String.format("%02X", it) }}" }
+            whole += more
+            frames = frames + splitFrames(more)
+        }
+        val last = frames.lastOrNull() ?: return message
+        val result = OBDMessage()
+        result.message = message.message
+        result.wholeMessage = whole
+        result.answer = last
+        result.length = last.size
+        result.answerCode = last[4]
+        var checkSum: Byte = 0
+        for (i in 0 until last.size - 1) checkSum = (checkSum.toInt() xor last[i].toInt()).toByte()
+        result.isValid = last[last.size - 1] == checkSum && result.answerCode == (command + 0x40).toByte()
+        return result
+    }
+
+    private fun isPending(frame: ByteArray, command: Byte) =
+        frame.size >= 7 && frame[4] == 0x7F.toByte() && frame[5] == command && frame[6] == 0x78.toByte()
+
+    /** Dzieli bajty odpowiedzi na ramki [B8][adr][adr][dl][dane][cs] */
+    private fun splitFrames(bytes: ByteArray): List<ByteArray> {
+        val frames = mutableListOf<ByteArray>()
+        var i = 0
+        while (i + 4 < bytes.size) {
+            val end = i + 4 + (bytes[i + 3].toInt() and 0xFF) + 1
+            if (end > bytes.size) break
+            frames.add(bytes.copyOfRange(i, end))
+            i = end
+        }
+        return frames
+    }
+
     private suspend fun writeKWP(
         address: Byte,
         command: Byte,
