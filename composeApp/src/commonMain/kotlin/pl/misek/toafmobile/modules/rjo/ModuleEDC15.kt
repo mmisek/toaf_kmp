@@ -372,10 +372,10 @@ class ModuleEDC15( protocol: ProtocolEDC15?) : IModuleFlashProgramming, IModule,
                 )
             continueProcess = false
         }
-            delay(200)
+            delay(200.milliseconds)
             if (continueProcess) if (!closeConnection()) continueProcess =
                 false
-            delay(200)
+            delay(200.milliseconds)
             if (continueProcess) if (!moduleInit()) {
                 _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                         Res.string.activity_flash_programming_ecu_init,
