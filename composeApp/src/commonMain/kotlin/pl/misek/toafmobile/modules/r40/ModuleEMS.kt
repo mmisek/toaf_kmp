@@ -339,6 +339,8 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
     }
 
     override suspend fun getVIN(): String? {
+        if (!startDiagnosticSession(0x81)) return null
+        if (!securityAccess(3)) return null
         val message = kwp.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x80.toByte()), 300)
         try {
             return if (message.isValid) {
@@ -675,10 +677,6 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
         return result
     }
 
-    /**
-     * Przeprogramowanie flash obrazem [image] i zapis rekordu AIF po 31 02 (gdy bit 6 zgaszony).
-     * Sekwencja jak writeFlash + 3B 87 wstawiony przed resetem.
-     */
     private suspend fun programFlashAndWriteAif(image: ByteArray, aif: ByteArray): Boolean {
         if (image.size != 0x8000 || aif.size != EmsAif.RECORD_SIZE) return false
         val blockSize = 0x5C
@@ -909,7 +907,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                 ((address and 0x0000FFL)).toByte(),
                 ((size and 0xFF)).toByte()
             ),
-            250
+            275
         )
         Logger.i{"$tag: ${(System.currentTimeMillis() - start)}"}
         try {
