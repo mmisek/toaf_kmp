@@ -638,10 +638,86 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
 
     override fun getVinLength(): Int = 17
 
+    /**
+     * Zapis VIN przez PELNY cykl programowania. Samodzielny zapis AIF (3B 87) jest blokowany
+     * (7F 3B 22), bo bit 6 statusu "seed_key procedure missing" gasnie dopiero po 31 02 w cyklu
+     * programowania. Dlatego: odczyt obecnego oprogramowania -> przeprogramowanie tym samym obrazem
+     * -> 31 02 (gasi bit 6) -> zapis AIF z nowym VIN i dzisiejsza data -> reset.
+     * UWAGA: to realne przeprogramowanie flash - przerwanie moze uszkodzic sterownik.
+     */
     override suspend fun writeVIN(newVin: String): Boolean {
         val record = readAif() ?: return false
         val newRecord = EmsAif.withVin(record, newVin.uppercase(), Calendar.getInstance()) ?: return false
-        return writeAif(newRecord)
+        Logger.i { "$tag [writeVIN] : ${EmsAif.parse(newRecord)}" }
+        // odczyt obecnego oprogramowania - MUSI sie udac przed kasowaniem (inaczej nie wgramy nic z powrotem)
+        val image = readFlashImage()
+        if (image == null) {
+            Logger.e { "$tag [writeVIN] : odczyt flash nieudany - przerwano przed kasowaniem" }
+            return false
+        }
+        return programFlashAndWriteAif(image, newRecord)
+    }
+
+    /** Odczyt pelnego obrazu flash EMS (0x108000..0x10FFFF) - do wgrania z powrotem. null przy bledzie. */
+    private suspend fun readFlashImage(): ByteArray? {
+        val start = 0x108000L
+        val size = 0x8000
+        val blockSize = 0x80
+        if (!startDiagnosticSession(0x86) || !securityAccess(0x09)) return null
+        var result = ByteArray(0)
+        var i = start
+        while (i < start + size) {
+            val block = readFlashData(i)
+            if (block.size != blockSize) return null
+            result += block
+            i += blockSize
+        }
+        return result
+    }
+
+    /**
+     * Przeprogramowanie flash obrazem [image] i zapis rekordu AIF po 31 02 (gdy bit 6 zgaszony).
+     * Sekwencja jak writeFlash + 3B 87 wstawiony przed resetem.
+     */
+    private suspend fun programFlashAndWriteAif(image: ByteArray, aif: ByteArray): Boolean {
+        if (image.size != 0x8000 || aif.size != EmsAif.RECORD_SIZE) return false
+        val blockSize = 0x5C
+        endDiagnosticSession()
+        try { delay(1000.milliseconds) } catch (ex: CancellationException) { throw ex } catch (_: Exception) {}
+        if (!startDiagnosticSession(0x85) || !securityAccessFdFe()) {
+            Logger.e { "$tag [writeVIN] : sesja 85 / FD-FE nieudane" }
+            return false
+        }
+        val erase = kwp.writeWithPending(moduleAddress, 0x31.toByte(), byteArrayOf(0x01), 500L, FLASH_PENDING_TIMEOUT_MS)
+        if (!erase.isValid) { Logger.e { "$tag [writeVIN] : kasowanie nieudane" }; return false }
+        if (!kwp.write(moduleAddress, 0x34.toByte(),
+                byteArrayOf(0x10, 0x80.toByte(), 0x00, 0x00, 0x00, 0x7F, 0xF0.toByte())).isValid) {
+            Logger.e { "$tag [writeVIN] : request download nieudany" }; return false
+        }
+        var x = 0
+        while (x < image.size) {
+            val block = image.copyOfRange(x, if (x + blockSize < image.size) x + blockSize else image.size)
+            if (block.size == blockSize && !writeFlashData(block)) {
+                Logger.e { "$tag [writeVIN] : blad zapisu bloku flash @ $x" }; return false
+            }
+            x += blockSize
+        }
+        kwp.write(moduleAddress, 0x37.toByte(), byteArrayOf(), 2000)
+        // 31 02 - sprawdzenie sumy, gasi bit 6 "seed_key procedure missing"
+        kwp.writeWithPending(moduleAddress, 0x31.toByte(), byteArrayOf(0x02), 500L, FLASH_PENDING_TIMEOUT_MS)
+        Logger.i { "$tag [writeVIN] : reprog status po 31 02" }
+        val status = readReprogStatus()
+        if (status != null && (status and REPROG_STATUS_ECU_LOCKED) != 0)
+            Logger.e { "$tag [writeVIN] : bit 6 nadal ustawiony - zapis AIF moze byc odrzucony" }
+        // zapis AIF (teraz bit 6 powinien byc zgaszony)
+        val aifOk = writeAifRecord(aif)
+        kwp.write(moduleAddress, 0x11.toByte(), byteArrayOf(0x01), 2000)   // reset
+        if (!aifOk) { Logger.e { "$tag [writeVIN] : ********** zapis AIF nieudany **********" }; return false }
+        // weryfikacja po resecie
+        try { delay(AIF_WRITE_SETTLE_MS.milliseconds) } catch (ex: CancellationException) { throw ex } catch (_: Exception) {}
+        val ok = readAif()?.contentEquals(aif) ?: false
+        Logger.i { "$tag [writeVIN] : ${if (ok) "********** VIN WRITE OK **********" else "VERIFY FAILED"}" }
+        return ok
     }
 
     override suspend fun writeFlash(data: ByteArray)  {
@@ -671,13 +747,13 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                 throw ex
             } catch (_ : Exception) {
             }
-            // dostep potwierdzony zapisem flash (po resecie identyfikacja OK): sesja programowania 85 + poziom 7
-            if (startDiagnosticSession(0x85) && securityAccess(7)) {
+            // sesja programowania 85 + 4-bajtowy SecurityAccess FD/FE (jak Galletto; poziom 7 tez dziala)
+            if (startDiagnosticSession(0x85) && securityAccessFdFe()) {
                 _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                         Res.string.activity_flash_programming_security_access,
                         Res.string.activity_flash_programming_ok))
                 // kasowanie: 7F 31 78 (response pending), 71 01 po ok. 0.5 s
-                val eraseFlash = kwp.writeWithPending(moduleAddress, 0x31.toByte(), byteArrayOf(0x01), 500, FLASH_PENDING_TIMEOUT_MS)
+                val eraseFlash = kwp.writeWithPending(moduleAddress, 0x31.toByte(), byteArrayOf(0x01), 500L, FLASH_PENDING_TIMEOUT_MS)
                 if (eraseFlash.isValid)
                 {
                     if (kwp.write(
@@ -709,7 +785,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
                             }
                             val m1 = kwp.write(moduleAddress, 0x37.toByte(), byteArrayOf(), 2000)
                             // sprawdzenie sumy: 7F 31 78, 71 02 po ok. 0.8 s
-                            val m2 = kwp.writeWithPending(moduleAddress, 0x31.toByte(), byteArrayOf(0x02), 500, FLASH_PENDING_TIMEOUT_MS)
+                            val m2 = kwp.writeWithPending(moduleAddress, 0x31.toByte(), byteArrayOf(0x02), 500L, FLASH_PENDING_TIMEOUT_MS)
                             val m3 = kwp.write(moduleAddress, 0x31.toByte(), byteArrayOf(0x03), 2000)
                             Logger.i { "$tag [writeFlash] : reprog status ${m3.answer.joinToString(" ") { String.format("%02X", it) }}" }
                             val m4 = kwp.write(
@@ -851,7 +927,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
 
     /** 36 + blok; sterownik odpowiada 7F 36 78 (response pending), potem 76 po ok. 0.2 s - nastepny blok dopiero po 76 */
     private suspend fun writeFlashData(data: ByteArray): Boolean {
-        val message = kwp.writeWithPending(moduleAddress, 0x36.toByte(), data, 300, FLASH_PENDING_TIMEOUT_MS)
+        val message = kwp.writeWithPending(moduleAddress, 0x36.toByte(), data, 300L, FLASH_PENDING_TIMEOUT_MS)
         if (!message.isValid) Logger.e { "$tag [writeFlashData] : ${message.answer.joinToString(" ") { String.format("%02X", it) }}" }
         return message.isValid
     }

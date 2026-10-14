@@ -20,6 +20,7 @@ import pl.misek.toafmobile.modules.interfaces.IModule
 import pl.misek.toafmobile.modules.interfaces.IModuleControl
 import pl.misek.toafmobile.modules.interfaces.IModuleFlashProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
+import pl.misek.toafmobile.modules.interfaces.IModuleVIN
 import pl.misek.toafmobile.modules.interfaces.IModuleZCS
 import pl.misek.toafmobile.protocols.IProtocol
 import pl.misek.toafmobile.protocols.OBDMessage
@@ -31,9 +32,13 @@ import java.util.Locale
 import kotlin.time.Duration.Companion.milliseconds
 
 private const val tag = "ModuleMEMS"
+private const val MEMS_FLASH_PENDING_MS = 15000L   // flash erase / 31 02 (response pending) moga trwac kilka s
+private const val AIF_BASE = 0x13A000L             // region rekordow AIF/VIN - sloty po 0x2E, nowy VIN do pierwszego pustego
+private const val AIF_SLOT_SIZE = 0x2E             // 46 B - rozmiar rekordu AIF (jak EmsAif.RECORD_SIZE)
+private const val AIF_SLOTS = 64                   // maks. liczba skanowanych slotow (stop na pierwszym pustym)
 class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramming, IModule,
     IModuleControl,
-    IModuleLiveData {
+    IModuleLiveData, IModuleVIN {
     private val moduleAddress = ModuleAddress.MODULE_MEMS.address
     private val _programmingState =  MutableSharedFlow<FlashProgrammingState>(replay = 10, extraBufferCapacity = 64, onBufferOverflow = BufferOverflow.DROP_OLDEST)
     override val programmingState = _programmingState.asSharedFlow()
@@ -296,6 +301,80 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
         }
     }
 
+    override fun getVinLength(): Int = 17
+
+    /**
+     * Zapis VIN przez AIF MEMS3. Rekord AIF (46 B, format jak EmsAif) jest w regionie 0x13A000
+     * w 4 slotach po 0x2E. Nowy VIN zapisuje sie do PIERWSZEGO PUSTEGO (FF) slotu, bez kasowania -
+     * sterownik czyta ostatni wazny rekord. Data programowania ustawiana na biezaca.
+     */
+    override suspend fun writeVIN(newVin: String): Boolean {
+        val vin = newVin.uppercase()
+        if (!securityAccess(0xA0)) {
+            Logger.e { "$tag [writeVIN] : brak dostepu (A0) do odczytu AIF" }
+            return false
+        }
+        // czytamy sloty po kolei az do pierwszego pustego (FF) - on jest celem zapisu,
+        // a bieżący rekord to slot tuż przed nim
+        var emptyIdx = -1
+        var current: ByteArray? = null
+        for (i in 0 until AIF_SLOTS) {
+            val rec = readAifRecord(AIF_BASE + i * AIF_SLOT_SIZE)
+            if (rec == null || rec.all { b -> b == 0xFF.toByte() }) { emptyIdx = i; break }
+            current = rec
+        }
+        val currentRecord = current
+        if (currentRecord == null) { Logger.e { "$tag [writeVIN] : brak biezacego rekordu AIF" }; return false }
+        if (emptyIdx < 0) { Logger.e { "$tag [writeVIN] : brak wolnego slotu AIF - wymaga skasowania regionu" }; return false }
+        Logger.i { "$tag [writeVIN] : biezacy slot ${emptyIdx - 1} ${EmsAif.parse(currentRecord)}" }
+        val newRecord = EmsAif.withVin(currentRecord, vin, Calendar.getInstance()) ?: run {
+            Logger.e { "$tag [writeVIN] : bledny VIN (wymagane 11 znakow + 6 cyfr)" }; return false
+        }
+        val slotAddr = AIF_BASE + emptyIdx * AIF_SLOT_SIZE
+        Logger.i { "$tag [writeVIN] : zapis do slotu $emptyIdx @ %06X : ${EmsAif.parse(newRecord)}".format(slotAddr) }
+
+        // programowanie: sesja 85, seed-key, download do pustego slotu (bez kasowania), 36 + rekord, 37
+        val session = kwp.write(moduleAddress, 0x10.toByte(), byteArrayOf(0x85.toByte(), 0x01, 0x00, 0x25, 0x80.toByte()))
+        if (!session.isValid || !securityAccess(0)) {
+            Logger.e { "$tag [writeVIN] : sesja 85 / security nieudane" }; return false
+        }
+        val download = kwp.write(
+            moduleAddress, 0x34.toByte(),
+            byteArrayOf(
+                ((slotAddr shr 16) and 0xFFL).toByte(),
+                ((slotAddr shr 8) and 0xFFL).toByte(),
+                (slotAddr and 0xFFL).toByte(),
+                0x00, 0x00, AIF_SLOT_SIZE.toByte()
+            )
+        )
+        if (!download.isValid) { Logger.e { "$tag [writeVIN] : request download nieudany" }; return false }
+        val wrote = writeFlashData(newRecord)
+        val exit = kwp.write(moduleAddress, 0x37.toByte(), byteArrayOf())
+        kwp.write(moduleAddress, 0x10.toByte(), byteArrayOf(0xA0.toByte()))
+        securityAccess(0)
+        kwp.write(moduleAddress, 0x11.toByte(), byteArrayOf(0x01))   // reset
+        val ok = wrote && exit.isValid
+        Logger.i { "$tag [writeVIN] : ${if (ok) "********** VIN WRITE OK **********" else "FAILED - 36/37 odrzucone"}" }
+        return ok
+    }
+
+    private suspend fun readAifRecord(address: Long): ByteArray? {
+        val size = AIF_SLOT_SIZE
+        val message = kwp.write(
+            moduleAddress, 0x23.toByte(),
+            byteArrayOf(
+                ((address shr 16) and 0xFFL).toByte(),
+                ((address shr 8) and 0xFFL).toByte(),
+                (address and 0xFFL).toByte(),
+                size.toByte()
+            ),
+            (size * 2 + 100).toLong()
+        )
+        val ans = message.answer
+        if (ans.size < size + 1) return null
+        return ans.copyOfRange(ans.size - 1 - size, ans.size - 1)
+    }
+
     override suspend fun getOdometer(): String? {
         return null
         /*
@@ -446,25 +525,19 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
                         Res.string.activity_flash_programming_security_access,
                         Res.string.activity_flash_programming_ok)
                     )
-                kwp.write(moduleAddress, 0x31.toByte(), byteArrayOf(0x01), 500)
-                if (m0.isValid) {
+                // kasowanie: 31 01 -> 7F 31 78 (pending) -> 71 01; flash erase trwa kilka s, czekamy na 71 01
+                val erase = kwp.writeWithPending(moduleAddress, 0x31.toByte(), byteArrayOf(0x01), 1000L, MEMS_FLASH_PENDING_MS)
+                if (erase.isValid) {
                     try {
                         _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                                 Res.string.activity_flash_programming_diagnostic_session,
                                 Res.string.activity_flash_programming_ok)
                             )
-                           var m1 = kwp.write(
-                                moduleAddress,
-                                0x1A.toByte(),
-                                byteArrayOf(0x9A.toByte()),
-                                250
-                            )
-                            var m2 = kwp.write(
-                                moduleAddress,
-                                0x10.toByte(),
-                                byteArrayOf(0x85.toByte(), 0x01, 0x00, 0x25, 0x80.toByte())
-                            )
-                            var m3 = securityAccess(0)
+                            // po erase od razu download (jak referencja - bez ponownej sesji/ident)
+                            var m1 = erase
+                            var m2 = erase
+                            var m3 = true
+                            // download #1: 34 addr 13C0F8 size 36B0 (14000 B) - jak referencja
                             var m4 = kwp.write(
                                 moduleAddress,
                                 0x34.toByte(),
@@ -473,11 +546,11 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
                                     0xC0.toByte(),
                                     0xF8.toByte(),
                                     0x00,
-                                    0x30,
+                                    0x36,
                                     0xB0.toByte()
                                 )
                             )
-                            if (m1.isValid && m2.isValid && m3 && m4.isValid) {
+                            if (m4.isValid) {
                                 _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                                         Res.string.activity_flash_programming_flash_erasing,
                                         Res.string.activity_flash_programming_ok)
@@ -486,29 +559,23 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
 
                                 var progress = 0
                                 _programmingState.tryEmit(FlashProgrammingState.Progress(progress))
-                                var x = 0xf8
-                                while (x < 0x3928) {
-                                    val dataToWrite = data.copyOfRange(x, x + blockSize)
-                                    if (writeFlashData(dataToWrite)) {
+                                var writeOk = true
+                                // download #1: dane data[0xF8 .. 0x37A8] = 14000 B, bloki 0xF8 (ostatni 112 B)
+                                var x = 0xF8
+                                while (x < 0x37A8) {
+                                    val n = minOf(blockSize, 0x37A8 - x)
+                                    if (writeFlashData(data.copyOfRange(x, x + n))) {
                                         _programmingState.tryEmit(FlashProgrammingState.Progress(progress++ * 100 / steps))
                                     } else {
                                         _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_write_error))
+                                        writeOk = false
                                         break
                                     }
-                                    x += blockSize
-                                }
-                                var writeOk = true
-                                blockSize = 0x80
-                                var dataToWrite =
-                                    data.copyOfRange(0x3928, 0x3928 + blockSize)
-                                if (writeFlashData(dataToWrite)) {
-                                    _programmingState.tryEmit(FlashProgrammingState.Progress(progress++ * 100 / steps))
-                                } else {
-                                    _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_write_error))
-                                    writeOk = false
+                                    x += n
                                 }
                                 if (writeOk) {
                                     m1 = kwp.write(moduleAddress, 0x37.toByte(), byteArrayOf())
+                                    // download #2: 34 addr 13C000 size 00F8 (248 B) - naglowek na koniec
                                     m2 = kwp.write(
                                         moduleAddress,
                                         0x34.toByte(),
@@ -518,12 +585,11 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
                                             0x00,
                                             0x00,
                                             0x00,
-                                            0x80.toByte()
+                                            0xF8.toByte()
                                         )
                                     )
                                     if (m1.isValid && m2.isValid) {
-                                        dataToWrite = data.copyOfRange(0x00, 0xF8)
-                                        if (writeFlashData(dataToWrite)) {
+                                        if (writeFlashData(data.copyOfRange(0x00, 0xF8))) {
                                             _programmingState.tryEmit(FlashProgrammingState.Progress(progress++ * 100 / steps))
                                         } else {
                                             _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_write_error))
@@ -531,7 +597,8 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
                                     }
                                 }
                                 m1 = kwp.write(moduleAddress, 0x37.toByte(), byteArrayOf())
-                                m2 = kwp.write(moduleAddress, 0x31.toByte(), byteArrayOf(0x02))
+                                // 31 02 - sprawdzenie sumy, response pending (7F 31 78 -> 71 02)
+                                m2 = kwp.writeWithPending(moduleAddress, 0x31.toByte(), byteArrayOf(0x02), 1000L, MEMS_FLASH_PENDING_MS)
                                 m4 = kwp.write(
                                     moduleAddress,
                                     0x1A.toByte(),
@@ -548,12 +615,16 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
                                     0x11.toByte(),
                                     byteArrayOf(0x01.toByte())
                                 )
+                                // po 11 01 sterownik sie resetuje - odczekaj, zanim ponowny odczyt (inaczej 1A 9A nie odpowie)
+                                try { delay(2000.milliseconds) } catch (ex: CancellationException) { throw ex } catch (_: Exception) {}
                                 val m7 = kwp.write(
                                     moduleAddress,
                                     0x1A.toByte(),
                                     byteArrayOf(0x9A.toByte())
                                 )
-                                if (m1.isValid && m2.isValid and m4.isValid && m3 && m5.isValid && m6.isValid && m7.isValid)
+                                Logger.i { "$tag [writeFlash] : reset ${m6.isValid}, ident po resecie ${m7.isValid}" }
+                                // sukces = faktyczny zapis: wszystkie bloki OK, 37 OK, 31 02 (suma) OK
+                                if (writeOk && m1.isValid && m2.isValid)
                                     _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                                         Res.string.activity_flash_programming_flash_writing_end,
                                         Res.string.activity_flash_programming_ok)
@@ -668,6 +739,8 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
     }
 
     private suspend fun readFlashData(address: Long, size: Int): ByteArray {
+        // timeout musi objac transmisje calego bloku (size bajtow @ 9600 ~ size*1.05 ms);
+        // zbyt krotki ucina odpowiedz i size!=blockSize -> blad odczytu
         val message = kwp.write(
             moduleAddress, 0x23.toByte(),
             byteArrayOf(
@@ -676,7 +749,7 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
                 ((address and 0x0000FFL)).toByte(),
                 ((size and 0xFF)).toByte()
             ),
-            50
+            (size * 2 + 100).toLong()
         )
         var result = ByteArray(0)
         try {
@@ -695,11 +768,11 @@ class ModuleMEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgram
             moduleAddress,
             0x36.toByte(),
             data,
-            20
+            (data.size * 2 + 100).toLong()
         ).isValid
     }
 
-    override val flashProgrammingAvailable: Boolean = false
+    override val flashProgrammingAvailable: Boolean = true
 
     override fun getSupportedCarTypes(): List<CarType> {
         return listOf(CarType.R40, CarType.RJO)

@@ -22,6 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
@@ -39,6 +40,7 @@ import pl.misek.toafmobile.modules.interfaces.IModuleVIN
 import pl.misek.toafmobile.network.UserInfo
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
+import kotlin.time.Duration.Companion.milliseconds
 
 private const val tag = "AdvanceCodingVin"
 @Composable
@@ -187,6 +189,7 @@ private suspend fun updateVin(module : IModule?, vin : String) : Boolean
     return withContext(Dispatchers.IO)
     {
         (module as IModuleVIN).writeVIN(vin)
+        delay(5000.milliseconds)
         (module.getVIN() ?: "") == vin
     }
 }
