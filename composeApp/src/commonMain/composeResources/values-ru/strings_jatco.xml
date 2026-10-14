@@ -102,4 +102,7 @@
     <string name="jatco_control_reduction_timing_solenoid">Соленоид тайминга редукции</string>
     <string name="jatco_control_2_4_break_timing_solenoid">Соленоид тайминга тормоза 2-4</string>
     <string name="jatco_control_lock_up_duty_solenoid">Соленоид-регулятор блокировки ГТ</string>
+    <string name="jatco_identification_calibration">Калибровка ЭБУ</string>
+    <string name="jatco_identification_firmware_dhx">Файл прошивки DHX</string>
+    <string name="jatco_identification_nnv_software">Программное обеспечение NNV</string>
 </resources>

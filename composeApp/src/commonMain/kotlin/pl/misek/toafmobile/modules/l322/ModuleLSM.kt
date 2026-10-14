@@ -162,7 +162,9 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
         var result: MutableList<ModuleError>? = null
 
         for (n in 0x01..0x9) {
-            val message = interfaceWrite(byteArrayOf(0x04, n.toByte()))
+            // Blok bledow to pelna ramka 0x23 (35 B); domyslne 50 ms (okno 100 ms) ucina ja
+            // i rozsynchronizowuje kolejne odczyty - dajemy wiekszy timeout (okno ~500 ms).
+            val message = interfaceWrite(byteArrayOf(0x04, n.toByte()), 250)
             try {
                 if (message.isValid) {
                     if (message.answer[3].toInt() != 0x00) {

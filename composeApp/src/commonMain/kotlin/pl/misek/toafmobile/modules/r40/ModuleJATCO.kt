@@ -43,8 +43,12 @@ import toafmobile.composeapp.generated.resources.activity_flash_programming_writ
 import toafmobile.composeapp.generated.resources.activity_flash_programming_write_time
 import toafmobile.composeapp.generated.resources.activity_flash_programming_wrong_file_size
 import toafmobile.composeapp.generated.resources.activity_flash_read_identification
+import toafmobile.composeapp.generated.resources.jatco_identification_calibration
+import toafmobile.composeapp.generated.resources.jatco_identification_firmware_dhx
+import toafmobile.composeapp.generated.resources.jatco_identification_nnv_software
 import toafmobile.composeapp.generated.resources.module_description_jatco
 import toafmobile.composeapp.generated.resources.module_gearbox
+import toafmobile.composeapp.generated.resources.module_info_programing_date
 import java.util.Calendar
 import java.util.Locale
 import kotlin.collections.plus
@@ -106,16 +110,18 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
             if (message.isValid && info != null) {
                 info.id2 = String(message.answer.copyOfRange(26, 29)) +
                         message.answer.copyOfRange(29, 32).joinToString("") { "%02X".format((it)) }
+                info.additionalInfo.add(
+                    Pair(Res.string.module_info_programing_date,
+                        String.format("%02X.%02X.%02X%02X",message.answer[21], message.answer[22], message.answer[23],message.answer[24]))
+                )
             }
-            if (info != null) {
-                info.serial = getSerialNumber()
-            }
+
             info?.let {
                 var message = kwp!!.write(moduleAddress, 0x1A, byteArrayOf(0x92.toByte()))
                 if (message.isValid)
                     it.additionalInfo.add(
                         Pair(
-                            Res.string.module_description_jatco,
+                            Res.string.jatco_identification_calibration,
                             String(message.answer.copyOfRange(6, message.answer.size - 1))
                         )
                     )
@@ -123,7 +129,7 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
                 if (message.isValid)
                     it.additionalInfo.add(
                         Pair(
-                            Res.string.module_description_jatco,
+                            Res.string.jatco_identification_firmware_dhx,
                             String(message.answer.copyOfRange(6, message.answer.size - 1))
                         )
                     )
@@ -131,7 +137,7 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
                 if (message.isValid)
                     it.additionalInfo.add(
                         Pair(
-                            Res.string.module_description_jatco,
+                            Res.string.jatco_identification_nnv_software,
                             String(message.answer.copyOfRange(6, 9)) + message.answer.copyOfRange(
                                 9,
                                 12
@@ -145,25 +151,6 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
             Logger.e {"$tag [getIdentification], $ex, $message"}
         }
         return info
-    }
-
-    private suspend fun getSerialNumber(): String {
-        val message = kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x94.toByte()))
-        try {
-            if (message.isValid) {
-                return String.format(
-                    "%02X%02X",
-                    message.answer[4].toInt() and 0xFF,
-                    message.answer[5].toInt() and 0xFF
-                )
-            }
-        } catch (ex: CancellationException) {
-            throw ex
-        } catch (ex : Exception)
-        {
-            Logger.e {"$tag [getSErialNumber], $ex, $message"}
-        }
-        return ""
     }
 
     override suspend fun getVIN(): String? {
@@ -407,7 +394,8 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
 
     override suspend fun writeFlash(data: ByteArray)  {
         //var inData = data
-        val blockSize = 0x60
+        // Rozmiar bloku transferu 0x36 = 0xF0 (240 B) - potwierdzony logiem zapisu (jatco_zapis.htm)
+        val blockSize = 0xF0
         val steps = data.size / blockSize
         val startTime = Calendar.getInstance().time
 
@@ -422,6 +410,11 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
             _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_read_identification))
             val moduleInfo = getIdentification()
             val vin = getVIN()
+            // Rekord AIF/VIN (1A 87) - odczyt przed kasowaniem, odtwarzany po zapisie przez 3B 87
+            val aifMessage = kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x87.toByte()))
+            val aifRecord = try {
+                if (aifMessage.isValid) aifMessage.answer.copyOfRange(6, aifMessage.answer.size - 1) else null
+            } catch (ex: Exception) { null }
             _programmingState.tryEmit(FlashProgrammingState.Message("ID1 : " + moduleInfo?.id1))
             _programmingState.tryEmit(FlashProgrammingState.Message("ID2 : " + moduleInfo?.id2))
             _programmingState.tryEmit(FlashProgrammingState.Message("VIN : $vin"))
@@ -443,7 +436,8 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
                 {
                     val eraseFlash =
                         kwp!!.write(moduleAddress, 0x31.toByte(), byteArrayOf(0x07), 10000)
-                    requestErase =  eraseFlash.answer[eraseFlash.answer.size - 3] == 0x71.toByte() &&eraseFlash.answer[eraseFlash.answer.size - 2] == 0x02.toByte()
+                    val eraseAnswer = eraseFlash.answer
+                    requestErase =  eraseAnswer.size >= 3 && eraseAnswer[eraseAnswer.size - 3] == 0x71.toByte() && eraseAnswer[eraseAnswer.size - 2] == 0x02.toByte()
                     requestNumber++
                     delay(1000.milliseconds)
                 }
@@ -465,19 +459,33 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
                         _programmingState.tryEmit(FlashProgrammingState.Progress(progress))
                         try {
                             var x = 0
+                            var writeOk = true
+                            // Transfer danych blokami 0xF0 (ostatni blok czesciowy - 0xC000 nie dzieli sie przez 0xF0)
                             while (x < data.size) {
                                 val dataToWrite = data.copyOfRange(x, if (((x + blockSize) < data.size)) x + blockSize else data.size)
-                                if (dataToWrite.size == blockSize) {
-                                    if (writeFlashData(dataToWrite)) {
-                                        _programmingState.tryEmit(FlashProgrammingState.Progress(progress++ * 100 / steps))
-                                    } else {
-                                        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_write_error))
-                                        break
-                                    }
+                                if (writeFlashData(dataToWrite)) {
+                                    _programmingState.tryEmit(FlashProgrammingState.Progress(progress++ * 100 / steps))
+                                } else {
+                                    _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_write_error))
+                                    writeOk = false
+                                    break
                                 }
                                 x += blockSize
                             }
-                            kwp!!.write(moduleAddress, 0x37.toByte(), byteArrayOf(0x01), 2000)
+                            if (writeOk) {
+                                // pusty blok 0x36 konczy transfer danych (B8 19 F7 01 36 ..)
+                                writeFlashData(byteArrayOf())
+                                testerPresent()
+                                // odtworzenie rekordu AIF/VIN (3B 87) skasowanego przy programowaniu
+                                if (aifRecord != null) {
+                                    kwp!!.write(moduleAddress, 0x3B.toByte(), byteArrayOf(0x87.toByte()) + aifRecord, 1000)
+                                    testerPresent()
+                                }
+                                // RequestTransferExit (0x37, bez podfunkcji) + rutyna 0x31 01 (finalizacja)
+                                kwp!!.write(moduleAddress, 0x37.toByte(), byteArrayOf(), 2000)
+                                testerPresent()
+                                kwp!!.write(moduleAddress, 0x31.toByte(), byteArrayOf(0x01), 2000)
+                            }
                             _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
                                 Res.string.activity_flash_programming_flash_writing_end,
                                 Res.string.activity_flash_programming_ok))
@@ -584,7 +592,7 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
                 0x00,
                 ((size and 0xFF)).toByte()
             ),
-            250
+            (300 + size * 3).toLong()
         )
         Logger.i{"$tag: ${(System.currentTimeMillis() - start)}"}
         try {
@@ -600,14 +608,15 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
         return byteArrayOf()
     }
 
-    override val flashProgrammingAvailable: Boolean = false
+    override val flashProgrammingAvailable: Boolean = true
 
     private suspend fun writeFlashData(data: ByteArray): Boolean {
+        // 240 B przy 9600 8E1 to ~0,28 s nadawania + echo + odpowiedz (~0,58 s/blok w logu)
         return kwp!!.write(
             moduleAddress,
             0x36.toByte(),
             data,
-            100
+            (data.size * 3 + 300).toLong()
         ).isValid
     }
 

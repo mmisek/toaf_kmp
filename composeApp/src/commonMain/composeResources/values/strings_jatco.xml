@@ -100,4 +100,7 @@
     <string name="jatco_control_reduction_timing_solenoid">Reduction timing solenoid</string>
     <string name="jatco_control_2_4_break_timing_solenoid">Brake timing solenoid</string>
     <string name="jatco_control_lock_up_duty_solenoid">Lock-up duty solenoid</string>
+    <string name="jatco_identification_calibration">ECU calibration</string>
+    <string name="jatco_identification_firmware_dhx">DHX firmware file</string>
+    <string name="jatco_identification_nnv_software">NNV software</string>
 </resources>

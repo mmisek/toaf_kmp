@@ -98,4 +98,7 @@
     <string name="jatco_control_reduction_timing_solenoid">Solenoide fasatura riduzione</string>
     <string name="jatco_control_2_4_break_timing_solenoid">Solenoide fasatura freno</string>
     <string name="jatco_control_lock_up_duty_solenoid">Solenoide modulatore di blocco</string>
+    <string name="jatco_identification_calibration">Calibrazione ECU</string>
+    <string name="jatco_identification_firmware_dhx">File firmware DHX</string>
+    <string name="jatco_identification_nnv_software">Software NNV</string>
 </resources>

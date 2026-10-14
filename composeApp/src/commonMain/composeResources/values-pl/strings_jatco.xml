@@ -99,4 +99,7 @@
     <string name="jatco_control_reduction_timing_solenoid">Zawór elektromagnetyczny czasu redukcji</string>
     <string name="jatco_control_2_4_break_timing_solenoid">Zawór elektromagnetyczny czasu hamowania</string>
     <string name="jatco_control_lock_up_duty_solenoid">Zawór elektromagnetyczny blokady</string>
+    <string name="jatco_identification_calibration">Kalibracja ECU</string>
+    <string name="jatco_identification_firmware_dhx">Plik firmware DHX</string>
+    <string name="jatco_identification_nnv_software">Oprogramowanie NNV</string>
 </resources>
