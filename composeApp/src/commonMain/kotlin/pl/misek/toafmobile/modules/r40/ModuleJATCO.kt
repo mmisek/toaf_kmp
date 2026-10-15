@@ -406,7 +406,6 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
         if (data.size != 0xC000) {
             _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_wrong_file_size))
         } else {
-            //inData = data.copyOfRange(0, (data.size / blockSize) * blockSize)
             _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_read_identification))
             val moduleInfo = getIdentification()
             val vin = getVIN()
@@ -418,7 +417,6 @@ class ModuleJATCO(private var kwp: ProtocolKWP?) : IModule, IModuleControl, IMod
             _programmingState.tryEmit(FlashProgrammingState.Message("ID1 : " + moduleInfo?.id1))
             _programmingState.tryEmit(FlashProgrammingState.Message("ID2 : " + moduleInfo?.id2))
             _programmingState.tryEmit(FlashProgrammingState.Message("VIN : $vin"))
-            //endDiagnosticSession()
             try {
                 delay(1000.milliseconds)
             } catch (ex: CancellationException) {
