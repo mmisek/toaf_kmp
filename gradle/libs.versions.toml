@@ -1,7 +1,7 @@
 [versions]
-kotlin = "2.4.20" # Upewnij się, że masz zgodną wersję z Compose
+kotlin = "2.4.21" # Upewnij się, że masz zgodną wersję z Compose
 agp = "9.4.1"
-compose-multiplatform = "1.12.1"
+compose-multiplatform = "1.12.2"
 composeHotReload = "1.2.0"
 ktor = "3.6.0"
 koin = "4.2.2"
@@ -16,7 +16,7 @@ androidx-activityCompose = "1.13.0"
 kotlinx-coroutines = "1.11.0"
 kotlinx-serialization = "1.11.0"
 compose-plugin = "1.12.1"
-sentry-kmp = "0.27.0"
+sentry-kmp = "0.28.0"
 buildkonfig = "0.23.0"
 usb-serial-android = "3.11.0"
 jserialcomm = "2.11.4"

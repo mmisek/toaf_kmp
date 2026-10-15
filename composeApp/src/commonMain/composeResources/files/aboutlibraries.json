@@ -3598,7 +3598,7 @@
         },
         {
             "uniqueId": "io.sentry:sentry",
-            "artifactVersion": "8.41.0",
+            "artifactVersion": "8.58.0",
             "name": "Sentry SDK",
             "description": "SDK for sentry.io",
             "website": "https://github.com/getsentry/sentry-java",
@@ -3621,7 +3621,7 @@
         },
         {
             "uniqueId": "io.sentry:sentry-android",
-            "artifactVersion": "8.41.0",
+            "artifactVersion": "8.58.0",
             "name": "Sentry SDK",
             "description": "SDK for sentry.io",
             "website": "https://github.com/getsentry/sentry-java",
@@ -3644,7 +3644,7 @@
         },
         {
             "uniqueId": "io.sentry:sentry-android-core",
-            "artifactVersion": "8.41.0",
+            "artifactVersion": "8.58.0",
             "name": "Sentry SDK",
             "description": "SDK for sentry.io",
             "website": "https://github.com/getsentry/sentry-java",
@@ -3667,7 +3667,7 @@
         },
         {
             "uniqueId": "io.sentry:sentry-android-ndk",
-            "artifactVersion": "8.41.0",
+            "artifactVersion": "8.58.0",
             "name": "Sentry SDK",
             "description": "SDK for sentry.io",
             "website": "https://github.com/getsentry/sentry-java",
@@ -3690,7 +3690,7 @@
         },
         {
             "uniqueId": "io.sentry:sentry-android-replay",
-            "artifactVersion": "8.41.0",
+            "artifactVersion": "8.58.0",
             "name": "Sentry SDK",
             "description": "SDK for sentry.io",
             "website": "https://github.com/getsentry/sentry-java",
@@ -3713,7 +3713,7 @@
         },
         {
             "uniqueId": "io.sentry:sentry-kotlin-multiplatform",
-            "artifactVersion": "0.27.0",
+            "artifactVersion": "0.28.0",
             "name": "Sentry Kotlin Multiplatform SDK",
             "description": "SDK for sentry.io",
             "website": "https://github.com/getsentry/sentry-kotlin-multiplatform",
@@ -3736,7 +3736,7 @@
         },
         {
             "uniqueId": "io.sentry:sentry-native-ndk",
-            "artifactVersion": "0.14.0",
+            "artifactVersion": "0.16.6",
             "name": "Sentry SDK",
             "description": "SDK for sentry.io",
             "website": "https://github.com/getsentry/sentry-native",
@@ -4269,7 +4269,7 @@
         },
         {
             "uniqueId": "org.jetbrains.compose.desktop:desktop",
-            "artifactVersion": "1.12.1",
+            "artifactVersion": "1.12.2",
             "name": "Compose Desktop",
             "description": "Compose Desktop",
             "website": "https://github.com/JetBrains/compose-multiplatform",
@@ -4293,7 +4293,7 @@
         },
         {
             "uniqueId": "org.jetbrains.compose.desktop:desktop-jvm-windows-x64",
-            "artifactVersion": "1.12.1",
+            "artifactVersion": "1.12.2",
             "name": "Compose Desktop",
             "description": "Compose Desktop",
             "website": "https://github.com/JetBrains/compose-multiplatform",
@@ -4521,7 +4521,7 @@
         },
         {
             "uniqueId": "org.jetbrains.compose.material:material",
-            "artifactVersion": "1.12.1",
+            "artifactVersion": "1.12.2",
             "name": "Compose Material Components",
             "description": "Compose Material Design Components library",
             "website": "https://github.com/JetBrains/compose-multiplatform",
@@ -4689,7 +4689,7 @@
         },
         {
             "uniqueId": "org.jetbrains.compose.ui:ui-backhandler",
-            "artifactVersion": "1.12.1",
+            "artifactVersion": "1.12.2",
             "name": "Compose BackHandler",
             "description": "Provides BackHandler in Compose Multiplatform projects",
             "website": "https://github.com/JetBrains/compose-multiplatform",
@@ -4929,7 +4929,7 @@
         },
         {
             "uniqueId": "org.jetbrains.kotlin:kotlin-stdlib",
-            "artifactVersion": "2.4.20",
+            "artifactVersion": "2.4.21",
             "name": "Kotlin Stdlib",
             "description": "Kotlin Standard Library",
             "website": "https://kotlinlang.org/",
@@ -4953,7 +4953,7 @@
         },
         {
             "uniqueId": "org.jetbrains.kotlin:kotlin-stdlib-common",
-            "artifactVersion": "2.4.20",
+            "artifactVersion": "2.4.21",
             "name": "Kotlin Stdlib Common",
             "description": "Kotlin Common Standard Library (legacy, use kotlin-stdlib instead)",
             "website": "https://kotlinlang.org/",
@@ -5356,7 +5356,7 @@
         },
         {
             "uniqueId": "org.jetbrains.skiko:skiko",
-            "artifactVersion": "0.150.1",
+            "artifactVersion": "0.150.2",
             "name": "Skiko KMP",
             "description": "Kotlin Skia bindings",
             "website": "https://www.github.com/JetBrains/skiko",
@@ -5380,7 +5380,7 @@
         },
         {
             "uniqueId": "org.jetbrains.skiko:skiko-awt",
-            "artifactVersion": "0.150.1",
+            "artifactVersion": "0.150.2",
             "name": "Skiko Awt",
             "description": "Kotlin Skia bindings",
             "website": "https://www.github.com/JetBrains/skiko",
@@ -5404,7 +5404,7 @@
         },
         {
             "uniqueId": "org.jetbrains.skiko:skiko-awt-runtime-windows-x64",
-            "artifactVersion": "0.150.1",
+            "artifactVersion": "0.150.2",
             "name": "Skiko JVM Runtime for Windows X64",
             "description": "Kotlin Skia bindings",
             "website": "https://www.github.com/JetBrains/skiko",
