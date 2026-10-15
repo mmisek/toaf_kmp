@@ -18,7 +18,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.stringResource
-import org.koin.compose.koinInject
 import pl.misek.toafmobile.activities.snackbar.ToafSnackBar
 import toafmobile.composeapp.generated.resources.AD_save_to_file_failed
 import toafmobile.composeapp.generated.resources.AD_save_to_file_success
