@@ -25,6 +25,7 @@ billing = "9.1.0"
 ads = "25.5.0"
 kotlinx-datetime = "0.8.0"
 kermit = "2.2.0"
+mockk = "1.14.2"
 aboutLibraries = "15.2.0"
 compose = "1.12.1"
 compose-material3 = "1.12.0-alpha03"
@@ -73,6 +74,8 @@ androidx-activity-compose = { module = "androidx.activity:activity-compose", ver
 androidx-lifecycle-runtimeCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodelCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 kotlinx-serialization-json ={ module= "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization"}
 sentry-kmp = { module = "io.sentry:sentry-kotlin-multiplatform", version.ref = "sentry-kmp" }
 google-billing = {module = "com.android.billingclient:billing-ktx", version.ref = "billing"}

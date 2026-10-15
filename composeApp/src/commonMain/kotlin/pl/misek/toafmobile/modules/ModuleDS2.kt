@@ -41,7 +41,7 @@ open class ModuleDS2(
         val mi = interfaceWrite(byteArrayOf(0x00),250).let { ModulesFunction.getModuleInfo(it) }
         if (mi != null && mi.ci == "") {
             reset()
-            delay(1000)
+            delay(1000.milliseconds)
             return interfaceWrite(byteArrayOf(0x00)).let { ModulesFunction.getModuleInfo(it) }
         }
         return mi

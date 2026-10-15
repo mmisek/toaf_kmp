@@ -77,6 +77,7 @@ kotlin {
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
+            implementation(libs.kotlinx.coroutines.test)
         }
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
@@ -84,6 +85,10 @@ kotlin {
             implementation(libs.sqlite.bundled)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.jserialcomm)
+        }
+        jvmTest.dependencies {
+            implementation(kotlin("test-junit"))
+            implementation(libs.mockk)
         }
     }
 }

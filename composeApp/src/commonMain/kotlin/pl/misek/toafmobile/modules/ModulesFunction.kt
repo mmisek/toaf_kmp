@@ -168,27 +168,32 @@ object ModulesFunction {
         val answer = message.answer.copyOfRange( 3, message.answer.size)
         if (message.isValid) {
             try {
+                val locale = Locale.getDefault()
                 moduleInfo = ModuleInfo()
                 moduleInfo.id1 = decodeModuleID(answer)
-                moduleInfo.hw = String.format("%02X", answer[4].toInt() and 0xFF)
-                moduleInfo.sw = String.format("%02X", answer[11].toInt() and 0xFF)
-                moduleInfo.ci = String.format("%02X", answer[5].toInt() and 0xFF)
-                moduleInfo.di = String.format("%02X", answer[6].toInt() and 0xFF)
-                moduleInfo.bi = String.format("%02X", answer[7].toInt() and 0xFF)
+                moduleInfo.hw = String.format(locale, "%02d", bcdToInt(answer[4]))
+                moduleInfo.sw = String.format(locale, "%02d", bcdToInt(answer[11]))
+                moduleInfo.ci = String.format(locale, "%02d", bcdToInt(answer[5]))
+                moduleInfo.di = String.format(locale, "%02d", bcdToInt(answer[6]))
+                moduleInfo.bi = String.format(locale, "%02d", bcdToInt(answer[7]))
+                // Data produkcji: tydzien/rok, oba pola BCD (SGBD: ID_DATUM_KW / ID_DATUM_JAHR).
                 moduleInfo.date = String.format(
-                    "%02X/%02X",
-                    answer[8].toInt() and 0xFF,
-                    answer[9].toInt() and 0xFF
+                    locale,
+                    "%02d/%02d",
+                    bcdToInt(answer[8]),
+                    bcdToInt(answer[9])
                 )
                 moduleInfo.producer = getProducer(answer[10].toInt() and 0xFF).toString()
             } catch (ex: CancellationException) {
                 throw ex
             } catch (ex: Exception) {
-                Logger.e{"$tag, ${ex.toString()}"}
+                Logger.e{"$tag, $ex"}
             }
         }
         return moduleInfo
     }
+
+    private fun bcdToInt(b: Byte): Int = ((b.toInt() and 0xF0) shr 4) * 10 + (b.toInt() and 0x0F)
 
     fun getProducer(producer: Int): String? {
         return if (PartProducer.containsKey(producer)) PartProducer[producer] else PartProducer[0x00]
