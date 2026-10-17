@@ -57,7 +57,7 @@ fun AdvanceCodingAutoLights(koinModuleName : KoinNames,onShowResult : (result : 
     val autoLightOptions = stringArrayResource(Res.array.activity_advance_coding_lsm_auto_light_modes)
     var autoLightOption by remember { mutableStateOf(autoLightOptions[0]) }
     var expandedState by remember { mutableStateOf(false) }
-    var currentCoding : List<ByteArray>? = emptyList()
+    var currentCoding by remember { mutableStateOf<List<ByteArray>?>(null) }
     val writeCodingSuccessText = stringResource(Res.string.message_coding_save_ok)
     val writeCodingFailText = stringResource(Res.string.activity_advance_coding_lsm_write_error)
     val readCodingFailText = stringResource(Res.string.activity_advance_coding_lsm_read_error)
@@ -180,6 +180,7 @@ fun AdvanceCodingAutoLights(koinModuleName : KoinNames,onShowResult : (result : 
                 onClick = {
                     action = {
                         currentCoding = (currentModule as IModuleCoding).readCoding()
+                        !currentCoding.isNullOrEmpty()
                     }
                     actionType = ActionTypeEnum.ReadCoding
                     showProgressDialog = true
@@ -190,15 +191,16 @@ fun AdvanceCodingAutoLights(koinModuleName : KoinNames,onShowResult : (result : 
                 onClick = {
                     actionType = ActionTypeEnum.WriteCoding
                     val autoLightOptionIndexValue = autoLightOptions.indexOf(autoLightOption)
-                    val newCoding = (currentModule as IModuleLSMAutoLight).setAutoLightMode(
-                        coding = currentCoding!!,
-                        mode = autoLightOptionIndexValue)
+                    val codingToModify = currentCoding ?: return@RedButton
                     action = {
+                        val newCoding = (currentModule as IModuleLSMAutoLight).setAutoLightMode(
+                            coding = codingToModify,
+                            mode = autoLightOptionIndexValue)
                         (currentModule as IModuleCoding).writeCoding(newCoding)
                     }
                     showProgressDialog = true
                 },
-                enabled = currentCoding != null
+                enabled = !currentCoding.isNullOrEmpty()
                 )
         }
     }

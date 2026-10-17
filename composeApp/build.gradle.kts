@@ -102,6 +102,11 @@ dependencies {
 compose.desktop {
     application {
         mainClass = "pl.misek.toafmobile.MainKt"
+        // ProGuard i jpackage potrzebują katalogu jmods. JBR z Android Studio (JDK 25) go nie ma,
+        // więc bez tego ProGuard nie dostaje bibliotek JDK i zgłasza setki tysięcy unresolved references.
+        javaHome = javaToolchains.launcherFor {
+            languageVersion.set(JavaLanguageVersion.of(21))
+        }.get().metadata.installationPath.asFile.absolutePath
 
         nativeDistributions {
             targetFormats(TargetFormat.Rpm, TargetFormat.Msi, TargetFormat.Exe, TargetFormat.Deb, TargetFormat.Pkg)

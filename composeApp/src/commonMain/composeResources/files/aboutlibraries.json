@@ -865,10 +865,10 @@
         },
         {
             "uniqueId": "androidx.core:core",
-            "artifactVersion": "1.19.0",
+            "artifactVersion": "1.19.1",
             "name": "Core",
             "description": "Provides backward-compatible implementations of Android platform APIs and features.",
-            "website": "https://developer.android.com/jetpack/androidx/releases/core#1.19.0",
+            "website": "https://developer.android.com/jetpack/androidx/releases/core#1.19.1",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -890,10 +890,10 @@
         },
         {
             "uniqueId": "androidx.core:core-ktx",
-            "artifactVersion": "1.19.0",
+            "artifactVersion": "1.19.1",
             "name": "Core Kotlin Extensions",
             "description": "Kotlin extensions for 'core' artifact",
-            "website": "https://developer.android.com/jetpack/androidx/releases/core#1.19.0",
+            "website": "https://developer.android.com/jetpack/androidx/releases/core#1.19.1",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -2925,7 +2925,7 @@
         },
         {
             "uniqueId": "com.mikepenz:aboutlibraries-compose-core",
-            "artifactVersion": "15.2.0",
+            "artifactVersion": "15.3.0",
             "name": "AboutLibraries Compose UI Library",
             "description": "AboutLibraries automatically detects all dependencies of a project and collects their information including the license. Optionally visualising it via the provided ui components.",
             "website": "https://github.com/mikepenz/AboutLibraries",
@@ -2948,7 +2948,7 @@
         },
         {
             "uniqueId": "com.mikepenz:aboutlibraries-compose-m3",
-            "artifactVersion": "15.2.0",
+            "artifactVersion": "15.3.0",
             "name": "AboutLibraries Compose Material 3 Library",
             "description": "AboutLibraries automatically detects all dependencies of a project and collects their information including the license. Optionally visualising it via the provided ui components.",
             "website": "https://github.com/mikepenz/AboutLibraries",
@@ -2971,7 +2971,7 @@
         },
         {
             "uniqueId": "com.mikepenz:aboutlibraries-core",
-            "artifactVersion": "15.2.0",
+            "artifactVersion": "15.3.0",
             "name": "AboutLibraries Core Library",
             "description": "AboutLibraries automatically detects all dependencies of a project and collects their information including the license. Optionally visualising it via the provided ui components.",
             "website": "https://github.com/mikepenz/AboutLibraries",
@@ -4292,7 +4292,7 @@
             ]
         },
         {
-            "uniqueId": "org.jetbrains.compose.desktop:desktop-jvm-linux-x64",
+            "uniqueId": "org.jetbrains.compose.desktop:desktop-jvm-windows-x64",
             "artifactVersion": "1.12.2",
             "name": "Compose Desktop",
             "description": "Compose Desktop",
@@ -5403,9 +5403,9 @@
             ]
         },
         {
-            "uniqueId": "org.jetbrains.skiko:skiko-awt-runtime-linux-x64",
+            "uniqueId": "org.jetbrains.skiko:skiko-awt-runtime-windows-x64",
             "artifactVersion": "0.150.2",
-            "name": "Skiko JVM Runtime for Linux X64",
+            "name": "Skiko JVM Runtime for Windows X64",
             "description": "Kotlin Skia bindings",
             "website": "https://www.github.com/JetBrains/skiko",
             "developers": [

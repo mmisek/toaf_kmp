@@ -465,6 +465,8 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
     }
 
     override fun setAutoLightMode(coding: List<ByteArray>, mode: Int): List<ByteArray> {
+        require(coding.size == 0x10 && coding[0].size > 0x12) { "Invalid LSM coding" }
+        require(mode in autoLightsModes.indices) { "Invalid auto light mode: $mode" }
         val newCoding = coding.map { it.copyOf() }.toMutableList()
         if (mode == 1) {
             newCoding[0][0x04] = (newCoding[0][0x04].toInt() or 0x80 or 0x02).toByte()
