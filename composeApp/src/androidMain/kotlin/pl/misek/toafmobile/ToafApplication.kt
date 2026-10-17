@@ -3,9 +3,11 @@ package pl.misek.toafmobile
 import android.app.Application
 import co.touchlab.kermit.Logger
 import com.google.android.gms.ads.MobileAds
-import io.sentry.Sentry
 import io.sentry.SentryOptions
 import io.sentry.android.core.SentryAndroid
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import pl.misek.toafmobile.koin.commonModules
@@ -36,8 +38,11 @@ class ToafApplication : Application() {
                 event
             }
         }
-        MobileAds.initialize(this) {initializationStatus ->
-            Logger.i {"MobileAds : ${initializationStatus.adapterStatusMap}"}
+
+        CoroutineScope(Dispatchers.IO).launch {
+            MobileAds.initialize(this@ToafApplication) {initializationStatus ->
+                Logger.i {"MobileAds : ${initializationStatus.adapterStatusMap}"}
+            }
         }
     }
 }
