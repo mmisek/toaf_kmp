@@ -33,6 +33,7 @@
             android:value="true" />
         <activity android:name=".activities.AndroidActivityMain"
             android:launchMode="singleTop"
+            android:theme="@style/Theme.Toaf.Starting"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

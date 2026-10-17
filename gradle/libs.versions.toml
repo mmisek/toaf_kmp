@@ -30,6 +30,7 @@ aboutLibraries = "15.3.0"
 compose = "1.12.2"
 compose-material3 = "1.12.0-alpha03"
 compose-icons = "1.7.3"
+splashscreen ="1.2.0"
 
 [libraries]
 #compose
@@ -40,6 +41,8 @@ compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", v
 compose-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "compose" }
 compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "compose-material3" }
 compose-material-iconsExtended = { module = "org.jetbrains.compose.material:material-icons-extended", version.ref = "compose-icons" }
+compose-splashscreen = {module = "androidx.core:core-splashscreen", version.ref = "splashscreen"}
+
 #AboutLibraries
 aboutLibraries-core = { module = "com.mikepenz:aboutlibraries-core", version.ref = "aboutLibraries" }
 aboutLibraries-compose = { module = "com.mikepenz:aboutlibraries-compose-m3", version.ref = "aboutLibraries" }

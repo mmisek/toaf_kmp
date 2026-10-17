@@ -11,11 +11,19 @@ import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentActivity
 import co.touchlab.kermit.Logger
 import com.hoho.android.usbserial.driver.UsbSerialProber
@@ -45,7 +53,21 @@ class AndroidActivityMain : FragmentActivity() {
     var device: IInterfaceDevice? = null
     private lateinit var usbEventViewModel : IUsbEventManager
     private lateinit var toafWifiEventManager: ToafWifiEventManager
+    // położenie logo na systemowym splash screenie, od którego startuje animacja SplashOverlay
+    private val systemSplashLogoBounds = mutableStateOf<Rect?>(null)
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen().setOnExitAnimationListener { splashScreenViewProvider ->
+            val iconView = splashScreenViewProvider.iconView
+            val location = IntArray(2)
+            iconView.getLocationInWindow(location)
+            systemSplashLogoBounds.value = Rect(
+                center = Offset(location[0] + iconView.width / 2f, location[1] + iconView.height / 2f),
+                radius = iconView.width * SYSTEM_SPLASH_LOGO_FRACTION / 2f
+            )
+            // usunięcie bez przenikania, dopiero gdy SplashOverlay narysuje logo w tym samym miejscu
+            val splashView = splashScreenViewProvider.view
+            splashView.postOnAnimation { splashView.postOnAnimation { splashScreenViewProvider.remove() } }
+        }
         super.onCreate(savedInstanceState)
         ActivityProvider.currentActivity = this
         protocolFactory = get<ProtocolFactory>()
@@ -64,15 +86,24 @@ class AndroidActivityMain : FragmentActivity() {
         }
         checkIntentForUsbDevices(intent)
         setContent {
-            Scaffold(
-                modifier = Modifier.fillMaxSize(),
-                containerColor = ToafColors.toafBackground
-            )
-            { innerPadding ->
-                Column(
-                    modifier = Modifier.fillMaxSize().padding(innerPadding)
-                ) {
-                    AppNavigation({})
+            var showSplash by rememberSaveable { mutableStateOf(true) }
+            Box(modifier = Modifier.fillMaxSize()) {
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    containerColor = ToafColors.toafBackground
+                )
+                { innerPadding ->
+                    Column(
+                        modifier = Modifier.fillMaxSize().padding(innerPadding)
+                    ) {
+                        AppNavigation({})
+                    }
+                }
+                if (showSplash) {
+                    SplashOverlay(
+                        systemLogoBounds = systemSplashLogoBounds.value,
+                        onFinished = { showSplash = false }
+                    )
                 }
             }
         }
@@ -139,7 +170,6 @@ class AndroidActivityMain : FragmentActivity() {
             val ipAddress = withContext(Dispatchers.IO){database?.getStringSettingValueByName(DatabaseSettingFields.WIFI_DEVICE_IP) ?: "" }
             val twi = ToafWifiInterface(ipAddress)
             val deviceInfo = withContext(Dispatchers.IO) {twi.getDeviceInfo()}
-            //interfaceConnectionState = if (deviceInfo != null) ConnectionState.WIFI_CONNECTED else ConnectionState.WIFI_DISCONNECTED
             device = twi
         }
         else
@@ -150,22 +180,13 @@ class AndroidActivityMain : FragmentActivity() {
             {
                 device = AndroidSerialDevice(usbManager,)
                 device?.connect("")
-                //interfaceConnectionState =  if (device?.isConnected == true) ConnectionState.USB_CONNECTED else ConnectionState.USB_DISCONNECTED
             }
             else
             {
                 device = null
-                //interfaceConnectionState = ConnectionState.USB_DISCONNECTED
             }
         }
         protocolFactory?.updateProtocolFactory(device)
-    }
-
-    private fun checkInternetConnection(): Boolean {
-        val connectivityManager = this.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
-        val network = connectivityManager.activeNetwork
-        val capabilities = connectivityManager.getNetworkCapabilities(network)
-        return capabilities != null && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
     }
 
     fun UsbDevice.getUsbDeviceInfo() : UsbDeviceInfo
@@ -188,4 +209,8 @@ class AndroidActivityMain : FragmentActivity() {
         )
     }
 
+    companion object {
+        // logo w drawable/splash_logo.xml jest wcięte o 48dp z 288dp, więc zajmuje 2/3 ikony
+        private const val SYSTEM_SPLASH_LOGO_FRACTION = 192f / 288f
+    }
 }

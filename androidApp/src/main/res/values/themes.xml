@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Toaf.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/toaf_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_logo</item>
+        <item name="postSplashScreenTheme">@style/Theme.Toaf</item>
+    </style>
+
+    <!-- Motyw po splash screenie: tło okna w kolorze aplikacji, aby nie było białego błysku
+         między zniknięciem splasha a pierwszą klatką Compose -->
+    <style name="Theme.Toaf" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/toaf_background</item>
+    </style>
+</resources>

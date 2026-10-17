@@ -49,5 +49,6 @@ android {
 
 dependencies {
     implementation(projects.composeApp)
+    implementation(libs.compose.splashscreen)
     debugImplementation(libs.androidx.ui.tooling)
 }

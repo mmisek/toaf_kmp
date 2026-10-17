@@ -914,6 +914,31 @@
             ]
         },
         {
+            "uniqueId": "androidx.core:core-splashscreen",
+            "artifactVersion": "1.2.0",
+            "name": "SplashScreen",
+            "description": "This library provides the compatibility APIs for SplashScreen and helper method to enable a splashscreen on devices prior Android 12",
+            "website": "https://developer.android.com/jetpack/androidx/releases/core#1.2.0",
+            "developers": [
+                {
+                    "name": "The Android Open Source Project"
+                }
+            ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            },
+            "scm": {
+                "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
+                "url": "https://cs.android.com/androidx/platform/frameworks/support"
+            },
+            "licenses": [
+                "Apache-2.0"
+            ],
+            "funding": [
+                
+            ]
+        },
+        {
             "uniqueId": "androidx.core:core-viewtree",
             "artifactVersion": "1.0.0",
             "name": "androidx.core:core-viewtree",

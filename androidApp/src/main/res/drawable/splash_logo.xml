@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ikona systemowego splash screena: obszar 288dp, z czego widoczne jest koło o średnicy 192dp,
+     dlatego logo jest wcięte o 48dp z każdej strony, aby nie zostało przycięte.
+     Rozmiar musi być zgodny z SYSTEM_SPLASH_LOGO_SIZE w SplashOverlay.kt -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/logo"
+    android:inset="48dp" />

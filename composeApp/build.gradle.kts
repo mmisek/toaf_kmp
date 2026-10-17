@@ -45,6 +45,7 @@ kotlin {
             implementation(libs.usb.serial.android)
             implementation(libs.google.billing)
             implementation(libs.google.ads)
+            implementation(libs.compose.splashscreen)
         }
         commonMain.dependencies {
             implementation(libs.compose.ui.tooling)
