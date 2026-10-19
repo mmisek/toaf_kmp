@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_abs_bleeding_title">Прокачка тормозов</string>
+    <string name="advance_control_abs_bleeding_instruction">Долейте жидкость в бачок, подсоедините шланг к штуцеру прокачки выбранного колеса и откройте его. Нажимайте педаль тормоза во время работы насоса. После завершения закройте штуцер и долейте жидкость.</string>
+    <string name="advance_control_abs_bleeding_front_left">Переднее левое</string>
+    <string name="advance_control_abs_bleeding_front_right">Переднее правое</string>
+    <string name="advance_control_abs_bleeding_rear_left">Заднее левое</string>
+    <string name="advance_control_abs_bleeding_rear_right">Заднее правое</string>
+    <string name="advance_control_abs_bleeding_modulator">Модулятор (все колёса)</string>
+    <string name="advance_control_abs_bleeding_ready">Выберите колесо для прокачки</string>
+    <string name="advance_control_abs_bleeding_progress">%1$s - цикл %2$d / %3$d</string>
+    <string name="advance_control_abs_bleeding_stop">STOP</string>
+    <string name="advance_control_abs_bleeding_successful">Прокачка тормозов завершена</string>
+    <string name="advance_control_abs_bleeding_failed">Ошибка прокачки тормозов</string>
+    <string name="advance_control_abs_bleeding_stopped">Прокачка тормозов прервана</string>
+</resources>

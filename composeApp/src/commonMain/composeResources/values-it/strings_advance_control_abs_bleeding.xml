@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_abs_bleeding_title">Spurgo freni</string>
+    <string name="advance_control_abs_bleeding_instruction">Rabbocca il serbatoio del liquido, collega un tubo alla vite di spurgo della ruota selezionata e aprila. Premi il pedale del freno mentre la pompa è in funzione. Al termine chiudi la vite di spurgo e rabbocca il liquido.</string>
+    <string name="advance_control_abs_bleeding_front_left">Anteriore sinistra</string>
+    <string name="advance_control_abs_bleeding_front_right">Anteriore destra</string>
+    <string name="advance_control_abs_bleeding_rear_left">Posteriore sinistra</string>
+    <string name="advance_control_abs_bleeding_rear_right">Posteriore destra</string>
+    <string name="advance_control_abs_bleeding_modulator">Modulatore (tutte le ruote)</string>
+    <string name="advance_control_abs_bleeding_ready">Seleziona la ruota da spurgare</string>
+    <string name="advance_control_abs_bleeding_progress">%1$s - ciclo %2$d / %3$d</string>
+    <string name="advance_control_abs_bleeding_stop">STOP</string>
+    <string name="advance_control_abs_bleeding_successful">Spurgo freni completato</string>
+    <string name="advance_control_abs_bleeding_failed">Errore durante lo spurgo freni</string>
+    <string name="advance_control_abs_bleeding_stopped">Spurgo freni interrotto</string>
+</resources>

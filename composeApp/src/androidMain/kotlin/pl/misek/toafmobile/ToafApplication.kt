@@ -31,6 +31,7 @@ class ToafApplication : Application() {
             options.isDebug = false
             options.isAnrEnabled = true
             options.isTombstoneEnabled = true
+            options.isEnableNdk = false
             options.beforeSend = SentryOptions.BeforeSendCallback{event, _ ->
                 event.setTag("APP_VERSION_CODE", BuildKonfig.VERSION_CODE.toString())
                 event.setTag("APP_VERSION_NAME", BuildKonfig.VERSION_NAME)

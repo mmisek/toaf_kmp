@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_abs_bleeding_title">Odpowietrzanie hamulców</string>
+    <string name="advance_control_abs_bleeding_instruction">Uzupełnij płyn w zbiorniczku, podłącz przewód do odpowietrznika wybranego koła i odkręć go. Podczas pracy pompy wciskaj pedał hamulca. Po zakończeniu zakręć odpowietrznik i uzupełnij płyn.</string>
+    <string name="advance_control_abs_bleeding_front_left">Lewe przednie</string>
+    <string name="advance_control_abs_bleeding_front_right">Prawe przednie</string>
+    <string name="advance_control_abs_bleeding_rear_left">Lewe tylne</string>
+    <string name="advance_control_abs_bleeding_rear_right">Prawe tylne</string>
+    <string name="advance_control_abs_bleeding_modulator">Modulator (wszystkie koła)</string>
+    <string name="advance_control_abs_bleeding_ready">Wybierz koło do odpowietrzenia</string>
+    <string name="advance_control_abs_bleeding_progress">%1$s - cykl %2$d / %3$d</string>
+    <string name="advance_control_abs_bleeding_stop">STOP</string>
+    <string name="advance_control_abs_bleeding_successful">Odpowietrzanie zakończone</string>
+    <string name="advance_control_abs_bleeding_failed">Błąd odpowietrzania</string>
+    <string name="advance_control_abs_bleeding_stopped">Odpowietrzanie przerwane</string>
+</resources>

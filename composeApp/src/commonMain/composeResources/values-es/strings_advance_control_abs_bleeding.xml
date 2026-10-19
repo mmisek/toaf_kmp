@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_abs_bleeding_title">Purgado de frenos</string>
+    <string name="advance_control_abs_bleeding_instruction">Rellene el depósito de líquido, conecte un tubo al purgador de la rueda seleccionada y ábralo. Pise el pedal de freno mientras funciona la bomba. Al terminar, cierre el purgador y complete el líquido.</string>
+    <string name="advance_control_abs_bleeding_front_left">Delantera izquierda</string>
+    <string name="advance_control_abs_bleeding_front_right">Delantera derecha</string>
+    <string name="advance_control_abs_bleeding_rear_left">Trasera izquierda</string>
+    <string name="advance_control_abs_bleeding_rear_right">Trasera derecha</string>
+    <string name="advance_control_abs_bleeding_modulator">Modulador (todas las ruedas)</string>
+    <string name="advance_control_abs_bleeding_ready">Seleccione la rueda a purgar</string>
+    <string name="advance_control_abs_bleeding_progress">%1$s - ciclo %2$d / %3$d</string>
+    <string name="advance_control_abs_bleeding_stop">STOP</string>
+    <string name="advance_control_abs_bleeding_successful">Purgado de frenos finalizado</string>
+    <string name="advance_control_abs_bleeding_failed">Error en el purgado de frenos</string>
+    <string name="advance_control_abs_bleeding_stopped">Purgado de frenos interrumpido</string>
+</resources>

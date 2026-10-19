@@ -66,13 +66,11 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
 
     override suspend fun readLiveData(): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = HashMap()
-        // Jedno zapytanie na (usluga, blok) - wiele parametrow dzieli te sama odpowiedz (np. 22 40 00)
         val requests = _liveDataElements.map { it.service to it.block }.distinct()
         for ((service, block) in requests) {
             val message = when (service) {
                 0x23 -> kwp.write(moduleAddress, service.toByte(), byteArrayOf((block shr 16).toByte(), (block shr 8).toByte(), block.toByte(), 0x05, 0x02), 150)
                 0x22 -> kwp.write(moduleAddress, service.toByte(), byteArrayOf((block shr 8).toByte(), block.toByte()), 150)
-                // 0x30 inputOutputControlByLocalId: LocalId + 0x01 (reportCurrentState), wg SGBD np. 30 46 01
                 0x30 -> kwp.write(moduleAddress, service.toByte(), byteArrayOf(block.toByte(), 0x01), 150)
                 0x21 -> kwp.write(moduleAddress, service.toByte(), byteArrayOf(block.toByte()), 150)
                 else -> continue
@@ -186,7 +184,7 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
         count?.let { errorDescription.add(ResourceHelper.getErrorDescriptionCount(it)) }
         errorDescription.add(ResourceHelper.getErrorDescriptionLogisticCounter(answer[15].toInt() and 0xFF))
 
-        val detailMatrix = ErrorDetailMatrix.firstOrNull { it.errorCode == errorCode }
+        val detailMatrix = errorDetailMatrix.firstOrNull { it.errorCode == errorCode }
         if (detailMatrix != null) {
             for (j in 0..2) {
                 val bits = answer[9 + j].toInt() and 0xFF
@@ -199,7 +197,7 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
             }
         }
 
-        val matrix = ErrorMatrix.firstOrNull { it.errorCode == errorCode }
+        val matrix = errorMatrix.firstOrNull { it.errorCode == errorCode }
         if (matrix != null) {
             // SGBD pokazuje tyle zestawow UW, ile wynosi czestosc (max 3)
             val sets = (count ?: 1).coerceIn(1, 3)
@@ -210,7 +208,7 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
                 errorDescription.add(Pair(occurrenceResources[set], "$km km"))
                 for (j in 0..3) {
                     val uwCode = matrix.details[j].toInt() and 0xFF
-                    val freezeFrame = FreezeFrameMatrix.firstOrNull { it.code == uwCode } ?: continue
+                    val freezeFrame = freezeFrameMatrix.firstOrNull { it.code == uwCode } ?: continue
                     val label = ResourceMapper.stringResource("me72_freeze_frame_detail_%02x".format(uwCode)) ?: continue
                     val raw = answer[base + 2 + j].toInt() and 0xFF
                     if (uwCode == 0x01 || uwCode == 0x02) {
@@ -414,7 +412,7 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
     data class ErrorFrameDetail(val errorCode : Int, val details : ByteArray)
     data class FreezeFrameDetail(val code : Int, val unit : String, val factorA : Float, var factorB : Float, val factorC :Float)
 
-    val ErrorMatrix: List<ErrorDetail> = listOf(
+    val errorMatrix: List<ErrorDetail> = listOf(
         ErrorDetail(0x01, byteArrayOf(0x0A.toByte(), 0x12.toByte(), 0x14.toByte(), 0x0B.toByte())),  // Leakage Diagnosis pump Output
         ErrorDetail(0x02, byteArrayOf(0x0A.toByte(), 0x14.toByte(), 0x24.toByte(), 0x0B.toByte())),  // Solenoid Valve DMTL Output
         ErrorDetail(0x03, byteArrayOf(0x29.toByte(), 0x8C.toByte(), 0x06.toByte(), 0x08.toByte())),  // switched Oxygen sensors
@@ -544,7 +542,7 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
         ErrorDetail(0xED, byteArrayOf(0x0A.toByte(), 0x1A.toByte(), 0x14.toByte(), 0x0B.toByte()))   // Starter automatic
     )
 
-    val ErrorDetailMatrix: List<ErrorFrameDetail> = listOf(
+    final val errorDetailMatrix: List<ErrorFrameDetail> = listOf(
         ErrorFrameDetail(0x00, byteArrayOf(0xF1.toByte(), 0xF2.toByte(), 0x00.toByte(), 0x00.toByte(), 0x00.toByte(), 0x00.toByte(), 0x00.toByte(), 0x00.toByte(), 0x01.toByte(), 0x02.toByte(), 0x03.toByte(), 0x04.toByte(), 0x05.toByte(), 0x06.toByte(), 0x07.toByte(), 0x08.toByte(), 0xF9.toByte(), 0xFA.toByte(), 0xFB.toByte(), 0xFC.toByte(), 0xFD.toByte(), 0xFE.toByte(), 0x00.toByte(), 0x00.toByte())),
         ErrorFrameDetail(0x01, byteArrayOf(0xF1.toByte(), 0xF2.toByte(), 0x00.toByte(), 0x00.toByte(), 0x00.toByte(), 0x00.toByte(), 0x00.toByte(), 0x00.toByte(), 0x3A.toByte(), 0x3B.toByte(), 0x3C.toByte(), 0x04.toByte(), 0x49.toByte(), 0x4A.toByte(), 0x4B.toByte(), 0x08.toByte(), 0xF9.toByte(), 0xFA.toByte(), 0xFB.toByte(), 0xFC.toByte(), 0xFD.toByte(), 0xFE.toByte(), 0x00.toByte(), 0x00.toByte())),
         ErrorFrameDetail(0x02, byteArrayOf(0xF1.toByte(), 0xF2.toByte(), 0x00.toByte(), 0x00.toByte(), 0x00.toByte(), 0x00.toByte(), 0x00.toByte(), 0x00.toByte(), 0x01.toByte(), 0x02.toByte(), 0x03.toByte(), 0x04.toByte(), 0x05.toByte(), 0x06.toByte(), 0x07.toByte(), 0x08.toByte(), 0xF9.toByte(), 0xFA.toByte(), 0xFB.toByte(), 0xFC.toByte(), 0xFD.toByte(), 0xFE.toByte(), 0x00.toByte(), 0x00.toByte())),
@@ -677,7 +675,7 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
         ErrorFrameDetail(0xED, byteArrayOf(0xF1.toByte(), 0xF2.toByte(), 0x00.toByte(), 0x00.toByte(), 0x00.toByte(), 0x00.toByte(), 0x00.toByte(), 0x00.toByte(), 0x01.toByte(), 0x02.toByte(), 0x03.toByte(), 0x04.toByte(), 0x05.toByte(), 0x06.toByte(), 0x07.toByte(), 0x08.toByte(), 0xF9.toByte(), 0xFA.toByte(), 0xFB.toByte(), 0xFC.toByte(), 0xFD.toByte(), 0xFE.toByte(), 0x00.toByte(), 0x00.toByte()))
     )
 
-    val FreezeFrameMatrix: List<FreezeFrameDetail> = listOf(
+    val freezeFrameMatrix: List<FreezeFrameDetail> = listOf(
         FreezeFrameDetail(0x01, "", 0f, 0f, 0f),  // Regulator status Bank1
         FreezeFrameDetail(0x02, "", 0f, 0f, 0f),  // Regulator status Bank2
         FreezeFrameDetail(0x03, "%", 0.3906f, 0f, 0f),  // Calculated Load

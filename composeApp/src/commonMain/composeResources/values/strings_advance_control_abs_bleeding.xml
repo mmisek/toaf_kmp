@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_abs_bleeding_title">Brake bleeding</string>
+    <string name="advance_control_abs_bleeding_instruction">Fill the brake fluid reservoir, connect a hose to the bleed screw of the selected wheel and open it. Keep pressing the brake pedal while the pump is running. Close the bleed screw after the procedure and top up the fluid.</string>
+    <string name="advance_control_abs_bleeding_front_left">Front left</string>
+    <string name="advance_control_abs_bleeding_front_right">Front right</string>
+    <string name="advance_control_abs_bleeding_rear_left">Rear left</string>
+    <string name="advance_control_abs_bleeding_rear_right">Rear right</string>
+    <string name="advance_control_abs_bleeding_modulator">Modulator (all wheels)</string>
+    <string name="advance_control_abs_bleeding_ready">Select a wheel to bleed</string>
+    <string name="advance_control_abs_bleeding_progress">%1$s - cycle %2$d / %3$d</string>
+    <string name="advance_control_abs_bleeding_stop">STOP</string>
+    <string name="advance_control_abs_bleeding_successful">Brake bleeding finished</string>
+    <string name="advance_control_abs_bleeding_failed">Brake bleeding failed</string>
+    <string name="advance_control_abs_bleeding_stopped">Brake bleeding stopped</string>
+</resources>
