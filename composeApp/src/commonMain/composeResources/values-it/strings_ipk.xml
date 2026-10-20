@@ -127,6 +127,9 @@
     <string name="ipk_live_data_fuel_level_sensor">Sensore livello carburante (ADC)</string>
     <string name="ipk_live_data_outside_temperature_sensor">Sensore temperatura esterna (ADC)</string>
     <string name="ipk_live_data_vehicle_speed">Velocità veicolo</string>
+    <string name="ipk_live_data_engine_speed">Regime motore</string>
+    <string name="ipk_live_data_fuel_consumption">Consumo carburante</string>
+    <string name="ipk_live_data_engine_temperature">Temperatura motore</string>
     <string name="ipk_live_data_wash_fluid_level">Livello liquido lavavetri</string>
     <string name="ipk_live_data_brake_system_fail">Guasto impianto frenante</string>
     <string name="ipk_live_data_seat_belt">Cintura di sicurezza</string>

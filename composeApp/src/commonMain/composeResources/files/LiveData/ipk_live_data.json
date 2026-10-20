@@ -39,6 +39,33 @@
       "invert_a": "true"
     },
     {
+      "name": "engine_speed",
+      "block": "0x00",
+      "byte": "0x18",
+      "mask": "0xFFFF",
+      "factor_a": "0.15625",
+      "factor_b": "0",
+      "unit": "rpm"
+    },
+    {
+      "name": "fuel_consumption",
+      "block": "0x00",
+      "byte": "0x1A",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "µl"
+    },
+    {
+      "name": "engine_temperature",
+      "block": "0x00",
+      "byte": "0x1C",
+      "mask": "0xFF",
+      "factor_a": "0.747",
+      "factor_b": "-48",
+      "unit": "°C"
+    },
+    {
       "name": "wash_fluid_level",
       "block": "0x01",
       "byte": "0x00",

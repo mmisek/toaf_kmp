@@ -11,9 +11,18 @@ object ResourceMapperLcmL322 {
             "lcm_l322_coding_air_suspension" -> Res.string.lcm_l322_coding_air_suspension
             "lcm_l322_coding_analog_steering_column_stalk_switch" -> Res.string.lcm_l322_coding_analog_steering_column_stalk_switch
             "lcm_l322_coding_auto_lights" -> Res.string.lcm_l322_coding_auto_lights
+            "lcm_l322_coding_autolights_interior_dimming_auto_calculation" -> Res.string.lcm_l322_coding_autolights_interior_dimming_auto_calculation
+            "lcm_l322_coding_autolights_interior_dimming_rate" -> Res.string.lcm_l322_coding_autolights_interior_dimming_rate
+            "lcm_l322_coding_autolights_interior_dimming_value_1" -> Res.string.lcm_l322_coding_autolights_interior_dimming_value_1
+            "lcm_l322_coding_autolights_interior_dimming_value_2" -> Res.string.lcm_l322_coding_autolights_interior_dimming_value_2
+            "lcm_l322_coding_autolights_interior_dimming_value_3" -> Res.string.lcm_l322_coding_autolights_interior_dimming_value_3
+            "lcm_l322_coding_autolights_interior_dimming_value_4" -> Res.string.lcm_l322_coding_autolights_interior_dimming_value_4
+            "lcm_l322_coding_autolights_interior_dimming_value_5" -> Res.string.lcm_l322_coding_autolights_interior_dimming_value_5
             "lcm_l322_coding_belt_buckle_switch_hardwired_or_k_bus" -> Res.string.lcm_l322_coding_belt_buckle_switch_hardwired_or_k_bus
             "lcm_l322_coding_bi_xenon_lights_presence" -> Res.string.lcm_l322_coding_bi_xenon_lights_presence
             "lcm_l322_coding_brake_light_fail_warning" -> Res.string.lcm_l322_coding_brake_light_fail_warning
+            "lcm_l322_coding_brake_light_switch_fault_waiting_time" -> Res.string.lcm_l322_coding_brake_light_switch_fault_waiting_time
+            "lcm_l322_coding_brake_light_switch_monitoring_threshold" -> Res.string.lcm_l322_coding_brake_light_switch_monitoring_threshold
             "lcm_l322_coding_break_light_switch_fail_at_ignition_off" -> Res.string.lcm_l322_coding_break_light_switch_fail_at_ignition_off
             "lcm_l322_coding_break_light_switch_prescence" -> Res.string.lcm_l322_coding_break_light_switch_prescence
             "lcm_l322_coding_break_lights_fail_warning" -> Res.string.lcm_l322_coding_break_lights_fail_warning
@@ -22,21 +31,81 @@ object ResourceMapperLcmL322 {
             "lcm_l322_coding_can_bus_fault_visibility" -> Res.string.lcm_l322_coding_can_bus_fault_visibility
             "lcm_l322_coding_catalyst_overheat_message" -> Res.string.lcm_l322_coding_catalyst_overheat_message
             "lcm_l322_coding_catalyst_overheat_via_can" -> Res.string.lcm_l322_coding_catalyst_overheat_via_can
+            "lcm_l322_coding_check_control_lamp_message_al_l" -> Res.string.lcm_l322_coding_check_control_lamp_message_al_l
+            "lcm_l322_coding_check_control_lamp_message_al_r" -> Res.string.lcm_l322_coding_check_control_lamp_message_al_r
+            "lcm_l322_coding_check_control_lamp_message_bl_l" -> Res.string.lcm_l322_coding_check_control_lamp_message_bl_l
+            "lcm_l322_coding_check_control_lamp_message_bl_m" -> Res.string.lcm_l322_coding_check_control_lamp_message_bl_m
+            "lcm_l322_coding_check_control_lamp_message_bl_r" -> Res.string.lcm_l322_coding_check_control_lamp_message_bl_r
+            "lcm_l322_coding_check_control_lamp_message_blk_lh" -> Res.string.lcm_l322_coding_check_control_lamp_message_blk_lh
+            "lcm_l322_coding_check_control_lamp_message_blk_lv" -> Res.string.lcm_l322_coding_check_control_lamp_message_blk_lv
+            "lcm_l322_coding_check_control_lamp_message_blk_lz" -> Res.string.lcm_l322_coding_check_control_lamp_message_blk_lz
+            "lcm_l322_coding_check_control_lamp_message_blk_rh" -> Res.string.lcm_l322_coding_check_control_lamp_message_blk_rh
+            "lcm_l322_coding_check_control_lamp_message_blk_rv" -> Res.string.lcm_l322_coding_check_control_lamp_message_blk_rv
+            "lcm_l322_coding_check_control_lamp_message_blk_rz" -> Res.string.lcm_l322_coding_check_control_lamp_message_blk_rz
+            "lcm_l322_coding_check_control_lamp_message_fl_l" -> Res.string.lcm_l322_coding_check_control_lamp_message_fl_l
+            "lcm_l322_coding_check_control_lamp_message_fl_r" -> Res.string.lcm_l322_coding_check_control_lamp_message_fl_r
+            "lcm_l322_coding_check_control_lamp_message_kzl" -> Res.string.lcm_l322_coding_check_control_lamp_message_kzl
+            "lcm_l322_coding_check_control_lamp_message_nsl_l" -> Res.string.lcm_l322_coding_check_control_lamp_message_nsl_l
+            "lcm_l322_coding_check_control_lamp_message_nsl_r" -> Res.string.lcm_l322_coding_check_control_lamp_message_nsl_r
+            "lcm_l322_coding_check_control_lamp_message_nsw_l" -> Res.string.lcm_l322_coding_check_control_lamp_message_nsw_l
+            "lcm_l322_coding_check_control_lamp_message_nsw_r" -> Res.string.lcm_l322_coding_check_control_lamp_message_nsw_r
+            "lcm_l322_coding_check_control_lamp_message_rfs_l" -> Res.string.lcm_l322_coding_check_control_lamp_message_rfs_l
+            "lcm_l322_coding_check_control_lamp_message_rfs_r" -> Res.string.lcm_l322_coding_check_control_lamp_message_rfs_r
+            "lcm_l322_coding_check_control_lamp_message_sl_lh" -> Res.string.lcm_l322_coding_check_control_lamp_message_sl_lh
+            "lcm_l322_coding_check_control_lamp_message_sl_lhi" -> Res.string.lcm_l322_coding_check_control_lamp_message_sl_lhi
+            "lcm_l322_coding_check_control_lamp_message_sl_lv" -> Res.string.lcm_l322_coding_check_control_lamp_message_sl_lv
+            "lcm_l322_coding_check_control_lamp_message_sl_rh" -> Res.string.lcm_l322_coding_check_control_lamp_message_sl_rh
+            "lcm_l322_coding_check_control_lamp_message_sl_rhi" -> Res.string.lcm_l322_coding_check_control_lamp_message_sl_rhi
+            "lcm_l322_coding_check_control_lamp_message_sl_rv" -> Res.string.lcm_l322_coding_check_control_lamp_message_sl_rv
             "lcm_l322_coding_check_control_message_suppression_period_after_fast_key_ignition" -> Res.string.lcm_l322_coding_check_control_message_suppression_period_after_fast_key_ignition
+            "lcm_l322_coding_cold_monitoring_al_l" -> Res.string.lcm_l322_coding_cold_monitoring_al_l
+            "lcm_l322_coding_cold_monitoring_al_r" -> Res.string.lcm_l322_coding_cold_monitoring_al_r
+            "lcm_l322_coding_cold_monitoring_bl_l" -> Res.string.lcm_l322_coding_cold_monitoring_bl_l
+            "lcm_l322_coding_cold_monitoring_bl_m" -> Res.string.lcm_l322_coding_cold_monitoring_bl_m
+            "lcm_l322_coding_cold_monitoring_bl_r" -> Res.string.lcm_l322_coding_cold_monitoring_bl_r
+            "lcm_l322_coding_cold_monitoring_blk_lh" -> Res.string.lcm_l322_coding_cold_monitoring_blk_lh
+            "lcm_l322_coding_cold_monitoring_blk_lv" -> Res.string.lcm_l322_coding_cold_monitoring_blk_lv
+            "lcm_l322_coding_cold_monitoring_blk_lz" -> Res.string.lcm_l322_coding_cold_monitoring_blk_lz
+            "lcm_l322_coding_cold_monitoring_blk_rh" -> Res.string.lcm_l322_coding_cold_monitoring_blk_rh
+            "lcm_l322_coding_cold_monitoring_blk_rv" -> Res.string.lcm_l322_coding_cold_monitoring_blk_rv
+            "lcm_l322_coding_cold_monitoring_blk_rz" -> Res.string.lcm_l322_coding_cold_monitoring_blk_rz
             "lcm_l322_coding_cold_monitoring_dip_beam" -> Res.string.lcm_l322_coding_cold_monitoring_dip_beam
+            "lcm_l322_coding_cold_monitoring_fl_l" -> Res.string.lcm_l322_coding_cold_monitoring_fl_l
+            "lcm_l322_coding_cold_monitoring_fl_r" -> Res.string.lcm_l322_coding_cold_monitoring_fl_r
             "lcm_l322_coding_cold_monitoring_front_fog_lights" -> Res.string.lcm_l322_coding_cold_monitoring_front_fog_lights
             "lcm_l322_coding_cold_monitoring_front_turn_signals" -> Res.string.lcm_l322_coding_cold_monitoring_front_turn_signals
+            "lcm_l322_coding_cold_monitoring_kzl" -> Res.string.lcm_l322_coding_cold_monitoring_kzl
             "lcm_l322_coding_cold_monitoring_main_beam" -> Res.string.lcm_l322_coding_cold_monitoring_main_beam
+            "lcm_l322_coding_cold_monitoring_nsl_l" -> Res.string.lcm_l322_coding_cold_monitoring_nsl_l
+            "lcm_l322_coding_cold_monitoring_nsl_r" -> Res.string.lcm_l322_coding_cold_monitoring_nsl_r
+            "lcm_l322_coding_cold_monitoring_nsw_l" -> Res.string.lcm_l322_coding_cold_monitoring_nsw_l
+            "lcm_l322_coding_cold_monitoring_nsw_r" -> Res.string.lcm_l322_coding_cold_monitoring_nsw_r
+            "lcm_l322_coding_cold_monitoring_period" -> Res.string.lcm_l322_coding_cold_monitoring_period
+            "lcm_l322_coding_cold_monitoring_pulse_interval" -> Res.string.lcm_l322_coding_cold_monitoring_pulse_interval
             "lcm_l322_coding_cold_monitoring_rear_turn_signals" -> Res.string.lcm_l322_coding_cold_monitoring_rear_turn_signals
+            "lcm_l322_coding_cold_monitoring_rfs_l" -> Res.string.lcm_l322_coding_cold_monitoring_rfs_l
+            "lcm_l322_coding_cold_monitoring_rfs_r" -> Res.string.lcm_l322_coding_cold_monitoring_rfs_r
+            "lcm_l322_coding_cold_monitoring_round_time" -> Res.string.lcm_l322_coding_cold_monitoring_round_time
+            "lcm_l322_coding_cold_monitoring_sl_lh" -> Res.string.lcm_l322_coding_cold_monitoring_sl_lh
+            "lcm_l322_coding_cold_monitoring_sl_lhi" -> Res.string.lcm_l322_coding_cold_monitoring_sl_lhi
+            "lcm_l322_coding_cold_monitoring_sl_lv" -> Res.string.lcm_l322_coding_cold_monitoring_sl_lv
+            "lcm_l322_coding_cold_monitoring_sl_rh" -> Res.string.lcm_l322_coding_cold_monitoring_sl_rh
+            "lcm_l322_coding_cold_monitoring_sl_rhi" -> Res.string.lcm_l322_coding_cold_monitoring_sl_rhi
+            "lcm_l322_coding_cold_monitoring_sl_rv" -> Res.string.lcm_l322_coding_cold_monitoring_sl_rv
             "lcm_l322_coding_cooling_system_over_temperature_warning_via_can" -> Res.string.lcm_l322_coding_cooling_system_over_temperature_warning_via_can
             "lcm_l322_coding_cooling_system_temperature_damping_time" -> Res.string.lcm_l322_coding_cooling_system_temperature_damping_time
             "lcm_l322_coding_daytime_running_lamps_main_beam_dim_setting" -> Res.string.lcm_l322_coding_daytime_running_lamps_main_beam_dim_setting
             "lcm_l322_coding_denmark_drl" -> Res.string.lcm_l322_coding_denmark_drl
+            "lcm_l322_coding_dimmed_front_turn_signals_voltage" -> Res.string.lcm_l322_coding_dimmed_front_turn_signals_voltage
             "lcm_l322_coding_dimmed_main_beam_with_daytime_running_lights" -> Res.string.lcm_l322_coding_dimmed_main_beam_with_daytime_running_lights
+            "lcm_l322_coding_dimmer_change_before_k_bus_message" -> Res.string.lcm_l322_coding_dimmer_change_before_k_bus_message
+            "lcm_l322_coding_dimmer_minimum_voltage" -> Res.string.lcm_l322_coding_dimmer_minimum_voltage
+            "lcm_l322_coding_dimmer_voltage_span" -> Res.string.lcm_l322_coding_dimmer_voltage_span
             "lcm_l322_coding_dimming_of_the_front_turn_signal_lights_option_1" -> Res.string.lcm_l322_coding_dimming_of_the_front_turn_signal_lights_option_1
             "lcm_l322_coding_dimming_of_the_front_turn_signal_lights_option_2" -> Res.string.lcm_l322_coding_dimming_of_the_front_turn_signal_lights_option_2
             "lcm_l322_coding_dimming_of_the_rear_fog_lamps_as_parking_light_substitute" -> Res.string.lcm_l322_coding_dimming_of_the_rear_fog_lamps_as_parking_light_substitute
             "lcm_l322_coding_dimming_of_the_rear_fogs_option_1" -> Res.string.lcm_l322_coding_dimming_of_the_rear_fogs_option_1
+            "lcm_l322_coding_dimming_pwm_period" -> Res.string.lcm_l322_coding_dimming_pwm_period
             "lcm_l322_coding_dip_beam_fail_warning" -> Res.string.lcm_l322_coding_dip_beam_fail_warning
             "lcm_l322_coding_dip_beam_with_daytime_running_lights" -> Res.string.lcm_l322_coding_dip_beam_with_daytime_running_lights
             "lcm_l322_coding_ece_daytime_running_lights" -> Res.string.lcm_l322_coding_ece_daytime_running_lights
@@ -47,7 +116,9 @@ object ResourceMapperLcmL322 {
             "lcm_l322_coding_enhanced_pictogram_display" -> Res.string.lcm_l322_coding_enhanced_pictogram_display
             "lcm_l322_coding_external_lwr_fitted" -> Res.string.lcm_l322_coding_external_lwr_fitted
             "lcm_l322_coding_fast_ignition_switch_detection_period" -> Res.string.lcm_l322_coding_fast_ignition_switch_detection_period
+            "lcm_l322_coding_fault_detection_debounce" -> Res.string.lcm_l322_coding_fault_detection_debounce
             "lcm_l322_coding_fehler_bremslicht" -> Res.string.lcm_l322_coding_fehler_bremslicht
+            "lcm_l322_coding_fog_lamps_as_position_lamps_voltage" -> Res.string.lcm_l322_coding_fog_lamps_as_position_lamps_voltage
             "lcm_l322_coding_follow_me_home_cancel_with_lighting_switch" -> Res.string.lcm_l322_coding_follow_me_home_cancel_with_lighting_switch
             "lcm_l322_coding_follow_me_home_operating_style" -> Res.string.lcm_l322_coding_follow_me_home_operating_style
             "lcm_l322_coding_follow_me_home_with_brake_turn_inputs_to_ahm" -> Res.string.lcm_l322_coding_follow_me_home_with_brake_turn_inputs_to_ahm
@@ -61,6 +132,7 @@ object ResourceMapperLcmL322 {
             "lcm_l322_coding_follow_me_home_with_rear_position_lamps" -> Res.string.lcm_l322_coding_follow_me_home_with_rear_position_lamps
             "lcm_l322_coding_follow_me_home_with_reverse_lamps" -> Res.string.lcm_l322_coding_follow_me_home_with_reverse_lamps
             "lcm_l322_coding_front_and_rear_fog_light_push_button_on_lsw" -> Res.string.lcm_l322_coding_front_and_rear_fog_light_push_button_on_lsw
+            "lcm_l322_coding_front_fog_lamps_push_button" -> Res.string.lcm_l322_coding_front_fog_lamps_push_button
             "lcm_l322_coding_front_fog_lights_fail_warning" -> Res.string.lcm_l322_coding_front_fog_lights_fail_warning
             "lcm_l322_coding_front_fog_lights_off_if_main_beam_on" -> Res.string.lcm_l322_coding_front_fog_lights_off_if_main_beam_on
             "lcm_l322_coding_front_position_lamp" -> Res.string.lcm_l322_coding_front_position_lamp
@@ -73,9 +145,39 @@ object ResourceMapperLcmL322 {
             "lcm_l322_coding_hazard_flasher" -> Res.string.lcm_l322_coding_hazard_flasher
             "lcm_l322_coding_hazard_warning_has_priority_over_rear_fog_lamps" -> Res.string.lcm_l322_coding_hazard_warning_has_priority_over_rear_fog_lamps
             "lcm_l322_coding_hdc_function_will_operate_break_lights_when_hdc_is_in_use" -> Res.string.lcm_l322_coding_hdc_function_will_operate_break_lights_when_hdc_is_in_use
+            "lcm_l322_coding_hot_monitoring_al_l" -> Res.string.lcm_l322_coding_hot_monitoring_al_l
+            "lcm_l322_coding_hot_monitoring_al_r" -> Res.string.lcm_l322_coding_hot_monitoring_al_r
+            "lcm_l322_coding_hot_monitoring_bl_l" -> Res.string.lcm_l322_coding_hot_monitoring_bl_l
+            "lcm_l322_coding_hot_monitoring_bl_m" -> Res.string.lcm_l322_coding_hot_monitoring_bl_m
+            "lcm_l322_coding_hot_monitoring_bl_r" -> Res.string.lcm_l322_coding_hot_monitoring_bl_r
+            "lcm_l322_coding_hot_monitoring_blk_lh" -> Res.string.lcm_l322_coding_hot_monitoring_blk_lh
+            "lcm_l322_coding_hot_monitoring_blk_lv" -> Res.string.lcm_l322_coding_hot_monitoring_blk_lv
+            "lcm_l322_coding_hot_monitoring_blk_lz" -> Res.string.lcm_l322_coding_hot_monitoring_blk_lz
+            "lcm_l322_coding_hot_monitoring_blk_rh" -> Res.string.lcm_l322_coding_hot_monitoring_blk_rh
+            "lcm_l322_coding_hot_monitoring_blk_rv" -> Res.string.lcm_l322_coding_hot_monitoring_blk_rv
+            "lcm_l322_coding_hot_monitoring_blk_rz" -> Res.string.lcm_l322_coding_hot_monitoring_blk_rz
+            "lcm_l322_coding_hot_monitoring_fl_l" -> Res.string.lcm_l322_coding_hot_monitoring_fl_l
+            "lcm_l322_coding_hot_monitoring_fl_r" -> Res.string.lcm_l322_coding_hot_monitoring_fl_r
+            "lcm_l322_coding_hot_monitoring_kzl" -> Res.string.lcm_l322_coding_hot_monitoring_kzl
+            "lcm_l322_coding_hot_monitoring_nsl_l" -> Res.string.lcm_l322_coding_hot_monitoring_nsl_l
+            "lcm_l322_coding_hot_monitoring_nsl_r" -> Res.string.lcm_l322_coding_hot_monitoring_nsl_r
+            "lcm_l322_coding_hot_monitoring_nsw_l" -> Res.string.lcm_l322_coding_hot_monitoring_nsw_l
+            "lcm_l322_coding_hot_monitoring_nsw_r" -> Res.string.lcm_l322_coding_hot_monitoring_nsw_r
+            "lcm_l322_coding_hot_monitoring_rfs_l" -> Res.string.lcm_l322_coding_hot_monitoring_rfs_l
+            "lcm_l322_coding_hot_monitoring_rfs_r" -> Res.string.lcm_l322_coding_hot_monitoring_rfs_r
+            "lcm_l322_coding_hot_monitoring_sl_lh" -> Res.string.lcm_l322_coding_hot_monitoring_sl_lh
+            "lcm_l322_coding_hot_monitoring_sl_lhi" -> Res.string.lcm_l322_coding_hot_monitoring_sl_lhi
+            "lcm_l322_coding_hot_monitoring_sl_lv" -> Res.string.lcm_l322_coding_hot_monitoring_sl_lv
+            "lcm_l322_coding_hot_monitoring_sl_rh" -> Res.string.lcm_l322_coding_hot_monitoring_sl_rh
+            "lcm_l322_coding_hot_monitoring_sl_rhi" -> Res.string.lcm_l322_coding_hot_monitoring_sl_rhi
+            "lcm_l322_coding_hot_monitoring_sl_rv" -> Res.string.lcm_l322_coding_hot_monitoring_sl_rv
             "lcm_l322_coding_ignition_key_in_or_out_via_k_bus" -> Res.string.lcm_l322_coding_ignition_key_in_or_out_via_k_bus
+            "lcm_l322_coding_instrument_illumination_duty_cycle_increase" -> Res.string.lcm_l322_coding_instrument_illumination_duty_cycle_increase
+            "lcm_l322_coding_instrument_illumination_minimum_duty_cycle" -> Res.string.lcm_l322_coding_instrument_illumination_minimum_duty_cycle
             "lcm_l322_coding_inverted_brake_fluid_level_sensor" -> Res.string.lcm_l322_coding_inverted_brake_fluid_level_sensor
             "lcm_l322_coding_key_in_ignition_warning_if_door_is_opened" -> Res.string.lcm_l322_coding_key_in_ignition_warning_if_door_is_opened
+            "lcm_l322_coding_lamp_monitoring_error_count" -> Res.string.lcm_l322_coding_lamp_monitoring_error_count
+            "lcm_l322_coding_lamp_monitoring_pulse_length_from_ram" -> Res.string.lcm_l322_coding_lamp_monitoring_pulse_length_from_ram
             "lcm_l322_coding_light_switch_unit" -> Res.string.lcm_l322_coding_light_switch_unit
             "lcm_l322_coding_main_beam_fail_warning" -> Res.string.lcm_l322_coding_main_beam_fail_warning
             "lcm_l322_coding_market" -> Res.string.lcm_l322_coding_market
@@ -86,15 +188,21 @@ object ResourceMapperLcmL322 {
             "lcm_l322_coding_oil_level_sensor" -> Res.string.lcm_l322_coding_oil_level_sensor
             "lcm_l322_coding_operating_hours_counters_are_automatically_erased" -> Res.string.lcm_l322_coding_operating_hours_counters_are_automatically_erased
             "lcm_l322_coding_over_speed_warning" -> Res.string.lcm_l322_coding_over_speed_warning
+            "lcm_l322_coding_parking_light_voltage_limit" -> Res.string.lcm_l322_coding_parking_light_voltage_limit
             "lcm_l322_coding_pictogram_information_on_stop_lamps" -> Res.string.lcm_l322_coding_pictogram_information_on_stop_lamps
             "lcm_l322_coding_police_lights" -> Res.string.lcm_l322_coding_police_lights
             "lcm_l322_coding_police_lights_async" -> Res.string.lcm_l322_coding_police_lights_async
             "lcm_l322_coding_police_lights_async_rear" -> Res.string.lcm_l322_coding_police_lights_async_rear
             "lcm_l322_coding_police_lights_rear" -> Res.string.lcm_l322_coding_police_lights_rear
             "lcm_l322_coding_position_lamps_fail_warning" -> Res.string.lcm_l322_coding_position_lamps_fail_warning
+            "lcm_l322_coding_quick_cold_monitoring_checks" -> Res.string.lcm_l322_coding_quick_cold_monitoring_checks
+            "lcm_l322_coding_quick_cold_monitoring_pulse_interval" -> Res.string.lcm_l322_coding_quick_cold_monitoring_pulse_interval
+            "lcm_l322_coding_quick_cold_monitoring_round_time" -> Res.string.lcm_l322_coding_quick_cold_monitoring_round_time
             "lcm_l322_coding_rear_fog_lamp_to_brake_lamp_output_mapping" -> Res.string.lcm_l322_coding_rear_fog_lamp_to_brake_lamp_output_mapping
             "lcm_l322_coding_rear_fog_lamps_dim_with_taillights" -> Res.string.lcm_l322_coding_rear_fog_lamps_dim_with_taillights
             "lcm_l322_coding_rear_fog_lamps_has_substitute_function_if_trailer_mounted" -> Res.string.lcm_l322_coding_rear_fog_lamps_has_substitute_function_if_trailer_mounted
+            "lcm_l322_coding_rear_fog_lamps_push_button" -> Res.string.lcm_l322_coding_rear_fog_lamps_push_button
+            "lcm_l322_coding_reverse_lights_off_in_trailer_mode" -> Res.string.lcm_l322_coding_reverse_lights_off_in_trailer_mode
             "lcm_l322_coding_reversing_lights_fail_warning" -> Res.string.lcm_l322_coding_reversing_lights_fail_warning
             "lcm_l322_coding_right_brake_turn_us_trailer_module_not_activated" -> Res.string.lcm_l322_coding_right_brake_turn_us_trailer_module_not_activated
             "lcm_l322_coding_safety_taxi_modes" -> Res.string.lcm_l322_coding_safety_taxi_modes
@@ -111,10 +219,17 @@ object ResourceMapperLcmL322 {
             "lcm_l322_coding_the_gong_for_the_message_ignition_key_came_with_key_position_0" -> Res.string.lcm_l322_coding_the_gong_for_the_message_ignition_key_came_with_key_position_0
             "lcm_l322_coding_time_in_seconds_for_follow_me_home" -> Res.string.lcm_l322_coding_time_in_seconds_for_follow_me_home
             "lcm_l322_coding_to_activate_brake_turn_signal_for_nas_trailers" -> Res.string.lcm_l322_coding_to_activate_brake_turn_signal_for_nas_trailers
+            "lcm_l322_coding_trailer_brake_turn_left_fail_warning" -> Res.string.lcm_l322_coding_trailer_brake_turn_left_fail_warning
+            "lcm_l322_coding_trailer_brake_turn_right_fail_warning" -> Res.string.lcm_l322_coding_trailer_brake_turn_right_fail_warning
             "lcm_l322_coding_trailer_light_fail_monitoring" -> Res.string.lcm_l322_coding_trailer_light_fail_monitoring
+            "lcm_l322_coding_trailer_module_query_time_low_power" -> Res.string.lcm_l322_coding_trailer_module_query_time_low_power
+            "lcm_l322_coding_trailer_stop_lights" -> Res.string.lcm_l322_coding_trailer_stop_lights
+            "lcm_l322_coding_transport_mode" -> Res.string.lcm_l322_coding_transport_mode
             "lcm_l322_coding_turn_signal_flashing_has_priority_over_rear_fog_lamps" -> Res.string.lcm_l322_coding_turn_signal_flashing_has_priority_over_rear_fog_lamps
             "lcm_l322_coding_tyre_pressure_monitor" -> Res.string.lcm_l322_coding_tyre_pressure_monitor
+            "lcm_l322_coding_undervoltage_switch_off_threshold" -> Res.string.lcm_l322_coding_undervoltage_switch_off_threshold
             "lcm_l322_coding_washer_water_sensor_type" -> Res.string.lcm_l322_coding_washer_water_sensor_type
+            "lcm_l322_coding_xenon_automatic_ignition_impulse" -> Res.string.lcm_l322_coding_xenon_automatic_ignition_impulse
             "lcm_l322_control_center_break_light" -> Res.string.lcm_l322_control_center_break_light
             "lcm_l322_control_front_left_turn_light" -> Res.string.lcm_l322_control_front_left_turn_light
             "lcm_l322_control_front_right_turn_light" -> Res.string.lcm_l322_control_front_right_turn_light

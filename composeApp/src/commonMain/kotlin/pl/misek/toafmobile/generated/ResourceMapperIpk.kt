@@ -128,6 +128,9 @@ object ResourceMapperIpk {
             "ipk_live_data_coolant_level" -> Res.string.ipk_live_data_coolant_level
             "ipk_live_data_crank_sense" -> Res.string.ipk_live_data_crank_sense
             "ipk_live_data_cruise_control" -> Res.string.ipk_live_data_cruise_control
+            "ipk_live_data_engine_speed" -> Res.string.ipk_live_data_engine_speed
+            "ipk_live_data_engine_temperature" -> Res.string.ipk_live_data_engine_temperature
+            "ipk_live_data_fuel_consumption" -> Res.string.ipk_live_data_fuel_consumption
             "ipk_live_data_fuel_level_sensor" -> Res.string.ipk_live_data_fuel_level_sensor
             "ipk_live_data_handbrake" -> Res.string.ipk_live_data_handbrake
             "ipk_live_data_ignition_sense" -> Res.string.ipk_live_data_ignition_sense

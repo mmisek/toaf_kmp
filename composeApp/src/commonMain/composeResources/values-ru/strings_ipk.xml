@@ -130,6 +130,9 @@
     <string name="ipk_live_data_fuel_level_sensor">Датчик уровня топлива (АЦП)</string>
     <string name="ipk_live_data_outside_temperature_sensor">Датчик наружной температуры (АЦП)</string>
     <string name="ipk_live_data_vehicle_speed">Скорость автомобиля</string>
+    <string name="ipk_live_data_engine_speed">Обороты двигателя</string>
+    <string name="ipk_live_data_fuel_consumption">Расход топлива</string>
+    <string name="ipk_live_data_engine_temperature">Температура двигателя</string>
     <string name="ipk_live_data_wash_fluid_level">Уровень омывающей жидкости</string>
     <string name="ipk_live_data_brake_system_fail">Неисправность тормозной системы</string>
     <string name="ipk_live_data_seat_belt">Ремень безопасности</string>

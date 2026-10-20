@@ -15,6 +15,7 @@ import pl.misek.toafmobile.modules.ModuleDS2
 import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.ModuleAddress
+import pl.misek.toafmobile.modules.enums.ModuleFeature
 import pl.misek.toafmobile.modules.enums.TemperatureGaugeEnum
 import pl.misek.toafmobile.modules.interfaces.AdvanceControlElement
 import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceCoding
@@ -69,6 +70,8 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
             AdvanceControlTemperatureGauge(userInfo = userInfo, onShowResult = onShowResult)
         }
     )
+
+    override fun getNewFeatures() = super.getNewFeatures() + ModuleFeature.LiveData
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>) = true
 

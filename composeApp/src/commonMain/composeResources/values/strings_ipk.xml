@@ -131,6 +131,9 @@
     <string name="ipk_live_data_fuel_level_sensor">Fuel level sensor (ADC)</string>
     <string name="ipk_live_data_outside_temperature_sensor">Outside temperature sensor (ADC)</string>
     <string name="ipk_live_data_vehicle_speed">Vehicle speed</string>
+    <string name="ipk_live_data_engine_speed">Engine speed</string>
+    <string name="ipk_live_data_fuel_consumption">Fuel consumption</string>
+    <string name="ipk_live_data_engine_temperature">Engine temperature</string>
     <string name="ipk_live_data_wash_fluid_level">Washer fluid level</string>
     <string name="ipk_live_data_brake_system_fail">Brake system failure</string>
     <string name="ipk_live_data_seat_belt">Seat belt</string>

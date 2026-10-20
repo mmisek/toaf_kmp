@@ -120,6 +120,9 @@
     <string name="ipk_live_data_fuel_level_sensor">Czujnik poziomu paliwa (ADC)</string>
     <string name="ipk_live_data_outside_temperature_sensor">Czujnik temperatury zewnętrznej (ADC)</string>
     <string name="ipk_live_data_vehicle_speed">Prędkość pojazdu</string>
+    <string name="ipk_live_data_engine_speed">Obroty silnika</string>
+    <string name="ipk_live_data_fuel_consumption">Zużycie paliwa</string>
+    <string name="ipk_live_data_engine_temperature">Temperatura silnika</string>
     <string name="ipk_live_data_wash_fluid_level">Poziom płynu spryskiwaczy</string>
     <string name="ipk_live_data_brake_system_fail">Awaria układu hamulcowego</string>
     <string name="ipk_live_data_seat_belt">Pas bezpieczeństwa</string>
