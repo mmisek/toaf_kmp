@@ -109,6 +109,7 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
         }
         return null
     }
+
     private suspend fun setProgrammingDate() : Boolean
     {
         val currentDate = Clock.System.todayIn(TimeZone.currentSystemDefault())
@@ -311,17 +312,18 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
         if (newVin.length != getVinLength()) return false
         try {
             if (securityAccess(0x05)) {
-                return kwp!!.write(
+                val writeVinResult = kwp!!.write(
                     moduleAddress,
                     0x3B.toByte(),
                     byteArrayOf(0x90.toByte())+ newVin.toByteArray(),
                     250
                 ).isValid
+                return writeVinResult && setProgrammingDate()
             }
         } catch (ex: CancellationException) {
             throw ex
         } catch (ex: Exception) {
-            Logger.e{"$tag [writeVin]: ${ex.toString()}"}
+            Logger.e{"$tag [writeVin]: $ex"}
         }
         return false
     }
