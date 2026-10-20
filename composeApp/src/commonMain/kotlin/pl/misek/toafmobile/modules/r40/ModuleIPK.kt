@@ -41,16 +41,13 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
     IModuleEepromProgramming, IModuleAdvanceControl, ITemperatureCoding, IModuleLiveData {
 
     private companion object {
-        /** STATUS_ANALOG_LESEN: [5V/akumulator, hebelgeber 1, ?, temperatura zewn., okres czujnika drogi] po 2 bajty */
         val STATUS_ANALOG_LESEN = byteArrayOf(0x0B, 0x0A)
-        /** STATUS_IO_LESEN: stany portow 0..6, odpowiedz [port 0 .. port 6] */
         val STATUS_IO_PORTS = byteArrayOf(0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06)
+        const val STATUS_LESSEN: Byte = 0x0B
         const val STATUS_IO_LESEN: Byte = 0x14
-        /** Porty z sygnalami (log T4) - przy odczycie pojedynczym */
         val STATUS_IO_USED_PORTS = byteArrayOf(0x00, 0x02, 0x03, 0x05, 0x06)
     }
 
-    /** Sterownik nie obsluguje zbiorczego odczytu portow - czytane pojedynczo */
     private var ioPortsSingleRead = false
 
     enum class ServiceType {
@@ -73,9 +70,8 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
 
     override fun getNewFeatures() = super.getNewFeatures() + ModuleFeature.LiveData
 
-    override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>) = true
+    override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>) = interfaceWrite(byteArrayOf(0x9E.toByte())).isValid
 
-    // Blok 0 - wartosci analogowe, blok 1 - porty cyfrowe (bajt = numer portu)
     override suspend fun readLiveData(): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = HashMap()
         try {
@@ -92,17 +88,9 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
     }
 
     private suspend fun readIoPorts(): ByteArray? {
-        if (!ioPortsSingleRead) {
-            val message = interfaceWrite(byteArrayOf(STATUS_IO_LESEN) + STATUS_IO_PORTS)
-            if (message.isValid && message.answer.size >= 4 + STATUS_IO_PORTS.size)
-                return message.answer.copyOfRange(3, 3 + STATUS_IO_PORTS.size)
-            Logger.i { "$tag [readIoPorts], multi port read not supported, $message" }
-            ioPortsSingleRead = true
-        }
-        // Odczyt pojedynczych portow (jak T4)
         val ports = ByteArray(STATUS_IO_PORTS.size)
         for (port in STATUS_IO_USED_PORTS) {
-            val portMessage = interfaceWrite(byteArrayOf(STATUS_IO_LESEN, port))
+            val portMessage = interfaceWrite(byteArrayOf(STATUS_LESSEN, STATUS_IO_LESEN, port))
             if (!portMessage.isValid || portMessage.answer.size < 5) {
                 Logger.e { "$tag [readIoPorts], port $port, $portMessage" }
                 return null
