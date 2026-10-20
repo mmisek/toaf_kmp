@@ -116,4 +116,33 @@
     <string name="ipk_error_desc_80">Błąd sporadyczny</string>
 
 
+    <string name="ipk_live_data_battery_voltage">Napięcie akumulatora</string>
+    <string name="ipk_live_data_fuel_level_sensor">Czujnik poziomu paliwa (ADC)</string>
+    <string name="ipk_live_data_outside_temperature_sensor">Czujnik temperatury zewnętrznej (ADC)</string>
+    <string name="ipk_live_data_vehicle_speed">Prędkość pojazdu</string>
+    <string name="ipk_live_data_wash_fluid_level">Poziom płynu spryskiwaczy</string>
+    <string name="ipk_live_data_brake_system_fail">Awaria układu hamulcowego</string>
+    <string name="ipk_live_data_seat_belt">Pas bezpieczeństwa</string>
+    <string name="ipk_live_data_crank_sense">Rozruch (zacisk 50)</string>
+    <string name="ipk_live_data_cruise_control">Tempomat</string>
+    <string name="ipk_live_data_oil_pressure">Ciśnienie oleju</string>
+    <string name="ipk_live_data_reverse_gear">Bieg wsteczny</string>
+    <string name="ipk_live_data_coolant_level">Poziom płynu chłodzącego</string>
+    <string name="ipk_live_data_auxiliary_sense">Zasilanie akcesoriów (zacisk R)</string>
+    <string name="ipk_live_data_ignition_sense">Zapłon (zacisk 15)</string>
+    <string name="ipk_live_data_trip_switch">Przycisk trip</string>
+    <string name="ipk_live_data_trip_reset">Przycisk kasowania trip</string>
+    <string name="ipk_live_data_brake_pad_warning">Zużycie klocków hamulcowych</string>
+    <string name="ipk_live_data_handbrake">Hamulec ręczny</string>
+    <string name="ipk_live_data_battery_charge_warning">Kontrolka ładowania</string>
+    <string name="ipk_live_data_airbag_fault">Awaria airbag</string>
+    <string name="ipk_live_data_abs_system_fail">Awaria ABS</string>
+    <string name="ipk_live_data_value_low">Niski</string>
+    <string name="ipk_live_data_value_normal">Normalny</string>
+    <string name="ipk_live_data_value_off">Wył.</string>
+    <string name="ipk_live_data_value_on">Wł.</string>
+    <string name="ipk_live_data_value_unbuckled">Niezapięty</string>
+    <string name="ipk_live_data_value_buckled">Zapięty</string>
+    <string name="ipk_live_data_value_forward">Do przodu</string>
+    <string name="ipk_live_data_value_reverse">Wsteczny</string>
 </resources>

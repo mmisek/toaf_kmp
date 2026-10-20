@@ -118,6 +118,35 @@ object ResourceMapperIpk {
             "ipk_error_desc_04" -> Res.string.ipk_error_desc_04
             "ipk_error_desc_40" -> Res.string.ipk_error_desc_40
             "ipk_error_desc_80" -> Res.string.ipk_error_desc_80
+            "ipk_live_data_abs_system_fail" -> Res.string.ipk_live_data_abs_system_fail
+            "ipk_live_data_airbag_fault" -> Res.string.ipk_live_data_airbag_fault
+            "ipk_live_data_auxiliary_sense" -> Res.string.ipk_live_data_auxiliary_sense
+            "ipk_live_data_battery_charge_warning" -> Res.string.ipk_live_data_battery_charge_warning
+            "ipk_live_data_battery_voltage" -> Res.string.ipk_live_data_battery_voltage
+            "ipk_live_data_brake_pad_warning" -> Res.string.ipk_live_data_brake_pad_warning
+            "ipk_live_data_brake_system_fail" -> Res.string.ipk_live_data_brake_system_fail
+            "ipk_live_data_coolant_level" -> Res.string.ipk_live_data_coolant_level
+            "ipk_live_data_crank_sense" -> Res.string.ipk_live_data_crank_sense
+            "ipk_live_data_cruise_control" -> Res.string.ipk_live_data_cruise_control
+            "ipk_live_data_fuel_level_sensor" -> Res.string.ipk_live_data_fuel_level_sensor
+            "ipk_live_data_handbrake" -> Res.string.ipk_live_data_handbrake
+            "ipk_live_data_ignition_sense" -> Res.string.ipk_live_data_ignition_sense
+            "ipk_live_data_oil_pressure" -> Res.string.ipk_live_data_oil_pressure
+            "ipk_live_data_outside_temperature_sensor" -> Res.string.ipk_live_data_outside_temperature_sensor
+            "ipk_live_data_reverse_gear" -> Res.string.ipk_live_data_reverse_gear
+            "ipk_live_data_seat_belt" -> Res.string.ipk_live_data_seat_belt
+            "ipk_live_data_trip_reset" -> Res.string.ipk_live_data_trip_reset
+            "ipk_live_data_trip_switch" -> Res.string.ipk_live_data_trip_switch
+            "ipk_live_data_value_buckled" -> Res.string.ipk_live_data_value_buckled
+            "ipk_live_data_value_forward" -> Res.string.ipk_live_data_value_forward
+            "ipk_live_data_value_low" -> Res.string.ipk_live_data_value_low
+            "ipk_live_data_value_normal" -> Res.string.ipk_live_data_value_normal
+            "ipk_live_data_value_off" -> Res.string.ipk_live_data_value_off
+            "ipk_live_data_value_on" -> Res.string.ipk_live_data_value_on
+            "ipk_live_data_value_reverse" -> Res.string.ipk_live_data_value_reverse
+            "ipk_live_data_value_unbuckled" -> Res.string.ipk_live_data_value_unbuckled
+            "ipk_live_data_vehicle_speed" -> Res.string.ipk_live_data_vehicle_speed
+            "ipk_live_data_wash_fluid_level" -> Res.string.ipk_live_data_wash_fluid_level
         else -> {
           Logger.i {"NO RESOURCE for : $resourceName" }
             null

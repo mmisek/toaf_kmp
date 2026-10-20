@@ -126,4 +126,33 @@
         <item>Все сервисы</item>
     </string-array>
 
+    <string name="ipk_live_data_battery_voltage">Напряжение АКБ</string>
+    <string name="ipk_live_data_fuel_level_sensor">Датчик уровня топлива (АЦП)</string>
+    <string name="ipk_live_data_outside_temperature_sensor">Датчик наружной температуры (АЦП)</string>
+    <string name="ipk_live_data_vehicle_speed">Скорость автомобиля</string>
+    <string name="ipk_live_data_wash_fluid_level">Уровень омывающей жидкости</string>
+    <string name="ipk_live_data_brake_system_fail">Неисправность тормозной системы</string>
+    <string name="ipk_live_data_seat_belt">Ремень безопасности</string>
+    <string name="ipk_live_data_crank_sense">Пуск (клемма 50)</string>
+    <string name="ipk_live_data_cruise_control">Круиз-контроль</string>
+    <string name="ipk_live_data_oil_pressure">Давление масла</string>
+    <string name="ipk_live_data_reverse_gear">Задняя передача</string>
+    <string name="ipk_live_data_coolant_level">Уровень охлаждающей жидкости</string>
+    <string name="ipk_live_data_auxiliary_sense">Аксессуары (клемма R)</string>
+    <string name="ipk_live_data_ignition_sense">Зажигание (клемма 15)</string>
+    <string name="ipk_live_data_trip_switch">Кнопка trip</string>
+    <string name="ipk_live_data_trip_reset">Кнопка сброса trip</string>
+    <string name="ipk_live_data_brake_pad_warning">Износ тормозных колодок</string>
+    <string name="ipk_live_data_handbrake">Стояночный тормоз</string>
+    <string name="ipk_live_data_battery_charge_warning">Индикатор зарядки</string>
+    <string name="ipk_live_data_airbag_fault">Неисправность подушек безопасности</string>
+    <string name="ipk_live_data_abs_system_fail">Неисправность ABS</string>
+    <string name="ipk_live_data_value_low">Низкий</string>
+    <string name="ipk_live_data_value_normal">Нормальный</string>
+    <string name="ipk_live_data_value_off">Выкл.</string>
+    <string name="ipk_live_data_value_on">Вкл.</string>
+    <string name="ipk_live_data_value_unbuckled">Не пристёгнут</string>
+    <string name="ipk_live_data_value_buckled">Пристёгнут</string>
+    <string name="ipk_live_data_value_forward">Вперёд</string>
+    <string name="ipk_live_data_value_reverse">Назад</string>
 </resources>

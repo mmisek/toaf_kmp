@@ -132,4 +132,33 @@
 </string-array>
 
 
+    <string name="ipk_live_data_battery_voltage">Tensión de batería</string>
+    <string name="ipk_live_data_fuel_level_sensor">Sensor de nivel de combustible (ADC)</string>
+    <string name="ipk_live_data_outside_temperature_sensor">Sensor de temperatura exterior (ADC)</string>
+    <string name="ipk_live_data_vehicle_speed">Velocidad del vehículo</string>
+    <string name="ipk_live_data_wash_fluid_level">Nivel de líquido limpiaparabrisas</string>
+    <string name="ipk_live_data_brake_system_fail">Fallo del sistema de frenos</string>
+    <string name="ipk_live_data_seat_belt">Cinturón de seguridad</string>
+    <string name="ipk_live_data_crank_sense">Arranque (borne 50)</string>
+    <string name="ipk_live_data_cruise_control">Control de crucero</string>
+    <string name="ipk_live_data_oil_pressure">Presión de aceite</string>
+    <string name="ipk_live_data_reverse_gear">Marcha atrás</string>
+    <string name="ipk_live_data_coolant_level">Nivel de refrigerante</string>
+    <string name="ipk_live_data_auxiliary_sense">Accesorios (borne R)</string>
+    <string name="ipk_live_data_ignition_sense">Encendido (borne 15)</string>
+    <string name="ipk_live_data_trip_switch">Botón trip</string>
+    <string name="ipk_live_data_trip_reset">Botón reset trip</string>
+    <string name="ipk_live_data_brake_pad_warning">Desgaste de pastillas de freno</string>
+    <string name="ipk_live_data_handbrake">Freno de mano</string>
+    <string name="ipk_live_data_battery_charge_warning">Testigo de carga</string>
+    <string name="ipk_live_data_airbag_fault">Fallo del airbag</string>
+    <string name="ipk_live_data_abs_system_fail">Fallo del sistema ABS</string>
+    <string name="ipk_live_data_value_low">Bajo</string>
+    <string name="ipk_live_data_value_normal">Normal</string>
+    <string name="ipk_live_data_value_off">Apagado</string>
+    <string name="ipk_live_data_value_on">Encendido</string>
+    <string name="ipk_live_data_value_unbuckled">Desabrochado</string>
+    <string name="ipk_live_data_value_buckled">Abrochado</string>
+    <string name="ipk_live_data_value_forward">Adelante</string>
+    <string name="ipk_live_data_value_reverse">Atrás</string>
 </resources>

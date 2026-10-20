@@ -1,0 +1,365 @@
+{
+  "livedata": [
+    {
+      "name": "battery_voltage",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "5590",
+      "factor_b": "0.695",
+      "unit": "V",
+      "invert_a": "true"
+    },
+    {
+      "name": "fuel_level_sensor",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "ohm"
+    },
+    {
+      "name": "outside_temperature_sensor",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "ohm"
+    },
+    {
+      "name": "vehicle_speed",
+      "block": "0x00",
+      "byte": "0x08",
+      "mask": "0xFFFF",
+      "factor_a": "189000",
+      "factor_b": "0",
+      "unit": "km/h",
+      "invert_a": "true"
+    },
+    {
+      "name": "wash_fluid_level",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "low"
+        },
+        {
+          "data": "0x01",
+          "text": "normal"
+        }
+      ]
+    },
+    {
+      "name": "brake_system_fail",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "seat_belt",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "unbuckled"
+        },
+        {
+          "data": "0x01",
+          "text": "buckled"
+        }
+      ]
+    },
+    {
+      "name": "crank_sense",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "cruise_control",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "on"
+        },
+        {
+          "data": "0x01",
+          "text": "off"
+        }
+      ]
+    },
+    {
+      "name": "oil_pressure",
+      "block": "0x01",
+      "byte": "0x02",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "low"
+        },
+        {
+          "data": "0x01",
+          "text": "normal"
+        }
+      ]
+    },
+    {
+      "name": "reverse_gear",
+      "block": "0x01",
+      "byte": "0x03",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "forward"
+        },
+        {
+          "data": "0x01",
+          "text": "reverse"
+        }
+      ]
+    },
+    {
+      "name": "coolant_level",
+      "block": "0x01",
+      "byte": "0x03",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "low"
+        },
+        {
+          "data": "0x01",
+          "text": "normal"
+        }
+      ]
+    },
+    {
+      "name": "auxiliary_sense",
+      "block": "0x01",
+      "byte": "0x05",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "ignition_sense",
+      "block": "0x01",
+      "byte": "0x05",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "trip_switch",
+      "block": "0x01",
+      "byte": "0x05",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "trip_reset",
+      "block": "0x01",
+      "byte": "0x05",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "brake_pad_warning",
+      "block": "0x01",
+      "byte": "0x05",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "handbrake",
+      "block": "0x01",
+      "byte": "0x05",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "on"
+        },
+        {
+          "data": "0x01",
+          "text": "off"
+        }
+      ]
+    },
+    {
+      "name": "battery_charge_warning",
+      "block": "0x01",
+      "byte": "0x06",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0x01",
+          "text": "on"
+        }
+      ]
+    },
+    {
+      "name": "airbag_fault",
+      "block": "0x01",
+      "byte": "0x06",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "on"
+        },
+        {
+          "data": "0x01",
+          "text": "off"
+        }
+      ]
+    },
+    {
+      "name": "abs_system_fail",
+      "block": "0x01",
+      "byte": "0x06",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "on"
+        },
+        {
+          "data": "0x01",
+          "text": "off"
+        }
+      ]
+    }
+  ]
+}

@@ -123,4 +123,33 @@
         <item>Tutti i servizi</item>
     </string-array>
 
+    <string name="ipk_live_data_battery_voltage">Tensione batteria</string>
+    <string name="ipk_live_data_fuel_level_sensor">Sensore livello carburante (ADC)</string>
+    <string name="ipk_live_data_outside_temperature_sensor">Sensore temperatura esterna (ADC)</string>
+    <string name="ipk_live_data_vehicle_speed">Velocità veicolo</string>
+    <string name="ipk_live_data_wash_fluid_level">Livello liquido lavavetri</string>
+    <string name="ipk_live_data_brake_system_fail">Guasto impianto frenante</string>
+    <string name="ipk_live_data_seat_belt">Cintura di sicurezza</string>
+    <string name="ipk_live_data_crank_sense">Avviamento (morsetto 50)</string>
+    <string name="ipk_live_data_cruise_control">Cruise control</string>
+    <string name="ipk_live_data_oil_pressure">Pressione olio</string>
+    <string name="ipk_live_data_reverse_gear">Retromarcia</string>
+    <string name="ipk_live_data_coolant_level">Livello liquido refrigerante</string>
+    <string name="ipk_live_data_auxiliary_sense">Accessori (morsetto R)</string>
+    <string name="ipk_live_data_ignition_sense">Accensione (morsetto 15)</string>
+    <string name="ipk_live_data_trip_switch">Pulsante trip</string>
+    <string name="ipk_live_data_trip_reset">Pulsante reset trip</string>
+    <string name="ipk_live_data_brake_pad_warning">Usura pastiglie freno</string>
+    <string name="ipk_live_data_handbrake">Freno a mano</string>
+    <string name="ipk_live_data_battery_charge_warning">Spia di carica</string>
+    <string name="ipk_live_data_airbag_fault">Guasto airbag</string>
+    <string name="ipk_live_data_abs_system_fail">Guasto ABS</string>
+    <string name="ipk_live_data_value_low">Basso</string>
+    <string name="ipk_live_data_value_normal">Normale</string>
+    <string name="ipk_live_data_value_off">Spento</string>
+    <string name="ipk_live_data_value_on">Acceso</string>
+    <string name="ipk_live_data_value_unbuckled">Slacciata</string>
+    <string name="ipk_live_data_value_buckled">Allacciata</string>
+    <string name="ipk_live_data_value_forward">Avanti</string>
+    <string name="ipk_live_data_value_reverse">Retromarcia</string>
 </resources>

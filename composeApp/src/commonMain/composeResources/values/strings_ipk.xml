@@ -127,4 +127,33 @@
         <item>All services</item>
     </string-array>
 
+    <string name="ipk_live_data_battery_voltage">Battery voltage</string>
+    <string name="ipk_live_data_fuel_level_sensor">Fuel level sensor (ADC)</string>
+    <string name="ipk_live_data_outside_temperature_sensor">Outside temperature sensor (ADC)</string>
+    <string name="ipk_live_data_vehicle_speed">Vehicle speed</string>
+    <string name="ipk_live_data_wash_fluid_level">Washer fluid level</string>
+    <string name="ipk_live_data_brake_system_fail">Brake system failure</string>
+    <string name="ipk_live_data_seat_belt">Seat belt</string>
+    <string name="ipk_live_data_crank_sense">Cranking (terminal 50)</string>
+    <string name="ipk_live_data_cruise_control">Cruise control</string>
+    <string name="ipk_live_data_oil_pressure">Oil pressure</string>
+    <string name="ipk_live_data_reverse_gear">Reverse gear</string>
+    <string name="ipk_live_data_coolant_level">Coolant level</string>
+    <string name="ipk_live_data_auxiliary_sense">Accessory (terminal R)</string>
+    <string name="ipk_live_data_ignition_sense">Ignition (terminal 15)</string>
+    <string name="ipk_live_data_trip_switch">Trip button</string>
+    <string name="ipk_live_data_trip_reset">Trip reset button</string>
+    <string name="ipk_live_data_brake_pad_warning">Brake pad wear warning</string>
+    <string name="ipk_live_data_handbrake">Handbrake</string>
+    <string name="ipk_live_data_battery_charge_warning">Battery charge warning</string>
+    <string name="ipk_live_data_airbag_fault">Airbag fault</string>
+    <string name="ipk_live_data_abs_system_fail">ABS system failure</string>
+    <string name="ipk_live_data_value_low">Low</string>
+    <string name="ipk_live_data_value_normal">Normal</string>
+    <string name="ipk_live_data_value_off">Off</string>
+    <string name="ipk_live_data_value_on">On</string>
+    <string name="ipk_live_data_value_unbuckled">Unbuckled</string>
+    <string name="ipk_live_data_value_buckled">Buckled</string>
+    <string name="ipk_live_data_value_forward">Forward</string>
+    <string name="ipk_live_data_value_reverse">Reverse</string>
 </resources>
