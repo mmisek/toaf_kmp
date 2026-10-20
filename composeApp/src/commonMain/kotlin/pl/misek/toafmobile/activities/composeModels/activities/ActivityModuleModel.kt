@@ -33,6 +33,7 @@ import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.ModuleInfo
 import pl.misek.toafmobile.modules.ModulesManager
+import pl.misek.toafmobile.modules.enums.ModuleFeature
 import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceCoding
 import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceControl
 import pl.misek.toafmobile.modules.interfaces.IModuleCoding
@@ -59,6 +60,7 @@ fun ActivityModuleModel(
     ) {
     val modulesManage : ModulesManager = koinInject()
     val currentModule = modulesManage.getCurrentModules().firstOrNull {it.getKoinName() == moduleKoinName} as IModule
+    val newFeatures = remember(currentModule) { currentModule.getNewFeatures() }
     val snackBarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
     var showModuleErrors by remember { mutableStateOf(false) }
@@ -188,7 +190,8 @@ fun ActivityModuleModel(
                     ToafButtons.GreenButton(
                         modifier = Modifier.padding(5.dp).fillMaxWidth(),
                         buttonText = Res.string.module_coding,
-                        onClick = { onCodingClick() }
+                        onClick = { onCodingClick() },
+                        isNew = ModuleFeature.Coding in newFeatures
                     )
                 }
                 if (currentModule is IModuleAdvanceCoding)
@@ -196,14 +199,16 @@ fun ActivityModuleModel(
                     ToafButtons.GreenButton(
                         modifier = Modifier.padding(5.dp).fillMaxWidth(),
                         buttonText = Res.string.activity_advance_coding,
-                        onClick = { onCodingAdvanceClick() }
+                        onClick = { onCodingAdvanceClick() },
+                        isNew = ModuleFeature.AdvanceCoding in newFeatures
                     )
                 }
                 if (currentModule is IModuleLiveData) {
                     ToafButtons.GreenButton(
                         modifier = Modifier.padding(5.dp).fillMaxWidth(),
                         buttonText = Res.string.module_live_data,
-                        onClick = { onLiveDataClick()}
+                        onClick = { onLiveDataClick()},
+                        isNew = ModuleFeature.LiveData in newFeatures
                     )
                 }
                 if (currentModule is IModuleEepromProgramming)
@@ -211,7 +216,8 @@ fun ActivityModuleModel(
                     ToafButtons.GreenButton(
                         modifier = Modifier.padding(5.dp).fillMaxWidth(),
                         buttonText = Res.string.activity_eeprom_programing,
-                        onClick = { onEepromProgrammingClick() }
+                        onClick = { onEepromProgrammingClick() },
+                        isNew = ModuleFeature.EepromProgramming in newFeatures
                     )
                 }
                 if (currentModule is IModuleFlashProgramming)
@@ -219,14 +225,16 @@ fun ActivityModuleModel(
                     ToafButtons.GreenButton(
                         modifier = Modifier.padding(5.dp).fillMaxWidth(),
                         buttonText = Res.string.activity_flash_programing,
-                        onClick = { onFlashProgrammingClick() }
+                        onClick = { onFlashProgrammingClick() },
+                        isNew = ModuleFeature.FlashProgramming in newFeatures
                     )
                 }
                 if (currentModule is IModuleControl) {
                     ToafButtons.GreenButton(
                         modifier = Modifier.padding(5.dp).fillMaxWidth(),
                         buttonText = Res.string.module_control,
-                        onClick = { onControlClick()}
+                        onClick = { onControlClick()},
+                        isNew = ModuleFeature.Control in newFeatures
                     )
                 }
                 if (currentModule is IModuleAdvanceControl)
@@ -234,7 +242,8 @@ fun ActivityModuleModel(
                     ToafButtons.GreenButton(
                         modifier = Modifier.padding(5.dp).fillMaxWidth(),
                         buttonText = Res.string.module_advance_control,
-                        onClick = { onAdvanceControlClick()}
+                        onClick = { onAdvanceControlClick()},
+                        isNew = ModuleFeature.AdvanceControl in newFeatures
                     )
                 }
                 if (showModuleInfo)

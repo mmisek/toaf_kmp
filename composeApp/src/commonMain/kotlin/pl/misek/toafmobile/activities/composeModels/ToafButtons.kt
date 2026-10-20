@@ -3,6 +3,7 @@ package pl.misek.toafmobile.activities.composeModels
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -42,8 +43,8 @@ object ToafButtons {
         ToafButton(buttonText, ToafColors.greenButton, onClick, modifier, enabled)
     }
     @Composable
-    fun GreenButton(buttonText: StringResource, onClick: () -> Unit, modifier: Modifier, enabled: Boolean = true) {
-        ToafButton(buttonText, ToafColors.greenButton, onClick, modifier, enabled)
+    fun GreenButton(buttonText: StringResource, onClick: () -> Unit, modifier: Modifier, enabled: Boolean = true, isNew: Boolean = false) {
+        ToafButton(buttonText, ToafColors.greenButton, onClick, modifier, enabled, isNew)
     }
 
     @Composable
@@ -57,23 +58,28 @@ object ToafButtons {
         color: Color,
         onClick: () -> Unit,
         modifier: Modifier = Modifier,
-        enabled : Boolean
+        enabled : Boolean,
+        isNew: Boolean = false
     ) {
-        FilledTonalButton(
-            enabled = enabled,
-            modifier = modifier,
-            border = BorderStroke(ToafStyles.borderSize, ToafColors.borderColor),
-            colors = ButtonDefaults.filledTonalButtonColors(
-                containerColor = color,
-                disabledContainerColor = ToafColors.disabledButton
-            ),
-            onClick = { onClick() },
-            content = {
-                Text(stringResource(buttonText),
-                    fontSize = ToafStyles.buttonFontSize,
-                    color = Color.White,
-                    textAlign = TextAlign.Center,) }
-        )
+        // propagateMinConstraints - przycisk przejmuje rozmiar wymuszony przez modifier
+        Box(modifier = modifier, propagateMinConstraints = true) {
+            FilledTonalButton(
+                enabled = enabled,
+                border = BorderStroke(ToafStyles.borderSize, ToafColors.borderColor),
+                colors = ButtonDefaults.filledTonalButtonColors(
+                    containerColor = color,
+                    disabledContainerColor = ToafColors.disabledButton
+                ),
+                onClick = { onClick() },
+                content = {
+                    Text(stringResource(buttonText),
+                        fontSize = ToafStyles.buttonFontSize,
+                        color = Color.White,
+                        textAlign = TextAlign.Center,) }
+            )
+            if (isNew)
+                NewFeatureChip()
+        }
     }
 
     @Composable
@@ -107,60 +113,65 @@ object ToafButtons {
         moduleDescriptor: StringResource?,
         buttonImage: DrawableResource?,
         onClick: () -> Unit,
-        modifier: Modifier
+        modifier: Modifier,
+        isNew: Boolean = false
     ) {
-        FilledTonalButton(
-            modifier = modifier,
-            shape = RoundedCornerShape(5.dp), // Zawsze warto jawnie podać .dp przy kształtach
-            border = BorderStroke(ToafStyles.borderSize, ToafColors.borderColor),
-            colors = ButtonDefaults.filledTonalButtonColors(
-                containerColor = ToafColors.greenButton
-            ),
-            // 1. Usunięcie domyślnego paddingu przycisku, aby mieć pełną kontrolę nad wnętrzem
-            contentPadding = PaddingValues(0.dp),
-            onClick = { onClick() }
-        ) {
-            BoxWithConstraints(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
+        val shape = RoundedCornerShape(5.dp) // Zawsze warto jawnie podać .dp przy kształtach
+        Box(modifier = modifier, propagateMinConstraints = true) {
+            FilledTonalButton(
+                shape = shape,
+                border = BorderStroke(ToafStyles.borderSize, ToafColors.borderColor),
+                colors = ButtonDefaults.filledTonalButtonColors(
+                    containerColor = ToafColors.greenButton
+                ),
+                // 1. Usunięcie domyślnego paddingu przycisku, aby mieć pełną kontrolę nad wnętrzem
+                contentPadding = PaddingValues(0.dp),
+                onClick = { onClick() }
             ) {
-                val minDimension = minOf(maxWidth, maxHeight)
-
-                val titleFontSize = (minDimension.value * 0.12f).sp
-                val subtitleFontSize = (minDimension.value * 0.08f).sp
-
-                Column(
-                    modifier = Modifier.fillMaxSize(0.8f),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
+                BoxWithConstraints(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
                 ) {
-                    Image(
-                        painter = painterResource(buttonImage ?: Res.drawable.usb_connected),
-                        contentDescription = null,
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxWidth()
-                            .padding(bottom = 4.dp)
-                    )
-                    Text(
-                        text = moduleName,
-                        fontSize = titleFontSize,
-                        modifier = Modifier.fillMaxWidth(),
-                        textAlign = TextAlign.Center,
-                        color = Color.White,
-                        lineHeight = titleFontSize
-                    )
-                    Text(
-                        text = if (moduleDescriptor != null) stringResource(moduleDescriptor) else "ERROR",
-                        fontSize = subtitleFontSize,
-                        modifier = Modifier.fillMaxWidth(),
-                        textAlign = TextAlign.Center,
-                        color = Color.White,
-                        lineHeight = subtitleFontSize
-                    )
+                    val minDimension = minOf(maxWidth, maxHeight)
+
+                    val titleFontSize = (minDimension.value * 0.12f).sp
+                    val subtitleFontSize = (minDimension.value * 0.08f).sp
+
+                    Column(
+                        modifier = Modifier.fillMaxSize(0.8f),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Image(
+                            painter = painterResource(buttonImage ?: Res.drawable.usb_connected),
+                            contentDescription = null,
+                            contentScale = ContentScale.Fit,
+                            modifier = Modifier
+                                .weight(1f)
+                                .fillMaxWidth()
+                                .padding(bottom = 4.dp)
+                        )
+                        Text(
+                            text = moduleName,
+                            fontSize = titleFontSize,
+                            modifier = Modifier.fillMaxWidth(),
+                            textAlign = TextAlign.Center,
+                            color = Color.White,
+                            lineHeight = titleFontSize
+                        )
+                        Text(
+                            text = if (moduleDescriptor != null) stringResource(moduleDescriptor) else "ERROR",
+                            fontSize = subtitleFontSize,
+                            modifier = Modifier.fillMaxWidth(),
+                            textAlign = TextAlign.Center,
+                            color = Color.White,
+                            lineHeight = subtitleFontSize
+                        )
+                    }
                 }
             }
+            if (isNew)
+                NewFeatureRibbon(shape)
         }
     }
 

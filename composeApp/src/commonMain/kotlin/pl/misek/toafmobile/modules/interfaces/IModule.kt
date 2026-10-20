@@ -7,6 +7,7 @@ import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.ModuleInfo
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.ModuleAddress
+import pl.misek.toafmobile.modules.enums.ModuleFeature
 import pl.misek.toafmobile.protocols.IProtocol
 
 interface IModule {
@@ -28,4 +29,15 @@ interface IModule {
     fun setModuleProtocol(protocol: IProtocol)
 
     fun getSupportedCarTypes(): List<CarType>
+
+    /**
+     * Funkcje modulu oznaczone jako nowe. Domyslnie wyliczane z elementow oznaczonych isNew,
+     * modul moze nadpisac aby oznaczyc inne funkcje (np. LiveData).
+     */
+    fun getNewFeatures(): Set<ModuleFeature> = buildSet {
+        if ((this@IModule as? IModuleAdvanceControl)?.getAdvanceControlElements()?.any { it.isNew } == true)
+            add(ModuleFeature.AdvanceControl)
+    }
+
+    fun hasNewFeatures(): Boolean = getNewFeatures().isNotEmpty()
 }

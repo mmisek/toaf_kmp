@@ -67,7 +67,7 @@ class ModuleABS( protocolDS2: ProtocolDS2?) :ModuleDS2(protocolDS2, ModuleAddres
     override fun getModuleDescription() = Res.string.module_description_abs
 
     override fun getAdvanceControlElements() = listOf(
-        AdvanceControlElement(Res.string.advance_control_abs_bleeding_title) { userInfo, onShowResult ->
+        AdvanceControlElement(Res.string.advance_control_abs_bleeding_title, isNew = true) { userInfo, onShowResult ->
             AdvanceControlAbsBleeding(userInfo = userInfo, onShowResult = onShowResult)
         }
     )

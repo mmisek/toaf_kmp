@@ -113,7 +113,8 @@ private fun ActivityAdvanceControlContent(advanceControlElements : List<AdvanceC
                         ToafButtons.GreenButton(
                             modifier = Modifier.padding(5.dp).fillMaxWidth(),
                             buttonText = item.name,
-                            onClick = { selectedElement = item }
+                            onClick = { selectedElement = item },
+                            isNew = item.isNew
                         )
                     }
                 }

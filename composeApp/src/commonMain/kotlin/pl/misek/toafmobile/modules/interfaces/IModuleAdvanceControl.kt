@@ -8,6 +8,8 @@ typealias AdvanceControlShowResult = (result: Boolean, onSuccess: String?, onFai
 
 data class AdvanceControlElement(
     val name: StringResource,
+    /** Nowa funkcja - znacznik NEW na przycisku, przenoszony na przycisk sterowania zaawansowanego i kafelek modulu */
+    val isNew: Boolean = false,
     val content: @Composable (userInfo: UserInfo, onShowResult: AdvanceControlShowResult) -> Unit
 )
 

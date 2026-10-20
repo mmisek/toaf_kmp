@@ -106,7 +106,8 @@ fun ModulesGrid(modules: List<IModule>, onClick: (index: KoinNames) -> Unit) {
                         moduleDescriptor = modules[index].getModuleDescription(),
                         buttonImage = modules[index].getImageResource(),
                         onClick = { onClick(modules[index].getKoinName()) },
-                        modifier = Modifier.fillMaxWidth().aspectRatio(1.5f)
+                        modifier = Modifier.fillMaxWidth().aspectRatio(1.5f),
+                        isNew = modules[index].hasNewFeatures()
                     )
                 }
             }
