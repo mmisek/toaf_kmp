@@ -51,7 +51,7 @@ class ModuleSHD(protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddre
 
     override suspend fun readCoding(): List<ByteArray>? {
         val result: MutableList<ByteArray> = ArrayList()
-        val message = interfaceWrite(byteArrayOf(0x08))
+        val message = interfaceWrite(byteArrayOf(0x08), 300)
         try {
             if (message.isValid) result.add(
                 message.answer.copyOfRange(3,message.answer.size - 1))

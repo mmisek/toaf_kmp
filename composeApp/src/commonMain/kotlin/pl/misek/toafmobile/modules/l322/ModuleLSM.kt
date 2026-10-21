@@ -210,7 +210,7 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
         var message: OBDMessage? = null
         try {
             do {
-                message = interfaceWrite(byteArrayOf(0x08, i++.toByte()))
+                message = interfaceWrite(byteArrayOf(0x08, i++.toByte()), 300)
                 if (message.isValid)
                     result.add(message.answer.copyOfRange(4, message.answer.size - 1))
                 else if

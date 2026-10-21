@@ -96,7 +96,8 @@ class ModuleIKE(protocolDS2: ProtocolDS2?) :
         for (chunk in 0 until IMAGE_SIZE / READ_CHUNK_BYTES) {
             val word = chunk * READ_CHUNK_BYTES / 2
             val message = interfaceWrite(
-                byteArrayOf(0x06, 0x03, 0x00, 0x00, word.toByte(), (READ_CHUNK_BYTES / 2).toByte())
+                byteArrayOf(0x06, 0x03, 0x00, 0x00, word.toByte(), (READ_CHUNK_BYTES / 2).toByte()),
+                300
             )
             try {
                 if (!message.isValid || message.answer.size < 3 + READ_CHUNK_BYTES + 1) {

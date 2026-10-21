@@ -19,6 +19,7 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_description_srs
 import toafmobile.composeapp.generated.resources.module_srs
 import toafmobile.composeapp.generated.resources.srs_error_detail_00
+import kotlin.time.Duration.Companion.milliseconds
 
 class ModuleSRS(protocolDS2: ProtocolDS2?) :
     ModuleDS2(protocolDS2, ModuleAddress.MODULE_SRS_L322, listOf(CarType.L322)),
@@ -113,16 +114,16 @@ class ModuleSRS(protocolDS2: ProtocolDS2?) :
     }
 
     private suspend fun login(): Boolean {
-        var res = interfaceWrite(byteArrayOf(0x90.toByte(), 0xFF.toByte(), 0xFF.toByte())).isValid
-        delay(1000)
-        res = res && interfaceWrite(byteArrayOf(0x95.toByte(), 0x12, 0x03, 0x08, 0x32)).isValid
+        var res = interfaceWrite(byteArrayOf(0x90.toByte(), 0xFF.toByte(), 0xFF.toByte()),500).isValid
+        delay(500.milliseconds)
+        res = res && interfaceWrite(byteArrayOf(0x95.toByte(), 0x12, 0x03, 0x08, 0x32),500).isValid
         return res
     }
 
     private suspend fun getProgrammingDate(): String {
         if (login())
         {
-            val message = interfaceWrite(byteArrayOf(0x08, 0x02))
+            val message = interfaceWrite(byteArrayOf(0x08, 0x02), 500)
             try {
                 if (message.isValid) {
                     val answer = message.answer
@@ -140,7 +141,7 @@ class ModuleSRS(protocolDS2: ProtocolDS2?) :
 
     private suspend fun getSerialNumber(): String {
         if (login()) {
-            val message = interfaceWrite(byteArrayOf(0x08, 0x03))
+            val message = interfaceWrite(byteArrayOf(0x08, 0x03), 500)
             try {
                 if (message.isValid) {
                     return String(message.answer.copyOfRange(6, message.answer.size))
@@ -157,7 +158,7 @@ class ModuleSRS(protocolDS2: ProtocolDS2?) :
 
     override suspend fun getVIN(): String {
         if (login()) {
-            val message = interfaceWrite(byteArrayOf(0x08.toByte(), 0x03))
+            val message = interfaceWrite(byteArrayOf(0x08.toByte(), 0x03),500)
             try{
                 if (message.isValid) {
                     val answer = message.answer
@@ -180,7 +181,7 @@ class ModuleSRS(protocolDS2: ProtocolDS2?) :
         var result: MutableList<ModuleError>? = null
         if (login()) {
             for (i in 0..4) {
-                val message = interfaceWrite(byteArrayOf(0x05, i.toByte()))
+                val message = interfaceWrite(byteArrayOf(0x05, i.toByte()), 500)
                 try {
                     if (message.isValid) {
                         result = ArrayList()
@@ -244,7 +245,7 @@ class ModuleSRS(protocolDS2: ProtocolDS2?) :
         var message: OBDMessage
         if (login()) {
             do {
-                message =  interfaceWrite(byteArrayOf(0x08, i++.toByte()))
+                message =  interfaceWrite(byteArrayOf(0x08, i++.toByte()), 500)
                 try {
                     if (message.isValid) {
                         if (result == null) result = ArrayList()

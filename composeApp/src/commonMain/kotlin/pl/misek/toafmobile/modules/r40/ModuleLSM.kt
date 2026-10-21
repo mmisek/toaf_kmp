@@ -353,7 +353,7 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
 
     // Wg SGBD C_C_LESEN: 08 <blok>, dane od [4] ([3] = echo bloku)
     private suspend fun readCodingBlock(block: Int): ByteArray? {
-        val message = interfaceWrite(byteArrayOf(0x08, block.toByte()), 150)
+        val message = interfaceWrite(byteArrayOf(0x08, block.toByte()), 300)
         try {
             if (message.isValid)
                 return message.answer.copyOfRange(4, message.answer.size - 1)

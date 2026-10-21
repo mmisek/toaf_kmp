@@ -134,7 +134,7 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
     override suspend fun readCoding(): List<ByteArray>? {
         val result: MutableList<ByteArray> = ArrayList()
         for (i in 0..0x2) {
-            val message = interfaceWrite(byteArrayOf(0x08, i.toByte()))
+            val message = interfaceWrite(byteArrayOf(0x08, i.toByte()), 300)
             try {
                 if (!message.isValid) {
                     Logger.e { "$tag [readCoding] : block $i read failed, $message" }

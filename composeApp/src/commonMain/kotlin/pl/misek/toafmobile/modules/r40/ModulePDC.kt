@@ -77,7 +77,7 @@ open class ModulePDC protected constructor(
     override suspend fun readCoding(): List<ByteArray>? {
         val result: MutableList<ByteArray> = ArrayList()
         for (i in 0..0x7) {
-            val message = interfaceWrite(byteArrayOf(0x08, i.toByte()))
+            val message = interfaceWrite(byteArrayOf(0x08, i.toByte()), 300)
             try {
                 if (message.isValid) result.add(
                     message.answer.copyOfRange(3, message.answer.size - 1)

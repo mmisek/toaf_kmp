@@ -120,7 +120,7 @@ class ModuleDSC(protocolDS2: ProtocolDS2?) :
     override suspend fun readCoding(): List<ByteArray>? {
         interfaceWrite(byteArrayOf(0x00))
         val result: MutableList<ByteArray> = ArrayList()
-        val message = interfaceWrite(byteArrayOf(0x08, 0x00, 0x06))
+        val message = interfaceWrite(byteArrayOf(0x08, 0x00, 0x06), 300)
         try {
             if (message.isValid)
                 result.add(message.answer.copyOfRange(3, message.answer.size - 1))

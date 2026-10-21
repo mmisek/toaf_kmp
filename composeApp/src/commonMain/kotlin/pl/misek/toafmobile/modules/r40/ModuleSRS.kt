@@ -216,7 +216,7 @@ class ModuleSRS( protocolKWP: ProtocolKWP?) : IModule, IModuleCoding, IModuleAdv
     override suspend fun readCoding(): List<ByteArray>? {
         val result: MutableList<ByteArray> = ArrayList()
         if (securityAccess(0x05)) {
-            val message = kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x04), 250)
+            val message = kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x04), 300)
             try {
                 if (message.isValid) {
                     // 21 04: 4 bajty kodowania [6..9] + kopia DUP [10..13] (SGBD, tabela DIGITAL)

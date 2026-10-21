@@ -212,7 +212,7 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
         val result: MutableList<ByteArray> = ArrayList()
         val data = ByteArray(256)
         for (i in 0..15) {
-            val message = interfaceWrite(byteArrayOf(0x06, 0x03, 0x00, 0x00, (i * 8).toByte(), 0x08))
+            val message = interfaceWrite(byteArrayOf(0x06, 0x03, 0x00, 0x00, (i * 8).toByte(), 0x08), 300)
             try {
                 if (message.isValid) {
                     if (message.answer.size - 4 >= 0) System.arraycopy(

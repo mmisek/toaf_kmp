@@ -193,7 +193,7 @@ class ModuleKOMBI(private var kwp: ProtocolKWPStar) : IModule, IModuleVIN, IModu
         if (!moduleInit()) return null
         val result: MutableList<ByteArray> = ArrayList()
         for (localId in codingLocalIds) {
-            val data = request(0x21, byteArrayOf(localId.toByte())) ?: return null
+            val data = request(0x21, byteArrayOf(localId.toByte()), 300) ?: return null
             result.add(data.copyOfRange(2, data.size))
         }
         return result

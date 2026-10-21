@@ -237,7 +237,7 @@ class ModuleSRS2( private val protocolKWPStar: ProtocolKWPStar?) : IModule, IMod
         }
         delay(200.milliseconds)
         val message =
-            kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(0xD0.toByte()), 200)
+            kwp!!.write(moduleAddress, 0x21.toByte(), byteArrayOf(0xD0.toByte()), 300)
         try {
             if (message.isValid) {
                 result = ArrayList()

@@ -160,7 +160,7 @@ class ModuleNavMk3( protocolDS2: ProtocolDS2?) :
         val result: MutableList<ByteArray> = ArrayList()
         val message = interfaceWriteWithAddress(
             ModuleAddress.MODULE_GT.address,
-            byteArrayOf(0x08, 0x00, 0x00, 0x00), 200
+            byteArrayOf(0x08, 0x00, 0x00, 0x00), 300
         )
         try {
             if (message.isValid) result.add(

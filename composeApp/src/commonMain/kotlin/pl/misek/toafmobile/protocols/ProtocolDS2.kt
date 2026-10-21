@@ -30,6 +30,25 @@ class ProtocolDS2(private var device: IInterfaceDevice?) : IProtocol {
         return message.takeIf { it.isValid } ?: OBDMessage().also { it.answerCode = message.answerCode }
     }
 
+    /**
+     * Odpowiedz = bajty po echu zapytania, przycieta do dlugosci z naglowka.
+     * Resztki poprzedniej odpowiedzi przed echem (spozniona ramka) sa pomijane.
+     */
+    private fun extractAnswer(wholeMessage: ByteArray, request: ByteArray): ByteArray {
+        var echoEnd = request.size
+        for (i in 0..wholeMessage.size - request.size) {
+            if (wholeMessage.copyOfRange(i, i + request.size).contentEquals(request)) {
+                echoEnd = i + request.size
+                break
+            }
+        }
+        if (echoEnd > wholeMessage.size)
+            return ByteArray(0)
+        val answer = wholeMessage.copyOfRange(echoEnd, wholeMessage.size)
+        val declaredLength = if (answer.size >= 2) answer[1].toInt() and 0xFF else 0
+        return if (declaredLength in 4 until answer.size) answer.copyOf(declaredLength) else answer
+    }
+
     private suspend fun writeToDs2(
         destinationDevice: Byte,
         data: ByteArray,
@@ -65,8 +84,7 @@ class ProtocolDS2(private var device: IInterfaceDevice?) : IProtocol {
                             "\n" +
                             message.wholeMessage!!.joinToString(" ") { "[%02X]".format(it) }
                 Logger.i { "$tag:  $messageToLog" }
-                message.answer =
-                    message.wholeMessage!!.copyOfRange(dataToSend.size, message.wholeMessage!!.size)
+                message.answer = extractAnswer(message.wholeMessage!!, dataToSend)
                 message.length = message.answer.size
                 if (message.answer.isEmpty())
                     return message

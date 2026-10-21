@@ -33,6 +33,12 @@ class DesktopSerialDevice : ISerialDevice
     ): ByteArray? = withContext(Dispatchers.IO) {
         if (_serialPort == null) connect(_serialPortName)
         if (_serialPort != null && _serialPort!!.isOpen) {
+            // Spozniona odpowiedz na poprzednie zapytanie nie moze trafic do biezacego odczytu
+            try {
+                _serialPort!!.flushIOBuffers()
+            } catch (ex: Exception) {
+                Logger.e{"$tag : ${ex.toString()}"}
+            }
             val writeStartNanos = System.nanoTime()
             try {
                 if (useDelay && data != null) {

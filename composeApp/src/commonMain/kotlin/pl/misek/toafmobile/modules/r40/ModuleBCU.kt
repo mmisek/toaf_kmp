@@ -76,7 +76,7 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         val result: MutableList<ByteArray> = ArrayList()
         if (!securityAccess()) return null
         for (i in 0..0x8) {
-            val message = interfaceWrite(byteArrayOf(0x08, i.toByte()), 150)
+            val message = interfaceWrite(byteArrayOf(0x08, i.toByte()), 300)
             if (message.isValid)
                 try {
                     result.add(message.answer.copyOfRange(3, message.answer.size - 1))

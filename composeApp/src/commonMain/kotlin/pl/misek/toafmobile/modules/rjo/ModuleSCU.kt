@@ -366,7 +366,7 @@ class ModuleSCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
         if (moduleInit() && startDiagnosticSession(0x86.toByte()) && securityAccess(0x05.toByte())) {
             for (i in 0 until CODING_BLOCKS) {
                 val message =
-                    kwp.write(MODULE_ADDRESS, 0x21.toByte(), byteArrayOf((i + 0x51).toByte()), 50)
+                    kwp.write(MODULE_ADDRESS, 0x21.toByte(), byteArrayOf((i + 0x51).toByte()), 300)
                 if (!message.isValid) {
                     Logger.e { "$tag [readCoding]: block ${(i + 0x51).toString(16)} read failed, $message" }
                     return null

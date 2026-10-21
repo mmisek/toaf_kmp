@@ -461,7 +461,7 @@ class ModuleDDE(private var kwp: ProtocolDDE) : IModuleZCS, IModuleFlashProgramm
         val result: MutableList<ByteArray> = ArrayList()
 
         for (ddeCodingCell in ddeCodingCells) {
-            val message = kwp.write(moduleAddress, 0x30.toByte(), byteArrayOf(ddeCodingCell, 0x01))
+            val message = kwp.write(moduleAddress, 0x30.toByte(), byteArrayOf(ddeCodingCell, 0x01), 300)
             if (message.isValid) {
                 try {
                     result.add(message.answer.copyOfRange(7, message.answer.size - 1))

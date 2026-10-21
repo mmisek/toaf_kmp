@@ -35,7 +35,7 @@ class ModuleSMAC( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAdd
     override suspend fun readCoding(): List<ByteArray>? {
         val result: MutableList<ByteArray> = ArrayList()
         for (i in 0..0xb) {
-            val message = interfaceWrite(byteArrayOf(0x08, i.toByte()))
+            val message = interfaceWrite(byteArrayOf(0x08, i.toByte()), 300)
             try {
                 if (message.isValid) result.add(
                     message.answer.copyOfRange(3, message.answer.size - 1)

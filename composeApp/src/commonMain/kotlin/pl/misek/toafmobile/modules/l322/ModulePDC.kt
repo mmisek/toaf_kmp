@@ -20,7 +20,7 @@ class ModulePDC(protocolDS2: ProtocolDS2?) :
     override suspend fun readCoding(): List<ByteArray>? {
         val result: MutableList<ByteArray> = ArrayList()
         for (block in codingBlocks) {
-            val message = interfaceWrite(byteArrayOf(0x08, block.toByte()))
+            val message = interfaceWrite(byteArrayOf(0x08, block.toByte()), 300)
             try {
                 if (!message.isValid) {
                     Logger.e { "$tag [readCoding]: block $block read failed, $message" }

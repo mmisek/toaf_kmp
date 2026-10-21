@@ -81,7 +81,7 @@ class ModuleELV( protocolDS2: ProtocolDS2?) :
         interfaceWrite(byteArrayOf(0x0C, controlElement.block.toByte(), controlElement.value.toByte())).isValid
 
     override suspend fun readCoding(): List<ByteArray>? {
-        val message = interfaceWrite(byteArrayOf(0x08))
+        val message = interfaceWrite(byteArrayOf(0x08), 300)
         try {
             if (message.isValid && message.answer.size >= 6)
                 return listOf(message.answer.copyOfRange(3, 6))

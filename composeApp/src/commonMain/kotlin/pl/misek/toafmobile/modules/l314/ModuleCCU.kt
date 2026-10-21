@@ -255,7 +255,7 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
 
     override suspend fun readCoding(): List<ByteArray>? {
         if (securityAccess(0x01)) {
-            val message = kwp.write(MODULE_ADDRESS, 0x21.toByte(), byteArrayOf(0x05), 50)
+            val message = kwp.write(MODULE_ADDRESS, 0x21.toByte(), byteArrayOf(0x05), 300)
             if (message.isValid) {
                 val result = mutableListOf<ByteArray>()
                 result.add(message.answer.copyOfRange(6, message.answer.size - 1))

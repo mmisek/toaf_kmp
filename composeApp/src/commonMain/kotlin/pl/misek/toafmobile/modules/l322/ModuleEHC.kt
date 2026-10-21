@@ -127,13 +127,12 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
             AdvanceControlEHCCalibration(userInfo = userInfo, onShowResult = onShowResult)
         }
     )
-
     override suspend fun readLiveData(): Map<Int, ByteArray>? = readLiveDataBlocks(LIVE_DATA_BLOCKS)
 
     private suspend fun readLiveDataBlocks(blocks: ByteArray): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = HashMap()
         for (block in blocks) {
-            val message =  interfaceWrite(byteArrayOf(0x0B, block))
+            val message =  interfaceWrite(byteArrayOf(0x0B, block),250)
             try {
                 if (message.isValid) {
                     result[block.toInt()] = message.answer.copyOfRange(3, message.answer.size - 1)
@@ -308,7 +307,7 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
                     data[controlElement.byteInBlock + 2] = controlElement.value.toByte()
                     if (controlElement.value != 0) {
                         for (second in 0 until CONTROL_TIME_S) {
-                            result = writeWithBusyRetry(data, 500).isValid
+                            result = writeWithBusyRetry(data, 1000).isValid
                             if (!result)
                                 break
                             delay(1000.milliseconds)
@@ -492,11 +491,11 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         data[selectedDirection.byteInBlock + 2] =
             (data[selectedDirection.byteInBlock + 2] + selectedDirection.value.toByte()).toByte()
 
-        return interfaceWrite(data).isValid
+        return writeWithBusyRetry(data, VALVE_CONTROL_TIMEOUT_MS).isValid
     }
 
     override suspend fun closeValves(): Boolean =
-        interfaceWrite(byteArrayOf(0x0C, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00)).isValid
+        writeWithBusyRetry(byteArrayOf(0x0C, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00), VALVE_CONTROL_TIMEOUT_MS).isValid
 
     override suspend fun stopControl(): Boolean {
         val valvesClosed = closeValves()
@@ -632,6 +631,8 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         const val BUSY_RETRY_DELAY_MS = 100L
         const val MODE_HAND_CONTROL = 0x20
         const val CONTROL_TIME_S = 5
+        /** Sterownik odpowiada na 0C (zawory) po ~100 ms i dluzej - domyslne 50 ms gubilo odpowiedz */
+        const val VALVE_CONTROL_TIMEOUT_MS = 500L
     }
 
     override  suspend fun  beforeRead(){
