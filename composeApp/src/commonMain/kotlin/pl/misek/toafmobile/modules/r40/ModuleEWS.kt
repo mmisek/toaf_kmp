@@ -262,7 +262,7 @@ class ModuleEWS(protocolDS2: ProtocolDS2?) :
         interfaceWrite(byteArrayOf(0x67)).isValid
 
     override fun getAdvanceControlElements() = listOf(
-        AdvanceControlElement(Res.string.advance_control_ews_keys_title) { userInfo, onShowResult ->
+        AdvanceControlElement(Res.string.advance_control_ews_keys_title, isNew = true) { userInfo, onShowResult ->
             AdvanceControlEwsKeys(userInfo = userInfo, onShowResult = onShowResult)
         }
     )

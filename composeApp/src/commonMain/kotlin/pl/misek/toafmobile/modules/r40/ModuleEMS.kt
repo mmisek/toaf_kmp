@@ -937,7 +937,7 @@ class ModuleEMS(private var kwp: ProtocolKWP) : IModuleZCS, IModuleFlashProgramm
     }
 
     override fun getAdvanceControlElements() = listOf(
-        AdvanceControlElement(Res.string.advance_control_ews_sync_title) { userInfo, onShowResult ->
+        AdvanceControlElement(Res.string.advance_control_ews_sync_title, isNew = true) { userInfo, onShowResult ->
             AdvanceControlEmsEwsSync(engineModule = this, userInfo = userInfo, onShowResult = onShowResult)
         }
     )

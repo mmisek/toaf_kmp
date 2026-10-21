@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -33,11 +34,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mikepenz.aboutlibraries.ui.compose.m3.LibrariesContainer
 import com.mikepenz.aboutlibraries.ui.compose.produceLibraries
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import pl.misek.toafmobile.BuildKonfig
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.ToafButtons.toafShape
 import pl.misek.toafmobile.activities.definitions.ToafColors
+import pl.misek.toafmobile.easteregg.ToafBoxingEasterEggDialog
+import pl.misek.toafmobile.easteregg.easterEggTrigger
 import pl.misek.toafmobile.getPlatformType
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.alert_module_info_close
@@ -51,6 +55,7 @@ import toafmobile.composeapp.generated.resources.dialog_about_tab_licences
 import toafmobile.composeapp.generated.resources.dialog_about_tittle
 import toafmobile.composeapp.generated.resources.dialog_about_web_page
 import toafmobile.composeapp.generated.resources.dialog_about_web_page_link
+import toafmobile.composeapp.generated.resources.logo
 
 @Composable
 fun DialogAbout(onClose : () -> Unit)
@@ -68,6 +73,10 @@ fun DialogAbout(onClose : () -> Unit)
         Res.readBytes("files/aboutlibraries.json").decodeToString()
     }
     var selectedTabIndex by remember { mutableIntStateOf(0) }
+    var showEasterEgg by remember { mutableStateOf(false) }
+
+    if (showEasterEgg)
+        ToafBoxingEasterEggDialog(onDismiss = { showEasterEgg = false }, logo = painterResource(Res.drawable.logo))
 
     AlertDialog(
         shape = toafShape,
@@ -89,7 +98,9 @@ fun DialogAbout(onClose : () -> Unit)
                     fontSize = 20.sp,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(5.dp),
+                        .padding(5.dp)
+                        .easterEggTrigger(taps = 5, windowMs = 1000) { showEasterEgg = true }
+                    ,
                     textAlign = TextAlign.Center,
                     color = Color.White
                 )
@@ -155,7 +166,9 @@ fun DialogAbout(onClose : () -> Unit)
                             val scroll = rememberScrollState()
                             Text(
                                 text = aboutText,
-                                modifier = Modifier.fillMaxWidth().verticalScroll(scroll),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .verticalScroll(scroll),
                                 color = Color.White,
                                 fontSize = 16.sp
                             )

@@ -63,7 +63,7 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
     override fun getModuleDescription() = Res.string.module_description_ipk
 
     override fun getAdvanceControlElements() = listOf(
-        AdvanceControlElement(Res.string.advance_control_temperature_gauge_title) { userInfo, onShowResult ->
+        AdvanceControlElement(Res.string.advance_control_temperature_gauge_title, isNew = true) { userInfo, onShowResult ->
             AdvanceControlTemperatureGauge(userInfo = userInfo, onShowResult = onShowResult)
         }
     )

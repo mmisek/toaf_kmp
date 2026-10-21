@@ -45,7 +45,7 @@ class ModuleLWS( protocolDS2: ProtocolDS2?) :
     override fun getModuleDescription()= Res.string.module_description_lws
 
     override fun getAdvanceControlElements() = listOf(
-        AdvanceControlElement(Res.string.advance_control_lws_calibration) { userInfo, onShowResult ->
+        AdvanceControlElement(Res.string.advance_control_lws_calibration, isNew = true) { userInfo, onShowResult ->
             AdvanceControlLws(userInfo = userInfo, onShowResult = onShowResult)
         }
     )

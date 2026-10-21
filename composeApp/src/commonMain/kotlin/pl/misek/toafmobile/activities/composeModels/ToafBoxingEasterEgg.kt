@@ -13,6 +13,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -39,6 +40,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import kotlinx.coroutines.delay
 import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.atan2
@@ -47,6 +49,7 @@ import kotlin.math.hypot
 import kotlin.math.min
 import kotlin.math.pow
 import kotlin.math.sin
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.TimeSource
 
 /**
@@ -63,7 +66,7 @@ fun ToafBoxingEasterEgg(
     modifier: Modifier = Modifier,
     loop: Boolean = false,
     winTitle: String = "K.O.!",
-    winSubtitle: String = "TOAF wygrywa",
+    winSubtitle: String = "TOAF wins!!",
     logo: Painter? = null,
     onFinished: () -> Unit = {},
 ) {
@@ -96,14 +99,20 @@ fun ToafBoxingEasterEgg(
     }
 }
 
-/** Ready-made dialog: plays once, tap anywhere to close. */
+/** Ready-made dialog: plays once, tap anywhere to close - not before [lockMs] so the K.O. is always seen. */
 @Composable
-fun ToafBoxingEasterEggDialog(onDismiss: () -> Unit, logo: Painter? = null) {
-    Dialog(onDismissRequest = onDismiss) {
+fun ToafBoxingEasterEggDialog(onDismiss: () -> Unit, logo: Painter? = null, lockMs: Long = 3000) {
+    var canDismiss by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) {
+        delay(lockMs.milliseconds)
+        canDismiss = true
+    }
+    val dismiss = { if (canDismiss) onDismiss() }
+    Dialog(onDismissRequest = dismiss) {
         ToafBoxingEasterEgg(
             modifier = Modifier
                 .fillMaxWidth()
-                .clickable(interactionSource = remember { MutableInteractionSource() }, indication = null) { onDismiss() },
+                .clickable(interactionSource = remember { MutableInteractionSource() }, indication = null) { dismiss() },
             logo = logo,
         )
     }

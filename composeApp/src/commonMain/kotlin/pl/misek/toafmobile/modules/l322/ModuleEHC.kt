@@ -120,10 +120,10 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
     override fun getModuleDescription() = Res.string.module_description_ehc
 
     override fun getAdvanceControlElements() = listOf(
-        AdvanceControlElement(Res.string.advance_control_ehc_height_title) { userInfo, onShowResult ->
+        AdvanceControlElement(Res.string.advance_control_ehc_height_title, isNew = true) { userInfo, onShowResult ->
             AdvanceControlEHCHeight(userInfo = userInfo, onShowResult = onShowResult)
         },
-        AdvanceControlElement(Res.string.advance_control_ehc_calibration_title) { userInfo, onShowResult ->
+        AdvanceControlElement(Res.string.advance_control_ehc_calibration_title, isNew = true) { userInfo, onShowResult ->
             AdvanceControlEHCCalibration(userInfo = userInfo, onShowResult = onShowResult)
         }
     )

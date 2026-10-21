@@ -31,7 +31,7 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
     override fun getModuleDescription() = Res.string.module_description_bcu
 
     override fun getAdvanceControlElements() = listOf(
-        AdvanceControlElement(Res.string.advance_control_servotronic_title) { userInfo, onShowResult ->
+        AdvanceControlElement(Res.string.advance_control_servotronic_title, isNew = true) { userInfo, onShowResult ->
             AdvanceControlServotronic(userInfo = userInfo, onShowResult = onShowResult)
         }
     )
