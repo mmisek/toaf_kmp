@@ -2,44 +2,10 @@
 <resources>
     <string name="module_description_shd">Sunroof</string>
     <!-- MODULE SHD -->
-    <string name="shd_error_01">Relay</string>
-    <string name="shd_error_02">Increment sensor</string>
-    <string name="shd_error_03">Function switch</string>
-    <string name="shd_error_04">EEPROM fault</string>
-    <string name="shd_error_05">Reserved</string>
     <string name="shd_error_static">Static</string>
     <string name="shd_error_sporadic">Sporadic</string>
 
     <!-- SHD live data -->
-    <string name="shd_live_data_sunroof_rise_switch">Rise switch</string>
-    <string name="shd_live_data_sunroof_close_switch">Close witch</string>
-    <string name="shd_live_data_relay_motor_close">Relay - motor close</string>
-    <string name="shd_live_data_sunroof_open_switch">Open switch</string>
-    <string name="shd_live_data_relay_motor_open">Relay motor open</string>
-    <string name="shd_live_data_increment_encoder_master">Increment encoder master</string>
-    <string name="shd_live_data_increment_encoder_slave">Increment encoder slave</string>
-    <string name="shd_live_data_watchdog_trigger_signal">Watchdog trigger signal</string>
-    <string name="shd_live_data_supply_voltage_incremental_signal">Supply voltage incremental signal</string>
-    <string name="shd_live_data_relay_control_close">Relay control close</string>
-    <string name="shd_live_data_relay_control_open">Relay control open</string>
-    <string name="shd_live_data_thermal_protection">Thermal protection</string>
-    <string name="shd_live_data_reversing_from_close">Reversing after close signal</string>
-    <string name="shd_live_data_normalized">Normal mode</string>
-    <string name="shd_live_data_manual_lifting">Manual lifting</string>
-    <string name="shd_live_data_tip_lifting">Inching mode : lifting</string>
-    <string name="shd_live_data_manual_push_close">Manual - push close</string>
-    <string name="shd_live_data_tip_close">Inching mode : close</string>
-    <string name="shd_live_data_manual_push_open">Manual - push open</string>
-    <string name="shd_live_data_tip_push_on">Inching mode : push on</string>
-    <string name="shd_live_data_manual_levering">Manual levering</string>
-    <string name="shd_live_data_comfort_function">Comfort function</string>
-    <string name="shd_live_data_diagnostic_mode">Diagnostic mode</string>
-    <string name="shd_live_data_under_voltage_detection">Low voltage level detection</string>
-    <string name="shd_live_data_over_voltage_detection">Over voltage level detection</string>
-    <string name="shd_live_data_sunroof_disabled">Sunroof disabled</string>
-    <string name="shd_live_data_sunroof_in_security_area">Sunroof in security area</string>
-    <string name="shd_live_data_anti_trap_enabled">Anti trap enabled</string>
-    <string name="shd_live_data_sunroof_position">Sunroof position</string>
     <!-- SHD coding -->
     <string name="shd_coding_one_touch_open">One touch open</string>
     <string name="shd_coding_one_touch_close">One touch close</string>
@@ -50,9 +16,24 @@
     <string name="shd_coding_anti_pinch_functionality">Anti pinch functionality</string>
     <string name="shd_coding_data_sets">Data sets location</string>
 
-    <string name="shd_live_data_power_on">Power-on (reset) state</string>
     <string name="shd_control_tip_lift">Tip - lift (tilt)</string>
     <string name="shd_control_tip_close">Tip - slide close</string>
     <string name="shd_control_tip_open">Tip - slide open</string>
     <string name="shd_control_normalization_reset">Reset normalisation (re-learn end positions)</string>
+    <string name="shd_error_01">Relay fault</string>
+    <string name="shd_error_02">Hall effect sensor fault</string>
+    <string name="shd_error_03">Control switch fault</string>
+    <string name="shd_error_04">EEPROM error</string>
+    <string name="shd_error_05">Reserved for future use</string>
+    <string name="shd_error_present">Present</string>
+    <string name="shd_error_sporadic_not_present">Sporadic, not present</string>
+    <string name="shd_live_data_switch_status">Switch status</string>
+    <string name="shd_live_data_sunroof_position">Sunroof position</string>
+    <string name="shd_live_data_value_inactive">Inactive</string>
+    <string name="shd_live_data_value_tilt_open">Tilt open</string>
+    <string name="shd_live_data_value_inch_close">Inch close</string>
+    <string name="shd_live_data_value_one_touch_close">One touch close</string>
+    <string name="shd_live_data_value_inch_open">Inch open</string>
+    <string name="shd_live_data_value_one_touch_open">One touch open</string>
+    <string name="shd_live_data_value_faulty">Faulty</string>
 </resources>

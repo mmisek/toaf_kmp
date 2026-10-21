@@ -2,7 +2,6 @@ package pl.misek.toafmobile.modules.r40
 
 import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.StringResource
-import pl.misek.toafmobile.generated.ResourceHelper
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.livedata.LiveDataElement
 import pl.misek.toafmobile.modules.ModuleDS2
@@ -17,6 +16,8 @@ import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_description_shd
 import toafmobile.composeapp.generated.resources.module_sunroof
+import toafmobile.composeapp.generated.resources.shd_error_present
+import toafmobile.composeapp.generated.resources.shd_error_sporadic_not_present
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.milliseconds
@@ -83,8 +84,8 @@ class ModuleSHD(protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddre
                 for (i in 0 until (message.answer[3].toInt() and 0xFF)) {
                     val errorCode = String.format("%02X", message.answer[4 + 2 * i])
                     val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
-                    errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5 + 2 * i].toInt() and 0x1F)))
-                    errorDescription.add(ResourceHelper.getErrorDescriptionIsStatic((message.answer[5 + 2 * i].toInt() and 0x20) == 0x20))
+                    val present = (message.answer[5 + 2 * i].toInt() and 0x20) == 0x20
+                    errorDescription.add(Pair(if (present) Res.string.shd_error_present else Res.string.shd_error_sporadic_not_present, null))
                     if (result == null) result = ArrayList()
                     result.add(ModuleError(ModuleAddress.MODULE_SHD, errorCode, errorDescription))
                 }

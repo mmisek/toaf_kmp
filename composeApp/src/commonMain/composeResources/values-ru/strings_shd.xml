@@ -1,43 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="module_description_shd">Люк (Sunroof)</string>
-    <string name="shd_error_01">Реле</string>
-    <string name="shd_error_02">Инкрементный датчик</string>
-    <string name="shd_error_03">Функциональный переключатель</string>
-    <string name="shd_error_04">Ошибка EEPROM</string>
-    <string name="shd_error_05">Зарезервировано</string>
     <string name="shd_error_static">Статическая</string>
     <string name="shd_error_sporadic">Спорадическая</string>
 
-    <string name="shd_live_data_sunroof_rise_switch">Переключатель поднятия (проветривания)</string>
-    <string name="shd_live_data_sunroof_close_switch">Переключатель закрытия</string>
-    <string name="shd_live_data_relay_motor_close">Реле мотора (закрытие)</string>
-    <string name="shd_live_data_sunroof_open_switch">Переключатель открытия</string>
-    <string name="shd_live_data_relay_motor_open">Реле мотора (открытие)</string>
-    <string name="shd_live_data_increment_encoder_master">Инкрементный энкодер (Master)</string>
-    <string name="shd_live_data_increment_encoder_slave">Инкрементный энкодер (Slave)</string>
-    <string name="shd_live_data_watchdog_trigger_signal">Сигнал срабатывания Watchdog</string>
-    <string name="shd_live_data_supply_voltage_incremental_signal">Напряжение питания инкрементного сигнала</string>
-    <string name="shd_live_data_relay_control_close">Управление реле (закрытие)</string>
-    <string name="shd_live_data_relay_control_open">Управление реле (открытие)</string>
-    <string name="shd_live_data_thermal_protection">Тепловая защита</string>
-    <string name="shd_live_data_reversing_from_close">Реверс после сигнала закрытия</string>
-    <string name="shd_live_data_normalized">Нормальный режим</string>
-    <string name="shd_live_data_manual_lifting">Ручное поднятие</string>
-    <string name="shd_live_data_tip_lifting">Импульсный режим: поднятие</string>
-    <string name="shd_live_data_manual_push_close">Ручной режим - закрытие</string>
-    <string name="shd_live_data_tip_close">Импульсный режим: закрытие</string>
-    <string name="shd_live_data_manual_push_open">Ручной режим - открытие</string>
-    <string name="shd_live_data_tip_push_on">Импульсный режим: включение</string>
-    <string name="shd_live_data_manual_levering">Ручное проветривание</string>
-    <string name="shd_live_data_comfort_function">Функция «Комфорт»</string>
-    <string name="shd_live_data_diagnostic_mode">Диагностический режим</string>
-    <string name="shd_live_data_under_voltage_detection">Обнаружение низкого напряжения</string>
-    <string name="shd_live_data_over_voltage_detection">Обнаружение перенапряжения</string>
-    <string name="shd_live_data_sunroof_disabled">Люк отключен</string>
-    <string name="shd_live_data_sunroof_in_security_area">Люк в зоне безопасности</string>
-    <string name="shd_live_data_anti_trap_enabled">Защита от защемления включена</string>
-    <string name="shd_live_data_sunroof_position">Положение люка</string>
 
     <string name="shd_coding_one_touch_open">Открытие в одно касание</string>
     <string name="shd_coding_one_touch_close">Закрытие в одно касание</string>
@@ -48,9 +14,24 @@
     <string name="shd_coding_anti_pinch_functionality">Функциональность защиты от защемления</string>
     <string name="shd_coding_data_sets">Расположение наборов данных</string>
 
-    <string name="shd_live_data_power_on">Состояние после включения (сброс)</string>
     <string name="shd_control_tip_lift">Импульс - приподнять</string>
     <string name="shd_control_tip_close">Импульс - закрыть</string>
     <string name="shd_control_tip_open">Импульс - открыть</string>
     <string name="shd_control_normalization_reset">Сброс нормализации (переобучение положений)</string>
+    <string name="shd_error_01">Неисправность реле</string>
+    <string name="shd_error_02">Неисправность датчика Холла</string>
+    <string name="shd_error_03">Неисправность переключателя управления</string>
+    <string name="shd_error_04">Ошибка EEPROM</string>
+    <string name="shd_error_05">Зарезервировано для будущего использования</string>
+    <string name="shd_error_present">Присутствует</string>
+    <string name="shd_error_sporadic_not_present">Спорадическая, отсутствует</string>
+    <string name="shd_live_data_switch_status">Состояние переключателя</string>
+    <string name="shd_live_data_sunroof_position">Положение люка</string>
+    <string name="shd_live_data_value_inactive">Неактивен</string>
+    <string name="shd_live_data_value_tilt_open">Подъём</string>
+    <string name="shd_live_data_value_inch_close">Пошаговое закрытие</string>
+    <string name="shd_live_data_value_one_touch_close">Закрытие одним касанием</string>
+    <string name="shd_live_data_value_inch_open">Пошаговое открытие</string>
+    <string name="shd_live_data_value_one_touch_open">Открытие одним касанием</string>
+    <string name="shd_live_data_value_faulty">Неисправен</string>
 </resources>

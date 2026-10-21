@@ -2,44 +2,10 @@
 <resources>
     <!-- MODULE SHD -->
     <string name="module_description_shd">Techo solar</string>
-    <string name="shd_error_01">Relé</string>
-    <string name="shd_error_02">Sensor de incremento</string>
-    <string name="shd_error_03">Interruptor de función</string>
-    <string name="shd_error_04">Fallo de EEPROM</string>
-    <string name="shd_error_05">Reservado</string>
     <string name="shd_error_static">Estático</string>
     <string name="shd_error_sporadic">Esporádico</string>
 
     <!-- SHD live data -->
-    <string name="shd_live_data_sunroof_rise_switch">Interruptor de subida</string>
-    <string name="shd_live_data_sunroof_close_switch">Interruptor de cierre</string>
-    <string name="shd_live_data_relay_motor_close">Relé - motor cerrado</string>
-    <string name="shd_live_data_sunroof_open_switch">Interruptor de apertura</string>
-    <string name="shd_live_data_relay_motor_open">Relé motor abierto</string>
-    <string name="shd_live_data_increment_encoder_master">Codificador de incremento maestro</string>
-    <string name="shd_live_data_increment_encoder_slave">Codificador de incremento esclavo</string>
-    <string name="shd_live_data_watchdog_trigger_signal">Señal de activación del perro guardián</string>
-    <string name="shd_live_data_supply_voltage_incremental_signal">Señal de voltaje incremental de suministro</string>
-    <string name="shd_live_data_relay_control_close">Control de relé cerrado</string>
-    <string name="shd_live_data_relay_control_open">Control de relé abierto</string>
-    <string name="shd_live_data_thermal_protection">Protección térmica</string>
-    <string name="shd_live_data_reversing_from_close">Reversa después de la señal de cierre</string>
-    <string name="shd_live_data_normalized">Modo normal</string>
-    <string name="shd_live_data_manual_lifting">Levantamiento manual</string>
-    <string name="shd_live_data_tip_lifting">Modo por etapas: levantamiento</string>
-    <string name="shd_live_data_manual_push_close">Manual - empuje para cerrar</string>
-    <string name="shd_live_data_tip_close">Modo por etapas: cierre</string>
-    <string name="shd_live_data_manual_push_open">Manual - empuje para abrir</string>
-    <string name="shd_live_data_tip_push_on">Modo por etapas: empuje encendido</string>
-    <string name="shd_live_data_manual_levering">Palanca manual</string>
-    <string name="shd_live_data_comfort_function">Función de confort</string>
-    <string name="shd_live_data_diagnostic_mode">Modo de diagnóstico</string>
-    <string name="shd_live_data_under_voltage_detection">Detección de bajo voltaje</string>
-    <string name="shd_live_data_over_voltage_detection">Detección de sobrevoltaje</string>
-    <string name="shd_live_data_sunroof_disabled">Techo solar desactivado</string>
-    <string name="shd_live_data_sunroof_in_security_area">Techo solar en área de seguridad</string>
-    <string name="shd_live_data_anti_trap_enabled">Antipinzamiento habilitado</string>
-    <string name="shd_live_data_sunroof_position">Posición del techo solar</string>
     <!-- SHD coding -->
     <string name="shd_coding_one_touch_open">Apertura de un toque</string>
     <string name="shd_coding_one_touch_close">Cierre de un toque</string>
@@ -49,9 +15,24 @@
     <string name="shd_coding_optimised_close_function">Función de cierre optimizada</string>
     <string name="shd_coding_anti_pinch_functionality">Funcionalidad antipinzamiento</string>
     <string name="shd_coding_data_sets">Ubicación de los conjuntos de datos</string>
-    <string name="shd_live_data_power_on">Estado tras encendido (reset)</string>
     <string name="shd_control_tip_lift">Pulso - elevar</string>
     <string name="shd_control_tip_close">Pulso - cerrar</string>
     <string name="shd_control_tip_open">Pulso - abrir</string>
     <string name="shd_control_normalization_reset">Borrar normalización (reaprender posiciones)</string>
+    <string name="shd_error_01">Fallo del relé</string>
+    <string name="shd_error_02">Fallo del sensor Hall</string>
+    <string name="shd_error_03">Fallo del interruptor de control</string>
+    <string name="shd_error_04">Error de EEPROM</string>
+    <string name="shd_error_05">Reservado para uso futuro</string>
+    <string name="shd_error_present">Presente</string>
+    <string name="shd_error_sporadic_not_present">Esporádico, no presente</string>
+    <string name="shd_live_data_switch_status">Estado del interruptor</string>
+    <string name="shd_live_data_sunroof_position">Posición del techo solar</string>
+    <string name="shd_live_data_value_inactive">Inactivo</string>
+    <string name="shd_live_data_value_tilt_open">Apertura inclinada</string>
+    <string name="shd_live_data_value_inch_close">Cierre paso a paso</string>
+    <string name="shd_live_data_value_one_touch_close">Cierre de un toque</string>
+    <string name="shd_live_data_value_inch_open">Apertura paso a paso</string>
+    <string name="shd_live_data_value_one_touch_open">Apertura de un toque</string>
+    <string name="shd_live_data_value_faulty">Defectuoso</string>
 </resources>

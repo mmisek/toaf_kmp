@@ -1,43 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="module_description_shd">Tetto apribile</string>
-    <string name="shd_error_01">Relè</string>
-    <string name="shd_error_02">Sensore incrementale</string>
-    <string name="shd_error_03">Interruttore di funzione</string>
-    <string name="shd_error_04">Guasto EEPROM</string>
-    <string name="shd_error_05">Riservato</string>
     <string name="shd_error_static">Statico</string>
     <string name="shd_error_sporadic">Sporadico</string>
 
-    <string name="shd_live_data_sunroof_rise_switch">Interruttore sollevamento</string>
-    <string name="shd_live_data_sunroof_close_switch">Interruttore chiusura</string>
-    <string name="shd_live_data_relay_motor_close">Relè - chiusura motore</string>
-    <string name="shd_live_data_sunroof_open_switch">Interruttore apertura</string>
-    <string name="shd_live_data_relay_motor_open">Relè - apertura motore</string>
-    <string name="shd_live_data_increment_encoder_master">Encoder incrementale master</string>
-    <string name="shd_live_data_increment_encoder_slave">Encoder incrementale slave</string>
-    <string name="shd_live_data_watchdog_trigger_signal">Segnale di attivazione watchdog</string>
-    <string name="shd_live_data_supply_voltage_incremental_signal">Segnale incrementale tensione di alimentazione</string>
-    <string name="shd_live_data_relay_control_close">Comando relè chiusura</string>
-    <string name="shd_live_data_relay_control_open">Comando relè apertura</string>
-    <string name="shd_live_data_thermal_protection">Protezione termica</string>
-    <string name="shd_live_data_reversing_from_close">Inversione dopo segnale di chiusura</string>
-    <string name="shd_live_data_normalized">Modalità normale</string>
-    <string name="shd_live_data_manual_lifting">Sollevamento manuale</string>
-    <string name="shd_live_data_tip_lifting">Modalità a impulsi: sollevamento</string>
-    <string name="shd_live_data_manual_push_close">Chiusura manuale a pressione</string>
-    <string name="shd_live_data_tip_close">Modalità a impulsi: chiusura</string>
-    <string name="shd_live_data_manual_push_open">Apertura manuale a pressione</string>
-    <string name="shd_live_data_tip_push_on">Modalità a impulsi: pressione attiva</string>
-    <string name="shd_live_data_manual_levering">Sollevamento manuale a leva</string>
-    <string name="shd_live_data_comfort_function">Funzione comfort</string>
-    <string name="shd_live_data_diagnostic_mode">Modalità diagnostica</string>
-    <string name="shd_live_data_under_voltage_detection">Rilevamento livello bassa tensione</string>
-    <string name="shd_live_data_over_voltage_detection">Rilevamento livello sovratensione</string>
-    <string name="shd_live_data_sunroof_disabled">Tetto apribile disabilitato</string>
-    <string name="shd_live_data_sunroof_in_security_area">Tetto apribile in zona di sicurezza</string>
-    <string name="shd_live_data_anti_trap_enabled">Antischiacciamento abilitato</string>
-    <string name="shd_live_data_sunroof_position">Posizione tetto apribile</string>
     <string name="shd_coding_one_touch_open">Apertura one-touch</string>
     <string name="shd_coding_one_touch_close">Chiusura one-touch</string>
     <string name="shd_coding_one_touch_run_to_tilt">Inclinazione one-touch</string>
@@ -47,9 +13,24 @@
     <string name="shd_coding_anti_pinch_functionality">Funzionalità antischiacciamento</string>
     <string name="shd_coding_data_sets">Posizione set di dati</string>
 
-    <string name="shd_live_data_power_on">Stato dopo accensione (reset)</string>
     <string name="shd_control_tip_lift">Impulso - sollevare</string>
     <string name="shd_control_tip_close">Impulso - chiudere</string>
     <string name="shd_control_tip_open">Impulso - aprire</string>
     <string name="shd_control_normalization_reset">Cancella normalizzazione (riapprendere posizioni)</string>
+    <string name="shd_error_01">Guasto relè</string>
+    <string name="shd_error_02">Guasto sensore a effetto Hall</string>
+    <string name="shd_error_03">Guasto interruttore di comando</string>
+    <string name="shd_error_04">Errore EEPROM</string>
+    <string name="shd_error_05">Riservato per uso futuro</string>
+    <string name="shd_error_present">Presente</string>
+    <string name="shd_error_sporadic_not_present">Sporadico, non presente</string>
+    <string name="shd_live_data_switch_status">Stato interruttore</string>
+    <string name="shd_live_data_sunroof_position">Posizione tetto apribile</string>
+    <string name="shd_live_data_value_inactive">Inattivo</string>
+    <string name="shd_live_data_value_tilt_open">Apertura a compasso</string>
+    <string name="shd_live_data_value_inch_close">Chiusura a impulsi</string>
+    <string name="shd_live_data_value_one_touch_close">Chiusura con un tocco</string>
+    <string name="shd_live_data_value_inch_open">Apertura a impulsi</string>
+    <string name="shd_live_data_value_one_touch_open">Apertura con un tocco</string>
+    <string name="shd_live_data_value_faulty">Guasto</string>
 </resources>
