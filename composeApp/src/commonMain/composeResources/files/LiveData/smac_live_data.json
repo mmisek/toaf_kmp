@@ -1,0 +1,232 @@
+{
+  "livedata": [
+    {
+      "name": "backrest_up_switch",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "released"
+        },
+        {
+          "data": "0x01",
+          "text": "pressed"
+        }
+      ]
+    },
+    {
+      "name": "backrest_down_switch",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "released"
+        },
+        {
+          "data": "0x01",
+          "text": "pressed"
+        }
+      ]
+    },
+    {
+      "name": "tilt_up_switch",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "released"
+        },
+        {
+          "data": "0x01",
+          "text": "pressed"
+        }
+      ]
+    },
+    {
+      "name": "tilt_down_switch",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "released"
+        },
+        {
+          "data": "0x01",
+          "text": "pressed"
+        }
+      ]
+    },
+    {
+      "name": "height_up_switch",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "released"
+        },
+        {
+          "data": "0x01",
+          "text": "pressed"
+        }
+      ]
+    },
+    {
+      "name": "height_down_switch",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "released"
+        },
+        {
+          "data": "0x01",
+          "text": "pressed"
+        }
+      ]
+    },
+    {
+      "name": "seat_forward_switch",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "released"
+        },
+        {
+          "data": "0x01",
+          "text": "pressed"
+        }
+      ]
+    },
+    {
+      "name": "seat_backward_switch",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "released"
+        },
+        {
+          "data": "0x01",
+          "text": "pressed"
+        }
+      ]
+    },
+    {
+      "name": "memory_switch_1",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "released"
+        },
+        {
+          "data": "0x01",
+          "text": "pressed"
+        }
+      ]
+    },
+    {
+      "name": "memory_switch_2",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "released"
+        },
+        {
+          "data": "0x01",
+          "text": "pressed"
+        }
+      ]
+    },
+    {
+      "name": "memory_switch_3",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "released"
+        },
+        {
+          "data": "0x01",
+          "text": "pressed"
+        }
+      ]
+    },
+    {
+      "name": "memory_store_switch",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "released"
+        },
+        {
+          "data": "0x01",
+          "text": "pressed"
+        }
+      ]
+    }
+  ]
+}

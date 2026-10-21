@@ -116,4 +116,18 @@
     <string name="smac_coding_lazy_entry_feature">Funzione ingresso comfort</string>
     <string name="smac_coding_lazy_entry_locking_cont">Ingresso comfort continua con chiusura</string>
     <string name="smac_coding_lazy_entry_doors_cancel">Ingresso comfort annullato da porte</string>
+    <string name="smac_live_data_backrest_up_switch">Interruttore schienale su</string>
+    <string name="smac_live_data_backrest_down_switch">Interruttore schienale giù</string>
+    <string name="smac_live_data_tilt_up_switch">Interruttore inclinazione su</string>
+    <string name="smac_live_data_tilt_down_switch">Interruttore inclinazione giù</string>
+    <string name="smac_live_data_height_up_switch">Interruttore altezza su</string>
+    <string name="smac_live_data_height_down_switch">Interruttore altezza giù</string>
+    <string name="smac_live_data_seat_forward_switch">Interruttore sedile avanti</string>
+    <string name="smac_live_data_seat_backward_switch">Interruttore sedile indietro</string>
+    <string name="smac_live_data_memory_switch_1">Pulsante memoria 1</string>
+    <string name="smac_live_data_memory_switch_2">Pulsante memoria 2</string>
+    <string name="smac_live_data_memory_switch_3">Pulsante memoria 3</string>
+    <string name="smac_live_data_memory_store_switch">Pulsante memorizzazione</string>
+    <string name="smac_live_data_value_released">Rilasciato</string>
+    <string name="smac_live_data_value_pressed">Premuto</string>
 </resources>

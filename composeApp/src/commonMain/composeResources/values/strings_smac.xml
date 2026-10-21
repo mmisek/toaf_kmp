@@ -116,4 +116,18 @@
     <string name="smac_coding_lazy_entry_feature">Lazy entry feature</string>
     <string name="smac_coding_lazy_entry_locking_cont">Lazy entry locking continue</string>
     <string name="smac_coding_lazy_entry_doors_cancel">Lazy entry cancel by doors</string>
+    <string name="smac_live_data_backrest_up_switch">Backrest up switch</string>
+    <string name="smac_live_data_backrest_down_switch">Backrest down switch</string>
+    <string name="smac_live_data_tilt_up_switch">Seat tilt up switch</string>
+    <string name="smac_live_data_tilt_down_switch">Seat tilt down switch</string>
+    <string name="smac_live_data_height_up_switch">Seat height up switch</string>
+    <string name="smac_live_data_height_down_switch">Seat height down switch</string>
+    <string name="smac_live_data_seat_forward_switch">Seat forward switch</string>
+    <string name="smac_live_data_seat_backward_switch">Seat backward switch</string>
+    <string name="smac_live_data_memory_switch_1">Memory switch 1</string>
+    <string name="smac_live_data_memory_switch_2">Memory switch 2</string>
+    <string name="smac_live_data_memory_switch_3">Memory switch 3</string>
+    <string name="smac_live_data_memory_store_switch">Memory store switch</string>
+    <string name="smac_live_data_value_released">Released</string>
+    <string name="smac_live_data_value_pressed">Pressed</string>
 </resources>

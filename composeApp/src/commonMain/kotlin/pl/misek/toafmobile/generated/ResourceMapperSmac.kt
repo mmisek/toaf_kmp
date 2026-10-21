@@ -122,6 +122,20 @@ object ResourceMapperSmac {
             "smac_error_65" -> Res.string.smac_error_65
             "smac_error_sporadic" -> Res.string.smac_error_sporadic
             "smac_error_static" -> Res.string.smac_error_static
+            "smac_live_data_backrest_down_switch" -> Res.string.smac_live_data_backrest_down_switch
+            "smac_live_data_backrest_up_switch" -> Res.string.smac_live_data_backrest_up_switch
+            "smac_live_data_height_down_switch" -> Res.string.smac_live_data_height_down_switch
+            "smac_live_data_height_up_switch" -> Res.string.smac_live_data_height_up_switch
+            "smac_live_data_memory_store_switch" -> Res.string.smac_live_data_memory_store_switch
+            "smac_live_data_memory_switch_1" -> Res.string.smac_live_data_memory_switch_1
+            "smac_live_data_memory_switch_2" -> Res.string.smac_live_data_memory_switch_2
+            "smac_live_data_memory_switch_3" -> Res.string.smac_live_data_memory_switch_3
+            "smac_live_data_seat_backward_switch" -> Res.string.smac_live_data_seat_backward_switch
+            "smac_live_data_seat_forward_switch" -> Res.string.smac_live_data_seat_forward_switch
+            "smac_live_data_tilt_down_switch" -> Res.string.smac_live_data_tilt_down_switch
+            "smac_live_data_tilt_up_switch" -> Res.string.smac_live_data_tilt_up_switch
+            "smac_live_data_value_pressed" -> Res.string.smac_live_data_value_pressed
+            "smac_live_data_value_released" -> Res.string.smac_live_data_value_released
         else -> {
           Logger.i {"NO RESOURCE for : $resourceName" }
             null

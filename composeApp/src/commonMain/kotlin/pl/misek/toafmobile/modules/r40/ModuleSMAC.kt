@@ -5,12 +5,15 @@ import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.control.ControlElement
 import pl.misek.toafmobile.generated.ResourceHelper
 import pl.misek.toafmobile.koin.KoinNames
+import pl.misek.toafmobile.livedata.LiveDataElement
 import pl.misek.toafmobile.modules.ModuleDS2
 import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.ModuleAddress
+import pl.misek.toafmobile.modules.enums.ModuleFeature
 import pl.misek.toafmobile.modules.interfaces.IModuleCoding
 import pl.misek.toafmobile.modules.interfaces.IModuleControl
+import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.protocols.ProtocolDS2
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_description_smac
@@ -18,13 +21,32 @@ import toafmobile.composeapp.generated.resources.module_smac
 import kotlinx.coroutines.CancellationException
 
 private const val tag = "ModuleSMAC"
-class ModuleSMAC( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddress.MODULE_SMAC, listOf(CarType.R40)), IModuleControl, IModuleCoding
+class ModuleSMAC( protocolDS2: ProtocolDS2?) : ModuleDS2( protocolDS2, ModuleAddress.MODULE_SMAC, listOf(CarType.R40)), IModuleControl, IModuleCoding,
+    IModuleLiveData
 {
     override fun getKoinName() = KoinNames.ModuleR40Smac
 
     override fun getImageResource() = Res.drawable.module_smac
 
     override fun getModuleDescription() = Res.string.module_description_smac
+
+    override fun getNewFeatures() = super.getNewFeatures() + ModuleFeature.LiveData
+
+    override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>) = true
+
+    // 0B 00: stany przyciskow fotela i pamieci
+    override suspend fun readLiveData(): Map<Int, ByteArray>? {
+        val message = interfaceWrite(byteArrayOf(0x0B, 0x00))
+        try {
+            if (message.isValid)
+                return mapOf(0x00 to message.answer.copyOfRange(3, message.answer.size - 1))
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex: Exception) {
+            Logger.e { "$tag [readLiveData], $ex, $message" }
+        }
+        return null
+    }
 
     override suspend fun control(controlElement: ControlElement): Boolean {
         val data = byteArrayOf(0x0C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00)

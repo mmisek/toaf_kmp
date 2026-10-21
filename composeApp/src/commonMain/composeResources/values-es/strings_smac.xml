@@ -118,4 +118,18 @@
 <string name="smac_coding_lazy_entry_locking_cont">Continuar con el bloqueo de entrada automática</string>
 <string name="smac_coding_lazy_entry_doors_cancel">Cancelación de entrada automática por puertas</string>
 
+    <string name="smac_live_data_backrest_up_switch">Interruptor respaldo arriba</string>
+    <string name="smac_live_data_backrest_down_switch">Interruptor respaldo abajo</string>
+    <string name="smac_live_data_tilt_up_switch">Interruptor inclinación arriba</string>
+    <string name="smac_live_data_tilt_down_switch">Interruptor inclinación abajo</string>
+    <string name="smac_live_data_height_up_switch">Interruptor altura arriba</string>
+    <string name="smac_live_data_height_down_switch">Interruptor altura abajo</string>
+    <string name="smac_live_data_seat_forward_switch">Interruptor asiento adelante</string>
+    <string name="smac_live_data_seat_backward_switch">Interruptor asiento atrás</string>
+    <string name="smac_live_data_memory_switch_1">Botón de memoria 1</string>
+    <string name="smac_live_data_memory_switch_2">Botón de memoria 2</string>
+    <string name="smac_live_data_memory_switch_3">Botón de memoria 3</string>
+    <string name="smac_live_data_memory_store_switch">Botón de guardar memoria</string>
+    <string name="smac_live_data_value_released">Suelto</string>
+    <string name="smac_live_data_value_pressed">Pulsado</string>
 </resources>

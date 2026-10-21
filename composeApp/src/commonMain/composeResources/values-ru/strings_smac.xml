@@ -124,4 +124,18 @@
     <string name="smac_coding_lazy_entry_feature">Функция комфортной посадки</string>
     <string name="smac_coding_lazy_entry_locking_cont">Продолжение комф. посадки при запирании</string>
     <string name="smac_coding_lazy_entry_doors_cancel">Отмена комф. посадки дверьми</string>
+    <string name="smac_live_data_backrest_up_switch">Кнопка спинки вверх</string>
+    <string name="smac_live_data_backrest_down_switch">Кнопка спинки вниз</string>
+    <string name="smac_live_data_tilt_up_switch">Кнопка наклона вверх</string>
+    <string name="smac_live_data_tilt_down_switch">Кнопка наклона вниз</string>
+    <string name="smac_live_data_height_up_switch">Кнопка высоты вверх</string>
+    <string name="smac_live_data_height_down_switch">Кнопка высоты вниз</string>
+    <string name="smac_live_data_seat_forward_switch">Кнопка сиденья вперёд</string>
+    <string name="smac_live_data_seat_backward_switch">Кнопка сиденья назад</string>
+    <string name="smac_live_data_memory_switch_1">Кнопка памяти 1</string>
+    <string name="smac_live_data_memory_switch_2">Кнопка памяти 2</string>
+    <string name="smac_live_data_memory_switch_3">Кнопка памяти 3</string>
+    <string name="smac_live_data_memory_store_switch">Кнопка записи памяти</string>
+    <string name="smac_live_data_value_released">Отпущена</string>
+    <string name="smac_live_data_value_pressed">Нажата</string>
 </resources>
