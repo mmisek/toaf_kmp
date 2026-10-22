@@ -47,14 +47,17 @@
     <string name="abs_error_detail_06">ASC control active</string>
     <string name="abs_error_detail_07">ASC control passive</string>
     <!-- Live_data -->
-    <string name="abs_live_data_front_left_wheel_speed">Front left wheel speed</string>
-    <string name="abs_live_data_front_right_wheel_speed">Front right wheel speed</string>
-    <string name="abs_live_data_rear_left_wheel_speed">Rear left wheel speed</string>
-    <string name="abs_live_data_rear_right_wheel_speed">Rear right wheel speed</string>
-    <string name="abs_live_data_engine_rpm">Engine RPM</string>
-    <string name="abs_live_data_break_light_switch">Brake light switch</string>
-    <string name="abs_live_data_pump_relay">ABS Pump relay</string>
-    <string name="abs_live_data_valve_relay">Valve relay</string>
-    <string name="abs_live_data_asc_active">ASC active</string>
+    <string name="abs_live_data_front_left_wheel_speed">Velocidad rueda delantera izquierda</string>
+    <string name="abs_live_data_front_right_wheel_speed">Velocidad rueda delantera derecha</string>
+    <string name="abs_live_data_rear_left_wheel_speed">Velocidad rueda trasera izquierda</string>
+    <string name="abs_live_data_rear_right_wheel_speed">Velocidad rueda trasera derecha</string>
+    <string name="abs_live_data_engine_rpm">Régimen del motor</string>
+    <string name="abs_live_data_break_light_switch">Interruptor de luz de freno</string>
 
+    <string name="abs_live_data_asc_passive_button">Botón ASC pasivo</string>
+    <string name="abs_live_data_handbrake_switch">Interruptor del freno de mano</string>
+    <string name="abs_live_data_value_off">Apagado</string>
+    <string name="abs_live_data_value_on">Encendido</string>
+    <string name="abs_live_data_pump_relay">Relé de la bomba ABS</string>
+    <string name="abs_live_data_valve_relay">Relé de válvulas</string>
 </resources>

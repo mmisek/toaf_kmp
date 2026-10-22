@@ -53,8 +53,11 @@
     <string name="abs_live_data_rear_right_wheel_speed">Скорость колеса - заднее правое</string>
     <string name="abs_live_data_engine_rpm">Обороты двигателя</string>
     <string name="abs_live_data_break_light_switch">Выключатель стоп-сигнала</string>
+
+    <string name="abs_live_data_asc_passive_button">Кнопка отключения ASC</string>
+    <string name="abs_live_data_handbrake_switch">Выключатель стояночного тормоза</string>
+    <string name="abs_live_data_value_off">Выкл.</string>
+    <string name="abs_live_data_value_on">Вкл.</string>
     <string name="abs_live_data_pump_relay">Реле насоса ABS</string>
     <string name="abs_live_data_valve_relay">Реле клапанов</string>
-    <string name="abs_live_data_asc_active">ASC активна</string>
-
 </resources>

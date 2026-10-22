@@ -48,7 +48,9 @@
     <string name="cc_live_data_speed_detection">Periodo rilevamento velocità > 1.5s</string>
     <string name="cc_live_data_cruise_off">Attivazione Cruise control OFF</string>
     <string name="cc_live_data_cruise_on">Attivazione Cruise control ON</string>
-    <string name="cc_live_data_break">Freno attivato</string>
-    <string name="cc_live_data_clutch">Frizione attivata</string>
 
+    <string name="cc_live_data_clutch">Pedale freno/frizione premuto</string>
+    <string name="cc_live_data_break">Interruttore luci stop</string>
+    <string name="cc_live_data_value_yes">Sì</string>
+    <string name="cc_live_data_value_no">No</string>
 </resources>

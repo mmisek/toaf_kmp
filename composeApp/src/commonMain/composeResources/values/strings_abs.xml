@@ -53,8 +53,11 @@
     <string name="abs_live_data_rear_right_wheel_speed">Rear right wheel speed</string>
     <string name="abs_live_data_engine_rpm">Engine RPM</string>
     <string name="abs_live_data_break_light_switch">Brake light switch</string>
-    <string name="abs_live_data_pump_relay">ABS Pump relay</string>
-    <string name="abs_live_data_valve_relay">Valve relay</string>
-    <string name="abs_live_data_asc_active">ASC active</string>
 
+    <string name="abs_live_data_asc_passive_button">ASC passive button</string>
+    <string name="abs_live_data_handbrake_switch">Handbrake switch</string>
+    <string name="abs_live_data_value_off">Off</string>
+    <string name="abs_live_data_value_on">On</string>
+    <string name="abs_live_data_pump_relay">ABS pump relay</string>
+    <string name="abs_live_data_valve_relay">Valve relay</string>
 </resources>

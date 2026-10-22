@@ -50,6 +50,8 @@
     <string name="cc_live_data_speed_detection">Período de detección de velocidad > 1.5s</string>
     <string name="cc_live_data_cruise_off">Activación del control de crucero apagado</string>
     <string name="cc_live_data_cruise_on">Activación del control de crucero encendido</string>
-    <string name="cc_live_data_break">Freno activado</string>
-    <string name="cc_live_data_clutch">Embrague activado</string>
+    <string name="cc_live_data_clutch">Pedal de freno/embrague pisado</string>
+    <string name="cc_live_data_break">Interruptor de luz de freno</string>
+    <string name="cc_live_data_value_yes">Sí</string>
+    <string name="cc_live_data_value_no">No</string>
 </resources>

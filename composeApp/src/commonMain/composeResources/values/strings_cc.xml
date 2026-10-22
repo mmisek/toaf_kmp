@@ -50,7 +50,9 @@
     <string name="cc_live_data_speed_detection">Speed detection period > 1.5s</string>
     <string name="cc_live_data_cruise_off">Cruise control off activation</string>
     <string name="cc_live_data_cruise_on">Cruise control on activation</string>
-    <string name="cc_live_data_break">Brake activated</string>
-    <string name="cc_live_data_clutch">Clutch activated</string>
 
+    <string name="cc_live_data_clutch">Brake/clutch pedal pressed</string>
+    <string name="cc_live_data_break">Brake light switch</string>
+    <string name="cc_live_data_value_yes">Yes</string>
+    <string name="cc_live_data_value_no">No</string>
 </resources>

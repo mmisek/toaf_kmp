@@ -38,7 +38,11 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
+import kotlin.time.Clock
 import kotlin.time.Duration.Companion.milliseconds
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.isoDayNumber
+import kotlinx.datetime.todayIn
 
 class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddress.MODULE_EHC, listOf(CarType.L322)),
     IModuleLiveData, IModuleAdvanceControl, IModuleControl, IModuleEepromProgramming, IModuleEHCHeightControl, IModuleEHCCalibration
@@ -148,6 +152,15 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
     }
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean = true
+
+    /** FS_LOESCHEN (EHC_2N2): 05 <tydzien kalendarzowy BCD> <rok BCD> - data skasowania zapisywana w sterowniku */
+    override suspend fun clearAllErrors(): Boolean {
+        getIdentification()
+        val today = Clock.System.todayIn(TimeZone.currentSystemDefault())
+        val week = ((today.dayOfYear - today.dayOfWeek.isoDayNumber + 10) / 7).coerceIn(1, 53)
+        fun Int.toBcd() = (((this / 10) shl 4) or (this % 10)).toByte()
+        return writeWithBusyRetry(byteArrayOf(0x05, week.toBcd(), (today.year % 100).toBcd()), 500).isValid
+    }
 
     override suspend fun getAllErrors(): List<ModuleError>? {
         val fakeAnswer = byteArrayOf(0xAC.toByte(), 0x13.toByte(), 0xA0.toByte(), 0x02.toByte(), 0x36.toByte(), 0x00.toByte(), 0x61.toByte(), 0x01.toByte(), 0x86.toByte(), 0x90.toByte(),

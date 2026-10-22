@@ -73,13 +73,32 @@
       "unit": " "
     },
     {
-      "name": "asc_active",
+      "name": "asc_passive_button",
       "block": "0x00",
-      "byte": "0x10",
+      "byte": "0x0B",
       "mask": "0x80",
       "factor_a": "1",
       "factor_b": "0",
       "unit": " "
+    },
+    {
+      "name": "handbrake_switch",
+      "block": "0x00",
+      "byte": "0x10",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "off"
+        },
+        {
+          "data": "0xFF",
+          "text": "on"
+        }
+      ]
     }
   ]
 }

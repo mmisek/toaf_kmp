@@ -4,10 +4,20 @@
       "name": "clutch",
       "block": "0x00",
       "byte": "0x00",
-      "mask": "0x02",
+      "mask": "0x01",
       "factor_a": "1",
       "factor_b": "0",
-      "unit": " "
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "yes"
+        },
+        {
+          "data": "0x01",
+          "text": "no"
+        }
+      ]
     },
     {
       "name": "break",

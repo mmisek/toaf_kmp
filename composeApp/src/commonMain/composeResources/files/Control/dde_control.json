@@ -92,7 +92,7 @@
       },
       {
         "name": "rail_pressure_shutdown",
-        "block": "0xCF",
+        "block": "0xCC",
         "byte": "0x00",
         "value": "0x01",
         "visible": "false"
