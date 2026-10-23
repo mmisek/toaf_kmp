@@ -3,6 +3,7 @@ package pl.misek.toafmobile.modules.l322
 import co.touchlab.kermit.Logger
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.CancellationException
 import org.jetbrains.compose.resources.StringResource
 import pl.misek.toafmobile.activities.composeModels.activities.AdvanceControlEmsEwsSync
@@ -16,12 +17,14 @@ import pl.misek.toafmobile.modules.ModuleInfo
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.FlashProgrammingState
 import pl.misek.toafmobile.modules.enums.ModuleAddress
+import pl.misek.toafmobile.modules.enums.ModuleFeature
 import pl.misek.toafmobile.modules.interfaces.AdvanceControlElement
 import pl.misek.toafmobile.modules.interfaces.EwsSyncStep
 import pl.misek.toafmobile.modules.interfaces.IModule
 import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceControl
 import pl.misek.toafmobile.modules.interfaces.IModuleControl
 import pl.misek.toafmobile.modules.interfaces.IModuleEwsSync
+import pl.misek.toafmobile.modules.interfaces.IModuleFlashProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.modules.r40.ModuleEWS
 import pl.misek.toafmobile.protocols.IProtocol
@@ -31,11 +34,19 @@ import toafmobile.composeapp.generated.resources.*
 import java.util.Locale
 
 private const val tag = "ModuleME72"
+private const val AIF_DEFAULT_ADDRESS = 0x81FD54
+private const val AIF_RECORD_SIZE = 0x2E
+private const val AIF_MAX_RECORDS = 14
+private const val FLASH_START_ADDRESS = 0x800000
+private const val FLASH_SIZE = 0x80000
+private const val FLASH_BLOCK_SIZE = 0xFE
+private const val FLASH_READ_RETRIES = 3
 class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
     IModuleControl,
     IModuleLiveData,
     IModuleEwsSync,
-    IModuleAdvanceControl
+    IModuleAdvanceControl,
+    IModuleFlashProgramming
 {
     private val moduleAddress = ModuleAddress.MODULE_ME72.address
     private val _programmingState =  MutableSharedFlow<FlashProgrammingState>(replay = 10, extraBufferCapacity = 64, onBufferOverflow = BufferOverflow.DROP_OLDEST)
@@ -180,6 +191,7 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
         val locale = Locale.getDefault()
         val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
         val errorCode = answer[7].toInt() and 0xFF
+        pCode(errorCode, answer[10].toInt() and 0xFF)?.let { errorDescription.add(Pair(Res.string.me72_error_pcode, it)) }
         val count = answer.getOrNull(45)?.let { it.toInt() and 0xFF }
         count?.let { errorDescription.add(ResourceHelper.getErrorDescriptionCount(it)) }
         errorDescription.add(ResourceHelper.getErrorDescriptionLogisticCounter(answer[15].toInt() and 0xFF))
@@ -233,6 +245,13 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
         Res.string.me72_error_occurrence_last
     )
 
+    /** Kod P wg T4 (GetPcode): pierwszy ustawiony bit z bitow 4..7 bajtu typu wybiera jeden z 4 kodow */
+    private fun pCode(errorCode: Int, type: Int): String? {
+        val codes = pCodes[errorCode] ?: return null
+        val bit = (0..3).firstOrNull { (type shr (4 + it)) and 0x01 != 0 } ?: return null
+        return codes[bit].ifEmpty { null }
+    }
+
     private fun lambdaStatusResource(value: Int): StringResource? = when (value) {
         0x01 -> Res.string.me72_lambda_status_21
         0x02 -> Res.string.me72_lambda_status_22
@@ -260,7 +279,10 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
                     info.di = String(answer.copyOfRange(16, 18))
                     info.bi = String(answer.copyOfRange(18, 20))
                     info.date = String(answer.copyOfRange(20, 22)) + "/" + String(answer.copyOfRange(22, 24))
-                    info.serial = String(answer.copyOfRange(24,34))
+                    // SGBD IDENT: [24..33] ID_LIEF_NR, [34..35] ID_SW_NR, [38..46] ID_PROD_NR
+                    info.serial = asciiField(answer, 38, 47) ?: ""
+                    asciiField(answer, 24, 34)?.let { info.additionalInfo.add(Pair(Res.string.me72_info_supplier_number, it)) }
+                    asciiField(answer, 34, 36)?.let { info.additionalInfo.add(Pair(Res.string.me72_info_software_number, it)) }
                 } catch (ex: CancellationException) {
                     throw ex
                 } catch (ex: Exception) {
@@ -276,18 +298,43 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
 
         return info
     }
+    /** Pole ASCII z odpowiedzi; null gdy poza ramka lub niezaprogramowane (0xFF) */
+    private fun asciiField(answer: ByteArray, from: Int, to: Int): String? {
+        if (answer.size <= to) return null
+        val field = answer.copyOfRange(from, to)
+        if (field.any { (it.toInt() and 0xFF) !in 0x20..0x7E }) return null
+        return String(field).trim().ifEmpty { null }
+    }
+
+    /** Adres AIF wg T4/SGBD: bajty 0x3C..0x3E danych odpowiedzi 21 01 ([0x42..0x44] ramki) */
+    private suspend fun getAifAddress(): Int {
+        val message = kwp.write(moduleAddress, 0x21.toByte(), byteArrayOf(0x01))
+        try {
+            if (message.isValid && message.answer.size > 0x45) {
+                val a = message.answer
+                return ((a[0x42].toInt() and 0xFF) shl 16) or ((a[0x43].toInt() and 0xFF) shl 8) or (a[0x44].toInt() and 0xFF)
+            }
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex: Exception) {
+            Logger.e { "$tag [getAifAddress], $ex, $message" }
+        }
+        return AIF_DEFAULT_ADDRESS
+    }
+
+    /** AIF: do 14 rekordow po 0x2E bajtow, koniec na 0xFF - wazny jest ostatni zapisany */
     private suspend fun readAIF() : Aif?
     {
-        var address = 0x81FD54
+        var address = getAifAddress()
         var aif = Aif("","")
-        for (x in 0..14) {
-            address += 0x2E * x
+        for (x in 0 until AIF_MAX_RECORDS) {
+            if (x > 0) address += AIF_RECORD_SIZE
             val data = byteArrayOf(
                 ((address shr 16) and 0xFF).toByte(),
                 ((address shr 8) and 0xFF).toByte(),
                 (address and 0xFF).toByte(),
                 0x00,
-                0x2E
+                AIF_RECORD_SIZE.toByte()
             )
             val message = kwp.write(moduleAddress, 0x23, data)
             try {
@@ -393,6 +440,76 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
         return key
     }
 
+    override val programmingState = _programmingState.asSharedFlow()
+
+    override val flashProgrammingAvailable: Boolean = false
+
+    override fun getNewFeatures() = super.getNewFeatures() + ModuleFeature.FlashProgramming
+
+    override suspend fun writeFlash(data: ByteArray) {
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_main_function_not_supported_yet))
+    }
+
+    /**
+     * Odczyt flash 0x800000-0x87FFFF (512 KB) przez ReadMemoryByAddress (23), bez security access.
+     * Bloki 0xFE od 0x800000 - zgodne bajt w bajt ze zrzutem K-TAG. Odczyt zaczynajacy sie dokladnie
+     * od adresu rekordu AIF zwraca AIF (podstawiany przez ECU), stad stale wyrownanie blokow.
+     */
+    override suspend fun readFlash() {
+        var result = ByteArray(0)
+        val steps = (FLASH_SIZE + FLASH_BLOCK_SIZE - 1) / FLASH_BLOCK_SIZE
+        val startTime = System.currentTimeMillis()
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_start))
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_read_identification))
+        val moduleInfo = getIdentification()
+        val vin = getVIN()
+        _programmingState.tryEmit(FlashProgrammingState.Message("ID1 : " + moduleInfo?.id1))
+        _programmingState.tryEmit(FlashProgrammingState.Message("ID2 : " + moduleInfo?.id2))
+        _programmingState.tryEmit(FlashProgrammingState.Message("VIN : $vin"))
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_flash_reading))
+
+        var step = 0
+        var offset = 0
+        while (offset < FLASH_SIZE) {
+            _programmingState.tryEmit(FlashProgrammingState.Progress(step++ * 100 / steps))
+            val size = minOf(FLASH_BLOCK_SIZE, FLASH_SIZE - offset)
+            val data = readFlashData(FLASH_START_ADDRESS + offset, size)
+            if (data == null) {
+                _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_read_error))
+                return
+            }
+            result += data
+            offset += size
+        }
+
+        val totalSeconds = ((System.currentTimeMillis() - startTime) / 1000).toInt()
+        _programmingState.tryEmit(FlashProgrammingState.MessageWithParameter(
+            Res.string.activity_flash_programming_read_time,
+            String.format(Locale.getDefault(), "%02d:%02d:%02d", totalSeconds / 3600, (totalSeconds / 60) % 60, totalSeconds % 60)))
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_end))
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_close))
+        _programmingState.tryEmit(FlashProgrammingState.FlashData(result.toList(), moduleInfo, vin))
+    }
+
+    private suspend fun readFlashData(address: Int, size: Int): ByteArray? {
+        repeat(FLASH_READ_RETRIES) {
+            val message = kwp.write(
+                moduleAddress, 0x23.toByte(),
+                byteArrayOf((address shr 16).toByte(), (address shr 8).toByte(), address.toByte(), 0x00, size.toByte()),
+                (300 + size * 3).toLong()
+            )
+            try {
+                if (message.isValid && message.length == size + 6)
+                    return message.answer.copyOfRange(5, 5 + size)
+            } catch (ex: CancellationException) {
+                throw ex
+            } catch (ex: Exception) {
+                Logger.e { "$tag [readFlashData], $ex, $message" }
+            }
+        }
+        return null
+    }
+
     private suspend fun bootMode(): Boolean {
         return kwp.write(moduleAddress, 0x31.toByte(), byteArrayOf(0xFB.toByte())).isValid
     }
@@ -411,6 +528,136 @@ class ModuleME72(private var kwp: ProtocolKWP) :  IModule,
     data class ErrorDetail(val errorCode : Int, val details : ByteArray)
     data class ErrorFrameDetail(val errorCode : Int, val details : ByteArray)
     data class FreezeFrameDetail(val code : Int, val unit : String, val factorA : Float, var factorB : Float, val factorC :Float)
+
+    /** T4 (DAVU0003): kod bledu DME -> kody P dla bitow 4..7 bajtu typu (rekord A0 [4]), "" = brak */
+    private val pCodes: Map<Int, Array<String>> = mapOf(
+        0x02 to arrayOf("P0448", "P0447", "P2450", ""),
+        0x03 to arrayOf("", "", "", "P0040"),
+        0x04 to arrayOf("P0058", "P0057", "P0056", "P0161"),
+        0x05 to arrayOf("P0052", "P0051", "P0050", "P0155"),
+        0x0A to arrayOf("P0132", "P0131", "P0134", "P0130"),
+        0x0C to arrayOf("P0138", "P0137", "P0140", "P0136"),
+        0x0D to arrayOf("P0032", "P0031", "P0030", "P0135"),
+        0x0E to arrayOf("P0038", "P0037", "P0036", "P0141"),
+        0x0F to arrayOf("P0133", "P0133", "", ""),
+        0x10 to arrayOf("P2A00", "P2A00", "", ""),
+        0x11 to arrayOf("P0139", "P0139", "", "P0139"),
+        0x12 to arrayOf("P0152", "P0151", "P0154", "P0150"),
+        0x14 to arrayOf("P0158", "P0157", "P0160", "P0156"),
+        0x15 to arrayOf("P0153", "P0153", "", ""),
+        0x16 to arrayOf("P2A03", "P2A03", "", ""),
+        0x17 to arrayOf("P0159", "P0159", "", "P0159"),
+        0x18 to arrayOf("P0171", "P0172", "", ""),
+        0x19 to arrayOf("P0174", "P0175", "", ""),
+        0x1A to arrayOf("P0171", "P0172", "", ""),
+        0x1B to arrayOf("P0174", "P0175", "", ""),
+        0x1C to arrayOf("P1171", "P1172", "", ""),
+        0x1D to arrayOf("P1174", "P1175", "", ""),
+        0x1E to arrayOf("P1162", "P1161", "", ""),
+        0x1F to arrayOf("P1164", "P1163", "", ""),
+        0x20 to arrayOf("P0507", "P0506", "", ""),
+        0x21 to arrayOf("", "P0011", "P0010", "P0012"),
+        0x22 to arrayOf("", "P0021", "P0020", "P0022"),
+        0x23 to arrayOf("P0634", "", "", ""),
+        0x27 to arrayOf("P1693", "P1673", "P1694", "P1672"),
+        0x28 to arrayOf("P0420", "", "", ""),
+        0x2D to arrayOf("P0430", "", "", ""),
+        0x32 to arrayOf("P0301", "P0301", "", "P0301"),
+        0x33 to arrayOf("P0305", "P0305", "", "P0305"),
+        0x34 to arrayOf("P0304", "P0304", "", "P0304"),
+        0x35 to arrayOf("P0308", "P0308", "", "P0308"),
+        0x36 to arrayOf("P0306", "P0306", "", "P0306"),
+        0x37 to arrayOf("P0303", "P0303", "", "P0303"),
+        0x38 to arrayOf("P0307", "P0307", "", "P0307"),
+        0x39 to arrayOf("P0302", "P0302", "", "P0302"),
+        0x3E to arrayOf("P1315", "P0300", "", "P0316"),
+        0x50 to arrayOf("", "P0491", "", ""),
+        0x51 to arrayOf("", "P0492", "", ""),
+        0x54 to arrayOf("P1414", "P1413", "P0418", ""),
+        0x55 to arrayOf("P0413", "P0414", "P0412", ""),
+        0x5D to arrayOf("", "P0440", "", ""),
+        0x62 to arrayOf("P0444", "P0445", "P0443", ""),
+        0x65 to arrayOf("", "", "", "P1659"),
+        0x66 to arrayOf("P1570", "P1568", "P1569", "P1564"),
+        0x67 to arrayOf("", "", "", "P1660"),
+        0x69 to arrayOf("", "", "", "P0604"),
+        0x6A to arrayOf("", "", "", "P0571"),
+        0x6B to arrayOf("", "", "", "P0605"),
+        0x6C to arrayOf("", "", "", "P0606"),
+        0x6D to arrayOf("P0563", "P0562", "", "P0561"),
+        0x6E to arrayOf("P061A", "", "", ""),
+        0x6F to arrayOf("", "", "P0335", ""),
+        0x70 to arrayOf("", "", "", "P0370"),
+        0x71 to arrayOf("P0343", "P0342", "", "P0340"),
+        0x72 to arrayOf("P0348", "P0347", "", "P0345"),
+        0x73 to arrayOf("P0103", "P0102", "", ""),
+        0x75 to arrayOf("", "", "", "P0120"),
+        0x76 to arrayOf("P0123", "P0122", "", "P0121"),
+        0x77 to arrayOf("P0223", "P0222", "", "P0221"),
+        0x78 to arrayOf("", "", "P0500", ""),
+        0x79 to arrayOf("P0501", "", "P0503", ""),
+        0x7A to arrayOf("", "", "", "P0071"),
+        0x7B to arrayOf("P0118", "P0117", "P0125", "P0116"),
+        0x7C to arrayOf("P0113", "P0112", "", ""),
+        0x7D to arrayOf("P2184", "P2185", "", "P2183"),
+        0x7F to arrayOf("", "", "P2771", "P2772"),
+        0x82 to arrayOf("", "", "", "P061F"),
+        0x83 to arrayOf("P2112", "P2111", "", ""),
+        0x84 to arrayOf("", "", "", "P2101"),
+        0x85 to arrayOf("P2119", "", "", ""),
+        0x86 to arrayOf("", "", "", "P2176"),
+        0x87 to arrayOf("", "", "", "P2107"),
+        0x88 to arrayOf("", "", "", "P2108"),
+        0x8B to arrayOf("", "", "", "P0128"),
+        0x8C to arrayOf("P1616", "P1615", "P1614", ""),
+        0x94 to arrayOf("", "P1666", "P1621", "P1674"),
+        0x96 to arrayOf("P0262", "P0261", "P0201", ""),
+        0x97 to arrayOf("P0274", "P0273", "P0205", ""),
+        0x98 to arrayOf("P0271", "P0270", "P0204", ""),
+        0x99 to arrayOf("P0283", "P0282", "P0208", ""),
+        0x9A to arrayOf("P0277", "P0276", "P0206", ""),
+        0x9B to arrayOf("P0268", "P0267", "P0203", ""),
+        0x9C to arrayOf("P0280", "P0279", "P0207", ""),
+        0x9D to arrayOf("P0265", "P0264", "P0202", ""),
+        0xA3 to arrayOf("P2175", "P2173", "", ""),
+        0xA4 to arrayOf("P0108", "P0107", "", "P0106"),
+        0xA5 to arrayOf("P0077", "P0076", "P0075", ""),
+        0xA6 to arrayOf("P0083", "P0082", "P0081", ""),
+        0xA7 to arrayOf("P0232", "P0231", "P0233", ""),
+        0xAA to arrayOf("P0533", "P0532", "P0530", ""),
+        0xB7 to arrayOf("P0455", "P0442", "", ""),
+        0xB8 to arrayOf("", "", "", "P0441"),
+        0xB9 to arrayOf("P0453", "P0452", "", "P0450"),
+        0xBA to arrayOf("P2402", "P2401", "P2400", ""),
+        0xBB to arrayOf("", "P0456", "", ""),
+        0xBC to arrayOf("P0455", "P0442", "", ""),
+        0xBD to arrayOf("P2406", "P2405", "P2407", "P2404"),
+        0xC9 to arrayOf("P240C", "P240B", "P240A", ""),
+        0xCC to arrayOf("", "P1624", "P1623", ""),
+        0xD2 to arrayOf("P0328", "P0327", "", ""),
+        0xD3 to arrayOf("P1328", "P1327", "", ""),
+        0xD4 to arrayOf("P0333", "P0332", "", ""),
+        0xD5 to arrayOf("P1333", "P1332", "", ""),
+        0xD6 to arrayOf("", "", "", "P0324"),
+        0xD7 to arrayOf("", "", "", "P0324"),
+        0xD8 to arrayOf("", "", "", "P0324"),
+        0xDB to arrayOf("", "", "U0102", ""),
+        0xDC to arrayOf("", "", "U0101", ""),
+        0xDD to arrayOf("", "", "U0121", ""),
+        0xDE to arrayOf("", "", "U0155", ""),
+        0xE0 to arrayOf("", "", "", "P1522"),
+        0xE2 to arrayOf("P0463", "P0462", "P0464", "P0461"),
+        0xE5 to arrayOf("", "P1619", "", ""),
+        0xE6 to arrayOf("", "", "", "P2135"),
+        0xE7 to arrayOf("P2123", "P2122", "", "P2121"),
+        0xE8 to arrayOf("P2128", "P2127", "", "P2126"),
+        0xE9 to arrayOf("P0617", "P0616", "P0615", ""),
+        0xEA to arrayOf("", "", "P1620", ""),
+        0xED to arrayOf("P0512", "P0512", "P0512", "P0512"),
+        0xEE to arrayOf("P2177", "P2178", "P2187", "P2188"),
+        0xEF to arrayOf("P2179", "P2180", "P2189", "P2190"),
+        0xF0 to arrayOf("P0111", "P0111", "", "P0111")
+    )
 
     val errorMatrix: List<ErrorDetail> = listOf(
         ErrorDetail(0x01, byteArrayOf(0x0A.toByte(), 0x12.toByte(), 0x14.toByte(), 0x0B.toByte())),  // Leakage Diagnosis pump Output

@@ -520,6 +520,9 @@
     <string name="me72_error_occurrence_first">Prima occorrenza</string>
     <string name="me72_error_occurrence_second">Seconda occorrenza</string>
     <string name="me72_error_occurrence_last">Occorrenza attuale</string>
+    <string name="me72_error_pcode">Codice OBD</string>
+    <string name="me72_info_supplier_number">Numero fornitore</string>
+    <string name="me72_info_software_number">Numero software</string>
     <string name="me72_lambda_status_21">Regolazione OFF, condizioni di attivazione non ancora soddisfatte</string>
     <string name="me72_lambda_status_22">Regolazione ON</string>
     <string name="me72_lambda_status_23">Regolazione OFF per condizioni di guida</string>
