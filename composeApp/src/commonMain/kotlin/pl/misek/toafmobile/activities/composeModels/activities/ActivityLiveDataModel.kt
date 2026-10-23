@@ -126,7 +126,7 @@ fun ActivityLiveDataModel(moduleKoinName : KoinNames, onBackClick :() -> Unit)
             {
                 liveDataElements.clear()
                 val elements = getLiveDataElements(
-                    currentModule.getModuleName())
+                    currentModule.getLiveDataName())
                 elements?.forEach { liveDataElements.add(it) }
             }
         }

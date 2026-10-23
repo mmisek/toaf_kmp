@@ -35,7 +35,8 @@ object ResourceMapperSrsL322 {
             "srs_l322_coding_passenger_backrest_lock" -> Res.string.srs_l322_coding_passenger_backrest_lock
             "srs_l322_coding_passenger_belt_pretensioner" -> Res.string.srs_l322_coding_passenger_belt_pretensioner
             "srs_l322_coding_passenger_buckle_switch" -> Res.string.srs_l322_coding_passenger_buckle_switch
-            "srs_l322_coding_sbe_generation" -> Res.string.srs_l322_coding_sbe_generation
+            "srs_l322_coding_sbe_second_generation" -> Res.string.srs_l322_coding_sbe_second_generation
+            "srs_l322_coding_seat_occupancy_detection" -> Res.string.srs_l322_coding_seat_occupancy_detection
             "srs_l322_coding_side_bag_left_front" -> Res.string.srs_l322_coding_side_bag_left_front
             "srs_l322_coding_side_bag_rear_left" -> Res.string.srs_l322_coding_side_bag_rear_left
             "srs_l322_coding_side_bag_rear_right" -> Res.string.srs_l322_coding_side_bag_rear_right
@@ -111,6 +112,10 @@ object ResourceMapperSrsL322 {
             "srs_l322_error_90" -> Res.string.srs_l322_error_90
             "srs_l322_error_91" -> Res.string.srs_l322_error_91
             "srs_l322_error_f0" -> Res.string.srs_l322_error_F0
+            "srs_l322_error_description_00" -> Res.string.srs_l322_error_description_00
+            "srs_l322_error_description_01" -> Res.string.srs_l322_error_description_01
+            "srs_l322_error_description_02" -> Res.string.srs_l322_error_description_02
+            "srs_l322_error_description_03" -> Res.string.srs_l322_error_description_03
             "srs_l322_error_description_04" -> Res.string.srs_l322_error_description_04
             "srs_l322_error_description_05" -> Res.string.srs_l322_error_description_05
             "srs_l322_error_description_06" -> Res.string.srs_l322_error_description_06
@@ -123,10 +128,6 @@ object ResourceMapperSrsL322 {
             "srs_l322_error_description_0d" -> Res.string.srs_l322_error_description_0D
             "srs_l322_error_description_0e" -> Res.string.srs_l322_error_description_0E
             "srs_l322_error_description_0f" -> Res.string.srs_l322_error_description_0F
-            "srs_l322_error_description_0x00" -> Res.string.srs_l322_error_description_0x00
-            "srs_l322_error_description_0x01" -> Res.string.srs_l322_error_description_0x01
-            "srs_l322_error_description_0x02" -> Res.string.srs_l322_error_description_0x02
-            "srs_l322_error_description_0x03" -> Res.string.srs_l322_error_description_0x03
             "srs_l322_error_description_10" -> Res.string.srs_l322_error_description_10
             "srs_l322_error_description_11" -> Res.string.srs_l322_error_description_11
             "srs_l322_error_description_12" -> Res.string.srs_l322_error_description_12
@@ -149,6 +150,54 @@ object ResourceMapperSrsL322 {
             "srs_l322_error_description_23" -> Res.string.srs_l322_error_description_23
             "srs_l322_error_description_24" -> Res.string.srs_l322_error_description_24
             "srs_l322_error_description_ff" -> Res.string.srs_l322_error_description_FF
+            "srs_l322_error_timer_start" -> Res.string.srs_l322_error_timer_start
+            "srs_l322_error_timer_stop" -> Res.string.srs_l322_error_timer_stop
+            "srs_l322_live_data_buckle_driver" -> Res.string.srs_l322_live_data_buckle_driver
+            "srs_l322_live_data_buckle_driver_sensor" -> Res.string.srs_l322_live_data_buckle_driver_sensor
+            "srs_l322_live_data_buckle_passenger" -> Res.string.srs_l322_live_data_buckle_passenger
+            "srs_l322_live_data_buckle_passenger_sensor" -> Res.string.srs_l322_live_data_buckle_passenger_sensor
+            "srs_l322_live_data_buckle_rear_center" -> Res.string.srs_l322_live_data_buckle_rear_center
+            "srs_l322_live_data_buckle_rear_center_sensor" -> Res.string.srs_l322_live_data_buckle_rear_center_sensor
+            "srs_l322_live_data_buckle_rear_left" -> Res.string.srs_l322_live_data_buckle_rear_left
+            "srs_l322_live_data_buckle_rear_left_sensor" -> Res.string.srs_l322_live_data_buckle_rear_left_sensor
+            "srs_l322_live_data_buckle_rear_right" -> Res.string.srs_l322_live_data_buckle_rear_right
+            "srs_l322_live_data_buckle_rear_right_sensor" -> Res.string.srs_l322_live_data_buckle_rear_right_sensor
+            "srs_l322_live_data_mrsa_left_communication" -> Res.string.srs_l322_live_data_mrsa_left_communication
+            "srs_l322_live_data_mrsa_left_send" -> Res.string.srs_l322_live_data_mrsa_left_send
+            "srs_l322_live_data_mrsa_left_type" -> Res.string.srs_l322_live_data_mrsa_left_type
+            "srs_l322_live_data_mrsa_left_wiring" -> Res.string.srs_l322_live_data_mrsa_left_wiring
+            "srs_l322_live_data_mrsa_right_communication" -> Res.string.srs_l322_live_data_mrsa_right_communication
+            "srs_l322_live_data_mrsa_right_send" -> Res.string.srs_l322_live_data_mrsa_right_send
+            "srs_l322_live_data_mrsa_right_type" -> Res.string.srs_l322_live_data_mrsa_right_type
+            "srs_l322_live_data_mrsa_right_wiring" -> Res.string.srs_l322_live_data_mrsa_right_wiring
+            "srs_l322_live_data_passenger_seat_occupancy" -> Res.string.srs_l322_live_data_passenger_seat_occupancy
+            "srs_l322_live_data_passenger_seat_occupancy_sensor" -> Res.string.srs_l322_live_data_passenger_seat_occupancy_sensor
+            "srs_l322_live_data_value_buckled" -> Res.string.srs_l322_live_data_value_buckled
+            "srs_l322_live_data_value_fault" -> Res.string.srs_l322_live_data_value_fault
+            "srs_l322_live_data_value_no_status" -> Res.string.srs_l322_live_data_value_no_status
+            "srs_l322_live_data_value_not_buckled" -> Res.string.srs_l322_live_data_value_not_buckled
+            "srs_l322_live_data_value_not_occupied" -> Res.string.srs_l322_live_data_value_not_occupied
+            "srs_l322_live_data_value_occupied" -> Res.string.srs_l322_live_data_value_occupied
+            "srs_l322_live_data_value_ok" -> Res.string.srs_l322_live_data_value_ok
+            "srs_l322_live_data_zk_battery_cut_off_1" -> Res.string.srs_l322_live_data_zk_battery_cut_off_1
+            "srs_l322_live_data_zk_battery_cut_off_2" -> Res.string.srs_l322_live_data_zk_battery_cut_off_2
+            "srs_l322_live_data_zk_belt_pretensioner_rear_center" -> Res.string.srs_l322_live_data_zk_belt_pretensioner_rear_center
+            "srs_l322_live_data_zk_belt_pretensioner_rear_left" -> Res.string.srs_l322_live_data_zk_belt_pretensioner_rear_left
+            "srs_l322_live_data_zk_belt_pretensioner_rear_right" -> Res.string.srs_l322_live_data_zk_belt_pretensioner_rear_right
+            "srs_l322_live_data_zk_driver_airbag_stage_1" -> Res.string.srs_l322_live_data_zk_driver_airbag_stage_1
+            "srs_l322_live_data_zk_driver_airbag_stage_2" -> Res.string.srs_l322_live_data_zk_driver_airbag_stage_2
+            "srs_l322_live_data_zk_driver_belt_pretensioner" -> Res.string.srs_l322_live_data_zk_driver_belt_pretensioner
+            "srs_l322_live_data_zk_head_airbag_left" -> Res.string.srs_l322_live_data_zk_head_airbag_left
+            "srs_l322_live_data_zk_head_airbag_rear_left" -> Res.string.srs_l322_live_data_zk_head_airbag_rear_left
+            "srs_l322_live_data_zk_head_airbag_rear_right" -> Res.string.srs_l322_live_data_zk_head_airbag_rear_right
+            "srs_l322_live_data_zk_head_airbag_right" -> Res.string.srs_l322_live_data_zk_head_airbag_right
+            "srs_l322_live_data_zk_passenger_airbag_stage_1" -> Res.string.srs_l322_live_data_zk_passenger_airbag_stage_1
+            "srs_l322_live_data_zk_passenger_airbag_stage_2" -> Res.string.srs_l322_live_data_zk_passenger_airbag_stage_2
+            "srs_l322_live_data_zk_passenger_belt_pretensioner" -> Res.string.srs_l322_live_data_zk_passenger_belt_pretensioner
+            "srs_l322_live_data_zk_side_airbag_front_left" -> Res.string.srs_l322_live_data_zk_side_airbag_front_left
+            "srs_l322_live_data_zk_side_airbag_front_right" -> Res.string.srs_l322_live_data_zk_side_airbag_front_right
+            "srs_l322_live_data_zk_side_airbag_rear_left" -> Res.string.srs_l322_live_data_zk_side_airbag_rear_left
+            "srs_l322_live_data_zk_side_airbag_rear_right" -> Res.string.srs_l322_live_data_zk_side_airbag_rear_right
         else -> {
           Logger.i {"NO RESOURCE for : $resourceName" }
             null

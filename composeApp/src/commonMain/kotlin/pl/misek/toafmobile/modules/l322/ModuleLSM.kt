@@ -66,6 +66,8 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
 
     override fun getKoinName() = KoinNames.ModuleL322Lsm
 
+    override fun getLiveDataName() = "lcm_l322"
+
     override fun getImageResource() = Res.drawable.module_lsm
 
     override fun getModuleDescription() = Res.string.module_description_lcm
