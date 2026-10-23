@@ -1,4 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="module_description_txu">Раздаточная коробка</string>
+    <string name="txu_live_data_block01_byte00_bit0">Блок 01, байт 0, бит 0</string>
+    <string name="txu_live_data_block01_byte00_bit1">Блок 01, байт 0, бит 1</string>
+    <string name="txu_live_data_block01_byte00_bit2">Блок 01, байт 0, бит 2</string>
+    <string name="txu_live_data_block01_byte00_bit3">Блок 01, байт 0, бит 3</string>
+    <string name="txu_live_data_block01_byte00_bit4">Блок 01, байт 0, бит 4</string>
+    <string name="txu_live_data_block01_byte00_bit5">Блок 01, байт 0, бит 5</string>
+    <string name="txu_live_data_block01_byte00_bit6">Блок 01, байт 0, бит 6</string>
+    <string name="txu_live_data_block01_byte00_bit7">Блок 01, байт 0, бит 7</string>
+    <string name="txu_live_data_block01_byte01_bit0">Блок 01, байт 1, бит 0</string>
+    <string name="txu_live_data_block01_byte01_bit1">Блок 01, байт 1, бит 1</string>
+    <string name="txu_live_data_block01_byte01_bit2">Блок 01, байт 1, бит 2</string>
+    <string name="txu_live_data_block01_byte01_bit3">Блок 01, байт 1, бит 3</string>
+    <string name="txu_live_data_block01_byte01_bit4">Блок 01, байт 1, бит 4</string>
+    <string name="txu_live_data_block01_byte01_bit5">Блок 01, байт 1, бит 5</string>
+    <string name="txu_live_data_block01_byte01_bit6">Блок 01, байт 1, бит 6</string>
+    <string name="txu_live_data_block01_byte01_bit7">Блок 01, байт 1, бит 7</string>
+    <string name="txu_live_data_block02_byte00_bits0_2">Блок 02, байт 0, биты 0-2</string>
+    <string name="txu_live_data_block02_byte00_bits3_4">Блок 02, байт 0, биты 3-4</string>
+    <string name="txu_live_data_block03_byte00_bits0_1">Блок 03, байт 0, биты 0-1</string>
+    <string name="txu_live_data_block03_byte00_bit2">Блок 03, байт 0, бит 2</string>
+    <string name="txu_live_data_block03_byte00_bit3">Блок 03, байт 0, бит 3</string>
+    <string name="txu_live_data_block03_byte00_bit4">Блок 03, байт 0, бит 4</string>
+    <string name="txu_live_data_block03_byte00_bit5">Блок 03, байт 0, бит 5</string>
+    <string name="txu_live_data_block03_byte00_bit6">Блок 03, байт 0, бит 6</string>
+    <string name="txu_live_data_block03_byte00_bit7">Блок 03, байт 0, бит 7</string>
+    <string name="txu_live_data_block04_byte00_bits0_1">Блок 04, байт 0, биты 0-1</string>
+    <string name="txu_live_data_block04_byte00_bits2_4">Блок 04, байт 0, биты 2-4</string>
+    <string name="txu_live_data_block05_word00">Блок 05, слово 0-1</string>
+    <string name="txu_live_data_block05_word02">Блок 05, слово 2-3</string>
+    <string name="txu_live_data_block06_word00">Блок 06, слово 0-1</string>
+    <string name="txu_live_data_block06_byte02">Блок 06, байт 2</string>
+    <string name="txu_live_data_block06_byte03">Блок 06, байт 3</string>
+    <string name="txu_live_data_block06_byte04">Блок 06, байт 4</string>
+    <string name="txu_live_data_block06_byte05">Блок 06, байт 5</string>
+    <string name="txu_live_data_block07_byte00_bits0_5">Блок 07, байт 0, биты 0-5</string>
+    <string name="txu_live_data_block07_byte01">Блок 07, байт 1</string>
+    <string name="txu_live_data_block08_word00">Блок 08, слово 0-1</string>
+    <string name="txu_live_data_block08_word02">Блок 08, слово 2-3</string>
+    <string name="txu_live_data_block08_byte04">Блок 08, байт 4</string>
+    <string name="txu_live_data_block09_byte00">Блок 09, байт 0</string>
+    <string name="txu_live_data_block09_byte01">Блок 09, байт 1</string>
+    <string name="txu_live_data_block10_byte00">Блок 10, байт 0</string>
 </resources>
