@@ -13,10 +13,12 @@ import pl.misek.toafmobile.modules.ModulesFunction
 import pl.misek.toafmobile.modules.containers.BCUKey
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.ModuleAddress
+import pl.misek.toafmobile.modules.enums.ModuleFeature
 import pl.misek.toafmobile.modules.interfaces.IModuleAdvanceCoding
 import pl.misek.toafmobile.modules.interfaces.IModuleBcuKeys
 import pl.misek.toafmobile.modules.interfaces.IModuleCoding
 import pl.misek.toafmobile.modules.interfaces.IModuleControl
+import pl.misek.toafmobile.modules.interfaces.IModuleEepromProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.modules.interfaces.IModuleVIN
 import pl.misek.toafmobile.protocols.ProtocolDS2
@@ -30,7 +32,11 @@ import kotlin.experimental.inv
 import kotlinx.coroutines.CancellationException
 
 private const val tag = "ModuleBCU"
-class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddress.MODULE_BCU, listOf(CarType.R40)), IModuleControl, IModuleCoding, IModuleAdvanceCoding, IModuleLiveData, IModuleVIN,IModuleBcuKeys
+// EEPROM BCU: fizycznie 0x0D80-0x0FFF (640 B). Adres logiczny 0 -> fizyczny EEPROM_BASE.
+private const val EEPROM_BASE = 0x0D80
+private const val EEPROM_SIZE = 0x0280
+private const val EEPROM_READ_CHUNK = 0x20
+class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddress.MODULE_BCU, listOf(CarType.R40)), IModuleControl, IModuleCoding, IModuleAdvanceCoding, IModuleLiveData, IModuleVIN, IModuleBcuKeys, IModuleEepromProgramming
 {
 
     override fun getKoinName() = KoinNames.ModuleR40Bcu
@@ -351,6 +357,45 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         }
         return key
     }
+
+    override fun getNewFeatures() = super.getNewFeatures() + ModuleFeature.EepromProgramming
+
+    /** Security przed odczytem EEPROM (wywolywane raz przed petla) */
+    override suspend fun beforeRead() { securityAccess() }
+
+    /**
+     * Odczyt EEPROM komenda {06 LEN AddrHi AddrLo} (LEN = liczba bajtow, max 0x20 = 32 B).
+     * Potwierdzone na sterowniku. Adres logiczny mapowany na fizyczny EEPROM_BASE + address.
+     */
+    override suspend fun readEeprom(address: Int, size: Int): ByteArray? {
+        val physical = EEPROM_BASE + address
+        val message = interfaceWrite(
+            byteArrayOf(0x06, size.toByte(), ((physical shr 8) and 0xFF).toByte(), (physical and 0xFF).toByte()),
+            (300 + size * 3).toLong()
+        )
+        try {
+            if (!message.isValid) return null
+            val data = message.answer.copyOfRange(3, message.answer.size - 1)
+            if (data.size != size) {
+                Logger.e { "$tag [readEeprom], size ${data.size} != $size, $message" }
+                return null
+            }
+            return data
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex: Exception) {
+            Logger.e { "$tag [readEeprom], $ex, $message" }
+            return null
+        }
+    }
+
+    /** Zapis EEPROM nieaktywny */
+    override suspend fun writeEeprom(address: Int, data: ByteArray): Boolean = false
+    override val eepromWriteAvailable: Boolean = false
+
+    override fun getEepromSize(): Int = EEPROM_SIZE
+    override fun getEepromReadSize(): Int = EEPROM_READ_CHUNK
+    override fun getEepromWriteSize(): Int = 1
 
     private fun calculateCodingChecksum(data: List<ByteArray>): List<ByteArray> {
         var cs = 0x00
