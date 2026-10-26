@@ -48,8 +48,6 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
         val STATUS_IO_USED_PORTS = byteArrayOf(0x00, 0x02, 0x03, 0x05, 0x06)
     }
 
-    private var ioPortsSingleRead = false
-
     enum class ServiceType {
         Oil,
         Time,
@@ -76,7 +74,8 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
         val result: MutableMap<Int, ByteArray> = HashMap()
         try {
             val analog = interfaceWrite(STATUS_ANALOG_LESEN)
-            if (analog.isValid)
+            // Ramka DS2: [adres][dlugosc][0xA0][dane...][cs] - dane od indeksu 3, minimum 4 bajty
+            if (analog.isValid && analog.answer.size >= 4)
                 result[0x00] = analog.answer.copyOfRange(3, analog.answer.size - 1)
             readIoPorts()?.let { result[0x01] = it }
         } catch (ex: CancellationException) {
@@ -89,15 +88,17 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
 
     private suspend fun readIoPorts(): ByteArray? {
         val ports = ByteArray(STATUS_IO_PORTS.size)
+        var anyRead = false
         for (port in STATUS_IO_USED_PORTS) {
             val portMessage = interfaceWrite(byteArrayOf(STATUS_LESSEN, STATUS_IO_LESEN, port))
             if (!portMessage.isValid || portMessage.answer.size < 5) {
-                Logger.e { "$tag [readIoPorts], port $port, $portMessage" }
-                return null
+                Logger.w { "$tag [readIoPorts], port $port, $portMessage" }
+                continue
             }
             ports[port.toInt()] = portMessage.answer[3]
+            anyRead = true
         }
-        return ports
+        return ports.takeIf { anyRead }
     }
 
     private fun temperatureGaugeAddress(gauge: TemperatureGaugeEnum) = 0xF3 + 2 * gauge.ordinal
