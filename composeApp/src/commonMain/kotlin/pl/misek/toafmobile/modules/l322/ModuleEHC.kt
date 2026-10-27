@@ -43,6 +43,7 @@ import kotlin.time.Duration.Companion.milliseconds
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.isoDayNumber
 import kotlinx.datetime.todayIn
+import pl.misek.toafmobile.modules.enums.ModuleFeature
 
 class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddress.MODULE_EHC, listOf(CarType.L322)),
     IModuleLiveData, IModuleAdvanceControl, IModuleControl, IModuleEepromProgramming, IModuleEHCHeightControl, IModuleEHCCalibration
@@ -556,6 +557,8 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
             rawValue -= 1 shl (8 * length)
         return rawValue * element.factorA + element.factorB
     }
+
+    override fun getNewFeatures() = super.getNewFeatures() + ModuleFeature.EepromProgramming
 
     override suspend fun readEeprom(address: Int, size: Int): ByteArray? {
         val message = writeWithBusyRetry(

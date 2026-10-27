@@ -40,7 +40,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import jdk.internal.net.http.common.Utils.close
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -68,15 +67,12 @@ import pl.misek.toafmobile.tools.JsonSupport
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 import java.util.Locale
-import kotlin.io.path.Path
-import kotlin.io.path.moveTo
 import kotlin.time.Duration.Companion.milliseconds
 
 private const val tag = "AdvanceControlLws"
 @Composable
 fun AdvanceControlLws(userInfo: UserInfo, onShowResult : (result : Boolean, onSuccess : String?, onFail : String?) -> Unit) {
     val modulesManager : ModulesManager = koinInject()
-    val moduleLws = modulesManager.getCurrentModules().firstOrNull { it.getKoinName() == KoinNames.ModuleL322Lws }
     val moduleDsc = modulesManager.getCurrentModules().firstOrNull { it.getKoinName() == KoinNames.ModuleL322Dsc }
     var action by remember { mutableStateOf<suspend () -> Any?>({ null }) }
     var actionType by remember {mutableStateOf (ActionTypeEnum.None)}
@@ -85,14 +81,9 @@ fun AdvanceControlLws(userInfo: UserInfo, onShowResult : (result : Boolean, onSu
     val calibrationSuccessful = stringResource(Res.string.lws_advance_control_calibration_successful)
     val calibrationFailed = stringResource(Res.string.lws_advance_control_calibration_failed)
     val dialogFullVersionTittle = stringResource(Res.string.dialog_full_version_tittle)
-    val moduleLiveData = moduleLws as? IModuleLiveData
     var liveDataText by remember { mutableStateOf("---") }
     val viewModel : LwsSteeringAngleViewModel = koinInject()
     val rotation by viewModel.angle.collectAsState()
-    LaunchedEffect(Unit)
-    {
-        moduleLiveData?.startLiveDataRead(emptyList())
-    }
     LaunchedEffect(rotation)
     {
         liveDataText = if (rotation.isNaN()) "---"  else

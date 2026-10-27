@@ -28,6 +28,7 @@ import pl.misek.toafmobile.billing.StripeSession
 import pl.misek.toafmobile.billing.StripeSessionResponse
 import pl.misek.toafmobile.database.Database
 import pl.misek.toafmobile.getPlatformName
+import java.io.IOException
 import java.net.UnknownHostException
 import java.util.Currency
 import java.util.Locale
@@ -313,38 +314,52 @@ class ToafApi(private val client: HttpClient, private val database: Database) {
     suspend fun uploadFlash(data: JsonObject, file: ByteArray): Boolean {
         if (!isCredentialValid())
             return false
-        return try {
-            val response = client.submitFormWithBinaryData(
-                url = "$url/flash/add/",
-                formData = formData {
-                    append("data.json", data.toString().toByteArray(), Headers.build {
-                        append(HttpHeaders.ContentType, ContentType.Application.Json.toString())
-                        append(HttpHeaders.ContentDisposition, "form-data; name=\"data.json\"; filename=\"data.json\"")
-                    })
-                    append("flash.bin", file, Headers.build {
-                        append(HttpHeaders.ContentType, ContentType.Application.OctetStream.toString())
-                        append(HttpHeaders.ContentDisposition, "form-data; name=\"flash.bin\"; filename=\"flash.bin\"")
-                    })
+        // Krotki upload (np. EEPROM 512 B zaraz po szybkim odczycie) trafia na przeterminowane polaczenie
+        // keep-alive z puli - serwer zamyka socket ("unexpected end of stream"), a OkHttp nie ponawia
+        // jednorazowego body multipart POST. Ponawiamy sami - druga proba idzie swiezym polaczeniem.
+        val maxAttempts = 2
+        for (attempt in 1..maxAttempts) {
+            try {
+                val response = client.submitFormWithBinaryData(
+                    url = "$url/flash/add/",
+                    formData = formData {
+                        append("data.json", data.toString().toByteArray(), Headers.build {
+                            append(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+                            // Samo filename - nazwe czesci (name=...) Ktor dodaje z klucza; podanie pelnego
+                            // "form-data; name=...; filename=..." dublowalo naglowek Content-Disposition.
+                            append(HttpHeaders.ContentDisposition, "filename=\"data.json\"")
+                        })
+                        append("flash.bin", file, Headers.build {
+                            append(HttpHeaders.ContentType, ContentType.Application.OctetStream.toString())
+                            append(HttpHeaders.ContentDisposition, "filename=\"flash.bin\"")
+                        })
+                    }
+                ) {
+                    timeout {
+                        requestTimeoutMillis = 5000
+                    }
                 }
-            ) {
-                timeout {
-                    requestTimeoutMillis = 5000
+                return if (response.status == HttpStatusCode.OK) {
+                    true
+                } else {
+                    Logger.i { "$tag: ${response.bodyAsText()}" }
+                    false
                 }
+            } catch (ex: UnknownHostException) {
+                return false
+            } catch (ex: HttpRequestTimeoutException) {
+                return false
+            } catch (ex: IOException) {
+                // Zerwane/przeterminowane polaczenie - ponow na kolejnej iteracji (swieze polaczenie).
+                Logger.withTag(tag).w(ex) { "[uploadFlash]: proba $attempt/$maxAttempts, ${ex.message}" }
+                if (attempt == maxAttempts)
+                    return false
+            } catch (ex: Exception) {
+                Logger.withTag(tag).e(ex) { "[uploadFlash]: ${ex.message}" }
+                return false
             }
-            if (response.status == HttpStatusCode.OK) {
-                true
-            } else {
-                Logger.i { "$tag: ${response.bodyAsText()}" }
-                false
-            }
-        }  catch (ex: UnknownHostException) {
-            false
-        } catch (ex: HttpRequestTimeoutException) {
-            false
-        } catch (ex: Exception) {
-            Logger.withTag(tag).e(ex) { "[uploadFlash]: ${ex.message}" }
-            false
         }
+        return false
     }
 
     suspend fun getToafWifiUpdates(data: JsonObject): ToafWifiUpdates? {

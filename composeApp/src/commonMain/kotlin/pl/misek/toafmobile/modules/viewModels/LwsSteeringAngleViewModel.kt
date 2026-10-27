@@ -31,13 +31,22 @@ class LwsSteeringAngleViewModel(private val module : ModuleLWS?): ViewModel()
             emit(Float.NaN)
             return@flow
         }
+        // Bez tego readLiveData() nie zada zadnego bloku (iteruje po liveDataElements modulu) i zwraca null.
+        module.startLiveDataRead(listOf(liveDataElement))
         while(true)
         {
             val liveData = module.readLiveData()
             val value = try {
-                val block = liveData?.get(liveDataElement.block) as ByteArray
-                val rawValue = (block[liveDataElement.byteInBlock].toInt() shl 8) + (block[liveDataElement.byteInBlock + 1].toInt())
-                rawValue.toFloat() * liveDataElement.factorA + liveDataElement.factorB
+                val block = liveData?.get(liveDataElement.block)
+                val i = liveDataElement.byteInBlock
+                if (block == null || block.size < i + 2) {
+                    Float.NaN
+                } else {
+                    val raw = ((block[i].toInt() and 0xFF) shl 8) or (block[i + 1].toInt() and 0xFF)
+                    // u2 = wartosc w kodzie uzupelnien do dwoch (kat moze byc ujemny)
+                    val signed = if (liveDataElement.u2) raw.toShort().toInt() else raw
+                    signed * liveDataElement.factorA + liveDataElement.factorB
+                }
             } catch (ex: CancellationException) {
                 throw ex
             } catch (_ : Exception)
@@ -45,8 +54,8 @@ class LwsSteeringAngleViewModel(private val module : ModuleLWS?): ViewModel()
                 Float.NaN
             }
             emit(value)
+            delay(25.milliseconds)
         }
-        delay(25.milliseconds)
     }.conflate()
         .flowOn(Dispatchers.IO)
         .stateIn(
