@@ -221,16 +221,18 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
 
                                 if (eepromReadData.size == eepromSize)
                                 {
+                                    val vin = currentModule.getVIN()
+                                    val moduleName = currentModule.getModuleName()
                                     statusText +="\n" + String.format(eepromReadEepromSizeText, eepromReadData.size)
                                     val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.US)
                                     fileName = String.format(
-                                        "%s_%s_%s.bin",
-                                        currentModule.getModuleName(),
+                                        "EEPROM_%s_%s_%s.bin",
+                                        moduleName,
                                         moduleIdentification?.id1 ?: "",
                                         simpleDateFormat.format(Calendar.getInstance().time))
                                     saveFileLauncher(fileName)
                                     val jsonObject = buildJsonObject {
-                                        put("vin", currentModule.getModuleName())
+                                        put("vin", vin ?: moduleName)
                                         put("module", currentModule.getModuleName())
                                         put("id1", moduleIdentification?.id1)
                                         put("id2", moduleIdentification?.id2)

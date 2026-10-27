@@ -30,14 +30,38 @@ import toafmobile.composeapp.generated.resources.module_description_bcu
 import java.util.Arrays
 import kotlin.experimental.inv
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import pl.misek.toafmobile.modules.enums.FlashProgrammingState
+import pl.misek.toafmobile.modules.interfaces.IModuleFlashProgramming
+import toafmobile.composeapp.generated.resources.activity_flash_programming_close
+import toafmobile.composeapp.generated.resources.activity_flash_programming_end
+import toafmobile.composeapp.generated.resources.activity_flash_programming_failed
+import toafmobile.composeapp.generated.resources.activity_flash_programming_flash_reading
+import toafmobile.composeapp.generated.resources.activity_flash_programming_read_error
+import toafmobile.composeapp.generated.resources.activity_flash_programming_read_time
+import toafmobile.composeapp.generated.resources.activity_flash_programming_security_access
+import toafmobile.composeapp.generated.resources.activity_flash_programming_start
+import toafmobile.composeapp.generated.resources.activity_flash_read_identification
+import java.util.Calendar
+import java.util.Locale
 
 private const val tag = "ModuleBCU"
 // EEPROM BCU: fizycznie 0x0D80-0x0FFF (640 B). Adres logiczny 0 -> fizyczny EEPROM_BASE.
 private const val EEPROM_BASE = 0x0D80
 private const val EEPROM_SIZE = 0x0280
 private const val EEPROM_READ_CHUNK = 0x20
-class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddress.MODULE_BCU, listOf(CarType.R40)), IModuleControl, IModuleCoding, IModuleAdvanceCoding, IModuleLiveData, IModuleVIN, IModuleBcuKeys, IModuleEepromProgramming
+class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddress.MODULE_BCU, listOf(CarType.R40)),
+    IModuleControl, IModuleCoding, IModuleAdvanceCoding, IModuleLiveData, IModuleVIN, IModuleBcuKeys, IModuleEepromProgramming,
+        IModuleFlashProgramming
 {
+    private var _programmingState = MutableSharedFlow<FlashProgrammingState>(replay = 10, extraBufferCapacity = 64, onBufferOverflow = BufferOverflow.DROP_OLDEST)
+
+    override val programmingState =_programmingState.asSharedFlow()
+
+    override val flashProgrammingAvailable = false;
 
     override fun getKoinName() = KoinNames.ModuleR40Bcu
 
@@ -358,45 +382,124 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         return key
     }
 
-    override fun getNewFeatures() = super.getNewFeatures() + ModuleFeature.EepromProgramming
+    override fun getNewFeatures() = super.getNewFeatures() + ModuleFeature.EepromProgramming + ModuleFeature.FlashProgramming
 
-    /** Security przed odczytem EEPROM (wywolywane raz przed petla) */
     override suspend fun beforeRead() { securityAccess() }
 
-    /**
-     * Odczyt EEPROM komenda {06 LEN AddrHi AddrLo} (LEN = liczba bajtow, max 0x20 = 32 B).
-     * Potwierdzone na sterowniku. Adres logiczny mapowany na fizyczny EEPROM_BASE + address.
-     */
     override suspend fun readEeprom(address: Int, size: Int): ByteArray? {
         val physical = EEPROM_BASE + address
-        val message = interfaceWrite(
-            byteArrayOf(0x06, size.toByte(), ((physical shr 8) and 0xFF).toByte(), (physical and 0xFF).toByte()),
-            (300 + size * 3).toLong()
-        )
-        try {
-            if (!message.isValid) return null
-            val data = message.answer.copyOfRange(3, message.answer.size - 1)
-            if (data.size != size) {
-                Logger.e { "$tag [readEeprom], size ${data.size} != $size, $message" }
-                return null
-            }
-            return data
-        } catch (ex: CancellationException) {
-            throw ex
-        } catch (ex: Exception) {
-            Logger.e { "$tag [readEeprom], $ex, $message" }
-            return null
-        }
+        return readMemoryBlock(physical,size)
     }
 
-    /** Zapis EEPROM nieaktywny */
-    override suspend fun writeEeprom(address: Int, data: ByteArray): Boolean = false
+    override suspend fun writeEeprom(address: Int, data: ByteArray): Boolean {
+        val physical = EEPROM_BASE + address
+        for (i in data.indices) {
+            val a = physical + i
+            val message = interfaceWrite(byteArrayOf(0x07, ((a shr 8) and 0xFF).toByte(), (a and 0xFF).toByte(), data[i]))
+            if (!message.isValid) {
+                Logger.e { "$tag [writeEeprom], addr ${a.toString(16)}, $message" }
+                return false
+            }
+        }
+        return true
+    }
     override val eepromWriteAvailable: Boolean = false
 
     override fun getEepromSize(): Int = EEPROM_SIZE
     override fun getEepromReadSize(): Int = EEPROM_READ_CHUNK
     override fun getEepromWriteSize(): Int = 1
 
+    override suspend fun readFlash() {
+        val startAddress = 0x8000;
+        val flashSize = 0x7FFF
+        val blockSize = 0x20
+        var result = ByteArray(0)
+        val startTime = Calendar.getInstance().time
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_start))
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_security_access))
+        if (!securityAccess()) {
+            _programmingState.tryEmit((FlashProgrammingState.Message(Res.string.activity_flash_programming_failed)))
+            return
+        }
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_read_identification))
+        val ident = getIdentification()
+        if (ident == null){
+            _programmingState.tryEmit((FlashProgrammingState.Message(Res.string.activity_flash_programming_failed)))
+            return
+        }
+        _programmingState.tryEmit(FlashProgrammingState.Message("ID : ${ident.id1}"))
+        val vin = getVIN()
+        if (!vin.isNullOrEmpty()) _programmingState.tryEmit(FlashProgrammingState.Message("VIN: $vin"))
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_flash_reading))
+        var x = 0;
+        val endAddress = startAddress + flashSize
+        val steps = (flashSize + blockSize -1)/blockSize
+        var  i = startAddress
+        while (i < endAddress)
+        {
+            _programmingState.tryEmit(FlashProgrammingState.Progress(((x++ * 100)/steps).toInt()))
+            val data = readMemoryBlock(i,blockSize)
+            if (data == null || data.size != blockSize)
+            {
+                _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_read_error))
+                return
+            }
+            result += data
+            i += blockSize
+        }
+        _programmingState.tryEmit(FlashProgrammingState.Progress(100))
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_end))
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_close))
+
+        val endTime = Calendar.getInstance().time
+        val totalMillis = endTime.time - startTime.time
+        val seconds = (totalMillis / 1000).toInt() % 60
+        val minutes = ((totalMillis / 1000).toInt() / 60) % 60
+        val hours = (totalMillis / 1000).toInt() / 3600
+
+        _programmingState.tryEmit(
+            FlashProgrammingState.MessageWithParameter(
+                Res.string.activity_flash_programming_read_time,
+                String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds)
+            )
+        )
+        try {
+            _programmingState.tryEmit(
+                FlashProgrammingState.FlashData(
+                    result.toList(),
+                    ident,
+                    vin
+                )
+            )
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex: Exception) {
+            Logger.e { "$tag [readFlash]: $ex" }
+        }
+    }
+
+    override suspend fun writeFlash(data: ByteArray) {}
+
+    private suspend fun readMemoryBlock(address: Int, size : Int) : ByteArray?
+    {
+        val message = interfaceWrite(
+            byteArrayOf(0x06, size.toByte(), ((address shr 8) and 0xFF).toByte(), (address and 0xFF).toByte()),
+            (350 + size * 3).toLong())
+        try {
+            if (!message.isValid) return null
+            val data = message.answer.copyOfRange(3, message.answer.size - 1)
+            if (data.size != size) {
+                Logger.e { "$tag [readMemoryBlock], size ${data.size} != $size, $message" }
+                return null
+            }
+            return data
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex: Exception) {
+            Logger.e { "$tag [readMemoryBlock], $ex, $message" }
+            return null
+        }
+    }
     private fun calculateCodingChecksum(data: List<ByteArray>): List<ByteArray> {
         var cs = 0x00
         for (i in data.indices) for (j in data[i].indices) {
