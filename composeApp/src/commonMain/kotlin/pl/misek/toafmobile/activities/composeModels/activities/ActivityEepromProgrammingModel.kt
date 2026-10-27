@@ -237,11 +237,9 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
                                         put("id1", moduleIdentification?.id1)
                                         put("id2", moduleIdentification?.id2)
                                     }
-                                    scope.launch {
-                                        withContext(Dispatchers.IO) {
-                                            val backupResult = toafApi.uploadFlash( jsonObject, eepromReadData)
-                                            statusText += "\n" + String.format(eepromBackupResultText, if (backupResult) eepromResultOkText else eepromResultFailedText)
-                                        }
+                                    withContext(Dispatchers.IO) {
+                                        val backupResult = toafApi.uploadFlash( jsonObject, eepromReadData)
+                                        statusText += "\n" + String.format(eepromBackupResultText, if (backupResult) eepromResultOkText else eepromResultFailedText)
                                     }
                                 }
                                 else

@@ -61,7 +61,7 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
 
     override val programmingState =_programmingState.asSharedFlow()
 
-    override val flashProgrammingAvailable = false;
+    override val flashProgrammingAvailable = false
 
     override fun getKoinName() = KoinNames.ModuleR40Bcu
 
