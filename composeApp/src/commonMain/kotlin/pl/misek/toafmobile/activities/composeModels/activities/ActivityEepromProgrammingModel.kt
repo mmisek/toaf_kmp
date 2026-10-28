@@ -104,10 +104,13 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
                     val maxTry = 3
                     var i = 0
                     while (i < eepromSize) {
-                        val data = fileData.copyOfRange(i, i + bytesToWrite)
+                        // Ostatnia paczka przyciety do granicy EEPROM (rozmiar moze nie byc
+                        // wielokrotnoscia kroku, np. BMBT: 255 B).
+                        val chunk = minOf(bytesToWrite, eepromSize - i)
+                        val data = fileData.copyOfRange(i, i + chunk)
                         val success =
                             withContext(Dispatchers.IO) { eepromModule.writeEeprom(i, data) }
-                        val progress = ((i + bytesToWrite).toFloat() / eepromSize * 100).toInt()
+                        val progress = ((i + chunk).toFloat() / eepromSize * 100).toInt()
                         statusText += "\n" + String.format(
                             eepromWriteProgressText,
                             String.format(Locale.US, "%2d%%", progress)
@@ -125,11 +128,11 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
                                 )
                                 currentTry = 0
                             } else {
-                                i -= bytesToWrite
+                                i -= chunk
                                 currentTry++
                             }
                         }
-                        i += bytesToWrite
+                        i += chunk
                     }
                     statusText += "\n" + moduleResetText
                     currentModule.reset()
@@ -204,10 +207,13 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
                                 var i = 0
                                 do
                                 {
-                                    val progress = ((i + bytesToRead).toFloat() / eepromSize * 100).toInt()
+                                    // Ostatnia paczka przyciety do granicy EEPROM - rozmiar moze nie byc
+                                    // wielokrotnoscia kroku (np. BMBT: 255 B, bajt 0xFF nieodczytywalny).
+                                    val chunk = minOf(bytesToRead, eepromSize - i)
+                                    val progress = ((i + chunk).toFloat() / eepromSize * 100).toInt()
                                     statusText += "\n" +String.format(eepromReadProgressText, String.format(Locale.US,"%2d%%", progress))
                                     val data = withContext(Dispatchers.IO) {
-                                        eepromModule.readEeprom(i,bytesToRead)}
+                                        eepromModule.readEeprom(i,chunk)}
                                     if (data != null)
                                         eepromReadData +=data
                                     else
@@ -216,7 +222,7 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
                                         statusText += "\n" + eepromReadEndText
                                         break
                                     }
-                                    i += bytesToRead
+                                    i += chunk
                                 } while (i < eepromSize)
 
                                 if (eepromReadData.size == eepromSize)
