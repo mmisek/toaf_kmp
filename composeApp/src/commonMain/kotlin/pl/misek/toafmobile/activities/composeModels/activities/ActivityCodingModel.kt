@@ -104,6 +104,7 @@ fun ActivityModuleCodingModel(moduleKoinName : KoinNames, onBackClick : () ->Uni
     val scope = rememberCoroutineScope()
     val snackBarHostState = remember { SnackbarHostState() }
     var codingElements by remember { mutableStateOf<List<CodingElement>?>(emptyList()) }
+    var noCodingScheme by remember { mutableStateOf(false) }
     var backupElements by remember { mutableStateOf<List<BackupElement>?>(emptyList()) }
     var currentCoding by remember { mutableStateOf<List<ByteArray>>(emptyList()) }
     var isServerCommunication by remember { mutableStateOf(false) }
@@ -118,6 +119,7 @@ fun ActivityModuleCodingModel(moduleKoinName : KoinNames, onBackClick : () ->Uni
     val writeCodingSuccessText = stringResource(Res.string.message_coding_save_ok)
     val writeCodingFailText = stringResource(Res.string.message_coding_save_not_ok)
     val readCodingFailText = stringResource(Res.string.message_coding_read_not_ok)
+    val noCodingSchemeText = stringResource(Res.string.activity_coding_no_scheme)
 
     LaunchedEffect(Unit, backupType) {
         if (backupType != BackupType.None) {
@@ -216,12 +218,27 @@ fun ActivityModuleCodingModel(moduleKoinName : KoinNames, onBackClick : () ->Uni
                     .padding(paddingValues)
                     .background(ToafColors.toafBackground)
             ) {
-                CodingList(
-                    items = codingElements,
-                    currentCoding = currentCoding,
-                    onRefreshNeeded = { newCoding ->
-                        currentCoding = newCoding.toList()
-                    })
+                if (noCodingScheme) {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = noCodingSchemeText,
+                            color = ToafColors.toafTextColorWhite,
+                            textAlign = TextAlign.Center,
+                            fontSize = 18.sp,
+                            modifier = Modifier.padding(24.dp)
+                        )
+                    }
+                } else {
+                    CodingList(
+                        items = codingElements,
+                        currentCoding = currentCoding,
+                        onRefreshNeeded = { newCoding ->
+                            currentCoding = newCoding.toList()
+                        })
+                }
             }
             if (showSaveBackupDialog)
             {
@@ -310,6 +327,7 @@ fun ActivityModuleCodingModel(moduleKoinName : KoinNames, onBackClick : () ->Uni
                             {
                                 val data = (result as? List<*>)?.filterIsInstance<ByteArray>()
                                 if (data.isNullOrEmpty()) {
+                                    noCodingScheme = false
                                     showResult(
                                         scope = scope,
                                         snackBarHostState = snackBarHostState,
@@ -318,6 +336,17 @@ fun ActivityModuleCodingModel(moduleKoinName : KoinNames, onBackClick : () ->Uni
                                         onFail = readCodingFailText
                                     )
                                 } else {
+                                    // Ident + getCodingList(ci) juz wykonane w akcji; pusta lista = brak
+                                    // schematu kodowania dla tego CI/sterownika -> pokazujemy komunikat.
+                                    noCodingScheme = codingElements.isNullOrEmpty()
+                                    if (noCodingScheme)
+                                        showResult(
+                                            scope = scope,
+                                            snackBarHostState = snackBarHostState,
+                                            result = false,
+                                            onSuccess = null,
+                                            onFail = noCodingSchemeText
+                                        )
                                     val codingToBackup = data.toList()
                                     currentCoding = codingToBackup
                                     // Autobackup w tle, bez okna postepu

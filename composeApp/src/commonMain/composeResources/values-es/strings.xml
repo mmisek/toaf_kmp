@@ -99,6 +99,7 @@
     <!-- activity coding -->
     <string name="module_coding">Codificación</string>
     <string name="activity_coding_subtitle">Codificación del módulo</string>
+    <string name="activity_coding_no_scheme">No hay esquema de codificación para esta unidad de control</string>
     <string name="activity_coding_button_read">Leer</string>
     <string name="activity_coding_button_save">Guardar</string>
     <string name="activity_coding_read_failure">Error de lectura de código</string>

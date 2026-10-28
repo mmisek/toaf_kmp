@@ -38,13 +38,11 @@ open class ModuleDS2(
         TODO("Not yet implemented")
     }
     override suspend fun getIdentification(): ModuleInfo? {
-        val mi = interfaceWrite(byteArrayOf(0x00),250).let { ModulesFunction.getModuleInfo(it) }
-        if (mi != null && mi.ci == "") {
-            reset()
-            delay(1000.milliseconds)
-            return interfaceWrite(byteArrayOf(0x00)).let { ModulesFunction.getModuleInfo(it) }
+        repeat(3) {
+            interfaceWrite(byteArrayOf(0x00), 300).let { ModulesFunction.getModuleInfo(it) }?.let { return it }
+            delay(120.milliseconds)
         }
-        return mi
+        return null
     }
 
     override suspend fun getVIN() :String? = null

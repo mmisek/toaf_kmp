@@ -85,6 +85,7 @@
 
     <string name="module_coding">Codifica</string>
     <string name="activity_coding_subtitle">Codifica modulo</string>
+    <string name="activity_coding_no_scheme">Nessuno schema di codifica per questa centralina</string>
     <string name="activity_coding_button_read">Leggi</string>
     <string name="activity_coding_button_save">Salva</string>
     <string name="activity_coding_read_failure">Lettura codifica fallita</string>

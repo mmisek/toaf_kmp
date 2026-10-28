@@ -18,6 +18,8 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 import java.util.Locale
 import kotlinx.coroutines.CancellationException
+import pl.misek.toafmobile.modules.enums.ModuleFeature
+import kotlin.time.Duration.Companion.milliseconds
 
 private const val tag = "ModulePDC"
 open class ModulePDC protected constructor(
@@ -162,7 +164,8 @@ open class ModulePDC protected constructor(
                 (0xB6 + (address shr 8)).toByte(),
                 (address and 0xFF).toByte(),
                 size.toByte()
-            )
+            ),
+            500
         )
         try {
             return if (message.isValid) message.answer.copyOfRange(0x03, 3 + size) else null
@@ -192,10 +195,14 @@ open class ModulePDC protected constructor(
     }
 
     override fun getEepromReadSize(): Int {
-        return 0x08
+        return 0x20
     }
 
     override fun getEepromWriteSize(): Int {
-        return 0x08 / 2
+        return 0x08
+    }
+
+    override fun getNewFeatures(): Set<ModuleFeature> {
+        return super.getNewFeatures() + ModuleFeature.EepromProgramming
     }
 }
