@@ -98,6 +98,9 @@ open class ModuleDS2(
         return ds2?.write(moduleAddress.address, data)!!
     }
 
+    suspend fun interfaceWrite(data: Array<ByteArray>, timeout: Long?): OBDMessage {
+        return ds2?.write(moduleAddress.address, data, timeout)!!
+    }
     suspend fun interfaceWrite(command: Byte, data: ByteArray): OBDMessage {
         return ds2?.write(moduleAddress.address, command, data)!!
     }
