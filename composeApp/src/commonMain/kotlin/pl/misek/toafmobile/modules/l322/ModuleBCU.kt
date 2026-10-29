@@ -33,6 +33,9 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
     ModuleDS2(protocolDS2, ModuleAddress.MODULE_BCU_L322, listOf(CarType.L322)),
     IModuleCoding, IModuleEepromProgramming, IModuleAdvanceControl, IModuleServotronic,
     IModuleFlashProgramming /*, IModuleLiveData*/ {
+    private val EEPROM_START_ADDRESS = 0x0D00
+    private val EEPROM_BLOCK_SIZE = 0x10
+
     override fun getKoinName() = KoinNames.ModuleL322Bcu
 
     override fun getImageResource()  = Res.drawable.module_bcu
@@ -251,14 +254,14 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
         val message = interfaceWrite(
             byteArrayOf(
                 0x06,
-                0x03,
                 0x00,
                 0x00,
                 0x00,
                 ((address shr 8) and 0xFF).toByte(),
                 (address and 0xFF).toByte(),
                 size.toByte()
-            )
+            ),
+            500
         )
         try {
             return if (message.isValid) message.answer.copyOfRange(0x03, 3 + size) else null
@@ -266,19 +269,18 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
             throw ex
         } catch (ex : Exception)
         {
-            Logger.e {"$tag [readEeprom]: $ex, $message"}
+            Logger.e {"$tag [readMemoryBlock]: $ex, $message"}
             return null
         }
     }
 
-    override suspend fun readEeprom(address: Int, size: Int) = readMemoryBlock(0x0D00 + address, size)
+    override suspend fun readEeprom(address: Int, size: Int) = readMemoryBlock(EEPROM_START_ADDRESS + address, size)
 
     override suspend fun writeEeprom(address: Int, data: ByteArray): Boolean {
-        val adr  = address + 0x0D00
+        val adr  = address + EEPROM_START_ADDRESS
         val dataToWrite =
             byteArrayOf(
                 0x07,
-                0x03,
                 0x00,
                 0x00,
                 0x00,
@@ -286,12 +288,12 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
                 (adr and 0xFF).toByte(),
                 (data.size).toByte())  + data
 
-        return interfaceWrite(dataToWrite).isValid
+        return interfaceWrite(dataToWrite, 500).isValid
     }
 
     override fun getEepromSize(): Int = 0x300
 
-    override fun getEepromReadSize(): Int = 0x10
+    override fun getEepromReadSize() = EEPROM_BLOCK_SIZE
 
     override fun getEepromWriteSize(): Int  = 0x10 / 2
 

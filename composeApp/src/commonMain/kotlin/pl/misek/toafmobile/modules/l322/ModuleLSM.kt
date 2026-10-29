@@ -12,6 +12,7 @@ import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.ModuleAddress
 import pl.misek.toafmobile.modules.interfaces.IModuleCoding
 import pl.misek.toafmobile.modules.interfaces.IModuleControl
+import pl.misek.toafmobile.modules.interfaces.IModuleEepromProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.modules.interfaces.IModuleVIN
 import pl.misek.toafmobile.protocols.OBDMessage
@@ -28,12 +29,18 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
     IModuleVIN,
     IModuleControl,
     IModuleCoding,
-    IModuleLiveData
+    IModuleLiveData,
+    IModuleEepromProgramming
     //IModuleAdvanceControl
 {
 
-    //private val EEPROM_SIZE = 768
-    //private val EEPROM_READ_SIZE = 0x24
+    // Obraz EEPROM LCM = pamiec 0x0D00-0x0FFF (768 B, jak LCM_eep.bin w BMW Scanner).
+    // Offset w pliku = adres pamieci - 0x0D00: ident/VIN/status na poczatku, dalej kodowanie/kalibracja.
+    private val EEPROM_BASE = 0x0D00
+    private val EEPROM_SIZE = 0x300
+    private val EEPROM_BLOCK = 0x20          // {06 Hi Lo} zwraca staly blok 32 B
+    private val EEPROM_HEADER_LEN = 0x19     // 0x0D00-0x0D18: ident(12)+{02 00}(13), chronione przed {06}
+    private val MEMORY_READ_TIMEOUT = 500L
     private val tag = "ModuleLSM_L322"
     private val marketEce = arrayOf(
         byteArrayOf(0x00,0x5E,0x1B,0x8B.toByte(),0x65,0x63,0x65,0x11,0x03,0x13,0x8B.toByte(),0x20,0x03,0x14,0x88.toByte(),0x40,0x12,0xDB.toByte(),0x01,0x4D,0xF6.toByte(),0x05,0x50,0x7C,0x05,0x50,0x5D,0x26,0x08,0xF6.toByte(),0x05),
@@ -305,28 +312,57 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
             }
         }
         return data
-    } /*
-
-
-    @Override
-    public byte[] ReadEeprom(int address, int size) {
-        OBDMessage message = InterfaceWrite(
-                new byte[]{0x06,0x06,0x0D, (byte)(0x1 + (address>>8)),(byte)(address &0xFF),(byte)size});
-        return message.isValid()  ? message.answer.copyOfRange(0x03,3+size) : null;
     }
 
-    @Override
-    public boolean WriteEeprom(int address, byte[] data) {
-        byte[] dataToWrite = Tools.AddArrays(
-                new byte[] { 0x07,0x03,0x00,0x00,0x00, (byte)(0x0D + (address>>8)),(byte)(address &0xFF),(byte)(data.length)}, data);
-        return InterfaceWrite(dataToWrite).isValid();
+    // Odczyt pamieci {06 AddrHi AddrLo} - zwraca staly blok 32 B (bez pola rozmiaru), timeout 500 ms.
+    private suspend fun readMemory(memoryAddress: Int, size: Int): ByteArray? {
+        val message = interfaceWrite(
+            byteArrayOf(
+                0x06,
+                (memoryAddress shr 8).toByte(),
+                (memoryAddress and 0xFF).toByte()
+            ),
+            MEMORY_READ_TIMEOUT
+        )
+        return if (message.isValid) message.answer.copyOfRange(0x03, 0x03 + size) else null
     }
 
-    @Override
-    public int GetEepromSize() { return EEPROM_SIZE; }
-    @Override
-    public int GetEepromReadSize() { return EEPROM_READ_SIZE; }
-    @Override
-    public int GetEepromWriteSize() { return EEPROM_READ_SIZE / 2; }
-     */
+    private suspend fun readEepromHeader(): ByteArray? {
+        val ident = interfaceWrite(byteArrayOf(0x00), MEMORY_READ_TIMEOUT)
+        val status = interfaceWrite(byteArrayOf(0x02, 0x00), MEMORY_READ_TIMEOUT)
+        if (!ident.isValid || !status.isValid) return null
+        return ident.answer.copyOfRange(3, 3 + 12) + status.answer.copyOfRange(4, 4 + 13)
+    }
+
+    override suspend fun readEeprom(address: Int, size: Int): ByteArray? {
+        return try {
+            if (address >= EEPROM_HEADER_LEN)
+                return readMemory(EEPROM_BASE + address, size)
+            val header = readEepromHeader() ?: return null
+            val headEnd = minOf(address + size, EEPROM_HEADER_LEN)
+            val headPart = header.copyOfRange(address, headEnd)
+            if (address + size <= EEPROM_HEADER_LEN) headPart
+            else {
+                val rest = readMemory(EEPROM_BASE + EEPROM_HEADER_LEN, address + size - EEPROM_HEADER_LEN)
+                    ?: return null
+                headPart + rest
+            }
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex: Exception) {
+            Logger.e { "$tag [readEeprom], $ex" }
+            null
+        }
+    }
+
+    // Zapis EEPROM niezweryfikowany dla LCM - na razie wylaczony (tylko odczyt).
+    override suspend fun writeEeprom(address: Int, data: ByteArray): Boolean = false
+
+    override val eepromWriteAvailable: Boolean = false
+
+    override fun getEepromSize(): Int = EEPROM_SIZE
+
+    override fun getEepromReadSize(): Int = EEPROM_BLOCK
+
+    override fun getEepromWriteSize(): Int = EEPROM_BLOCK
 }

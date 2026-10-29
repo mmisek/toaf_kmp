@@ -51,7 +51,7 @@
 | GS8601 | ✓ | X | ✓ | X |
 | HEVAC | X | X | X | X |
 | IKE | X | X | X | X |
-| LSM | X | X | X | X |
+| LSM | ✓ | X | X | X |
 | LWS | ✓ | ✓ | X | X |
 | ME72 | X | X | ✓ | X |
 | MFL | X | X | X | X |
