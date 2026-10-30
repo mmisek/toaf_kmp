@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_scan_title">Сканирование автомобиля</string>
+    <string name="activity_scan_header">Сканирование авто</string>
+    <string name="activity_scan_button_scan">Сканировать</string>
+    <string name="activity_scan_button_clear_all">Удалить все ошибки</string>
+    <string name="activity_scan_column_module">Модуль</string>
+    <string name="activity_scan_column_present">Найден</string>
+    <string name="activity_scan_column_errors">Ошибки</string>
+    <string name="activity_scan_button_clear">Удалить</string>
+    <string name="activity_scan_present_yes">ДА</string>
+    <string name="activity_scan_present_no">НЕТ</string>
+    <string name="activity_scan_successful">Сканирование завершено</string>
+    <string name="activity_scan_failed">Модули не найдены</string>
+    <string name="activity_scan_clear_successful">Ошибки удалены</string>
+    <string name="activity_scan_clear_failed">Не удалось удалить ошибки</string>
+    <string name="activity_scan_unexpected_error">Непредвиденная ошибка</string>
+</resources>

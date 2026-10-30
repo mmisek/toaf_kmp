@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_scan_title">Skan pojazdu</string>
+    <string name="activity_scan_header">Skanowanie pojazdu</string>
+    <string name="activity_scan_button_scan">Skanuj</string>
+    <string name="activity_scan_button_clear_all">Kasuj wszystkie błędy</string>
+    <string name="activity_scan_column_module">Moduł</string>
+    <string name="activity_scan_column_present">Obecny</string>
+    <string name="activity_scan_column_errors">Błędy</string>
+    <string name="activity_scan_button_clear">Kasuj</string>
+    <string name="activity_scan_present_yes">TAK</string>
+    <string name="activity_scan_present_no">NIE</string>
+    <string name="activity_scan_successful">Skanowanie zakończone</string>
+    <string name="activity_scan_failed">Nie znaleziono żadnego modułu</string>
+    <string name="activity_scan_clear_successful">Błędy skasowane</string>
+    <string name="activity_scan_clear_failed">Kasowanie błędów nie powiodło się</string>
+    <string name="activity_scan_unexpected_error">Nieoczekiwany błąd</string>
+</resources>

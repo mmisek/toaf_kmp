@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_scan_title">Vehicle scan</string>
+    <string name="activity_scan_header">Car scan</string>
+    <string name="activity_scan_button_scan">Scan</string>
+    <string name="activity_scan_button_clear_all">Clear all errors</string>
+    <string name="activity_scan_column_module">Module</string>
+    <string name="activity_scan_column_present">Present</string>
+    <string name="activity_scan_column_errors">Errors</string>
+    <string name="activity_scan_button_clear">Clear</string>
+    <string name="activity_scan_present_yes">YES</string>
+    <string name="activity_scan_present_no">NO</string>
+    <string name="activity_scan_successful">Scan complete</string>
+    <string name="activity_scan_failed">No module found</string>
+    <string name="activity_scan_clear_successful">Errors cleared</string>
+    <string name="activity_scan_clear_failed">Clearing errors failed</string>
+    <string name="activity_scan_unexpected_error">Unexpected error</string>
+</resources>
