@@ -5,10 +5,13 @@ import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -25,6 +28,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
@@ -44,6 +48,8 @@ import org.koin.compose.viewmodel.koinViewModel
 import pl.misek.toafmobile.BuildKonfig
 import pl.misek.toafmobile.PlatformType
 import pl.misek.toafmobile.viewModels.UserInfoViewModel
+import pl.misek.toafmobile.activities.composeModels.DoctorAnimation
+import pl.misek.toafmobile.activities.composeModels.CarScanAnimation
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.TopBarModelMainActivity
 import pl.misek.toafmobile.activities.composeModels.dialogs.DialogAbout
@@ -230,21 +236,31 @@ fun ActivityMainModel(
                     .padding(paddingValues)
                     .background(ToafColors.toafBackground)
                     .fillMaxSize()
-            ) {
-                ToafButtons.GreenButton(
-                    modifier = Modifier
-                        .padding(5.dp)
-                        .fillMaxWidth(),
-                    buttonText = Res.string.activity_main_button_diagnostic,
-                    onClick = {onClickDiagnosticButton()}
-                )
-                ToafButtons.GreenButton(
-                    modifier = Modifier
-                        .padding(5.dp)
-                        .fillMaxWidth(),
-                    buttonText = "Scan",
-                    onClick = {oncClickScanButton()}
-                )
+            )
+            {
+                Row(modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Min))
+                {
+                    ToafButtons.AnimatedButton(
+                        modifier = Modifier
+                            .padding(5.dp)
+                            .weight(1f)
+                            .fillMaxHeight(),
+                        buttonText = Res.string.activity_main_button_diagnostic,
+                        onClick = { onClickDiagnosticButton() },
+                        animation = { DoctorAnimation(it) },
+                        fontSize = 19.sp
+                    )
+                    ToafButtons.AnimatedButton(
+                        modifier = Modifier
+                            .padding(5.dp)
+                            .weight(1f)
+                            .fillMaxHeight(),
+                        buttonText = Res.string.activity_scan_title,
+                        onClick = { oncClickScanButton() },
+                        animation = { CarScanAnimation(it) },
+                        fontSize = 19.sp
+                    )
+                }
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(2),
                     contentPadding = PaddingValues(2.dp),
