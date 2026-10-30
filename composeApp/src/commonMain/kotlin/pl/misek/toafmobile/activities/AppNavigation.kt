@@ -16,6 +16,7 @@ import pl.misek.toafmobile.activities.composeModels.activities.ActivityMainModel
 import pl.misek.toafmobile.activities.composeModels.activities.ActivityModuleAdvanceCodingModel
 import pl.misek.toafmobile.activities.composeModels.activities.ActivityModuleCodingModel
 import pl.misek.toafmobile.activities.composeModels.activities.ActivityModuleModel
+import pl.misek.toafmobile.activities.composeModels.activities.ActivityScanModel
 import pl.misek.toafmobile.koin.KoinNames
 
 @Composable
@@ -30,6 +31,7 @@ fun AppNavigation(onExitApp: () -> Unit) {
         composable<ComposableMain>{
             ActivityMainModel(
                 onClickDiagnosticButton = {navController.navigate(ComposableDiagnostic)},
+                oncClickScanButton = {navController.navigate(ComposableScan)},
                 onExitApplication = { onExitApp()},
                 0)
         }
@@ -37,6 +39,11 @@ fun AppNavigation(onExitApp: () -> Unit) {
             ActivityDiagnosticModel(
                 onBackClick = {navController.popBackStack()},
                     onClick = {koinName -> navController.navigate(ComposableModule(koinName.name))}
+            )
+        }
+        composable<ComposableScan> {
+            ActivityScanModel(
+                onBackClick = {navController.popBackStack()}
             )
         }
         composable<ComposableModule>(){ backStackEntry ->
@@ -101,6 +108,8 @@ fun AppNavigation(onExitApp: () -> Unit) {
 
 @Serializable
 object ComposableDiagnostic
+@Serializable
+object ComposableScan
 @Serializable
 object ComposableMain
 @Serializable

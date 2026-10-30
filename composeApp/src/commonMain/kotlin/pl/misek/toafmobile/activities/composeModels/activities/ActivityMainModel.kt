@@ -94,6 +94,7 @@ private enum class DialogType
 @Composable
 fun ActivityMainModel(
     onClickDiagnosticButton : () ->Unit,
+    oncClickScanButton: () -> Unit,
     onExitApplication : () -> Unit,
     updateInterface : Int
 ) {
@@ -236,6 +237,13 @@ fun ActivityMainModel(
                         .fillMaxWidth(),
                     buttonText = Res.string.activity_main_button_diagnostic,
                     onClick = {onClickDiagnosticButton()}
+                )
+                ToafButtons.GreenButton(
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .fillMaxWidth(),
+                    buttonText = "Scan",
+                    onClick = {oncClickScanButton()}
                 )
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(2),
@@ -625,6 +633,7 @@ fun ActivityMainModelPreview()
 {
     ActivityMainModel(
         onClickDiagnosticButton = {},
+        oncClickScanButton = {},
         onExitApplication = {},
         updateInterface = 0
     )
