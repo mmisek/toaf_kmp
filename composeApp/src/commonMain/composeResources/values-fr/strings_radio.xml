@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- video -->
+    <string name="module_description_radio">Autoradio</string>
+    <string name="radio_module_info_name">Nom</string>
+    <string name="radio_error_00">Mode économie d\'énergie actif</string>
+    <string name="radio_error_01">Défaut interface changeur CD</string>
+    <string name="radio_error_02">Défaut alimentation antenne</string>
+    <string name="radio_error_03">Lecteur CD interne : température élevée</string>
+    <string name="radio_error_04">Lecteur CD interne : défaut matériel</string>
+    <string name="radio_error_05">Lecteur CD interne : erreur de lecture</string>
+
+    <string name="radio_error_present">Présent</string>
+    <string name="radio_error_not_present">Non présent</string>
+
+    <string name = "radio_control_default_volume">Volume - par défaut</string>
+    <string name = "radio_control_speaker_left_front">Haut-parleur - avant gauche</string>
+    <string name = "radio_control_speaker_right_front">Haut-parleur - avant droit</string>
+    <string name = "radio_control_speaker_right_rear">Haut-parleur - arrière droit</string>
+    <string name = "radio_control_speaker_left_rear">Haut-parleur - arrière gauche</string>
+    <string name = "radio_control_volume_up">Volume - augmenter</string>
+    <string name = "radio_control_volume_down">Volume - diminuer</string>
+    <string name = "radio_control_seek_up">Recherche - haut</string>
+    <string name = "radio_control_seek_down">Recherche - bas</string>
+    <string name = "radio_control_gal_inc">GAL - augmenter</string>
+    <string name = "radio_control_gal_dec">GAL - diminuer</string>
+    <string name = "radio_control_switch_seek">Recherche - commuter</string>
+    <string name = "radio_control_vf_dec">VF - diminuer</string>
+    <string name = "radio_control_vf_inc">VF - augmenter</string>
+    <string name = "radio_control_frequency">Fréquence</string>
+    <string name = "radio_control_audio_key">Touche audio</string>
+
+    <string name = "radio_live_data_value_signal_too_low">trop bas</string>
+    <string name = "radio_live_data_value_signal_too_high">trop haut</string>
+    <string name = "radio_live_data_value_short">court-circuit</string>
+    <string name = "radio_live_data_value_line_is_open">circuit ouvert</string>
+
+    <string name="radio_coding_country">Région</string>
+    <string name="radio_coding_gal">GAL</string>
+    <string name="radio_coding_rds_af_mode">Mode RDS et AF</string>
+    <string name="radio_coding_key_memory_radio">Mémoire autoradio par clé</string>
+    <string name="radio_coding_pty_table">Région PTY</string>
+    <string name="radio_coding_tp_function">Infos trafic (TP)</string>
+    <string name="radio_coding_tp_minimal_volume">Volume minimal TP</string>
+    <string name="radio_coding_rds_region">Région RDS</string>
+
+    <string name="radio_module_info_serial_dom">Numéro de série (DOM)</string>
+    <string name="radio_control_normal_mode_on">Mode normal activé</string>
+    <string name="radio_control_production_mode_on">Mode production activé</string>
+    <string name="radio_control_transport_mode_on">Mode transport activé</string>
+    <string name="radio_control_workshop_mode_on">Mode atelier activé</string>
+    <string name="radio_live_data_radio_on">Autoradio allumé</string>
+    <string name="radio_live_data_key_pressed">Touche autoradio appuyée</string>
+    <string name="radio_live_data_phone_mute">Coupure son téléphone active</string>
+    <string name="radio_live_data_gal_curve">Courbe GAL</string>
+    <string name="radio_live_data_seek_threshold">Seuil de recherche</string>
+    <string name="radio_live_data_dsp">DSP présent</string>
+    <string name="radio_live_data_aux_adapter">Adaptateur AUX</string>
+    <string name="radio_live_data_antenna_diversity">Diversité d\'antenne</string>
+    <string name="radio_live_data_vf_volume">Volume minimal VF</string>
+    <string name="radio_live_data_gal_speed">Signal de vitesse GAL</string>
+    <string name="radio_live_data_field_strength">Intensité du champ</string>
+    <string name="radio_live_data_value_aux_none">aucun</string>
+    <string name="radio_live_data_value_aux_internal">interne</string>
+    <string name="radio_live_data_value_aux_external">externe</string>
+    <string name="radio_live_data_value_antenna_diversity_absent">non présent</string>
+    <string name="radio_live_data_value_antenna_diversity_present">présent</string>
+
+</resources>

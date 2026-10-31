@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_ipk">Combiné d\'instruments</string>
+    <!-- MODULE IPK-->
+    <string name="ipk_error_CD">Signal EC 1</string>
+    <string name="ipk_error_C1">Signal TWEG+ (générateur d\'impulsions de roue)</string>
+    <string name="ipk_error_C3">Signal TD (régime moteur)</string>
+    <string name="ipk_error_D3">Température du liquide de refroidissement</string>
+    <string name="ipk_error_CE">Température extérieure</string>
+    <string name="ipk_error_C7">Capteur à levier 1</string>
+    <string name="ipk_error_D7">Capteur à levier 2</string>
+    <string name="ipk_error_8F">Surtension (U>16V)</string>
+    <string name="ipk_error_8D">Signal ATS : erreur de télégramme ou aucun télégramme</string>
+    <string name="ipk_error_90">Borne 15</string>
+    <string name="ipk_error_8C">Borne R</string>
+    <string name="ipk_error_CF">Réinitialisation SII</string>
+    <string name="ipk_error_44">Pression d\'huile</string>
+    <string name="ipk_error_8B">Signal sonore 3</string>
+    <string name="ipk_error_3F">Pilote des instruments à aiguille</string>
+    <string name="ipk_error_BE">Erreur EEPROM du module d\'éclairage</string>
+    <string name="ipk_error_BF">Erreur EEPROM IKE, codage incorrect/incomplet</string>
+    <string name="ipk_error_83">Vitesse A</string>
+    <string name="ipk_error_88">I-Bus</string>
+    <string name="ipk_error_87">K-Bus</string>
+    <string name="ipk_error_F0">Bus CAN coupé</string>
+    <string name="ipk_error_F4">Bus CAN 244</string>
+    <string name="ipk_error_F5">Aucun identifiant bus CAN - ASC</string>
+    <string name="ipk_error_F6">Aucun identifiant bus CAN - DME1</string>
+    <string name="ipk_error_F7">Aucun identifiant bus CAN - DME2</string>
+    <string name="ipk_error_F8">Aucun identifiant bus CAN - DME4</string>
+    <string name="ipk_error_FB">Aucun identifiant bus CAN - EGS1</string>
+    <string name="ipk_error_FC">Aucun identifiant bus CAN - SMG1</string>
+    <string name="ipk_error_desc_01">Court-circuit au plus (+BAT)</string>
+    <string name="ipk_error_desc_02">Court-circuit à la masse</string>
+    <string name="ipk_error_desc_03">Circuit ouvert</string>
+    <string name="ipk_error_desc_04">Plage de fonctionnement invalide</string>
+    <string name="ipk_error_desc_40">Défaut présent</string>
+    <string name="ipk_error_desc_80">Défaut sporadique</string>
+    <!-- coding -->
+    <string name="ipk_coding_buzzer_high_frequency">Vibreur - fréquence haute</string>
+    <string name="ipk_coding_buzzer_low_frequency">Vibreur - fréquence basse</string>
+    <string name="ipk_coding_msg_display_time_1">Messages - durée d\'affichage 1</string>
+    <string name="ipk_coding_msg_display_time_2">Messages - durée d\'affichage 2</string>
+    <string name="ipk_coding_r40_r41_select">Break/berline</string>
+    <string name="ipk_coding_engine_temp_threshold">Seuil de température moteur</string>
+    <string name="ipk_coding_sia_upper_rpm">Indicateur d\'intervalle d\'entretien - régime haut</string>
+    <string name="ipk_coding_sia_lower_rpm">Indicateur d\'intervalle d\'entretien - régime bas</string>
+    <string name="ipk_coding_sia_interval_distance">Indicateur d\'intervalle d\'entretien - distance</string>
+    <string name="ipk_coding_sia_time_limit">Indicateur d\'intervalle d\'entretien - limite de temps [jours]</string>
+    <string name="ipk_coding_consumption_cal_factor">Facteur de calibrage de la consommation</string>
+    <string name="ipk_coding_tc_range_until_mt_value">Ordinateur de bord - autonomie jusqu\'à la valeur (boîte manuelle)</string>
+    <string name="ipk_coding_last_service_type">Type du dernier entretien</string>
+    <string name="ipk_coding_tc_on_k_bus">Antipatinage sur K-BUS</string>
+    <string name="ipk_coding_sls_warning">Système d\'air secondaire</string>
+    <string name="ipk_coding_asc1">Antipatinage</string>
+    <string name="ipk_coding_front_fog_message">Message - antibrouillards avant</string>
+    <string name="ipk_coding_coding_done">Codage terminé</string>
+    <string name="ipk_coding_cc_washer_fluid">Surveillance du niveau de lave-glace</string>
+    <string name="ipk_coding_cc_doors">Surveillance de l\'ouverture des portes</string>
+    <string name="ipk_coding_cc_lights">Surveillance des feux</string>
+    <string name="ipk_coding_seat_belt">Surveillance des ceintures de sécurité</string>
+    <string name="ipk_coding_light_warning">Alerte feux</string>
+    <string name="ipk_coding_break_pad_wear">Surveillance des plaquettes de frein</string>
+    <string name="ipk_coding_key_inserted_warning">Alerte clé insérée</string>
+    <string name="ipk_coding_drive_hand">Conduite à gauche/à droite</string>
+    <string name="ipk_coding_sia_algorithm">Indicateur d\'intervalle d\'entretien - algorithme</string>
+    <string name="ipk_coding_high_line">Afficheur LCD</string>
+    <string name="ipk_coding_speedo_display">Compteur de vitesse numérique</string>
+    <string name="ipk_coding_temperature_units">Unité de température</string>
+    <string name="ipk_coding_fuel_consumption_units">Unité de consommation</string>
+    <string name="ipk_coding_trip2">Ordinateur de bord journalier</string>
+    <string name="ipk_coding_distance_to_servce">Distance jusqu\'à l\'entretien - unité</string>
+    <string name="ipk_coding_ex_temp_warning_acoustics">Alerte de température extérieure</string>
+    <string name="ipk_coding_vehicle_type">Type de véhicule</string>
+    <string name="ipk_coding_message_centre_language">Langue des messages LCD</string>
+    <string name="ipk_coding_pulse_no_km_speedo_comp">Impulsions/km pour le compteur de vitesse</string>
+    <string name="ipk_coding_gear_box_type">Type de boîte de vitesses</string>
+    <string name="ipk_coding_pulse_no_km_speedo">Impulsions/km</string>
+    <string name="ipk_coding_pulse_no_km_odo">Impulsions/km pour le compteur kilométrique</string>
+    <string name="ipk_coding_pulse_no_km_do_comp">Impulsions/km pour l\'ordinateur de bord</string>
+    <string name="ipk_coding_engine">Type de moteur</string>
+    <string name="ipk_coding_sia_liter_limit">Indicateur d\'intervalle d\'entretien - limite</string>
+    <string name="ipk_coding_sia_indication_parameter">Indicateur d\'intervalle d\'entretien - paramètre</string>
+    <string name="ipk_coding_audible_speed_warning">Alerte de vitesse</string>
+    <!-- control -->
+    <string name="ipk_control_self_test">Autotest</string>
+    <string name="ipk_control_lights_error">Témoin - défaillance des feux</string>
+    <string name="ipk_control_rear_fog">Témoin - antibrouillard arrière</string>
+    <string name="ipk_control_self_leveling_system">Témoin - correcteur d\'assiette</string>
+    <string name="ipk_control_engine_failure">Témoin - défaut moteur</string>
+    <string name="ipk_control_speed_limit">Témoin - survitesse</string>
+    <string name="ipk_control_light_failure_trailer">Témoin - défaillance des feux de remorque</string>
+    <string name="ipk_control_glow_plug">Témoin - bougies de préchauffage</string>
+    <string name="ipk_control_break_pads">Témoin - plaquettes de frein</string>
+    <string name="ipk_control_traction">Témoin - antipatinage</string>
+    <string name="ipk_control_coolant_level">Témoin - niveau de liquide de refroidissement bas</string>
+    <string name="ipk_control_doors_open">Témoin - portes ouvertes</string>
+    <string name="ipk_control_wash_fluid_level">Témoin - niveau de lave-glace bas</string>
+    <string name="ipk_control_front_fog">Témoin - antibrouillards avant</string>
+    <string name="ipk_control_hand_break">Témoin - frein à main/système de freinage</string>
+    <string name="ipk_control_coolant_temp">Témoin - température du liquide de refroidissement trop élevée</string>
+    <string name="ipk_control_fuel_reserve">Témoin - niveau de carburant bas</string>
+    <string name="ipk_control_cruise_control">Témoin - régulateur de vitesse</string>
+    <string name="ipk_control_high_beam">Témoin - feux de route</string>
+    <string name="ipk_control_speed">Indicateur - compteur de vitesse</string>
+    <string name="ipk_control_rpm">Indicateur - compte-tours</string>
+    <string name="ipk_control_temperature">Indicateur - température du liquide de refroidissement</string>
+    <string name="ipk_control_fuel">Indicateur - jauge à carburant</string>
+    <string name="ipk_control_left">Témoin -  clignotant gauche</string>
+    <string name="ipk_control_right">Témoin - clignotant droit</string>
+    <string name="ipk_control_back_light">Niveau du rétroéclairage</string>
+    <string name="ipk_control_gong_test_off">Test signal sonore - arrêt</string>
+    <string name="ipk_control_gong_test_1">Test signal sonore - son 1</string>
+    <string name="ipk_control_gong_test_2">Test signal sonore - son 2</string>
+    <string name="ipk_control_gong_test_3">Test signal sonore - son 3</string>
+    <string name="ipk_control_lcd_test">Test LCD</string>
+    <string name="ipk_control_service_reset">Remise à zéro entretien</string>
+
+    <!-- activity coding ipk -->
+    <string name="activity_coding_ipk">Codage avancé</string>
+    <string name="activity_coding_ipk_tittle">Codage et programmation avancés</string>
+
+    <string-array name="activity_coding_ipk_service_type">
+        <item>Vidange</item>
+        <item>Entretien périodique (temps)</item>
+        <item>Entretien SIA</item>
+        <item>Tous les entretiens</item>
+    </string-array>
+
+    <string name="ipk_live_data_battery_voltage">Tension batterie</string>
+    <string name="ipk_live_data_fuel_level_sensor">Capteur de niveau de carburant (ADC)</string>
+    <string name="ipk_live_data_outside_temperature_sensor">Capteur de température extérieure (ADC)</string>
+    <string name="ipk_live_data_vehicle_speed">Vitesse véhicule</string>
+    <string name="ipk_live_data_engine_speed">Régime moteur</string>
+    <string name="ipk_live_data_fuel_consumption">Consommation de carburant</string>
+    <string name="ipk_live_data_engine_temperature">Température moteur</string>
+    <string name="ipk_live_data_wash_fluid_level">Niveau de lave-glace</string>
+    <string name="ipk_live_data_brake_system_fail">Défaillance du système de freinage</string>
+    <string name="ipk_live_data_seat_belt">Ceinture de sécurité</string>
+    <string name="ipk_live_data_crank_sense">Démarreur (borne 50)</string>
+    <string name="ipk_live_data_cruise_control">Régulateur de vitesse</string>
+    <string name="ipk_live_data_oil_pressure">Pression d\'huile</string>
+    <string name="ipk_live_data_reverse_gear">Marche arrière</string>
+    <string name="ipk_live_data_coolant_level">Niveau de liquide de refroidissement</string>
+    <string name="ipk_live_data_auxiliary_sense">Accessoires (borne R)</string>
+    <string name="ipk_live_data_ignition_sense">Allumage (borne 15)</string>
+    <string name="ipk_live_data_trip_switch">Bouton trip</string>
+    <string name="ipk_live_data_trip_reset">Bouton de remise à zéro trip</string>
+    <string name="ipk_live_data_brake_pad_warning">Alerte d\'usure des plaquettes de frein</string>
+    <string name="ipk_live_data_handbrake">Frein à main</string>
+    <string name="ipk_live_data_battery_charge_warning">Alerte de charge batterie</string>
+    <string name="ipk_live_data_airbag_fault">Défaut airbag</string>
+    <string name="ipk_live_data_abs_system_fail">Défaillance du système ABS</string>
+    <string name="ipk_live_data_value_low">Bas</string>
+    <string name="ipk_live_data_value_normal">Normal</string>
+    <string name="ipk_live_data_value_off">Désactivé</string>
+    <string name="ipk_live_data_value_on">Activé</string>
+    <string name="ipk_live_data_value_unbuckled">Non bouclée</string>
+    <string name="ipk_live_data_value_buckled">Bouclée</string>
+    <string name="ipk_live_data_value_forward">Marche avant</string>
+    <string name="ipk_live_data_value_reverse">Marche arrière</string>
+</resources>

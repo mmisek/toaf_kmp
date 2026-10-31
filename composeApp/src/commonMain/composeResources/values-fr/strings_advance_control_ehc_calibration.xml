@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_ehc_calibration_title">Calibrage de la hauteur de caisse</string>
+    <string name="advance_control_ehc_calibration_info">Garez le véhicule sur un sol plat à hauteur normale, portes fermées. Mesurez l\'écart de chaque roue par rapport à la hauteur nominale et saisissez-le en mm (+ = plus haut). Calibrez un essieu à la fois.</string>
+    <string name="advance_control_ehc_calibration_axle_front">Essieu avant</string>
+    <string name="advance_control_ehc_calibration_axle_rear">Essieu arrière</string>
+    <string name="advance_control_ehc_calibration_left">Gauche</string>
+    <string name="advance_control_ehc_calibration_right">Droite</string>
+    <string name="advance_control_ehc_calibration_ecu_height">Hauteur (calculateur) [mm]</string>
+    <string name="advance_control_ehc_calibration_measured">Mesurée [mm]</string>
+    <string name="advance_control_ehc_calibration_measured_left">Mesurée gauche [mm]</string>
+    <string name="advance_control_ehc_calibration_measured_right">Mesurée droite [mm]</string>
+    <string name="advance_control_ehc_calibration_deviation">Écart [mm]</string>
+    <string name="advance_control_ehc_calibration_offset_old">Offset actuel</string>
+    <string name="advance_control_ehc_calibration_offset_new">Nouvel offset</string>
+    <string name="advance_control_ehc_calibration_calculate">Calculer</string>
+    <string name="advance_control_ehc_calibration_write">Écrire le calibrage</string>
+    <string name="advance_control_ehc_calibration_out_of_range">Nouvel offset hors plage (100–900) – le calibrage ne peut pas être écrit. Vérifiez les mesures.</string>
+    <string name="advance_control_ehc_calibration_store_leak">Mémoriser les hauteurs de référence</string>
+    <string name="advance_control_ehc_calibration_store_leak_info">L\'écriture du calibrage efface la référence de détection de fuite. Après le calibrage des deux essieux, mémorisez les hauteurs actuelles (véhicule à hauteur normale).</string>
+    <string name="advance_control_ehc_calibration_leak_set">Référence de détection de fuite : mémorisée</string>
+    <string name="advance_control_ehc_calibration_leak_not_set">Référence de détection de fuite : non mémorisée</string>
+    <string name="advance_control_ehc_calibration_calculate_failed">Échec du calcul du calibrage</string>
+    <string name="advance_control_ehc_calibration_write_successful">Calibrage écrit</string>
+    <string name="advance_control_ehc_calibration_write_failed">Échec de l\'écriture du calibrage</string>
+    <string name="advance_control_ehc_calibration_store_successful">Hauteurs de référence mémorisées</string>
+    <string name="advance_control_ehc_calibration_store_failed">Échec de la mémorisation des hauteurs de référence</string>
+    <string name="advance_control_ehc_calibration_busy">Communication en cours…</string>
+</resources>

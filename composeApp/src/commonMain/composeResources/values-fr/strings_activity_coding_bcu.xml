@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_coding_bcu">Codage avancé</string>
+    <string name="activity_coding_bcu_tittle">Codage avancé et programmation</string>
+    <string name="activity_coding_bcu_keys">Programmation des clés</string>
+    <string name="activity_coding_bcu_key_add">Ajouter</string>
+    <string name="activity_coding_bcu_key_delete">Supprimer</string>
+    <string name="activity_coding_bcu_key_number">Clé : %1$d</string>
+    <string name="activity_coding_bcu_key_empty">Vide</string>
+    <string name="activity_coding_bcu_key_read_error">Erreur de lecture !</string>
+    <string name="activity_coding_bcu_key_remove_tittle">Supprimer la clé</string>
+    <string name="activity_coding_bcu_key_remove_message">Voulez-vous vraiment supprimer cette clé ?</string>
+    <string name="activity_coding_bcu_key_remove_yes">Oui</string>
+    <string name="activity_coding_bcu_key_remove_no">Non</string>
+    <string name="activity_coding_bcu_key_remove_error">Erreur de suppression de la clé</string>
+    <string name="activity_coding_bcu_key_remove_key_successful">Suppression de la clé réussie</string>
+    <string name="activity_coding_bcu_key_add_tittle">Ajouter une nouvelle clé</string>
+    <string name="activity_coding_bcu_key_add_message">Saisissez le code de la clé</string>
+    <string name="activity_coding_bcu_key_add_button_add">Ajouter</string>
+    <string name="activity_coding_bcu_key_add_hint">ex. AB54CA</string>
+    <string name="activity_coding_bcu_key_add_help">Le code de la clé se trouve sur l\'étiquette à code-barres. Saisissez les 6 caractères encadrés en rouge sur l\'image.</string>
+    <string name="activity_coding_bcu_key_add_button_cancel">Annuler</string>
+    <string name="activity_coding_bcu_key_add_error">Erreur d\'ajout de la clé</string>
+    <string name="activity_coding_bcu_key_add_successful">Ajout de la clé réussi</string>
+    <string name="activity_coding_bcu_key_code_not_valid">Le code de clé saisi n\'est pas valide</string>
+    <string name="activity_coding_bcu_key_add_not_supported">Pas encore pris en charge.</string>
+    <string name="activity_coding_bcu_key_add_sign">+</string>
+    <string name="activity_coding_bcu_key_del_sign">-</string>
+
+</resources>

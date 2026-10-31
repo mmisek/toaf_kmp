@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_abs_bleeding_title">Purge des freins</string>
+    <string name="advance_control_abs_bleeding_instruction">Remplissez le réservoir de liquide de frein, branchez un tuyau sur la vis de purge de la roue sélectionnée et ouvrez-la. Maintenez la pédale de frein enfoncée pendant le fonctionnement de la pompe. Refermez la vis de purge à la fin de la procédure et complétez le niveau de liquide.</string>
+    <string name="advance_control_abs_bleeding_front_left">Avant gauche</string>
+    <string name="advance_control_abs_bleeding_front_right">Avant droite</string>
+    <string name="advance_control_abs_bleeding_rear_left">Arrière gauche</string>
+    <string name="advance_control_abs_bleeding_rear_right">Arrière droite</string>
+    <string name="advance_control_abs_bleeding_modulator">Modulateur (toutes les roues)</string>
+    <string name="advance_control_abs_bleeding_ready">Sélectionnez une roue à purger</string>
+    <string name="advance_control_abs_bleeding_progress">%1$s - cycle %2$d / %3$d</string>
+    <string name="advance_control_abs_bleeding_stop">STOP</string>
+    <string name="advance_control_abs_bleeding_successful">Purge des freins terminée</string>
+    <string name="advance_control_abs_bleeding_failed">Échec de la purge des freins</string>
+    <string name="advance_control_abs_bleeding_stopped">Purge des freins arrêtée</string>
+</resources>
