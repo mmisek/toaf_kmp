@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_gateway">Gateway (V8)</string>
+    <!-- Gateway X12 - codes de défaut -->
+    <string name="gateway_error_1480">Sortie ventilateur petite vitesse</string>
+    <string name="gateway_error_1520">Entrée pression d\'huile</string>
+    <string name="gateway_error_1623">Sortie témoin d\'alternateur</string>
+    <string name="gateway_error_1670">Sortie témoin de pression d\'huile</string>
+    <string name="gateway_error_1671">Sortie témoin de défaut de freinage</string>
+    <string name="gateway_error_1672">Sortie relais du système</string>
+    <string name="gateway_error_1673">Sortie demande de climatisation</string>
+    <string name="gateway_error_1675">Antidémarrage : pas de code EWS3</string>
+    <string name="gateway_error_1676">Antidémarrage : pas de réponse ID PCM</string>
+    <string name="gateway_error_1677">Antidémarrage : message SCP manquant</string>
+    <string name="gateway_error_1678">Antidémarrage : l\'état du système de sécurité ne correspond pas à celui de la clé</string>
+    <string name="gateway_error_1679">Antidémarrage : numéro ISN non valide</string>
+    <!-- Gateway X12 - données en temps réel -->
+    <string name="gateway_live_data_ignition">État du contact</string>
+    <string name="gateway_live_data_engine_speed">Régime moteur</string>
+    <string name="gateway_live_data_coolant_temperature">Température du liquide de refroidissement</string>
+    <string name="gateway_live_data_fuel_level">Niveau de carburant</string>
+    <string name="gateway_live_data_oil_pressure">Pression d\'huile</string>
+    <string name="gateway_live_data_immobiliser">État de l\'antidémarrage</string>
+    <string name="gateway_live_data_value_on">Marche</string>
+    <string name="gateway_live_data_value_off">Arrêt</string>
+    <string name="gateway_live_data_value_low">Basse</string>
+    <string name="gateway_live_data_value_normal">Normale</string>
+</resources>

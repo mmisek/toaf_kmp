@@ -1,0 +1,88 @@
+{
+  "livedata": [
+    {
+      "name": "ignition",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "on"
+        },
+        {
+          "data": "0x01",
+          "text": "off"
+        }
+      ]
+    },
+    {
+      "name": "engine_speed",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0xFFFF",
+      "factor_a": "0.1",
+      "factor_b": "0",
+      "unit": "rpm"
+    },
+    {
+      "name": "coolant_temperature",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": "°C"
+    },
+    {
+      "name": "fuel_level",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0xFF",
+      "factor_a": "0.392157",
+      "factor_b": "0",
+      "unit": "%"
+    },
+    {
+      "name": "oil_pressure",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "low"
+        },
+        {
+          "data": "0x01",
+          "text": "normal"
+        }
+      ]
+    },
+    {
+      "name": "immobiliser",
+      "block": "0x00",
+      "byte": "0x06",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "on"
+        },
+        {
+          "data": "0x01",
+          "text": "off"
+        }
+      ]
+    }
+  ]
+}

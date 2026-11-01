@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_gateway">Gateway (V8)</string>
+    <!-- Gateway X12 - fault codes -->
+    <string name="gateway_error_1480">Low speed fan output</string>
+    <string name="gateway_error_1520">Oil pressure input</string>
+    <string name="gateway_error_1623">Alternator lamp output</string>
+    <string name="gateway_error_1670">Oil pressure lamp output</string>
+    <string name="gateway_error_1671">Brake failure lamp output</string>
+    <string name="gateway_error_1672">System relay output</string>
+    <string name="gateway_error_1673">Air conditioning request output</string>
+    <string name="gateway_error_1675">Immobiliser: no EWS3 code</string>
+    <string name="gateway_error_1676">Immobiliser: no PCM Id response</string>
+    <string name="gateway_error_1677">Immobiliser: missing SCP message</string>
+    <string name="gateway_error_1678">Immobiliser: security system status does not match key status</string>
+    <string name="gateway_error_1679">Immobiliser: invalid ISN number</string>
+    <!-- Gateway X12 - live data -->
+    <string name="gateway_live_data_ignition">Ignition status</string>
+    <string name="gateway_live_data_engine_speed">Engine speed</string>
+    <string name="gateway_live_data_coolant_temperature">Coolant temperature</string>
+    <string name="gateway_live_data_fuel_level">Fuel level</string>
+    <string name="gateway_live_data_oil_pressure">Oil pressure</string>
+    <string name="gateway_live_data_immobiliser">Immobiliser status</string>
+    <string name="gateway_live_data_value_on">On</string>
+    <string name="gateway_live_data_value_off">Off</string>
+    <string name="gateway_live_data_value_low">Low</string>
+    <string name="gateway_live_data_value_normal">Normal</string>
+</resources>

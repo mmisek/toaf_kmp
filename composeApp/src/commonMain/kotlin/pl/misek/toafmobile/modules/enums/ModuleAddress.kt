@@ -49,4 +49,5 @@ enum class ModuleAddress(val address: Byte, val moduleName: String, val showName
     MODULE_KOMBI((0x61).toByte(), "kombi", "KOMBI"),
     MODULE_ASC((0x29).toByte(), "asc", "ASC"),
     MODULE_ABS53((0x20).toByte(), "abs53", "ABS"),
+    MODULE_GATEWAY((0x0F).toByte(), "gateway", "GATEWAY"),
 }

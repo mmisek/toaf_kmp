@@ -68,6 +68,7 @@ class ModulesManager() : KoinComponent
             get<ModuleJATCO>(named(KoinNames.ModuleR40Jatco.name)),
             get<ModuleSRS>(named(KoinNames.ModuleR40Srs.name)),
             get<ModuleSRS2>(named(KoinNames.ModuleR40Srs2.name)),
+            get<pl.misek.toafmobile.modules.r40.ModuleGateway>(named(KoinNames.ModuleR40Gateway.name)),
             get<ModuleBCU>(named(KoinNames.ModuleR40Bcu.name)),
 
             get<ModuleEWS>(named(KoinNames.ModuleR40Ews.name)),

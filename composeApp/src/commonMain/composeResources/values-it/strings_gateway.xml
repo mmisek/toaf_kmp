@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_gateway">Gateway (V8)</string>
+    <!-- Gateway X12 - codici di guasto -->
+    <string name="gateway_error_1480">Uscita ventola bassa velocità</string>
+    <string name="gateway_error_1520">Ingresso pressione olio</string>
+    <string name="gateway_error_1623">Uscita spia alternatore</string>
+    <string name="gateway_error_1670">Uscita spia pressione olio</string>
+    <string name="gateway_error_1671">Uscita spia guasto freni</string>
+    <string name="gateway_error_1672">Uscita relè di sistema</string>
+    <string name="gateway_error_1673">Uscita richiesta climatizzazione</string>
+    <string name="gateway_error_1675">Immobilizzatore: nessun codice EWS3</string>
+    <string name="gateway_error_1676">Immobilizzatore: nessuna risposta ID PCM</string>
+    <string name="gateway_error_1677">Immobilizzatore: messaggio SCP mancante</string>
+    <string name="gateway_error_1678">Immobilizzatore: stato del sistema di sicurezza non corrispondente a quello della chiave</string>
+    <string name="gateway_error_1679">Immobilizzatore: numero ISN non valido</string>
+    <!-- Gateway X12 - dati in tempo reale -->
+    <string name="gateway_live_data_ignition">Stato accensione</string>
+    <string name="gateway_live_data_engine_speed">Regime motore</string>
+    <string name="gateway_live_data_coolant_temperature">Temperatura del liquido di raffreddamento</string>
+    <string name="gateway_live_data_fuel_level">Livello carburante</string>
+    <string name="gateway_live_data_oil_pressure">Pressione olio</string>
+    <string name="gateway_live_data_immobiliser">Stato immobilizzatore</string>
+    <string name="gateway_live_data_value_on">Acceso</string>
+    <string name="gateway_live_data_value_off">Spento</string>
+    <string name="gateway_live_data_value_low">Bassa</string>
+    <string name="gateway_live_data_value_normal">Normale</string>
+</resources>
