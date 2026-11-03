@@ -51,4 +51,5 @@ enum class ModuleAddress(val address: Byte, val moduleName: String, val showName
     MODULE_ABS53((0x20).toByte(), "abs53", "ABS"),
     MODULE_GATEWAY((0x0F).toByte(), "gateway", "GATEWAY"),
     MODULE_X12((0x10).toByte(), "x12", "ECU V8"),
+    MODULE_HEVAC_X12((0x5D).toByte(), "hevacv8", "HevacV8"),
 }

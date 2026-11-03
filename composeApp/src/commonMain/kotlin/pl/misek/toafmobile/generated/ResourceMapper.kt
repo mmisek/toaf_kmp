@@ -39,6 +39,7 @@ object ResourceMapper {
            "elv" -> ResourceMapperElv.stringResource(resourceName)
            "ems" -> ResourceMapperEms.stringResource(resourceName)
            "ews" -> ResourceMapperEws.stringResource(resourceName)
+           "hevacv8" -> ResourceMapperHevacv8.stringResource(resourceName)
            "gateway" -> ResourceMapperGateway.stringResource(resourceName)
            "x12" -> ResourceMapperX12.stringResource(resourceName)
            "gs20" -> ResourceMapperGs20.stringResource(resourceName)

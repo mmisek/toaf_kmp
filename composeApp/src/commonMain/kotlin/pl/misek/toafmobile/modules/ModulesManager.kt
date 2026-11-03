@@ -70,6 +70,7 @@ class ModulesManager() : KoinComponent
             get<ModuleSRS2>(named(KoinNames.ModuleR40Srs2.name)),
             get<pl.misek.toafmobile.modules.r40.ModuleGateway>(named(KoinNames.ModuleR40Gateway.name)),
             get<pl.misek.toafmobile.modules.r40.ModuleX12>(named(KoinNames.ModuleR40X12.name)),
+            get<pl.misek.toafmobile.modules.r40.ModuleHevacX12>(named(KoinNames.ModuleR40HevacX12.name)),
             get<ModuleBCU>(named(KoinNames.ModuleR40Bcu.name)),
 
             get<ModuleEWS>(named(KoinNames.ModuleR40Ews.name)),

@@ -123,6 +123,7 @@ val commonModules = module {
     single(named(KoinNames.ModuleR40Srs2.name)) { ModuleSRS2(protocolKWPStar = get()) }
     single(named(KoinNames.ModuleR40Gateway.name)) { pl.misek.toafmobile.modules.r40.ModuleGateway(protocolKWP = get()) }
     single(named(KoinNames.ModuleR40X12.name)) { pl.misek.toafmobile.modules.r40.ModuleX12(protocolKWP = get()) }
+    single(named(KoinNames.ModuleR40HevacX12.name)) { pl.misek.toafmobile.modules.r40.ModuleHevacX12(protocolDS2 = get()) }
     //RJ0
     single(named(KoinNames.ModuleRJOScu.name)) { ModuleSCU(kwp = get())}
     single(named(KoinNames.ModuleRJOAbs.name)) { ModuleABS53(kw1281 = get())}
