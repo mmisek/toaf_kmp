@@ -3,11 +3,13 @@ package pl.misek.toafmobile.modules.r40
 import co.touchlab.kermit.Logger
 import org.jetbrains.compose.resources.DrawableResource
 import pl.misek.toafmobile.koin.KoinNames
+import pl.misek.toafmobile.livedata.LiveDataElement
 import pl.misek.toafmobile.modules.ModuleError
 import pl.misek.toafmobile.modules.ModuleInfo
 import pl.misek.toafmobile.modules.enums.CarType
 import pl.misek.toafmobile.modules.enums.ModuleAddress
 import pl.misek.toafmobile.modules.interfaces.IModule
+import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import pl.misek.toafmobile.protocols.IProtocol
 import pl.misek.toafmobile.protocols.ProtocolKWP
 import toafmobile.composeapp.generated.resources.Res
@@ -24,10 +26,11 @@ import kotlinx.coroutines.CancellationException
  *
  * Na razie zaimplementowany tylko odczyt i kasowanie bledow.
  */
-class ModuleX12(protocolKWP: ProtocolKWP?) : IModule {
+class ModuleX12(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
     private val tag = "ModuleX12"
     private var kwp: IProtocol? = null
     private val moduleAddress = ModuleAddress.MODULE_X12.address
+    private var liveDataElements: List<LiveDataElement> = emptyList()
 
     init {
         if (protocolKWP != null) kwp = protocolKWP
@@ -143,6 +146,35 @@ class ModuleX12(protocolKWP: ProtocolKWP?) : IModule {
 
     override suspend fun reset(): Boolean = false
 
+    // --- Live data (22 - Read Parameter by PID) --------------------------------
+    // Kazdy PID to osobny blok; odpowiedz: B8 F7 10 LEN 62 <PID_Hi> <PID_Lo> <dane...> CS,
+    // czyli dane zaczynaja sie na answer[7] (= byte 0 w definicji z JSON).
+    override fun getLiveDataName() = "x12"
+
+    override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean {
+        this.liveDataElements = liveDataElements
+        return true
+    }
+
+    override suspend fun readLiveData(): Map<Int, ByteArray>? {
+        val result: MutableMap<Int, ByteArray> = HashMap()
+        for (pid in liveDataElements.map { it.block }.distinct()) {
+            val request = byteArrayOf(((pid shr 8) and 0xFF).toByte(), (pid and 0xFF).toByte())
+            val message = kwp!!.write(moduleAddress, 0x22.toByte(), request, 250)
+            try {
+                if (message.isValid && message.length > LIVE_DATA_FIRST_BYTE)
+                    result[pid] = message.answer.copyOfRange(LIVE_DATA_FIRST_BYTE, message.length - 1)
+                else
+                    Logger.e { "$tag [readLiveData] PID ${"%04X".format(pid)} failed, $message" }
+            } catch (ex: CancellationException) {
+                throw ex
+            } catch (ex: Exception) {
+                Logger.e { "$tag [readLiveData], $ex, $message" }
+            }
+        }
+        return result.ifEmpty { null }
+    }
+
     companion object {
         /** Kazda ramka odpowiedzi `53` niesie dokladnie 3 sloty DTC. */
         private const val DTC_SLOTS_PER_FRAME = 3
@@ -159,5 +191,8 @@ class ModuleX12(protocolKWP: ProtocolKWP?) : IModule {
         /** 4 znaki ASCII leza na stalej pozycji: B8 F7 10 LEN 63 x x <tu 4 bajty>. */
         private const val IDENT_TEXT_START = 7
         private const val IDENT_TEXT_END = 11
+
+        /** Dane live data zaczynaja sie po `62 <PID_Hi> <PID_Lo>`. */
+        private const val LIVE_DATA_FIRST_BYTE = 7
     }
 }
