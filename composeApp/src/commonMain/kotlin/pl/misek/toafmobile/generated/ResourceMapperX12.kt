@@ -1,0 +1,155 @@
+package pl.misek.toafmobile.generated
+
+import co.touchlab.kermit.Logger
+import org.jetbrains.compose.resources.StringResource
+import toafmobile.composeapp.generated.resources.*
+
+object ResourceMapperX12 {
+    fun stringResource(resourceName: String): StringResource? {
+        return when (resourceName) {
+            "x12_error_p0102" -> Res.string.x12_error_p0102
+            "x12_error_p0103" -> Res.string.x12_error_p0103
+            "x12_error_p0113" -> Res.string.x12_error_p0113
+            "x12_error_p0116" -> Res.string.x12_error_p0116
+            "x12_error_p0117" -> Res.string.x12_error_p0117
+            "x12_error_p0118" -> Res.string.x12_error_p0118
+            "x12_error_p0121" -> Res.string.x12_error_p0121
+            "x12_error_p0122" -> Res.string.x12_error_p0122
+            "x12_error_p0123" -> Res.string.x12_error_p0123
+            "x12_error_p0124" -> Res.string.x12_error_p0124
+            "x12_error_p0125" -> Res.string.x12_error_p0125
+            "x12_error_p0131" -> Res.string.x12_error_p0131
+            "x12_error_p0132" -> Res.string.x12_error_p0132
+            "x12_error_p0133" -> Res.string.x12_error_p0133
+            "x12_error_p0135" -> Res.string.x12_error_p0135
+            "x12_error_p0136" -> Res.string.x12_error_p0136
+            "x12_error_p0138" -> Res.string.x12_error_p0138
+            "x12_error_p0141" -> Res.string.x12_error_p0141
+            "x12_error_p0151" -> Res.string.x12_error_p0151
+            "x12_error_p0152" -> Res.string.x12_error_p0152
+            "x12_error_p0153" -> Res.string.x12_error_p0153
+            "x12_error_p0155" -> Res.string.x12_error_p0155
+            "x12_error_p0156" -> Res.string.x12_error_p0156
+            "x12_error_p0158" -> Res.string.x12_error_p0158
+            "x12_error_p0161" -> Res.string.x12_error_p0161
+            "x12_error_p0171" -> Res.string.x12_error_p0171
+            "x12_error_p0172" -> Res.string.x12_error_p0172
+            "x12_error_p0174" -> Res.string.x12_error_p0174
+            "x12_error_p0175" -> Res.string.x12_error_p0175
+            "x12_error_p0190" -> Res.string.x12_error_p0190
+            "x12_error_p0191" -> Res.string.x12_error_p0191
+            "x12_error_p0192" -> Res.string.x12_error_p0192
+            "x12_error_p0193" -> Res.string.x12_error_p0193
+            "x12_error_p0201" -> Res.string.x12_error_p0201
+            "x12_error_p0202" -> Res.string.x12_error_p0202
+            "x12_error_p0203" -> Res.string.x12_error_p0203
+            "x12_error_p0204" -> Res.string.x12_error_p0204
+            "x12_error_p0205" -> Res.string.x12_error_p0205
+            "x12_error_p0206" -> Res.string.x12_error_p0206
+            "x12_error_p0207" -> Res.string.x12_error_p0207
+            "x12_error_p0208" -> Res.string.x12_error_p0208
+            "x12_error_p0230" -> Res.string.x12_error_p0230
+            "x12_error_p0231" -> Res.string.x12_error_p0231
+            "x12_error_p0232" -> Res.string.x12_error_p0232
+            "x12_error_p0300" -> Res.string.x12_error_p0300
+            "x12_error_p0301" -> Res.string.x12_error_p0301
+            "x12_error_p0302" -> Res.string.x12_error_p0302
+            "x12_error_p0303" -> Res.string.x12_error_p0303
+            "x12_error_p0304" -> Res.string.x12_error_p0304
+            "x12_error_p0305" -> Res.string.x12_error_p0305
+            "x12_error_p0306" -> Res.string.x12_error_p0306
+            "x12_error_p0307" -> Res.string.x12_error_p0307
+            "x12_error_p0308" -> Res.string.x12_error_p0308
+            "x12_error_p0316" -> Res.string.x12_error_p0316
+            "x12_error_p0320" -> Res.string.x12_error_p0320
+            "x12_error_p0325" -> Res.string.x12_error_p0325
+            "x12_error_p0326" -> Res.string.x12_error_p0326
+            "x12_error_p0330" -> Res.string.x12_error_p0330
+            "x12_error_p0331" -> Res.string.x12_error_p0331
+            "x12_error_p0340" -> Res.string.x12_error_p0340
+            "x12_error_p0350" -> Res.string.x12_error_p0350
+            "x12_error_p0351" -> Res.string.x12_error_p0351
+            "x12_error_p0352" -> Res.string.x12_error_p0352
+            "x12_error_p0353" -> Res.string.x12_error_p0353
+            "x12_error_p0354" -> Res.string.x12_error_p0354
+            "x12_error_p0355" -> Res.string.x12_error_p0355
+            "x12_error_p0356" -> Res.string.x12_error_p0356
+            "x12_error_p0420" -> Res.string.x12_error_p0420
+            "x12_error_p0430" -> Res.string.x12_error_p0430
+            "x12_error_p0443" -> Res.string.x12_error_p0443
+            "x12_error_p0452" -> Res.string.x12_error_p0452
+            "x12_error_p0453" -> Res.string.x12_error_p0453
+            "x12_error_p0460" -> Res.string.x12_error_p0460
+            "x12_error_p0461" -> Res.string.x12_error_p0461
+            "x12_error_p0505" -> Res.string.x12_error_p0505
+            "x12_error_p0603" -> Res.string.x12_error_p0603
+            "x12_error_p0703" -> Res.string.x12_error_p0703
+            "x12_error_p0704" -> Res.string.x12_error_p0704
+            "x12_error_p0720" -> Res.string.x12_error_p0720
+            "x12_error_p0721" -> Res.string.x12_error_p0721
+            "x12_error_p0722" -> Res.string.x12_error_p0722
+            "x12_error_p0723" -> Res.string.x12_error_p0723
+            "x12_error_p0812" -> Res.string.x12_error_p0812
+            "x12_error_p1100" -> Res.string.x12_error_p1100
+            "x12_error_p1101" -> Res.string.x12_error_p1101
+            "x12_error_p1112" -> Res.string.x12_error_p1112
+            "x12_error_p1117" -> Res.string.x12_error_p1117
+            "x12_error_p1120" -> Res.string.x12_error_p1120
+            "x12_error_p1121" -> Res.string.x12_error_p1121
+            "x12_error_p1124" -> Res.string.x12_error_p1124
+            "x12_error_p1125" -> Res.string.x12_error_p1125
+            "x12_error_p1127" -> Res.string.x12_error_p1127
+            "x12_error_p1128" -> Res.string.x12_error_p1128
+            "x12_error_p1129" -> Res.string.x12_error_p1129
+            "x12_error_p1131" -> Res.string.x12_error_p1131
+            "x12_error_p1132" -> Res.string.x12_error_p1132
+            "x12_error_p1150" -> Res.string.x12_error_p1150
+            "x12_error_p1151" -> Res.string.x12_error_p1151
+            "x12_error_p1152" -> Res.string.x12_error_p1152
+            "x12_error_p1157" -> Res.string.x12_error_p1157
+            "x12_error_p1158" -> Res.string.x12_error_p1158
+            "x12_error_p1231" -> Res.string.x12_error_p1231
+            "x12_error_p1232" -> Res.string.x12_error_p1232
+            "x12_error_p1233" -> Res.string.x12_error_p1233
+            "x12_error_p1234" -> Res.string.x12_error_p1234
+            "x12_error_p1235" -> Res.string.x12_error_p1235
+            "x12_error_p1236" -> Res.string.x12_error_p1236
+            "x12_error_p1237" -> Res.string.x12_error_p1237
+            "x12_error_p1238" -> Res.string.x12_error_p1238
+            "x12_error_p1239" -> Res.string.x12_error_p1239
+            "x12_error_p1285" -> Res.string.x12_error_p1285
+            "x12_error_p1288" -> Res.string.x12_error_p1288
+            "x12_error_p1289" -> Res.string.x12_error_p1289
+            "x12_error_p1290" -> Res.string.x12_error_p1290
+            "x12_error_p1309" -> Res.string.x12_error_p1309
+            "x12_error_p1336" -> Res.string.x12_error_p1336
+            "x12_error_p1400" -> Res.string.x12_error_p1400
+            "x12_error_p1401" -> Res.string.x12_error_p1401
+            "x12_error_p1403" -> Res.string.x12_error_p1403
+            "x12_error_p1406" -> Res.string.x12_error_p1406
+            "x12_error_p1409" -> Res.string.x12_error_p1409
+            "x12_error_p1451" -> Res.string.x12_error_p1451
+            "x12_error_p1474" -> Res.string.x12_error_p1474
+            "x12_error_p1479" -> Res.string.x12_error_p1479
+            "x12_error_p1504" -> Res.string.x12_error_p1504
+            "x12_error_p1506" -> Res.string.x12_error_p1506
+            "x12_error_p1507" -> Res.string.x12_error_p1507
+            "x12_error_p1518" -> Res.string.x12_error_p1518
+            "x12_error_p1519" -> Res.string.x12_error_p1519
+            "x12_error_p1520" -> Res.string.x12_error_p1520
+            "x12_error_p1605" -> Res.string.x12_error_p1605
+            "x12_error_p1633" -> Res.string.x12_error_p1633
+            "x12_error_p1703" -> Res.string.x12_error_p1703
+            "x12_error_p1705" -> Res.string.x12_error_p1705
+            "x12_error_p1709" -> Res.string.x12_error_p1709
+            "x12_error_p1780" -> Res.string.x12_error_p1780
+            "x12_error_p1900" -> Res.string.x12_error_p1900
+            "x12_info_module_number" -> Res.string.x12_info_module_number
+            "x12_info_software_year" -> Res.string.x12_info_software_year
+        else -> {
+          Logger.i {"NO RESOURCE for : $resourceName" }
+            null
+        }
+     }
+   }
+}

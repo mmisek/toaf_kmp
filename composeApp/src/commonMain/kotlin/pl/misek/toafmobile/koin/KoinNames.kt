@@ -30,6 +30,7 @@ enum class KoinNames {
     ModuleR40Dde,
     ModuleR40Ems,
     ModuleR40Gateway,
+    ModuleR40X12,
     ModuleR40Jatco,
     ModuleR40Mems,
     ModuleR40NavMk3,

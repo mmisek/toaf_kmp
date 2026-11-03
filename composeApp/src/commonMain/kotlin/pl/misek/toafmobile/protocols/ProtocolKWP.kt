@@ -93,6 +93,50 @@ open class ProtocolKWP(private var device: IInterfaceDevice?, var useDelay: Bool
         return result
     }
 
+    /**
+     * Wysyla jedno zapytanie i zwraca WSZYSTKIE ramki odpowiedzi jako osobne [OBDMessage].
+     *
+     * Sterownik X12 (silnik V8) na odczyt bledow odpowiada kilkoma ramkami sklejonymi jedna po drugiej -
+     * kazda niesie staly fragment listy kodow, wiec pojedynczy [OBDMessage] (liczacy sume kontrolna przez
+     * caly strumien) uznalby taka odpowiedz za bledna. Tutaj kazda ramka jest walidowana osobno.
+     *
+     * Korzysta z tej samej sciezki wysylki co [write] - nie zmienia zadnych czasow ani opoznien.
+     * Przeznaczona wylacznie do odczytu bledow ze sterownika X12.
+     *
+     * @return lista ramek w kolejnosci otrzymania; pusta, gdy brak odpowiedzi lub zadnej kompletnej ramki.
+     */
+    suspend fun writeForMultipleAnswers(
+        address: Byte,
+        command: Byte,
+        data: ByteArray,
+        timeout: Long? = 200
+    ): List<OBDMessage> {
+        val message = write(address, command, data, timeout, true)
+        if (message.answer.isEmpty()) return emptyList()
+        val frames = splitFrames(message.answer)
+        if (frames.isEmpty()) {
+            Logger.e { "$tag [writeForMultipleAnswers]: no complete frame in answer" }
+            return emptyList()
+        }
+        Logger.i { "$tag [writeForMultipleAnswers]: frames = ${frames.size}" }
+        return frames.map { frame -> toFrameMessage(message, frame, command) }
+    }
+
+    /** Buduje [OBDMessage] dla pojedynczej ramki ze zbiorczej odpowiedzi (suma kontrolna liczona per ramka). */
+    private fun toFrameMessage(source: OBDMessage, frame: ByteArray, command: Byte): OBDMessage {
+        val result = OBDMessage()
+        result.message = source.message
+        result.wholeMessage = source.wholeMessage
+        result.answer = frame
+        result.length = frame.size
+        result.answerCode = frame[4]
+        var checkSum: Byte = 0
+        for (i in 0 until frame.size - 1) checkSum = (checkSum.toInt() xor frame[i].toInt()).toByte()
+        result.isValid =
+            frame[frame.size - 1] == checkSum && result.answerCode == (command + 0x40).toByte()
+        return result
+    }
+
     private fun isPending(frame: ByteArray, command: Byte) =
         frame.size >= 7 && frame[4] == 0x7F.toByte() && frame[5] == command && frame[6] == 0x78.toByte()
 
