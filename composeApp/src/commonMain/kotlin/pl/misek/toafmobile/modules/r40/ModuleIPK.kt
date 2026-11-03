@@ -275,7 +275,7 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
 
     override suspend fun getAllErrors(): List<ModuleError>? {
         var result: MutableList<ModuleError>? = null
-        val message = interfaceWrite(byteArrayOf(0x04, 0x01))
+        val message = interfaceWrite(byteArrayOf(0x04, 0x01),250)
         try {
             if (message.isValid) {
                 for (i in 0 until (message.answer[3].toInt() and 0xFF)) {

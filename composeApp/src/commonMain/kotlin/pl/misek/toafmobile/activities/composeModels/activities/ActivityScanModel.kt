@@ -79,6 +79,8 @@ import java.util.Locale
 private data class ScanResult(
         val module : IModule,
         val ident : ModuleInfo?,
+        val vin : String?,
+        val odometer : String?,
         val errors : List<ModuleError>?
         )
 @Composable
@@ -99,7 +101,7 @@ fun ActivityScanModel(onBackClick :() -> Unit) {
     val clearFailed = stringResource(Res.string.activity_scan_clear_failed)
     val unexpectedError = stringResource(Res.string.activity_scan_unexpected_error)
     val dataCopiedToClipboard = stringResource(Res.string.data_copied_to_clipboard)
-    val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.US)
+    val scanReport = scanResultToString(scanResult)
     ScanCarContent(
         onBackClick = { onBackClick() },
         onScanClick = {
@@ -113,6 +115,8 @@ fun ActivityScanModel(onBackClick :() -> Unit) {
                         ScanResult(
                             module = module,
                             ident = ident,
+                            vin = module.getVIN(),
+                            odometer =  module.getOdometer(),
                             errors = if (ident!= null) module.getAllErrors() else null))
                 }
                 scanResult
@@ -138,37 +142,10 @@ fun ActivityScanModel(onBackClick :() -> Unit) {
             }
             showProgressDialog = true
         },
-        onShareClick = { data ->
+        onShareClick = {
             actionType = ActionTypeEnum.DataCopiedToClipboard
-            action = {
-                @Composable {
-                    val sb = StringBuilder()
-                    simpleDateFormat.format(Calendar.getInstance().time)
-                    sb.append("-----------------------------------------")
-                    sb.append("Car scan result")
-                    sb.append("TOAF Version : ${BuildKonfig.VERSION_NAME}")
-                    sb.append("Platform : ${getPlatformName()}")
-                    sb.append("Scan date : ${simpleDateFormat.format(Calendar.getInstance().time)}")
-                    sb.append("-----------------------------------------")
-                    sb.append("Scanned Modules : ${data.size}")
-                    sb.append("Found Modules : ${data.count { x->x.ident != null }}")
-                    sb.append("-----------------------------------------")
-                    for ((module1, ident, errors) in data.filter { x->x.ident != null }) {
-                        sb.append("Module name : ${module1.getModuleName()}")
-                        sb.append("Module identification : ${ident.toString()}")
-                        sb.append("Erros count : ${errors?.count() ?: "read error"}")
-                        for (error in errors ?: emptyList()) {
-                            sb.append(error.code.uppercase() + " - " + error.description?.let { stringResource(it) } + "\n")
-                            sb.append(detailsToString(error))
-                        }
-                        sb.append("-----------------------------------------")
-                    }
-                    sb.toString()
-
-                    }
-                }
+            action = { scanReport }
             showProgressDialog = true
-
         },
         snackBarHostState = snackBarHostState,
         onClearModuleClick = { index ->
@@ -259,6 +236,36 @@ fun ActivityScanModel(onBackClick :() -> Unit) {
     }
 }
 
+@Composable
+private fun scanResultToString(data : List<ScanResult>) : String {
+    val simpleDateFormat = remember { SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.US) }
+    val separator = "-----------------------------------------\n"
+    val sb = StringBuilder()
+    sb.append(separator)
+    sb.append("Car scan result\n")
+    sb.append("TOAF Version : ${BuildKonfig.VERSION_NAME}\n")
+    sb.append("Platform : ${getPlatformName()}\n")
+    sb.append("Scan date : ${simpleDateFormat.format(Calendar.getInstance().time)}\n")
+    sb.append(separator)
+    sb.append("Scanned Modules : ${data.size}\n")
+    sb.append("Found Modules : ${data.count { x -> x.ident != null }}\n")
+    sb.append(separator)
+    for ((module, ident, vin, odometer, errors) in data.filter { x -> x.ident != null }) {
+        sb.append("Module name : ${module.getModuleName()}\n")
+        sb.append("${ident?.getFormatedInfo()}\n")
+        if (!vin.isNullOrEmpty())
+            sb.append("Module VIN : $vin\n")
+        if (!odometer.isNullOrEmpty())
+            sb.append("Module odometer : $odometer\n")
+        sb.append("Errors count : ${errors?.count() ?: "read error"}\n")
+        for (error in errors ?: emptyList()) {
+            sb.append(error.code.uppercase() + " - " + error.description?.let { stringResource(it) } + "\n")
+            sb.append(detailsToString(error))
+        }
+        sb.append(separator)
+    }
+    return sb.toString()
+}
 
 @Composable
 private fun ScanCarContent(
@@ -266,7 +273,7 @@ private fun ScanCarContent(
     onScanClick : () -> Unit,
     onClearAllClick : () -> Unit,
     onClearModuleClick : (Int) -> Unit,
-    onShareClick : (List<ScanResult>) -> Unit,
+    onShareClick : () -> Unit,
     scanResult: List<ScanResult>,
     snackBarHostState: SnackbarHostState = remember { SnackbarHostState() })
 {
@@ -309,7 +316,7 @@ private fun ScanCarContent(
                         ToafButtons.GreenButton(
                             buttonText = "Share information",
                             modifier = Modifier.weight(1f),
-                            onClick = { onShareClick(scanResult) },
+                            onClick = { onShareClick() },
                             enabled = scanResult.isNotEmpty()
                         )
                     }
@@ -438,9 +445,9 @@ fun ActivityScanModel()
     val ipk = ModuleIPK(null)
     val lsm = ModuleLSM(null)
     val scanResult = listOf(
-        ScanResult(bcu, ModuleInfo(),listOf(ModuleError(bcu.getModuleAddress(),"Error 00", errorDetails = emptyList()))),
-        ScanResult(ipk,ModuleInfo(),null),
-        ScanResult(lsm, null,emptyList())
+        ScanResult(bcu, ModuleInfo(),"","",listOf(ModuleError(bcu.getModuleAddress(),"Error 00", errorDetails = emptyList()))),
+        ScanResult(ipk,ModuleInfo(),"","", null),
+        ScanResult(lsm, null,"","", emptyList())
     )
     ScanCarContent(
         onBackClick = {},
