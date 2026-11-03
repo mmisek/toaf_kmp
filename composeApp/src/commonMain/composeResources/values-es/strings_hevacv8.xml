@@ -3,4 +3,9 @@
     <string name="module_description_hevacv8">Aire acondicionado (V8)</string>
     <string name="hevacv8_control_inhibit">Inhibir la unidad de control</string>
     <string name="hevacv8_control_enable">Activar la unidad de control</string>
+    <string name="hevacv8_error_01">Termistor derecho – por encima del rango</string>
+    <string name="hevacv8_error_02">Termistor derecho – por debajo del rango</string>
+    <string name="hevacv8_error_04">Termistor izquierdo – por encima del rango</string>
+    <string name="hevacv8_error_08">Termistor izquierdo – por debajo del rango</string>
+    <string name="hevacv8_error_10">Error de bus</string>
 </resources>
