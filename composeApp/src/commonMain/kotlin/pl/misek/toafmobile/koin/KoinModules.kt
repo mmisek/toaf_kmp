@@ -48,6 +48,8 @@ import pl.misek.toafmobile.modules.r40.ModuleCC
 import pl.misek.toafmobile.modules.r40.ModuleDDE
 import pl.misek.toafmobile.modules.r40.ModuleEMS
 import pl.misek.toafmobile.modules.r40.ModuleEWS
+import pl.misek.toafmobile.modules.r40.ModuleGateway
+import pl.misek.toafmobile.modules.r40.ModuleHevacX12
 import pl.misek.toafmobile.modules.r40.ModuleIPK
 import pl.misek.toafmobile.modules.r40.ModuleJATCO
 import pl.misek.toafmobile.modules.r40.ModuleMEMS
@@ -61,6 +63,7 @@ import pl.misek.toafmobile.modules.r40.ModuleSRS
 import pl.misek.toafmobile.modules.r40.ModuleSRS2
 import pl.misek.toafmobile.modules.r40.ModuleVideo
 import pl.misek.toafmobile.modules.r40.ModuleWebasto
+import pl.misek.toafmobile.modules.r40.ModuleX12
 import pl.misek.toafmobile.modules.rjo.ModuleEDC15
 import pl.misek.toafmobile.modules.rjo.ModuleSCU
 import pl.misek.toafmobile.modules.viewModels.LwsSteeringAngleViewModel
@@ -121,9 +124,14 @@ val commonModules = module {
     single(named(KoinNames.ModuleR40Lsm.name)) { pl.misek.toafmobile.modules.r40.ModuleLSM(protocolDS2 = get())}
     single(named(KoinNames.ModuleR40Srs.name)) { ModuleSRS(protocolKWP = get()) }
     single(named(KoinNames.ModuleR40Srs2.name)) { ModuleSRS2(protocolKWPStar = get()) }
-    single(named(KoinNames.ModuleR40Gateway.name)) { pl.misek.toafmobile.modules.r40.ModuleGateway(protocolKWP = get()) }
-    single(named(KoinNames.ModuleR40X12.name)) { pl.misek.toafmobile.modules.r40.ModuleX12(protocolKWP = get()) }
-    single(named(KoinNames.ModuleR40HevacX12.name)) { pl.misek.toafmobile.modules.r40.ModuleHevacX12(protocolDS2 = get()) }
+    single(named(KoinNames.ModuleR40Gateway.name)) { ModuleGateway(protocolKWP = get()) }
+    single(named(KoinNames.ModuleR40X12.name)) {
+        ModuleX12(
+            protocolKWP = get(),
+            hevac = get(named(KoinNames.ModuleR40HevacX12.name))
+        )
+    }
+    single(named(KoinNames.ModuleR40HevacX12.name)) { ModuleHevacX12(protocolDS2 = get()) }
     //RJ0
     single(named(KoinNames.ModuleRJOScu.name)) { ModuleSCU(kwp = get())}
     single(named(KoinNames.ModuleRJOAbs.name)) { ModuleABS53(kw1281 = get())}

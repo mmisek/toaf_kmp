@@ -41,7 +41,6 @@ import pl.misek.toafmobile.modules.interfaces.IModuleControl
 import pl.misek.toafmobile.modules.interfaces.IModuleEepromProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleFlashProgramming
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
-import pl.misek.toafmobile.tools.ShareHandler
 import pl.misek.toafmobile.tools.rememberShareHandler
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*

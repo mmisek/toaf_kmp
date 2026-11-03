@@ -71,7 +71,7 @@ open class ProtocolKWP(private var device: IInterfaceDevice?, var useDelay: Bool
         var whole = message.wholeMessage ?: ByteArray(0)
         while (frames.lastOrNull()?.let { isPending(it, command) } == true) {
             if (System.currentTimeMillis() - start > pendingTimeout) {
-                Logger.e { "$tag : response pending timeout, command %02X".format(command) }
+                Logger.i { "$tag : response pending timeout, command %02X".format(command) }
                 break
             }
             val more = device?.write(ByteArray(0), timeout, true, false)
@@ -115,7 +115,7 @@ open class ProtocolKWP(private var device: IInterfaceDevice?, var useDelay: Bool
         if (message.answer.isEmpty()) return emptyList()
         val frames = splitFrames(message.answer)
         if (frames.isEmpty()) {
-            Logger.e { "$tag [writeForMultipleAnswers]: no complete frame in answer" }
+            Logger.i { "$tag [writeForMultipleAnswers]: no complete frame in answer" }
             return emptyList()
         }
         Logger.i { "$tag [writeForMultipleAnswers]: frames = ${frames.size}" }

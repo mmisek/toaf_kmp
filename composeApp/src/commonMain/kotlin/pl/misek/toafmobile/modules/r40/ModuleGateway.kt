@@ -45,7 +45,7 @@ class ModuleGateway(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
 
     override fun getModuleAddress(): ModuleAddress = ModuleAddress.MODULE_GATEWAY
 
-    override fun getImageResource(): DrawableResource? = null
+    override fun getImageResource(): DrawableResource? = Res.drawable.module_gateway
 
     override fun getModuleDescription() = Res.string.module_description_gateway
 

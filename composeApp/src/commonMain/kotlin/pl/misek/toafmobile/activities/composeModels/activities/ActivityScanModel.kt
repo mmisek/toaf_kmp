@@ -40,32 +40,50 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.put
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
+import pl.misek.toafmobile.BuildKonfig
+import pl.misek.toafmobile.PlatformType
 import pl.misek.toafmobile.activities.composeModels.ActionTypeEnum
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.ToafProgressDialog
 import pl.misek.toafmobile.activities.composeModels.TopBarModel
+import pl.misek.toafmobile.activities.composeModels.dialogs.detailsToString
 import pl.misek.toafmobile.activities.composeModels.menus.ToafVerticalScrollbar
 import pl.misek.toafmobile.activities.definitions.ToafColors
 import pl.misek.toafmobile.activities.snackbar.ToafSnackBarHost
+import pl.misek.toafmobile.getPlatformName
+import pl.misek.toafmobile.getPlatformType
 import pl.misek.toafmobile.modules.ModuleError
+import pl.misek.toafmobile.modules.ModuleInfo
 import pl.misek.toafmobile.modules.ModulesManager
 import pl.misek.toafmobile.modules.interfaces.IModule
 import pl.misek.toafmobile.modules.l322.ModuleBCU
 import pl.misek.toafmobile.modules.r40.ModuleIPK
 import pl.misek.toafmobile.modules.r40.ModuleLSM
+import pl.misek.toafmobile.network.ToafApi
+import pl.misek.toafmobile.tools.rememberShareHandler
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 private data class ScanResult(
         val module : IModule,
-        val modulePresent : Boolean,
+        val ident : ModuleInfo?,
         val errors : List<ModuleError>?
         )
 @Composable
 fun ActivityScanModel(onBackClick :() -> Unit) {
+    val toafApi : ToafApi = koinInject()
     val modulesManager : ModulesManager = koinInject()
     val carModules = modulesManager.getCurrentModules()
     val snackBarHostState = remember { SnackbarHostState() }
@@ -73,13 +91,15 @@ fun ActivityScanModel(onBackClick :() -> Unit) {
     var action by remember { mutableStateOf<suspend () -> Any?>({ null }) }
     var actionType by remember { mutableStateOf(ActionTypeEnum.None) }
     var showProgressDialog by remember { mutableStateOf(false) }
-    var dialogShowNotFullVersion by remember { mutableStateOf(false) }
     val scanResult = remember { mutableStateListOf<ScanResult>()  }
+    val shareHandler = rememberShareHandler()
     val scanSuccessful = stringResource(Res.string.activity_scan_successful)
     val scanFailed = stringResource(Res.string.activity_scan_failed)
     val clearSuccessful = stringResource(Res.string.activity_scan_clear_successful)
     val clearFailed = stringResource(Res.string.activity_scan_clear_failed)
     val unexpectedError = stringResource(Res.string.activity_scan_unexpected_error)
+    val dataCopiedToClipboard = stringResource(Res.string.data_copied_to_clipboard)
+    val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.US)
     ScanCarContent(
         onBackClick = { onBackClick() },
         onScanClick = {
@@ -92,7 +112,7 @@ fun ActivityScanModel(onBackClick :() -> Unit) {
                     scanResult.add(
                         ScanResult(
                             module = module,
-                            modulePresent =  ident!= null,
+                            ident = ident,
                             errors = if (ident!= null) module.getAllErrors() else null))
                 }
                 scanResult
@@ -107,7 +127,7 @@ fun ActivityScanModel(onBackClick :() -> Unit) {
                 else {
                     var allCleared = true
                     for ((index, item) in scanResult.withIndex()) {
-                        if (item.modulePresent && !item.errors.isNullOrEmpty()) {
+                        if (item.ident != null  && !item.errors.isNullOrEmpty()) {
                             if (!item.module.clearAllErrors())
                                 allCleared = false
                             scanResult[index] = item.copy(errors = item.module.getAllErrors())
@@ -118,12 +138,44 @@ fun ActivityScanModel(onBackClick :() -> Unit) {
             }
             showProgressDialog = true
         },
+        onShareClick = { data ->
+            actionType = ActionTypeEnum.DataCopiedToClipboard
+            action = {
+                @Composable {
+                    val sb = StringBuilder()
+                    simpleDateFormat.format(Calendar.getInstance().time)
+                    sb.append("-----------------------------------------")
+                    sb.append("Car scan result")
+                    sb.append("TOAF Version : ${BuildKonfig.VERSION_NAME}")
+                    sb.append("Platform : ${getPlatformName()}")
+                    sb.append("Scan date : ${simpleDateFormat.format(Calendar.getInstance().time)}")
+                    sb.append("-----------------------------------------")
+                    sb.append("Scanned Modules : ${data.size}")
+                    sb.append("Found Modules : ${data.count { x->x.ident != null }}")
+                    sb.append("-----------------------------------------")
+                    for ((module1, ident, errors) in data.filter { x->x.ident != null }) {
+                        sb.append("Module name : ${module1.getModuleName()}")
+                        sb.append("Module identification : ${ident.toString()}")
+                        sb.append("Erros count : ${errors?.count() ?: "read error"}")
+                        for (error in errors ?: emptyList()) {
+                            sb.append(error.code.uppercase() + " - " + error.description?.let { stringResource(it) } + "\n")
+                            sb.append(detailsToString(error))
+                        }
+                        sb.append("-----------------------------------------")
+                    }
+                    sb.toString()
+
+                    }
+                }
+            showProgressDialog = true
+
+        },
         snackBarHostState = snackBarHostState,
         onClearModuleClick = { index ->
             actionType = ActionTypeEnum.ClearErrors
             action = {
                 val item = scanResult.getOrNull(index)
-                if (item == null || !item.modulePresent)
+                if (item == null)
                     false
                 else {
                     val cleared = item.module.clearAllErrors()
@@ -143,13 +195,52 @@ fun ActivityScanModel(onBackClick :() -> Unit) {
                 when (actionType) {
                     ActionTypeEnum.ScanCar -> {
                         val result = actionResult as? List<*>
-                        showResult(scope, snackBarHostState,!result.isNullOrEmpty(), scanSuccessful, scanFailed)
+                        showResult(
+                            scope,
+                            snackBarHostState,
+                            !result.isNullOrEmpty(),
+                            scanSuccessful,
+                            scanFailed
+                        )
                     }
+
                     ActionTypeEnum.ClearAllErrors,
                     ActionTypeEnum.ClearErrors -> {
                         val result = actionResult as? Boolean
-                        showResult(scope, snackBarHostState,result == true, clearSuccessful, clearFailed)
+                        showResult(
+                            scope,
+                            snackBarHostState,
+                            result == true,
+                            clearSuccessful,
+                            clearFailed
+                        )
                     }
+
+                    ActionTypeEnum.DataCopiedToClipboard -> {
+                        val result = actionResult as? String
+                        if (result != null) {
+                            shareHandler.shareMessage(result)
+                            val jsonObject = buildJsonObject {
+                                put("vin", "")
+                                put("module", "SCAN")
+                                put("id1", getPlatformName())
+                                put("id2", BuildKonfig.VERSION_NAME)
+                            }
+                            scope.launch(Dispatchers.IO) {
+                                toafApi.uploadFlash(jsonObject, result.toByteArray())
+                            }
+                            if (getPlatformType() == PlatformType.Desktop) {
+                                showResult(
+                                    scope,
+                                    snackBarHostState,
+                                    true,
+                                    dataCopiedToClipboard,
+                                    null
+                                )
+                            }
+                        }
+                    }
+
                     else -> {}
                 }
             },
@@ -175,6 +266,7 @@ private fun ScanCarContent(
     onScanClick : () -> Unit,
     onClearAllClick : () -> Unit,
     onClearModuleClick : (Int) -> Unit,
+    onShareClick : (List<ScanResult>) -> Unit,
     scanResult: List<ScanResult>,
     snackBarHostState: SnackbarHostState = remember { SnackbarHostState() })
 {
@@ -214,6 +306,12 @@ private fun ScanCarContent(
                             modifier = Modifier.weight(1f),
                             onClick = { onClearAllClick() },
                         )
+                        ToafButtons.GreenButton(
+                            buttonText = "Share information",
+                            modifier = Modifier.weight(1f),
+                            onClick = { onShareClick(scanResult) },
+                            enabled = scanResult.isNotEmpty()
+                        )
                     }
 
                     Spacer(Modifier.height(8.dp))
@@ -249,7 +347,7 @@ private fun CarScanTable(scanResult : List<ScanResult>, onClearModuleClick : (In
                 itemsIndexed(scanResult) { index, point ->
                     ScanCarTableRow(
                         point.module,
-                        point.modulePresent,
+                        ident = point.ident,
                         point.errors,
                         onClearClick = { onClearModuleClick(index) }
                     )
@@ -287,7 +385,7 @@ private fun ScanCarTableRowHeader()
     }
 }
 @Composable
-private fun ScanCarTableRow(module : IModule, present : Boolean, errors: List<ModuleError>?, onClearClick : () -> Unit, isHeader : Boolean = false)
+private fun ScanCarTableRow(module : IModule, ident : ModuleInfo?, errors: List<ModuleError>?, onClearClick : () -> Unit, isHeader : Boolean = false)
 {
     val style = TextStyle(
         color = Color.White,
@@ -303,6 +401,7 @@ private fun ScanCarTableRow(module : IModule, present : Boolean, errors: List<Mo
     )
     {
 
+        val present = ident != null
         val description = module.getModuleDescription()?.let { " - " + stringResource(it) } ?: ""
         Text(text = "${module.getModuleName()} $description".trim(), style = style, modifier = Modifier.weight(1f))
         Box(
@@ -339,13 +438,14 @@ fun ActivityScanModel()
     val ipk = ModuleIPK(null)
     val lsm = ModuleLSM(null)
     val scanResult = listOf(
-        ScanResult(bcu,true,listOf(ModuleError(bcu.getModuleAddress(),"Error 00", errorDetails = emptyList()))),
-        ScanResult(ipk,false,null),
-        ScanResult(lsm, true,emptyList())
+        ScanResult(bcu, ModuleInfo(),listOf(ModuleError(bcu.getModuleAddress(),"Error 00", errorDetails = emptyList()))),
+        ScanResult(ipk,ModuleInfo(),null),
+        ScanResult(lsm, null,emptyList())
     )
     ScanCarContent(
         onBackClick = {},
         onScanClick = {},
+        onShareClick = {},
         onClearAllClick = {},
         onClearModuleClick = {},
         scanResult = scanResult

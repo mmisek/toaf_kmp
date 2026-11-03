@@ -1,6 +1,7 @@
 package pl.misek.toafmobile.modules.r40
 
 import co.touchlab.kermit.Logger
+import pl.misek.toafmobile.control.ControlElement
 import org.jetbrains.compose.resources.DrawableResource
 import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.livedata.LiveDataElement
@@ -24,16 +25,34 @@ import kotlinx.coroutines.CancellationException
  * dokladnie 3 sloty DTC po 2 bajty, puste sloty wypelnione 00 00. Dlatego uzywany jest
  * [ProtocolKWP.writeForMultipleAnswers], ktory waliduje kazda ramke osobno.
  *
- * Na razie zaimplementowany tylko odczyt i kasowanie bledow.
+ * Diagnostyka tego sterownika wymaga wczesniejszego zablokowania klimatyzacji ([hevac]),
+ * dlatego modul HEVAC jest tu wstrzykiwany i dostepny bezposrednio.
  */
-class ModuleX12(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
+class ModuleX12(protocolKWP: ProtocolKWP?, hevac: ModuleHevacX12? = null) : IModule, IModuleLiveData {
     private val tag = "ModuleX12"
     private var kwp: IProtocol? = null
     private val moduleAddress = ModuleAddress.MODULE_X12.address
     private var liveDataElements: List<LiveDataElement> = emptyList()
 
+    var hevac: ModuleHevacX12? = hevac
+        private set
+
     init {
         if (protocolKWP != null) kwp = protocolKWP
+    }
+
+
+    suspend fun inhibitHevac(): Boolean = setHevacState(HEVAC_INHIBIT)
+
+    suspend fun enableHevac(): Boolean = setHevacState(HEVAC_ENABLE)
+
+    private suspend fun setHevacState(value: Int): Boolean {
+        val module = hevac
+        if (module == null) {
+            Logger.e { "$tag [setHevacState]: HEVAC module not available" }
+            return false
+        }
+        return module.control(ControlElement(value = value))
     }
 
     override fun getKoinName() = KoinNames.ModuleR40X12
@@ -59,6 +78,7 @@ class ModuleX12(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
     // Sklejane w: Software Level (3 pierwsze odczyty), Module Number (2 kolejne), Software Year (ostatni).
     override suspend fun getIdentification(): ModuleInfo? {
         try {
+            inhibitHevac()
             val parts = IDENT_ADDRESSES.map { readIdentPart(it) ?: return null }
             val info = ModuleInfo()
             info.id1 = parts[0] + parts[1] + parts[2]
@@ -94,6 +114,7 @@ class ModuleX12(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
     // --- Odczyt bledow (13) ----------------------------------------------------
     // Odpowiedz: kilka ramek `53` + 3 sloty DTC po 2 bajty (puste = 00 00).
     override suspend fun getAllErrors(): List<ModuleError>? {
+        inhibitHevac()
         val protocol = kwp as? ProtocolKWP ?: run {
             Logger.e { "$tag [getAllErrors]: protocol is not ProtocolKWP" }
             return null
@@ -135,6 +156,7 @@ class ModuleX12(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
     // --- Kasowanie bledow (14) -------------------------------------------------
     override suspend fun clearAllErrors(): Boolean {
         try {
+            inhibitHevac()
             return kwp!!.write(moduleAddress, 0x14.toByte(), byteArrayOf(), 1500).isValid
         } catch (ex: CancellationException) {
             throw ex
@@ -146,13 +168,11 @@ class ModuleX12(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
 
     override suspend fun reset(): Boolean = false
 
-    // --- Live data (22 - Read Parameter by PID) --------------------------------
-    // Kazdy PID to osobny blok; odpowiedz: B8 F7 10 LEN 62 <PID_Hi> <PID_Lo> <dane...> CS,
-    // czyli dane zaczynaja sie na answer[7] (= byte 0 w definicji z JSON).
     override fun getLiveDataName() = "x12"
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean {
         this.liveDataElements = liveDataElements
+        inhibitHevac()
         return true
     }
 
@@ -194,5 +214,9 @@ class ModuleX12(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
 
         /** Dane live data zaczynaja sie po `62 <PID_Hi> <PID_Lo>`. */
         private const val LIVE_DATA_FIRST_BYTE = 7
+
+        /** Wartosci SetEcuState modulu HEVAC. */
+        private const val HEVAC_INHIBIT = 0xFF
+        private const val HEVAC_ENABLE = 0x00
     }
 }
