@@ -4,6 +4,7 @@
     <string name="activity_scan_header">Car scan</string>
     <string name="activity_scan_button_scan">Scan</string>
     <string name="activity_scan_button_clear_all">Clear all errors</string>
+    <string name="activity_scan_button_share">Share information</string>
     <string name="activity_scan_column_module">Module</string>
     <string name="activity_scan_column_present">Present</string>
     <string name="activity_scan_column_errors">Errors</string>
@@ -15,4 +16,15 @@
     <string name="activity_scan_clear_successful">Errors cleared</string>
     <string name="activity_scan_clear_failed">Clearing errors failed</string>
     <string name="activity_scan_unexpected_error">Unexpected error</string>
+    <string name="activity_scan_report_title">Car scan result</string>
+    <string name="activity_scan_report_version">TOAF version</string>
+    <string name="activity_scan_report_platform">Platform</string>
+    <string name="activity_scan_report_date">Scan date</string>
+    <string name="activity_scan_report_modules_scanned">Scanned modules</string>
+    <string name="activity_scan_report_modules_found">Found modules</string>
+    <string name="activity_scan_report_module_name">Module name</string>
+    <string name="activity_scan_report_module_vin">Module VIN</string>
+    <string name="activity_scan_report_module_odometer">Module odometer</string>
+    <string name="activity_scan_report_errors_count">Errors count</string>
+    <string name="activity_scan_report_read_error">read error</string>
 </resources>

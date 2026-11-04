@@ -4,6 +4,7 @@
     <string name="activity_scan_header">Skanowanie pojazdu</string>
     <string name="activity_scan_button_scan">Skanuj</string>
     <string name="activity_scan_button_clear_all">Kasuj wszystkie błędy</string>
+    <string name="activity_scan_button_share">Udostępnij raport</string>
     <string name="activity_scan_column_module">Moduł</string>
     <string name="activity_scan_column_present">Obecny</string>
     <string name="activity_scan_column_errors">Błędy</string>
@@ -15,4 +16,15 @@
     <string name="activity_scan_clear_successful">Błędy skasowane</string>
     <string name="activity_scan_clear_failed">Kasowanie błędów nie powiodło się</string>
     <string name="activity_scan_unexpected_error">Nieoczekiwany błąd</string>
+    <string name="activity_scan_report_title">Wynik skanowania pojazdu</string>
+    <string name="activity_scan_report_version">Wersja TOAF</string>
+    <string name="activity_scan_report_platform">Platforma</string>
+    <string name="activity_scan_report_date">Data skanowania</string>
+    <string name="activity_scan_report_modules_scanned">Przeskanowane moduły</string>
+    <string name="activity_scan_report_modules_found">Znalezione moduły</string>
+    <string name="activity_scan_report_module_name">Nazwa modułu</string>
+    <string name="activity_scan_report_module_vin">VIN modułu</string>
+    <string name="activity_scan_report_module_odometer">Przebieg modułu</string>
+    <string name="activity_scan_report_errors_count">Liczba błędów</string>
+    <string name="activity_scan_report_read_error">błąd odczytu</string>
 </resources>

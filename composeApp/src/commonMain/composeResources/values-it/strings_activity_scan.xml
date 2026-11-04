@@ -4,6 +4,7 @@
     <string name="activity_scan_header">Scansione auto</string>
     <string name="activity_scan_button_scan">Scansiona</string>
     <string name="activity_scan_button_clear_all">Cancella tutti gli errori</string>
+    <string name="activity_scan_button_share">Condividi rapporto</string>
     <string name="activity_scan_column_module">Modulo</string>
     <string name="activity_scan_column_present">Presente</string>
     <string name="activity_scan_column_errors">Errori</string>
@@ -15,4 +16,15 @@
     <string name="activity_scan_clear_successful">Errori cancellati</string>
     <string name="activity_scan_clear_failed">Cancellazione errori non riuscita</string>
     <string name="activity_scan_unexpected_error">Errore imprevisto</string>
+    <string name="activity_scan_report_title">Risultato della scansione del veicolo</string>
+    <string name="activity_scan_report_version">Versione TOAF</string>
+    <string name="activity_scan_report_platform">Piattaforma</string>
+    <string name="activity_scan_report_date">Data della scansione</string>
+    <string name="activity_scan_report_modules_scanned">Moduli scansionati</string>
+    <string name="activity_scan_report_modules_found">Moduli trovati</string>
+    <string name="activity_scan_report_module_name">Nome del modulo</string>
+    <string name="activity_scan_report_module_vin">VIN del modulo</string>
+    <string name="activity_scan_report_module_odometer">Chilometraggio del modulo</string>
+    <string name="activity_scan_report_errors_count">Numero di errori</string>
+    <string name="activity_scan_report_read_error">errore di lettura</string>
 </resources>

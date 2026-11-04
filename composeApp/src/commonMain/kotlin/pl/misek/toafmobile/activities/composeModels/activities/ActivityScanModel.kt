@@ -239,25 +239,30 @@ fun ActivityScanModel(onBackClick :() -> Unit) {
 @Composable
 private fun scanResultToString(data : List<ScanResult>) : String {
     val simpleDateFormat = remember { SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.US) }
-    val separator = "-----------------------------------------\n"
+    val separator = "--------------------------------------------------------\n"
+    val readError = stringResource(Res.string.activity_scan_report_read_error)
     val sb = StringBuilder()
     sb.append(separator)
-    sb.append("Car scan result\n")
-    sb.append("TOAF Version : ${BuildKonfig.VERSION_NAME}\n")
-    sb.append("Platform : ${getPlatformName()}\n")
-    sb.append("Scan date : ${simpleDateFormat.format(Calendar.getInstance().time)}\n")
+    sb.append("${stringResource(Res.string.activity_scan_report_title)}\n")
+    sb.append("${stringResource(Res.string.activity_scan_report_version)} : ${BuildKonfig.VERSION_NAME}\n")
+    sb.append("${stringResource(Res.string.activity_scan_report_platform)} : ${getPlatformName()}\n")
+    sb.append("${stringResource(Res.string.activity_scan_report_date)} : ${simpleDateFormat.format(Calendar.getInstance().time)}\n")
     sb.append(separator)
-    sb.append("Scanned Modules : ${data.size}\n")
-    sb.append("Found Modules : ${data.count { x -> x.ident != null }}\n")
+    sb.append("${stringResource(Res.string.activity_scan_report_modules_scanned)} : ${data.size}\n")
+    sb.append("${stringResource(Res.string.activity_scan_report_modules_found)} : ${data.count { x -> x.ident != null }}\n")
     sb.append(separator)
+    val moduleNameLabel = stringResource(Res.string.activity_scan_report_module_name)
+    val moduleVinLabel = stringResource(Res.string.activity_scan_report_module_vin)
+    val moduleOdometerLabel = stringResource(Res.string.activity_scan_report_module_odometer)
+    val errorsCountLabel = stringResource(Res.string.activity_scan_report_errors_count)
     for ((module, ident, vin, odometer, errors) in data.filter { x -> x.ident != null }) {
-        sb.append("Module name : ${module.getModuleName()}\n")
+        sb.append("$moduleNameLabel : ${module.getModuleName()}\n")
         sb.append("${ident?.getFormatedInfo()}\n")
         if (!vin.isNullOrEmpty())
-            sb.append("Module VIN : $vin\n")
+            sb.append("$moduleVinLabel : $vin\n")
         if (!odometer.isNullOrEmpty())
-            sb.append("Module odometer : $odometer\n")
-        sb.append("Errors count : ${errors?.count() ?: "read error"}\n")
+            sb.append("$moduleOdometerLabel : $odometer\n")
+        sb.append("$errorsCountLabel : ${errors?.count() ?: readError}\n")
         for (error in errors ?: emptyList()) {
             sb.append(error.code.uppercase() + " - " + error.description?.let { stringResource(it) } + "\n")
             sb.append(detailsToString(error))
@@ -314,7 +319,7 @@ private fun ScanCarContent(
                             onClick = { onClearAllClick() },
                         )
                         ToafButtons.GreenButton(
-                            buttonText = "Share information",
+                            buttonText = stringResource(Res.string.activity_scan_button_share),
                             modifier = Modifier.weight(1f),
                             onClick = { onShareClick() },
                             enabled = scanResult.isNotEmpty()
