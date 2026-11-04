@@ -257,7 +257,7 @@ fun ActivityModuleModel(
                             showModuleInfo = false
                         })
                 if (showModuleErrors) {
-                    DialogShowErrors.ShowErrors(
+                    DialogShowErrors(
                         errors = moduleErrors,
                         onClose = {
                             showModuleErrors = false

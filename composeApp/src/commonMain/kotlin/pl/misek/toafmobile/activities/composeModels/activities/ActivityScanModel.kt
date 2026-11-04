@@ -2,6 +2,7 @@ package pl.misek.toafmobile.activities.composeModels.activities
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,6 +27,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -55,6 +57,7 @@ import pl.misek.toafmobile.activities.composeModels.ActionTypeEnum
 import pl.misek.toafmobile.activities.composeModels.ToafButtons
 import pl.misek.toafmobile.activities.composeModels.ToafProgressDialog
 import pl.misek.toafmobile.activities.composeModels.TopBarModel
+import pl.misek.toafmobile.activities.composeModels.dialogs.DialogShowErrors
 import pl.misek.toafmobile.activities.composeModels.dialogs.detailsToString
 import pl.misek.toafmobile.activities.composeModels.menus.ToafVerticalScrollbar
 import pl.misek.toafmobile.activities.definitions.ToafColors
@@ -102,6 +105,8 @@ fun ActivityScanModel(onBackClick :() -> Unit) {
     val unexpectedError = stringResource(Res.string.activity_scan_unexpected_error)
     val dataCopiedToClipboard = stringResource(Res.string.data_copied_to_clipboard)
     val scanReport = scanResultToString(scanResult)
+    var showDialogErrors by remember {mutableStateOf(false)}
+    var indexOfErrorsToShow by remember { mutableIntStateOf(0) }
     ScanCarContent(
         onBackClick = { onBackClick() },
         onScanClick = {
@@ -147,6 +152,13 @@ fun ActivityScanModel(onBackClick :() -> Unit) {
             action = { scanReport }
             showProgressDialog = true
         },
+        onShowErrors = { index ->
+            if (scanResult[index].errors != null && scanResult[index].errors?.isNotEmpty() == true)
+            {
+                indexOfErrorsToShow = index
+                showDialogErrors = true
+            }
+        },
         snackBarHostState = snackBarHostState,
         onClearModuleClick = { index ->
             actionType = ActionTypeEnum.ClearErrors
@@ -164,7 +176,25 @@ fun ActivityScanModel(onBackClick :() -> Unit) {
         },
         scanResult = scanResult
     )
+    if (showDialogErrors)
+    {
+        DialogShowErrors(
+            errors = scanResult[indexOfErrorsToShow].errors,
+            onClose = {showDialogErrors = false},
+            onDeleteErrors = {
+                actionType = ActionTypeEnum.ClearErrors
+                action = {
+                    scanResult[indexOfErrorsToShow].module.clearAllErrors()
+                }
+                showProgressDialog = true
+            },
+            onShare = { data ->
+                actionType = ActionTypeEnum.DataCopiedToClipboard
+                shareHandler.shareMessage(data)
+            }
+        )
 
+    }
     if (showProgressDialog) {
         ToafProgressDialog(
             action = { action() },
@@ -279,6 +309,7 @@ private fun ScanCarContent(
     onClearAllClick : () -> Unit,
     onClearModuleClick : (Int) -> Unit,
     onShareClick : () -> Unit,
+    onShowErrors : (Int) -> Unit,
     scanResult: List<ScanResult>,
     snackBarHostState: SnackbarHostState = remember { SnackbarHostState() })
 {
@@ -301,6 +332,12 @@ private fun ScanCarContent(
                     horizontalAlignment = Alignment.CenterHorizontally
                 )
                 {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(start = 8.dp, end = 8.dp, bottom = 8.dp),
+                    )
+                    {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -318,6 +355,13 @@ private fun ScanCarContent(
                             modifier = Modifier.weight(1f),
                             onClick = { onClearAllClick() },
                         )
+                    }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(start = 8.dp, end = 8.dp, bottom = 8.dp),
+                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
                         ToafButtons.GreenButton(
                             buttonText = stringResource(Res.string.activity_scan_button_share),
                             modifier = Modifier.weight(1f),
@@ -325,12 +369,14 @@ private fun ScanCarContent(
                             enabled = scanResult.isNotEmpty()
                         )
                     }
+                    }
 
                     Spacer(Modifier.height(8.dp))
 
                     CarScanTable(
                         scanResult = scanResult,
-                        onClearModuleClick = onClearModuleClick
+                        onClearModuleClick = onClearModuleClick,
+                        onShowErrors = onShowErrors,
                     )
 
                     Spacer(Modifier.height(8.dp))
@@ -339,7 +385,7 @@ private fun ScanCarContent(
 }
 
 @Composable
-private fun CarScanTable(scanResult : List<ScanResult>, onClearModuleClick : (Int) -> Unit)
+private fun CarScanTable(scanResult : List<ScanResult>, onClearModuleClick : (Int) -> Unit, onShowErrors: (Int) -> Unit)
 {
     val listState = rememberLazyListState()
     Column(
@@ -361,7 +407,8 @@ private fun CarScanTable(scanResult : List<ScanResult>, onClearModuleClick : (In
                         point.module,
                         ident = point.ident,
                         point.errors,
-                        onClearClick = { onClearModuleClick(index) }
+                        onClearClick = { onClearModuleClick(index) },
+                        onShowErrors =  { onShowErrors(index) }
                     )
                 }
             }
@@ -397,7 +444,7 @@ private fun ScanCarTableRowHeader()
     }
 }
 @Composable
-private fun ScanCarTableRow(module : IModule, ident : ModuleInfo?, errors: List<ModuleError>?, onClearClick : () -> Unit, isHeader : Boolean = false)
+private fun ScanCarTableRow(module : IModule, ident : ModuleInfo?, errors: List<ModuleError>?, onClearClick : () -> Unit, onShowErrors : () -> Unit, isHeader : Boolean = false)
 {
     val style = TextStyle(
         color = Color.White,
@@ -426,7 +473,10 @@ private fun ScanCarTableRow(module : IModule, ident : ModuleInfo?, errors: List<
                 tint = if (present) ToafColors.toafToastSuccess else ToafColors.toafToastError
             )
         }
-        Text(text = errors?.count()?.toString() ?: "---", style = style, modifier = Modifier.weight(1f))
+        Text(
+            text = errors?.count()?.toString() ?: "---",
+            style = style,
+            modifier = Modifier.weight(1f).clickable(onClick = {onShowErrors()}))
         Box(
             modifier = Modifier.weight(1f),
             contentAlignment = Alignment.Center
@@ -460,6 +510,7 @@ fun ActivityScanModel()
         onShareClick = {},
         onClearAllClick = {},
         onClearModuleClick = {},
+        onShowErrors = {},
         scanResult = scanResult
     )
 }
