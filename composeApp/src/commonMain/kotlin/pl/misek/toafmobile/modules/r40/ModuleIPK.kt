@@ -46,6 +46,11 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
         const val STATUS_LESSEN: Byte = 0x0B
         const val STATUS_IO_LESEN: Byte = 0x14
         val STATUS_IO_USED_PORTS = byteArrayOf(0x00, 0x02, 0x03, 0x05, 0x06)
+
+        /** Odpowiedz `04 01`: [adres][LEN][A0][licznik usterek] <rekordy> [CS]. */
+        const val ERROR_COUNT_BYTE = 3
+        const val ERROR_FIRST_BYTE = 4
+        const val ERROR_RECORD_SIZE = 3
     }
 
     enum class ServiceType {
@@ -277,12 +282,21 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
         var result: MutableList<ModuleError>? = null
         val message = interfaceWrite(byteArrayOf(0x04, 0x01),250)
         try {
-            if (message.isValid) {
-                for (i in 0 until (message.answer[3].toInt() and 0xFF)) {
-                    val errorCode = String.format("%02X", message.answer[4 + 3 * i])
+            if (message.isValid && message.answer.size > ERROR_FIRST_BYTE) {
+                result = ArrayList()
+                // Licznik usterek z ramki bywa niezgodny z jej dlugoscia (sterownik potrafi zwrocic
+                // smiec, np. 0x44 przy 5 rekordach), dlatego ograniczamy go tym, co ramka faktycznie
+                // miesci: [adres][LEN][A0][licznik] <rekordy po 3 bajty> [CS].
+                val declaredCount = message.answer[ERROR_COUNT_BYTE].toInt() and 0xFF
+                val availableCount = (message.answer.size - ERROR_FIRST_BYTE - 1) / ERROR_RECORD_SIZE
+                if (declaredCount > availableCount)
+                    Logger.w { "$tag [getAllErrors]: declared $declaredCount errors, frame holds $availableCount, $message" }
+                for (i in 0 until minOf(declaredCount, availableCount)) {
+                    val offset = ERROR_FIRST_BYTE + ERROR_RECORD_SIZE * i
+                    val errorCode = String.format("%02X", message.answer[offset])
                     val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
-                    errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[6 + 3 * i].toInt() and 0xFF)))
-                    val errorType = message.answer[5 + 3 * i].toInt() and 0xFF
+                    errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[offset + 2].toInt() and 0xFF)))
+                    val errorType = message.answer[offset + 1].toInt() and 0xFF
                     errorTypeDescriptions.forEach { (bit, resKey) ->
                         if ((errorType and bit) == bit) {
                             ResourceMapper
@@ -290,7 +304,6 @@ class ModuleIPK(protocolDS2: ProtocolDS2?) :
                                 ?.let { errorDescription.add(Pair(it, null)) }
                         }
                     }
-                    if (result == null) result = ArrayList()
                     result.add(ModuleError(ModuleAddress.MODULE_IPK, errorCode, errorDescription))
                 }
             }
