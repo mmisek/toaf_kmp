@@ -30,6 +30,10 @@ actual fun AdMobBanner(modifier: Modifier) {
         },
         update  = { adView ->
             Logger.i { "Ad Loaded , ${adView.id}"}
+        },
+
+        onRelease = { adView ->
+            adView.destroy()
         }
     )
 }
