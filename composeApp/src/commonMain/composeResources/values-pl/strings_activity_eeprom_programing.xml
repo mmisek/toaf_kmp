@@ -33,6 +33,10 @@
     <string name="activity_eeprom_programming_ecu_init">Inicjalizacja ECU...%1$s</string>
     <string name="activity_eeprom_programming_write_skip">Pominiecię zapisu pod adresem %1$s</string>
     <string name="activity_eeprom_programming_read_data_size_error">Błędna wielkość odczytanej pamięci!</string>
+    <string name="activity_eeprom_programming_voltage_check">Sprawdzanie napięcia zasilania.</string>
+    <string name="activity_eeprom_programming_voltage_check_failed">Sprawdzanie napięcia zasilania nie powiodło się !!</string>
+    <string name="activity_eeprom_programming_voltage">Napięcie zasilania : %1$s V</string>
+    <string name="activity_eeprom_programming_voltage_too_low">Napięcie akumulatora jest za niskie do programowania EEPROM. Wymień akumulator lub podłącz prostownik.</string>
     <string name="activity_eeprom_programing_warning">
         !! UWAGA !!\n\n
         Wszystkie te operacje mogą uszkodzić Twój moduł.\n

@@ -33,6 +33,10 @@
     <string name="activity_eeprom_programming_ecu_init">Initialisation du calculateur...%1$s</string>
     <string name="activity_eeprom_programming_write_skip">Écriture des données ignorée à %1$s</string>
     <string name="activity_eeprom_programming_read_data_size_error">La taille des données lues ne correspond pas à la taille de l\'EEPROM !</string>
+    <string name="activity_eeprom_programming_voltage_check">Vérification de la tension d\'alimentation.</string>
+    <string name="activity_eeprom_programming_voltage_check_failed">Échec de la vérification de la tension d\'alimentation !!</string>
+    <string name="activity_eeprom_programming_voltage">Tension d\'alimentation : %1$s V</string>
+    <string name="activity_eeprom_programming_voltage_too_low">La tension de la batterie est trop faible pour la programmation EEPROM. Remplacez la batterie ou branchez un chargeur</string>
 
     <string name="activity_eeprom_programing_warning">
         !! AVERTISSEMENT !!\n\n

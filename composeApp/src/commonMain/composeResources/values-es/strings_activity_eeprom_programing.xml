@@ -33,6 +33,10 @@
     <string name="activity_eeprom_programming_ecu_init">Inicialización de la ECU…%1$s</string>
     <string name="activity_eeprom_programming_write_skip">Omitir escritura de datos en %1$s</string>
     <string name="activity_eeprom_programming_read_data_size_error">¡El tamaño de los datos leídos no coincide con el tamaño de la EEPROM!</string>
+    <string name="activity_eeprom_programming_voltage_check">Comprobación de la tensión de alimentación.</string>
+    <string name="activity_eeprom_programming_voltage_check_failed">Error en la comprobación de la tensión de alimentación !!</string>
+    <string name="activity_eeprom_programming_voltage">Tensión de alimentación : %1$s V</string>
+    <string name="activity_eeprom_programming_voltage_too_low">La tensión de la batería es demasiado baja para programar la EEPROM. Sustituya la batería o conecte un cargador</string>
 
     <string name="activity_eeprom_programing_warning">
         !! ¡ADVERTENCIA !!\n\n

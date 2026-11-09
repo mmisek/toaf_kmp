@@ -33,6 +33,10 @@
     <string name="activity_eeprom_programming_ecu_init">Инициализация ЭБУ...%1$s</string>
     <string name="activity_eeprom_programming_write_skip">Пропуск записи данных по адресу %1$s</string>
     <string name="activity_eeprom_programming_read_data_size_error">Размер считанных данных не совпадает с размером EEPROM!</string>
+    <string name="activity_eeprom_programming_voltage_check">Проверка напряжения питания.</string>
+    <string name="activity_eeprom_programming_voltage_check_failed">Не удалось проверить напряжение питания !!</string>
+    <string name="activity_eeprom_programming_voltage">Напряжение питания : %1$s В</string>
+    <string name="activity_eeprom_programming_voltage_too_low">Напряжение аккумулятора слишком низкое для программирования EEPROM. Замените аккумулятор или подключите зарядное устройство</string>
 
     <string name="activity_eeprom_programing_warning">
         !! ВНИМАНИЕ !!\n\n

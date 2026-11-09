@@ -88,6 +88,10 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
     val eepromWriteErrorText = stringResource(Res.string.activity_eeprom_programming_write_error)
     val eepromWriteSkipText = stringResource(Res.string.activity_eeprom_programming_write_skip)
     val moduleResetText = stringResource(Res.string.activity_eeprom_programming_ecu_reset)
+    val voltageCheckText = stringResource(Res.string.activity_eeprom_programming_voltage_check)
+    val voltageCheckFailedText = stringResource(Res.string.activity_eeprom_programming_voltage_check_failed)
+    val voltageText = stringResource(Res.string.activity_eeprom_programming_voltage)
+    val voltageTooLowText = stringResource(Res.string.activity_eeprom_programming_voltage_too_low)
 
     val programmingProcess = { fileData : ByteArray ->
         scope.launch {
@@ -111,7 +115,7 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
                     }
                     if (liveDataModule != null)
                     {
-                        statusText += "\nSupply voltage check."
+                        statusText += "\n" + voltageCheckText
                         var voltage = liveDataModule.getModuleVoltage(liveDataModuleAddress, 2)
                         if (voltage.isNaN() && moduleIPK != null)
                         {
@@ -121,13 +125,13 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
                         }
                         if (voltage.isNaN())
                         {
-                            statusText += "\nSupply voltage check failed !!"
+                            statusText += "\n" + voltageCheckFailedText
                         }
                         else
                         {
-                            statusText += "\nSupply voltage: " + "%.2f V".format(voltage)
+                            statusText += "\n" + String.format(voltageText, "%.2f".format(voltage))
                             if (voltage < 12.5){
-                                statusText += "\nBattery voltage is too low for EEPROM programming. Replace battery or connect booster"
+                                statusText += "\n" + voltageTooLowText
                                 return@launch
                             }
                         }
