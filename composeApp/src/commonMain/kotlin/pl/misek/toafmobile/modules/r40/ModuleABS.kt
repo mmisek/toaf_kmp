@@ -196,5 +196,5 @@ class ModuleABS( protocolDS2: ProtocolDS2?) :ModuleDS2(protocolDS2, ModuleAddres
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>) = true
 
-    override suspend fun getModuleVoltage() = null
+    override suspend fun getModuleVoltage(count : Int) = Float.NaN
 }

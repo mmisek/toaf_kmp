@@ -83,17 +83,6 @@ class ModuleBMBT(protocolDS2: ProtocolDS2?) :
         return false
     }
 
-    override suspend fun getModuleVoltage() : Double?
-    {
-        val list = JsonSupport.getLiveDataElements(getModuleAddress())
-        val liveDataElement = list?.firstOrNull { x->x.name == "battery_voltage"}
-        if (liveDataElement != null)
-        {
-            readLiveData()
-        }
-        return null
-    }
-
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>) = true
 
     override suspend fun getAllErrors(): List<ModuleError>? {

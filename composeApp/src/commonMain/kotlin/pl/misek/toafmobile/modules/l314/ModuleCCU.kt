@@ -309,4 +309,5 @@ class ModuleCCU(private var kwp: ProtocolKWPStar) : IModule, IModuleControl, IMo
         localLiveDataElements = liveDataElements
         return moduleInit() && securityAccess(0x01)
     }
+    override suspend fun getModuleVoltage(count : Int) = Float.NaN
 }

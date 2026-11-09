@@ -217,7 +217,7 @@ class ModuleASC(private var kwp: ProtocolKWPStar) : IModule, IModuleLiveData, IM
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean = moduleInit()
 
-    override suspend fun getModuleVoltage() = null
+    override suspend fun getModuleVoltage(count : Int) = Float.NaN
 
     /*
      * STEUERN_DIGITAL (30 10 07 b0 b1) - tabela STEUERN:

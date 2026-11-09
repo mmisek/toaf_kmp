@@ -2,12 +2,13 @@ package pl.misek.toafmobile.modules.interfaces
 
 import pl.misek.toafmobile.livedata.LiveDataElement
 import pl.misek.toafmobile.livedata.LiveDataFormat
+import pl.misek.toafmobile.modules.enums.ModuleAddress
+import pl.misek.toafmobile.tools.JsonSupport
 import java.nio.ByteBuffer
 
 interface IModuleLiveData {
     suspend fun readLiveData(): Map<Int, Any>?
     suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean
-    suspend fun getModuleVoltage() : Double?
 
     fun getLiveDataRawValue(data : Map<Int, Any>?, element : LiveDataElement) : Long? {
         if (data == null || element.liveDataFormat != LiveDataFormat.Standard) return null
@@ -55,6 +56,27 @@ interface IModuleLiveData {
         val scaled = if (element.invertA) 1 / rawValue.toFloat() else rawValue.toFloat()
         return element.factorA * scaled + element.factorB
     }
+
+    suspend fun getModuleVoltage(moduleAddress: ModuleAddress, count : Int) : Float
+    {
+        val list = JsonSupport.getLiveDataElements(moduleAddress = moduleAddress)
+        val elementName = getBatteryLiveDataName(moduleAddress = moduleAddress)
+        if (elementName != null) {
+            val liveDataElement = list?.firstOrNull { x -> x.name == elementName }
+            if (liveDataElement != null) {
+                if (startLiveDataRead(listOf(liveDataElement))) {
+                    val values = mutableListOf<Float>()
+                    repeat(count)
+                    {
+                        val data = readLiveData()
+                        getLiveDataRawValue(data, liveDataElement)?.let { values.add(it.toFloat()) }
+                    }
+                    return values.average().toFloat()
+                }
+            }
+        }
+        return Float.NaN
+    }
 }
 
 internal fun calculateLengthFromMask(value : Long) : Int {
@@ -76,4 +98,30 @@ internal fun convertToLong(byteArray : ByteArray) : Long {
         value += (byte.toLong() and 0xFF) shl shift
     }
     return value
+}
+
+internal  fun getBatteryLiveDataName(moduleAddress: ModuleAddress) : String?
+{
+    return when (moduleAddress)
+    {
+        ModuleAddress.MODULE_BMBT -> "battery_voltage"
+        ModuleAddress.MODULE_DDE -> "anmUBT"
+        ModuleAddress.MODULE_DSC -> "ignition_voltage"
+        ModuleAddress.MODULE_EHC -> "supply_voltage"
+        ModuleAddress.MODULE_ELV -> "ALOG_U_KL30"
+        ModuleAddress.MODULE_EMS -> "battery_voltage"
+        ModuleAddress.MODULE_GS20 -> "battery_voltage"
+        ModuleAddress.MODULE_GS8601 -> "battery_voltage"
+        ModuleAddress.MODULE_HEVAC -> "power_supply"
+        ModuleAddress.MODULE_IPK -> "battery_voltage"
+        ModuleAddress.MODULE_LCM -> "battery_voltage"
+        ModuleAddress.MODULE_LCM_L322 -> "battery_voltage"
+        ModuleAddress.MODULE_LWS -> "terminal_87_voltage"
+        ModuleAddress.MODULE_ME72 -> "UB"
+        ModuleAddress.MODULE_MEMS -> "input_battery_voltage"
+        ModuleAddress.MODULE_MFL -> "operating_voltage"
+        ModuleAddress.MODULE_NAVMK3 -> "12v_value"
+        ModuleAddress.MODULE_WEBASTO -> "battery_voltage"
+        else -> null
+    }
 }

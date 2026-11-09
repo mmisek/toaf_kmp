@@ -59,7 +59,7 @@ class ModuleATC( protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddre
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>) = true
 
-    override suspend fun getModuleVoltage() = null
+    override suspend fun getModuleVoltage(count : Int) = Float.NaN
 
     override suspend fun getIdentification(): ModuleInfo? {
         var moduleInfo: ModuleInfo? = null
