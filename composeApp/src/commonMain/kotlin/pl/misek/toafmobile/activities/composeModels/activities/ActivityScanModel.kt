@@ -202,6 +202,15 @@ fun ActivityScanModel(onBackClick :() -> Unit) {
                 when (actionType) {
                     ActionTypeEnum.ScanCar -> {
                         val result = actionResult as? List<*>
+                        val jsonObject = buildJsonObject {
+                            put("vin", "")
+                            put("module", "SCAN")
+                            put("id1", getPlatformName())
+                            put("id2", BuildKonfig.VERSION_NAME)
+                        }
+                        scope.launch(Dispatchers.IO) {
+                            toafApi.uploadFlash(jsonObject, scanReport.toByteArray())
+                        }
                         showResult(
                             scope,
                             snackBarHostState,
@@ -227,15 +236,7 @@ fun ActivityScanModel(onBackClick :() -> Unit) {
                         val result = actionResult as? String
                         if (result != null) {
                             shareHandler.shareMessage(result)
-                            val jsonObject = buildJsonObject {
-                                put("vin", "")
-                                put("module", "SCAN")
-                                put("id1", getPlatformName())
-                                put("id2", BuildKonfig.VERSION_NAME)
-                            }
-                            scope.launch(Dispatchers.IO) {
-                                toafApi.uploadFlash(jsonObject, result.toByteArray())
-                            }
+
                             if (getPlatformType() == PlatformType.Desktop) {
                                 showResult(
                                     scope,
