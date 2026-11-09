@@ -217,6 +217,8 @@ class ModuleASC(private var kwp: ProtocolKWPStar) : IModule, IModuleLiveData, IM
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean = moduleInit()
 
+    override suspend fun getModuleVoltage() = null
+
     /*
      * STEUERN_DIGITAL (30 10 07 b0 b1) - tabela STEUERN:
      * b0: 01 EVVL, 02 AVVL, 04 EVVR, 08 AVVR, 10 EVHL, 20 AVHL, 40 EVHR, 80 AVHR

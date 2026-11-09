@@ -18,6 +18,7 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_bmbt
 import toafmobile.composeapp.generated.resources.module_description_bmbt
 import kotlinx.coroutines.CancellationException
+import pl.misek.toafmobile.tools.JsonSupport
 
 private const val tag = "ModuleBMBT"
 class ModuleBMBT(protocolDS2: ProtocolDS2?) :
@@ -80,6 +81,17 @@ class ModuleBMBT(protocolDS2: ProtocolDS2?) :
             ).isValid
         }
         return false
+    }
+
+    override suspend fun getModuleVoltage() : Double?
+    {
+        val list = JsonSupport.getLiveDataElements(getModuleAddress())
+        val liveDataElement = list?.firstOrNull { x->x.name == "battery_voltage"}
+        if (liveDataElement != null)
+        {
+            readLiveData()
+        }
+        return null
     }
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>) = true
