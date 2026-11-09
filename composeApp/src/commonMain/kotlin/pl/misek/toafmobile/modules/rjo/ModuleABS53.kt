@@ -117,8 +117,6 @@ class ModuleABS53(private var kw1281: ProtocolKW1281) : IModule, IModuleLiveData
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean = true
 
-    override suspend fun getModuleVoltage(count : Int) = Float.NaN
-
     override suspend fun control(controlElement: ControlElement): Boolean {
         val command = CONTROL_COMMANDS[controlElement.byteInBlock] ?: return false
         return transact(TITLE_RAM, command) != null

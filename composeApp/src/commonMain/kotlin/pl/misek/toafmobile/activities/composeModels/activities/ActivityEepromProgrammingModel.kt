@@ -42,6 +42,8 @@ import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.modules.ModuleInfo
 import pl.misek.toafmobile.modules.ModulesManager
 import pl.misek.toafmobile.modules.interfaces.IModuleEepromProgramming
+import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
+import pl.misek.toafmobile.modules.r40.ModuleIPK
 import pl.misek.toafmobile.network.ToafApi
 import pl.misek.toafmobile.tools.IFileSupport
 import pl.misek.toafmobile.viewModels.UserInfoViewModel
@@ -56,7 +58,8 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
     val toafApi : ToafApi = koinInject()
     val fileSupport : IFileSupport = koinInject()
     val modulesManage : ModulesManager = koinInject()
-    val currentModule = modulesManage.getCurrentModules().firstOrNull {it.getKoinName() == moduleKoinName} as IModule
+    val currentModule = modulesManage.getCurrentModules().firstOrNull {it.getKoinName() == moduleKoinName}
+    val moduleIPK = modulesManage.getCurrentModules().firstOrNull {it.getKoinName() == KoinNames.ModuleR40Ipk }
     val userInfoViewModel : UserInfoViewModel = koinViewModel()
     val userInfo by userInfoViewModel.userInfo.collectAsState()
     var showFullVersionDialog by remember { mutableStateOf(false) }
@@ -89,6 +92,8 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
     val programmingProcess = { fileData : ByteArray ->
         scope.launch {
             val eepromModule = currentModule as IModuleEepromProgramming
+            var liveDataModule = currentModule as? IModuleLiveData
+            var liveDataModuleAddress = currentModule.getModuleAddress()
             val eepromSize = eepromModule.getEepromSize()
             val bytesToWrite = eepromModule.getEepromWriteSize()
             if (fileData.size == eepromSize) {
@@ -100,6 +105,33 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
                 if (moduleIdentification != null) {
                     eepromModule.beforeWrite()
                     statusText += "\nID: " + moduleIdentification!!.id1
+                    if (liveDataModule == null && moduleIPK != null) {
+                        liveDataModule = moduleIPK as? IModuleLiveData
+                        liveDataModuleAddress = moduleIPK.getModuleAddress()
+                    }
+                    if (liveDataModule != null)
+                    {
+                        statusText += "\nSupply voltage check."
+                        var voltage = liveDataModule.getModuleVoltage(liveDataModuleAddress, 2)
+                        if (voltage.isNaN() && moduleIPK != null)
+                        {
+                            liveDataModule = moduleIPK as IModuleLiveData
+                            liveDataModuleAddress = moduleIPK.getModuleAddress()
+                            voltage = liveDataModule.getModuleVoltage(liveDataModuleAddress, 2)
+                        }
+                        if (voltage.isNaN())
+                        {
+                            statusText += "\nSupply voltage check failed !!"
+                        }
+                        else
+                        {
+                            statusText += "\nSupply voltage: " + "%.2f V".format(voltage)
+                            if (voltage < 12.5){
+                                statusText += "\nBattery voltage is too low for EEPROM programming. Replace battery or connect booster"
+                                return@launch
+                            }
+                        }
+                    }
                     var currentTry = 0
                     val maxTry = 3
                     var i = 0

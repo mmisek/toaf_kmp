@@ -69,7 +69,8 @@ interface IModuleLiveData {
                     repeat(count)
                     {
                         val data = readLiveData()
-                        getLiveDataRawValue(data, liveDataElement)?.let { values.add(it.toFloat()) }
+                        val value = getLiveDataValue(data, liveDataElement)
+                        if (!value.isNaN()) values.add(value)
                     }
                     return values.average().toFloat()
                 }

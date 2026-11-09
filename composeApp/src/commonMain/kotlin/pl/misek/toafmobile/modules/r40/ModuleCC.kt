@@ -162,8 +162,6 @@ class ModuleCC(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>) = securityAccess03()
 
-    override suspend fun getModuleVoltage(count : Int) = Float.NaN
-
     private suspend fun securityAccess03(): Boolean {
         val level :Byte = 0x03
         val message = kwp!!.write(moduleAddress, 0x27.toByte(), byteArrayOf(level), 500)

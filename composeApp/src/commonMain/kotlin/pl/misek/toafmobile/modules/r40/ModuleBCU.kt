@@ -69,8 +69,6 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
 
     override fun getModuleDescription() = Res.string.module_description_bcu
 
-    override suspend fun getModuleVoltage(count : Int) = Float.NaN
-
     override suspend fun readLiveData(): Map<Int, ByteArray>? {
         val result: MutableMap<Int, ByteArray> = HashMap()
         val message = interfaceWrite(byteArrayOf(0x0B, 0x00))
