@@ -151,10 +151,52 @@ buildkonfig {
     }
 }
 aboutLibraries {
+    // offlineMode = false (domyslnie) pozwala pluginowi pobrac pelne teksty licencji
+    // z spdx.org do pola `content` - z niego korzysta ekran "O programie" oraz
+    // generator pliku NOTICE. Przy `--offline` teksty nie zostana uzupelnione.
+    offlineMode = false
     export {
         outputFile = file("src/commonMain/composeResources/files/aboutlibraries.json")
         prettyPrint = true
     }
+}
+
+// --- NOTICE -----------------------------------------------------------------
+// Plik NOTICE w katalogu glownym jest generowany z metadanych AboutLibraries.
+// Zadanie wpina sie WYLACZNIE w buildy release (desktop ponizej, Android w
+// androidApp/build.gradle.kts), zeby nie wydluzac buildow debug/dev.
+// Interpreter Pythona mozna wskazac przez -Ptoaf.python=... (domyslnie python/python3).
+val noticeScript = rootProject.file("tools/generate_notice.py")
+val noticeTextsDir = rootProject.file("tools/notice")
+val noticeFile = rootProject.file("NOTICE")
+val aboutLibrariesFile = file("src/commonMain/composeResources/files/aboutlibraries.json")
+val pythonExecutable = providers.gradleProperty("toaf.python")
+    .orElse(providers.systemProperty("os.name").map { if (it.startsWith("Windows")) "python" else "python3" })
+
+tasks.register<Exec>("generateNotice") {
+    group = "documentation"
+    description = "Regeneruje plik NOTICE z metadanych AboutLibraries."
+    dependsOn("exportLibraryDefinitions")
+    commandLine(pythonExecutable.get(), noticeScript.absolutePath, "--root", rootProject.projectDir.absolutePath)
+    inputs.file(noticeScript)
+    inputs.dir(noticeTextsDir)
+    inputs.file(aboutLibrariesFile)
+    outputs.file(noticeFile)
+}
+
+tasks.register<Exec>("checkNotice") {
+    group = "verification"
+    description = "Sprawdza, czy plik NOTICE odpowiada aktualnym zaleznosciom."
+    dependsOn("exportLibraryDefinitions")
+    commandLine(pythonExecutable.get(), noticeScript.absolutePath, "--root", rootProject.projectDir.absolutePath, "--check")
+}
+
+// Dystrybucje desktopowe: createReleaseDistributable, packageReleaseMsi/Exe/Deb/Rpm/Pkg,
+// packageReleaseDistributionForCurrentOS, packageReleaseUberJarForCurrentOS.
+tasks.matching {
+    it.name == "createReleaseDistributable" || it.name.startsWith("packageRelease")
+}.configureEach {
+    dependsOn("generateNotice")
 }
 
 tasks.matching {
