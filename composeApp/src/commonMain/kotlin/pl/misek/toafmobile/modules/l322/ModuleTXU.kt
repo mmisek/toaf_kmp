@@ -65,7 +65,7 @@ class ModuleTXU(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData
 
     override suspend fun getIdentification(): ModuleInfo? {
         var info: ModuleInfo? = null
-        val message = kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x80.toByte()))
+        val message = kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x80.toByte()), 500)
         try {
             if (message.isValid) {
                 info = ModuleInfo()
@@ -112,7 +112,7 @@ class ModuleTXU(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData
     }
 
     private suspend fun getSerialNumber(): String? {
-        val message = kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x89.toByte()))
+        val message = kwp!!.write(moduleAddress, 0x1A.toByte(), byteArrayOf(0x89.toByte()), 500)
         try {
             if (message.isValid) {
                 return String(message.answer.copyOfRange(6, message.answer.size - 1))
@@ -134,7 +134,7 @@ class ModuleTXU(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData
     /** 18 02 FF FF: [5] liczba bledow, rekord 3 bajty - kod (2 bajty) + status (bit 6 = blad obecny, wg DAVU0009) */
     override suspend fun getAllErrors(): List<ModuleError>? {
         var result: MutableList<ModuleError>? = null
-        val message = kwp!!.write(moduleAddress, 0x18.toByte(), byteArrayOf(0x02, 0xFF.toByte(), 0xFF.toByte()), 250)
+        val message = kwp!!.write(moduleAddress, 0x18.toByte(), byteArrayOf(0x02, 0xFF.toByte(), 0xFF.toByte()), 500)
         try {
             if (message.isValid) {
                 result = ArrayList()

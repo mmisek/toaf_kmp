@@ -469,7 +469,7 @@ class ModuleGS20(val protocolDS2: ProtocolDS2?) :ModuleDS2( protocolDS2, ModuleA
                 ((address and 0x00FF00L) shr 8).toByte(),
                 ((address and 0x0000FFL)).toByte(),
                 ((size and 0xFF)).toByte()
-            )
+            ), 500
         )
         if (message.isValid) {
             try {

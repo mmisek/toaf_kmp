@@ -33,8 +33,11 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
     ModuleDS2(protocolDS2, ModuleAddress.MODULE_BCU_L322, listOf(CarType.L322)),
     IModuleCoding, IModuleEepromProgramming, IModuleAdvanceControl, IModuleServotronic,
     IModuleFlashProgramming /*, IModuleLiveData*/ {
+    // Odczyt pamieci jak w BCU R40 - ramka {06 LEN AdrHi AdrLo}. W odroznieniu od R40
+    // ten modul NIE ma Security Access: zadna z funkcji nie poprzedza odczytu logowaniem,
+    // nie ma tez beforeRead().
     private val EEPROM_START_ADDRESS = 0x0D00
-    private val EEPROM_BLOCK_SIZE = 0x10
+    private val EEPROM_BLOCK_SIZE = 0x20
 
     override fun getKoinName() = KoinNames.ModuleL322Bcu
 
@@ -249,27 +252,23 @@ class ModuleBCU(protocolDS2: ProtocolDS2?) :
         return data
     }
 
-    private suspend fun readMemoryBlock(address: Int, size: Int) : ByteArray?
+    private suspend fun readMemoryBlock(address: Int, size : Int) : ByteArray?
     {
         val message = interfaceWrite(
-            byteArrayOf(
-                0x06,
-                0x00,
-                0x00,
-                0x00,
-                ((address shr 8) and 0xFF).toByte(),
-                (address and 0xFF).toByte(),
-                size.toByte()
-            ),
-            500
-        )
+            byteArrayOf(0x06, size.toByte(), ((address shr 8) and 0xFF).toByte(), (address and 0xFF).toByte()),
+            (350 + size * 3).toLong())
         try {
-            return if (message.isValid) message.answer.copyOfRange(0x03, 3 + size) else null
+            if (!message.isValid) return null
+            val data = message.answer.copyOfRange(3, message.answer.size - 1)
+            if (data.size != size) {
+                Logger.e { "$tag [readMemoryBlock], size ${data.size} != $size, $message" }
+                return null
+            }
+            return data
         } catch (ex: CancellationException) {
             throw ex
-        } catch (ex : Exception)
-        {
-            Logger.e {"$tag [readMemoryBlock]: $ex, $message"}
+        } catch (ex: Exception) {
+            Logger.e { "$tag [readMemoryBlock], $ex, $message" }
             return null
         }
     }

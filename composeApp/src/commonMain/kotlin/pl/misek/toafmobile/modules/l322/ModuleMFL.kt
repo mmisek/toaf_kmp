@@ -33,13 +33,13 @@ class ModuleMFL( protocolDS2: ProtocolDS2?) :
 
     override suspend fun getAllErrors(): List<ModuleError>? {
         getIdentification()
-        val first = interfaceWrite(byteArrayOf(0x04, 0x01))
+        val first = interfaceWrite(byteArrayOf(0x04, 0x01),500)
         if (!first.isValid) return null
         val result: MutableList<ModuleError> = ArrayList()
         val count = first.answer[3].toInt() and 0xFF
         parseErrors(first, minOf(count, 7), result)
         if (count > 7) {
-            val second = interfaceWrite(byteArrayOf(0x04, 0x02))
+            val second = interfaceWrite(byteArrayOf(0x04, 0x02), 500)
             if (second.isValid)
                 parseErrors(second, count - 7, result)
         }
