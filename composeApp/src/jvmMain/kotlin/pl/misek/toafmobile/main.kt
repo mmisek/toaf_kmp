@@ -7,6 +7,7 @@ import co.touchlab.kermit.Logger
 import co.touchlab.kermit.Severity
 import io.sentry.Sentry
 import io.sentry.SentryOptions
+import io.techie.volta.VoltaFactory
 import org.jetbrains.compose.resources.painterResource
 import org.koin.core.context.GlobalContext
 import org.koin.core.context.startKoin
@@ -58,6 +59,7 @@ fun main() {
     }
     database = GlobalContext.get().get<ToafDatabase>()
     setupCrashHandlers(database)
+    VoltaFactory.create()
 
     application {
         fun onExitApp()

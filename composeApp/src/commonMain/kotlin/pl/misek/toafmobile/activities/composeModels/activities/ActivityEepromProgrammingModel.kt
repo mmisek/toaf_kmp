@@ -28,6 +28,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.*
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.sp
+import io.techie.volta.VoltaSensorState
+import io.techie.volta.compose.rememberBatteryState
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import org.jetbrains.compose.resources.stringResource
@@ -70,6 +72,7 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
     var moduleIdentification by remember {mutableStateOf<ModuleInfo?>(null)}
     var statusText by remember { mutableStateOf("") }
     var fileName by remember {mutableStateOf("")}
+    val batteryState by rememberBatteryState()
     val eepromReadStartText = stringResource(Res.string.activity_eeprom_programming_start)
     val eepromReadGetIdentificationText = stringResource(Res.string.activity_eeprom_read_identification)
     val eepromReadProgressText = stringResource(Res.string.activity_eeprom_programming_eeprom_read)
@@ -109,6 +112,28 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
                 if (moduleIdentification != null) {
                     eepromModule.beforeWrite()
                     statusText += "\nID: " + moduleIdentification!!.id1
+                    when (batteryState) {
+                        is VoltaSensorState.Available<*> ->
+                        {
+                            val battery = (batteryState as VoltaSensorState.Available).data
+                            val batteryLevel = battery.level
+                            val chargingStatus = battery.isCharging
+                            val chargingText = if (chargingStatus == true) "Yes" else "No"
+                            if (batteryLevel != null && chargingStatus != null) {
+                                statusText += "\nBattery Level : $batteryLevel %"
+                                statusText += "\nCharging : $chargingText"
+                                if (batteryLevel != null && batteryLevel < 20 && chargingStatus == false) {
+                                    statusText += "\nBattery level is too low for EEPROM Programming! Charge battery or connect charger!"
+                                    return@launch
+                                }
+                            }
+                        }
+                        is VoltaSensorState.Error -> statusText +="\nFailed to read battery state!"
+                        VoltaSensorState.HardwareNotSupported -> {}
+                        VoltaSensorState.PermissionDenied -> statusText +="\nNo permission to read battery state!"
+                        VoltaSensorState.Unknown -> {}
+
+                    }
                     if (liveDataModule == null && moduleIPK != null) {
                         liveDataModule = moduleIPK as? IModuleLiveData
                         liveDataModuleAddress = moduleIPK.getModuleAddress()

@@ -75,6 +75,7 @@ kotlin {
             implementation(libs.co.touchlab.ketmin)
             implementation(libs.aboutLibraries.compose)
             implementation(libs.aboutLibraries.core)
+            implementation(libs.volta)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))

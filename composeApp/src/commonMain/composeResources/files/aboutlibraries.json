@@ -3116,6 +3116,29 @@
             ]
         },
         {
+            "uniqueId": "io.github.techie-labs:volta",
+            "artifactVersion": "1.0.0",
+            "name": "Volta",
+            "description": "Volta \u26a1 \u2014 Compose Multiplatform Battery Library & Kotlin Multiplatform (KMP) solution. Monitor battery health, charging status, and advanced diagnostics across Android, iOS, Desktop, and Web with a unified API.",
+            "website": "https://github.com/techie-labs/volta",
+            "developers": [
+                {
+                    "name": "Fangga Dewangga"
+                }
+            ],
+            "scm": {
+                "connection": "scm:git:git://github.com/techie-labs/volta.git",
+                "developerConnection": "scm:git:ssh://git@github.com/techie-labs/volta.git",
+                "url": "https://github.com/techie-labs/volta"
+            },
+            "licenses": [
+                "Apache-2.0"
+            ],
+            "funding": [
+                
+            ]
+        },
+        {
             "uniqueId": "io.insert-koin:koin-android",
             "artifactVersion": "4.2.2",
             "name": "Koin",
@@ -5270,7 +5293,7 @@
         },
         {
             "uniqueId": "org.jetbrains.kotlinx:kotlinx-serialization-bom",
-            "artifactVersion": "1.12.0",
+            "artifactVersion": "1.13.0",
             "name": "kotlinx-serialization-bom",
             "description": "Kotlin multiplatform serialization runtime library",
             "website": "https://github.com/Kotlin/kotlinx.serialization",
@@ -5292,7 +5315,7 @@
         },
         {
             "uniqueId": "org.jetbrains.kotlinx:kotlinx-serialization-core",
-            "artifactVersion": "1.12.0",
+            "artifactVersion": "1.13.0",
             "name": "kotlinx-serialization-core",
             "description": "Kotlin multiplatform serialization runtime library",
             "website": "https://github.com/Kotlin/kotlinx.serialization",
@@ -5314,7 +5337,7 @@
         },
         {
             "uniqueId": "org.jetbrains.kotlinx:kotlinx-serialization-json",
-            "artifactVersion": "1.12.0",
+            "artifactVersion": "1.13.0",
             "name": "kotlinx-serialization-json",
             "description": "Kotlin multiplatform serialization runtime library",
             "website": "https://github.com/Kotlin/kotlinx.serialization",
@@ -5336,7 +5359,7 @@
         },
         {
             "uniqueId": "org.jetbrains.kotlinx:kotlinx-serialization-json-io",
-            "artifactVersion": "1.12.0",
+            "artifactVersion": "1.13.0",
             "name": "kotlinx-serialization-json-io",
             "description": "Kotlin multiplatform serialization runtime library",
             "website": "https://github.com/Kotlin/kotlinx.serialization",
