@@ -111,7 +111,7 @@ compose.desktop {
         }.get().metadata.installationPath.asFile.absolutePath
 
         nativeDistributions {
-            targetFormats(TargetFormat.Rpm, TargetFormat.Msi, TargetFormat.Exe, TargetFormat.Deb, TargetFormat.Pkg)
+            targetFormats(TargetFormat.Rpm, TargetFormat.Msi, TargetFormat.Exe, TargetFormat.Deb, TargetFormat.Pkg, TargetFormat.Dmg)
             packageName = "Toaf Desktop"
             version = appVersionName
             packageVersion = appVersionName
@@ -121,6 +121,29 @@ compose.desktop {
                 shortcut = true
                 iconFile.set(project.file("src/commonMain/composeResources/drawable/toaf_icon_linux.png"))
                 debMaintainer = "toaf@roverki.eu"
+            }
+            macOS {
+                // jpackage wymaga identyfikatora w notacji odwroconego DNS; packageName
+                // ("Toaf Desktop") zawiera spacje, wiec nie nadaje sie na bundleID.
+                bundleID = "pl.misek.toafmobile"
+                // Nazwa w Docku i w menu bar. Bez tego macOS pokazuje packageName ze spacja.
+                dockName = "Toaf"
+                appCategory = "public.app-category.utilities"
+                // JDK 21 wspiera macOS 11+; nizszej wersji i tak nie da sie obsluzyc.
+                minimumSystemVersion = "11.0"
+                iconFile.set(project.file("icons/toaf_icon_macos.icns"))
+                // Plik entitlements celowo NIE jest nadpisywany - domyslny z pluginu Compose
+                // zawiera com.apple.security.cs.disable-library-validation, bez ktorego
+                // podpisana aplikacja nie zaladuje natywek JNI jSerialComm i libsqliteJni
+                // rozpakowywanych do katalogu tymczasowego.
+                //
+                // Podpis i notaryzacja sa sterowane wlasciwosciami Gradle (brak -> build
+                // lokalny bez podpisu dziala normalnie):
+                //   compose.desktop.mac.sign=true
+                //   compose.desktop.mac.signing.identity=Developer ID Application: ... (TEAMID)
+                //   compose.desktop.mac.notarization.appleID=...
+                //   compose.desktop.mac.notarization.password=...   (haslo dla aplikacji)
+                //   compose.desktop.mac.notarization.teamID=...
             }
             windows {
                 menu = true

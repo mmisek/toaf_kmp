@@ -26,6 +26,12 @@ import kotlin.system.exitProcess
 var database : ToafDatabase? = null
 
 fun main() {
+    // Nazwa w pasku menu i w Docku przy uruchomieniu spoza pakietu (./gradlew run).
+    // Musi byc ustawiona zanim AWT zainicjalizuje aplikacje, czyli przed pierwszym
+    // dotknieciem Compose/Skiko. W wersji spakowanej robi to -Xdock:name z jpackage.
+    if (getPlatformName() == "MACOS") {
+        System.setProperty("apple.awt.application.name", "Toaf")
+    }
     startKoin {
         modules(commonModules, platformModules())
         createEagerInstances()

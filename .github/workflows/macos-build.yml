@@ -1,0 +1,98 @@
+# Build desktopowy na macOS.
+#
+# Repozytorium zrodlowe zyje na Bitbucket - tutaj trafia tylko lustro wypychane
+# przez bitbucket-pipelines.yml. Powod jest prosty: GitHub Actions dziala wylacznie
+# na repozytoriach GitHuba i tylko tam sa hostowane runnery macOS (Bitbucket Cloud
+# oferuje maszyny macOS wylacznie jako self-hosted runnery na wlasnym sprzecie).
+#
+# UWAGA NA KOSZTY: na repozytorium prywatnym minuty macOS licza sie x10 wzgledem
+# limitu darmowego (2000 min/mies. = ok. 200 minut macOS). Dlatego build startuje
+# tylko dla main, tagow i recznie. Na repozytorium publicznym Actions sa darmowe.
+
+name: Build macOS
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  workflow_dispatch:
+
+concurrency:
+  group: macos-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  desktop:
+    name: Toaf Desktop (macOS, Apple Silicon)
+    # macos-latest to obecnie Apple Silicon. Powstaje DMG z JRE arm64, ktore NIE
+    # uruchomi sie na Macach z procesorem Intel - dla nich trzeba dolozyc rownolegly
+    # job na macos-13 (obraz x86_64) i wypuscic dwa osobne pliki DMG.
+    runs-on: macos-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Pobranie zrodel
+        uses: actions/checkout@v4
+
+      - name: JDK 21 (Temurin)
+        # Projekt ma jvmToolchain(21), a jpackage dodatkowo potrzebuje katalogu jmods,
+        # ktorego nie ma w samym JRE - stad pelny JDK, nie runtime.
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Android SDK
+        # composeApp ma target android, a settings.gradle.kts dociaga :androidApp,
+        # wiec Gradle konfiguruje modul AGP nawet przy budowaniu samego desktopu.
+        # Obrazy macOS na Apple Silicon nie maja wbudowanego Android SDK.
+        # Identyfikator platformy musi odpowiadac compileSdk z build.gradle.kts.
+        # Uwaga: od API 36 Google wydaje platformy z numerem pomocniczym, wiec
+        # compileSdk = 37 to pakiet "platforms;android-37.0", a nie "android-37".
+        # Build-tools dobiera sobie AGP (licencje akceptuje ten krok).
+        uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools platforms;android-37.0'
+
+      - name: local.properties dla runnera
+        # Plik jest wersjonowany i wskazuje sciezke SDK z Windows (C:\Users\...),
+        # wiec bez nadpisania AGP przerywa konfiguracje projektu.
+        run: echo "sdk.dir=$ANDROID_HOME" > local.properties
+
+      - name: Gradle z cache
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Prawo wykonywania gradlew
+        # Repo jest rozwijane na Windows, wiec git trzyma gradlew jako 100644 (bez +x).
+        # Na stale mozna to naprawic przez: git update-index --chmod=+x gradlew
+        run: chmod +x gradlew
+
+      - name: Kompilacja i testy
+        run: ./gradlew :composeApp:compileKotlinJvm :composeApp:jvmTest --stacktrace
+
+      - name: Pakiet DMG
+        # packageReleaseDmg przepuszcza kod przez ProGuard wg proguard-desktop.pro
+        # i uruchamia generateNotice (python3 jest na obrazie macOS).
+        # Build jest niepodpisany. Zeby podpisac i notaryzowac, dolóz do keychaina
+        # certyfikat Developer ID i dopisz tu wlasciwosci Gradle:
+        #   -Pcompose.desktop.mac.sign=true
+        #   -Pcompose.desktop.mac.signing.identity="Developer ID Application: ... (TEAMID)"
+        #   -Pcompose.desktop.mac.notarization.appleID=... -P...password=... -P...teamID=...
+        run: ./gradlew :composeApp:packageReleaseDmg --stacktrace
+
+      - name: Artefakt DMG
+        uses: actions/upload-artifact@v4
+        with:
+          name: toaf-desktop-macos-arm64
+          path: composeApp/build/compose/binaries/main-release/dmg/*.dmg
+          if-no-files-found: error
+
+      - name: Raporty po niepowodzeniu
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: raporty-build
+          path: |
+            composeApp/build/reports/
+            composeApp/build/compose/logs/
+          if-no-files-found: ignore

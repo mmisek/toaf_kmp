@@ -5,12 +5,49 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
+import co.touchlab.kermit.Logger
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.swing.Swing
 import kotlinx.coroutines.withContext
 import java.awt.FileDialog
 import java.awt.Frame
 import java.io.File
+
+private const val tag = "DesktopFileSupport"
+
+/**
+ * Natywne okno wyboru pliku musi zostac pokazane na watku zdarzen AWT (EDT).
+ *
+ * Na Windows wywolanie z dowolnego watku zwykle przechodzi, ale na macOS AWT przekazuje
+ * natywny panel na watek AppKit przez LWCToolkit.invokeAndWait - wywolanie spoza EDT
+ * potrafi zakleszczyc cala aplikacje. Dispatchers.Swing to dokladnie EDT.
+ *
+ * Modalne okno blokuje EDT tylko pozornie: FileDialog.show() uruchamia zagniezdzona
+ * petle zdarzen, wiec reszta UI pozostaje responsywna.
+ */
+private suspend fun chooseFile(title: String, mode: Int, fileName: String?): File? =
+    withContext(Dispatchers.Swing) {
+        val dialog = FileDialog(ownerFrame(), title, mode)
+        if (fileName != null) dialog.file = fileName
+        dialog.isVisible = true
+
+        val selectedFile = dialog.file
+        val selectedDirectory = dialog.directory
+        // null oznacza, ze uzytkownik anulowal
+        if (selectedFile != null && selectedDirectory != null) {
+            File(selectedDirectory, selectedFile)
+        } else {
+            null
+        }
+    }
+
+/**
+ * Okno bez rodzica na macOS gubi focus i nie przykleja sie do okna aplikacji.
+ * ComposeWindow dziedziczy po JFrame, wiec znajdziemy je wsrod ramek AWT.
+ */
+private fun ownerFrame(): Frame? = Frame.getFrames().firstOrNull { it.isVisible }
 
 class DesktopFileSupport: IFileSupport {
     override suspend fun saveToFile(sourcePath: String, targetIdentifier: String): Boolean =
@@ -30,34 +67,28 @@ class DesktopFileSupport: IFileSupport {
         val scope = rememberCoroutineScope()
         val currentData by rememberUpdatedState(data)
         return { fileName ->
-            scope.launch(Dispatchers.IO) {
+            // Scope kompozycji dziala na EDT, wiec onResult trafia na watek UI bez
+            // dodatkowego przelaczania; sam zapis schodzi na Dispatchers.IO.
+            scope.launch {
                 val success = try {
-                    // Otwieramy okno dialogowe wyboru pliku (AWT)
-                    val dialog = FileDialog(null as Frame?, "Zapisz plik", FileDialog.SAVE)
-                    dialog.file = fileName
-                    dialog.isVisible = true
-
-                    val selectedFile = dialog.file
-                    val selectedDirectory = dialog.directory
-
-                    if (selectedFile != null && selectedDirectory != null) {
-                        val file = File(selectedDirectory, selectedFile)
-                        file.writeBytes(currentData)
+                    val target = chooseFile("Zapisz plik", FileDialog.SAVE, fileName)
+                    if (target != null) {
+                        withContext(Dispatchers.IO) { target.writeBytes(currentData) }
                         true
                     } else {
-                        false // Użytkownik anulował
+                        false // Uzytkownik anulowal
                     }
-                } catch (e: Exception) {
-                    e.printStackTrace()
+                } catch (ex: CancellationException) {
+                    throw ex
+                } catch (ex: Exception) {
+                    Logger.e { "$tag [saveDataLauncher], $ex" }
                     false
                 }
-
-                withContext(Dispatchers.Main) {
-                    onResult(success)
-                }
+                onResult(success)
             }
         }
     }
+
     @Composable
     override fun readDataLauncher(
         onResult: (ByteArray) -> Unit
@@ -65,60 +96,42 @@ class DesktopFileSupport: IFileSupport {
         val scope = rememberCoroutineScope()
 
         return {
-            scope.launch(Dispatchers.IO) {
+            scope.launch {
                 val bytes = try {
-                    // null jako Frame jest akceptowalny w Compose Desktop
-                    val dialog = FileDialog(null as Frame?, "Wybierz plik do odczytu", FileDialog.LOAD)
-                    dialog.isVisible = true
-
-                    val file = dialog.file
-                    val directory = dialog.directory
-
-                    if (file != null && directory != null) {
-                        File(directory, file).readBytes()
+                    val source = chooseFile("Wybierz plik do odczytu", FileDialog.LOAD, null)
+                    if (source != null) {
+                        withContext(Dispatchers.IO) { source.readBytes() }
                     } else {
-                        ByteArray(0) // Użytkownik anulował
+                        ByteArray(0) // Uzytkownik anulowal
                     }
-                } catch (e: Exception) {
-                    e.printStackTrace()
+                } catch (ex: CancellationException) {
+                    throw ex
+                } catch (ex: Exception) {
+                    Logger.e { "$tag [readDataLauncher], $ex" }
                     ByteArray(0)
                 }
-
-                withContext(Dispatchers.Main) {
-                    onResult(bytes)
-                }
+                onResult(bytes)
             }
         }
     }
 
     @Composable
     override fun SaveFileHandler(file: File?, onSaveComplete: () -> Unit) {
-        val scope = rememberCoroutineScope()
-
         LaunchedEffect(file) {
-            if (file != null) {
-                scope.launch(Dispatchers.IO) {
-                    try {
-                        // Tworzymy okno zapisu (AWT)
-                        val dialog = FileDialog(null as Frame?, "Zapisz plik", FileDialog.SAVE)
-                        dialog.file = file.name
-                        dialog.isVisible = true
-
-                        val selectedFile = dialog.file
-                        val selectedDir = dialog.directory
-
-                        if (selectedFile != null && selectedDir != null) {
-                            val targetPath = java.io.File(selectedDir, selectedFile).absolutePath
-                            // Wywołujemy Twoją funkcję zapisu
-                            saveToFile(file.absolutePath, targetPath)
-                        }
-                    } finally {
-                        // Wracamy do wątku głównego, aby zakończyć proces
-                        withContext(Dispatchers.Main) {
-                            onSaveComplete()
-                        }
-                    }
+            if (file == null) return@LaunchedEffect
+            try {
+                val target = chooseFile("Zapisz plik", FileDialog.SAVE, file.name)
+                if (target != null) {
+                    saveToFile(file.absolutePath, target.absolutePath)
                 }
+            } catch (ex: CancellationException) {
+                throw ex
+            } catch (ex: Exception) {
+                Logger.e { "$tag [SaveFileHandler], $ex" }
+            } finally {
+                // Wracamy do stanu spoczynku nawet po bledzie - inaczej UI zostaje
+                // zablokowane w trybie "zapisywanie".
+                onSaveComplete()
             }
         }
     }
