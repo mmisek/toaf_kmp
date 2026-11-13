@@ -18,6 +18,9 @@ dist/
 
 # Package files
 *.jar
+# Wyjatek: jar wrappera MUSI byc w repo, inaczej ./gradlew nie wystartuje
+# na swiezym klonie (CI konczy sie bledem "Unable to access jarfile").
+!gradle/wrapper/gradle-wrapper.jar
 
 # Maven
 target/
