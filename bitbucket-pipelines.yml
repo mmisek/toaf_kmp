@@ -1,44 +1,35 @@
-# Most Bitbucket -> GitHub.
-#
-# Kod zyje na Bitbucket, ale build macOS musi pojsc przez GitHub Actions, bo tylko
-# GitHub daje hostowane runnery macOS. Ten pipeline po kazdym pushu wypycha commity
-# na repozytorium-lustro na GitHubie, a to wyzwala .github/workflows/macos-build.yml.
-#
-# Konfiguracja (Repository settings -> Repository variables):
-#   GH_OWNER  - wlasciciel repo na GitHub (uzytkownik albo organizacja)
-#   GH_REPO   - nazwa repo-lustra na GitHub
-#   GH_TOKEN  - token GitHuba, ZAZNACZ "Secured". Fine-grained PAT z uprawnieniem
-#               Contents: Read and write do tego jednego repo w zupelnosci wystarczy.
-#
-# Push wykonywany tokenem PAT wyzwala workflow w Actions (w odroznieniu od pushu
-# wbudowanym GITHUB_TOKEN wewnatrz samych Actions, ktory ich nie wyzwala).
-#
-# UWAGA: lustro jest jednokierunkowe i wypychane z --force. Nie commituj niczego
-# bezposrednio na GitHubie - przy najblizszym pushu z Bitbucketa zostanie nadpisane.
+# This is an example Starter pipeline configuration
+# Use a skeleton to build, test and deploy using manual and parallel steps
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
 
-image: atlassian/default-image:4
-
-clone:
-  # Push wymaga pelnej historii; domyslne plytkie klonowanie Bitbucketa ja obcina.
-  depth: full
-
-definitions:
-  steps:
-    - step: &mirror-to-github
-        name: Lustro na GitHub
-        clone:
-          depth: full
-        script:
-          - |
-            if [ -z "$GH_OWNER" ] || [ -z "$GH_REPO" ] || [ -z "$GH_TOKEN" ]; then
-              echo "Brak zmiennych GH_OWNER / GH_REPO / GH_TOKEN w ustawieniach repozytorium."
-              exit 1
-            fi
-          - REMOTE="https://x-access-token:${GH_TOKEN}@github.com/${GH_OWNER}/${GH_REPO}.git"
-          - git push --force "$REMOTE" "HEAD:refs/heads/${BITBUCKET_BRANCH}"
-          - git push --force --tags "$REMOTE"
-          - echo "Wypchnieto ${BITBUCKET_BRANCH}. Build macOS - https://github.com/${GH_OWNER}/${GH_REPO}/actions"
+image: atlassian/default-image:3
 
 pipelines:
   default:
-    - step: *mirror-to-github
+    - parallel:
+      - step:
+          name: 'Build and Test'
+          script:
+            - echo "Your build and test goes here..."
+      - step:
+          name: 'Lint'
+          script:
+            - echo "Your linting goes here..."
+      - step:
+          name: 'Security scan'
+          script:
+            - echo "Your security scan goes here..."
+
+    # The following deployment steps will be executed for each pipeline run. To configure your steps and conditionally deploy see https://support.atlassian.com/bitbucket-cloud/docs/configure-bitbucket-pipelinesyml/
+    - step:
+        name: 'Deployment to Staging'
+        deployment: staging
+        script:
+          - echo "Your deployment to staging script goes here..."
+    - step:
+        name: 'Deployment to Production'
+        deployment: production
+        trigger: 'manual'
+        script:
+          - echo "Your deployment to production script goes here..."
