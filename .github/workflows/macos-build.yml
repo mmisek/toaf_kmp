@@ -80,8 +80,12 @@ jobs:
         # Na stale mozna to naprawic przez: git update-index --chmod=+x gradlew
         run: chmod +x gradlew
 
-      - name: Kompilacja i testy
-        run: ./gradlew :composeApp:compileKotlinJvm :composeApp:jvmTest --stacktrace
+      - name: Kompilacja
+        # Osobny krok przed pakowaniem, zeby blad kompilacji byl od razu widoczny
+        # pod wlasna nazwa, a nie zakopany w logu jpackage.
+        # Testy (jvmTest) celowo nie leca - sprawdzaja logike modulow R40, ktora jest
+        # niezalezna od systemu, wiec na runnerze macOS niczego by nie wnosily.
+        run: ./gradlew :composeApp:compileKotlinJvm --stacktrace
 
       - name: Pakiet DMG
         # packageReleaseDmg przepuszcza kod przez ProGuard wg proguard-desktop.pro
