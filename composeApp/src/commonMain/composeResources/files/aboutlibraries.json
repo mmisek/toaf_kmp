@@ -1635,10 +1635,10 @@
         },
         {
             "uniqueId": "androidx.navigation:navigation-common",
-            "artifactVersion": "2.9.7",
+            "artifactVersion": "2.10.0",
             "name": "Navigation Common",
             "description": "Android Navigation-Common",
-            "website": "https://developer.android.com/jetpack/androidx/releases/navigation#2.9.7",
+            "website": "https://developer.android.com/jetpack/androidx/releases/navigation#2.10.0",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -1660,10 +1660,10 @@
         },
         {
             "uniqueId": "androidx.navigation:navigation-compose",
-            "artifactVersion": "2.9.7",
+            "artifactVersion": "2.10.0",
             "name": "Compose Navigation",
             "description": "Compose integration with Navigation",
-            "website": "https://developer.android.com/jetpack/androidx/releases/navigation#2.9.7",
+            "website": "https://developer.android.com/jetpack/androidx/releases/navigation#2.10.0",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -1685,10 +1685,10 @@
         },
         {
             "uniqueId": "androidx.navigation:navigation-runtime",
-            "artifactVersion": "2.9.7",
+            "artifactVersion": "2.10.0",
             "name": "Navigation Runtime",
             "description": "Android Navigation-Runtime",
-            "website": "https://developer.android.com/jetpack/androidx/releases/navigation#2.9.7",
+            "website": "https://developer.android.com/jetpack/androidx/releases/navigation#2.10.0",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -1710,10 +1710,10 @@
         },
         {
             "uniqueId": "androidx.navigationevent:navigationevent",
-            "artifactVersion": "1.0.0",
+            "artifactVersion": "1.1.2",
             "name": "Navigation Event",
             "description": "Provides APIs to easily intercept platform navigation events, including swipes and clicks, to provide a consistent API surface for handling these events.",
-            "website": "https://developer.android.com/jetpack/androidx/releases/navigationevent#1.0.0",
+            "website": "https://developer.android.com/jetpack/androidx/releases/navigationevent#1.1.2",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -1735,10 +1735,10 @@
         },
         {
             "uniqueId": "androidx.navigationevent:navigationevent-compose",
-            "artifactVersion": "1.0.0",
+            "artifactVersion": "1.1.2",
             "name": "NavigationEvent Compose",
             "description": "Compose integration with NavigationEvent",
-            "website": "https://developer.android.com/jetpack/androidx/releases/navigationevent#1.0.0",
+            "website": "https://developer.android.com/jetpack/androidx/releases/navigationevent#1.1.2",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -1901,10 +1901,10 @@
         },
         {
             "uniqueId": "androidx.savedstate:savedstate",
-            "artifactVersion": "1.4.0",
+            "artifactVersion": "1.5.0",
             "name": "Saved State",
             "description": "Android Lifecycle Saved State",
-            "website": "https://developer.android.com/jetpack/androidx/releases/savedstate#1.4.0",
+            "website": "https://developer.android.com/jetpack/androidx/releases/savedstate#1.5.0",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -1926,10 +1926,10 @@
         },
         {
             "uniqueId": "androidx.savedstate:savedstate-compose",
-            "artifactVersion": "1.4.0",
+            "artifactVersion": "1.5.0",
             "name": "Saved State Compose",
             "description": "Compose integration with Saved State",
-            "website": "https://developer.android.com/jetpack/androidx/releases/savedstate#1.4.0",
+            "website": "https://developer.android.com/jetpack/androidx/releases/savedstate#1.5.0",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -1951,10 +1951,10 @@
         },
         {
             "uniqueId": "androidx.savedstate:savedstate-ktx",
-            "artifactVersion": "1.4.0",
+            "artifactVersion": "1.5.0",
             "name": "SavedState Kotlin Extensions",
             "description": "Kotlin extensions for 'savedstate' artifact",
-            "website": "https://developer.android.com/jetpack/androidx/releases/savedstate#1.4.0",
+            "website": "https://developer.android.com/jetpack/androidx/releases/savedstate#1.5.0",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -3071,7 +3071,7 @@
         },
         {
             "uniqueId": "com.squareup.okhttp3:okhttp",
-            "artifactVersion": "5.5.0",
+            "artifactVersion": "5.5.1",
             "name": "okhttp",
             "description": "Square\u2019s meticulous HTTP client for Java and Kotlin.",
             "website": "https://lysine.dev/okhttp/",
@@ -3107,6 +3107,29 @@
                 "connection": "scm:git:git://github.com/lysine-dev/okio.git",
                 "developerConnection": "scm:git:ssh://git@github.com/lysine-dev/okio.git",
                 "url": "https://github.com/lysine-dev/okio/"
+            },
+            "licenses": [
+                "Apache-2.0"
+            ],
+            "funding": [
+                
+            ]
+        },
+        {
+            "uniqueId": "io.github.techie-labs:volta",
+            "artifactVersion": "1.0.0",
+            "name": "Volta",
+            "description": "Volta \u26a1 \u2014 Compose Multiplatform Battery Library & Kotlin Multiplatform (KMP) solution. Monitor battery health, charging status, and advanced diagnostics across Android, iOS, Desktop, and Web with a unified API.",
+            "website": "https://github.com/techie-labs/volta",
+            "developers": [
+                {
+                    "name": "Fangga Dewangga"
+                }
+            ],
+            "scm": {
+                "connection": "scm:git:git://github.com/techie-labs/volta.git",
+                "developerConnection": "scm:git:ssh://git@github.com/techie-labs/volta.git",
+                "url": "https://github.com/techie-labs/volta"
             },
             "licenses": [
                 "Apache-2.0"
@@ -3227,7 +3250,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-client-auth",
-            "artifactVersion": "3.6.0",
+            "artifactVersion": "3.6.1",
             "name": "ktor-client-auth",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3249,7 +3272,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-client-content-negotiation",
-            "artifactVersion": "3.6.0",
+            "artifactVersion": "3.6.1",
             "name": "ktor-client-content-negotiation",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3271,7 +3294,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-client-core",
-            "artifactVersion": "3.6.0",
+            "artifactVersion": "3.6.1",
             "name": "ktor-client-core",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3293,7 +3316,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-client-logging",
-            "artifactVersion": "3.6.0",
+            "artifactVersion": "3.6.1",
             "name": "ktor-client-logging",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3315,7 +3338,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-client-okhttp",
-            "artifactVersion": "3.6.0",
+            "artifactVersion": "3.6.1",
             "name": "ktor-client-okhttp",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3337,7 +3360,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-events",
-            "artifactVersion": "3.6.0",
+            "artifactVersion": "3.6.1",
             "name": "ktor-events",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3359,7 +3382,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-http",
-            "artifactVersion": "3.6.0",
+            "artifactVersion": "3.6.1",
             "name": "ktor-http",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3381,7 +3404,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-http-cio",
-            "artifactVersion": "3.6.0",
+            "artifactVersion": "3.6.1",
             "name": "ktor-http-cio",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3403,7 +3426,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-io",
-            "artifactVersion": "3.6.0",
+            "artifactVersion": "3.6.1",
             "name": "ktor-io",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3425,7 +3448,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-network",
-            "artifactVersion": "3.6.0",
+            "artifactVersion": "3.6.1",
             "name": "ktor-network",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3447,7 +3470,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-openapi-schema",
-            "artifactVersion": "3.6.0",
+            "artifactVersion": "3.6.1",
             "name": "ktor-openapi-schema",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3469,7 +3492,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-serialization",
-            "artifactVersion": "3.6.0",
+            "artifactVersion": "3.6.1",
             "name": "ktor-serialization",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3491,7 +3514,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-serialization-kotlinx",
-            "artifactVersion": "3.6.0",
+            "artifactVersion": "3.6.1",
             "name": "ktor-serialization-kotlinx",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3513,7 +3536,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-serialization-kotlinx-json",
-            "artifactVersion": "3.6.0",
+            "artifactVersion": "3.6.1",
             "name": "ktor-serialization-kotlinx-json",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3535,7 +3558,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-sse",
-            "artifactVersion": "3.6.0",
+            "artifactVersion": "3.6.1",
             "name": "ktor-sse",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3557,7 +3580,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-utils",
-            "artifactVersion": "3.6.0",
+            "artifactVersion": "3.6.1",
             "name": "ktor-utils",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3579,7 +3602,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-websocket-serialization",
-            "artifactVersion": "3.6.0",
+            "artifactVersion": "3.6.1",
             "name": "ktor-websocket-serialization",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3601,7 +3624,7 @@
         },
         {
             "uniqueId": "io.ktor:ktor-websockets",
-            "artifactVersion": "3.6.0",
+            "artifactVersion": "3.6.1",
             "name": "ktor-websockets",
             "description": "Ktor is a framework for quickly creating web applications in Kotlin with minimal effort.",
             "website": "https://github.com/ktorio/ktor",
@@ -3623,7 +3646,7 @@
         },
         {
             "uniqueId": "io.sentry:sentry",
-            "artifactVersion": "8.58.0",
+            "artifactVersion": "8.61.0",
             "name": "Sentry SDK",
             "description": "SDK for sentry.io",
             "website": "https://github.com/getsentry/sentry-java",
@@ -3646,7 +3669,7 @@
         },
         {
             "uniqueId": "io.sentry:sentry-android",
-            "artifactVersion": "8.58.0",
+            "artifactVersion": "8.61.0",
             "name": "Sentry SDK",
             "description": "SDK for sentry.io",
             "website": "https://github.com/getsentry/sentry-java",
@@ -3669,7 +3692,7 @@
         },
         {
             "uniqueId": "io.sentry:sentry-android-core",
-            "artifactVersion": "8.58.0",
+            "artifactVersion": "8.61.0",
             "name": "Sentry SDK",
             "description": "SDK for sentry.io",
             "website": "https://github.com/getsentry/sentry-java",
@@ -3692,7 +3715,7 @@
         },
         {
             "uniqueId": "io.sentry:sentry-android-ndk",
-            "artifactVersion": "8.58.0",
+            "artifactVersion": "8.61.0",
             "name": "Sentry SDK",
             "description": "SDK for sentry.io",
             "website": "https://github.com/getsentry/sentry-java",
@@ -3715,7 +3738,7 @@
         },
         {
             "uniqueId": "io.sentry:sentry-android-replay",
-            "artifactVersion": "8.58.0",
+            "artifactVersion": "8.61.0",
             "name": "Sentry SDK",
             "description": "SDK for sentry.io",
             "website": "https://github.com/getsentry/sentry-java",
@@ -3738,7 +3761,7 @@
         },
         {
             "uniqueId": "io.sentry:sentry-kotlin-multiplatform",
-            "artifactVersion": "0.28.0",
+            "artifactVersion": "0.29.0",
             "name": "Sentry Kotlin Multiplatform SDK",
             "description": "SDK for sentry.io",
             "website": "https://github.com/getsentry/sentry-kotlin-multiplatform",
@@ -3761,7 +3784,7 @@
         },
         {
             "uniqueId": "io.sentry:sentry-native-ndk",
-            "artifactVersion": "0.16.6",
+            "artifactVersion": "0.17.3",
             "name": "Sentry SDK",
             "description": "SDK for sentry.io",
             "website": "https://github.com/getsentry/sentry-native",
@@ -4030,10 +4053,10 @@
         },
         {
             "uniqueId": "org.jetbrains.androidx.navigation:navigation-common",
-            "artifactVersion": "2.9.2",
+            "artifactVersion": "2.10.0",
             "name": "Navigation Common",
             "description": "Android Navigation-Common",
-            "website": "https://github.com/JetBrains/compose-jb",
+            "website": "https://github.com/JetBrains/compose-multiplatform",
             "developers": [
                 {
                     "name": "Compose Multiplatform Team",
@@ -4041,9 +4064,9 @@
                 }
             ],
             "scm": {
-                "connection": "scm:git:https://github.com/JetBrains/compose-jb.git",
-                "developerConnection": "scm:git:https://github.com/JetBrains/compose-jb.git",
-                "url": "https://github.com/JetBrains/compose-jb"
+                "connection": "scm:git:https://github.com/JetBrains/compose-multiplatform.git",
+                "developerConnection": "scm:git:https://github.com/JetBrains/compose-multiplatform.git",
+                "url": "https://github.com/JetBrains/compose-multiplatform"
             },
             "licenses": [
                 "Apache-2.0"
@@ -4054,10 +4077,10 @@
         },
         {
             "uniqueId": "org.jetbrains.androidx.navigation:navigation-compose",
-            "artifactVersion": "2.9.2",
+            "artifactVersion": "2.10.0",
             "name": "Compose Navigation",
             "description": "Compose integration with Navigation",
-            "website": "https://github.com/JetBrains/compose-jb",
+            "website": "https://github.com/JetBrains/compose-multiplatform",
             "developers": [
                 {
                     "name": "Compose Multiplatform Team",
@@ -4065,9 +4088,9 @@
                 }
             ],
             "scm": {
-                "connection": "scm:git:https://github.com/JetBrains/compose-jb.git",
-                "developerConnection": "scm:git:https://github.com/JetBrains/compose-jb.git",
-                "url": "https://github.com/JetBrains/compose-jb"
+                "connection": "scm:git:https://github.com/JetBrains/compose-multiplatform.git",
+                "developerConnection": "scm:git:https://github.com/JetBrains/compose-multiplatform.git",
+                "url": "https://github.com/JetBrains/compose-multiplatform"
             },
             "licenses": [
                 "Apache-2.0"
@@ -4078,10 +4101,10 @@
         },
         {
             "uniqueId": "org.jetbrains.androidx.navigation:navigation-runtime",
-            "artifactVersion": "2.9.2",
+            "artifactVersion": "2.10.0",
             "name": "Navigation Runtime",
             "description": "Android Navigation-Runtime",
-            "website": "https://github.com/JetBrains/compose-jb",
+            "website": "https://github.com/JetBrains/compose-multiplatform",
             "developers": [
                 {
                     "name": "Compose Multiplatform Team",
@@ -4089,9 +4112,9 @@
                 }
             ],
             "scm": {
-                "connection": "scm:git:https://github.com/JetBrains/compose-jb.git",
-                "developerConnection": "scm:git:https://github.com/JetBrains/compose-jb.git",
-                "url": "https://github.com/JetBrains/compose-jb"
+                "connection": "scm:git:https://github.com/JetBrains/compose-multiplatform.git",
+                "developerConnection": "scm:git:https://github.com/JetBrains/compose-multiplatform.git",
+                "url": "https://github.com/JetBrains/compose-multiplatform"
             },
             "licenses": [
                 "Apache-2.0"
@@ -4126,7 +4149,7 @@
         },
         {
             "uniqueId": "org.jetbrains.androidx.savedstate:savedstate",
-            "artifactVersion": "1.3.6",
+            "artifactVersion": "1.4.0",
             "name": "Saved State",
             "description": "Android Lifecycle Saved State",
             "website": "https://github.com/JetBrains/compose-jb",
@@ -5270,7 +5293,7 @@
         },
         {
             "uniqueId": "org.jetbrains.kotlinx:kotlinx-serialization-bom",
-            "artifactVersion": "1.11.0",
+            "artifactVersion": "1.13.0",
             "name": "kotlinx-serialization-bom",
             "description": "Kotlin multiplatform serialization runtime library",
             "website": "https://github.com/Kotlin/kotlinx.serialization",
@@ -5292,7 +5315,7 @@
         },
         {
             "uniqueId": "org.jetbrains.kotlinx:kotlinx-serialization-core",
-            "artifactVersion": "1.11.0",
+            "artifactVersion": "1.13.0",
             "name": "kotlinx-serialization-core",
             "description": "Kotlin multiplatform serialization runtime library",
             "website": "https://github.com/Kotlin/kotlinx.serialization",
@@ -5314,7 +5337,7 @@
         },
         {
             "uniqueId": "org.jetbrains.kotlinx:kotlinx-serialization-json",
-            "artifactVersion": "1.11.0",
+            "artifactVersion": "1.13.0",
             "name": "kotlinx-serialization-json",
             "description": "Kotlin multiplatform serialization runtime library",
             "website": "https://github.com/Kotlin/kotlinx.serialization",
@@ -5336,7 +5359,7 @@
         },
         {
             "uniqueId": "org.jetbrains.kotlinx:kotlinx-serialization-json-io",
-            "artifactVersion": "1.11.0",
+            "artifactVersion": "1.13.0",
             "name": "kotlinx-serialization-json-io",
             "description": "Kotlin multiplatform serialization runtime library",
             "website": "https://github.com/Kotlin/kotlinx.serialization",

@@ -23,12 +23,28 @@ import toafmobile.composeapp.generated.resources.module_description_lcm
 import toafmobile.composeapp.generated.resources.module_lsm
 import java.util.Locale
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import pl.misek.toafmobile.modules.enums.FlashProgrammingState
+import pl.misek.toafmobile.modules.enums.ModuleFeature
+import pl.misek.toafmobile.modules.interfaces.IModuleFlashProgramming
+import toafmobile.composeapp.generated.resources.activity_flash_programming_close
+import toafmobile.composeapp.generated.resources.activity_flash_programming_end
+import toafmobile.composeapp.generated.resources.activity_flash_programming_failed
+import toafmobile.composeapp.generated.resources.activity_flash_programming_flash_reading
+import toafmobile.composeapp.generated.resources.activity_flash_programming_read_error
+import toafmobile.composeapp.generated.resources.activity_flash_programming_read_time
+import toafmobile.composeapp.generated.resources.activity_flash_programming_security_access
+import toafmobile.composeapp.generated.resources.activity_flash_programming_start
+import toafmobile.composeapp.generated.resources.activity_flash_read_identification
+import java.util.Calendar
 
 private const val tag = "ModuleLSM_R40"
 class ModuleLSM(protocolDS2: ProtocolDS2?) :
     ModuleDS2(protocolDS2, ModuleAddress.MODULE_LCM, listOf(CarType.R40)),
     IModuleVIN, IModuleControl, IModuleCoding, IModuleLSMAutoLight, IModuleLiveData,
-    IModuleOdometer {
+    IModuleOdometer,IModuleFlashProgramming {
     private val autoLightsModeDisabled = arrayOf(
                 byteArrayOf(0x00,0x38,0x17,0x16,0x65,0x63,0x65,0x28,0x02,0xC6.toByte(),
                             0xFF.toByte(),0xD7.toByte(),0xA2.toByte(),0x12,0xA1.toByte(),0x01,0x03,0x15,0x87.toByte(),0x20,
@@ -208,6 +224,12 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
         autoLightsModeRunOnEngineStart,
         autoLightsModeRunOnIgnition
     )
+    private var _programmingState = MutableSharedFlow<FlashProgrammingState>(replay = 10, extraBufferCapacity = 64, onBufferOverflow = BufferOverflow.DROP_OLDEST)
+
+    override val programmingState =_programmingState.asSharedFlow()
+
+    override val flashProgrammingAvailable = false
+
     override fun getKoinName() = KoinNames.ModuleR40Lsm
 
     override fun getImageResource() = Res.drawable.module_lsm
@@ -486,5 +508,93 @@ class ModuleLSM(protocolDS2: ProtocolDS2?) :
         coding[0x03] = (coding[0x03].toInt() xor (0x01)).toByte()
         return interfaceWrite(byteArrayOf(0x09, 0x00) + coding).isValid &&
                 readCodingBlock(0x00)?.contentEquals(coding) == true
+    }
+    override fun getNewFeatures() = super.getNewFeatures() + ModuleFeature.FlashProgramming
+
+    override suspend fun readFlash() {
+        val startAddress = 0x8000;
+        val flashSize = 0x7FFF
+        val blockSize = 0x20
+        var result = ByteArray(0)
+        val startTime = Calendar.getInstance().time
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_start))
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_read_identification))
+        val ident = getIdentification()
+        if (ident == null){
+            _programmingState.tryEmit((FlashProgrammingState.Message(Res.string.activity_flash_programming_failed)))
+            return
+        }
+        _programmingState.tryEmit(FlashProgrammingState.Message("ID : ${ident.id1}"))
+        val vin = getVIN()
+        if (!vin.isNullOrEmpty()) _programmingState.tryEmit(FlashProgrammingState.Message("VIN: $vin"))
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_flash_reading))
+        var x = 0;
+        val endAddress = startAddress + flashSize
+        val steps = (flashSize + blockSize -1)/blockSize
+        var  i = startAddress
+        while (i < endAddress)
+        {
+            _programmingState.tryEmit(FlashProgrammingState.Progress((x++ * 100)/steps))
+            val data = readMemoryBlock(i,blockSize)
+            if (data == null || data.size != blockSize)
+            {
+                _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_read_error))
+                return
+            }
+            result += data
+            i += blockSize
+        }
+        _programmingState.tryEmit(FlashProgrammingState.Progress(100))
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_end))
+        _programmingState.tryEmit(FlashProgrammingState.Message(Res.string.activity_flash_programming_close))
+
+        val endTime = Calendar.getInstance().time
+        val totalMillis = endTime.time - startTime.time
+        val seconds = (totalMillis / 1000).toInt() % 60
+        val minutes = ((totalMillis / 1000).toInt() / 60) % 60
+        val hours = (totalMillis / 1000).toInt() / 3600
+
+        _programmingState.tryEmit(
+            FlashProgrammingState.MessageWithParameter(
+                Res.string.activity_flash_programming_read_time,
+                String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds)
+            )
+        )
+        try {
+            _programmingState.tryEmit(
+                FlashProgrammingState.FlashData(
+                    result.toList(),
+                    ident,
+                    vin
+                )
+            )
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex: Exception) {
+            Logger.e { "$tag [readFlash]: $ex" }
+        }
+    }
+
+    override suspend fun writeFlash(data: ByteArray) {}
+
+    private suspend fun readMemoryBlock(address: Int, size : Int) : ByteArray?
+    {
+        val message = interfaceWrite(
+            byteArrayOf(0x06, ((address shr 8) and 0xFF).toByte(), (address and 0xFF).toByte()),
+            (350 + size * 3).toLong())
+        try {
+            if (!message.isValid) return null
+            val data = message.answer.copyOfRange(3, message.answer.size - 1)
+            if (data.size != size) {
+                Logger.e { "$tag [readMemoryBlock], size ${data.size} != $size, $message" }
+                return null
+            }
+            return data
+        } catch (ex: CancellationException) {
+            throw ex
+        } catch (ex: Exception) {
+            Logger.e { "$tag [readMemoryBlock], $ex, $message" }
+            return null
+        }
     }
 }

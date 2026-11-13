@@ -520,6 +520,9 @@
     <string name="me72_error_occurrence_first">Pierwsze wystąpienie</string>
     <string name="me72_error_occurrence_second">Drugie wystąpienie</string>
     <string name="me72_error_occurrence_last">Aktualne wystąpienie</string>
+    <string name="me72_error_pcode">Kod OBD</string>
+    <string name="me72_info_supplier_number">Numer dostawcy</string>
+    <string name="me72_info_software_number">Numer oprogramowania</string>
     <string name="me72_lambda_status_21">Regulacja WYŁ., warunki włączenia jeszcze niespełnione</string>
     <string name="me72_lambda_status_22">Regulacja WŁ.</string>
     <string name="me72_lambda_status_23">Regulacja WYŁ. z powodu warunków jazdy</string>

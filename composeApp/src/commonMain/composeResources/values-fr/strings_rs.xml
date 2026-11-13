@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_rs">Capteur de pluie (RS)</string>
+    <!-- MODULE RS -->
+    <string name="rs_error_01">Défaut matériel interne</string>
+    <string name="rs_error_02">Apprentissage sur le pare-brise impossible</string>
+    <string name="rs_error_03">Tension ou température hors tolérance</string>
+    <string name="rs_error_04">Problème de communication ASIC - contrôleur</string>
+    <string name="rs_error_05">Capteur d\'essuyage défectueux (aucune détection)</string>
+    <string name="rs_error_06">Contact de position de repos du moteur d\'essuie-glace défectueux</string>
+    <!-- RS control -->
+    <string name="rs_control_init">Initialiser le capteur de pluie</string>
+    <!-- RS Live data -->
+    <string name="rs_live_data_park_position">Position de l\'essuie-glace</string>
+    <string name="rs_live_data_reinforcement">Amplification du signal</string>
+    <string name="rs_live_data_time_point_1">Instant 1</string>
+    <string name="rs_live_data_time_point_2">Instant 2</string>
+    <string name="rs_live_data_value_parked">position de repos</string>
+    <string name="rs_live_data_value_not_parked">hors position de repos</string>
+</resources>

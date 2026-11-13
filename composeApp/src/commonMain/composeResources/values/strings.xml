@@ -93,6 +93,7 @@
     <!-- activity coding -->
     <string name="module_coding">Coding</string>
     <string name="activity_coding_subtitle">Module coding</string>
+    <string name="activity_coding_no_scheme">No coding scheme for this control unit</string>
     <string name="activity_coding_button_read">Read</string>
     <string name="activity_coding_button_save">Save</string>
     <string name="activity_coding_read_failure">Coding read failure</string>

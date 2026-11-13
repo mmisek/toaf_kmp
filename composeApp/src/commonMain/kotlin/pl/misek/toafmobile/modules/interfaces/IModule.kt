@@ -30,6 +30,9 @@ interface IModule {
 
     fun getSupportedCarTypes(): List<CarType>
 
+    /** Nazwa pliku i prefiks tekstow LiveData (files/LiveData/<nazwa>_live_data.json) - domyslnie nazwa modulu */
+    fun getLiveDataName(): String = getModuleName()
+
     /**
      * Funkcje modulu oznaczone jako nowe. Domyslnie wyliczane z elementow oznaczonych isNew,
      * modul moze nadpisac aby oznaczyc inne funkcje (np. LiveData).

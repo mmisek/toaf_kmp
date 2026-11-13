@@ -1,0 +1,48 @@
+﻿Pojazd;Modul;EEPROM odczyt;EEPROM zapis;Flash odczyt;Flash zapis
+Rover 75;ABS;X;X;X;X
+Rover 75;ATC;X;X;X;X
+Rover 75;BCU;✓;X;✓;X
+Rover 75;BMBT;✓;✓;X;X
+Rover 75;CC;X;X;X;X
+Rover 75;DDE;X;X;✓;✓
+Rover 75;EMS;X;X;✓;✓
+Rover 75;EWS;X;X;X;X
+Rover 75;IPK;✓;✓;X;X
+Rover 75;JATCO;X;X;✓;✓
+Rover 75;LSM;X;X;✓;X
+Rover 75;MEMS;X;X;✓;✓
+Rover 75;NavMk3;X;X;X;X
+Rover 75;PDC;✓;✓;X;X
+Rover 75;Radio;X;X;X;X
+Rover 75;RS;X;X;X;X
+Rover 75;SHD;X;X;X;X
+Rover 75;SMAC;X;X;X;X
+Rover 75;SRS;X;X;X;X
+Rover 75;SRS2;X;X;X;X
+Rover 75;Video;✓;✓;X;X
+Rover 75;Webasto;✓;✓;X;X
+Rover 25;EMS;X;X;✓;✓
+Rover 25;MEMS;X;X;✓;✓
+Rover 25;PDC;✓;✓;X;X
+Range Rover L322;BCU;✓;✓;✓;X
+Range Rover L322;BMBT;✓;✓;X;X
+Range Rover L322;DDE;X;X;✓;✓
+Range Rover L322;DSC;X;X;X;X
+Range Rover L322;EHC;✓;✓;X;X
+Range Rover L322;ELV;X;X;X;X
+Range Rover L322;EWS;X;X;X;X
+Range Rover L322;GS20;✓;X;✓;X
+Range Rover L322;GS8601;✓;X;✓;X
+Range Rover L322;HEVAC;X;X;X;X
+Range Rover L322;IKE;X;X;X;X
+Range Rover L322;LSM;✓;X;X;X
+Range Rover L322;LWS;✓;✓;X;X
+Range Rover L322;ME72;X;X;✓;X
+Range Rover L322;MFL;X;X;X;X
+Range Rover L322;NavMk3;X;X;X;X
+Range Rover L322;PDC;✓;✓;X;X
+Range Rover L322;Radio;X;X;X;X
+Range Rover L322;SRS;✓;✓;X;X
+Range Rover L322;TXU;X;X;X;X
+Range Rover L322;Video;✓;✓;X;X
+Range Rover L322;Webasto;✓;✓;X;X

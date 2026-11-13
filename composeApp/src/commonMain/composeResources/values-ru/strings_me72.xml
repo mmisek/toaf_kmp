@@ -520,6 +520,9 @@
     <string name="me72_error_occurrence_first">Первое появление</string>
     <string name="me72_error_occurrence_second">Второе появление</string>
     <string name="me72_error_occurrence_last">Текущее появление</string>
+    <string name="me72_error_pcode">Код OBD</string>
+    <string name="me72_info_supplier_number">Номер поставщика</string>
+    <string name="me72_info_software_number">Номер ПО</string>
     <string name="me72_lambda_status_21">Регулирование ВЫКЛ, условия включения ещё не выполнены</string>
     <string name="me72_lambda_status_22">Регулирование ВКЛ</string>
     <string name="me72_lambda_status_23">Регулирование ВЫКЛ из-за условий движения</string>

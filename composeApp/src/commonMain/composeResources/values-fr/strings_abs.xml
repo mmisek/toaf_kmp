@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_abs">Système de freinage</string>
+    <!--ABS -->
+    <string name="abs_error_04">Capteur de vitesse de roue arrière gauche</string>
+    <string name="abs_error_05">Capteur de vitesse de roue arrière droite</string>
+    <string name="abs_error_06">Capteur de vitesse de roue avant droite</string>
+    <string name="abs_error_07">Capteur de vitesse de roue avant gauche</string>
+    <string name="abs_error_2F">Électrovanne d\'échappement ABS arrière gauche ou essieu arrière</string>
+    <string name="abs_error_30">Électrovanne d\'échappement ABS arrière droite</string>
+    <string name="abs_error_31">Électrovanne d\'échappement ABS avant droite</string>
+    <string name="abs_error_32">Électrovanne d\'échappement ABS avant gauche</string>
+    <string name="abs_error_33">Électrovanne d\'admission ABS arrière gauche ou essieu arrière</string>
+    <string name="abs_error_34">Électrovanne d\'admission ABS arrière droite</string>
+    <string name="abs_error_35">Électrovanne d\'admission ABS avant droite</string>
+    <string name="abs_error_36">Électrovanne d\'admission ABS avant gauche</string>
+    <string name="abs_error_0E">Défaut relais des électrovannes</string>
+    <string name="abs_error_0F">Défaut pompe</string>
+    <string name="abs_error_15">Défaut calculateur</string>
+    <string name="abs_error_18">Couronne dentée incorrecte sur une roue</string>
+    <string name="abs_error_19">Faisceau contacteur de feux stop</string>
+    <string name="abs_error_1E">Capteur de vitesse de roue arrière gauche</string>
+    <string name="abs_error_1F">Capteur de vitesse de roue arrière droite</string>
+    <string name="abs_error_20">Capteur de vitesse de roue avant droite</string>
+    <string name="abs_error_21">Capteur de vitesse de roue avant gauche</string>
+    <string name="abs_error_22">Électrovanne de commutation ASC</string>
+    <string name="abs_error_37">Électrovanne d\'isolement ASC</string>
+    <string name="abs_error_17">Codage de variante ASC</string>
+    <string name="abs_error_3F">Comparaison de vitesse</string>
+    <string name="abs_error_40">Régulation permanente</string>
+    <string name="abs_error_42">Alimentation capteur de régime moteur, défaut calculateur</string>
+    <string name="abs_error_4B">Défaut CAN NMOT</string>
+    <string name="abs_error_4C">Défaut message CAN DDE</string>
+    <string name="abs_error_44">ASR désactivé</string>
+    <string name="abs_error_38">Défaut CAN général</string>
+    <string name="abs_error_43">Sensibilité aux champs électromagnétiques</string>
+    <string name="abs_error_6F">Défaut message CAN acquittement ASC</string>
+    <string name="abs_error_70">CAN combiné d\'instruments</string>
+    <string name="abs_error_3B">Défaut message CAN DMER1</string>
+    <string name="abs_error_3A">Défaut message CAN EGS1</string>
+    <string name="abs_error_detail_00">ASC non désactivé</string>
+    <string name="abs_error_detail_01">ASC désactivé</string>
+    <string name="abs_error_detail_02">Régulation ABS active</string>
+    <string name="abs_error_detail_03">Régulation ABS inactive</string>
+    <string name="abs_error_detail_04">Contacteur de feux stop activé</string>
+    <string name="abs_error_detail_05">Contacteur de feux stop désactivé</string>
+    <string name="abs_error_detail_06">Régulation ASC active</string>
+    <string name="abs_error_detail_07">Régulation ASC inactive</string>
+    <!-- Live_data -->
+    <string name="abs_live_data_front_left_wheel_speed">Vitesse roue avant gauche</string>
+    <string name="abs_live_data_front_right_wheel_speed">Vitesse roue avant droite</string>
+    <string name="abs_live_data_rear_left_wheel_speed">Vitesse roue arrière gauche</string>
+    <string name="abs_live_data_rear_right_wheel_speed">Vitesse roue arrière droite</string>
+    <string name="abs_live_data_engine_rpm">Régime moteur</string>
+    <string name="abs_live_data_break_light_switch">Contacteur de feux stop</string>
+
+    <string name="abs_live_data_asc_passive_button">Bouton désactivation ASC</string>
+    <string name="abs_live_data_handbrake_switch">Contacteur de frein à main</string>
+    <string name="abs_live_data_value_off">Arrêt</string>
+    <string name="abs_live_data_value_on">Marche</string>
+    <string name="abs_live_data_pump_relay">Relais pompe ABS</string>
+    <string name="abs_live_data_valve_relay">Relais des électrovannes</string>
+</resources>

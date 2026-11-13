@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_shd">Toit ouvrant (SHD)</string>
+    <!-- MODULE SHD -->
+    <string name="shd_error_static">Permanent</string>
+    <string name="shd_error_sporadic">Sporadique</string>
+
+    <!-- SHD live data -->
+    <!-- SHD coding -->
+    <string name="shd_coding_one_touch_open">Ouverture par impulsion</string>
+    <string name="shd_coding_one_touch_close">Fermeture par impulsion</string>
+    <string name="shd_coding_one_touch_run_to_tilt">Passage en entrebâillement par impulsion</string>
+    <string name="shd_coding_one_touch_tilt_to_open">Entrebâillement vers ouverture par impulsion</string>
+    <string name="shd_coding_pinch_characteristics">Caractéristiques anti-pincement</string>
+    <string name="shd_coding_optimised_close_function">Fonction de fermeture optimisée</string>
+    <string name="shd_coding_anti_pinch_functionality">Fonction anti-pincement</string>
+    <string name="shd_coding_data_sets">Emplacement des jeux de données</string>
+
+    <string name="shd_control_tip_lift">Pas à pas - relever (entrebâiller)</string>
+    <string name="shd_control_tip_close">Pas à pas - fermeture coulissante</string>
+    <string name="shd_control_tip_open">Pas à pas - ouverture coulissante</string>
+    <string name="shd_control_normalization_reset">Réinitialiser la normalisation (réapprentissage des butées)</string>
+    <string name="shd_error_01">Défaut relais</string>
+    <string name="shd_error_02">Défaut capteur à effet Hall</string>
+    <string name="shd_error_03">Défaut interrupteur de commande</string>
+    <string name="shd_error_04">Erreur EEPROM</string>
+    <string name="shd_error_05">Réservé pour usage futur</string>
+    <string name="shd_error_present">Présent</string>
+    <string name="shd_error_sporadic_not_present">Sporadique, non présent</string>
+    <string name="shd_live_data_switch_status">État de l\'interrupteur</string>
+    <string name="shd_live_data_sunroof_position">Position du toit ouvrant</string>
+    <string name="shd_live_data_value_inactive">Inactif</string>
+    <string name="shd_live_data_value_tilt_open">Entrebâillé</string>
+    <string name="shd_live_data_value_inch_close">Fermeture pas à pas</string>
+    <string name="shd_live_data_value_one_touch_close">Fermeture par impulsion</string>
+    <string name="shd_live_data_value_inch_open">Ouverture pas à pas</string>
+    <string name="shd_live_data_value_one_touch_open">Ouverture par impulsion</string>
+    <string name="shd_live_data_value_faulty">Défectueux</string>
+</resources>

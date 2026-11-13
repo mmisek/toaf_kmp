@@ -18,7 +18,6 @@ import pl.misek.toafmobile.livedata.LiveDataResultElement
 import pl.misek.toafmobile.modules.interfaces.IModule
 import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
 import java.io.File
-import java.nio.ByteBuffer
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -110,13 +109,10 @@ class LiveDateViewModel(
             var valueWithoutUnit = ""
             var formatedValue = ""
             var rawValue  = 0f
-            var mask = liveDataElement.mask
             if (liveData == null) break
             val block = liveData[liveDataElement.block]
-            val byteInBlock = liveDataElement.byteInBlock
-            val bytes = block as? ByteArray
-            val tooShort = liveDataElement.liveDataFormat == LiveDataFormat.Standard &&
-                    (bytes == null || bytes.size < byteInBlock + calculateLengthFromMask(mask))
+            val value = liveDataModule.getLiveDataRawValue(liveData, liveDataElement)
+            val tooShort = liveDataElement.liveDataFormat == LiveDataFormat.Standard && value == null
             // Brak bloku (blad odczytu) lub za krotka odpowiedz - pusta pozycja,
             // kolejne elementy nadal liczone, indeksy wynikow/wykresu bez przesuniec
             if (block == null || tooShort) {
@@ -131,50 +127,13 @@ class LiveDateViewModel(
             }
             if (liveDataElement.liveDataFormat == LiveDataFormat.Standard)
             {
-                var tempByteValue = (block as ByteArray).copyOfRange(
-                    byteInBlock,
-                    byteInBlock + calculateLengthFromMask(mask)
-                )
-                if (liveDataElement.swap)
-                    tempByteValue = tempByteValue.reversed().toByteArray()
-
-                var tempValue = if (liveDataElement.u2) {
-                    val paddledBytes = ByteArray(8)
-                    tempByteValue.copyInto(paddledBytes, destinationOffset =  8 - tempByteValue.size)
-                    ByteBuffer.wrap(paddledBytes).getLong()
-                }
-                else
-                    convertToLong(tempByteValue)
-                tempValue = tempValue and mask
-
-                while ((mask and 0x01L) != 0x01L) {
-                    mask = mask shr 0x01
-                    tempValue = tempValue shr 0x01
-                }
-                // Wartosci ze znakiem - szerokosc pola wg maski
-                if (liveDataElement.signFrom >= 0) {
-                    val bits = 64 - mask.countLeadingZeroBits()
-                    if (bits in 1..63 && tempValue >= liveDataElement.signFrom)
-                        tempValue -= (1L shl bits)
-                }
-                else if (liveDataElement.u2 || liveDataElement.signOffset) {
-                    val bits = 64 - mask.countLeadingZeroBits()
-                    if (bits in 1..63 && ((tempValue shr (bits - 1)) and 0x01L) == 0x01L) {
-                        tempValue = if (liveDataElement.signOffset)
-                            ((1L shl (bits - 1)) - 1) - tempValue
-                        else
-                            tempValue - (1L shl bits)
-                    }
-                }
                 if (liveDataElement.values == null) {
-                    // invert_a: factorA / x; dla x = 0 wartosc 0 (np. Webasto dosierpumpe wylaczona, jak w SGBD)
-                    rawValue = if (liveDataElement.invertA && tempValue == 0L) 0f
-                    else liveDataElement.factorA * (if (liveDataElement.invertA) 1 / tempValue.toFloat() else tempValue.toFloat()) + liveDataElement.factorB
+                    rawValue = liveDataModule.getLiveDataValue(liveData, liveDataElement).toFloat()
                     valueWithoutUnit  = String.format(if (liveDataElement.unit != " ") "%.2f" else "%.0f", rawValue)
                     formatedValue = if (liveDataElement.unit != " ") valueWithoutUnit + " ${liveDataElement.unit}" else valueWithoutUnit
                 } else {
                     liveDataElement.values
-                        ?.find { it.first.toLong() == tempValue }
+                        ?.find { it.first.toLong() == value }
                         .let { staticValue = it?.second }
                 }
             }
@@ -213,25 +172,4 @@ class LiveDateViewModel(
         liveDataElements = elements
     }
 
-    private fun calculateLengthFromMask(value :Long) : Int{
-        var count = 0
-        var temp = value
-
-        while (temp > 0) {
-            count++
-            temp /= 0x100
-        }
-        return count
-        //return if (count % 2 == 0) count - 1 else count
-    }
-
-    private fun convertToLong(byteArray: ByteArray): Long {
-        var value = 0L
-        val size = byteArray.size
-        for ((i, byte) in byteArray.withIndex()) {
-            val shift = 8 * (size - 1 - i)
-            value += (byte.toLong() and 0xFF) shl shift
-        }
-        return value
-    }
 }

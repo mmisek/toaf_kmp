@@ -79,7 +79,7 @@ object JsonSupport {
                     visible = json.visible.toBooleanStrictOrNull() ?: true
                 }
             }
-            returnResult.filter { x->x.visible == true and x.codingIndex.contains(moduleCodingIndex) }
+            returnResult.filter { x -> x.visible && x.codingIndex.contains(moduleCodingIndex) }
         }
         catch (ex : Exception)
         {

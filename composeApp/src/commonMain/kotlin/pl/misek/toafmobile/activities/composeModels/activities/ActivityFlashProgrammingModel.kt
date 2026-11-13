@@ -136,7 +136,7 @@ fun ActivityFlashProgrammingModel(moduleKoinName: KoinNames, onBackClick : () ->
             is FlashProgrammingState.FlashData ->{
                 val jsonObject = buildJsonObject{
                     put("vin", state.vin)
-                    put("module", "DDE")
+                    put("module", currentModule.getModuleName())
                     put("id1", state.moduleInfo?.id1 ?: "")
                     put("id2", state.moduleInfo?.id2 ?: "")
                 }
@@ -147,7 +147,7 @@ fun ActivityFlashProgrammingModel(moduleKoinName: KoinNames, onBackClick : () ->
                 }
                 flashReadData = state.flashData.toByteArray()
                 fileName = String.format(
-                    "%s_%s_%s.bin",
+                    "FLASH_%s_%s_%s.bin",
                     currentModule.getModuleName(),
                     state.vin ?: state.moduleInfo?.id1 ?: "",
                     simpleDateFormat.format(Calendar.getInstance().time))
@@ -209,6 +209,7 @@ fun ActivityFlashProgrammingModel(moduleKoinName: KoinNames, onBackClick : () ->
                 ToafButtons.GreenButton(
                     modifier = Modifier.padding(5.dp).fillMaxWidth(),
                     buttonText = Res.string.activity_flash_programming_write_flash,
+                    enabled =  flashModule.flashProgrammingAvailable,
                     onClick = {
                         if (flashModule.flashProgrammingAvailable) {
                             if (protocolFactory.currentDevice !is ISerialDevice) {

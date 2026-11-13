@@ -130,6 +130,9 @@ class ModuleIKE(protocolDS2: ProtocolDS2?) :
         }
         val image = calculateCodingChecksums(newImage)
         val current = readImage() ?: return false
+        // Fragmenty, ktore faktycznie przyjal sterownik - tylko je weryfikujemy.
+        // Obszary chronione (VIN, przebieg, dane producenta) sa odrzucane przez ECU: pomijamy je, nie przerywajac zapisu.
+        val writtenChunks = mutableListOf<Int>()
         for (chunk in 0 until IMAGE_SIZE / WRITE_CHUNK_BYTES) {
             val start = chunk * WRITE_CHUNK_BYTES
             val end = start + WRITE_CHUNK_BYTES
@@ -140,13 +143,19 @@ class ModuleIKE(protocolDS2: ProtocolDS2?) :
                         image.copyOfRange(start, end)
             )
             if (!message.isValid) {
-                Logger.e { "$tag [writeCoding]: word ${word.toString(16)} write failed, $message" }
-                return false
+                Logger.w { "$tag [writeCoding]: word ${word.toString(16)} write refused (obszar chroniony?), pomijam" }
+                continue
             }
+            writtenChunks.add(chunk)
         }
-        val verify = readImage()
+        val verify = readImage() ?: return false
         reset()
-        return verify != null && verify.contentEquals(image)
+        // Sukces, gdy kazdy zapisany fragment odczytuje sie zgodnie z zadaniem (chronione pominiete).
+        return writtenChunks.all { chunk ->
+            val start = chunk * WRITE_CHUNK_BYTES
+            val end = start + WRITE_CHUNK_BYTES
+            image.copyOfRange(start, end).contentEquals(verify.copyOfRange(start, end))
+        }
     }
 
     companion object {

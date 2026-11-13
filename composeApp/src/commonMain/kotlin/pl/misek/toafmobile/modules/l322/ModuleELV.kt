@@ -34,7 +34,7 @@ class ModuleELV( protocolDS2: ProtocolDS2?) :
     override fun getModuleDescription() = Res.string.module_description_elv
 
     override suspend fun getAllErrors(): List<ModuleError>? {
-        val header = interfaceWrite(byteArrayOf(0x04, 0x00))
+        val header = interfaceWrite(byteArrayOf(0x04, 0x00), 500)
         if (!header.isValid || header.answer.size < 6) return null
         val result: MutableList<ModuleError> = ArrayList()
         val count = header.answer[3].toInt() and 0xFF

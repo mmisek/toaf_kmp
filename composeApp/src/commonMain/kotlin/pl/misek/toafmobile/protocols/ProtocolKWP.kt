@@ -71,7 +71,7 @@ open class ProtocolKWP(private var device: IInterfaceDevice?, var useDelay: Bool
         var whole = message.wholeMessage ?: ByteArray(0)
         while (frames.lastOrNull()?.let { isPending(it, command) } == true) {
             if (System.currentTimeMillis() - start > pendingTimeout) {
-                Logger.e { "$tag : response pending timeout, command %02X".format(command) }
+                Logger.i { "$tag : response pending timeout, command %02X".format(command) }
                 break
             }
             val more = device?.write(ByteArray(0), timeout, true, false)
@@ -90,6 +90,50 @@ open class ProtocolKWP(private var device: IInterfaceDevice?, var useDelay: Bool
         var checkSum: Byte = 0
         for (i in 0 until last.size - 1) checkSum = (checkSum.toInt() xor last[i].toInt()).toByte()
         result.isValid = last[last.size - 1] == checkSum && result.answerCode == (command + 0x40).toByte()
+        return result
+    }
+
+    /**
+     * Wysyla jedno zapytanie i zwraca WSZYSTKIE ramki odpowiedzi jako osobne [OBDMessage].
+     *
+     * Sterownik X12 (silnik V8) na odczyt bledow odpowiada kilkoma ramkami sklejonymi jedna po drugiej -
+     * kazda niesie staly fragment listy kodow, wiec pojedynczy [OBDMessage] (liczacy sume kontrolna przez
+     * caly strumien) uznalby taka odpowiedz za bledna. Tutaj kazda ramka jest walidowana osobno.
+     *
+     * Korzysta z tej samej sciezki wysylki co [write] - nie zmienia zadnych czasow ani opoznien.
+     * Przeznaczona wylacznie do odczytu bledow ze sterownika X12.
+     *
+     * @return lista ramek w kolejnosci otrzymania; pusta, gdy brak odpowiedzi lub zadnej kompletnej ramki.
+     */
+    suspend fun writeForMultipleAnswers(
+        address: Byte,
+        command: Byte,
+        data: ByteArray,
+        timeout: Long? = 200
+    ): List<OBDMessage> {
+        val message = write(address, command, data, timeout, true)
+        if (message.answer.isEmpty()) return emptyList()
+        val frames = splitFrames(message.answer)
+        if (frames.isEmpty()) {
+            Logger.i { "$tag [writeForMultipleAnswers]: no complete frame in answer" }
+            return emptyList()
+        }
+        Logger.i { "$tag [writeForMultipleAnswers]: frames = ${frames.size}" }
+        return frames.map { frame -> toFrameMessage(message, frame, command) }
+    }
+
+    /** Buduje [OBDMessage] dla pojedynczej ramki ze zbiorczej odpowiedzi (suma kontrolna liczona per ramka). */
+    private fun toFrameMessage(source: OBDMessage, frame: ByteArray, command: Byte): OBDMessage {
+        val result = OBDMessage()
+        result.message = source.message
+        result.wholeMessage = source.wholeMessage
+        result.answer = frame
+        result.length = frame.size
+        result.answerCode = frame[4]
+        var checkSum: Byte = 0
+        for (i in 0 until frame.size - 1) checkSum = (checkSum.toInt() xor frame[i].toInt()).toByte()
+        result.isValid =
+            frame[frame.size - 1] == checkSum && result.answerCode == (command + 0x40).toByte()
         return result
     }
 

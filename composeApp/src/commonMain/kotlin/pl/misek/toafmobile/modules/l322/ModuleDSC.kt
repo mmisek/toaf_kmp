@@ -181,8 +181,15 @@ class ModuleDSC(protocolDS2: ProtocolDS2?) :
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean = interfaceWrite(byteArrayOf(0x00)).isValid
 
-    suspend fun initLwsCalibration() : Boolean { 
-        return interfaceWrite(initBlock).isValid
+    suspend fun initLwsCalibration() : Boolean {
+        var message = interfaceWrite(initBlock)
+        var busyRetries = 0
+        while (message.answerCode == ANSWER_BUSY && busyRetries < LWS_BUSY_RETRIES) {
+            delay(BUSY_RETRY_DELAY_MS.milliseconds)
+            message = interfaceWrite(initBlock)
+            busyRetries++
+        }
+        return message.isValid
     }
 
     suspend fun writeLwsCalibration() : Boolean

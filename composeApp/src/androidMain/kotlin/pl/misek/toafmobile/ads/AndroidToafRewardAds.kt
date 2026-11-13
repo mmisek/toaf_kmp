@@ -9,12 +9,26 @@ import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import pl.misek.toafmobile.tools.isDebug
 
 class AndroidToafRewardAds(private val context: Context) : ToafRewardAds
 {
     private val tag = "ToafRewardAds"
     private var rewardedAd : RewardedAd? = null
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
+    private var retryJob : Job? = null
+    private var retryCount = 0
+
+    private val pendingCallbacks = mutableListOf<Pair<() -> Unit, () -> Unit>>()
+
+    @Volatile
+    private var isLoading = false
 
     private fun createRewardedAd() : AdRequest {
         return AdRequest.Builder().build()
@@ -22,8 +36,25 @@ class AndroidToafRewardAds(private val context: Context) : ToafRewardAds
 
     override fun isAdLoaded() = rewardedAd != null
 
+    /** Wejscie uzytkownika - kasuje licznik ponowien, zeby backoff nie blokowal recznej proby. */
     override fun loadAd(onAdLoaded : () -> Unit, onAdFailed : () -> Unit)
     {
+        retryCount = 0
+        startLoad(onAdLoaded, onAdFailed)
+    }
+
+    private fun startLoad(onAdLoaded : () -> Unit, onAdFailed : () -> Unit)
+    {
+        synchronized(pendingCallbacks) {
+            pendingCallbacks.add(onAdLoaded to onAdFailed)
+            if (isLoading) {
+                Log.d(tag, "load already in progress - waiting for its result")
+                return
+            }
+            isLoading = true
+        }
+        retryJob?.cancel()
+        retryJob = null
         rewardedAd = null
         RewardedAd.load(
             context,
@@ -32,18 +63,46 @@ class AndroidToafRewardAds(private val context: Context) : ToafRewardAds
             object : RewardedAdLoadCallback()
             {
                 override fun onAdFailedToLoad(loadAdError: LoadAdError) {
+                    isLoading = false
                     Log.d(tag, "onAdFailedToLoad $loadAdError")
-                    loadAd({},{})
-                    onAdFailed()
+                    scheduleRetry()
+                    notifyPending(loaded = false)
                 }
 
                 override fun onAdLoaded(ad: RewardedAd) {
+                    isLoading = false
+                    retryCount = 0
                     Log.d(tag, "Ad was loaded.")
                     rewardedAd = ad
-                    onAdLoaded()
+                    notifyPending(loaded = true)
                 }
             }
         )
+    }
+
+    private fun notifyPending(loaded : Boolean)
+    {
+        val callbacks = synchronized(pendingCallbacks) {
+            pendingCallbacks.toList().also { pendingCallbacks.clear() }
+        }
+        callbacks.forEach { (onAdLoaded, onAdFailed) -> if (loaded) onAdLoaded() else onAdFailed() }
+    }
+
+    private fun scheduleRetry()
+    {
+        if (retryCount >= MAX_RETRY_COUNT) {
+            Log.d(tag, "giving up after $retryCount attempts")
+            return
+        }
+        val delayMs = RETRY_BASE_DELAY_MS shl retryCount
+        retryCount++
+        Log.d(tag, "retry $retryCount/$MAX_RETRY_COUNT in $delayMs ms")
+        retryJob?.cancel()
+        retryJob = scope.launch {
+            delay(delayMs)
+            retryJob = null
+            startLoad({}, {})
+        }
     }
 
     override fun showAd(activity: Any?, onRewardEarned: (Int) -> Unit, onAdClosed: () ->Unit)
@@ -54,7 +113,7 @@ class AndroidToafRewardAds(private val context: Context) : ToafRewardAds
             rewardedAd?.fullScreenContentCallback = object : FullScreenContentCallback()
             {
                 override fun onAdDismissedFullScreenContent() {
-                    Log.d(tag, "Ad was loaded.")
+                    Log.d(tag, "Ad was dismissed.")
                     rewardedAd = null
                     loadAd({},{})
                     onAdClosed()
@@ -93,5 +152,9 @@ class AndroidToafRewardAds(private val context: Context) : ToafRewardAds
         const val TEST_DEVICE_ANDROID_X86: String = "89A6E1578CC951BA188CE016B7AA76DE"
         private const val REWARDED_AD_TEST_ID = "ca-app-pub-3940256099942544/5224354917"
         private const val REWARDED_AD_ID = "ca-app-pub-7901370159480300/6309837648"
+
+        /** Ponowienia: 10 s, 20 s, 40 s, 80 s, 160 s, potem stop do kolejnej akcji uzytkownika. */
+        private const val MAX_RETRY_COUNT = 5
+        private const val RETRY_BASE_DELAY_MS = 10_000L
     }
 }

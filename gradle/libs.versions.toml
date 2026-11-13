@@ -3,20 +3,20 @@ kotlin = "2.4.21" # Upewnij się, że masz zgodną wersję z Compose
 agp = "9.4.1"
 compose-multiplatform = "1.12.2"
 composeHotReload = "1.2.0"
-ktor = "3.6.0"
+ktor = "3.6.1"
 koin = "4.2.2"
 room = "2.8.5"
 ksp = "2.3.12" # KSP musi pasować do wersji Kotlina!
 sqlite = "2.7.1" # Wymagane przez Room w KMP
 lifecycle = "2.11.0"
-navigation = "2.9.2"
+navigation = "2.10.0"
 uiTooling = "1.12.1"
 vico = "3.3.1"
 androidx-activityCompose = "1.13.0"
 kotlinx-coroutines = "1.11.0"
-kotlinx-serialization = "1.11.0"
+kotlinx-serialization = "1.13.0"
 compose-plugin = "1.12.1"
-sentry-kmp = "0.28.0"
+sentry-kmp = "0.29.0"
 buildkonfig = "0.23.0"
 usb-serial-android = "3.11.0"
 jserialcomm = "2.11.4"
@@ -25,12 +25,13 @@ billing = "9.1.0"
 ads = "25.5.0"
 kotlinx-datetime = "0.8.0"
 kermit = "2.2.0"
-mockk = "1.14.11"
+mockk = "1.14.12"
 aboutLibraries = "15.3.0"
 compose = "1.12.2"
 compose-material3 = "1.12.0-alpha03"
 compose-icons = "1.7.3"
 splashscreen ="1.2.0"
+volta = "1.0.0"
 
 [libraries]
 #compose
@@ -84,6 +85,7 @@ sentry-kmp = { module = "io.sentry:sentry-kotlin-multiplatform", version.ref = "
 google-billing = {module = "com.android.billingclient:billing-ktx", version.ref = "billing"}
 google-ads = {module= "com.google.android.gms:play-services-ads", version.ref = "ads"}
 kotlinx-datetime = {module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime"}
+volta = {module ="io.github.techie-labs:volta", version.ref = "volta"}
 
 #serialPort
 usb-serial-android = { module = "com.github.mik3y:usb-serial-for-android", version.ref = "usb-serial-android" }

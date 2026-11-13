@@ -12,6 +12,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import pl.misek.toafmobile.koin.commonModules
 import pl.misek.toafmobile.koin.platformModules
+import pl.misek.toafmobile.logger.SentryUser
 import pl.misek.toafmobile.tools.initIsDebug
 
 private const val tag = "ToafApplication"
@@ -36,6 +37,7 @@ class ToafApplication : Application() {
                 event.setTag("APP_VERSION_CODE", BuildKonfig.VERSION_CODE.toString())
                 event.setTag("APP_VERSION_NAME", BuildKonfig.VERSION_NAME)
                 event.setTag("APP_PLATFORM", getPlatformName())
+                event.setTag("APP_USER", SentryUser.login)
                 event
             }
         }

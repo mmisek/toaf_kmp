@@ -165,7 +165,7 @@ class ModuleWebasto( protocolDS2: ProtocolDS2?) :
 
     override suspend fun readEeprom(address: Int, size: Int): ByteArray? {
         val message = interfaceWrite(
-            byteArrayOf(0x06, 0x03, 0x00, (address and 0xFF).toByte(), size.toByte())
+            byteArrayOf(0x06, 0x03, 0x00, (address and 0xFF).toByte(), size.toByte()), 500
         )
         try {
             return if (message.isValid) message.answer.copyOfRange(0x03, 3 + size) else null

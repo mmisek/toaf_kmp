@@ -4,9 +4,7 @@
     <string name="cc_error_permanent">Trwała awaria</string>
     <string name="cc_error_sporadic">Błąd sporadyczny</string>
     <string name="cc_live_data_actual_speed">Prędkość aktualna</string>
-    <string name="cc_live_data_break">Czujnik hamowania</string>
     <string name="cc_live_data_cc_active">Tempomat aktywny</string>
-    <string name="cc_live_data_clutch">Czujnik sprzęgła</string>
     <string name="cc_live_data_cruise_off">Tempomat wyłączony</string>
     <string name="cc_live_data_cruise_on">Tempomat włączony</string>
     <string name="cc_live_data_set_speed">Ustawiona prędkość</string>
@@ -49,4 +47,8 @@
     <string name="cc_error_detail_1C">Błąd w redundantnym sterowaniu zaworem</string>
     <string name="cc_error_detail_1D">Błąd w redundantnym sterowaniu pompą</string>
     <string name="cc_error_detail_1F">Aktywacja przełącznika OFF</string>
+    <string name="cc_live_data_clutch">Pedał hamulca/sprzęgła wciśnięty</string>
+    <string name="cc_live_data_break">Włącznik świateł stop</string>
+    <string name="cc_live_data_value_yes">Tak</string>
+    <string name="cc_live_data_value_no">Nie</string>
 </resources>

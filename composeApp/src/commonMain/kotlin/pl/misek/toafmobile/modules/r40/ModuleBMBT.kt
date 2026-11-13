@@ -18,6 +18,7 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.module_bmbt
 import toafmobile.composeapp.generated.resources.module_description_bmbt
 import kotlinx.coroutines.CancellationException
+import pl.misek.toafmobile.tools.JsonSupport
 
 private const val tag = "ModuleBMBT"
 class ModuleBMBT(protocolDS2: ProtocolDS2?) :
@@ -89,11 +90,14 @@ class ModuleBMBT(protocolDS2: ProtocolDS2?) :
         val message = interfaceWrite(byteArrayOf(0x04, 0x01))
         if (message.isValid) {
             try {
-                for (i in 0 until message.answer[3]) {
+                val declaredCount = message.answer[3].toInt() and 0xFF
+                val availableCount = ((message.answer.size - 5) / 2).coerceAtLeast(0)
+                for (i in 0 until minOf(declaredCount, availableCount)) {
                     val errorCode = String.format("%02X", message.answer[4 + 2 * i])
+                    val status = message.answer[5 + 2 * i].toInt() and 0xFF
                     val errorDescription: MutableList<Pair<StringResource, Any?>> = ArrayList()
-                    errorDescription.add(ResourceHelper.getErrorDescriptionCount((message.answer[5 + 2 * i].toInt() and 0x1F)))
-                    errorDescription.add(ResourceHelper.getErrorDescriptionIsPresent((message.answer[5 + 2 * i].toInt() and 0x20) == 0x20))
+                    errorDescription.add(ResourceHelper.getErrorDescriptionCount(status and 0x1F))
+                    errorDescription.add(ResourceHelper.getErrorDescriptionIsPresent((status and 0x20) == 0x20))
                     if (result == null) result = ArrayList()
                     result.add(ModuleError(ModuleAddress.MODULE_BMBT, errorCode, errorDescription))
                 }
@@ -117,7 +121,8 @@ class ModuleBMBT(protocolDS2: ProtocolDS2?) :
                 0x00,
                 (address and 0xFF).toByte(),
                 size.toByte()
-            )
+            ),
+            500
         )
         return if (message.isValid) message.answer.copyOfRange(0x03, 3 + size) else null
     }
@@ -129,13 +134,12 @@ class ModuleBMBT(protocolDS2: ProtocolDS2?) :
                 0x03,
                 0x00,
                 0x00,
-                (address and 0xFF).toByte(),
-                (data.size / 2).toByte()) + data
+                (address and 0xFF).toByte()) + data
         return interfaceWrite(dataToWrite).isValid
     }
 
     override fun getEepromSize(): Int {
-        return 256
+        return 0xFF
     }
 
     override fun getEepromReadSize(): Int {

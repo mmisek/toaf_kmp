@@ -42,101 +42,99 @@ import toafmobile.composeapp.generated.resources.*
 import java.util.Locale
 
 private const val tag = "DialogShowErrors"
-object DialogShowErrors {
-    @Composable
-    fun ShowErrors(errors : List<ModuleError>?, onClose : () -> Unit, onDeleteErrors: () -> Unit, onShare : (data : String) -> Unit)
-    {
-        var expandId by remember { mutableIntStateOf(-1) }
-        val errorsString = errorsToString(errors)
-        AlertDialog(
+@Composable
+fun DialogShowErrors(errors : List<ModuleError>?, onClose : () -> Unit, onDeleteErrors: () -> Unit, onShare : (data : String) -> Unit)
+{
+    var expandId by remember { mutableIntStateOf(-1) }
+    val errorsString = errorsToString(errors)
+    AlertDialog(
+        shape = toafShape,
+        modifier = Modifier.border(
+            width = 1.dp,
             shape = toafShape,
-            modifier = Modifier.border(
-                width = 1.dp,
-                shape = toafShape,
-                color = ToafColors.toafTextColorWhite
-            ),
-            containerColor = ToafColors.toafBackground,
-            onDismissRequest = {onClose()},
-            title = {
-                Column(modifier = Modifier.fillMaxWidth().padding(1.dp))
-                {
-                    Text(
-                        text = stringResource(Res.string.alert_dialog_errors_title),
-                        color = ToafColors.toafTextColorWhite,
-                        fontSize = 16.sp
-                    )
-                    Text(
-                        text = stringResource(Res.string.alert_dialog_errors_subtitle),
-                        color = ToafColors.toafTextColorWhite,
-                        fontSize = 12.sp
-                    )
-                }
-            },
-            text = {
-                Column(
+            color = ToafColors.toafTextColorWhite
+        ),
+        containerColor = ToafColors.toafBackground,
+        onDismissRequest = {onClose()},
+        title = {
+            Column(modifier = Modifier.fillMaxWidth().padding(1.dp))
+            {
+                Text(
+                    text = stringResource(Res.string.alert_dialog_errors_title),
+                    color = ToafColors.toafTextColorWhite,
+                    fontSize = 16.sp
+                )
+                Text(
+                    text = stringResource(Res.string.alert_dialog_errors_subtitle),
+                    color = ToafColors.toafTextColorWhite,
+                    fontSize = 12.sp
+                )
+            }
+        },
+        text = {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(ToafColors.toafBackground)
+            )
+            {
+                val listState = rememberLazyListState()
+                Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(ToafColors.toafBackground)
-                )
-                {
-                    val listState = rememberLazyListState()
-                    Box(
+                        .weight(1f,fill = false)
+                ) {
+                    LazyColumn(
+                        state = listState,
                         modifier = Modifier
+                            .padding(1.dp)
+                            .padding(end = 16.dp)
                             .fillMaxWidth()
-                            .weight(1f,fill = false)
+                            .background(ToafColors.toafBackground)
                     ) {
-                        LazyColumn(
-                            state = listState,
-                            modifier = Modifier
-                                .padding(1.dp)
-                                .padding(end = 16.dp)
-                                .fillMaxWidth()
-                                .background(ToafColors.toafBackground)
-                        ) {
-                            items(errors!!.size) { index ->
-                                ErrorItem(
-                                    moduleError = errors[index],
-                                    showDetails = expandId == index,
-                                    id = index,
-                                    onItemClick = { index ->
-                                        expandId = if (expandId == index) -1 else index
-                                    })
-                            }
-                        }
-                        Box(
-                            modifier = Modifier.matchParentSize(),
-                            contentAlignment = Alignment.CenterEnd
-                        ) {
-                            ToafVerticalScrollbar(listState = listState)
+                        items(errors!!.size) { index ->
+                            ErrorItem(
+                                moduleError = errors[index],
+                                showDetails = expandId == index,
+                                id = index,
+                                onItemClick = { index ->
+                                    expandId = if (expandId == index) -1 else index
+                                })
                         }
                     }
-                    Spacer(modifier = Modifier.fillMaxWidth().height(20.dp))
-                    ToafButtons.GreenButton(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(2.dp),
-                        buttonText = Res.string.alert_dialog_errors_button_share,
-                        onClick = { onShare(errorsString) })
-                    ToafButtons.GreenButton(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(2.dp),
-                        buttonText = Res.string.alert_module_info_close,
-                        onClick = {onClose()})
-                    ToafButtons.RedButton(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(2.dp),
-                        buttonText = Res.string.module_error_clear,
-                        onClick = { onDeleteErrors() })
+                    Box(
+                        modifier = Modifier.matchParentSize(),
+                        contentAlignment = Alignment.CenterEnd
+                    ) {
+                        ToafVerticalScrollbar(listState = listState)
+                    }
                 }
-            },
-            confirmButton = {
-            },
-            dismissButton = {
+                Spacer(modifier = Modifier.fillMaxWidth().height(20.dp))
+                ToafButtons.GreenButton(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(2.dp),
+                    buttonText = Res.string.alert_dialog_errors_button_share,
+                    onClick = { onShare(errorsString) })
+                ToafButtons.GreenButton(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(2.dp),
+                    buttonText = Res.string.alert_module_info_close,
+                    onClick = {onClose()})
+                ToafButtons.RedButton(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(2.dp),
+                    buttonText = Res.string.module_error_clear,
+                    onClick = { onDeleteErrors() })
             }
-        )
-    }
+        },
+        confirmButton = {
+        },
+        dismissButton = {
+        }
+    )
 }
 
 @Composable
@@ -220,5 +218,5 @@ fun ShowErrorsPreview()
     errors.add(ModuleError(ModuleAddress.MODULE_BCU,"8C",listOf(
         Pair(Res.string.module_error_clear, "test"),
         Pair(Res.string.module_live_data, null))))
-    DialogShowErrors.ShowErrors(errors = errors, onClose = {}, {},{})
+    DialogShowErrors(errors = errors, onClose = {}, {},{})
 }

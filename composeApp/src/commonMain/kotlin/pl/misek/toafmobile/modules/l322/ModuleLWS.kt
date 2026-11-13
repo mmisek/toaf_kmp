@@ -195,7 +195,8 @@ class ModuleLWS( protocolDS2: ProtocolDS2?) :
             0x03,
             0x01,
             (address and 0xFF).toByte(),
-            size.toByte()))
+            size.toByte()),
+            400)
         try {
             return if (message.isValid) message.answer.copyOfRange(0x03, 3 + size) else null
         } catch (ex: CancellationException) {

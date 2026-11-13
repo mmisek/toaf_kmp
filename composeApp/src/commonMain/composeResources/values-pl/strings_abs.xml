@@ -45,14 +45,17 @@
     <string name="abs_error_detail_05">Światła stopu wyłączone</string>
     <string name="abs_error_detail_06">ASC kontrola aktywna</string>
     <string name="abs_error_detail_07">ASC kontrola pasywna</string>
-    <string name="abs_live_data_asc_active">ASC Aktywne</string>
     <string name="abs_live_data_break_light_switch">Włącznik światła STOP</string>
     <string name="abs_live_data_engine_rpm">Prędkość obrotowa silnika (dla pojazdów z kontrolą trakcji)</string>
     <string name="abs_live_data_front_left_wheel_speed">Prędkość przedniego lewego koła</string>
     <string name="abs_live_data_front_right_wheel_speed">Prędkość przedniego prawego koła</string>
-    <string name="abs_live_data_pump_relay">Przekaźnik zaworu</string>
     <string name="abs_live_data_rear_left_wheel_speed">Prędkość tylnego lewego koła</string>
     <string name="abs_live_data_rear_right_wheel_speed">Prędkość tylnego prawego koła</string>
-    <string name="abs_live_data_valve_relay">Przekaźnik pompy</string>
 
+    <string name="abs_live_data_asc_passive_button">Przycisk wyłączenia ASC</string>
+    <string name="abs_live_data_handbrake_switch">Włącznik hamulca ręcznego</string>
+    <string name="abs_live_data_value_off">Wył.</string>
+    <string name="abs_live_data_value_on">Wł.</string>
+    <string name="abs_live_data_pump_relay">Przekaźnik pompy ABS</string>
+    <string name="abs_live_data_valve_relay">Przekaźnik zaworów</string>
 </resources>

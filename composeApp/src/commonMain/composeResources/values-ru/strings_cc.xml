@@ -49,7 +49,9 @@
     <string name="cc_live_data_speed_detection">Период определения скорости > 1.5с</string>
     <string name="cc_live_data_cruise_off">Активация выключения круиз-контроля</string>
     <string name="cc_live_data_cruise_on">Активация включения круиз-контроля</string>
-    <string name="cc_live_data_break">Тормоз активирован</string>
-    <string name="cc_live_data_clutch">Сцепление активировано</string>
 
+    <string name="cc_live_data_clutch">Педаль тормоза/сцепления нажата</string>
+    <string name="cc_live_data_break">Выключатель стоп-сигнала</string>
+    <string name="cc_live_data_value_yes">Да</string>
+    <string name="cc_live_data_value_no">Нет</string>
 </resources>

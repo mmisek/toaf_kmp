@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_ews_sync_title">Synchronisation EWS</string>
+    <string name="advance_control_ews_sync_info">Synchronise l\'antidémarrage (EWS) avec le calculateur moteur : le calculateur passe en mode synchronisation, l\'EWS déclenche l\'échange du code tournant, puis l\'état est vérifié. Le contact doit être mis et les deux calculateurs connectés.</string>
+    <string name="advance_control_ews_sync_ews_connected">Calculateur EWS : connecté</string>
+    <string name="advance_control_ews_sync_ews_missing">Calculateur EWS : non connecté (côté moteur uniquement)</string>
+    <string name="advance_control_ews_sync_button">Synchroniser l\'EWS</string>
+    <string name="advance_control_ews_sync_successful">Synchronisation EWS effectuée</string>
+    <string name="advance_control_ews_sync_failed">Échec de la synchronisation EWS</string>
+    <string name="advance_control_ews_sync_step_ews_ping">Réponse EWS (0x00)</string>
+    <string name="advance_control_ews_sync_step_ews_handshake">Échange EWS (0x67)</string>
+    <string name="advance_control_ews_sync_step_reset">Réinitialisation du mode synchronisation</string>
+    <string name="advance_control_ews_sync_step_enter">Entrée en mode synchronisation</string>
+    <string name="advance_control_ews_sync_step_status">Lecture de l\'état de synchronisation</string>
+    <string name="advance_control_ews_sync_step_ews_missing">Calculateur EWS non connecté</string>
+    <string name="advance_control_ews_sync_step_session">Session de diagnostic</string>
+    <string name="advance_control_ews_sync_step_security">Accès sécurisé</string>
+    <string name="advance_control_ews_sync_step_resync">Resynchronisation de l\'antidémarrage</string>
+    <string name="advance_control_ews_sync_step_ews_ident">Identification EWS</string>
+    <string name="advance_control_ews_sync_step_ecu_ident">Identification du calculateur moteur</string>
+    <string name="advance_control_ews_sync_step_exit">Sortie du mode synchronisation</string>
+</resources>

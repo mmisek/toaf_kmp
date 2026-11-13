@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_cc">Régulateur de vitesse (V6)</string>
+    <!-- Cruise Control V6 -->
+    <string name="cc_error_01">Niveau sortie tension : bas, haut attendu</string>
+    <string name="cc_error_02">Niveau sortie électrovanne : bas, haut attendu</string>
+    <string name="cc_error_04">Niveau sortie pompe : bas, haut attendu</string>
+    <string name="cc_error_08">Calculateur : défaut interne</string>
+    <string name="cc_error_10">Niveau sortie tension : haut, bas attendu</string>
+    <string name="cc_error_20">Niveau sortie électrovanne : haut, bas attendu</string>
+    <string name="cc_error_40">Niveau sortie pompe : haut, bas attendu</string>
+    <string name="cc_error_80">Entrée vitesse : défaut d\'entrée</string>
+    <string name="cc_error_09">Défaut mémoire : erreur de lecture</string>
+    <string name="cc_error_detail_01">Actions depuis le dernier défaut de tension</string>
+    <string name="cc_error_detail_02">Actions depuis le dernier défaut d\'électrovanne</string>
+    <string name="cc_error_detail_03">Actions depuis le dernier défaut de pompe</string>
+    <string name="cc_error_detail_04">Actions depuis la dernière entrée vitesse</string>
+    <string name="cc_error_detail_05">Valeur initiale après RESET</string>
+    <string name="cc_error_detail_07">Vitesse cible > Vmax</string>
+    <string name="cc_error_detail_08">Aucune spécification</string>
+    <string name="cc_error_detail_0A">Sortie relais basse</string>
+    <string name="cc_error_detail_0B">Commande électrovanne basse en fonctionnement</string>
+    <string name="cc_error_detail_0C">Commande pompe basse en fonctionnement</string>
+    <string name="cc_error_detail_0D">Vitesse réelle supérieure à Vmax</string>
+    <string name="cc_error_detail_0E">Vitesse réelle inférieure à Vmin </string>
+    <string name="cc_error_detail_0F">Limite d\'accélération dépassée</string>
+    <string name="cc_error_detail_10">Commande pompe basse à l\'activation</string>
+    <string name="cc_error_detail_11">Commande électrovanne basse à l\'activation</string>
+    <string name="cc_error_detail_12">Sortie relais basse à la mise sous tension</string>
+    <string name="cc_error_detail_13">Sortie relais haute hors fonctionnement</string>
+    <string name="cc_error_detail_14">Contacteur de frein ou d\'embrayage ouvert</string>
+    <string name="cc_error_detail_15">Feux stop allumés</string>
+    <string name="cc_error_detail_16">Défaut du circuit redondant V min</string>
+    <string name="cc_error_detail_17">Court-circuit à la masse relais</string>
+    <string name="cc_error_detail_18">Écart trop important entre vitesse cible et vitesse réelle</string>
+    <string name="cc_error_detail_19">Vitesses cibles différentes</string>
+    <string name="cc_error_detail_1A">Sortie relais haute à la désactivation</string>
+    <string name="cc_error_detail_1C">Défaut de la commande redondante d\'électrovanne</string>
+    <string name="cc_error_detail_1D">Défaut de la commande redondante de pompe</string>
+    <string name="cc_error_detail_1F">Actionnement du contacteur OFF</string>
+    <string name="cc_error_permanent">Défaut permanent</string>
+    <string name="cc_error_sporadic">Défaut sporadique</string>
+
+    <!-- Cruise Control - live data -->
+    <string name="cc_live_data_test_completed">Test terminé</string>
+    <string name="cc_live_data_cc_active">Régulateur de vitesse actif</string>
+    <string name="cc_live_data_actual_speed">Vitesse réelle</string>
+    <string name="cc_live_data_set_speed">Vitesse programmée</string>
+    <string name="cc_live_data_speed_greater_than_minimum">Vitesse supérieure au minimum</string>
+    <string name="cc_live_data_speed_detection">Période de détection de vitesse > 1.5s</string>
+    <string name="cc_live_data_cruise_off">Désactivation du régulateur de vitesse</string>
+    <string name="cc_live_data_cruise_on">Activation du régulateur de vitesse</string>
+
+    <string name="cc_live_data_clutch">Pédale de frein/embrayage enfoncée</string>
+    <string name="cc_live_data_break">Contacteur de feux stop</string>
+    <string name="cc_live_data_value_yes">Oui</string>
+    <string name="cc_live_data_value_no">Non</string>
+</resources>

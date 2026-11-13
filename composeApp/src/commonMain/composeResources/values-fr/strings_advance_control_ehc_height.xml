@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_ehc_height_title">Pilotage de la hauteur des roues</string>
+    <string name="advance_control_ehc_height_front_left">Avant gauche</string>
+    <string name="advance_control_ehc_height_front_right">Avant droite</string>
+    <string name="advance_control_ehc_height_rear_left">Arrière gauche</string>
+    <string name="advance_control_ehc_height_rear_right">Arrière droite</string>
+    <string name="advance_control_ehc_height_pressure">Pression du réservoir</string>
+    <string name="advance_control_ehc_height_temperature">Température du compresseur</string>
+    <string name="advance_control_ehc_height_mode_auto">Mode : automatique</string>
+    <string name="advance_control_ehc_height_mode_manual">Mode : pilotage manuel</string>
+    <string name="advance_control_ehc_height_stop">STOP</string>
+    <string name="advance_control_ehc_height_stop_successful">Pilotage de la hauteur arrêté</string>
+    <string name="advance_control_ehc_height_stop_failed">Échec de l\'arrêt du pilotage de la hauteur</string>
+    <string name="advance_control_ehc_height_manual_mode_failed">Échec du passage du calculateur en pilotage manuel</string>
+    <string name="advance_control_ehc_height_control_failed">Échec de la commande de pilotage de la hauteur</string>
+</resources>

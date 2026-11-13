@@ -24,6 +24,11 @@ class ProtocolDS2(private var device: IInterfaceDevice?) : IProtocol {
         return write(destinationDevice, newData)
     }
 
+    suspend fun write(destinationDevice: Byte, data: Array<ByteArray>, timeout: Long?): OBDMessage {
+        val newData = data.flatMap { it.asList() }.toByteArray()
+        return write(destinationDevice, newData, timeout)
+    }
+
     suspend fun write(destinationDevice: Byte, data: ByteArray, readTimeout: Long?): OBDMessage {
         val message = writeToDs2(destinationDevice, data, readTimeout)
         // Keep the answer code for invalid messages so callers can detect e.g. BUSY (0xA1)

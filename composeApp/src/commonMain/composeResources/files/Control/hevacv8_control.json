@@ -1,0 +1,16 @@
+{
+    "elements": [
+      {
+        "name": "inhibit",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0xFF"
+      },
+      {
+        "name": "enable",
+        "block": "0x00",
+        "byte": "0x00",
+        "value": "0x00"
+      }
+    ]
+}

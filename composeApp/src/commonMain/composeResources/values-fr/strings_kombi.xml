@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_kombi">Combiné d\'instruments (KOMBI)</string>
+    <string name="kombi_error_status_stored_not_present">Défaut non présent, mémorisé</string>
+    <string name="kombi_error_status_present_not_stored">Défaut présent, pas encore mémorisé (anti-rebond)</string>
+    <string name="kombi_error_status_present_stored">Défaut présent et mémorisé</string>
+    <string name="kombi_error_status_test_not_complete">Conditions de test pas encore remplies</string>
+    <string name="kombi_error_status_warning_lamp">Allumage du témoin demandé</string>
+
+    <string name="kombi_coding_odometer_leading_zeros">Compteur kilométrique - zéros de tête</string>
+    <string name="kombi_coding_aircon">Climatisation (DIESEL/KV6/USA/Canada)</string>
+    <string name="kombi_coding_brake_system_input">Entrée système de freinage (NAS)</string>
+    <string name="kombi_coding_overspeed_warning">Alerte de survitesse (Golfe)</string>
+    <string name="kombi_coding_sia_distance_service">Intervalle d\'entretien - entretien kilométrique (NG)</string>
+    <string name="kombi_coding_sia_time_service">Intervalle d\'entretien - entretien temporel (NG)</string>
+    <string name="kombi_coding_odo_offset">Décalage du compteur kilométrique</string>
+    <string name="kombi_coding_sia_liter_limit">Intervalle d\'entretien - limite de carburant</string>
+    <string name="kombi_coding_sia_time_limit">Intervalle d\'entretien - limite de temps [jours]</string>
+    <string name="kombi_coding_sia_interval_distance">Intervalle d\'entretien - distance</string>
+</resources>

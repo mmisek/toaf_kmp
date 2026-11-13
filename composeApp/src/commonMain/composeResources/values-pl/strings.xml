@@ -23,6 +23,7 @@
     <string name="activity_coding_read_failure">Błąd odczytu kodowania</string>
     <string name="activity_coding_read_coding_elements_failed">Struktura kodowania nie znaleziona</string>
     <string name="activity_coding_subtitle">Kodowanie modułu</string>
+    <string name="activity_coding_no_scheme">Brak schematu kodowania dla tego sterownika</string>
     <string name="activity_control_add_to_fast_action_error">Błąd dodania do szybkich akcji</string>
     <string name="activity_control_add_to_fast_action_successful">Dodanie do Szybkich akcji poprawne</string>
     <string name="activity_control_button_start">Start</string>

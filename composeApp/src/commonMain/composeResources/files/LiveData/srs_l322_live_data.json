@@ -1,0 +1,793 @@
+{
+  "livedata": [
+    {
+      "name": "zk_driver_airbag_stage_1",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "zk_driver_belt_pretensioner",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "zk_passenger_belt_pretensioner",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "zk_passenger_airbag_stage_1",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "zk_side_airbag_front_left",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "zk_side_airbag_front_right",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "zk_side_airbag_rear_left",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "zk_side_airbag_rear_right",
+      "block": "0x00",
+      "byte": "0x00",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "zk_head_airbag_left",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "zk_head_airbag_right",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "zk_battery_cut_off_1",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "zk_passenger_airbag_stage_2",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "zk_driver_airbag_stage_2",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "zk_head_airbag_rear_left",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "zk_head_airbag_rear_right",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "zk_battery_cut_off_2",
+      "block": "0x00",
+      "byte": "0x01",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "zk_belt_pretensioner_rear_left",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "zk_belt_pretensioner_rear_right",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "zk_belt_pretensioner_rear_center",
+      "block": "0x00",
+      "byte": "0x02",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "buckle_driver",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x03",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "buckled"
+        },
+        {
+          "data": "0x02",
+          "text": "not_buckled"
+        },
+        {
+          "data": "0x03",
+          "text": "no_status"
+        }
+      ]
+    },
+    {
+      "name": "buckle_driver_sensor",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "buckle_passenger",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x18",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "buckled"
+        },
+        {
+          "data": "0x02",
+          "text": "not_buckled"
+        },
+        {
+          "data": "0x03",
+          "text": "no_status"
+        }
+      ]
+    },
+    {
+      "name": "buckle_passenger_sensor",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "buckle_rear_left",
+      "block": "0x00",
+      "byte": "0x03",
+      "mask": "0xC0",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "buckled"
+        },
+        {
+          "data": "0x02",
+          "text": "not_buckled"
+        },
+        {
+          "data": "0x03",
+          "text": "no_status"
+        }
+      ]
+    },
+    {
+      "name": "buckle_rear_left_sensor",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "buckle_rear_right",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x06",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "buckled"
+        },
+        {
+          "data": "0x02",
+          "text": "not_buckled"
+        },
+        {
+          "data": "0x03",
+          "text": "no_status"
+        }
+      ]
+    },
+    {
+      "name": "buckle_rear_right_sensor",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "buckle_rear_center",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x30",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "buckled"
+        },
+        {
+          "data": "0x02",
+          "text": "not_buckled"
+        },
+        {
+          "data": "0x03",
+          "text": "no_status"
+        }
+      ]
+    },
+    {
+      "name": "buckle_rear_center_sensor",
+      "block": "0x00",
+      "byte": "0x04",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "passenger_seat_occupancy",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x03",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "not_occupied"
+        },
+        {
+          "data": "0x02",
+          "text": "occupied"
+        },
+        {
+          "data": "0x03",
+          "text": "no_status"
+        }
+      ]
+    },
+    {
+      "name": "passenger_seat_occupancy_sensor",
+      "block": "0x00",
+      "byte": "0x05",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "mrsa_left_send",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "mrsa_left_communication",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "mrsa_left_wiring",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "mrsa_left_type",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "mrsa_right_send",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "mrsa_right_communication",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "mrsa_right_wiring",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    },
+    {
+      "name": "mrsa_right_type",
+      "block": "0x00",
+      "byte": "0x07",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "values": [
+        {
+          "data": "0x00",
+          "text": "fault"
+        },
+        {
+          "data": "0x01",
+          "text": "ok"
+        }
+      ]
+    }
+  ]
+}

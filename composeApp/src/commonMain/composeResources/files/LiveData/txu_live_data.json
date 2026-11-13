@@ -1,0 +1,387 @@
+{
+  "livedata": [
+    {
+      "name": "block01_byte00_bit0",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block01_byte00_bit1",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block01_byte00_bit2",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block01_byte00_bit3",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block01_byte00_bit4",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block01_byte00_bit5",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block01_byte00_bit6",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block01_byte00_bit7",
+      "block": "0x01",
+      "byte": "0x00",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block01_byte01_bit0",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0x01",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block01_byte01_bit1",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0x02",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block01_byte01_bit2",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block01_byte01_bit3",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block01_byte01_bit4",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block01_byte01_bit5",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block01_byte01_bit6",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block01_byte01_bit7",
+      "block": "0x01",
+      "byte": "0x01",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block02_byte00_bits0_2",
+      "block": "0x02",
+      "byte": "0x00",
+      "mask": "0x07",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block02_byte00_bits3_4",
+      "block": "0x02",
+      "byte": "0x00",
+      "mask": "0x18",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block03_byte00_bits0_1",
+      "block": "0x03",
+      "byte": "0x00",
+      "mask": "0x03",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block03_byte00_bit2",
+      "block": "0x03",
+      "byte": "0x00",
+      "mask": "0x04",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block03_byte00_bit3",
+      "block": "0x03",
+      "byte": "0x00",
+      "mask": "0x08",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block03_byte00_bit4",
+      "block": "0x03",
+      "byte": "0x00",
+      "mask": "0x10",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block03_byte00_bit5",
+      "block": "0x03",
+      "byte": "0x00",
+      "mask": "0x20",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block03_byte00_bit6",
+      "block": "0x03",
+      "byte": "0x00",
+      "mask": "0x40",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block03_byte00_bit7",
+      "block": "0x03",
+      "byte": "0x00",
+      "mask": "0x80",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block04_byte00_bits0_1",
+      "block": "0x04",
+      "byte": "0x00",
+      "mask": "0x03",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block04_byte00_bits2_4",
+      "block": "0x04",
+      "byte": "0x00",
+      "mask": "0x1C",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block05_word00",
+      "block": "0x05",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "swap": "true"
+    },
+    {
+      "name": "block05_word02",
+      "block": "0x05",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "swap": "true"
+    },
+    {
+      "name": "block06_word00",
+      "block": "0x06",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "swap": "true"
+    },
+    {
+      "name": "block06_byte02",
+      "block": "0x06",
+      "byte": "0x02",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block06_byte03",
+      "block": "0x06",
+      "byte": "0x03",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block06_byte04",
+      "block": "0x06",
+      "byte": "0x04",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block06_byte05",
+      "block": "0x06",
+      "byte": "0x05",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block07_byte00_bits0_5",
+      "block": "0x07",
+      "byte": "0x00",
+      "mask": "0x3F",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block07_byte01",
+      "block": "0x07",
+      "byte": "0x01",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block08_word00",
+      "block": "0x08",
+      "byte": "0x00",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "swap": "true"
+    },
+    {
+      "name": "block08_word02",
+      "block": "0x08",
+      "byte": "0x02",
+      "mask": "0xFFFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " ",
+      "swap": "true"
+    },
+    {
+      "name": "block08_byte04",
+      "block": "0x08",
+      "byte": "0x04",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block09_byte00",
+      "block": "0x09",
+      "byte": "0x00",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block09_byte01",
+      "block": "0x09",
+      "byte": "0x01",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    },
+    {
+      "name": "block10_byte00",
+      "block": "0x0A",
+      "byte": "0x00",
+      "mask": "0xFF",
+      "factor_a": "1",
+      "factor_b": "0",
+      "unit": " "
+    }
+  ]
+}

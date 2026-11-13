@@ -51,14 +51,17 @@ object ResourceMapperAbs {
             "abs_error_detail_05" -> Res.string.abs_error_detail_05
             "abs_error_detail_06" -> Res.string.abs_error_detail_06
             "abs_error_detail_07" -> Res.string.abs_error_detail_07
-            "abs_live_data_asc_active" -> Res.string.abs_live_data_asc_active
+            "abs_live_data_asc_passive_button" -> Res.string.abs_live_data_asc_passive_button
             "abs_live_data_break_light_switch" -> Res.string.abs_live_data_break_light_switch
             "abs_live_data_engine_rpm" -> Res.string.abs_live_data_engine_rpm
             "abs_live_data_front_left_wheel_speed" -> Res.string.abs_live_data_front_left_wheel_speed
             "abs_live_data_front_right_wheel_speed" -> Res.string.abs_live_data_front_right_wheel_speed
+            "abs_live_data_handbrake_switch" -> Res.string.abs_live_data_handbrake_switch
             "abs_live_data_pump_relay" -> Res.string.abs_live_data_pump_relay
             "abs_live_data_rear_left_wheel_speed" -> Res.string.abs_live_data_rear_left_wheel_speed
             "abs_live_data_rear_right_wheel_speed" -> Res.string.abs_live_data_rear_right_wheel_speed
+            "abs_live_data_value_off" -> Res.string.abs_live_data_value_off
+            "abs_live_data_value_on" -> Res.string.abs_live_data_value_on
             "abs_live_data_valve_relay" -> Res.string.abs_live_data_valve_relay
         else -> {
           Logger.i {"NO RESOURCE for : $resourceName" }

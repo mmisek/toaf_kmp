@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_gateway">Gateway (V8)</string>
+    <!-- Gateway X12 - коды неисправностей -->
+    <string name="gateway_error_1480">Выход вентилятора низкой скорости</string>
+    <string name="gateway_error_1520">Вход давления масла</string>
+    <string name="gateway_error_1623">Выход лампы генератора</string>
+    <string name="gateway_error_1670">Выход лампы давления масла</string>
+    <string name="gateway_error_1671">Выход лампы неисправности тормозов</string>
+    <string name="gateway_error_1672">Выход системного реле</string>
+    <string name="gateway_error_1673">Выход запроса кондиционера</string>
+    <string name="gateway_error_1675">Иммобилайзер: нет кода EWS3</string>
+    <string name="gateway_error_1676">Иммобилайзер: нет ответа ID PCM</string>
+    <string name="gateway_error_1677">Иммобилайзер: отсутствует сообщение SCP</string>
+    <string name="gateway_error_1678">Иммобилайзер: состояние системы безопасности не совпадает с состоянием ключа</string>
+    <string name="gateway_error_1679">Иммобилайзер: неверный номер ISN</string>
+    <!-- Gateway X12 - текущие данные -->
+    <string name="gateway_live_data_ignition">Состояние зажигания</string>
+    <string name="gateway_live_data_engine_speed">Обороты двигателя</string>
+    <string name="gateway_live_data_coolant_temperature">Температура охлаждающей жидкости</string>
+    <string name="gateway_live_data_fuel_level">Уровень топлива</string>
+    <string name="gateway_live_data_oil_pressure">Давление масла</string>
+    <string name="gateway_live_data_immobiliser">Состояние иммобилайзера</string>
+    <string name="gateway_live_data_value_on">Вкл.</string>
+    <string name="gateway_live_data_value_off">Выкл.</string>
+    <string name="gateway_live_data_value_low">Низкое</string>
+    <string name="gateway_live_data_value_normal">Нормальное</string>
+</resources>

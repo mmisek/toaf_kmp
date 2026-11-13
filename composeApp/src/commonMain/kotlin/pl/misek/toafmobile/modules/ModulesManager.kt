@@ -50,6 +50,9 @@ import pl.misek.toafmobile.modules.rjo.ModuleABS53
 import pl.misek.toafmobile.modules.l322.ModuleGS8601
 import pl.misek.toafmobile.modules.l322.ModuleME72
 import pl.misek.toafmobile.modules.l322.ModuleTXU
+import pl.misek.toafmobile.modules.r40.ModuleGateway
+import pl.misek.toafmobile.modules.r40.ModuleHevacX12
+import pl.misek.toafmobile.modules.r40.ModuleX12
 
 class ModulesManager() : KoinComponent
 {
@@ -105,7 +108,13 @@ class ModulesManager() : KoinComponent
             get<ModuleABS53>(named(KoinNames.ModuleRJOAbs.name)),
             get<ModuleCCU>(named(KoinNames.ModuleL20Ccu.name)),
             get<ModuleKOMBI>(named(KoinNames.ModuleL20Kombi.name)),
-            get<ModuleASC>(named(KoinNames.ModuleL20Asc.name)))
+            get<ModuleASC>(named(KoinNames.ModuleL20Asc.name)),
+
+            //V8
+            get<ModuleGateway>(named(KoinNames.ModuleR40Gateway.name)),
+            get<ModuleX12>(named(KoinNames.ModuleR40X12.name)),
+            get<ModuleHevacX12>(named(KoinNames.ModuleR40HevacX12.name)))
+
     }
 
     @Composable

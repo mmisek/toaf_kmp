@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="advance_control_ews_keys_title">Clés</string>
+    <string name="advance_control_ews_keys_isn">ISN</string>
+    <string name="advance_control_ews_keys_password">Mot de passe</string>
+    <string name="advance_control_ews_keys_read">Lire les clés</string>
+    <string name="advance_control_ews_keys_col_number">N°</string>
+    <string name="advance_control_ews_keys_col_id">ID de clé</string>
+    <string name="advance_control_ews_keys_col_status">État</string>
+    <string name="advance_control_ews_keys_col_selfinit">Auto-init.</string>
+    <string name="advance_control_ews_keys_status_locked_unused">Verrouillée, inutilisée</string>
+    <string name="advance_control_ews_keys_status_locked_used">Verrouillée, utilisée</string>
+    <string name="advance_control_ews_keys_status_free_unused">Libre, inutilisée</string>
+    <string name="advance_control_ews_keys_status_free_used">Libre, utilisée</string>
+    <string name="advance_control_ews_keys_yes">Oui</string>
+    <string name="advance_control_ews_keys_no">Non</string>
+    <string name="advance_control_ews_keys_no_data">Aucune donnée - appuyez sur \"Lire les clés\"</string>
+    <string name="advance_control_ews_keys_read_successful">Clés lues avec succès</string>
+    <string name="advance_control_ews_keys_read_failed">Échec de la lecture des clés</string>
+</resources>

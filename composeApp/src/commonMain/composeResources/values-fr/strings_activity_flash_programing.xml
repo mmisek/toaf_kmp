@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_flash_programing">Programmation flash</string>
+    <string name="activity_flash_read_identification">Identification du calculateur...</string>
+    <string name="activity_flash_programming_flash_reading">Lecture de la flash</string>
+    <string name="activity_flash_programming_flash_writing">Écriture de la flash</string>
+    <string name="activity_flash_programming_read_flash">Lire la flash</string>
+    <string name="activity_flash_programming_write_flash">Écrire la flash</string>
+    <string name="activity_flash_programming_tittle">Programmation flash du calculateur</string>
+    <string name="activity_flash_programming_security_access">Accès sécurisé</string>
+    <string name="activity_flash_programming_diagnostic_session">Session de diagnostic</string>
+    <string name="activity_flash_programming_flash_read">Lecture de la flash</string>
+    <string name="activity_flash_programming_flash_write">Écriture de la flash...%1$s</string>
+    <string name="activity_flash_programming_ecu_reset">Réinitialisation du calculateur...patientez</string>
+    <string name="activity_flash_programming_start">Début</string>
+    <string name="activity_flash_programming_end">Fin</string>
+    <string name="activity_flash_programming_ok">OK</string>
+    <string name="activity_flash_programming_failed">Échec</string>
+    <string name="activity_flash_programming_close">Fermer</string>
+    <string name="activity_flash_programming_read_time">Durée de lecture</string>
+    <string name="activity_flash_programming_write_time">Durée d\'écriture</string>
+    <string name="activity_flash_programming_written_to">Fichier enregistré dans : %1$s</string>
+    <string name="activity_flash_programming_write_data_to_file_error">Erreur d\'écriture dans le fichier.</string>
+    <string name="activity_flash_programming_read_size">Octets lus</string>
+    <string name="activity_flash_programming_read_error">Erreur de lecture de la flash !</string>
+    <string name="activity_flash_programming_write_error">Erreur d\'écriture de la flash !</string>
+    <string name="activity_flash_programming_flash_erasing">Effacement de la flash...%1$s</string>
+    <string name="activity_flash_programming_flash_writing_end">Fin de l\'écriture de la flash...%1$s</string>
+    <string name="activity_flash_programming_backup_flash">Sauvegarde de la flash...%1$s</string>
+    <string name="activity_flash_programming_file_name">Nom du fichier : %1$s</string>
+    <string name="activity_flash_programming_file_size">Taille du fichier : %1$s octets</string>
+    <string name="activity_flash_programming_wrong_file_size">Taille de fichier incorrecte.</string>
+    <string name="activity_flash_programming_ecu_init">Initialisation du calculateur...%1$s</string>
+    <string name="activity_flash_programing_warning">
+        !! AVERTISSEMENT !!\n\n
+        Toutes ces opérations peuvent immobiliser votre véhicule.\n
+        Si la lecture est généralement sans risque, l\'écriture peut empêcher le véhicule de démarrer !
+        L\'auteur a tout mis en œuvre pour que ces opérations soient sûres - mais il ne le garantit pas\n
+        Vous agissez entièrement à vos propres risques !
+    </string>
+</resources>

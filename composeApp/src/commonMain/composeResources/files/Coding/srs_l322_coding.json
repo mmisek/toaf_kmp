@@ -495,21 +495,40 @@
         ]
       },
       {
-        "name": "sbe_generation",
+        "name": "seat_occupancy_detection",
         "block": "0x00",
         "byte": "0x04",
-        "mask": "0x03",
+        "mask": "0x01",
         "coding_index": [
           "41"
         ],
         "coding_values": [
           {
-            "data": "0x01",
-            "text": "first_generation"
+            "data": "0x00",
+            "text": "inactive"
           },
           {
-            "data": "0x02",
-            "text": "second_generation"
+            "data": "0x01",
+            "text": "active"
+          }
+        ]
+      },
+      {
+        "name": "sbe_second_generation",
+        "block": "0x00",
+        "byte": "0x04",
+        "mask": "0x02",
+        "coding_index": [
+          "41"
+        ],
+        "coding_values": [
+          {
+            "data": "0x00",
+            "text": "inactive"
+          },
+          {
+            "data": "0x01",
+            "text": "active"
           }
         ]
       },

@@ -42,8 +42,12 @@ import pl.misek.toafmobile.koin.KoinNames
 import pl.misek.toafmobile.modules.ModuleInfo
 import pl.misek.toafmobile.modules.ModulesManager
 import pl.misek.toafmobile.modules.interfaces.IModuleEepromProgramming
+import pl.misek.toafmobile.modules.interfaces.IModuleLiveData
+import pl.misek.toafmobile.modules.r40.ModuleIPK
 import pl.misek.toafmobile.network.ToafApi
+import pl.misek.toafmobile.tools.BatteryReadResult
 import pl.misek.toafmobile.tools.IFileSupport
+import pl.misek.toafmobile.tools.readBatteryInfo
 import pl.misek.toafmobile.viewModels.UserInfoViewModel
 import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
@@ -56,7 +60,8 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
     val toafApi : ToafApi = koinInject()
     val fileSupport : IFileSupport = koinInject()
     val modulesManage : ModulesManager = koinInject()
-    val currentModule = modulesManage.getCurrentModules().firstOrNull {it.getKoinName() == moduleKoinName} as IModule
+    val currentModule = modulesManage.getCurrentModules().firstOrNull {it.getKoinName() == moduleKoinName}
+    val moduleIPK = modulesManage.getCurrentModules().firstOrNull {it.getKoinName() == KoinNames.ModuleR40Ipk }
     val userInfoViewModel : UserInfoViewModel = koinViewModel()
     val userInfo by userInfoViewModel.userInfo.collectAsState()
     var showFullVersionDialog by remember { mutableStateOf(false) }
@@ -85,10 +90,22 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
     val eepromWriteErrorText = stringResource(Res.string.activity_eeprom_programming_write_error)
     val eepromWriteSkipText = stringResource(Res.string.activity_eeprom_programming_write_skip)
     val moduleResetText = stringResource(Res.string.activity_eeprom_programming_ecu_reset)
+    val voltageCheckText = stringResource(Res.string.activity_eeprom_programming_voltage_check)
+    val voltageCheckFailedText = stringResource(Res.string.activity_eeprom_programming_voltage_check_failed)
+    val voltageText = stringResource(Res.string.activity_eeprom_programming_voltage)
+    val voltageTooLowText = stringResource(Res.string.activity_eeprom_programming_voltage_too_low)
+    val batteryLevelText = stringResource(Res.string.activity_eeprom_programming_battery_level)
+    val batteryPoweredText = stringResource(Res.string.activity_eeprom_programming_battery_powered)
+    val batteryNotPoweredText = stringResource(Res.string.activity_eeprom_programming_battery_not_powered)
+    val batteryTooLowText = stringResource(Res.string.activity_eeprom_programming_battery_too_low)
+    val batteryNoneText = stringResource(Res.string.activity_eeprom_programming_battery_none)
+    val batteryCheckFailedText = stringResource(Res.string.activity_eeprom_programming_battery_check_failed)
 
     val programmingProcess = { fileData : ByteArray ->
         scope.launch {
             val eepromModule = currentModule as IModuleEepromProgramming
+            var liveDataModule = currentModule as? IModuleLiveData
+            var liveDataModuleAddress = currentModule.getModuleAddress()
             val eepromSize = eepromModule.getEepromSize()
             val bytesToWrite = eepromModule.getEepromWriteSize()
             if (fileData.size == eepromSize) {
@@ -100,14 +117,58 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
                 if (moduleIdentification != null) {
                     eepromModule.beforeWrite()
                     statusText += "\nID: " + moduleIdentification!!.id1
+                    when (val batteryResult = readBatteryInfo()) {
+                        is BatteryReadResult.Ok -> {
+                            val battery = batteryResult.info
+                            statusText += "\n" + String.format(batteryLevelText, battery.level.toString())
+                            statusText += "\n" + if (battery.isCharging || battery.isPlugged)
+                                batteryPoweredText else batteryNotPoweredText
+                            if (battery.level < 20 && !battery.isCharging && !battery.isPlugged) {
+                                statusText += "\n" + batteryTooLowText
+                                return@launch
+                            }
+                        }
+                        BatteryReadResult.NoBattery -> statusText += "\n" + batteryNoneText
+                        BatteryReadResult.Failed -> statusText += "\n" + batteryCheckFailedText
+                    }
+                    if (liveDataModule == null && moduleIPK != null) {
+                        liveDataModule = moduleIPK as? IModuleLiveData
+                        liveDataModuleAddress = moduleIPK.getModuleAddress()
+                    }
+                    if (liveDataModule != null)
+                    {
+                        statusText += "\n" + voltageCheckText
+                        var voltage = liveDataModule.getModuleVoltage(liveDataModuleAddress, 2)
+                        if (voltage.isNaN() && moduleIPK != null)
+                        {
+                            liveDataModule = moduleIPK as IModuleLiveData
+                            liveDataModuleAddress = moduleIPK.getModuleAddress()
+                            voltage = liveDataModule.getModuleVoltage(liveDataModuleAddress, 2)
+                        }
+                        if (voltage.isNaN())
+                        {
+                            statusText += "\n" + voltageCheckFailedText
+                        }
+                        else
+                        {
+                            statusText += "\n" + String.format(voltageText, "%.2f".format(voltage))
+                            if (voltage < 12.5){
+                                statusText += "\n" + voltageTooLowText
+                                return@launch
+                            }
+                        }
+                    }
                     var currentTry = 0
                     val maxTry = 3
                     var i = 0
                     while (i < eepromSize) {
-                        val data = fileData.copyOfRange(i, i + bytesToWrite)
+                        // Ostatnia paczka przyciety do granicy EEPROM (rozmiar moze nie byc
+                        // wielokrotnoscia kroku, np. BMBT: 255 B).
+                        val chunk = minOf(bytesToWrite, eepromSize - i)
+                        val data = fileData.copyOfRange(i, i + chunk)
                         val success =
                             withContext(Dispatchers.IO) { eepromModule.writeEeprom(i, data) }
-                        val progress = ((i + bytesToWrite).toFloat() / eepromSize * 100).toInt()
+                        val progress = ((i + chunk).toFloat() / eepromSize * 100).toInt()
                         statusText += "\n" + String.format(
                             eepromWriteProgressText,
                             String.format(Locale.US, "%2d%%", progress)
@@ -125,11 +186,11 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
                                 )
                                 currentTry = 0
                             } else {
-                                i -= bytesToWrite
+                                i -= chunk
                                 currentTry++
                             }
                         }
-                        i += bytesToWrite
+                        i += chunk
                     }
                     statusText += "\n" + moduleResetText
                     currentModule.reset()
@@ -204,10 +265,13 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
                                 var i = 0
                                 do
                                 {
-                                    val progress = ((i + bytesToRead).toFloat() / eepromSize * 100).toInt()
+                                    // Ostatnia paczka przyciety do granicy EEPROM - rozmiar moze nie byc
+                                    // wielokrotnoscia kroku (np. BMBT: 255 B, bajt 0xFF nieodczytywalny).
+                                    val chunk = minOf(bytesToRead, eepromSize - i)
+                                    val progress = ((i + chunk).toFloat() / eepromSize * 100).toInt()
                                     statusText += "\n" +String.format(eepromReadProgressText, String.format(Locale.US,"%2d%%", progress))
                                     val data = withContext(Dispatchers.IO) {
-                                        eepromModule.readEeprom(i,bytesToRead)}
+                                        eepromModule.readEeprom(i,chunk)}
                                     if (data != null)
                                         eepromReadData +=data
                                     else
@@ -216,30 +280,30 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
                                         statusText += "\n" + eepromReadEndText
                                         break
                                     }
-                                    i += bytesToRead
+                                    i += chunk
                                 } while (i < eepromSize)
 
                                 if (eepromReadData.size == eepromSize)
                                 {
+                                    val vin = currentModule.getVIN()
+                                    val moduleName = currentModule.getModuleName()
                                     statusText +="\n" + String.format(eepromReadEepromSizeText, eepromReadData.size)
                                     val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.US)
                                     fileName = String.format(
-                                        "%s_%s_%s.bin",
-                                        currentModule.getModuleName(),
+                                        "EEPROM_%s_%s_%s.bin",
+                                        moduleName,
                                         moduleIdentification?.id1 ?: "",
                                         simpleDateFormat.format(Calendar.getInstance().time))
                                     saveFileLauncher(fileName)
                                     val jsonObject = buildJsonObject {
-                                        put("vin", currentModule.getModuleName())
+                                        put("vin", vin ?: moduleName)
                                         put("module", currentModule.getModuleName())
                                         put("id1", moduleIdentification?.id1)
                                         put("id2", moduleIdentification?.id2)
                                     }
-                                    scope.launch {
-                                        withContext(Dispatchers.IO) {
-                                            val backupResult = toafApi.uploadFlash( jsonObject, eepromReadData)
-                                            statusText += "\n" + String.format(eepromBackupResultText, if (backupResult) eepromResultOkText else eepromResultFailedText)
-                                        }
+                                    withContext(Dispatchers.IO) {
+                                        val backupResult = toafApi.uploadFlash( jsonObject, eepromReadData)
+                                        statusText += "\n" + String.format(eepromBackupResultText, if (backupResult) eepromResultOkText else eepromResultFailedText)
                                     }
                                 }
                                 else

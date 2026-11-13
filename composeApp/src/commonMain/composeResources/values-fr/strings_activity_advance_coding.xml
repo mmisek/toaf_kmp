@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_advance_coding">Codage avancé</string>
+    <string name="activity_advance_coding_id_current">ID actuel</string>
+    <string name="activity_advance_coding_offset_programming">Programmation de l\'offset</string>
+    <string name="activity_advance_coding_offset_current">Offset actuel</string>
+    <string name="activity_advance_coding_read_button">Lire</string>
+    <string name="activity_advance_coding_save_button">Enregistrer</string>
+    <string name="activity_advance_coding_id_read_error">Erreur de lecture de l\'ID.</string>
+    <string name="activity_advance_coding_id_write_error">Erreur d\'écriture de l\'ID.</string>
+    <string name="activity_advance_coding_id_write_successful">Écriture de l\'ID réussie</string>
+    <string name="activity_advance_coding_adjustment_read_error">Erreur de lecture du réglage.</string>
+    <string name="activity_advance_coding_adjustment_write_error">Erreur d\'écriture du réglage.</string>
+    <string name="activity_advance_coding_adjustment_write_successful">Écriture du réglage réussie</string>
+
+    <string name="activity_advance_coding_vin_read_error">Erreur de lecture du VIN.</string>
+    <string name="activity_advance_coding_vin_write_error">Erreur d\'écriture du VIN.</string>
+    <string name="activity_advance_coding_vin_write_successful">Écriture du VIN réussie</string>
+    <string name="activity_advance_coding_vin_programming">Programmation du VIN</string>
+    <string name="activity_advance_coding_vin_current">VIN actuel</string>
+    <string name="activity_advance_coding_id_programming">Programmation de l\'ID</string>
+    <string name="activity_advance_coding_vin_matches_error">Le VIN saisi n\'est pas correct !</string>
+
+    <string name="activity_advance_coding_id_matches_error">L\'ID saisi n\'est pas correct !</string>
+    <string name="activity_advance_coding_adjustment_matches_error">Le réglage saisi n\'est pas correct !</string>
+    <string name="activity_advance_coding_default_coding">Codage par défaut</string>
+    <string name="activity_advance_coding_write_default_coding_error">Erreur d\'écriture du codage par défaut.</string>
+    <string name="activity_advance_coding_write_default_coding_successful">Écriture du codage par défaut réussie !</string>
+
+    <string name="activity_advance_coding_odometer_programming">Programmation du compteur kilométrique</string>
+    <string name="activity_advance_coding_odometer_current">Kilométrage actuel</string>
+    <string name="activity_advance_coding_odometer_read_error">Erreur de lecture du compteur kilométrique.</string>
+    <string name="activity_advance_coding_odometer_write_error">Erreur d\'écriture du compteur kilométrique.</string>
+    <string name="activity_advance_coding_odometer_write_successful">Écriture du compteur kilométrique réussie</string>
+    <string name="activity_advance_coding_odometer_matches_error">Le kilométrage saisi n\'est pas correct !</string>
+
+    <string name="activity_advance_coding_eka_programming">Programmation du code EKA</string>
+    <string name="activity_advance_coding_eka_current">Code EKA actuel</string>
+    <string name="activity_advance_coding_eka_read_error">Erreur de lecture du code EKA.</string>
+    <string name="activity_advance_coding_eka_write_error">Erreur d\'écriture du code EKA.</string>
+    <string name="activity_advance_coding_eka_write_successful">Écriture du code EKA réussie</string>
+    <string name="activity_advance_coding_eka_matches_error">Le code EKA saisi n\'est pas correct !</string>
+
+    <string name="activity_advance_coding_scu_keys_programming">Programmation des clés SCU</string>
+    <string name="activity_advance_coding_scu_keys_barcode_validation_failed">Le code-barres saisi est incorrect</string>
+    <string name="activity_advance_coding_scu_write_success">Écriture de la nouvelle clé réussie.</string>
+    <string name="activity_advance_coding_scu_write_failed">Échec de l\'écriture de la nouvelle clé.</string>
+    <string name="activity_advance_coding_scu_new_key_barcode">Code-barres de la nouvelle clé.</string>
+
+    <string name="activity_advance_coding_lsm_read_error">Erreur de lecture du codage</string>
+    <string name="activity_advance_coding_lsm_write_error">Erreur d\'enregistrement du codage</string>
+    <string name="activity_advance_coding_lsm_auto_light">Allumage automatique des feux</string>
+    <string name="activity_advance_coding_lsm_auto_light_current_mode">Mode actuel</string>
+    <string-array name="activity_advance_coding_lsm_auto_light_modes">
+        <item>Désactivé</item>
+        <item>Feux de jour - feux de route à 30%</item>
+        <item>Feux automatiques moteur tournant</item>
+        <item>Feux automatiques contact mis</item>
+    </string-array>
+</resources>

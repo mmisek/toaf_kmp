@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
@@ -22,6 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.DrawableResource
@@ -105,6 +107,43 @@ object ToafButtons {
                     color = Color.White,
                     textAlign = TextAlign.Center,) }
         )
+    }
+
+    /** Button with a looping animation on the left, e.g. animation = { DoctorAnimation(it) } */
+    @Composable
+    fun AnimatedButton(
+        buttonText: StringResource,
+        onClick: () -> Unit,
+        modifier: Modifier,
+        animation: @Composable (Modifier) -> Unit,
+        enabled: Boolean = true,
+        fontSize: TextUnit = ToafStyles.buttonFontSize
+    ) {
+        FilledTonalButton(
+            enabled = enabled,
+            modifier = modifier,
+            border = BorderStroke(ToafStyles.borderSize, ToafColors.borderColor),
+            colors = ButtonDefaults.filledTonalButtonColors(
+                containerColor = ToafColors.greenButton,
+                disabledContainerColor = ToafColors.disabledButton
+            ),
+            contentPadding = PaddingValues(horizontal = 8.dp, vertical = 4.dp),
+            onClick = { onClick() }
+        ) {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            )
+            {
+                animation(Modifier.height(64.dp))
+                Text(
+                    stringResource(buttonText),
+                    fontSize = fontSize,
+                    color = Color.White,
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
     }
 
     @Composable

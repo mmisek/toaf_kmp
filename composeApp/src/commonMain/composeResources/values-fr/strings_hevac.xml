@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_hevac">Climatisation régulée (HEVAC)</string>
+
+    <string name="hevac_error_00">Moteur de volet d\'aération</string>
+    <string name="hevac_error_01">Moteur de volet de dégivrage</string>
+    <string name="hevac_error_02">Moteur de volet plancher</string>
+    <string name="hevac_error_03">Moteur de volet air frais/recyclage d\'air gauche</string>
+    <string name="hevac_error_04">Moteur de volet air frais/recyclage d\'air droit</string>
+    <string name="hevac_error_05">Calculateur de climatisation HEVAC incorrect</string>
+    <string name="hevac_error_06">Alimentation capteur de pression, capteur de pollution</string>
+    <string name="hevac_error_0B">Capteur évaporateur</string>
+    <string name="hevac_error_0D">Capteur échangeur de chaleur</string>
+    <string name="hevac_error_12">Capteur de température habitacle</string>
+    <string name="hevac_error_17">Relais lunette arrière chauffante</string>
+    <string name="hevac_error_18">Relais chauffage additionnel</string>
+    <string name="hevac_error_19">Pompe à eau auxiliaire</string>
+    <string name="hevac_error_1A">Électrovanne de chauffage</string>
+    <string name="hevac_error_1B">Tension de commande pulseur d\'air</string>
+    <string name="hevac_error_1C">Capteur pulseur d\'air</string>
+    <string name="hevac_error_1D">Communication avec le chauffage additionnel</string>
+    <string name="hevac_error_1E">Capteur de pollution</string>
+    <string name="hevac_error_1F">Capteur de pression</string>
+    <string name="hevac_error_20">Chauffage capteur de pollution</string>
+    <string name="hevac_error_21">Capteur d\'ensoleillement</string>
+    <string name="hevac_error_FF">Mode économie d\'énergie actif</string>
+
+    <string name="hevac_error_detail_01">Court-circuit au plus (+BAT)</string>
+    <string name="hevac_error_detail_02">Court-circuit à la masse</string>
+    <string name="hevac_error_detail_04">Circuit ouvert</string>
+    <string name="hevac_error_detail_08">Valeur incohérente, plage de fonctionnement invalide</string>
+    <string name="hevac_error_detail_40">Défaut présent</string>
+    <string name="hevac_error_detail_80">Défaut sporadique</string>
+
+    <string name="hevac_live_data_power_supply_pollution_sensor">Alimentation capteur de pollution</string>
+    <string name="hevac_live_data_power_supply">HEVAC - tension d\'alimentation</string>
+    <string name="hevac_live_data_pollution_sensor_heating_voltage">Capteur de pollution - tension de chauffage</string>
+    <string name="hevac_live_data_pwm_fan_control_voltage">Tension de commande PWM pulseur d\'air</string>
+    <string name="hevac_live_data_outdoor_temperature_sensor">Capteur de température extérieure</string>
+    <string name="hevac_live_data_evaporator_temperature_sensor">Capteur de température évaporateur</string>
+    <string name="hevac_live_data_pollution_sensor_signal">Signal capteur de pollution</string>
+    <string name="hevac_live_data_heat_exchanger_sensor">Capteur échangeur de chaleur</string>
+    <string name="hevac_live_data_solar_sensor">Capteur d\'ensoleillement</string>
+    <string name="hevac_live_data_pressure_sensor">Capteur de pression</string>
+</resources>

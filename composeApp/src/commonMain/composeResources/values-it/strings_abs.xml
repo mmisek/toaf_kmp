@@ -51,8 +51,11 @@
     <string name="abs_live_data_rear_right_wheel_speed">Velocità ruota posteriore destra</string>
     <string name="abs_live_data_engine_rpm">Giri motore</string>
     <string name="abs_live_data_break_light_switch">Interruttore luci stop</string>
+
+    <string name="abs_live_data_asc_passive_button">Pulsante ASC passivo</string>
+    <string name="abs_live_data_handbrake_switch">Interruttore freno a mano</string>
+    <string name="abs_live_data_value_off">Spento</string>
+    <string name="abs_live_data_value_on">Acceso</string>
     <string name="abs_live_data_pump_relay">Relè pompa ABS</string>
     <string name="abs_live_data_valve_relay">Relè valvola</string>
-    <string name="abs_live_data_asc_active">ASC attivo</string>
-
 </resources>

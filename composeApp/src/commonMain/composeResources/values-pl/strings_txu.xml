@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_txu">Skrzynia rozdzielcza</string>
+    <string name="txu_live_data_block01_byte00_bit0">Blok 01, bajt 0, bit 0</string>
+    <string name="txu_live_data_block01_byte00_bit1">Blok 01, bajt 0, bit 1</string>
+    <string name="txu_live_data_block01_byte00_bit2">Blok 01, bajt 0, bit 2</string>
+    <string name="txu_live_data_block01_byte00_bit3">Blok 01, bajt 0, bit 3</string>
+    <string name="txu_live_data_block01_byte00_bit4">Blok 01, bajt 0, bit 4</string>
+    <string name="txu_live_data_block01_byte00_bit5">Blok 01, bajt 0, bit 5</string>
+    <string name="txu_live_data_block01_byte00_bit6">Blok 01, bajt 0, bit 6</string>
+    <string name="txu_live_data_block01_byte00_bit7">Blok 01, bajt 0, bit 7</string>
+    <string name="txu_live_data_block01_byte01_bit0">Blok 01, bajt 1, bit 0</string>
+    <string name="txu_live_data_block01_byte01_bit1">Blok 01, bajt 1, bit 1</string>
+    <string name="txu_live_data_block01_byte01_bit2">Blok 01, bajt 1, bit 2</string>
+    <string name="txu_live_data_block01_byte01_bit3">Blok 01, bajt 1, bit 3</string>
+    <string name="txu_live_data_block01_byte01_bit4">Blok 01, bajt 1, bit 4</string>
+    <string name="txu_live_data_block01_byte01_bit5">Blok 01, bajt 1, bit 5</string>
+    <string name="txu_live_data_block01_byte01_bit6">Blok 01, bajt 1, bit 6</string>
+    <string name="txu_live_data_block01_byte01_bit7">Blok 01, bajt 1, bit 7</string>
+    <string name="txu_live_data_block02_byte00_bits0_2">Blok 02, bajt 0, bity 0-2</string>
+    <string name="txu_live_data_block02_byte00_bits3_4">Blok 02, bajt 0, bity 3-4</string>
+    <string name="txu_live_data_block03_byte00_bits0_1">Blok 03, bajt 0, bity 0-1</string>
+    <string name="txu_live_data_block03_byte00_bit2">Blok 03, bajt 0, bit 2</string>
+    <string name="txu_live_data_block03_byte00_bit3">Blok 03, bajt 0, bit 3</string>
+    <string name="txu_live_data_block03_byte00_bit4">Blok 03, bajt 0, bit 4</string>
+    <string name="txu_live_data_block03_byte00_bit5">Blok 03, bajt 0, bit 5</string>
+    <string name="txu_live_data_block03_byte00_bit6">Blok 03, bajt 0, bit 6</string>
+    <string name="txu_live_data_block03_byte00_bit7">Blok 03, bajt 0, bit 7</string>
+    <string name="txu_live_data_block04_byte00_bits0_1">Blok 04, bajt 0, bity 0-1</string>
+    <string name="txu_live_data_block04_byte00_bits2_4">Blok 04, bajt 0, bity 2-4</string>
+    <string name="txu_live_data_block05_word00">Blok 05, słowo 0-1</string>
+    <string name="txu_live_data_block05_word02">Blok 05, słowo 2-3</string>
+    <string name="txu_live_data_block06_word00">Blok 06, słowo 0-1</string>
+    <string name="txu_live_data_block06_byte02">Blok 06, bajt 2</string>
+    <string name="txu_live_data_block06_byte03">Blok 06, bajt 3</string>
+    <string name="txu_live_data_block06_byte04">Blok 06, bajt 4</string>
+    <string name="txu_live_data_block06_byte05">Blok 06, bajt 5</string>
+    <string name="txu_live_data_block07_byte00_bits0_5">Blok 07, bajt 0, bity 0-5</string>
+    <string name="txu_live_data_block07_byte01">Blok 07, bajt 1</string>
+    <string name="txu_live_data_block08_word00">Blok 08, słowo 0-1</string>
+    <string name="txu_live_data_block08_word02">Blok 08, słowo 2-3</string>
+    <string name="txu_live_data_block08_byte04">Blok 08, bajt 4</string>
+    <string name="txu_live_data_block09_byte00">Blok 09, bajt 0</string>
+    <string name="txu_live_data_block09_byte01">Blok 09, bajt 1</string>
+    <string name="txu_live_data_block10_byte00">Blok 10, bajt 0</string>
+</resources>

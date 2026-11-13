@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Gateway: obudowa sterownika z dwukierunkowym przeplywem danych
+     (strzalka wchodzaca u gory, wychodzaca u dolu). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="512.000000dp"
+    android:height="512.000000dp"
+    android:viewportWidth="512.000000"
+    android:viewportHeight="512.000000">
+
+    <!-- obudowa -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#000000"
+        android:strokeWidth="28"
+        android:strokeLineJoin="round"
+        android:pathData="M232,116 L444,116 A32,32 0 0 1 476,148 L476,364 A32,32 0 0 1 444,396 L232,396 A32,32 0 0 1 200,364 L200,148 A32,32 0 0 1 232,116 Z" />
+
+    <!-- etykieta wewnatrz obudowy -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#000000"
+        android:strokeWidth="26"
+        android:strokeLineCap="round"
+        android:pathData="M252,208 L424,208" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#000000"
+        android:strokeWidth="26"
+        android:strokeLineCap="round"
+        android:pathData="M252,304 L368,304" />
+
+    <!-- wejscie: strzalka do sterownika -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#000000"
+        android:strokeWidth="26"
+        android:strokeLineCap="round"
+        android:pathData="M48,180 L140,180" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M196,180 L140,148 L140,212 Z" />
+
+    <!-- wyjscie: strzalka od sterownika -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#000000"
+        android:strokeWidth="26"
+        android:strokeLineCap="round"
+        android:pathData="M196,332 L104,332" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M48,332 L104,300 L104,364 Z" />
+
+</vector>

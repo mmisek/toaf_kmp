@@ -521,6 +521,9 @@
     <string name="me72_error_occurrence_first">First occurrence</string>
     <string name="me72_error_occurrence_second">Second occurrence</string>
     <string name="me72_error_occurrence_last">Current occurrence</string>
+    <string name="me72_error_pcode">OBD code</string>
+    <string name="me72_info_supplier_number">Supplier number</string>
+    <string name="me72_info_software_number">Software number</string>
     <string name="me72_lambda_status_21">Control OFF, activation conditions not yet met</string>
     <string name="me72_lambda_status_22">Control ON</string>
     <string name="me72_lambda_status_23">Control OFF due to driving conditions</string>

@@ -25,5 +25,7 @@ enum class ActionTypeEnum {
     ReadServotronic,
     WriteServotronic,
     ReadTemperatureGauge,
-    WriteTemperatureGauge
+    WriteTemperatureGauge,
+    ScanCar,
+    ClearAllErrors,
 }

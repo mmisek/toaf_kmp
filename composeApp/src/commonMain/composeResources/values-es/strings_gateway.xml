@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="module_description_gateway">Gateway (V8)</string>
+    <!-- Gateway X12 - códigos de avería -->
+    <string name="gateway_error_1480">Salida del ventilador de baja velocidad</string>
+    <string name="gateway_error_1520">Entrada de presión de aceite</string>
+    <string name="gateway_error_1623">Salida del testigo del alternador</string>
+    <string name="gateway_error_1670">Salida del testigo de presión de aceite</string>
+    <string name="gateway_error_1671">Salida del testigo de fallo de frenos</string>
+    <string name="gateway_error_1672">Salida del relé del sistema</string>
+    <string name="gateway_error_1673">Salida de solicitud de aire acondicionado</string>
+    <string name="gateway_error_1675">Inmovilizador: sin código EWS3</string>
+    <string name="gateway_error_1676">Inmovilizador: sin respuesta de ID del PCM</string>
+    <string name="gateway_error_1677">Inmovilizador: falta el mensaje SCP</string>
+    <string name="gateway_error_1678">Inmovilizador: el estado del sistema de seguridad no coincide con el de la llave</string>
+    <string name="gateway_error_1679">Inmovilizador: número ISN no válido</string>
+    <!-- Gateway X12 - datos en tiempo real -->
+    <string name="gateway_live_data_ignition">Estado del encendido</string>
+    <string name="gateway_live_data_engine_speed">Régimen del motor</string>
+    <string name="gateway_live_data_coolant_temperature">Temperatura del refrigerante</string>
+    <string name="gateway_live_data_fuel_level">Nivel de combustible</string>
+    <string name="gateway_live_data_oil_pressure">Presión de aceite</string>
+    <string name="gateway_live_data_immobiliser">Estado del inmovilizador</string>
+    <string name="gateway_live_data_value_on">Encendido</string>
+    <string name="gateway_live_data_value_off">Apagado</string>
+    <string name="gateway_live_data_value_low">Baja</string>
+    <string name="gateway_live_data_value_normal">Normal</string>
+</resources>

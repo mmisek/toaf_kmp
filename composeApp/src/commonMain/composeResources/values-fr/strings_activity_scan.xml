@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_scan_title">Diagnostic du véhicule</string>
+    <string name="activity_scan_header">Scanner le véhicule</string>
+    <string name="activity_scan_button_scan">Scanner</string>
+    <string name="activity_scan_button_clear_all">Effacer tous les défauts</string>
+    <string name="activity_scan_button_share">Partager le rapport</string>
+    <string name="activity_scan_column_module">Calculateur</string>
+    <string name="activity_scan_column_present">Présent</string>
+    <string name="activity_scan_column_errors">Défauts</string>
+    <string name="activity_scan_button_clear">Effacer</string>
+    <string name="activity_scan_present_yes">OUI</string>
+    <string name="activity_scan_present_no">NON</string>
+    <string name="activity_scan_successful">Scan terminé</string>
+    <string name="activity_scan_failed">Aucun calculateur trouvé</string>
+    <string name="activity_scan_clear_successful">Défauts effacés</string>
+    <string name="activity_scan_clear_failed">Échec de l\'effacement des défauts</string>
+    <string name="activity_scan_unexpected_error">Erreur inattendue</string>
+    <string name="activity_scan_report_title">Résultat du scan du véhicule</string>
+    <string name="activity_scan_report_version">Version TOAF</string>
+    <string name="activity_scan_report_platform">Plateforme</string>
+    <string name="activity_scan_report_date">Date du scan</string>
+    <string name="activity_scan_report_modules_scanned">Calculateurs scannés</string>
+    <string name="activity_scan_report_modules_found">Calculateurs trouvés</string>
+    <string name="activity_scan_report_module_name">Nom du calculateur</string>
+    <string name="activity_scan_report_module_vin">VIN du calculateur</string>
+    <string name="activity_scan_report_module_odometer">Kilométrage du calculateur</string>
+    <string name="activity_scan_report_errors_count">Nombre de défauts</string>
+    <string name="activity_scan_report_read_error">erreur de lecture</string>
+</resources>

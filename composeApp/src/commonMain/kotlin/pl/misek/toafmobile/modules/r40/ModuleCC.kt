@@ -160,10 +160,7 @@ class ModuleCC(protocolKWP: ProtocolKWP?) : IModule, IModuleLiveData {
         return result
     }
 
-    override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>) : Boolean
-    {
-        return securityAccess03()
-    }
+    override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>) = securityAccess03()
 
     private suspend fun securityAccess03(): Boolean {
         val level :Byte = 0x03

@@ -88,6 +88,7 @@
 
     <string name="module_coding">Кодирование</string>
     <string name="activity_coding_subtitle">Кодирование модуля</string>
+    <string name="activity_coding_no_scheme">Нет схемы кодирования для этого блока управления</string>
     <string name="activity_coding_button_read">Считать</string>
     <string name="activity_coding_button_save">Сохранить</string>
     <string name="activity_coding_read_failure">Сбой чтения кодировки</string>

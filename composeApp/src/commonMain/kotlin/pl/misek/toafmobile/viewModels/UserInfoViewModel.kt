@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import pl.misek.toafmobile.database.Database
+import pl.misek.toafmobile.logger.SentryUser
 import pl.misek.toafmobile.network.ToafApi
 import pl.misek.toafmobile.network.UserInfo
 import java.net.SocketTimeoutException
@@ -46,6 +47,8 @@ class UserInfoViewModel(private val toafApi : ToafApi, private val database: Dat
         return try {
             val settings = database.getLoginAndPassword()
             val userLogin = settings?.first ?: ""
+            // login saved in the app counts as logged in, regardless of server response
+            SentryUser.login = userLogin.ifEmpty { SentryUser.ANONYMOUS }
             val databaseUserLogin = toafApi.getUserInfo()
             if (databaseUserLogin != null)
             {

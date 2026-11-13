@@ -38,7 +38,12 @@ import toafmobile.composeapp.generated.resources.Res
 import toafmobile.composeapp.generated.resources.*
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
+import kotlin.time.Clock
 import kotlin.time.Duration.Companion.milliseconds
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.isoDayNumber
+import kotlinx.datetime.todayIn
+import pl.misek.toafmobile.modules.enums.ModuleFeature
 
 class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddress.MODULE_EHC, listOf(CarType.L322)),
     IModuleLiveData, IModuleAdvanceControl, IModuleControl, IModuleEepromProgramming, IModuleEHCHeightControl, IModuleEHCCalibration
@@ -148,6 +153,15 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
     }
 
     override suspend fun startLiveDataRead(liveDataElements: List<LiveDataElement>): Boolean = true
+
+    /** FS_LOESCHEN (EHC_2N2): 05 <tydzien kalendarzowy BCD> <rok BCD> - data skasowania zapisywana w sterowniku */
+    override suspend fun clearAllErrors(): Boolean {
+        getIdentification()
+        val today = Clock.System.todayIn(TimeZone.currentSystemDefault())
+        val week = ((today.dayOfYear - today.dayOfWeek.isoDayNumber + 10) / 7).coerceIn(1, 53)
+        fun Int.toBcd() = (((this / 10) shl 4) or (this % 10)).toByte()
+        return writeWithBusyRetry(byteArrayOf(0x05, week.toBcd(), (today.year % 100).toBcd()), 500).isValid
+    }
 
     override suspend fun getAllErrors(): List<ModuleError>? {
         val fakeAnswer = byteArrayOf(0xAC.toByte(), 0x13.toByte(), 0xA0.toByte(), 0x02.toByte(), 0x36.toByte(), 0x00.toByte(), 0x61.toByte(), 0x01.toByte(), 0x86.toByte(), 0x90.toByte(),
@@ -544,6 +558,8 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         return rawValue * element.factorA + element.factorB
     }
 
+    override fun getNewFeatures() = super.getNewFeatures() + ModuleFeature.EepromProgramming
+
     override suspend fun readEeprom(address: Int, size: Int): ByteArray? {
         val message = writeWithBusyRetry(
             byteArrayOf(
@@ -566,24 +582,41 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
     }
 
     override suspend fun writeEeprom(address: Int, data: ByteArray): Boolean {
-        val dataToWrite =
+        // Szybka sciezka: cala paczka (do 16 B) w jednym telegramie {07 00 LOW MID HIGH count data}.
+        if (writeEepromBlock(address, data).isValid)
+            return true
+        if (data.size <= 1)
+            return false
+        // Blok odrzucony - np. chroniona identyfikacja SG (0x00-0x07) powoduje odrzucenie calej paczki.
+        // Zapisujemy bajt po bajcie; chronione bajty (odpowiedz 0xA2) pomijamy, nie traktujac ich jako bledu.
+        var allOk = true
+        for (i in data.indices) {
+            val single = writeEepromBlock(address + i, byteArrayOf(data[i]))
+            if (!single.isValid && single.answerCode != ANSWER_REJECTED)
+                allOk = false
+        }
+        return allOk
+    }
+
+    private suspend fun writeEepromBlock(address: Int, data: ByteArray) =
+        writeWithBusyRetry(
             byteArrayOf(
                 0x07,
                 0x00,
                 ((address and 0x0000FF)).toByte(),
                 ((address and 0x00FF00) shr 8).toByte(),
                 ((address and 0xFF0000) shr 16).toByte(),
-                0x01) + data
-        return writeWithBusyRetry(dataToWrite, 500).isValid
-    }
+                data.size.toByte()) + data,
+            500
+        )
 
-    override val eepromWriteAvailable: Boolean = false
+    override val eepromWriteAvailable: Boolean = true
 
     override fun getEepromSize(): Int = 512
 
     override fun getEepromReadSize() : Int = 16
 
-    override fun getEepromWriteSize(): Int = 1
+    override fun getEepromWriteSize(): Int = 16
 
     private fun calculateKeyNormal(seed : Int) : Int
     {
@@ -627,6 +660,7 @@ class ModuleEHC(protocolDS2: ProtocolDS2?) : ModuleDS2(protocolDS2, ModuleAddres
         val LIVE_DATA_BLOCKS = byteArrayOf(0x00, 0x01, 0x02)
         val ERROR_TYPE_BITS = intArrayOf(0x01, 0x02, 0x04, 0x08, 0x40)
         const val ANSWER_BUSY: Byte = 0xA1.toByte()
+        const val ANSWER_REJECTED: Byte = 0xA2.toByte()
         const val MAX_BUSY_RETRIES = 50
         const val BUSY_RETRY_DELAY_MS = 100L
         const val MODE_HAND_CONTROL = 0x20

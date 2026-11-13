@@ -52,3 +52,7 @@ dependencies {
     implementation(libs.compose.splashscreen)
     debugImplementation(libs.androidx.ui.tooling)
 }
+
+tasks.matching { it.name == "assembleRelease" || it.name == "bundleRelease" }.configureEach {
+    dependsOn(":composeApp:generateNotice")
+}
