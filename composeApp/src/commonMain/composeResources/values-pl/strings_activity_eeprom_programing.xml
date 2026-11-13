@@ -37,6 +37,12 @@
     <string name="activity_eeprom_programming_voltage_check_failed">Sprawdzanie napięcia zasilania nie powiodło się !!</string>
     <string name="activity_eeprom_programming_voltage">Napięcie zasilania : %1$s V</string>
     <string name="activity_eeprom_programming_voltage_too_low">Napięcie akumulatora jest za niskie do programowania EEPROM. Wymień akumulator lub podłącz prostownik.</string>
+    <string name="activity_eeprom_programming_battery_level">Poziom naładowania baterii : %1$s %%</string>
+    <string name="activity_eeprom_programming_battery_powered">Ładowanie lub zasilanie sieciowe : Tak</string>
+    <string name="activity_eeprom_programming_battery_not_powered">Ładowanie lub zasilanie sieciowe : Nie</string>
+    <string name="activity_eeprom_programming_battery_too_low">Poziom naładowania baterii jest za niski do programowania EEPROM. Naładuj baterię lub podłącz ładowarkę.</string>
+    <string name="activity_eeprom_programming_battery_none">Brak baterii - zasilanie sieciowe</string>
+    <string name="activity_eeprom_programming_battery_check_failed">Sprawdzenie stanu baterii nie powiodło się !!</string>
     <string name="activity_eeprom_programing_warning">
         !! UWAGA !!\n\n
         Wszystkie te operacje mogą uszkodzić Twój moduł.\n

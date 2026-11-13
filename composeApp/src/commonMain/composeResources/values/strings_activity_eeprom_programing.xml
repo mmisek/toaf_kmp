@@ -37,6 +37,12 @@
     <string name="activity_eeprom_programming_voltage_check_failed">Supply voltage check failed !!</string>
     <string name="activity_eeprom_programming_voltage">Supply voltage : %1$s V</string>
     <string name="activity_eeprom_programming_voltage_too_low">Battery voltage is too low for EEPROM programming. Replace battery or connect booster</string>
+    <string name="activity_eeprom_programming_battery_level">Battery level : %1$s %%</string>
+    <string name="activity_eeprom_programming_battery_powered">Charging or plugged : Yes</string>
+    <string name="activity_eeprom_programming_battery_not_powered">Charging or plugged : No</string>
+    <string name="activity_eeprom_programming_battery_too_low">Battery level is too low for EEPROM programming. Charge battery or connect charger</string>
+    <string name="activity_eeprom_programming_battery_none">No battery - mains powered</string>
+    <string name="activity_eeprom_programming_battery_check_failed">Battery state check failed !!</string>
 
     <string name="activity_eeprom_programing_warning">
         !! WARNING !!\n\n

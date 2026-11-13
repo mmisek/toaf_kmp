@@ -94,6 +94,12 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
     val voltageCheckFailedText = stringResource(Res.string.activity_eeprom_programming_voltage_check_failed)
     val voltageText = stringResource(Res.string.activity_eeprom_programming_voltage)
     val voltageTooLowText = stringResource(Res.string.activity_eeprom_programming_voltage_too_low)
+    val batteryLevelText = stringResource(Res.string.activity_eeprom_programming_battery_level)
+    val batteryPoweredText = stringResource(Res.string.activity_eeprom_programming_battery_powered)
+    val batteryNotPoweredText = stringResource(Res.string.activity_eeprom_programming_battery_not_powered)
+    val batteryTooLowText = stringResource(Res.string.activity_eeprom_programming_battery_too_low)
+    val batteryNoneText = stringResource(Res.string.activity_eeprom_programming_battery_none)
+    val batteryCheckFailedText = stringResource(Res.string.activity_eeprom_programming_battery_check_failed)
 
     val programmingProcess = { fileData : ByteArray ->
         scope.launch {
@@ -114,16 +120,16 @@ fun ActivityEepromProgrammingModel(moduleKoinName: KoinNames, onBackClick : () -
                     when (val batteryResult = readBatteryInfo()) {
                         is BatteryReadResult.Ok -> {
                             val battery = batteryResult.info
-                            val chargingOrPluggedText = if (battery.isCharging || battery.isPlugged) "Yes" else "No"
-                            statusText += "\nBattery Level : ${battery.level} %"
-                            statusText += "\nCharging or plugged : $chargingOrPluggedText"
+                            statusText += "\n" + String.format(batteryLevelText, battery.level.toString())
+                            statusText += "\n" + if (battery.isCharging || battery.isPlugged)
+                                batteryPoweredText else batteryNotPoweredText
                             if (battery.level < 20 && !battery.isCharging && !battery.isPlugged) {
-                                statusText += "\nBattery level is too low for EEPROM Programming! Charge battery or connect charger!"
+                                statusText += "\n" + batteryTooLowText
                                 return@launch
                             }
                         }
-                        BatteryReadResult.NoBattery -> statusText += "\nNo battery - mains powered"
-                        BatteryReadResult.Failed -> statusText += "\nFailed to read battery state!"
+                        BatteryReadResult.NoBattery -> statusText += "\n" + batteryNoneText
+                        BatteryReadResult.Failed -> statusText += "\n" + batteryCheckFailedText
                     }
                     if (liveDataModule == null && moduleIPK != null) {
                         liveDataModule = moduleIPK as? IModuleLiveData

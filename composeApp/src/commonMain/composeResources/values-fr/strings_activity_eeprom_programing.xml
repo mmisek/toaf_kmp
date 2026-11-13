@@ -37,6 +37,12 @@
     <string name="activity_eeprom_programming_voltage_check_failed">Échec de la vérification de la tension d\'alimentation !!</string>
     <string name="activity_eeprom_programming_voltage">Tension d\'alimentation : %1$s V</string>
     <string name="activity_eeprom_programming_voltage_too_low">La tension de la batterie est trop faible pour la programmation EEPROM. Remplacez la batterie ou branchez un chargeur</string>
+    <string name="activity_eeprom_programming_battery_level">Niveau de batterie : %1$s %%</string>
+    <string name="activity_eeprom_programming_battery_powered">En charge ou branché : Oui</string>
+    <string name="activity_eeprom_programming_battery_not_powered">En charge ou branché : Non</string>
+    <string name="activity_eeprom_programming_battery_too_low">Le niveau de batterie est trop faible pour la programmation EEPROM. Chargez la batterie ou branchez le chargeur</string>
+    <string name="activity_eeprom_programming_battery_none">Pas de batterie - alimentation secteur</string>
+    <string name="activity_eeprom_programming_battery_check_failed">Échec de la vérification de l\'état de la batterie !!</string>
 
     <string name="activity_eeprom_programing_warning">
         !! AVERTISSEMENT !!\n\n

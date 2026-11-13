@@ -37,6 +37,12 @@
     <string name="activity_eeprom_programming_voltage_check_failed">Не удалось проверить напряжение питания !!</string>
     <string name="activity_eeprom_programming_voltage">Напряжение питания : %1$s В</string>
     <string name="activity_eeprom_programming_voltage_too_low">Напряжение аккумулятора слишком низкое для программирования EEPROM. Замените аккумулятор или подключите зарядное устройство</string>
+    <string name="activity_eeprom_programming_battery_level">Уровень заряда батареи : %1$s %%</string>
+    <string name="activity_eeprom_programming_battery_powered">Зарядка или питание от сети : Да</string>
+    <string name="activity_eeprom_programming_battery_not_powered">Зарядка или питание от сети : Нет</string>
+    <string name="activity_eeprom_programming_battery_too_low">Уровень заряда батареи слишком низкий для программирования EEPROM. Зарядите батарею или подключите зарядное устройство</string>
+    <string name="activity_eeprom_programming_battery_none">Нет батареи - питание от сети</string>
+    <string name="activity_eeprom_programming_battery_check_failed">Не удалось проверить состояние батареи !!</string>
 
     <string name="activity_eeprom_programing_warning">
         !! ВНИМАНИЕ !!\n\n
