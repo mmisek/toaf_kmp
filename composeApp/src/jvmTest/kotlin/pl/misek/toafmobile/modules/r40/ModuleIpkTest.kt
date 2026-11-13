@@ -98,7 +98,10 @@ class ModuleIpkTest {
             isValid = true
             length = response.size
         }
-        coEvery { ds2.write(eq(address), any<ByteArray>()) } returns fakeAnswer
+        // getAllErrors wola interfaceWrite(data, 250), czyli przeciazenie z timeoutem:
+        // write(Byte, ByteArray, Long?). Zaslepka bez trzeciego argumentu trafia w inne
+        // przeciazenie i MockK zglasza "no answer found".
+        coEvery { ds2.write(eq(address), any<ByteArray>(), any<Long>()) } returns fakeAnswer
         val errors = ModuleIPK(ds2).getAllErrors()
         assertNotNull(errors)
         assertEquals(1, errors.size)
