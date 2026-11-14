@@ -14,12 +14,12 @@ by the AboutLibraries Gradle plugin. Do not edit it by hand - run
 1. SUMMARY
 ==============================================================================
 
-  Apache License 2.0 ................................. 214 components
+  Apache License 2.0 ................................. 215 components
   MIT License ........................................ 11 components
   Android Software Development Kit License ........... 15 components
   Apache License 2.0 / GNU LGPL v3 (dual-licensed) ... 1 component
 
-  Total: 241 components.
+  Total: 242 components.
 
   None of the bundled components is distributed under the GPL or the AGPL,
   and no component imposes an obligation to publish the source code of this
@@ -398,6 +398,9 @@ by the AboutLibraries Gradle plugin. Do not edit it by hand - run
   com.squareup.okio:okio:3.18.2
       okio  --  Square, Inc.
       https://github.com/lysine-dev/okio/
+  io.github.techie-labs:volta:1.0.0
+      Volta  --  Fangga Dewangga
+      https://github.com/techie-labs/volta
   io.insert-koin:koin-android:4.2.2
       Koin  --  Arnaud Giuliani
       https://insert-koin.io/
@@ -653,16 +656,16 @@ by the AboutLibraries Gradle plugin. Do not edit it by hand - run
   org.jetbrains.kotlinx:kotlinx-io-core:0.9.1
       kotlinx-io-core  --  JetBrains Team
       https://github.com/Kotlin/kotlinx-io
-  org.jetbrains.kotlinx:kotlinx-serialization-bom:1.12.0
+  org.jetbrains.kotlinx:kotlinx-serialization-bom:1.13.0
       kotlinx-serialization-bom  --  JetBrains Team
       https://github.com/Kotlin/kotlinx.serialization
-  org.jetbrains.kotlinx:kotlinx-serialization-core:1.12.0
+  org.jetbrains.kotlinx:kotlinx-serialization-core:1.13.0
       kotlinx-serialization-core  --  JetBrains Team
       https://github.com/Kotlin/kotlinx.serialization
-  org.jetbrains.kotlinx:kotlinx-serialization-json:1.12.0
+  org.jetbrains.kotlinx:kotlinx-serialization-json:1.13.0
       kotlinx-serialization-json  --  JetBrains Team
       https://github.com/Kotlin/kotlinx.serialization
-  org.jetbrains.kotlinx:kotlinx-serialization-json-io:1.12.0
+  org.jetbrains.kotlinx:kotlinx-serialization-json-io:1.13.0
       kotlinx-serialization-json-io  --  JetBrains Team
       https://github.com/Kotlin/kotlinx.serialization
   org.jetbrains.runtime:jbr-api:1.9.0
