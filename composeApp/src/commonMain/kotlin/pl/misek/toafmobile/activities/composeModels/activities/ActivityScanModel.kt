@@ -26,6 +26,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
@@ -33,6 +34,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import co.touchlab.kermit.Logger
+import kotlinx.coroutines.CancellationException
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -105,6 +108,7 @@ fun ActivityScanModel(onBackClick :() -> Unit) {
     val unexpectedError = stringResource(Res.string.activity_scan_unexpected_error)
     val dataCopiedToClipboard = stringResource(Res.string.data_copied_to_clipboard)
     val scanReport = scanResultToString(scanResult)
+    var pendingReportUpload by remember { mutableStateOf(false) }
     var showDialogErrors by remember {mutableStateOf(false)}
     var indexOfErrorsToShow by remember { mutableIntStateOf(0) }
     ScanCarContent(
@@ -195,6 +199,28 @@ fun ActivityScanModel(onBackClick :() -> Unit) {
         )
 
     }
+
+    if (pendingReportUpload) {
+        LaunchedEffect(Unit) {
+            val jsonObject = buildJsonObject {
+                put("vin", "")
+                put("module", "SCAN")
+                put("id1", getPlatformName())
+                put("id2", BuildKonfig.VERSION_NAME)
+            }
+            try {
+                withContext(Dispatchers.IO) {
+                    toafApi.uploadFlash(jsonObject, scanReport.toByteArray())
+                }
+            } catch (ex: CancellationException) {
+                throw ex
+            } catch (ex: Exception) {
+                Logger.e { "ActivityScanModel [uploadScanReport], $ex" }
+            } finally {
+                pendingReportUpload = false
+            }
+        }
+    }
     if (showProgressDialog) {
         ToafProgressDialog(
             action = { action() },
@@ -202,15 +228,7 @@ fun ActivityScanModel(onBackClick :() -> Unit) {
                 when (actionType) {
                     ActionTypeEnum.ScanCar -> {
                         val result = actionResult as? List<*>
-                        val jsonObject = buildJsonObject {
-                            put("vin", "")
-                            put("module", "SCAN")
-                            put("id1", getPlatformName())
-                            put("id2", BuildKonfig.VERSION_NAME)
-                        }
-                        scope.launch(Dispatchers.IO) {
-                            toafApi.uploadFlash(jsonObject, scanReport.toByteArray())
-                        }
+                        pendingReportUpload = true
                         showResult(
                             scope,
                             snackBarHostState,
