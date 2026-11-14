@@ -12,6 +12,7 @@ actual fun getPlatformName() : String {
     return when {
         os.contains("win") -> "WINDOWS"
         os.contains("linux") -> "LINUX"
+        os.contains("nix") -> "UNIX"
         os.contains("mac") -> "MACOS"
         else -> "UNKNOWN"
     }
